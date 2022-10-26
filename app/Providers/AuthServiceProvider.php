@@ -5,6 +5,12 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+use App\Models\Profil\VisiMisi;
+use App\Policies\Profil\VisimisiPolicy;
+
+use App\Models\Profil\ProfilSingkat;
+use App\Policies\Profil\ProfilSingkatPolicy;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -14,6 +20,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        VisiMisi::class => VisiMisiPolicy::class,
+        ProfilSingkat::class => ProfilSingkatPolicy::class,
+
     ];
 
     /**

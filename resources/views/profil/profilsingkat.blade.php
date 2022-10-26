@@ -7,6 +7,20 @@
             Profil
             </x-slot>
 
+            @push('child-scripts')
+                <script src="{{ asset('template/dist/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+                <script>
+                    ClassicEditor
+                        .create(document.querySelector('#kt_docs_ckeditor_classic_konten'))
+                        .then(editor => {
+                            console.log(editor);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                </script>
+            @endpush
+
 
             <h1>Pengelolaan Profil</h1>
             <br>

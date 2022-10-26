@@ -99,6 +99,7 @@ License: For each use you must have a valid license purchased only from above li
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
+
                         </div>
                     </div>
                     <!--end::sidebar mobile toggle-->
@@ -316,12 +317,14 @@ License: For each use you must have a valid license purchased only from above li
                                             <!--end::Avatar-->
                                             <!--begin::Username-->
                                             <div class="d-flex flex-column">
-                                                <div class="fw-bold d-flex align-items-center fs-5">Max Smith
+                                                <div class="fw-bold d-flex align-items-center fs-5">
+                                                    {{ Auth::user()->name }}
                                                     <span
                                                         class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
                                                 </div>
                                                 <a href="#"
-                                                    class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+                                                    class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com -
+                                                    {{ Auth::user()->roles[0]->name }}</a>
                                             </div>
                                             <!--end::Username-->
                                         </div>
@@ -487,8 +490,14 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="../../demo1/dist/authentication/flows/basic/sign-in.html"
-                                            class="menu-link px-5">Sign Out</a>
+
+                                        {{-- <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a> --}}
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">
+                                                Sign Out
+                                            </button>
+                                        </form>
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -497,24 +506,7 @@ License: For each use you must have a valid license purchased only from above li
                             </div>
                             <!--end::User menu-->
                             <!--begin::Header menu toggle-->
-                            <div class="app-navbar-item d-lg-none ms-2 me-n3" title="Show header menu">
-                                <div class="btn btn-icon btn-active-color-primary w-35px h-35px"
-                                    id="kt_app_header_menu_toggle">
-                                    <!--begin::Svg Icon | path: icons/duotune/text/txt001.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M13 11H3C2.4 11 2 10.6 2 10V9C2 8.4 2.4 8 3 8H13C13.6 8 14 8.4 14 9V10C14 10.6 13.6 11 13 11ZM22 5V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4V5C2 5.6 2.4 6 3 6H21C21.6 6 22 5.6 22 5Z"
-                                                fill="currentColor" />
-                                            <path opacity="0.3"
-                                                d="M21 16H3C2.4 16 2 15.6 2 15V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V15C22 15.6 21.6 16 21 16ZM14 20V19C14 18.4 13.6 18 13 18H3C2.4 18 2 18.4 2 19V20C2 20.6 2.4 21 3 21H13C13.6 21 14 20.6 14 20Z"
-                                                fill="currentColor" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                            </div>
+
                             <!--end::Header menu toggle-->
                         </div>
                         <!--end::Navbar-->
@@ -580,7 +572,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin:Menu item-->
                                 <div class="menu-item">
                                     <!--begin:Menu link-->
-                                    <a class="menu-link active" href="../../demo1/dist/apps/calendar.html">
+                                    <a class="menu-link " href="../../demo1/dist/apps/calendar.html">
                                         <span class="menu-icon">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                             <span class="svg-icon svg-icon-2">
@@ -613,537 +605,559 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--end:Menu content-->
                                 </div>
                                 <!--end:Menu item-->
+
                                 <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                @can('layanan ppid.read')
+                                    <div data-kt-menu-trigger="click"
+                                        class="menu-item menu-accordion {{ $isShowAccordion_layananPPID ?? '' }}">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link {{ $isActiveLink_layananPPID ?? '' }}">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
+                                                            fill="currentColor" />
+                                                        <path opacity="0.3"
+                                                            d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
+                                            <span class="menu-title">Layanan PPID</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title">Layanan PPID</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('data_permohonan.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Data Permohonan</span>
-                                            </a>
-                                            <!--end:Menu link-->
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link {{ $isActiveLink_dataPermohonan ?? '' }}"
+                                                    href="{{ route('data_permohonan.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Data Permohonan</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Data Keberatan</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
                                         </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
+                                        <!--end:Menu sub-->
+                                    </div>
+                                @endcan
+                                <!--end:Menu item-->
+
+                                <!--begin:Menu item-->
+                                @can('profil.read')
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
+                                                            fill="currentColor" />
+                                                        <path opacity="0.3"
+                                                            d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
                                                 </span>
-                                                <span class="menu-title">Data Keberatan</span>
-                                            </a>
-                                            <!--end:Menu link-->
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                            <span class="menu-title">Profil</span>
+                                            <span class="menu-arrow"></span>
+                                        </span>
+                                        <!--end:Menu link-->
+
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('profilsingkat.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Profil Singkat PPID</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('tugasdanfungsi.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Tugas dan Fungsi</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('strukturorganisasi.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Struktur Organisasi</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('visimisi.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Visi dan Misi</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('kontak.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Kontak</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('sosialmedia.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Sosial Media</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
                                         </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu sub-->
 
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
-                                <!--end:Menu item-->
+                                    <!--end:Menu item-->
+                                @endcan
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                <!--begin:Menu Regulasi-->
+                                @can('regulasi.read')
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
+                                                            fill="currentColor" />
+                                                        <path opacity="0.3"
+                                                            d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
+                                            <span class="menu-title">Regulasi</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title">Profil</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('profilsingkat.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Profil Singkat PPID</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('tugasdanfungsi.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Tugas dan Fungsi</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('peraturan_kip.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Peraturan KIP</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="{{ route('rancangan_peraturan_kip.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Rancangan Peraturan KIP</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('strukturorganisasi.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Struktur Organisasi</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('visimisi.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Visi dan Misi</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('kontak.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Kontak</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('sosialmedia.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Sosial Media</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
 
+                                        </div>
+                                        <!--end:Menu sub-->
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
+                                @endcan
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                <!--begin:Menu Informasi Publik-->
+                                @can('laporan.read')
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: C:/wamp64/www/keenthemes/core/html/src/media/icons/duotune/maps/map004.svg-->
+                                                <span class="svg-icon svg-icon-2"><svg width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3"
+                                                            d="M18.4 5.59998C21.9 9.09998 21.9 14.8 18.4 18.3C14.9 21.8 9.2 21.8 5.7 18.3L18.4 5.59998Z"
+                                                            fill="currentColor" />
+                                                        <path
+                                                            d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM19.9 11H13V8.8999C14.9 8.6999 16.7 8.00005 18.1 6.80005C19.1 8.00005 19.7 9.4 19.9 11ZM11 19.8999C9.7 19.6999 8.39999 19.2 7.39999 18.5C8.49999 17.7 9.7 17.2001 11 17.1001V19.8999ZM5.89999 6.90002C7.39999 8.10002 9.2 8.8 11 9V11.1001H4.10001C4.30001 9.4001 4.89999 8.00002 5.89999 6.90002ZM7.39999 5.5C8.49999 4.7 9.7 4.19998 11 4.09998V7C9.7 6.8 8.39999 6.3 7.39999 5.5ZM13 17.1001C14.3 17.3001 15.6 17.8 16.6 18.5C15.5 19.3 14.3 19.7999 13 19.8999V17.1001ZM13 4.09998C14.3 4.29998 15.6 4.8 16.6 5.5C15.5 6.3 14.3 6.80002 13 6.90002V4.09998ZM4.10001 13H11V15.1001C9.1 15.3001 7.29999 16 5.89999 17.2C4.89999 16 4.30001 14.6 4.10001 13ZM18.1 17.1001C16.6 15.9001 14.8 15.2 13 15V12.8999H19.9C19.7 14.5999 19.1 16.0001 18.1 17.1001Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
+                                            <span class="menu-title">Informasi Publik</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title">Regulasi</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('peraturan_kip.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Peraturan KIP</span>
-                                            </a>
-                                            <!--end:Menu link-->
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="{{ route('informasi_secara_berkala.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Informasi Secara Berkala</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Informasi Serta Merta</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Informasi Setiap Saat</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
                                         </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('rancangan_peraturan_kip.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Rancangan Peraturan KIP</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-
-
-
-
-
+                                        <!--end:Menu sub-->
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
+                                @endcan
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                <!--begin:Menu Laporan-->
+                                @can('laporan.read')
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
+                                                            fill="currentColor" />
+                                                        <path opacity="0.3"
+                                                            d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
+                                            <span class="menu-title">Laporan</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title">Informasi Publik</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="{{ route('informasi_secara_berkala.index') }}">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Informasi Secara Berkala</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Informasi Serta Merta</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/overview.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Laporan Triwulanan PIP</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Laporan Tahunan PIP</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Informasi Setiap Saat</span>
-                                            </a>
-                                            <!--end:Menu link-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Laporan Hasil Survei</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
                                         </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu sub-->
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
+                                @endcan
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                <!--begin:Menu Standar Layanan-->
+                                @can('standar layanan.read')
+                                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
+                                                            fill="currentColor" />
+                                                        <path opacity="0.3"
+                                                            d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
+                                            <span class="menu-title">Standar Layanan</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title">Laporan</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/overview.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Laporan Triwulanan PIP</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Laporan Tahunan PIP</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/overview.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Maklumat Pelayanan</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link"
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Prosedur Pelayanan</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Laporan Hasil Survei</span>
-                                            </a>
-                                            <!--end:Menu link-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link "
+                                                    href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Biaya Layanan</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
                                         </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu sub-->
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
+                                @endcan
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                <!--begin:Menu FAQ-->
+                                @can('faq.read')
+                                    <div class="menu-item">
+                                        <!--begin:Menu link-->
+                                        <a class="menu-link " href="../../demo1/dist/apps/calendar.html">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3"
+                                                            d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z"
+                                                            fill="currentColor" />
+                                                        <path
+                                                            d="M6 6C5.4 6 5 5.6 5 5V3C5 2.4 5.4 2 6 2C6.6 2 7 2.4 7 3V5C7 5.6 6.6 6 6 6ZM11 5V3C11 2.4 10.6 2 10 2C9.4 2 9 2.4 9 3V5C9 5.6 9.4 6 10 6C10.6 6 11 5.6 11 5ZM15 5V3C15 2.4 14.6 2 14 2C13.4 2 13 2.4 13 3V5C13 5.6 13.4 6 14 6C14.6 6 15 5.6 15 5ZM19 5V3C19 2.4 18.6 2 18 2C17.4 2 17 2.4 17 3V5C17 5.6 17.4 6 18 6C18.6 6 19 5.6 19 5Z"
+                                                            fill="currentColor" />
+                                                        <path
+                                                            d="M8.8 13.1C9.2 13.1 9.5 13 9.7 12.8C9.9 12.6 10.1 12.3 10.1 11.9C10.1 11.6 10 11.3 9.8 11.1C9.6 10.9 9.3 10.8 9 10.8C8.8 10.8 8.59999 10.8 8.39999 10.9C8.19999 11 8.1 11.1 8 11.2C7.9 11.3 7.8 11.4 7.7 11.6C7.6 11.8 7.5 11.9 7.5 12.1C7.5 12.2 7.4 12.2 7.3 12.3C7.2 12.4 7.09999 12.4 6.89999 12.4C6.69999 12.4 6.6 12.3 6.5 12.2C6.4 12.1 6.3 11.9 6.3 11.7C6.3 11.5 6.4 11.3 6.5 11.1C6.6 10.9 6.8 10.7 7 10.5C7.2 10.3 7.49999 10.1 7.89999 10C8.29999 9.90003 8.60001 9.80003 9.10001 9.80003C9.50001 9.80003 9.80001 9.90003 10.1 10C10.4 10.1 10.7 10.3 10.9 10.4C11.1 10.5 11.3 10.8 11.4 11.1C11.5 11.4 11.6 11.6 11.6 11.9C11.6 12.3 11.5 12.6 11.3 12.9C11.1 13.2 10.9 13.5 10.6 13.7C10.9 13.9 11.2 14.1 11.4 14.3C11.6 14.5 11.8 14.7 11.9 15C12 15.3 12.1 15.5 12.1 15.8C12.1 16.2 12 16.5 11.9 16.8C11.8 17.1 11.5 17.4 11.3 17.7C11.1 18 10.7 18.2 10.3 18.3C9.9 18.4 9.5 18.5 9 18.5C8.5 18.5 8.1 18.4 7.7 18.2C7.3 18 7 17.8 6.8 17.6C6.6 17.4 6.4 17.1 6.3 16.8C6.2 16.5 6.10001 16.3 6.10001 16.1C6.10001 15.9 6.2 15.7 6.3 15.6C6.4 15.5 6.6 15.4 6.8 15.4C6.9 15.4 7.00001 15.4 7.10001 15.5C7.20001 15.6 7.3 15.6 7.3 15.7C7.5 16.2 7.7 16.6 8 16.9C8.3 17.2 8.6 17.3 9 17.3C9.2 17.3 9.5 17.2 9.7 17.1C9.9 17 10.1 16.8 10.3 16.6C10.5 16.4 10.5 16.1 10.5 15.8C10.5 15.3 10.4 15 10.1 14.7C9.80001 14.4 9.50001 14.3 9.10001 14.3C9.00001 14.3 8.9 14.3 8.7 14.3C8.5 14.3 8.39999 14.3 8.39999 14.3C8.19999 14.3 7.99999 14.2 7.89999 14.1C7.79999 14 7.7 13.8 7.7 13.7C7.7 13.5 7.79999 13.4 7.89999 13.2C7.99999 13 8.2 13 8.5 13H8.8V13.1ZM15.3 17.5V12.2C14.3 13 13.6 13.3 13.3 13.3C13.1 13.3 13 13.2 12.9 13.1C12.8 13 12.7 12.8 12.7 12.6C12.7 12.4 12.8 12.3 12.9 12.2C13 12.1 13.2 12 13.6 11.8C14.1 11.6 14.5 11.3 14.7 11.1C14.9 10.9 15.2 10.6 15.5 10.3C15.8 10 15.9 9.80003 15.9 9.70003C15.9 9.60003 16.1 9.60004 16.3 9.60004C16.5 9.60004 16.7 9.70003 16.8 9.80003C16.9 9.90003 17 10.2 17 10.5V17.2C17 18 16.7 18.4 16.2 18.4C16 18.4 15.8 18.3 15.6 18.2C15.4 18.1 15.3 17.8 15.3 17.5Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span class="menu-title">Standar Layanan</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/overview.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Maklumat Pelayanan</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Prosedur Pelayanan</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Biaya Layanan</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
+                                            <span class="menu-title ">FAQ</span>
+                                        </a>
+                                        <!--end:Menu link-->
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
+                                @endcan
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div class="menu-item">
-                                    <!--begin:Menu link-->
-                                    <a class="menu-link " href="../../demo1/dist/apps/calendar.html">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path opacity="0.3"
-                                                        d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z"
-                                                        fill="currentColor" />
-                                                    <path
-                                                        d="M6 6C5.4 6 5 5.6 5 5V3C5 2.4 5.4 2 6 2C6.6 2 7 2.4 7 3V5C7 5.6 6.6 6 6 6ZM11 5V3C11 2.4 10.6 2 10 2C9.4 2 9 2.4 9 3V5C9 5.6 9.4 6 10 6C10.6 6 11 5.6 11 5ZM15 5V3C15 2.4 14.6 2 14 2C13.4 2 13 2.4 13 3V5C13 5.6 13.4 6 14 6C14.6 6 15 5.6 15 5ZM19 5V3C19 2.4 18.6 2 18 2C17.4 2 17 2.4 17 3V5C17 5.6 17.4 6 18 6C18.6 6 19 5.6 19 5Z"
-                                                        fill="currentColor" />
-                                                    <path
-                                                        d="M8.8 13.1C9.2 13.1 9.5 13 9.7 12.8C9.9 12.6 10.1 12.3 10.1 11.9C10.1 11.6 10 11.3 9.8 11.1C9.6 10.9 9.3 10.8 9 10.8C8.8 10.8 8.59999 10.8 8.39999 10.9C8.19999 11 8.1 11.1 8 11.2C7.9 11.3 7.8 11.4 7.7 11.6C7.6 11.8 7.5 11.9 7.5 12.1C7.5 12.2 7.4 12.2 7.3 12.3C7.2 12.4 7.09999 12.4 6.89999 12.4C6.69999 12.4 6.6 12.3 6.5 12.2C6.4 12.1 6.3 11.9 6.3 11.7C6.3 11.5 6.4 11.3 6.5 11.1C6.6 10.9 6.8 10.7 7 10.5C7.2 10.3 7.49999 10.1 7.89999 10C8.29999 9.90003 8.60001 9.80003 9.10001 9.80003C9.50001 9.80003 9.80001 9.90003 10.1 10C10.4 10.1 10.7 10.3 10.9 10.4C11.1 10.5 11.3 10.8 11.4 11.1C11.5 11.4 11.6 11.6 11.6 11.9C11.6 12.3 11.5 12.6 11.3 12.9C11.1 13.2 10.9 13.5 10.6 13.7C10.9 13.9 11.2 14.1 11.4 14.3C11.6 14.5 11.8 14.7 11.9 15C12 15.3 12.1 15.5 12.1 15.8C12.1 16.2 12 16.5 11.9 16.8C11.8 17.1 11.5 17.4 11.3 17.7C11.1 18 10.7 18.2 10.3 18.3C9.9 18.4 9.5 18.5 9 18.5C8.5 18.5 8.1 18.4 7.7 18.2C7.3 18 7 17.8 6.8 17.6C6.6 17.4 6.4 17.1 6.3 16.8C6.2 16.5 6.10001 16.3 6.10001 16.1C6.10001 15.9 6.2 15.7 6.3 15.6C6.4 15.5 6.6 15.4 6.8 15.4C6.9 15.4 7.00001 15.4 7.10001 15.5C7.20001 15.6 7.3 15.6 7.3 15.7C7.5 16.2 7.7 16.6 8 16.9C8.3 17.2 8.6 17.3 9 17.3C9.2 17.3 9.5 17.2 9.7 17.1C9.9 17 10.1 16.8 10.3 16.6C10.5 16.4 10.5 16.1 10.5 15.8C10.5 15.3 10.4 15 10.1 14.7C9.80001 14.4 9.50001 14.3 9.10001 14.3C9.00001 14.3 8.9 14.3 8.7 14.3C8.5 14.3 8.39999 14.3 8.39999 14.3C8.19999 14.3 7.99999 14.2 7.89999 14.1C7.79999 14 7.7 13.8 7.7 13.7C7.7 13.5 7.79999 13.4 7.89999 13.2C7.99999 13 8.2 13 8.5 13H8.8V13.1ZM15.3 17.5V12.2C14.3 13 13.6 13.3 13.3 13.3C13.1 13.3 13 13.2 12.9 13.1C12.8 13 12.7 12.8 12.7 12.6C12.7 12.4 12.8 12.3 12.9 12.2C13 12.1 13.2 12 13.6 11.8C14.1 11.6 14.5 11.3 14.7 11.1C14.9 10.9 15.2 10.6 15.5 10.3C15.8 10 15.9 9.80003 15.9 9.70003C15.9 9.60003 16.1 9.60004 16.3 9.60004C16.5 9.60004 16.7 9.70003 16.8 9.80003C16.9 9.90003 17 10.2 17 10.5V17.2C17 18 16.7 18.4 16.2 18.4C16 18.4 15.8 18.3 15.6 18.2C15.4 18.1 15.3 17.8 15.3 17.5Z"
-                                                        fill="currentColor" />
-                                                </svg>
+                                <!--begin:Menu Manajemen User-->
+                                @can('manajemen users.read')
+                                    <div data-kt-menu-trigger="click"
+                                        class="menu-item menu-accordion {{ $isShowAccordion_manajemenUser ?? '' }}">
+                                        <!--begin:Menu link-->
+                                        <span class="menu-link {{ $isActiveLink_manajemenUser ?? '' }}">
+                                            <span class="menu-icon">
+                                                <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
+                                                            fill="currentColor" />
+                                                        <path opacity="0.3"
+                                                            d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
                                             </span>
-                                            <!--end::Svg Icon-->
+                                            <span class="menu-title">Manajemen User</span>
+                                            <span class="menu-arrow"></span>
                                         </span>
-                                        <span class="menu-title ">FAQ</span>
-                                    </a>
-                                    <!--end:Menu link-->
-                                </div>
-                                <!--end:Menu item-->
+                                        <!--end:Menu link-->
+                                        <!--begin:Menu sub-->
+                                        <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link "
+                                                    href="../../demo1/dist/pages/user-profile/overview.html">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">User Pemohon</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link {{ $isActiveLink_userAdmin ?? '' }}"
+                                                    href="{{ route('user_admin.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">User Admin</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link">
-                                        <span class="menu-icon">
-                                            <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z"
-                                                        fill="currentColor" />
-                                                    <path opacity="0.3"
-                                                        d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z"
-                                                        fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span class="menu-title">Manajemen User</span>
-                                        <span class="menu-arrow"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-                                    <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/overview.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">User Pemohon</span>
-                                            </a>
-                                            <!--end:Menu link-->
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link {{ $isActiveLink_rolePermission ?? '' }}"
+                                                    href="{{ route('role_permission.index') }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Role Permission</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                            <!--end:Menu item-->
                                         </div>
-                                        <!--end:Menu item-->
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">User Admin</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
-
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link"
-                                                href="../../demo1/dist/pages/user-profile/projects.html">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-dot"></span>
-                                                </span>
-                                                <span class="menu-title">Role Permission</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
+                                        <!--end:Menu sub-->
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
+                                @endcan
                                 <!--end:Menu item-->
 
-                                <!--begin:Menu item-->
+                                <!--begin:Menu Referensi-->
                                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                     <!--begin:Menu link-->
                                     <span class="menu-link">
@@ -1236,6 +1250,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin::Item-->
                                         <li class="breadcrumb-item text-muted">{{ $mainMenuTitle ?? '' }}</li>
                                         <!--end::Item-->
+
                                     </ul>
                                     <!--end::Breadcrumb-->
                                 </div>
@@ -1313,7 +1328,7 @@ License: For each use you must have a valid license purchased only from above li
         var hostUrl = "assets/";
     </script>
 
-    <script src="{{ asset('template/dist/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+
     <!--begin::Global Javascript Bundle(used by all pages)-->
 
     <script src="{{ asset('template/dist/assets/plugins/global/plugins.bundle.js') }}"></script>
@@ -1347,53 +1362,8 @@ License: For each use you must have a valid license purchased only from above li
 
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
+    @stack('child-scripts')
 
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#kt_docs_ckeditor_classic_visi'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#kt_docs_ckeditor_classic_misi'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-        ClassicEditor
-            .create(document.querySelector('#kt_docs_ckeditor_classic_konten'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-        ClassicEditor
-            .create(document.querySelector('#kt_docs_ckeditor_classic_waktuPelayanan'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-
-        $("#kt_daterangepicker_2").daterangepicker({
-            timePicker: true,
-            startDate: moment().startOf("hour"),
-            endDate: moment().startOf("hour").add(32, "hour"),
-            locale: {
-                format: "M/DD hh:mm A"
-            }
-        });
-    </script>
 </body>
 <!--end::Body-->
 

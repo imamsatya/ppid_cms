@@ -1,27 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Profil;
+namespace App\Http\Controllers\ManajemenUser;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Profil\ProfilSingkat;
 
-class ProfilSingkatController extends Controller
+class UserAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->authorizeResource(ProfilSingkat::class, 'profilsingkat');
-    }
     public function index()
     {
         //
-
-        return view('profil.profilsingkat');
+        $users = User::with('roles')->get();;
+        return view('manajemen_user.user_admin', compact('users'));
     }
 
     /**

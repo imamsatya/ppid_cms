@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Profil;
+namespace App\Http\Controllers\ManajemenUser;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Profil\ProfilSingkat;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class ProfilSingkatController extends Controller
+class RolePermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->authorizeResource(ProfilSingkat::class, 'profilsingkat');
-    }
     public function index()
     {
         //
-
-        return view('profil.profilsingkat');
+        $roles = Role::with('permissions')->get();;
+        $permissions = Permission::all();
+        return view('manajemen_user.role_permission', compact('roles', 'permissions'));
     }
 
     /**
@@ -42,7 +40,13 @@ class ProfilSingkatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $role = Role::create(['name' => $request->name]);
+        foreach ($request->permissions as $permission => $value) {
+            $role->givePermissionTo($value);
+        }
+
+        return back()->withInput();
     }
 
     /**

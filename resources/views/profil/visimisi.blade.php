@@ -7,6 +7,28 @@
             Profil
             </x-slot>
 
+            @push('child-scripts')
+                <script src="{{ asset('template/dist/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+                <script>
+                    ClassicEditor
+                        .create(document.querySelector('#kt_docs_ckeditor_classic_visi'))
+                        .then(editor => {
+                            console.log(editor);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+
+                    ClassicEditor
+                        .create(document.querySelector('#kt_docs_ckeditor_classic_misi'))
+                        .then(editor => {
+                            console.log(editor);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                </script>
+            @endpush
 
             <h1>Pengelolaan Visi dan Misi</h1>
             <br>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profil;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Profil\VisiMisi;
 
 class VisiMisiController extends Controller
 {
@@ -12,9 +13,14 @@ class VisiMisiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->authorizeResource(VisiMisi::class, 'visimisi');
+    }
     public function index()
     {
         //
+        // $this->authorize('viewAny', VisiMisi::class);
         return view('profil.visimisi');
     }
 
