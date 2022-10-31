@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Session;
 
 class RolePermissionController extends Controller
 {
@@ -41,12 +42,20 @@ class RolePermissionController extends Controller
     public function store(Request $request)
     {
 
-        $role = Role::create(['name' => $request->name]);
-        foreach ($request->permissions as $permission => $value) {
-            $role->givePermissionTo($value);
-        }
+        $validated = $request->validate([
+            'name' => 'required',
+            'permissions' => 'required',
+        ]);
 
-        return back()->withInput();
+        if ($validated) {
+            $role = Role::create(['name' => $request->name]);
+            foreach ($request->permissions as $permission => $value) {
+                $role->givePermissionTo($value);
+            }
+            return redirect()->back()->with('success', 'Berhasil menambahkan Role :)');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
@@ -81,6 +90,13 @@ class RolePermissionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // dd($request);
+        $role = Role::find($id);
+        $role->name = $request->edit_name;
+        $role->syncPermissions($request->edit_permissions);
+        $role->save();
+
+        return back()->with('success', 'Berhasil mengubah Role :)');
     }
 
     /**
@@ -91,6 +107,8 @@ class RolePermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+        Session::flash('success', "Berhasil menghapus role");
     }
 }

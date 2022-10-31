@@ -54,7 +54,7 @@ Route::get('/', function () {
 // Route::get('/home', function () {
 //     return view('profil.visimisi');
 // })->middleware(['auth', 'verified']);;
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
     // Route::middleware(['role:admin'])->group(function () {
     //     //Profil

@@ -45,6 +45,8 @@ License: For each use you must have a valid license purchased only from above li
         type="text/css" />
     <link href="{{ asset('template/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -1346,6 +1348,15 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('template/dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
 </body>
 <!--end::Body-->
 
