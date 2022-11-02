@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none !important;
+  text-transform: capitalize;
+}
+
+.btn-outline-primary-ppid {
+  border: 1px solid #104e70;
+  padding: 10px 30px 10px 30px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 22px;
+  color: #104e70;
+}
+
+.btn-outline-primary-ppid:hover {
+  background-color: #104e70;
+  color: #fff;
+}
+
+.btn-back {
+  border: 1px solid #104e70;
+  color: #104e70;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.btn-back-info {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 19px;
+  color: #363636;
+}
+
+.btn-back:hover {
+  background-color: #104e70;
+  color: #fff;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1;
+  background: #fff;
+}
+
+.banner .data_banner {
+  padding-bottom: 80px;
+  margin-top: 80px;
+  background-image: url("../../../../images/content/background/bg_tentang_ppid.png");
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  background-size: 100% 300px;
+  height: 300px;
+  padding: 100px 100px 100px 100px;
+}
+
+.banner .data_banner .informasi {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+.data_banner .informasi p {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #363636;
+}
+
+.data_banner .informasi label {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 43px;
+  color: #363636;
+}
+
+.informasi_kontak {
+  margin-top: 77px;
+  width: 100%;
+  height: auto;
+}
+
+.informasi_kontak .images {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.informasi_kontak .images img {
+  width: 100px;
+  height: 100px;
+}
+
+.mapping {
+  margin-top: 70px;
+}
+
+.mapping label {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 29px;
+  color: #363636;
+}
+
+.mapping ul {
+  list-style-type: none;
+}
+
+.mapping ul li .square {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #104e70;
+  background-color: #104e70;
+}
+
+.mapping ul li .informasi_datetime {
+  width: 100%;
+  margin-left: 20px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 30px;
+
+  color: #363636;
+}
+
+.mapping ul li {
+  margin-top: 20px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 30px;
+  color: #363636;
+}
+
+.ruang_pelayanan {
+  margin-top: 70px;
+}
+.ruang_pelayanan label {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 38px;
+  color: #363636;
+}
+
+.ruang_pelayanan img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: fill;
+}

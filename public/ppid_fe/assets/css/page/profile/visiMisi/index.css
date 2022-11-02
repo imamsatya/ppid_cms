@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none !important;
+  text-transform: capitalize;
+}
+
+.btn-outline-primary-ppid {
+  border: 1px solid #104e70;
+  padding: 10px 30px 10px 30px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 22px;
+  color: #104e70;
+}
+
+.btn-outline-primary-ppid:hover {
+  background-color: #104e70;
+  color: #fff;
+}
+
+.btn-back {
+  border: 1px solid #104e70;
+  color: #104e70;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.btn-back-info {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 19px;
+  color: #363636;
+}
+
+.btn-back:hover {
+  background-color: #104e70;
+  color: #fff;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1;
+  background: #fff;
+}
+
+.banner .data_banner {
+  padding-bottom: 80px;
+  margin-top: 80px;
+  background-image: url("../../../../images/content/background/bg_tentang_ppid.png");
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  background-size: 100% 300px;
+  height: 300px;
+  padding: 100px 100px 100px 100px;
+}
+
+.banner .data_banner .informasi {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+.data_banner .informasi p {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #363636;
+}
+
+.data_banner .informasi label {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 43px;
+  color: #363636;
+}
+
+.informasi_visi_misi {
+  margin-top: 77px;
+  width: 100%;
+  height: auto;
+}
+
+.informasi_visi_misi .title_visi_misi{
+  font-family: 'Lato',sans-serif;
+font-style: normal;
+font-weight: 700;
+font-size: 2rem;
+line-height: 38px;
+color: #363636;
+}
+
+.informasi_visi_misi .visi_misi_box{
+  width: 100%;
+  height: 510px;
+  background: #F4F4F4;
+  border: 1px solid #00728A;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+
+.informasi_visi_misi .visi_misi_box .informasi p{
+
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 32px;
+  color: #000000;
+  
+}
+
+
+
+.informasi_visi_misi .list_visit_misi {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 20px;
+  color: #474747;
+}
+
+.informasi_visi_misi .list_visit_misi ul {
+  list-style-type: none;
+}
+
+.informasi_visi_misi .list_visit_misi ul li {
+ margin-bottom: 20px;
+}
+
+.informasi_visi_misi .list_visit_misi .square {
+  width: 20px;
+  height: 20px;
+  background: #92e5eb;
+}
+
+.informasi_visi_misi .list_visit_misi .informasi {
+  margin-left: 20px;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 20px;
+}
+
+/* .half-circle-one {
+  width: 150px;
+  margin-left:367px;
+  margin-top: 45px;
+  height: 80px; /* as the half of the width */
+  background-color: #F4F4F4;
+  border-top-left-radius: 110px;  /* 100px of height + 10px of border */
+  border-top-right-radius: 110px; /* 100px of height + 10px of border */
+  border: 1px solid #00728A;
+  border-bottom: 0;
+} */

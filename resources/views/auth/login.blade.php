@@ -1,231 +1,279 @@
-<!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
-<html lang="en">
-<!--begin::Head-->
+<x-frontend.layout>
+    @push('head-scripts')
+        <link href="{{ asset('ppid_fe/assets/css/page/login/index.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
+        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
-<head>
-    <base href="../../../">
-    <title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel
-        by Keenthemes</title>
-    <meta charset="utf-8" />
-    <meta name="description"
-        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-    <meta name="keywords"
-        content="Metronic, Bootstrap, Bootstrap 5, Angular, VueJs, React, Asp.Net Core, Blazor, Django, Flask &amp; Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title"
-        content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular, Asp.Net Core, Blazor, Django, Flask &amp; Laravel Admin Dashboard Theme" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
-    <meta property="og:site_name" content="Keenthemes | Metronic" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="{{ asset('template/dist/assets/media/logos/favicon.ico') }}" />
-    <!--begin::Fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-    <!--end::Fonts-->
-    <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="{{ asset('template/dist/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('template/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Global Stylesheets Bundle-->
-</head>
-<!--end::Head-->
-<!--begin::Body-->
-
-<body data-kt-name="metronic" id="kt_body"
-    class="app-blank app-blank bgi-size-cover bgi-position-center bgi-no-repeat">
-    <!--begin::Theme mode setup on page load-->
-    <script>
-        if (document.documentElement) {
-            const defaultThemeMode = "system";
-            const name = document.body.getAttribute("data-kt-name");
-            let themeMode = localStorage.getItem("kt_" + (name !== null ? name + "_" : "") + "theme_mode_value");
-            if (themeMode === null) {
-                if (defaultThemeMode === "system") {
-                    themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-                } else {
-                    themeMode = defaultThemeMode;
-                }
-            }
-            document.documentElement.setAttribute("data-theme", themeMode);
-        }
-    </script>
-    <!--end::Theme mode setup on page load-->
-    <!--begin::Root-->
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
-        <!--begin::Page bg image-->
-        <style>
-            body {
-                background-image: url({{ asset('template/dist/assets/media/auth/bg10.jpeg') }});
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            .bwstyle {
+                -moz-filter: grayscale(100%);
+                -webkit-filter: grayscale(100%);
+                filter: gray;
+                /* IE6-9 */
+                filter: grayscale(100%);
             }
 
-            [data-theme="dark"] body {
-                background-image: url({{ asset('template/dist/assets/media/auth/bg10-dark.jpeg') }};
-
+            .posfix {
+                position: fixed;
             }
         </style>
-        <!--end::Page bg image-->
-        <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
-            <!--begin::Aside-->
-            <div class="d-flex flex-lg-row-fluid">
-                <!--begin::Content-->
-                <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
-                    <!--begin::Image-->
-                    <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                        src="{{ asset('template/dist/assets/media/auth/agency.png') }}" alt="" />
-                    <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                        src="{{ asset('template/dist/assets/media/auth/agency-dark.png') }}" alt="" />
-                    <!--end::Image-->
-                    <!--begin::Title-->
-                    <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
-                    <!--end::Title-->
-                    <!--begin::Text-->
-                    <div class="text-gray-600 fs-base text-center fw-semibold">In this kind of post,
-                        <a href="#" class="opacity-75-hover text-primary me-1">the blogger</a>introduces a person
-                        they’ve interviewed
-                        <br />and provides some background information about
-                        <a href="#" class="opacity-75-hover text-primary me-1">the interviewee</a>and their
-                        <br />work following this is a transcript of the interview.
-                    </div>
-                    <!--end::Text-->
-                </div>
-                <!--end::Content-->
-            </div>
-            <!--begin::Aside-->
-            <!--begin::Body-->
-            <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
-                <!--begin::Wrapper-->
-                <div class="bg-body d-flex flex-center rounded-4 w-md-600px p-10">
-                    <!--begin::Content-->
-                    <div class="w-md-400px">
-                        <!--begin::Form-->
-                        <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="POST"
-                            data-kt-redirect-url="{{ route('visimisi.index') }}" action="{{ route('login') }}">
-                            @csrf
-                            <!--begin::Heading-->
-                            <div class="text-center mb-11">
-                                <!--begin::Title-->
-                                <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
-                                <!--end::Title-->
-                                <!--begin::Subtitle-->
-                                <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
-                                <!--end::Subtitle=-->
-                            </div>
-                            <!--begin::Heading-->
-                            <!--begin::Login options-->
-                            <div class="row g-3 mb-9">
-                                <!--begin::Col-->
-                                <div class="col-md-6">
-                                    <!--begin::Google link=-->
-                                    <a href="#"
-                                        class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
-                                        <img alt="Logo"
-                                            src="{{ asset('template/dist/assets/media/svg/brand-logos/google-icon.svg') }}"
-                                            class="h-15px me-3" />Sign in with Google</a>
-                                    <!--end::Google link=-->
-                                </div>
-                                <!--end::Col-->
-                                <!--begin::Col-->
-                                <div class="col-md-6">
-                                    <!--begin::Google link=-->
-                                    <a href="#"
-                                        class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
-                                        <img alt="Logo"
-                                            src="{{ asset('template/dist/assets/media/svg/brand-logos/apple-black.svg') }}"
-                                            class="theme-light-show h-15px me-3" />
-                                        <img alt="Logo"
-                                            src="{{ asset('template/dist/assets/media/svg/brand-logos/apple-black-dark.svg') }}"
-                                            class="theme-dark-show h-15px me-3" />Sign in with Apple</a>
-                                    <!--end::Google link=-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Login options-->
-                            <!--begin::Separator-->
-                            <div class="separator separator-content my-14">
-                                <span class="w-125px text-gray-500 fw-semibold fs-7">Or with email</span>
-                            </div>
-                            <!--end::Separator-->
-                            <!--begin::Input group=-->
-                            <div class="fv-row mb-8">
-                                <!--begin::Email-->
-                                <input type="text" placeholder="Email" name="email" autocomplete="off"
-                                    class="form-control bg-transparent" />
-                                <!--end::Email-->
-                            </div>
-                            <!--end::Input group=-->
-                            <div class="fv-row mb-3">
-                                <!--begin::Password-->
-                                <input type="password" placeholder="Password" name="password" autocomplete="off"
-                                    class="form-control bg-transparent" />
-                                <!--end::Password-->
-                            </div>
-                            <!--end::Input group=-->
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                                <div></div>
-                                <!--begin::Link-->
-                                <a href="../../demo1/dist/authentication/layouts/overlay/reset-password.html"
-                                    class="link-primary">Forgot Password ?</a>
-                                <!--end::Link-->
-                            </div>
-                            <!--end::Wrapper-->
-                            <!--begin::Submit button-->
-                            <div class="d-grid mb-10">
-                                <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
-                                    <!--begin::Indicator label-->
-                                    <span class="indicator-label">Sign In x</span>
-                                    <!--end::Indicator label-->
-                                    <!--begin::Indicator progress-->
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                    <!--end::Indicator progress-->
-                                </button>
-                            </div>
-                            <!--end::Submit button-->
-                            <!--begin::Sign up-->
-                            <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-                                <a href="../../demo1/dist/authentication/layouts/overlay/sign-up.html"
-                                    class="link-primary">Sign up</a>
-                            </div>
-                            <!--end::Sign up-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Content-->
-                </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Body-->
-        </div>
-        <!--end::Authentication - Sign-in-->
-    </div>
-    <!--end::Root-->
-    <!--begin::Javascript-->
-    <script>
-        var hostUrl = "assets/";
-    </script>
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="{{ asset('template/dist/assets/plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ asset('template/dist/assets/js/scripts.bundle.js') }}"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Custom Javascript(used by this page)-->
-    <script src="{{ asset('template/dist/assets/js/custom/authentication/sign-in/general.js') }}"></script>
-    <!--end::Custom Javascript-->
-    <!--end::Javascript-->
-</body>
-<!--end::Body-->
+        <title>Home</title>
+    @endpush
+    <!-- content -->
+    <section class="content-login">
+        <div class="bg-bumn"></div>
 
-</html>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="information">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="circle-one"></div>
+                            <div class="circle-two"></div>
+                        </div>
+                        <p class="detail">
+                            Silahkan Login untuk mengajukan permohonan informasi, keberatan
+                            informasi, atau untuk mengetahui status permohonan informasi dan
+                            keberatan informasi yang sudah diajukan.
+                        </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="./index.html">
+                                    <button class="btn btn-back">
+                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                    </button>
+                                </a>
+                                <label for="" class="btn-back-info">Kembali</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-login">
+                        <div class="label-login d-flex align-items-center">
+                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.svg') }}" alt="" />
+                            <span class="ml-2">Login</span>
+                        </div>
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
+                            <div class="form-data">
+                                <div class="form-group">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp" autocapitalize="none"
+                                        placeholder="Alamat Email" name="email" value="{{ old('email') }}" />
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
+                                        <input
+                                            class="form-control  @error('password') is-invalid @enderror input-password"
+                                            placeholder="Password" type="password" autocapitalize="none"
+                                            name="password" />
+                                        <div class="input-group-addon text-center">
+                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </div>
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lupa-password d-flex">
+                                <a href="#" class="ml-auto">Lupa Password</a>
+                            </div>
+                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
+                            <div class="not-register text-center mt-3">
+                                <span>Belum terdaftar?</span><a href="{{ route('register') }}"
+                                    class="font-weight-bold">Daftar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- content -->
+    @push('child-scripts')
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <!--  -->
+
+        <script src="assets/float/fab.js"></script>
+        <!-- <img src="assets/images/content/icon/difable.png" width="75%"> -->
+        <script type="text/javascript">
+            var fab = new Fab({
+                selector: "#cont",
+                button: {
+                    style: "large teal",
+                    html: "",
+                },
+                icon: {
+                    style: 'assets/images/content/icon/difable.png" width="75%',
+                    html: "",
+                },
+                // "top-left" || "top-right" || "bottom-left" || "bottom-right"
+                position: "bottom-left",
+                // "horizontal" || "vertical"
+                direction: "vertical",
+                buttons: [{
+                        button: {
+                            style: "small blue",
+                            html: "",
+                        },
+                        icon: {
+                            style: 'assets/images/content/icon/mag-zin.png" width="55%',
+                            html: "",
+                        },
+                        link: {
+                            style: "increaseFont",
+                            html: "",
+                        },
+                        valuenya: {
+                            style: "increase",
+                            html: "",
+                        },
+                        onClick: function() {
+                            console.log("fire");
+                        },
+                    },
+                    {
+                        button: {
+                            style: "small blue",
+                            html: "",
+                        },
+                        icon: {
+                            style: 'assets/images/content/icon/mag-zout.png" width="55%',
+                            html: "",
+                        },
+                        link: {
+                            style: "decreaseFont",
+                            html: "",
+                        },
+                        valuenya: {
+                            style: "decrease",
+                            html: "",
+                        },
+                        onClick: function() {
+                            console.log("ice");
+                        },
+                    },
+                    {
+                        button: {
+                            style: "small blue",
+                            html: "",
+                        },
+                        icon: {
+                            style: 'assets/images/content/icon/eye.png" width="75%',
+                            html: "",
+                        },
+                        link: {
+                            style: "",
+                            html: "",
+                        },
+                        valuenya: {
+                            style: "eye",
+                            html: "",
+                        },
+                        onClick: function() {
+                            var element = document.getElementById("bwStyle");
+                            element.classList.add("bwstyle");
+                            console.log("ice");
+                        },
+                    },
+                    // {
+                    //   button: {
+                    //     style: "small green",
+                    //     html: ""
+                    //   },
+                    //   icon:{
+                    //     style: "chart pie icon",
+                    //     html: ""
+                    //   },
+                    //   onClick: function(){
+                    //     console.log("ice");
+                    //   }
+                    // }
+                ],
+                onOpen: function() {},
+                onClose: function() {},
+            });
+        </script>
+        <!-- <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-36251023-1']);
+            _gaq.push(['_setDomainName', 'jqueryscript.net']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+                    '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script> -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".increaseFont,.decreaseFont").click(function() {
+                    var type = $(this).val();
+                    var curFontSize = $(".magnify").css("zoom");
+
+                    if (type == "increase") {
+                        $(".magnify").css("zoom", parseFloat(curFontSize) + 0.01);
+                    } else {
+                        $(".magnify").css("zoom", parseFloat(curFontSize) - 0.01);
+                    }
+                    // alert($('.magnify').css('font-size'));
+                });
+            });
+        </script>
+
+        <script>
+            function clickSearch() {
+                let header = document.getElementById("headerNav");
+                let searchData = document.getElementById("searchComponent");
+                if (searchData.style.display === `none`) {
+                    searchData.style.display = "block";
+                    searchData.style.boxShadow = "0 5px 10px rgb(0 0 0 / 10%)";
+                    header.style.boxShadow = "none";
+                } else {
+                    searchData.style.display = "none";
+                    searchData.transition = " all .35s ease-in-out";
+                    header.style.boxShadow = "0 5px 10px rgb(0 0 0 / 10%)";
+                }
+            }
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $("#show_hide_password a").on("click", function(event) {
+                    event.preventDefault();
+                    if ($("#show_hide_password input").attr("type") == "text") {
+                        $("#show_hide_password input").attr("type", "password");
+                        $("#show_hide_password i").addClass("fa-eye-slash");
+                        $("#show_hide_password i").removeClass("fa-eye");
+                    } else if (
+                        $("#show_hide_password input").attr("type") == "password"
+                    ) {
+                        $("#show_hide_password input").attr("type", "text");
+                        $("#show_hide_password i").removeClass("fa-eye-slash");
+                        $("#show_hide_password i").addClass("fa-eye");
+                    }
+                });
+            });
+        </script>
+    @endpush
+
+</x-frontend.layout>

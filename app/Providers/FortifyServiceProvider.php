@@ -43,13 +43,13 @@ class FortifyServiceProvider extends ServiceProvider
                 // dd($user);
 
                 if ($user->hasRole('admin')) {
-                    return redirect()->route('profilsingkat.index');
+                    return redirect()->route('admin.profilsingkat.index');
                 }
 
                 if ($user->hasRole('user')) {
-                    return redirect()->route('peraturan_kip.index');
+                    return redirect()->route('admin.peraturan_kip.index');
                 }
-                return redirect('/data_permohonan');
+                return redirect('/admin/data_permohonan');
             }
         });
     }
@@ -80,11 +80,11 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(function () {
-            return view('auth.login2');
+            return view('auth.login');
         });
 
         Fortify::registerView(function () {
-            return view('auth.register2');
+            return view('auth.register3');
         });
     }
 }
