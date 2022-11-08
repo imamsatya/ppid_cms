@@ -106,8 +106,8 @@
                             <div class="form-group d-flex align-items-start">
                                 <div class="upload-btn-wrapper">
                                     <button class="btn">
-                                        <img
-                                            src="{{ asset('ppid_fe/assets/images/content/icon/ic_file.svg" a') }}"t="" />
+                                        <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_file.svg') }}"
+                                            alt="" />
                                         Upload KTP
                                     </button>
                                     <input type="file" name="myfile" />

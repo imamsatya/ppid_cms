@@ -20,7 +20,7 @@ class ProfilSingkatPolicy
     {
         //
 
-        if ($user->can('profil.read')) {
+        if ($user->can('profil singkat ppid.view')) {
             return true;
         }
         // return true;

@@ -110,6 +110,9 @@ Route::get('/dashboard', function () {
 
 
 //Admin
+Route::get('/admin/login', function () {
+    return view('auth.admin-login2');
+})->name('admin.login');
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
     //Profil

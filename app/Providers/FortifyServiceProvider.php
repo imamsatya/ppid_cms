@@ -49,7 +49,7 @@ class FortifyServiceProvider extends ServiceProvider
                 if ($user->hasRole('user')) {
                     return redirect()->route('dashboard.index');
                 }
-                return redirect('/admin/data_permohonan');
+                return redirect('/admin/profilsingkat');
             }
         });
     }
