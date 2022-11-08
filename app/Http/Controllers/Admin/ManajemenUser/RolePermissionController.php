@@ -20,7 +20,10 @@ class RolePermissionController extends Controller
         //
         $roles = Role::with('permissions')->get();;
         $permissions = Permission::all();
-        return view('admin.manajemen_user.role_permission', compact('roles', 'permissions'));
+
+
+        // return view('admin.manajemen_user.role_permission', compact('roles', 'permissions'));
+        return view('admin.manajemen_user.role_permission2', compact('roles', 'permissions'));
     }
 
     /**
@@ -42,6 +45,7 @@ class RolePermissionController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'permissions' => 'required',
@@ -90,10 +94,10 @@ class RolePermissionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        // dd($request);
+
         $role = Role::find($id);
         $role->name = $request->edit_name;
-        $role->syncPermissions($request->edit_permissions);
+        $role->syncPermissions($request->permissions);
         $role->save();
 
         return back()->with('success', 'Berhasil mengubah Role :)');

@@ -47,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
                 }
 
                 if ($user->hasRole('user')) {
-                    return redirect()->route('admin.peraturan_kip.index');
+                    return redirect()->route('dashboard.index');
                 }
                 return redirect('/admin/data_permohonan');
             }

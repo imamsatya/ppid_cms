@@ -104,6 +104,11 @@ Route::get('/faq', function () {
     return view('frontend.faq.faq');
 })->name('faq.index');
 
+Route::get('/dashboard', function () {
+    return view('frontend.dashboard.dashboard');
+})->name('dashboard.index');
+
+
 //Admin
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
@@ -133,9 +138,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
 
 // Route::get('/visimisi', [VisiMisiController::class, 'index'])->name('visimisi.index');
-// Route::get('/layout', function () {
-//     return view('layout');
-// });
+Route::get('/layout', function () {
+    return view('layout');
+});
 
 
 // Route::middleware(['role:user'])->group(function () {

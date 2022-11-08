@@ -225,5 +225,21 @@ return new class extends Migration
     public function down()
     {
         // Schema::dropIfExists('frontends');
+        Schema::dropIfExists('ppid_menu');
+        Schema::dropIfExists('ppid_jenis_profil');
+        Schema::dropIfExists('ppid_profil');
+        Schema::dropIfExists('ppid_kontak');
+        Schema::dropIfExists('ppid_lap_th');
+        Schema::dropIfExists('ppid_lap_tw');
+        Schema::dropIfExists('laporan_berkala');
+        Schema::dropIfExists('laporan_serta_merta');
+        Schema::dropIfExists('laporan_setiap_saat');
+        Schema::dropIfExists('ppid_lap_survey');
+        Schema::dropIfExists('ppid_faq');
+        Schema::dropIfExists('ppid_maklumat');
+        Schema::dropIfExists('ppid_infografis');
+        Schema::dropIfExists('ppid_biaya');
+        Schema::dropIfExists('ppid_regulasi');
+        Schema::dropIfExists('ppid_regulasi_peraturan');
     }
 };

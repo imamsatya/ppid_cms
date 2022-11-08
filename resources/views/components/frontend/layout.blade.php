@@ -13,11 +13,13 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     @stack('head-scripts')
 
 </head>
 
-<body class="{{ Route::current()->getName() == 'index' ? 'zoomed' : '' }}">
+<body class="{{ Route::current()->getName() == 'index' ? 'zoomed' : '' }} magnify" id="bwStyle">
+
     <!-- navbar -->
     <section>
         <header id="headerNav">
@@ -84,11 +86,31 @@
                     <li>
                         <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
                     </li>
-                    <li>
-                        <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Login
-                        </a>
-                        <!-- <a href="#" class="btn btn_login"> Login </a> -->
-                    </li>
+                    @if (Route::current()->getName() != 'dashboard.index')
+                        <li>
+                            <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Login
+                            </a>
+                            <!-- <a href="#" class="btn btn_login"> Login </a> -->
+                        </li>
+                    @endif
+
+                    @if (Route::current()->getName() == 'dashboard.index')
+                        <li>
+                            {{-- <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Logout
+                            </a> --}}
+                            <form action="{{ route('logout') }}" method="post" id="logout-form">
+                                @csrf
+                                {{-- <button type="submit" class="btn btn-sm btn_login" style="text-align: center">
+                                    Logout
+                                </button> --}}
+                                <a href=""
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    class="btn btn-sm btn_login"> Logout
+                                </a>
+                            </form>
+                            <!-- <a href="#" class="btn btn_login"> Login </a> -->
+                        </li>
+                    @endif
                 </ul>
             </nav>
         </header>
@@ -107,6 +129,7 @@
 
     @if (substr(URL::current(), -5) != 'login' &&
         Route::current()->getName() != 'index' &&
+        Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register')
         <!-- Banner -->
         <section class="banner">
@@ -134,6 +157,7 @@
 
     @if (substr(URL::current(), -5) != 'login' &&
         Route::current()->getName() != 'index' &&
+        Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register')
         <!-- Button Back -->
         <div class="container mt-4 mb-4">
@@ -144,7 +168,7 @@
                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                         </button>
                     </a>
-                    <label for="" class="btn-back-info">Kembali {{ substr(URL::current(), -5) }}</label>
+                    <label for="" class="btn-back-info">Kembali </label>
                 </div>
             </div>
         </div>

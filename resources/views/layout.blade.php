@@ -47,6 +47,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Global Stylesheets Bundle-->
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    @vite([])
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -1225,7 +1226,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <!--begin::Title-->
                                     <h1
                                         class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                                        Default</h1>
+                                        Default csd</h1>
                                     <!--end::Title-->
                                     <!--begin::Breadcrumb-->
                                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
