@@ -139,14 +139,21 @@
                         <div class="image-input image-input-outline" data-kt-image-input="true"
                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
                             <!--begin::Image preview wrapper-->
-                            @if ($profilSingkat->banner_path)
-                                <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset($profilSingkat->banner_path) }})">
-                                </div>
+                            @if ($profilSingkat)
+                                @if ($profilSingkat->banner_path)
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset($profilSingkat->banner_path) }})">
+                                    </div>
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    </div>
+                                @endif
                             @else
                                 <div class="image-input-wrapper w-250px  h-125px"
                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                 </div>
+
                             @endif
                             <!--end::Image preview wrapper-->
 
@@ -197,21 +204,43 @@
                         <br>
                         <div class="mb-10">
                             <label for="" class="required form-label">Judul</label>
-                            <input type="text" name="judul" class="form-control form-control-solid"
-                                placeholder="Judul Profil Singkat PPID" value="{{ $profilSingkat->judul }}" />
+                            @if ($profilSingkat)
+                                <input type="text" name="judul" class="form-control form-control-solid"
+                                    placeholder="Judul Profil Singkat PPID" value="{{ $profilSingkat->judul }}" />
+                            @else
+                                <input type="text" name="judul" class="form-control form-control-solid"
+                                    placeholder="Judul Profil Singkat PPID" value="" />
+                            @endif
                         </div>
 
 
                         <label for="exampleFormControlInput1" class="required form-label">Konten</label>
-                        @if (auth()->user()->can('profil singkat ppid.edit'))
-                            <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
+                        {{-- <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
+                            
+                        </textarea> --}}
+                        @if ($profilSingkat)
+                            @if (auth()->user()->can('profil singkat ppid.edit'))
+                                <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
                                 {{ $profilSingkat->konten }}
-                            </textarea>
+                                </textarea>
+                            @else
+                                <br>
+
+                                <div class="card-body">
+                                    {{ $profilSingkat->konten }}
+                                </div>
+                            @endif
                         @else
                             <br>
-                            <div class="card-body">
-                                {{ $profilSingkat->konten }}
-                            </div>
+                            @if (auth()->user()->can('profil singkat ppid.edit'))
+                                <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
+                                
+                                </textarea>
+                            @else
+                                <br>
+                                <div class="card-body">
+                                </div>
+                            @endif
                         @endif
                         <br><br>
 
@@ -233,10 +262,16 @@
                         <div class="image-input image-input-outline" data-kt-image-input="true"
                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
                             <!--begin::Image preview wrapper-->
-                            @if ($profilSingkat->side_image_path)
-                                <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset($profilSingkat->side_image_path) }})">
-                                </div>
+                            @if ($profilSingkat)
+                                @if ($profilSingkat->side_image_path)
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset($profilSingkat->side_image_path) }})">
+                                    </div>
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    </div>
+                                @endif
                             @else
                                 <div class="image-input-wrapper w-250px  h-125px"
                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
