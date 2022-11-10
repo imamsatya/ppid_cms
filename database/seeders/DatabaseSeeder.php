@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // php artisan migrate:refresh --seed  --path=database/migrations/*
         $this->call(PermissionsSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(UsersSeeder::class);
