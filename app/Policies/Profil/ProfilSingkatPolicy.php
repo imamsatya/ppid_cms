@@ -47,6 +47,9 @@ class ProfilSingkatPolicy
     public function create(User $user)
     {
         //
+        if ($user->can('profil singkat ppid.create')) {
+            return true;
+        }
     }
 
     /**

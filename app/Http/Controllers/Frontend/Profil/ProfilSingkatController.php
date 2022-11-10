@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Profil;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Profil\ProfilSingkat;
 
 class ProfilSingkatController extends Controller
 {
@@ -15,7 +16,9 @@ class ProfilSingkatController extends Controller
     public function index()
     {
         //
-        return view('frontend.profil.profile-tentang-ppid');
+        $profilSingkat = new ProfilSingkat();
+        $profilSingkat = $profilSingkat->first();
+        return view('frontend.profil.profile-tentang-ppid', compact('profilSingkat'));
     }
 
     /**

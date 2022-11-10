@@ -62,17 +62,27 @@
             </div>
             <br>
             <div class="card card-flush shadow-sm">
-                <div class="card-header">
+
+                {{-- <div class="card-header">
                     <h3 class="card-title">Bagan Kiri</h3>
                     <div class="card-toolbar">
 
                     </div>
-                </div>
+                </div> --}}
                 <div class="card-body py-5">
 
 
                     <br>
+
                     <div class="mb-10 col-lg-6">
+                        <div class="mb-10">
+                            <label for="" class="required form-label">Judul</label>
+                            <input type="text" class="form-control form-control-solid"
+                                placeholder="Judul Tugas dan Fungsi" />
+                        </div>
+                        <br>
+                        <h3>Bagian Kiri</h3>
+                        <br>
                         <div class="d-flex">
 
                             <input type="text" class="form-control form-control-solid me-4"

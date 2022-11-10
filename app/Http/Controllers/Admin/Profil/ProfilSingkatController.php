@@ -20,8 +20,12 @@ class ProfilSingkatController extends Controller
     public function index()
     {
         //
+        $profilSingkat = new ProfilSingkat();
+        $profilSingkat = $profilSingkat->first();
 
-        return view('admin.profil.profilsingkat');
+
+
+        return view('admin.profil.profilsingkat', compact('profilSingkat'));
     }
 
     /**
@@ -42,7 +46,65 @@ class ProfilSingkatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(count($request->files));
+        //banner dan side Image
+        $validated = $request->validate([
+            'judul' => 'required',
+            'konten' => 'required',
+        ]);
+
+        if ($validated) {
+
+
+            $profilSingkat = new ProfilSingkat();
+            $profilSingkat = $profilSingkat->first();
+
+            if ($profilSingkat) {
+                $profilSingkat->judul = $request->judul;
+                $profilSingkat->konten = $request->konten;
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/profil_singkat';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $profilSingkat->banner_path = 'adminAssets/profil/profil_singkat/banner.' . $file->getClientOriginalExtension();
+                        }
+                        if ($fileName == 'sideImage') {
+                            $profilSingkat->side_image_path = 'adminAssets/profil/profil_singkat/sideImage.' . $file->getClientOriginalExtension();
+                        }
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $profilSingkat->save();
+            } else {
+                $profilSingkat = new ProfilSingkat();
+                $profilSingkat->judul = $request->judul;
+                $profilSingkat->konten = $request->konten;
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/profil_singkat';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $profilSingkat->banner_path = 'adminAssets/profil/profil_singkat/banner.' . $file->getClientOriginalExtension();
+                        }
+                        if ($fileName == 'sideImage') {
+                            $profilSingkat->side_image_path = 'adminAssets/profil/profil_singkat/sideImage.' . $file->getClientOriginalExtension();
+                        }
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $profilSingkat->save();
+            }
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan profil singkat');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
