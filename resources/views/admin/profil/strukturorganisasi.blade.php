@@ -230,22 +230,79 @@
                                 <div class="form-group">
 
                                     <div data-repeater-list="nomenklaturRepeater">
-                                        @foreach ($baganKiri as $baganKiri_row)
-                                            <div>
-                                                <div class="form-group row">
-                                                    <div class="d-flex mb-4" data-repeater-item>
-                                                        <input type="text"
-                                                            class="form-control form-control-solid me-4"
-                                                            placeholder="Nama Struktur"
-                                                            value="{{ $baganKiri_row->nomenklatur }}"
-                                                            name="nomenklatur" />
-                                                        <a href="javascript:;" data-repeater-delete
-                                                            class="btn btn-icon btn-danger"><i
-                                                                class="bi bi-x-lg fs-4 "></i></a>
+                                        @if ($baganKiri)
+                                            @foreach ($baganKiri as $baganKiri_row)
+                                                @if (auth()->user()->can('struktur organisasi.edit'))
+                                                    <div>
+                                                        <div class="form-group row">
+                                                            <div class="d-flex mb-4" data-repeater-item>
+                                                                <input type="text"
+                                                                    class="form-control form-control-solid me-4"
+                                                                    placeholder="Nama Struktur"
+                                                                    value="{{ $baganKiri_row->nomenklatur }}"
+                                                                    name="nomenklatur" />
+                                                                @can('struktur organisasi.edit')
+                                                                    <a href="javascript:;" data-repeater-delete
+                                                                        class="btn btn-icon btn-danger"><i
+                                                                            class="bi bi-x-lg fs-4 "></i></a>
+                                                                @endcan
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div>
+                                                        <div class="form-group row">
+                                                            <div class="d-flex mb-4" data-repeater-item>
+                                                                <input type="text" readonly
+                                                                    class="form-control form-control-solid me-4"
+                                                                    placeholder="Nama Struktur"
+                                                                    value="{{ $baganKiri_row->nomenklatur }}"
+                                                                    name="nomenklatur" />
+                                                                @can('struktur organisasi.edit')
+                                                                    <a href="javascript:;" data-repeater-delete
+                                                                        class="btn btn-icon btn-danger"><i
+                                                                            class="bi bi-x-lg fs-4 "></i></a>
+                                                                @endcan
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            @if (auth()->user()->can('struktur organisasi.edit'))
+                                                <div>
+                                                    <div class="form-group row">
+                                                        <div class="d-flex mb-4" data-repeater-item>
+                                                            <input type="text"
+                                                                class="form-control form-control-solid me-4"
+                                                                placeholder="Nama Struktur" value=""
+                                                                name="nomenklatur" />
+                                                            @can('struktur organisasi.edit')
+                                                                <a href="javascript:;" data-repeater-delete
+                                                                    class="btn btn-icon btn-danger"><i
+                                                                        class="bi bi-x-lg fs-4 "></i></a>
+                                                            @endcan
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @else
+                                                <div>
+                                                    <div class="form-group row">
+                                                        <div class="d-flex mb-4" data-repeater-item>
+                                                            <input type="text" readonly
+                                                                class="form-control form-control-solid me-4"
+                                                                placeholder="Nama Struktur" value=""
+                                                                name="nomenklatur" />
+                                                            @can('struktur organisasi.edit')
+                                                                <a href="javascript:;" data-repeater-delete
+                                                                    class="btn btn-icon btn-danger"><i
+                                                                        class="bi bi-x-lg fs-4 "></i></a>
+                                                            @endcan
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
                                     </div>
 
 
@@ -254,9 +311,11 @@
 
                                 <!--begin::Form group-->
                                 <div class="form-group mt-5">
-                                    <a href="javascript:;" data-repeater-create class="btn btn-light-primary me-2">
-                                        <i class="la la-plus"></i>Add
-                                    </a>
+                                    @can('struktur organisasi.edit')
+                                        <a href="javascript:;" data-repeater-create class="btn btn-light-primary me-2">
+                                            <i class="la la-plus"></i>Add
+                                        </a>
+                                    @endcan
 
                                     @can('struktur organisasi.create')
                                         <button type="submit" class="btn btn-primary"
@@ -317,8 +376,10 @@
                 <div class="card-header">
                     <h3 class="card-title">Bagan Kanan</h3>
                     <div class="card-toolbar">
-                        <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#kt_modal_tambahBaganKanan">Tambah</a>
+                        @can('struktur organisasi.create')
+                            <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#kt_modal_tambahBaganKanan">Tambah</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body py-5">
@@ -330,9 +391,11 @@
                             <tr class="fw-semibold fs-6 text-gray-800">
                                 <th>No</th>
                                 <th>Nomenklatur</th>
-                                <th>Deskripsi</th>
+                                <th style="width: 70%">Deskripsi</th>
                                 <th>Urutan</th>
-                                <th>Aksi</th>
+                                @canany(['struktur organisasi.edit', 'struktur organisasi.delete'])
+                                    <th>Aksi</th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -343,16 +406,22 @@
                                         <td>{{ $baganKanan_row->nomenklatur }}</td>
                                         <td>{{ $baganKanan_row->deskripsi }}</td>
                                         <td>{{ $baganKanan_row->urutan }}</td>
+                                        @canany(['struktur organisasi.edit', 'struktur organisasi.delete'])
+                                            <td>
+                                                @can('struktur organisasi.edit')
+                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                        data-bs-target="#kt_modal_editBaganKanan"
+                                                        onclick="editDialog({{ $loop->index }})"
+                                                        class="btn btn-icon btn-primary me-2"><i
+                                                            class="bi bi-pencil fs-4 "></i></a>
+                                                @endcan
+                                                @can('struktur organisasi.delete')
+                                                    <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                                        class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
+                                                @endcan
 
-                                        <td><a href="javascript:void(0)" data-bs-toggle="modal"
-                                                data-bs-target="#kt_modal_editBaganKanan"
-                                                onclick="editDialog({{ $loop->index }})"
-                                                class="btn btn-icon btn-primary me-2"><i
-                                                    class="bi bi-pencil fs-4 "></i></a>
-                                            <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
-                                                class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
-
-                                        </td>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             @endif
