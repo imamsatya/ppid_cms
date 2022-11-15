@@ -385,7 +385,7 @@
                 <div class="card-body py-5">
 
 
-                    <table id="kt_datatable_column_rendering"
+                    <table id="kt_datatable_dom_positioning_baganKanan"
                         class="table table-striped table-row-bordered gy-5 gs-7">
                         <thead>
                             <tr class="fw-semibold fs-6 text-gray-800">
@@ -674,6 +674,17 @@
                 <script src="{{ asset('template/dist/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
 
                 <script>
+                    $("#kt_datatable_dom_positioning_baganKanan").DataTable({
+                        "language": {
+                            "lengthMenu": "Show _MENU_",
+                        },
+                        "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                            "<'row'" +
+                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                            ">"
+                    });
                     $('#nomenklaturRepeater').repeater({
                         initEmpty: false,
 
