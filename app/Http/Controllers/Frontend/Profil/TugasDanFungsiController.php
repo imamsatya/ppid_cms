@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend\Profil;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Profil\TugasDanFungsi;
 
 class TugasDanFungsiController extends Controller
 {
@@ -15,7 +16,9 @@ class TugasDanFungsiController extends Controller
     public function index()
     {
         //
-        return view('frontend.profil.profile-tugas-dan-fungsi');
+        $tugasDanFungsi = new TugasDanFungsi();
+        $tugasDanFungsi = $tugasDanFungsi->first();
+        return view('frontend.profil.profile-tugas-dan-fungsi', compact('tugasDanFungsi'));
     }
 
     /**

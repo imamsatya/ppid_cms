@@ -7,13 +7,13 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <label for="" class="title_tugas_fungsi">Tugas dan Fungsi PPID Kementerian BUMN</label>
+                    <label for="" class="title_tugas_fungsi">{{ $tugasDanFungsi->judul ?? '' }}</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-8">
                     <div class="list_fungsi">
-                        <ul>
+                        {{-- <ul>
                             <li>
                                 <div class="d-flex align-items-center">
                                     <div class="square"></div>
@@ -57,18 +57,19 @@
                                     </div>
                                 </div>
                             </li>
-                        </ul>
+                        </ul> --}}
+                        {!! $tugasDanFungsi->konten ?? '' !!}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="images">
-                        <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_tugas_fungsi.png') }}"
-                            class="img-fluid" alt="" />
+                        <img src="{{ asset($tugasDanFungsi->side_image_path) }}" class="img-fluid" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Informasi -->
     <x-slot:bannerText1>
         Profil / Tugas dan Fungsi
@@ -79,4 +80,24 @@
             <x-slot:isActiveProfil>
                 active
                 </x-slot>
+
+                @push('child-scripts')
+                    {{-- <script>
+                         document.getElementById('konten').childNodes[1].className = 'informasi'
+                    </script> --}}
+                    <style>
+                        .banner .data_banner {
+                            padding-bottom: 80px;
+                            margin-top: 80px;
+                            background-image: url({{ asset($tugasDanFungsi->banner_path) }});
+                            background-repeat: no-repeat;
+                            /*Prevent showing multiple background images*/
+                            background-size: 100% 300px;
+                            height: 300px;
+                            padding: 100px 100px 100px 100px;
+                        }
+                    </style>
+                @endpush
+
+
 </x-frontend.layout>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Frontend\Profil;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Profil\StrukturOrganisasi;
+use App\Models\Profil\StrukturOrganisasiBaganKiri;
+use App\Models\Profil\StrukturOrganisasiBaganKanan;
 
 class StrukturOrganisasiController extends Controller
 {
@@ -15,7 +18,13 @@ class StrukturOrganisasiController extends Controller
     public function index()
     {
         //
-        return view('frontend.profil.profile-struktur-ppid');
+        $strukturOrganisasi = new StrukturOrganisasi();
+        $strukturOrganisasi = $strukturOrganisasi->first();
+        $baganKiri = new StrukturOrganisasiBaganKiri();
+        $baganKiri = $baganKiri::all();
+        $baganKanan = new StrukturOrganisasiBaganKanan();
+        $baganKanan = $baganKanan::all()->sortBy('urutan');
+        return view('frontend.profil.profile-struktur-ppid', compact('strukturOrganisasi', 'baganKiri', 'baganKanan'));
     }
 
     /**

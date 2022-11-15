@@ -55,8 +55,8 @@ body {
 .banner .data_banner {
   padding-bottom: 80px;
   margin-top: 80px;
-  background-image: url("../../../../images/content/background/bg_tentang_ppid.png");
-  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  /* background-image: url("../../../../images/content/background/bg_tentang_ppid.png"); */
+  background-repeat: no-repeat;
   background-size: 100% 300px;
   height: 300px;
   padding: 100px 100px 100px 100px;

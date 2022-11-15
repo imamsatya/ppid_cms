@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend\Profil;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Profil\VisiMisi;
+use App\Http\Controllers\Controller;
 
 class VisiMisiController extends Controller
 {
@@ -16,7 +17,9 @@ class VisiMisiController extends Controller
     public function index()
     {
         //
-        return view('frontend.profil.profile-visi-misi');
+        $visiMisi = new VisiMisi();
+        $visiMisi = $visiMisi->first();
+        return view('frontend.profil.profile-visi-misi', compact('visiMisi'));
     }
 
     /**

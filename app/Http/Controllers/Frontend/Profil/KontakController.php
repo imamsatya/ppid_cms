@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Frontend\Profil;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Profil\Kontak;
+use App\Http\Controllers\Controller;
+use App\Models\Profil\KontakDokumentasiRuang;
 
 class KontakController extends Controller
 {
@@ -15,7 +17,11 @@ class KontakController extends Controller
     public function index()
     {
         //
-        return view('frontend.profil.profile-kontak');
+        $kontak = new Kontak();
+        $kontak = $kontak->first();
+        $dokumentasi = new KontakDokumentasiRuang();
+        $dokumentasi = $dokumentasi::all();
+        return view('frontend.profil.profile-kontak', compact('kontak', 'dokumentasi'));
     }
 
     /**
