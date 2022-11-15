@@ -3,20 +3,22 @@
         <link href="{{ asset('ppid_fe/assets/css/page/profile/visiMisi/index.css') }}" rel="stylesheet" />
     @endpush
     <section class="informasi_visi_misi">
+
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="title_visi_misi"> Visi PPID </label>
                     <div class="visi_misi_box">
                         <div class="informasi">
-                            <p>
+                            {{-- <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                                 consequat placerat odio eget congue. Vestibulum pellentesque
                                 sem eu dolor egestas pulvinar. Curabitur vitae nulla sed leo
                                 semper faucibus eu non nibh. Nullam et dignissim quam. Mauris
                                 at metus nisl. Phasellus consectetur, erat vel molestie
                                 tristique, lacus tellus porttitor arcu,
-                            </p>
+                            </p> --}}
+                            {!! $visiMisi->visi ?? '' !!}
                         </div>
                         <div class="half-circle-one"></div>
                     </div>
@@ -25,7 +27,7 @@
                     <label for="" class="title_visi_misi"> Misi PPID </label>
                     <div class="visi_misi_box">
                         <div class="list_visit_misi">
-                            <ul>
+                            {{-- <ul>
                                 <li>
                                     <div class="d-flex">
                                         <div class="square"></div>
@@ -70,7 +72,8 @@
                                         </div>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul> --}}
+                            {!! $visiMisi->misi ?? '' !!}
                         </div>
                         <div class="half-circle-one"></div>
                     </div>
@@ -87,4 +90,17 @@
             <x-slot:isActiveProfil>
                 active
                 </x-slot>
+                @push('child-scripts')
+                    <style>
+                        .banner .data_banner {
+                            padding-bottom: 80px;
+                            margin-top: 80px;
+                            background-image: url({{ asset($visiMisi->banner_path) }});
+                            background-repeat: no-repeat;
+                            background-size: 100% 300px;
+                            height: 300px;
+                            padding: 100px 100px 100px 100px;
+                        }
+                    </style>
+                @endpush
 </x-frontend.layout>

@@ -55,8 +55,8 @@ body {
 .banner .data_banner {
   padding-bottom: 80px;
   margin-top: 80px;
-  background-image: url("../../../../images/content/background/bg_tentang_ppid.png");
-  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  /* background-image: url("../../../../images/content/background/bg_tentang_ppid.png"); */
+  background-repeat: no-repeat; 
   background-size: 100% 300px;
   height: 300px;
   padding: 100px 100px 100px 100px;
@@ -161,10 +161,10 @@ color: #363636;
   width: 150px;
   margin-left:367px;
   margin-top: 45px;
-  height: 80px; /* as the half of the width */
+  height: 80px; 
   background-color: #F4F4F4;
-  border-top-left-radius: 110px;  /* 100px of height + 10px of border */
-  border-top-right-radius: 110px; /* 100px of height + 10px of border */
+  border-top-left-radius: 110px;  
+  border-top-right-radius: 110px; 
   border: 1px solid #00728A;
   border-bottom: 0;
 } */

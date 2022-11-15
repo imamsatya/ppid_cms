@@ -47,6 +47,9 @@ class VisiMisiPolicy
     public function create(User $user)
     {
         //
+        if ($user->can('visi dan misi.create')) {
+            return true;
+        }
     }
 
     /**

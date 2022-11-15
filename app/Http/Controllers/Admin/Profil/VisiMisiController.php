@@ -21,7 +21,9 @@ class VisiMisiController extends Controller
     {
         //
         // $this->authorize('viewAny', VisiMisi::class);
-        return view('admin.profil.visimisi');
+        $visiMisi = new VisiMisi();
+        $visiMisi = $visiMisi->first();
+        return view('admin.profil.visimisi', compact('visiMisi'));
     }
 
     /**
@@ -43,6 +45,59 @@ class VisiMisiController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'visi' => 'required',
+            'misi' => 'required',
+        ]);
+
+        if ($validated) {
+
+
+            $visiMisi = new VisiMisi();
+            $visiMisi = $visiMisi->first();
+
+            if ($visiMisi) {
+                $visiMisi->visi = $request->visi;
+                $visiMisi->misi = $request->misi;
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/visi_dan_misi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $visiMisi->banner_path = 'adminAssets/profil/visi_dan_misi/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $visiMisi->save();
+            } else {
+                $visiMisi = new VisiMisi();
+                $visiMisi->visi = $request->visi;
+                $visiMisi->misi = $request->misi;
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/visi_dan_misi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $visiMisi->banner_path = 'adminAssets/profil/visi_dan_misi/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $visiMisi->save();
+            }
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan tugas dan fungsi');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**

@@ -118,9 +118,17 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Profil
     Route::resource('profilsingkat', ProfilSingkatController::class);
     Route::resource('tugasdanfungsi', TugasDanFungsiController::class);
+
     Route::resource('strukturorganisasi', StrukturOrganisasiController::class);
+    Route::post('/strukturorganisasi/bagan_kanan', [StrukturOrganisasiController::class, 'baganKananStore'])->name('strukturorganisasi.bagankanan.store');
+    Route::patch('/strukturorganisasi/bagan_kanan/update/{id}', [StrukturOrganisasiController::class, 'baganKananUpdate'])->name('strukturorganisasi.bagankanan.update');
+    Route::delete('/strukturorganisasi/bagan_kanan/delete/{id}', [StrukturOrganisasiController::class, 'baganKananDestroy'])->name('strukturorganisasi.bagankanan.delete');
+
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('kontak', KontakController::class);
+    Route::post('/kontak/dokumentasi_ruang', [KontakController::class, 'dokumentasiStore'])->name('kontak.dokumentasi.store');
+    Route::delete('/kontak/dokumentasi_ruang/delete/{id}', [KontakController::class, 'dokumentasiDestroy'])->name('kontak.dokumentasi.delete');
+
     Route::resource('sosialmedia', SosialMediaController::class);
 
     //Regulasi

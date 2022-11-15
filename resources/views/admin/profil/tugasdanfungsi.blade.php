@@ -7,166 +7,364 @@
             Profil
             </x-slot>
             @push('child-scripts')
-                <script src="{{ asset('template/dist/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+                <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                 <script>
-                    ClassicEditor
-                        .create(document.querySelector('#kt_docs_ckeditor_classic_konten'))
-                        .then(editor => {
-                            console.log(editor);
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
+                    // ClassicEditor
+                    //     .create(document.querySelector('#kt_docs_ckeditor_classic_konten'))
+                    //     .then(editor => {
+                    //         console.log(editor);
+                    //     })
+                    //     .catch(error => {
+                    //         console.error(error);
+                    //     });
+
+
+
+                    let options = {
+                        selector: "#kt_docs_ckeditor_classic_konten",
+                        height: "480",
+
+
+                        plugins: 'print preview fullpage searchreplace autolink directionality  visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools   contextmenu colorpicker textpattern help',
+                        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+                        image_advtab: true,
+                        templates: [{
+                                title: 'Test template 1',
+                                content: 'Test 1'
+                            },
+                            {
+                                title: 'Test template 2',
+                                content: 'Test 2'
+                            }
+                        ],
+                        content_css: [
+                            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                            '//www.tinymce.com/css/codepen.min.css'
+                        ]
+
+                    };
+
+                    if (KTThemeMode.getMode() === "dark") {
+                        options["skin"] = "oxide-dark";
+                        options["content_css"] = "dark";
+                    }
+
+                    tinymce.init(options);
                 </script>
             @endpush
+            @if ($errors->any())
+                <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
+            </span> --}}
+                    <!--begin::Icon-->
+                    <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3"
+                                d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                                fill="currentColor" />
+                            <rect x="9" y="13.0283" width="7.3536" height="1.2256" rx="0.6128"
+                                transform="rotate(-45 9 13.0283)" fill="currentColor" />
+                            <rect x="9.86664" y="7.93359" width="7.3536" height="1.2256" rx="0.6128"
+                                transform="rotate(45 9.86664 7.93359)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Icon-->
+
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                        <!--begin::Title-->
+                        <h4 class="mb-2 light">Error !</h4>
+                        <!--end::Title-->
+
+                        <!--begin::Content-->
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Wrapper-->
+
+                    <!--begin::Close-->
+                    <button type="button"
+                        class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                        data-bs-dismiss="alert">
+                        <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3"
+                                    d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
+                                    fill="currentColor" />
+                            </svg></span>
+                    </button>
+                    <!--end::Close-->
+                </div>
+
+            @endif
+            @if (\Session::has('success'))
+                <!--begin::Alert-->
+                <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
+                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
+            </span> --}}
+                    <!--begin::Icon-->
+                    <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.3"
+                                d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                                fill="currentColor" />
+                            <path
+                                d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z"
+                                fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Icon-->
+
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
+                        <!--begin::Title-->
+                        <h4 class="mb-2 text-white">Sukses !</h4>
+                        <!--end::Title-->
+
+                        <!--begin::Content-->
+                        <span>{{ Session::get('success') }}</span>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Wrapper-->
+
+                    <!--begin::Close-->
+                    <button type="button"
+                        class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                        data-bs-dismiss="alert">
+                        <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3"
+                                    d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
+                                    fill="currentColor" />
+                            </svg></span>
+                    </button>
+                    <!--end::Close-->
+                </div>
+                <!--end::Alert-->
+            @endif
             <h1>Pengelolaan Tugas dan Fungsi</h1>
             <br>
-            <div class="card card-flush shadow-sm">
+            <form action="" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card card-flush shadow-sm">
 
-                <div class="card-body py-5">
+                    <div class="card-body py-5">
 
 
-                    <label for="" class="required form-label">Ubah Banner</label>
-                    <br>
-                    <div class="image-input image-input-outline" data-kt-image-input="true"
-                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                        <!--begin::Image preview wrapper-->
-                        <div class="image-input-wrapper w-250px  h-125px"
-                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                        <label for="" class="required form-label">Ubah Banner</label>
+                        <br>
+                        <div class="image-input image-input-outline" data-kt-image-input="true"
+                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                            <!--begin::Image preview wrapper-->
+                            @if ($tugasDanFungsi)
+                                @if ($tugasDanFungsi->banner_path)
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset($tugasDanFungsi->banner_path) }})">
+                                    </div>
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    </div>
+                                @endif
+                            @else
+                                <div class="image-input-wrapper w-250px  h-125px"
+                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                </div>
+
+                            @endif
+
+                            <!--end::Image preview wrapper-->
+
+                            @can('profil singkat ppid.edit')
+                                <!--begin::Edit button-->
+                                <label
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Change Banner">
+                                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                                    <!--begin::Inputs-->
+                                    <input type="file" name="banner" accept=".png, .jpg, .jpeg" />
+                                    <input type="hidden" name="banner_remove" />
+                                    <!--end::Inputs-->
+                                </label>
+                                <!--end::Edit button-->
+
+                                <!--begin::Cancel button-->
+                                <span
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Cancel Banner">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Cancel button-->
+
+                                <!--begin::Remove button-->
+                                <span
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Remove Banner">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Remove button-->
+                            @endcan
                         </div>
-                        <!--end::Image preview wrapper-->
-
-                        <!--begin::Edit button-->
-                        <label
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Change Banner">
-                            <i class="bi bi-pencil-fill fs-7"></i>
-
-                            <!--begin::Inputs-->
-                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="avatar_remove" />
-                            <!--end::Inputs-->
-                        </label>
-                        <!--end::Edit button-->
-
-                        <!--begin::Cancel button-->
-                        <span
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Cancel Banner">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Cancel button-->
-
-                        <!--begin::Remove button-->
-                        <span
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Remove Banner">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Remove button-->
-                    </div>
-                </div>
-
-            </div>
-            <br>
-            <div class="card card-flush shadow-sm">
-
-                <div class="card-body py-5">
-
-
-                    <br>
-                    <div class="mb-10">
-                        <label for="" class="required form-label">Judul</label>
-                        <input type="text" class="form-control form-control-solid"
-                            placeholder="Judul Tugas dan Fungsi" />
                     </div>
 
-
-                    <label for="exampleFormControlInput1" class="required form-label">Konten</label>
-                    <textarea name="kt_docs_ckeditor_classic_konten" id="kt_docs_ckeditor_classic_konten">
-                    <p>Mengacu pada Peraturan Menteri BUMN Nomor PER-04/MBU/03/2021 tentang Organisasi dan Tata Kerja Kementerian Badan Usaha Milik Negara, maka Biro Humas dan Fasilitasi Dukungan Strategis melaksanakan fungsi Pejabat Pengelola Informasi dan Dokumentasi (PPID) di lingkungan Kementerian BUMN. Dalam hal ini, pelaksanaan tugas PPID dilakukan melalui koordinasi antar fungsi serta melakukan penyiapan bahan koordinasi dan pelaksanaan tugas pengelolaan PPID serta pelaksanaan proses pemenuhan dan pengelolaan informasi publik sebagaimana Peraturan Menteri BUMN Nomor PER-09/MBU/08/2020 tentang Perubahan Kedua Atas Peraturan Menteri BUMN Nomor PER-08/MBU/2014 tentang Pedoman Pengelolaan Informasi dan Dokumentasi di lingkungan Kementerian BUMN.
-                        <br><br>
-
-                        Sebagaimana arahan pelaksanaan pelayanan informasi badan publik oleh Komisi Informasi Pusat, Kementerian BUMN telah menyediakan ruang khusus pelayanan informasi pada Lobi Utara Gedung Kementerian BUMN. Namun dikarenakan keterbatasan sumber daya manusia yang dimiliki dan mengingat masa pandemi, maka pelayanan informasi publik secara efektif dilakukan secara daring (online) serta pengelolaan informasi publik dilakukan di ruang kerja Biro Humas dan Fasilitasi Dukungan Strategis lantai 4 Gedung Kementerian BUMN. Pemohon dapat menyampaikan permohonannya melalui surat elektroik melalui alamat ppid@bumn.go.id, website PPID (https://ppid.bumn.go.id) dan/atau Aplikasi Mobile PPID.
-                        <br><br>
-                        Peran aktif Kementerian BUMN dalam pelaksanaan monitoring dan evaluasi implementasi keterbukaan informasi Badan Publik tahun 2021 ditunjukkan melalui skor Keterbukaan Informasi Publik yang diraih pada tahun 2021 sebesar 93,48 dengan kategori “Informatif”. Skor yang diraih tersebut meningkat dibandingkan dengan capaian tahun 2020 sebesar 85,26 dengan kategori “Menuju informatif”. Peningkatan inovasi dan kolaborasi serta penyediaan data dan informasi yang lengkap menjadi pendukung capaian skor keterbukaan informasi publik di tahun 2021.
-                        <br><br>
-                        Lebih lanjut di tahun 2021, untuk menunjang penyebaran informasi publik yang disajikan melalui Instagram Kementerian BUMN, PPID Kementerian BUMN telah meluncurkan kanal media sosial “Instagram” khusus PPID. Kanal ini merupakan salah satu sarana/media komunikasi PPID untuk menyampaikan informasi publik Kementerian BUMN. Instagram merupakan media sosial yang paling banyak digunakan oleh masyarakat Indonesia. Sejalan dengan hal tersebut, diharapkan akun media sosial PPID ini dapat menjangkau lebih banyak publik sehingga semakin banyak masyarakat yang teredukasi melalui informasi resmi yang disajikan. </p>
-                    </textarea>
-                    <br><br>
-
-
                 </div>
+                <br>
+                <div class="card card-flush shadow-sm">
+
+                    <div class="card-body py-5">
 
 
-
-
-
-            </div>
-            <br>
-            <div class="card card-flush shadow-sm">
-
-                <div class="card-body py-5">
-
-
-                    <label for="" class="required form-label">Side Image</label>
-                    <br>
-                    <div class="image-input image-input-outline" data-kt-image-input="true"
-                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                        <!--begin::Image preview wrapper-->
-                        <div class="image-input-wrapper w-250px  h-125px"
-                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                        <br>
+                        <div class="mb-10">
+                            <label for="" class="required form-label">Judul</label>
+                            @if ($tugasDanFungsi)
+                                @if (auth()->user()->can('tugas dan fungsi ppid.edit'))
+                                    <input type="text" class="form-control form-control-solid" name="judul"
+                                        placeholder="Judul Tugas dan Fungsi" value="{{ $tugasDanFungsi->judul }}" />
+                                @else
+                                    <input readonly type="text" class="form-control form-control-solid"
+                                        name="judul" placeholder="Judul Tugas dan Fungsi"
+                                        value="{{ $tugasDanFungsi->judul }}" />
+                                @endif
+                            @else
+                                @if (auth()->user()->can('tugas dan fungsi ppid.edit'))
+                                    <input type="text" class="form-control form-control-solid" name="judul"
+                                        placeholder="Judul Tugas dan Fungsi" />
+                                @else
+                                    <input type="text" readonly class="form-control form-control-solid"
+                                        name="judul" placeholder="Judul Tugas dan Fungsi" />
+                                @endif
+                            @endif
                         </div>
-                        <!--end::Image preview wrapper-->
 
-                        <!--begin::Edit button-->
-                        <label
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Change Side Image">
-                            <i class="bi bi-pencil-fill fs-7"></i>
 
-                            <!--begin::Inputs-->
-                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="avatar_remove" />
-                            <!--end::Inputs-->
-                        </label>
-                        <!--end::Edit button-->
+                        <label for="exampleFormControlInput1" class="required form-label">Konten</label>
+                        @if ($tugasDanFungsi)
+                            @if (auth()->user()->can('tugas dan fungsi ppid.edit'))
+                                <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
+                                {{ $tugasDanFungsi->konten }}
+                                </textarea>
+                            @else
+                                {!! $tugasDanFungsi->konten !!}
+                            @endif
+                        @else
+                            @if (auth()->user()->can('tugas dan fungsi ppid.edit'))
+                                <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
+                                
+                            </textarea>
+                            @else
+                                <div class="card-body">
+                                </div>
+                            @endif
+                        @endif
 
-                        <!--begin::Cancel button-->
-                        <span
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Cancel Side Image">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Cancel button-->
+                        <br><br>
 
-                        <!--begin::Remove button-->
-                        <span
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Remove Side Image">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Remove button-->
+
                     </div>
-                    <p>minimal dimensi 369x454 pixel</p>
+
+
+
+
+
+                </div>
+                <br>
+                <div class="card card-flush shadow-sm">
+
+                    <div class="card-body py-5">
+
+
+                        <label for="" class="required form-label">Side Image</label>
+                        <br>
+                        <div class="image-input image-input-outline" data-kt-image-input="true"
+                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                            <!--begin::Image preview wrapper-->
+                            @if ($tugasDanFungsi)
+                                @if ($tugasDanFungsi->side_image_path)
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset($tugasDanFungsi->side_image_path) }})">
+                                    </div>
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    </div>
+                                @endif
+                            @else
+                                <div class="image-input-wrapper w-250px  h-125px"
+                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                </div>
+                            @endif
+                            <!--end::Image preview wrapper-->
+                            @can('tugas dan fungsi ppid.edit')
+                                <!--begin::Edit button-->
+                                <label
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Change Side Image">
+                                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                                    <!--begin::Inputs-->
+                                    <input type="file" name="sideImage" accept=".png, .jpg, .jpeg" />
+                                    <input type="hidden" name="sideImage_remove" />
+                                    <!--end::Inputs-->
+                                </label>
+                                <!--end::Edit button-->
+
+                                <!--begin::Cancel button-->
+                                <span
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Cancel Side Image">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Cancel button-->
+
+                                <!--begin::Remove button-->
+                                <span
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Remove Side Image">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Remove button-->
+                            @endcan
+                        </div>
+                        <p>minimal dimensi 369x454 pixel</p>
+                    </div>
+
                 </div>
 
-            </div>
 
 
 
 
-
-            <br>
-            <a href="#" class="btn btn-primary">Simpan</a>
-
+                <br>
+                @can('tugas dan fungsi ppid.create')
+                    <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                        <span class="indicator-label">Simpan</span>
+                        <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    </button>
+                @endcan
+            </form>
             {{-- ckeditor --}}
             {{-- <script src="{{ asset('template/dist/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script> --}}
 

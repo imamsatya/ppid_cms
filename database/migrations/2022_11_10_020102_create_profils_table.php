@@ -39,13 +39,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('strukturorganisasis_bagiankiri', function (Blueprint $table) {
+        Schema::create('strukturorganisasis_bagankiri', function (Blueprint $table) {
             $table->id();
             $table->string('nomenklatur');
             $table->timestamps();
         });
 
-        Schema::create('strukturorganisasis_bagiankanan', function (Blueprint $table) {
+        Schema::create('strukturorganisasis_bagankanan', function (Blueprint $table) {
             $table->id();
             $table->string('nomenklatur');
             $table->text('deskripsi');
@@ -67,7 +67,7 @@ return new class extends Migration
             $table->id();
             $table->string('alamat');
             $table->string('telepon');
-            $table->text('waktu_pekayanan');
+            $table->text('waktu_pelayanan');
             $table->string('banner_path');
             $table->string('latitude');
             $table->string('longitude');

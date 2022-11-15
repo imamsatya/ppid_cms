@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Profil;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Profil\TugasDanFungsi;
 
 
 class TugasDanFungsiController extends Controller
@@ -16,7 +17,9 @@ class TugasDanFungsiController extends Controller
     public function index()
     {
         //
-        return view('admin.profil.tugasdanfungsi');
+        $tugasDanFungsi = new TugasDanFungsi();
+        $tugasDanFungsi = $tugasDanFungsi->first();
+        return view('admin.profil.tugasdanfungsi', compact('tugasDanFungsi'));
     }
 
     /**
@@ -38,6 +41,64 @@ class TugasDanFungsiController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            'judul' => 'required',
+            'konten' => 'required',
+        ]);
+
+        if ($validated) {
+
+
+            $tugasDanFungsi = new TugasDanFungsi();
+            $tugasDanFungsi = $tugasDanFungsi->first();
+
+            if ($tugasDanFungsi) {
+                $tugasDanFungsi->judul = $request->judul;
+                $tugasDanFungsi->konten = $request->konten;
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/tugas_dan_fungsi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $tugasDanFungsi->banner_path = 'adminAssets/profil/tugas_dan_fungsi/banner.' . $file->getClientOriginalExtension();
+                        }
+                        if ($fileName == 'sideImage') {
+                            $tugasDanFungsi->side_image_path = 'adminAssets/profil/tugas_dan_fungsi/sideImage.' . $file->getClientOriginalExtension();
+                        }
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $tugasDanFungsi->save();
+            } else {
+                $tugasDanFungsi = new tugasDanFungsi();
+                $tugasDanFungsi->judul = $request->judul;
+                $tugasDanFungsi->konten = $request->konten;
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/tugas_dan_fungsi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $tugasDanFungsi->banner_path = 'adminAssets/profil/tugas_dan_fungsi/banner.' . $file->getClientOriginalExtension();
+                        }
+                        if ($fileName == 'sideImage') {
+                            $tugasDanFungsi->side_image_path = 'adminAssets/profil/tugas_dan_fungsi/sideImage.' . $file->getClientOriginalExtension();
+                        }
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $tugasDanFungsi->save();
+            }
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan tugas dan fungsi');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**

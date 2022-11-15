@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Profil;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Profil\StrukturOrganisasi;
+use App\Models\Profil\KontakDokumentasiRuang;
+use App\Models\Profil\StrukturOrganisasiBaganKiri;
+use App\Models\Profil\StrukturOrganisasiBaganKanan;
 
 class StrukturOrganisasiController extends Controller
 {
@@ -15,7 +19,15 @@ class StrukturOrganisasiController extends Controller
     public function index()
     {
         //
-        return view('admin.profil.strukturorganisasi');
+        $strukturOrganisasi = new StrukturOrganisasi();
+        $strukturOrganisasi = $strukturOrganisasi->first();
+        $baganKiri = new StrukturOrganisasiBaganKiri();
+        $baganKiri = $baganKiri::all();
+        $baganKanan = new StrukturOrganisasiBaganKanan();
+        $baganKanan = $baganKanan::all();
+
+
+        return view('admin.profil.strukturorganisasi', compact('strukturOrganisasi', 'baganKiri', 'baganKanan'));
     }
 
     /**
@@ -37,6 +49,101 @@ class StrukturOrganisasiController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            'judul' => 'required',
+            'nomenklaturRepeater' => 'required',
+        ]);
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        if ($validated) {
+            $strukturOrganisasi = new StrukturOrganisasi();
+            $strukturOrganisasi = $strukturOrganisasi->first();
+            if ($strukturOrganisasi) {
+                $strukturOrganisasi->judul = $request->judul;
+
+                //Bagan Kiri
+
+                $baganKiri = new StrukturOrganisasiBaganKiri();
+                $baganKiri = $baganKiri::truncate();
+                foreach ($request->nomenklaturRepeater as $key => $nomenklatur) {
+                    $baganKiri = new StrukturOrganisasiBaganKiri();
+                    if ($nomenklatur['nomenklatur']) {
+                        $baganKiri->nomenklatur = $nomenklatur['nomenklatur'];
+                        $baganKiri->save();
+                    }
+                }
+
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/struktur_organisasi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $strukturOrganisasi->banner_path = 'adminAssets/profil/struktur_organisasi/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+
+                $strukturOrganisasi->save();
+            } else {
+                $strukturOrganisasi = new StrukturOrganisasi();
+                $strukturOrganisasi->judul = $request->judul;
+
+                //Bagan Kiri
+                $baganKiri = new StrukturOrganisasiBaganKiri();
+                $baganKiri = $baganKiri::truncate();
+                foreach ($request->nomenklaturRepeater as $key => $nomenklatur) {
+                    $baganKiri = new StrukturOrganisasiBaganKiri();
+                    if ($nomenklatur['nomenklatur']) {
+                        $baganKiri->nomenklatur = $nomenklatur['nomenklatur'];
+                        $baganKiri->save();
+                    }
+                }
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/profil/struktur_organisasi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $strukturOrganisasi->banner_path = 'adminAssets/profil/struktur_organisasi/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+                $strukturOrganisasi->save();
+            }
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Struktur Organisasi');
+        }
+    }
+
+    public function baganKananStore(Request $request)
+    {
+        $validated = $request->validate([
+            'nomenklatur' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+        ]);
+
+        if ($validated) {
+            $baganKanan = new StrukturOrganisasiBaganKanan();
+            $baganKanan->nomenklatur = $request->nomenklatur;
+            $baganKanan->deskripsi = $request->deskripsi;
+            $baganKanan->urutan = $request->urutan;
+            $baganKanan->save();
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Bagan Kanan');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
@@ -73,6 +180,30 @@ class StrukturOrganisasiController extends Controller
         //
     }
 
+    public function baganKananUpdate(Request $request, $id)
+    {
+        //
+
+        $validated = $request->validate([
+            'nomenklatur' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+        ]);
+
+        if ($validated) {
+            $baganKanan = new StrukturOrganisasiBaganKanan();
+            $baganKanan = $baganKanan->where('id', $id)->first();
+            $baganKanan->nomenklatur = $request->nomenklatur;
+            $baganKanan->deskripsi = $request->deskripsi;
+            $baganKanan->urutan = $request->urutan;
+            $baganKanan->save();
+
+            return redirect()->back()->with('success', 'Berhasil mengubah Bagan Kanan');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -82,5 +213,15 @@ class StrukturOrganisasiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function baganKananDestroy($id)
+    {
+        //
+        // dd($id);
+        $baganKanan = new StrukturOrganisasiBaganKanan();
+        $baganKanan = $baganKanan->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus dokumentasi");
     }
 }

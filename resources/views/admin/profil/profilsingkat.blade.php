@@ -8,16 +8,38 @@
             </x-slot>
 
             @push('child-scripts')
-                <script src="{{ asset('template/dist/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+                <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                 <script>
-                    ClassicEditor
-                        .create(document.querySelector('#kt_docs_ckeditor_classic_konten'))
-                        .then(editor => {
-                            console.log(editor);
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
+                    let options = {
+                        selector: "#kt_docs_ckeditor_classic_konten",
+                        height: "480",
+
+
+                        plugins: 'print preview fullpage searchreplace autolink directionality  visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools   contextmenu colorpicker textpattern help',
+                        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+                        image_advtab: true,
+                        templates: [{
+                                title: 'Test template 1',
+                                content: 'Test 1'
+                            },
+                            {
+                                title: 'Test template 2',
+                                content: 'Test 2'
+                            }
+                        ],
+                        content_css: [
+                            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                            '//www.tinymce.com/css/codepen.min.css'
+                        ]
+
+                    };
+
+                    if (KTThemeMode.getMode() === "dark") {
+                        options["skin"] = "oxide-dark";
+                        options["content_css"] = "dark";
+                    }
+
+                    tinymce.init(options);
                 </script>
             @endpush
 
@@ -205,39 +227,42 @@
                         <div class="mb-10">
                             <label for="" class="required form-label">Judul</label>
                             @if ($profilSingkat)
-                                <input type="text" name="judul" class="form-control form-control-solid"
-                                    placeholder="Judul Profil Singkat PPID" value="{{ $profilSingkat->judul }}" />
+                                @if (auth()->user()->can('profil singkat ppid.edit'))
+                                    <input type="text" name="judul" class="form-control form-control-solid"
+                                        placeholder="Judul Profil Singkat PPID" value="{{ $profilSingkat->judul }}" />
+                                @else
+                                    <input type="text" readonly name="judul"
+                                        class="form-control form-control-solid"
+                                        placeholder="Judul Profil Singkat PPID" value="{{ $profilSingkat->judul }}" />
+                                @endif
                             @else
-                                <input type="text" name="judul" class="form-control form-control-solid"
-                                    placeholder="Judul Profil Singkat PPID" value="" />
+                                @if (auth()->user()->can('profil singkat ppid.edit'))
+                                    <input type="text" name="judul" class="form-control form-control-solid"
+                                        placeholder="Judul Profil Singkat PPID" value="" />
+                                @else
+                                    <input type="text" readonly name="judul"
+                                        class="form-control form-control-solid"
+                                        placeholder="Judul Profil Singkat PPID" value="" />
+                                @endif
                             @endif
                         </div>
 
 
                         <label for="exampleFormControlInput1" class="required form-label">Konten</label>
-                        {{-- <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
-                            
-                        </textarea> --}}
                         @if ($profilSingkat)
                             @if (auth()->user()->can('profil singkat ppid.edit'))
                                 <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
                                 {{ $profilSingkat->konten }}
                                 </textarea>
                             @else
-                                <br>
-
-                                <div class="card-body">
-                                    {{ $profilSingkat->konten }}
-                                </div>
+                                {!! $profilSingkat->konten !!}
                             @endif
                         @else
-                            <br>
                             @if (auth()->user()->can('profil singkat ppid.edit'))
                                 <textarea name="konten" id="kt_docs_ckeditor_classic_konten">
                                 
                                 </textarea>
                             @else
-                                <br>
                                 <div class="card-body">
                                 </div>
                             @endif

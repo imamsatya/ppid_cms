@@ -7,13 +7,40 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <label for="" class="title_struktur">Struktur PPID Kementerian BUMN</label>
+                    <label for="" class="title_struktur">{{ $strukturOrganisasi->judul }}</label>
                     <a href="#" download class="unduh_materi">Unduh Struktur</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <div>
+
+                    @foreach ($baganKiri as $baganKiri_row)
+                        <div>
+
+                            @if ($loop->index + 1 === count($baganKiri))
+                                <div class="d-flex">
+                                    <div class="bagan_box">
+                                        {{-- <span>PPID <br />
+                                            Kementerian BUMN</span> --}}
+                                        <span>{{ $baganKiri_row->nomenklatur }}</span>
+                                    </div>
+                                    <div class="triangle-left_one"></div>
+                                    <div class="triangle-left_two"></div>
+                                    <div class="triangle-left_three"></div>
+                                </div>
+                            @else
+                                <div>
+                                    <div class="bagan_box_one">
+                                        <span>{{ $baganKiri_row->nomenklatur }}</span>
+                                    </div>
+                                    <div class="triangle-down"></div>
+                                </div>
+                            @endif
+
+                        </div>
+                    @endforeach
+
+                    {{-- <div>
                         <div class="bagan_box_one">
                             <span>Menteri BUMN</span>
                         </div>
@@ -25,101 +52,33 @@
                                 Kementerian BUMN</span>
                         </div>
                         <div class="triangle-down"></div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="bagan_box">
-                            <span>PPID <br />
-                                Kementerian BUMN</span>
-                        </div>
-                        <div class="triangle-left_one"></div>
-                        <div class="triangle-left_two"></div>
-                        <div class="triangle-left_three"></div>
-                    </div>
+                    </div> --}}
+
                 </div>
                 <div class="col-md-9">
                     <div class="content_struktur">
                         <ul>
-                            <li>
-                                <div class="d-flex">
-                                    <div>
-                                        <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.png') }}"
-                                            alt="" />
-                                    </div>
-                                    <div class="informasi">
-                                        <label for="" class="title_label">Atasan PPID Kementerian</label>
-                                        <div class="description">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            In nec malesuada arcu. Etiam auctor lobortis elit ut
-                                            interdum. Sed nec nibh sit amet magna scelerisque
-                                            pellentesque vitae vel enim. Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. In nec malesuada arcu.
-                                            Etiam auctor lobortis elit ut interdum. Sed nec nibh sit
-                                            amet magna scelerisque pellentesque vitae vel enim
+                            @foreach ($baganKanan as $baganKanan_row)
+                                <li>
+                                    <div class="d-flex">
+                                        <div>
+                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.png') }}"
+                                                alt="" />
+                                        </div>
+                                        <div class="informasi">
+
+                                            <label for=""
+                                                class="title_label">{{ $baganKanan_row->nomenklatur }}</label>
+                                            <div class="description">
+                                                {{ $baganKanan_row->deskripsi }}
+                                            </div>
+
+
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex">
-                                    <div>
-                                        <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.png') }}"
-                                            alt="" />
-                                    </div>
-                                    <div class="informasi">
-                                        <label for="" class="title_label">PPID Pelaksana</label>
-                                        <div class="description">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            In nec malesuada arcu. Etiam auctor lobortis elit ut
-                                            interdum. Sed nec nibh sit amet magna scelerisque
-                                            pellentesque vitae vel enim. Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. In nec malesuada arcu.
-                                            Etiam auctor lobortis elit ut interdum. Sed nec nibh sit
-                                            amet magna scelerisque pellentesque vitae vel enim
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex">
-                                    <div>
-                                        <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.png') }}"
-                                            alt="" />
-                                    </div>
-                                    <div class="informasi">
-                                        <label for="" class="title_label">
-                                            PPID Kementerian</label>
-                                        <div class="description">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            In nec malesuada arcu. Etiam auctor lobortis elit ut
-                                            interdum. Sed nec nibh sit amet magna scelerisque
-                                            pellentesque vitae vel enim. Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. In nec malesuada arcu.
-                                            Etiam auctor lobortis elit ut interdum. Sed nec nibh sit
-                                            amet magna scelerisque pellentesque vitae vel enim
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="d-flex">
-                                    <div>
-                                        <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.png') }}"
-                                            alt="" />
-                                    </div>
-                                    <div class="informasi">
-                                        <label for="" class="title_label">PPID Tingkat I</label>
-                                        <div class="description">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            In nec malesuada arcu. Etiam auctor lobortis elit ut
-                                            interdum. Sed nec nibh sit amet magna scelerisque
-                                            pellentesque vitae vel enim. Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit. In nec malesuada arcu.
-                                            Etiam auctor lobortis elit ut interdum. Sed nec nibh sit
-                                            amet magna scelerisque pellentesque vitae vel enim
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>

@@ -9,6 +9,7 @@
                     <label for="" class="title_tentang_ppid">{{ $profilSingkat->judul }}</label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-8" id="konten">
 
@@ -39,7 +40,7 @@
                 </x-slot>
                 @push('child-scripts')
                     <script>
-                        document.getElementById('konten').childNodes[1].className = 'informasi'
+                        // document.getElementById('konten').childNodes[1].className = 'informasi'
                     </script>
                     <style>
                         .banner .data_banner {
