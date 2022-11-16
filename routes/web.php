@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\Regulasi\RancanganPeraturanKIPController;
 
 //Informasi Publik
 use App\Http\Controllers\Admin\InformasiPublik\InformasiSecaraBerkalaController;
+use App\Http\Controllers\Admin\InformasiPublik\InformasiSertaMertaController;
+use App\Http\Controllers\Admin\InformasiPublik\InformasiSetiapSaatController;
 
 //Layanan PPID
 use App\Http\Controllers\Admin\LayananPPID\DataPermohonanController;
@@ -41,9 +43,10 @@ use App\Http\Controllers\Frontend\Regulasi\RegulasiController as RegulasiControl
 
 //Informasi Publik
 use App\Http\Controllers\Frontend\InformasiPublik\InformasiSecaraBerkalaController as InformasiSecaraBerkalaControllerUser;
-
+use App\Http\Controllers\Frontend\InformasiPublik\InformasiPublikController as InformasiPublikControllerUser;
 //Layanan PPID
 use App\Http\Controllers\Frontend\LayananPPID\DataPermohonanController as DataPermohonanControllerUser;
+
 /*
 /*
 |--------------------------------------------------------------------------
@@ -78,10 +81,12 @@ Route::resource('peraturan_kip', PeraturanKIPControllerUser::class);
 Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPControllerUser::class);
 
 //Informasi Publik, kurang  2 route
-Route::get('/informasipublik', function () {
-    return view('frontend.informasipublik.informasi-publik');
-})->name('informasipublik.index');
+// Route::get('/informasipublik', function () {
+//     return view('frontend.informasipublik.informasi-publik');
+// })->name('informasipublik.index');
+Route::resource('informasipublik', InformasiPublikControllerUser::class);
 Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaControllerUser::class);
+
 
 //Standar Layanan
 Route::get('/maklumat', function () {
@@ -141,7 +146,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     //Informasi Publik, kurang  2 route
     Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaController::class);
-
+    Route::resource('informasi_serta_merta', InformasiSertaMertaController::class);
+    Route::resource('informasi_setiap_saat', InformasiSetiapSaatController::class);
+    Route::post('/informasi_secara_berkala/banner', [InformasiSecaraBerkalaController::class, 'bannerStore'])->name('informasi_secara_berkala.banner.store');
     //Layanan PPID, kurang 1 route
     Route::resource('data_permohonan', DataPermohonanController::class);
 

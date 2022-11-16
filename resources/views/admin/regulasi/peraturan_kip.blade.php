@@ -64,7 +64,7 @@
                 <!--begin::Alert-->
                 <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
                     {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-        </span> --}}
+                    </span> --}}
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
