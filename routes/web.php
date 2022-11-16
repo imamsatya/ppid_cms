@@ -37,6 +37,7 @@ use App\Http\Controllers\Frontend\Profil\SosialMediaController as SosialMediaCon
 //Regulasi
 use App\Http\Controllers\Frontend\Regulasi\PeraturanKIPController as PeraturanKIPControllerUser;
 use App\Http\Controllers\Frontend\Regulasi\RancanganPeraturanKIPController as RancanganPeraturanKIPControllerUser;
+use App\Http\Controllers\Frontend\Regulasi\RegulasiController as RegulasiControllerUser;
 
 //Informasi Publik
 use App\Http\Controllers\Frontend\InformasiPublik\InformasiSecaraBerkalaController as InformasiSecaraBerkalaControllerUser;
@@ -69,9 +70,10 @@ Route::resource('kontak', KontakControllerUser::class);
 Route::resource('sosialmedia', SosialMediaControllerUser::class);
 
 //Regulasi
-Route::get('/regulasi', function () {
-    return view('frontend.regulasi.regulasi');
-})->name('regulasi.index');
+// Route::get('/regulasi', function () {
+//     return view('frontend.regulasi.regulasi');
+// })->name('regulasi.index');
+Route::resource('regulasi', RegulasiControllerUser::class);
 Route::resource('peraturan_kip', PeraturanKIPControllerUser::class);
 Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPControllerUser::class);
 
@@ -133,7 +135,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     //Regulasi
     Route::resource('peraturan_kip', PeraturanKIPController::class);
+    Route::post('/peraturan_kip/regulasi_banner', [PeraturanKIPController::class, 'bannerStore'])->name('peraturan_kip.banner.store');
     Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPController::class);
+    Route::post('/rancangan_peraturan_kip/regulasi_banner', [RancanganPeraturanKIPController::class, 'bannerStore'])->name('rancangan_peraturan_kip.banner.store');
 
     //Informasi Publik, kurang  2 route
     Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaController::class);

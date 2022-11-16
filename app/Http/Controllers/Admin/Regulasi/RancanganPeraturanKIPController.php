@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Regulasi;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Regulasi\RegulasiBanner;
+use App\Models\Regulasi\RancanganPeraturanKIP;
 
 class RancanganPeraturanKIPController extends Controller
 {
@@ -15,7 +17,11 @@ class RancanganPeraturanKIPController extends Controller
     public function index()
     {
         //
-        return view('admin.regulasi.rancangan_peraturan_kip');
+        $regulasiBanner = new RegulasiBanner();
+        $regulasiBanner = $regulasiBanner->first();
+        $rancanganPeraturanKIP = new RancanganPeraturanKIP();
+        $rancanganPeraturanKIP = $rancanganPeraturanKIP::all();
+        return view('admin.regulasi.rancangan_peraturan_kip', compact('regulasiBanner', 'rancanganPeraturanKIP'));
     }
 
     /**
@@ -37,6 +43,38 @@ class RancanganPeraturanKIPController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            'judulPeraturan' => 'required',
+            'urutan' => 'required',
+            'file' => 'required|mimes:pdf'
+        ]);
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        if ($validated) {
+            $rancanganPeraturanKIP = new RancanganPeraturanKIP();
+            $rancanganPeraturanKIP->judul_peraturan = $request->judulPeraturan;
+            if (count($request->files) > 0) {
+                $files = $request->files;
+                $upload_path = 'adminAssets/regulasi/rancangan_peraturan_kip';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        $rancanganPeraturanKIP->file_path = 'adminAssets/regulasi/rancangan_peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
+                    }
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                }
+            }
+
+
+            $rancanganPeraturanKIP->urutan = $request->urutan;
+            $rancanganPeraturanKIP->save();
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Rancangan Peraturan KIP');
+        }
     }
 
     /**
@@ -71,6 +109,41 @@ class RancanganPeraturanKIPController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate([
+            'judulPeraturan' => 'required',
+            'urutan' => 'required',
+
+        ]);
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        if ($validated) {
+
+            $rancanganPeraturanKIP = new rancanganPeraturanKIP();
+            $rancanganPeraturanKIP = $rancanganPeraturanKIP->where('id', $id)->first();
+            $rancanganPeraturanKIP->judul_peraturan = $request->judulPeraturan;
+            if (count($request->files) > 0) {
+                File::delete($rancanganPeraturanKIP->file_path);
+                $files = $request->files;
+                $upload_path = 'adminAssets/regulasi/rancangan_peraturan_kip';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        $rancanganPeraturanKIP->file_path = 'adminAssets/regulasi/rancangan_peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
+                    }
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                }
+            }
+
+
+            $rancanganPeraturanKIP->urutan = $request->urutan;
+
+            $rancanganPeraturanKIP->save();
+
+            return redirect()->back()->with('success', 'Berhasil mengubah Rancangan Peraturan KIP');
+        }
     }
 
     /**
@@ -82,5 +155,10 @@ class RancanganPeraturanKIPController extends Controller
     public function destroy($id)
     {
         //
+        $rancanganPeraturanKIP = new RancanganPeraturanKIP();
+        File::delete($rancanganPeraturanKIP->where('id', $id)->first()->file_path);
+        $rancanganPeraturanKIP = $rancanganPeraturanKIP->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus Rancangan Peraturan KIP");
     }
 }
