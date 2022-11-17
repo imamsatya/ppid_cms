@@ -455,8 +455,12 @@
                                 data-bs-toggle="modal" data-bs-target="#kt_modal_update_role"
                                 onclick="editDialog({{ $loop->index }})">Edit
                                 Role</button> --}}
-                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                            {{-- Versi Modal --}}
+                            {{-- <a href="javascript:void(0)" data-bs-toggle="modal"
                                 data-bs-target="#kt_modal_update_role" onclick="editDialog({{ $loop->index }})"
+                                class="btn btn-light btn-active-primary my-1 me-2 "> Edit
+                                Role</a> --}}
+                            <a href="{{ route('admin.role_permission.edit', $role) }}"
                                 class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                 Role</a>
                             <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
@@ -475,7 +479,8 @@
                 <div class="card h-md-100">
                     <!--begin::Card body-->
                     <div class="card-body d-flex flex-center">
-                        <!--begin::Button-->
+                        {{-- Versi Modal --}}
+                        {{-- <!--begin::Button-->
                         <button type="button" class="btn btn-clear d-flex flex-column flex-center"
                             data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
                             <!--begin::Illustration-->
@@ -487,7 +492,21 @@
                                 Add New Role</div>
                             <!--end::Label-->
                         </button>
-                        <!--begin::Button-->
+                        <!--begin::Button--> --}}
+
+                        {{-- Versi Create --}}
+
+                        <a href="{{ route('admin.role_permission.create') }}"
+                            class="btn btn-clear d-flex flex-column flex-center">
+                            <!--begin::Illustration-->
+                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
+                                alt="" class="mw-100 mh-150px mb-7" />
+                            <!--end::Illustration-->
+                            <!--begin::Label-->
+                            <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
+                                Add New Role</div>
+                            <!--end::Label-->
+                        </a>
                     </div>
                     <!--begin::Card body-->
                 </div>

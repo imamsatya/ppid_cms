@@ -68,7 +68,7 @@ License: For each use you must have a valid license purchased only from above li
             let themeMode = localStorage.getItem("kt_" + (name !== null ? name + "_" : "") + "theme_mode_value");
             if (themeMode === null) {
                 if (defaultThemeMode === "system") {
-                    themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                    themeMode = window.matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light";
                 } else {
                     themeMode = defaultThemeMode;
                 }
@@ -930,7 +930,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="../../demo1/dist/pages/user-profile/projects.html">
+                                                        href="{{ route('admin.informasi_serta_merta.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -947,7 +947,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="../../demo1/dist/pages/user-profile/projects.html">
+                                                        href="{{ route('admin.informasi_setiap_saat.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
