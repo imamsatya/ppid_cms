@@ -18,7 +18,7 @@ class RolePermissionController extends Controller
     public function index()
     {
         //
-        $roles = Role::with('permissions')->get();;
+        $roles = Role::with('permissions')->get();
         $permissions = Permission::all();
 
 
@@ -34,6 +34,8 @@ class RolePermissionController extends Controller
     public function create()
     {
         //
+        $permissions = Permission::all();
+        return view('admin.manajemen_user.add-role_permission', compact('permissions'));
     }
 
     /**
@@ -82,6 +84,9 @@ class RolePermissionController extends Controller
     public function edit($id)
     {
         //
+        $role = Role::with('permissions')->where('id', $id)->first();
+        $permissions = Permission::all();
+        return view('admin.manajemen_user.edit-role_permission', compact('role', 'permissions'));
     }
 
     /**

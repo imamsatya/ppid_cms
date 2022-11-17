@@ -144,11 +144,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPController::class);
     Route::post('/rancangan_peraturan_kip/regulasi_banner', [RancanganPeraturanKIPController::class, 'bannerStore'])->name('rancangan_peraturan_kip.banner.store');
 
-    //Informasi Publik, kurang  2 route
+    //Informasi Publik
     Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaController::class);
     Route::resource('informasi_serta_merta', InformasiSertaMertaController::class);
     Route::resource('informasi_setiap_saat', InformasiSetiapSaatController::class);
     Route::post('/informasi_secara_berkala/banner', [InformasiSecaraBerkalaController::class, 'bannerStore'])->name('informasi_secara_berkala.banner.store');
+
+    //Standar Layanan
+
     //Layanan PPID, kurang 1 route
     Route::resource('data_permohonan', DataPermohonanController::class);
 

@@ -124,396 +124,1349 @@
             <!--end::Alert-->
         @endif
         <br>
-        <h1>Daftar Role Permission </h1>
+        <h1>Edit Role Permission {{ $role->name }} </h1>
         <br>
         <!--begin::Row-->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5 g-xl-9">
 
 
-            @foreach ($roles as $role)
-                <div class="col-md-6">
-                    <!--begin::Card-->
-                    <div class="card card-flush h-md-100">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2> {{ $role['name'] }}</h2>
+
+
+        <div class="card card-flush shadow-sm">
+
+            <div class="card-body py-5">
+
+
+
+
+                <div class="modal-body  mx-lg-5 my-0">
+                    <!--begin::Form-->
+                    <form id="editForm" class="form" action="{{ route('admin.role_permission.update', $role) }}"
+                        method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <!--begin::Scroll-->
+                        <div class="d-flex flex-column  me-n7 pe-7">
+                            <!--begin::Input group-->
+                            <div class="fv-row mb-10">
+                                <!--begin::Label-->
+                                <label class="fs-5 fw-bold form-label mb-2">
+                                    <span class="required">Role name</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input class="form-control form-control-solid" placeholder="Enter a role name"
+                                    name="edit_name" id="editName" />
+                                <!--end::Input-->
                             </div>
-                            <!--end::Card title-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-1">
-
-                            <!--begin::Users-->
-                            <div class="fw-bold text-gray-600 mb-5">Total users with
-                                this role: 5</div>
-                            <?php
-                            $permissionGroup = [];
-                            foreach ($role['permissions'] as $key => $permission) {
-                                $permissionName = substr($permission->name, 0, strpos($permission->name, '.'));
-                            
-                                array_push($permissionGroup, $permissionName);
-                            }
-                            $permissionGroup = array_values(array_unique($permissionGroup));
-                            ?>
-
-                            <?php
-                            //Show
-                            
-                            //Dashboard
-                            $showDashboard = in_array('dashboard', $permissionGroup);
-                            //Layanan PPID
-                            $showLayananPPID = in_array('data permohonan', $permissionGroup) || in_array('data keberatan', $permissionGroup);
-                            $showDataPermohonan = in_array('data permohonan', $permissionGroup);
-                            $showDataKeberatan = in_array('data keberatan', $permissionGroup);
-                            
-                            //Profil
-                            $showProfil = in_array('profil singkat ppid', $permissionGroup) || in_array('tugas dan fungsi ppid', $permissionGroup) || in_array('struktur organisasi', $permissionGroup) || in_array('visi dan misi', $permissionGroup) || in_array('kontak', $permissionGroup) || in_array('sosial media', $permissionGroup);
-                            $showProfilSingkat = in_array('profil singkat ppid', $permissionGroup);
-                            $showTugasDanFungsi = in_array('tugas dan fungsi ppid', $permissionGroup);
-                            $showStrukturOrganisasi = in_array('struktur organisasi', $permissionGroup);
-                            $showVisiDanMisi = in_array('visi dan misi', $permissionGroup);
-                            $showKontak = in_array('kontak', $permissionGroup);
-                            $showSosialMedia = in_array('sosial media', $permissionGroup);
-                            
-                            //Regulasi
-                            $showRegulasi = in_array('peraturan kip', $permissionGroup) || in_array('rancangan peraturan kip', $permissionGroup);
-                            $showPeraturanKIP = in_array('peraturan kip', $permissionGroup);
-                            $showRancanganPeraturanKIP = in_array('rancangan peraturan kip', $permissionGroup);
-                            
-                            //Informasi Publik
-                            $showInformasiPublik = in_array('informasi secara berkala', $permissionGroup) || in_array('informasi serta merta', $permissionGroup) || in_array('informasi setiap saat', $permissionGroup);
-                            $showInformasiSecaraBerkala = in_array('informasi secara berkala', $permissionGroup);
-                            $showInformasiSertaMerta = in_array('informasi serta merta', $permissionGroup);
-                            $showInformasiSetiapSaat = in_array('informasi setiap saat', $permissionGroup);
-                            
-                            //Laporan
-                            $showLaporan = in_array('laporan triwulanan pip', $permissionGroup) || in_array('laporan tahunan pip', $permissionGroup) || in_array('laporan hasil survei', $permissionGroup);
-                            $showLaporanTriwulanan = in_array('laporan triwulanan pip', $permissionGroup);
-                            $showLaporanTahunan = in_array('laporan tahunan pip', $permissionGroup);
-                            $showLaporanHasilSurvei = in_array('laporan hasil survei', $permissionGroup);
-                            
-                            //Standar Layanan
-                            $showStandarLayanan = in_array('maklumat pelayanan', $permissionGroup) || in_array('prosedur pelayanan', $permissionGroup);
-                            $showMaklumatPelayanan = in_array('maklumat pelayanan', $permissionGroup);
-                            $showProsedurPelayanan = in_array('prosedur pelayanan', $permissionGroup);
-                            
-                            //FAQ
-                            $showFAQ = in_array('faq', $permissionGroup);
-                            
-                            //Manajemen User
-                            $showManajemenUser = in_array('user pemohon', $permissionGroup) || in_array('user admin', $permissionGroup) || in_array('role permission', $permissionGroup);
-                            $showUserPemohon = in_array('user pemohon', $permissionGroup);
-                            $showUserAdmin = in_array('user admin', $permissionGroup);
-                            $showRolePermission = in_array('role permission', $permissionGroup);
-                            ?>
-
-                            <!--end::Users-->
+                            <!--end::Input group-->
                             <!--begin::Permissions-->
-                            <div class="d-flex flex-column text-gray-600">
-                                <div class="row ">
-                                    @if ($showDashboard || $showLayananPPID || $showProfil || $showRegulasi || $showInformasiPublik)
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <!--begin::Dashboard-->
+                            <div class="fv-row" id="addRolePermissionOptions">
+                                <!--begin::Label-->
+                                <label class="fs-5 fw-bold form-label mb-2">Role
+                                    Permissions</label>
+                                <!--end::Label-->
+                                <!--begin::Table wrapper-->
+                                <div class="table-responsive">
+                                    <!--begin::Table-->
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                        <!--begin::Table body-->
+                                        <tbody class="text-gray-600 fw-semibold">
+                                            <!--begin::Super row-->
+                                            <tr>
+                                                <td class="text-gray-800">
+                                                    Super Access
+                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                        data-bs-toggle="tooltip"
+                                                        title="Allows a full access to the system"></i>
+                                                </td>
+                                                <td>
+                                                    <!--begin::Checkbox-->
+                                                    <label class="form-check form-check-custom form-check-solid me-9">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="editSelectAll"
+                                                            onclick="selectAllPermissions('.editCheck', 'editSelectAll')"
+                                                            value="" id="kt_roles_select_all" />
+                                                        <span class="form-check-label"
+                                                            for="kt_roles_select_all">Select
+                                                            all</span>
+                                                    </label>
+                                                    <!--end::Checkbox-->
+                                                </td>
+                                            </tr>
+                                            <!--end::Super row-->
 
-                                            @if ($showDashboard)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span class="bullet bg-primary me-3"></span>Dashboard
-                                                </div>
-                                            @endif
-                                            <!--end::Dashboard-->
+                                            <!--begin::Dashboard row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Dashboard</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="dashboard.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="dashboard.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="dashboard.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
 
-                                            <!--begin::Layanan PPID-->
-                                            @if ($showLayananPPID)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Layanan
-                                                    PPID
-                                                </div>
-                                                @if ($showDataPermohonan)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Data Permohonan
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="dashboard.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Dashboard row-->
 
-                                                @if ($showDataKeberatan)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Data Keberatan
+                                            <!--begin::Layanan PPID row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Layanan PPID</td>
+                                                <!--end::Label-->
+                                            </tr>
+
+                                            <!--begin::Sub Layanan PPID row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Data Permohonan</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data permohonan.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data permohonan.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data permohonan.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data permohonan.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Layanan PPID-->
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
-                                            <!--begin::Profil-->
-                                            @if ($showProfil)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Profil
-                                                </div>
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Data Keberatan</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data keberatan.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data keberatan.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data keberatan.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
 
-                                                @if ($showProfilSingkat)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Profil Singkat PPID
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="data keberatan.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Layanan PPID row-->
 
-                                                @if ($showTugasDanFungsi)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Tugas dan Fungsi
-                                                    </div>
-                                                @endif
+                                            <!--end::Layanan PPID row-->
 
-                                                @if ($showStrukturOrganisasi)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Struktur Organisasi
-                                                    </div>
-                                                @endif
-                                                @if ($showVisiDanMisi)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Visi dan Misi
-                                                    </div>
-                                                @endif
+                                            <!--begin::Profil row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Profil</td>
+                                                <!--end::Label-->
+                                            </tr>
 
-                                                @if ($showKontak)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Kontak
-                                                    </div>
-                                                @endif
+                                            <!--begin::Sub Profil row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Profil Singkat PPID</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="profil singkat ppid.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="profil singkat ppid.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="profil singkat ppid.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
 
-                                                @if ($showSosialMedia)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Sosial Media
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="profil singkat ppid.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Profil-->
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
-                                            <!--begin::Regulasi-->
-                                            @if ($showRegulasi)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Regulasi
-                                                </div>
-                                                @if ($showPeraturanKIP)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Peraturan KIP
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Tugas dan Fungsi</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="tugas dan fungsi ppid.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="tugas dan fungsi ppid.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="tugas dan fungsi ppid.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="tugas dan fungsi ppid.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
-                                                @if ($showRancanganPeraturanKIP)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Rancangan Peraturan
-                                                        KIP
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Struktur Organisasi</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="struktur organisasi.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="struktur organisasi.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="struktur organisasi.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="struktur organisasi.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Regulasi-->
-                                            <!--begin::Informasi Publik-->
-                                            @if ($showInformasiPublik)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Informasi
-                                                    Publik
-                                                </div>
-                                                @if ($showInformasiSecaraBerkala)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Informasi Secara
-                                                        Berkala
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Visi dan Misi</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="visi dan misi.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="visi dan misi.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="visi dan misi.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="visi dan misi.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                                @if ($showInformasiSertaMerta)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Informasi Serta
-                                                        Merta
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Kontak</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="kontak.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="kontak.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="kontak.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="kontak.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                                @if ($showInformasiSetiapSaat)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Informasi Setiap
-                                                        Saat
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Sosial Media</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="sosial media.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="sosial media.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="sosial media.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="sosial media.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Informasi Publik-->
-                                        </div>
-                                    @endif
-                                    @if ($showLaporan || $showStandarLayanan || $showFAQ || $showManajemenUser)
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <!--begin::Laporan-->
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Profil row-->
 
-                                            @if ($showLaporan)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Laporan
-                                                </div>
-                                                @if ($showLaporanTriwulanan)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Laporan Triwulanan
-                                                        PIP
+                                            <!--end::Profil row-->
+
+                                            <!--begin::Regulasi row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Regulasi</td>
+                                                <!--end::Label-->
+                                            </tr>
+
+                                            <!--begin::Sub Regulasi row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Peraturan KIP</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="peraturan kip.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="peraturan kip.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="peraturan kip.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="peraturan kip.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
-                                                @if ($showLaporanTahunan)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Laporan Tahunan PIP
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Rancangan Peraturan KIP</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="rancangan peraturan kip.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="rancangan peraturan kip.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="rancangan peraturan kip.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="rancangan peraturan kip.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                                @if ($showLaporanHasilSurvei)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Laporan Hasil
-                                                        Survei
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Regulasi row-->
+                                            <!--end::Regulasi row-->
+
+                                            <!--begin::Informasi Publik row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Informasi Publik</td>
+                                                <!--end::Label-->
+                                            </tr>
+
+                                            <!--begin::Sub Informasi Publik row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Informasi Secara Berkala</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi secara berkala.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi secara berkala.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi secara berkala.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi secara berkala.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Laporan-->
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
-                                            <!--begin::Standar Layanan-->
-                                            @if ($showStandarLayanan)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Standar
-                                                    Layanan
-                                                </div>
-                                                @if ($showMaklumatPelayanan)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Maklumat Pelayanan
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Informasi Serta Merta</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi serta merta.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi serta merta.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi serta merta.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi serta merta.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                                @if ($showProsedurPelayanan)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Prosedur Pelayanan
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Informasi Setiap Saat</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi setiap saat.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi setiap saat.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi setiap saat.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi setiap saat.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Standar Layanan-->
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Informasi Publik row-->
+                                            <!--end::Informasi Publik row-->
 
-                                            <!--begin::FAQ-->
-                                            @if ($showFAQ)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span class="bullet bg-primary me-3"></span>FAQ
-                                                </div>
-                                            @endif
-                                            <!--begin::FAQ-->
+                                            <!--begin::Laporan row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Laporan</td>
+                                                <!--end::Label-->
+                                            </tr>
 
-                                            <!--begin::Manajmen User-->
+                                            <!--begin::Sub Laporan row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Laporan Triwulanan PIP</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan triwulanan pip.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan triwulanan pip.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan triwulanan pip.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
 
-                                            @if ($showManajemenUser)
-                                                <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Manajemen
-                                                    User
-                                                </div>
-                                                @if ($showUserPemohon)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>User Pemohon
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan triwulanan pip.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                                @if ($showUserAdmin)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>User Admin
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Laporan Tahunan PIP</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan tahunan pip.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan tahunan pip.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan tahunan pip.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan tahunan pip.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                                @if ($showRolePermission)
-                                                    <div class="d-flex align-items-center py-2 px-4">
-                                                        <span class="bullet bg-primary me-3"></span>Role Permission
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Laporan Hasil Survei</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan hasil survei.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan hasil survei.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan hasil survei.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="laporan hasil survei.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
                                                     </div>
-                                                @endif
-                                            @endif
-                                            <!--end::Manajmen User-->
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Laporan row-->
+                                            <!--end::Laporan row-->
 
-                                            <!--begin::Setting Kalender-->
+                                            <!--begin::Standar Layanan row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Standar Layanan</td>
+                                                <!--end::Label-->
+                                            </tr>
 
-                                            <div class="d-flex align-items-center py-2">
-                                                <span class="bullet bullet-vertical bg-secondary me-3"></span>Referensi
-                                            </div>
-                                            <div class="d-flex align-items-center py-2 px-4">
-                                                <span class="bullet bg-primary me-3"></span>Setting Kalender
-                                            </div>
+                                            <!--begin::Sub Standar Layanan row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Maklumat Pelayanan</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="maklumat pelayanan.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="maklumat pelayanan.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="maklumat pelayanan.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
 
-                                            <!--end::Setting Kalender-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="maklumat pelayanan.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
-                                            <!--begin::Setting Frontend-->
-                                            <div class="d-flex align-items-center py-2">
-                                                <span class="bullet bg-primary me-3"></span>Setting Frontend
-                                            </div>
-                                            <!--begin::Setting Frontend-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Prosedur Pelayanan</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="prosedur pelayanan.create"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="prosedur pelayanan.view"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="prosedur pelayanan.edit"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="prosedur pelayanan.delete"
+                                                                name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Standar Layanan row-->
+                                            <!--end::Standar Layanan row-->
+
+                                            <!--begin::FAQ row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    FAQ</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="faq.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="faq.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="faq.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="faq.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
 
 
-                                        </div>
-                                    @endif
+                                            <!--end::FAQ row-->
+
+                                            <!--begin::Standar Layanan row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Manajemen User</td>
+                                                <!--end::Label-->
+                                            </tr>
+
+                                            <!--begin::Sub Standar Layanan row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    User Pemohon</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user pemohon.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user pemohon.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user pemohon.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user pemohon.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    User Admin</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user admin.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user admin.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user admin.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="user admin.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Role Permission</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="role permission.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="role permission.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="role permission.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="role permission.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Standar Layanan row-->
+                                            <!--end::Standar Layanan row-->
+
+
+                                            <!--begin::Table row-->
+
+
+
+                                        </tbody>
+                                        <!--end::Table body-->
+                                    </table>
+                                    <!--end::Table-->
                                 </div>
+                                <!--end::Table wrapper-->
                             </div>
                             <!--end::Permissions-->
                         </div>
-                        <!--end::Card body-->
-                        <!--begin::Card footer-->
-                        <div class="card-footer flex-wrap pt-0">
+                        <!--end::Scroll-->
+                        <!--begin::Actions-->
+                        <div class="text-center pt-15">
 
-                            {{-- <button type="button" class="btn btn-light btn-active-light-primary my-1 me-2"
-                                data-bs-toggle="modal" data-bs-target="#kt_modal_update_role"
-                                onclick="editDialog({{ $loop->index }})">Edit
-                                Role</button> --}}
-                            {{-- Versi Modal --}}
-                            {{-- <a href="javascript:void(0)" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_update_role" onclick="editDialog({{ $loop->index }})"
-                                class="btn btn-light btn-active-primary my-1 me-2 "> Edit
-                                Role</a> --}}
-                            <a href="{{ route('admin.role_permission.edit', $role) }}"
-                                class="btn btn-light btn-active-primary my-1 me-2 "> Edit
-                                Role</a>
-                            <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
-                                class="btn btn-light btn-active-danger my-1 ">Delete
-                                Role</a>
+                            <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                                <span class="indicator-label">Update</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+
+
                         </div>
-                        <!--end::Card footer-->
-                    </div>
-                    <!--end::Card-->
+                        <!--end::Actions-->
+                    </form>
+                    <!--end::Form-->
                 </div>
-            @endforeach
 
-            <!--begin::Add new card-->
-            <div class="col-md-6">
-                <!--begin::Card-->
-                <div class="card h-md-100">
-                    <!--begin::Card body-->
-                    <div class="card-body d-flex flex-center">
-                        {{-- Versi Modal --}}
-                        {{-- <!--begin::Button-->
-                        <button type="button" class="btn btn-clear d-flex flex-column flex-center"
-                            data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
-                            <!--begin::Illustration-->
-                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
-                                alt="" class="mw-100 mh-150px mb-7" />
-                            <!--end::Illustration-->
-                            <!--begin::Label-->
-                            <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
-                                Add New Role</div>
-                            <!--end::Label-->
-                        </button>
-                        <!--begin::Button--> --}}
-
-                        {{-- Versi Create --}}
-
-                        <a href="{{ route('admin.role_permission.create') }}"
-                            class="btn btn-clear d-flex flex-column flex-center">
-                            <!--begin::Illustration-->
-                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
-                                alt="" class="mw-100 mh-150px mb-7" />
-                            <!--end::Illustration-->
-                            <!--begin::Label-->
-                            <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
-                                Add New Role</div>
-                            <!--end::Label-->
-                        </a>
-                    </div>
-                    <!--begin::Card body-->
-                </div>
-                <!--begin::Card-->
             </div>
-            <!--begin::Add new card-->
+
         </div>
+
         <!--end::Row-->
 
         <!--begin::Modals-->
@@ -1312,7 +2265,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="informasi serta merta.view"
+                                                                    type="checkbox"
+                                                                    value="informasi serta merta.view"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">View</span>
                                                             </label>
@@ -1321,7 +2275,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="informasi serta merta.edit"
+                                                                    type="checkbox"
+                                                                    value="informasi serta merta.edit"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Edit</span>
                                                             </label>
@@ -1366,7 +2321,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="informasi setiap saat.view"
+                                                                    type="checkbox"
+                                                                    value="informasi setiap saat.view"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">View</span>
                                                             </label>
@@ -1375,7 +2331,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="informasi setiap saat.edit"
+                                                                    type="checkbox"
+                                                                    value="informasi setiap saat.edit"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Edit</span>
                                                             </label>
@@ -1477,7 +2434,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="laporan tahunan pip.create"
+                                                                    type="checkbox"
+                                                                    value="laporan tahunan pip.create"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Create</span>
                                                             </label>
@@ -1505,7 +2463,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="laporan tahunan pip.delete"
+                                                                    type="checkbox"
+                                                                    value="laporan tahunan pip.delete"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Delete</span>
                                                             </label>
@@ -1539,7 +2498,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="laporan hasil survei.view"
+                                                                    type="checkbox"
+                                                                    value="laporan hasil survei.view"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">View</span>
                                                             </label>
@@ -1548,7 +2508,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="laporan hasil survei.edit"
+                                                                    type="checkbox"
+                                                                    value="laporan hasil survei.edit"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Edit</span>
                                                             </label>
@@ -1594,7 +2555,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="maklumat pelayanan.create"
+                                                                    type="checkbox"
+                                                                    value="maklumat pelayanan.create"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Create</span>
                                                             </label>
@@ -1622,7 +2584,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="maklumat pelayanan.delete"
+                                                                    type="checkbox"
+                                                                    value="maklumat pelayanan.delete"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Delete</span>
                                                             </label>
@@ -1646,7 +2609,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="prosedur pelayanan.create"
+                                                                    type="checkbox"
+                                                                    value="prosedur pelayanan.create"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Create</span>
                                                             </label>
@@ -1674,7 +2638,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="prosedur pelayanan.delete"
+                                                                    type="checkbox"
+                                                                    value="prosedur pelayanan.delete"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Delete</span>
                                                             </label>
@@ -1927,12 +2892,14 @@
                             <!--end::Scroll-->
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
-                                <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel"
-                                    data-bs-dismiss="modal">Discard</button>
-                                <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                                <button type="reset" class="btn btn-light me-3"
+                                    data-kt-roles-modal-action="cancel" data-bs-dismiss="modal">Discard</button>
+                                <button type="submit" class="btn btn-primary"
+                                    data-kt-roles-modal-action="submit">
                                     <span class="indicator-label">Submit</span>
                                     <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        <span
+                                            class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
 
 
@@ -3447,29 +4414,25 @@
                                             ">"
                                     });
 
-                                    function editDialog(index) {
 
-                                        let app = {{ Js::from($roles) }}
-                                        let role = app[index]
-                                        document.getElementById('editName').value = role.name
-                                        console.log('role', role.permissions)
+                                    let role = {{ Js::from($role) }}
+                                    document.getElementById('editName').value = role.name
+                                    console.log('role', role.permissions)
 
-                                        let formCheck = document.querySelectorAll('.editCheck')
-                                        formCheck.forEach(element => {
-                                            element.removeAttribute('checked')
-                                        });
-                                        console.log('formCheck', formCheck)
-                                        formCheck.forEach(element => {
-                                            console.log('element.value', element.value)
-                                            console.log('role.permissions', role.permissions)
-                                            let isFound = role.permissions.find((permission) => permission.name === element.value);
-                                            if (isFound) {
-                                                element.setAttribute('checked', 'checked')
-                                            }
-                                        });
-
-                                        document.getElementById('editForm').setAttribute('action', 'role_permission/' + role.id)
-                                    };
+                                    let formCheck = document.querySelectorAll('.editCheck')
+                                    formCheck.forEach(element => {
+                                        element.removeAttribute('checked')
+                                    });
+                                    console.log('formCheck', formCheck)
+                                    formCheck.forEach(element => {
+                                        console.log('element.value', element.value)
+                                        console.log('role.permissions', role.permissions)
+                                        let isFound = role.permissions.find((permission) => permission.name === element.value);
+                                        if (isFound) {
+                                            element.setAttribute('checked', 'checked')
+                                        }
+                                    });
+                                    // document.getElementById('editForm').setAttribute('action', 'role_permission/' + role.id)
 
                                     function selectAllPermissions(className, classId) {
                                         let checkBox = document.getElementById(classId)
@@ -3486,48 +4449,6 @@
                                             });
                                         }
 
-                                    };
-
-                                    function deleteDialog(index) {
-                                        let app = {{ Js::from($roles) }}
-                                        let role = app[index]
-
-                                        Swal.fire({
-                                            html: `Apakah yakin akan <strong>menghapus</strong> role <span class="badge badge-primary"> ${role.name}</span> ?`,
-                                            icon: "error",
-                                            buttonsStyling: false,
-                                            showCancelButton: true,
-                                            reverseButtons: true,
-                                            cancelButtonText: 'Batal',
-                                            confirmButtonText: "Iya",
-                                            customClass: {
-                                                cancelButton: 'btn btn-danger',
-                                                confirmButton: "btn btn-primary",
-                                            }
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                activateLoadingButton('.swal2-confirm')
-                                                console.log('delete confirmed')
-                                                $.ajax({
-                                                    type: "DELETE",
-                                                    url: "/admin/role_permission/" + role.id,
-                                                    cache: false,
-                                                    success: function(html) {
-
-                                                        window.location.reload();
-
-                                                    }
-                                                });
-
-                                                // window.location = '/visimisi'
-                                            } else {
-                                                console.log('delete canceled')
-                                            }
-                                        });
-
-                                        // Swal.fire({
-                                        //     template: '#my-template'
-                                        // })
                                     };
 
                                     function successAlert() {
