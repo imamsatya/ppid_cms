@@ -68,7 +68,7 @@ License: For each use you must have a valid license purchased only from above li
             let themeMode = localStorage.getItem("kt_" + (name !== null ? name + "_" : "") + "theme_mode_value");
             if (themeMode === null) {
                 if (defaultThemeMode === "system") {
-                    themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                    themeMode = window.matchMedia("(prefers-color-scheme: light)").matches ? "dark" : "light";
                 } else {
                     themeMode = defaultThemeMode;
                 }
