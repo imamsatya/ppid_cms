@@ -48,7 +48,7 @@ Route::resource('visi_misi', VisiMisiController::class);
 // Regulasi
 Route::resource('peraturan_kip', PeraturanKIPController::class);
 Route::resource('rancangan_peraturan', RancanganPeraturanKIPController::class);
-Route::resource('regulasi', RegulasiController::class);
+Route::resource('regulasi_banner', RegulasiController::class);
 
 // InformasiPublik
 Route::resource('informasi_banner', InformasiPublikController::class);
