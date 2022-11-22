@@ -22,8 +22,7 @@ class RancanganPeraturanKIPController extends BaseController
     {
         $peraturan = RancanganPeraturanKIP::all();
 
-        return $this->sendResponse(
-            new RancanganPeraturanKIPResource($peraturan->first()), 'RancanganPeraturanKIP retrieved successfully.');
+        return $this->sendResponse(RancanganPeraturanKIPResource::collection($peraturan), 'RancanganPeraturanKIP retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.

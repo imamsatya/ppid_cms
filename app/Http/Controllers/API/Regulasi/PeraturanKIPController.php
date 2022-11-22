@@ -20,8 +20,7 @@ class PeraturanKIPController extends BaseController
     {
         $peraturan = PeraturanKIP::all();
 
-        return $this->sendResponse(
-            new PeraturanKIPResource($peraturan->first()), 'PeraturanKIP retrieved successfully.');
+        return $this->sendResponse(PeraturanKIPResource::collection($peraturan), 'PeraturanKIP retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
