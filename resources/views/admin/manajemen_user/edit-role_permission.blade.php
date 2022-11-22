@@ -124,7 +124,9 @@
             <!--end::Alert-->
         @endif
         <br>
-        <h1>Edit Role Permission {{ $role->name }} </h1>
+        @if ($role)
+            <h1>Edit Role Permission {{ $role->name ?? '' }} </h1>
+        @endif
         <br>
         <!--begin::Row-->
 
