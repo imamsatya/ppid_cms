@@ -22,8 +22,7 @@ class InformasiBerkalaController extends BaseController
     {
         $informasi = InformasiSecaraBerkala::all();
 
-        return $this->sendResponse(
-            new InformasiBerkalaResource($informasi->first()), 'InformasiSecaraBerkala retrieved successfully.');
+        return $this->sendResponse(InformasiBerkalaResource::collection($informasi), 'InformasiSecaraBerkala retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.

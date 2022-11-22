@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\InformasiPublik;
 
 use App\Http\Resources\InformasiBerkalaResource;
 use App\Http\Resources\InformasiPublikResource;
+use App\Http\Resources\InformasiSertaMertaResource;
 use App\Http\Resources\InformasiSetiapSaatResource;
 use App\Http\Resources\KontakResource;
 use App\Models\InformasiPublik\InformasiPublikBanner;
@@ -24,8 +25,7 @@ class InformasiSetiapSaatController extends BaseController
     {
         $informasi = InformasiSetiapSaat::all();
 
-        return $this->sendResponse(
-            new InformasiSetiapSaatResource($informasi->first()), 'InformasiSetiapSaat retrieved successfully.');
+        return $this->sendResponse(InformasiSetiapSaatResource::collection($informasi), 'InformasiSetiapSaat retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.

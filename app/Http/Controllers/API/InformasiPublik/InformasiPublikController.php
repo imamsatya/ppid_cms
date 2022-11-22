@@ -20,8 +20,7 @@ class InformasiPublikController extends BaseController
     {
         $informasi = InformasiPublikBanner::all();
 
-        return $this->sendResponse(
-            new InformasiPublikResource($informasi->first()), 'InformasiPublikBanner retrieved successfully.');
+        return $this->sendResponse(InformasiPublikResource::collection($informasi), 'InformasiPublikBanner retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
