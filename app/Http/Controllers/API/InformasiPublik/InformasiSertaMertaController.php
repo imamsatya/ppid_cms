@@ -24,8 +24,7 @@ class InformasiSertaMertaController extends BaseController
     {
         $informasi = InformasiSertaMerta::all();
 
-        return $this->sendResponse(
-            new InformasiSertaMertaResource($informasi->first()), 'InformasiSertaMerta retrieved successfully.');
+        return $this->sendResponse(InformasiSertaMertaResource::collection($informasi), 'InformasiSertaMerta retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
