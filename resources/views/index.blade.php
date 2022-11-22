@@ -64,51 +64,34 @@
     <!-- Banner -->
     <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.1s">
         <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative"
-                style="background-image: url({{ asset('ppid_fe/assets/images/content/content-image/carousel-1.jpg') }})">
-                <!-- <img
-            class="img-fluid"
-            src="./assets/images/content/content-image/carousel-1.jpg"
-            alt="" /> -->
-                <div class="container title-banner">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h1 class="display-2 text-white animated fadeInDown delay-2">
-                                Selamat Datang <br />
-                                Di PPID KBUMN
-                            </h1>
-                            <p class="fs-6 fw-medium text-white mb-4 pb-3 animated fadeInDown delay-3">
-                                Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam
-                                <br>
-                                justo clita et kasd rebum sea elitr.
-                            </p>
-                            <!-- <a href="" class="btn btn-primary rounded-pill py-3 px-5 animated slideInLeft">Read More</a> -->
+
+            @if ($slider)
+                @foreach ($slider as $slider_row)
+                    <div class="owl-carousel-item position-relative"
+                        style="background-image: url({{ asset($slider_row->image_path) }}">
+                        <!-- <img
+                    class="img-fluid"
+                    src="./assets/images/content/content-image/carousel-2.jpg"
+                    alt="" /> -->
+                        <div class="container title-banner">
+                            <div class="row justify-content-start">
+                                <div class="col-10 col-lg-8">
+                                    <h1 class="display-2 text-white animated slideInDown">
+                                        {{ $slider_row->judul }}
+                                    </h1>
+                                    <p class="fs-5 fw-medium text-white mb-4 pb-3 animated slideInDown">
+                                        {{-- Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et
+                                        <br>
+                                        diam justo clita et kasd rebum sea elitr. --}}
+                                        {!! $slider_row->deskripsi !!}
+                                    </p>
+                                    <!-- <a href="" class="btn btn-primary rounded-pill py-3 px-5 animated slideInLeft">Read More</a> -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="owl-carousel-item position-relative"
-                style="background-image: url({{ asset('ppid_fe/assets/images/content/content-image/carousel-2.jpg') }}">
-                <!-- <img
-            class="img-fluid"
-            src="./assets/images/content/content-image/carousel-2.jpg"
-            alt="" /> -->
-                <div class="container title-banner">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h1 class="display-2 text-white animated slideInDown">
-                                Lorem Ipsum Dolor sit Amet
-                            </h1>
-                            <p class="fs-5 fw-medium text-white mb-4 pb-3 animated slideInDown">
-                                Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et
-                                <br>
-                                diam justo clita et kasd rebum sea elitr.
-                            </p>
-                            <!-- <a href="" class="btn btn-primary rounded-pill py-3 px-5 animated slideInLeft">Read More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endif
         </div>
     </div>
     <!-- Carousel Start -->

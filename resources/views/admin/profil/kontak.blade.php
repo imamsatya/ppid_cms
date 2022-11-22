@@ -612,21 +612,9 @@
 
                                             <div class="image-input image-input-outline" data-kt-image-input="true"
                                                 style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                                                @if ($kontak)
-                                                    @if ($kontak->banner_path)
-                                                        <div class="image-input-wrapper w-250px  h-125px"
-                                                            style="background-image: url({{ asset($kontak->banner_path) }})">
-                                                        </div>
-                                                    @else
-                                                        <div class="image-input-wrapper w-250px  h-125px"
-                                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                                        </div>
-                                                    @endif
-                                                @else
-                                                    <div class="image-input-wrapper w-250px  h-125px"
-                                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                                    </div>
-                                                @endif
+                                                <div class="image-input-wrapper w-250px  h-125px"
+                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                                </div>
 
                                                 @can('kontak.edit')
                                                     <!--begin::Edit button-->

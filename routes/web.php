@@ -32,7 +32,14 @@ use App\Http\Controllers\Admin\StandarLayanan\MaklumatController;
 use App\Http\Controllers\Admin\ManajemenUser\RolePermissionController;
 use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
 
+//Manajemen Home
+use App\Http\Controllers\Admin\ManajemenHome\SliderController;
+use App\Http\Controllers\Admin\ManajemenHome\InformasiController;
+use App\Http\Controllers\Admin\ManajemenHome\VideoController;
+
 // User
+use App\Http\Controllers\Frontend\Home\HomeController;
+
 //Profil
 use App\Http\Controllers\Frontend\Profil\ProfilSingkatController as ProfilSingkatControllerUser;
 use App\Http\Controllers\Frontend\Profil\KontakController as KontakControllerUser;
@@ -42,8 +49,8 @@ use App\Http\Controllers\Frontend\Profil\StrukturOrganisasiController  as Strukt
 use App\Http\Controllers\Frontend\Profil\TugasDanFungsiController as TugasDanFungsiControllerUser;
 
 //Regulasi
-use App\Http\Controllers\Frontend\Regulasi\PeraturanKIPController as PeraturanKIPControllerUser;
-use App\Http\Controllers\Frontend\Regulasi\RancanganPeraturanKIPController as RancanganPeraturanKIPControllerUser;
+// use App\Http\Controllers\Frontend\Regulasi\PeraturanKIPController as PeraturanKIPControllerUser;
+// use App\Http\Controllers\Frontend\Regulasi\RancanganPeraturanKIPController as RancanganPeraturanKIPControllerUser;
 use App\Http\Controllers\Frontend\Regulasi\RegulasiController as RegulasiControllerUser;
 
 //Informasi Publik
@@ -74,11 +81,11 @@ use App\Http\Controllers\Frontend\StandarLayanan\BiayaLayananController as Biaya
 |
 */
 // Frontend
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+
 
 // User
+//Home
+Route::resource('/', HomeController::class);
 //Profil
 Route::resource('tentangppid', ProfilSingkatControllerUser::class);
 Route::resource('tugasdanfungsi', TugasDanFungsiControllerUser::class);
@@ -92,8 +99,8 @@ Route::resource('sosialmedia', SosialMediaControllerUser::class);
 //     return view('frontend.regulasi.regulasi');
 // })->name('regulasi.index');
 Route::resource('regulasi', RegulasiControllerUser::class);
-Route::resource('peraturan_kip', PeraturanKIPControllerUser::class);
-Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPControllerUser::class);
+// Route::resource('peraturan_kip', PeraturanKIPControllerUser::class);
+// Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPControllerUser::class);
 
 //Informasi Publik, kurang  2 route
 // Route::get('/informasipublik', function () {
@@ -178,6 +185,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Manajemen User
     Route::resource('role_permission', RolePermissionController::class);
     Route::resource('user_admin', UserAdminController::class);
+
+    //Manajemen Home
+    Route::resource('slider', SliderController::class);
+    Route::resource('informasi', InformasiController::class);
+    // informasi image
+    Route::resource('video', VideoController::class);
 });
 
 
