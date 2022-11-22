@@ -9,18 +9,18 @@
             <div class="title-label">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Maklumat PPID Kementerian BUMN</label>
+                        <label for="">{{ $maklumat->judul ?? '' }}</label>
                     </div>
                 </div>
             </div>
 
             <div class="images-maklumat">
                 <div class="row">
-                    <div class="col-md-12">
-                        <img class="img-fluid%"
-                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_maklumat.png') }}"
-                            alt="">
-                    </div>
+                    @if ($maklumat)
+                        <div class="col-md-12">
+                            <img class="img-fluid" src="{{ asset($maklumat->direktori_image) }}" alt="">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

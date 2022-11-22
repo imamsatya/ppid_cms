@@ -110,9 +110,9 @@ License: For each use you must have a valid license purchased only from above li
                     <!--end::sidebar mobile toggle-->
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                        <a href="../../demo1/dist/index.html" class="d-lg-none">
-                            <img alt="Logo" src="{{ asset('template/dist/assets/media/logos/default-small.svg') }}"
-                                class="h-30px" />
+                        <a class="d-lg-none">
+                            <img alt="Logo" src="{{ asset('template/dist/assets/media/logos/logo-bumn.png') }}"
+                                class="h-60px" />
                         </a>
                     </div>
                     <!--end::Mobile logo-->
@@ -531,13 +531,11 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Logo-->
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
-                        <a href="../../demo1/dist/index.html">
-                            <img alt="Logo"
-                                src="{{ asset('template/dist/assets/media/logos/default-dark.svg') }}"
-                                class="h-25px app-sidebar-logo-default" />
-                            <img alt="Logo"
-                                src="{{ asset('template/dist/assets/media/logos/default-small.svg') }}"
-                                class="h-20px app-sidebar-logo-minimize" />
+                        <a>
+                            <img alt="Logo" src="{{ asset('template/dist/assets/media/logos/logo-bumn.png') }}"
+                                class="h-100px app-sidebar-logo-default" />
+                            <img alt="Logo" src="{{ asset('template/dist/assets/media/logos/logo-bumn.png') }}"
+                                class="h-30px app-sidebar-logo-minimize" />
                         </a>
                         <!--end::Logo image-->
                         <!--begin::Sidebar toggle-->
@@ -1077,8 +1075,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link"
-                                                        href="../../demo1/dist/pages/user-profile/overview.html">
+                                                    <a class="menu-link" href="{{ route('admin.maklumat.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1093,8 +1090,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link"
-                                                        href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <a class="menu-link" href="{{ route('admin.prosedurlayanan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1105,12 +1101,11 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--end:Menu item-->
                                             @endcan
 
-                                            @can('biaya layanan.view')
+                                            @can('biaya pelayanan.view')
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link "
-                                                        href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <a class="menu-link " href="{{ route('admin.biayalayanan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>

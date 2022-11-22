@@ -70,7 +70,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown_menu" href="{{ route('standarlayananprosedur.index') }}">Prosedur
+                                <a class="dropdown_menu" href="{{ route('prosedurlayanan.index') }}">Prosedur
                                     Layanan</a>
                             </li>
                             <li>

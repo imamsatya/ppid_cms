@@ -1222,6 +1222,54 @@
                                                 </td>
                                                 <!--end::Options-->
                                             </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Biaya Pelayanan</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="biaya pelayanan.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="biaya pelayanan.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="biaya pelayanan.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="biaya pelayanan.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
                                             <!--end::Sub Standar Layanan row-->
                                             <!--end::Standar Layanan row-->
 

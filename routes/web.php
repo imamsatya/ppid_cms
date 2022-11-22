@@ -4,24 +4,29 @@ use Illuminate\Support\Facades\Route;
 
 //Admin
 //Profil
+use App\Http\Controllers\Admin\Profil\KontakController;
 use App\Http\Controllers\Admin\Profil\VisiMisiController;
+use App\Http\Controllers\Admin\Profil\SosialMediaController;
 use App\Http\Controllers\Admin\Profil\ProfilSingkatController;
 use App\Http\Controllers\Admin\Profil\TugasDanFungsiController;
 use App\Http\Controllers\Admin\Profil\StrukturOrganisasiController;
-use App\Http\Controllers\Admin\Profil\KontakController;
-use App\Http\Controllers\Admin\Profil\SosialMediaController;
 
 //Regulasi
 use App\Http\Controllers\Admin\Regulasi\PeraturanKIPController;
 use App\Http\Controllers\Admin\Regulasi\RancanganPeraturanKIPController;
 
 //Informasi Publik
-use App\Http\Controllers\Admin\InformasiPublik\InformasiSecaraBerkalaController;
 use App\Http\Controllers\Admin\InformasiPublik\InformasiSertaMertaController;
 use App\Http\Controllers\Admin\InformasiPublik\InformasiSetiapSaatController;
+use App\Http\Controllers\Admin\InformasiPublik\InformasiSecaraBerkalaController;
 
 //Layanan PPID
 use App\Http\Controllers\Admin\LayananPPID\DataPermohonanController;
+
+//Standar Layanan
+use App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController;
+use App\Http\Controllers\Admin\StandarLayanan\BiayaLayananController;
+use App\Http\Controllers\Admin\StandarLayanan\MaklumatController;
 
 //Manajemen User
 use App\Http\Controllers\Admin\ManajemenUser\RolePermissionController;
@@ -29,12 +34,12 @@ use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
 
 // User
 //Profil
-use App\Http\Controllers\Frontend\Profil\VisiMisiController as VisiMisiControllerUser;
 use App\Http\Controllers\Frontend\Profil\ProfilSingkatController as ProfilSingkatControllerUser;
-use App\Http\Controllers\Frontend\Profil\TugasDanFungsiController as TugasDanFungsiControllerUser;
-use App\Http\Controllers\Frontend\Profil\StrukturOrganisasiController  as StrukturOrganisasiControllerUser;
 use App\Http\Controllers\Frontend\Profil\KontakController as KontakControllerUser;
+use App\Http\Controllers\Frontend\Profil\VisiMisiController as VisiMisiControllerUser;
 use App\Http\Controllers\Frontend\Profil\SosialMediaController as SosialMediaControllerUser;
+use App\Http\Controllers\Frontend\Profil\StrukturOrganisasiController  as StrukturOrganisasiControllerUser;
+use App\Http\Controllers\Frontend\Profil\TugasDanFungsiController as TugasDanFungsiControllerUser;
 
 //Regulasi
 use App\Http\Controllers\Frontend\Regulasi\PeraturanKIPController as PeraturanKIPControllerUser;
@@ -42,10 +47,20 @@ use App\Http\Controllers\Frontend\Regulasi\RancanganPeraturanKIPController as Ra
 use App\Http\Controllers\Frontend\Regulasi\RegulasiController as RegulasiControllerUser;
 
 //Informasi Publik
-use App\Http\Controllers\Frontend\InformasiPublik\InformasiSecaraBerkalaController as InformasiSecaraBerkalaControllerUser;
 use App\Http\Controllers\Frontend\InformasiPublik\InformasiPublikController as InformasiPublikControllerUser;
+use App\Http\Controllers\Frontend\InformasiPublik\InformasiSecaraBerkalaController as InformasiSecaraBerkalaControllerUser;
+
 //Layanan PPID
 use App\Http\Controllers\Frontend\LayananPPID\DataPermohonanController as DataPermohonanControllerUser;
+
+//Standar Layanan
+use App\Http\Controllers\Frontend\StandarLayanan\MaklumatController as MaklumatControllerUser;
+use App\Http\Controllers\Frontend\StandarLayanan\ProsedurLayananController as ProsedurLayananControllerUser;
+use App\Http\Controllers\Frontend\StandarLayanan\BiayaLayananController as BiayaLayananControllerUser;
+
+
+
+
 
 /*
 /*
@@ -89,19 +104,21 @@ Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaControllerUser
 
 
 //Standar Layanan
-Route::get('/maklumat', function () {
-    return view('frontend.standarlayanan.standart-maklumat');
-})->name('maklumat.index');
+// Route::get('/maklumat', function () {
+//     return view('frontend.standarlayanan.standart-maklumat');
+// })->name('maklumat.index');
+Route::resource('maklumat', MaklumatControllerUser::class);
 
-Route::get('/standarlayananprosedur', function () {
-    return view('frontend.standarlayanan.standart-prosedur-layanan');
-})->name('standarlayananprosedur.index');
+// Route::get('/standarlayananprosedur', function () {
+//     return view('frontend.standarlayanan.standart-prosedur-layanan');
+// })->name('standarlayananprosedur.index');
+Route::resource('prosedurlayanan', ProsedurLayananControllerUser::class);
 
 
-Route::get('/standarlayananbiaya', function () {
-    return view('frontend.standarlayanan.standart-biaya-layanan');
-})->name('standarlayananbiaya.index');
-
+// Route::get('/standarlayananbiaya', function () {
+//     return view('frontend.standarlayanan.standart-biaya-layanan');
+// })->name('standarlayananbiaya.index');
+Route::resource('standarlayananbiaya', BiayaLayananControllerUser::class);
 //Laporan
 Route::get('/laporan', function () {
     return view('frontend.laporan.laporan');
@@ -151,6 +168,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/informasi_secara_berkala/banner', [InformasiSecaraBerkalaController::class, 'bannerStore'])->name('informasi_secara_berkala.banner.store');
 
     //Standar Layanan
+    Route::resource('maklumat', MaklumatController::class);
+    Route::resource('prosedurlayanan', ProsedurLayananController::class);
+    Route::resource('biayalayanan', BiayaLayananController::class);
 
     //Layanan PPID, kurang 1 route
     Route::resource('data_permohonan', DataPermohonanController::class);

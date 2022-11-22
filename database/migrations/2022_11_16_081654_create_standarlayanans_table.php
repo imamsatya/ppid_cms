@@ -15,20 +15,25 @@ return new class extends Migration
     {
         Schema::create('standarlayanans_maklumat', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path')->nullable();
+            $table->string('judul')->nullable();
+            $table->string('banner_path')->nullable();
+            $table->string('direktori_image')->nullable();
             $table->timestamps();
         });
 
         Schema::create('standarlayanans_prosedurlayanan', function (Blueprint $table) {
             $table->id();
-            $table->string('prosedur_permohonan_informasi_image_path')->nullable();
-            $table->string('prosedur_keberatan_informasi_image_path')->nullable();
+            $table->string('banner_path')->nullable();
+            $table->string('permohonan_direktori_image')->nullable();
+            $table->string('keberatan_direktori_image')->nullable();
             $table->timestamps();
         });
 
         Schema::create('standarlayanans_biayalayanan', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path')->nullable();
+            $table->string('judul')->nullable();
+            $table->string('banner_path')->nullable();
+            $table->string('direktori_image')->nullable();
             $table->timestamps();
         });
     }

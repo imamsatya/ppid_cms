@@ -40,8 +40,10 @@
                             aria-labelledby="pills-peraturan-tab">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_prosedur_2.png') }}"
-                                        class="w-100 img-fluid" alt="">
+                                    @if ($prosedurLayanan)
+                                        <img src="{{ asset($prosedurLayanan->permohonan_direktori_image) }}"
+                                            class="w-100 img-fluid" alt="">
+                                    @endif
                                 </div>
                             </div>
 
@@ -50,8 +52,10 @@
                             aria-labelledby="pills-rancangan-tab">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_prosedur_1.png') }}"
-                                        class="w-100 img-fluid" alt="">
+                                    @if ($prosedurLayanan)
+                                        <img src="{{ asset($prosedurLayanan->keberatan_direktori_image) }}"
+                                            class="w-100 img-fluid" alt="">
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -73,4 +77,18 @@
             <x-slot:isActiveStandarLayanan>
                 active
                 </x-slot>
+                @push('child-scripts')
+                    <style>
+                        .banner .data_banner {
+                            padding-bottom: 80px;
+                            margin-top: 80px;
+                            background-image: url({{ asset($prosedurLayanan->banner_path) }});
+                            background-repeat: no-repeat;
+                            background-size: 100% 300px;
+                            height: 300px;
+                            padding: 100px 100px 100px 100px;
+                        }
+                    </style>
+                @endpush
+
 </x-frontend.layout>

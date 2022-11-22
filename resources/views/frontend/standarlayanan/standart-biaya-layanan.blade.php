@@ -8,7 +8,7 @@
             <div class="title-label ml-5 mr-5 text-center">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="">Bebas Biaya</label>
+                        <label for="">{{ $biayaLayanan->judul ?? '' }}</label>
                     </div>
                 </div>
             </div>
@@ -29,10 +29,11 @@
 
             <div class="images">
                 <div class="row">
-                    <div class="col-md-12">
-                        <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_biaya.png') }}"
-                            alt="">
-                    </div>
+                    @if ($biayaLayanan)
+                        <div class="col-md-12">
+                            <img src="{{ asset($biayaLayanan->direktori_image) }}" alt="">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
