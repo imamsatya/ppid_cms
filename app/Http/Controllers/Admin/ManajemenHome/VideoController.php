@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\ManajemenHome;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ManajemenHome\Video;
+use App\Http\Controllers\Controller;
+use Session;
 
 class VideoController extends Controller
 {
@@ -15,6 +17,10 @@ class VideoController extends Controller
     public function index()
     {
         //
+
+        $video = new Video();
+        $video = $video::all();
+        return view('admin.manajemen_home.video', compact('video'));
     }
 
     /**
@@ -36,6 +42,29 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'url' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+
+        ]);
+
+        if ($validated) {
+            $video = new Video();
+
+
+            $video->url = $request->url;
+            $video->deskripsi = $request->deskripsi;
+            $video->urutan = $request->urutan;
+
+            $video->save();
+
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Slider');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
@@ -70,6 +99,25 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate([
+            'url' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+
+        ]);
+        if ($validated) {
+            $video = new video;
+            $video = $video->where('id', $id)->first();
+            $video->url = $request->url;
+            $video->deskripsi = $request->deskripsi;
+            $video->urutan = $request->urutan;
+
+
+            $video->save();
+            return redirect()->back()->with('success', 'Berhasil mengubah Video');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
@@ -81,5 +129,9 @@ class VideoController extends Controller
     public function destroy($id)
     {
         //
+        $video = new Video();
+        $video = $video->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus video");
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin\ManajemenHome;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ManajemenHome\Slider;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Session;
 
 class SliderController extends Controller
 {
@@ -50,21 +53,21 @@ class SliderController extends Controller
 
         if ($validated) {
             $slider = new Slider();
-            $count = count($slider::all());
-            $indexImage = $count + 1;
+
 
             $slider->judul = $request->judul;
             $slider->deskripsi = $request->deskripsi;
             $slider->urutan = $request->urutan;
             $file = $request->file('slider');
+
             $upload_path = 'adminAssets/home/slider';
-            $slider->image_path = 'adminAssets/home/slider/slider' . $indexImage . '.' . $file->getClientOriginalExtension();
-            $file->move($upload_path, 'slider' . $indexImage . '.' . $file->getClientOriginalExtension());
+            $slider->image_path = 'adminAssets/home/slider/' . $request->file('slider')->getClientOriginalName();
+            $file->move($upload_path, $request->file('slider')->getClientOriginalName());
             $slider->save();
 
 
 
-            return redirect()->back()->with('success', 'Berhasil menyimpan kontak');
+            return redirect()->back()->with('success', 'Berhasil menyimpan Slider');
         } else {
             return redirect()->back()->withErrors($validated)->withInput();
         }
@@ -102,6 +105,32 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $validated = $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+
+        ]);
+        if ($validated) {
+            $slider = new Slider;
+            $slider = $slider->where('id', $id)->first();
+            $slider->judul = $request->judul;
+            $slider->deskripsi = $request->deskripsi;
+            $slider->urutan = $request->urutan;
+
+            if (count($request->files) > 0) {
+                File::delete($slider->image_path);
+                $file = $request->file('slider');
+                $upload_path = 'adminAssets/home/slider';
+                $slider->image_path = 'adminAssets/home/slider/' . $request->file('slider')->getClientOriginalName();
+                $file->move($upload_path, $request->file('slider')->getClientOriginalName());
+            }
+            $slider->save();
+            return redirect()->back()->with('success', 'Berhasil mengubah Slider');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
@@ -113,5 +142,10 @@ class SliderController extends Controller
     public function destroy($id)
     {
         //
+        $slider = new Slider();
+        File::delete($slider->where('id', $id)->first()->image_path);
+        $slider = $slider->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus Slider");
     }
 }

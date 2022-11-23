@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Admin\ManajemenHome;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ManajemenHome\Informasi;
+use App\Models\ManajemenHome\InformasiImage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Session;
 
 class InformasiController extends Controller
 {
@@ -15,6 +20,12 @@ class InformasiController extends Controller
     public function index()
     {
         //
+        $informasi = new Informasi();
+        $informasi = $informasi::all();
+
+        $informasiImage = new InformasiImage();
+        $informasiImage = $informasiImage->first();
+        return view('admin.manajemen_home.informasi', compact('informasi', 'informasiImage'));
     }
 
     /**
@@ -36,6 +47,98 @@ class InformasiController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+            'informasi' => 'required|mimes:png,jpg,jpeg'
+        ]);
+
+        if ($validated) {
+            $informasi = new Informasi();
+
+
+            $informasi->judul = $request->judul;
+            $informasi->deskripsi = $request->deskripsi;
+            $informasi->urutan = $request->urutan;
+            $file = $request->file('informasi');
+
+            $upload_path = 'adminAssets/home/informasi';
+            $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
+            $file->move($upload_path, $request->file('informasi')->getClientOriginalName());
+            $informasi->save();
+
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Informasi');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+    }
+
+    public function imageStore(Request $request)
+    {
+        // dd($request);
+        $validated = $request->validate([
+            'sideimage' => 'required|mimes:png,jpg,jpeg',
+            'backgroundimage' => 'required|mimes:png,jpg,jpeg',
+        ]);
+
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        if ($validated) {
+            $informasiImage = new InformasiImage();
+            $informasiImage = $informasiImage->first();
+            if ($informasiImage) {
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/home/informasi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+
+                        if ($fileName == 'sideimage') {
+                            $informasiImage->sideimage_path = 'adminAssets/home/informasi/sideimage.' . $file->getClientOriginalExtension();
+                        }
+
+                        if ($fileName == 'backgroundimage') {
+                            $informasiImage->backgroundimage_path = 'adminAssets/home/informasi/backgroundimage.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+
+                $informasiImage->save();
+            } else {
+                $informasiImage = new InformasiImage();
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/home/informasi';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+
+                        if ($fileName == 'sideimage') {
+                            $informasiImage->sideimage_path = 'adminAssets/home/informasi/sideimage.' . $file->getClientOriginalExtension();
+                        }
+
+                        if ($fileName == 'backgroundimage') {
+                            $informasiImage->backgroundimage_path = 'adminAssets/home/informasi/backgroundimage.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+
+                $informasiImage->save();
+            }
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Image');
+        }
     }
 
     /**
@@ -70,6 +173,33 @@ class InformasiController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
+        $validated = $request->validate([
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'urutan' => 'required',
+
+        ]);
+        if ($validated) {
+            $informasi = new Informasi;
+            $informasi = $informasi->where('id', $id)->first();
+            $informasi->judul = $request->judul;
+            $informasi->deskripsi = $request->deskripsi;
+            $informasi->urutan = $request->urutan;
+
+            if (count($request->files) > 0) {
+                File::delete($informasi->image_path);
+                $file = $request->file('informasi');
+                $upload_path = 'adminAssets/home/informasi';
+                $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
+                $file->move($upload_path, $request->file('informasi')->getClientOriginalName());
+            }
+            $informasi->save();
+            return redirect()->back()->with('success', 'Berhasil mengubah Informasi');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
     }
 
     /**
@@ -81,5 +211,11 @@ class InformasiController extends Controller
     public function destroy($id)
     {
         //
+
+        $informasi = new Informasi();
+        File::delete($informasi->where('id', $id)->first()->image_path);
+        $informasi = $informasi->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus Informasi");
     }
 }
