@@ -94,7 +94,7 @@ class VisiMisiController extends Controller
             }
 
 
-            return redirect()->back()->with('success', 'Berhasil menyimpan tugas dan fungsi');
+            return redirect()->back()->with('success', 'Berhasil menyimpan visi dan misi');
         } else {
             return redirect()->back()->withErrors($validated)->withInput();
         }
