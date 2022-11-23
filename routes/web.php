@@ -177,6 +177,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Standar Layanan
     Route::resource('maklumat', MaklumatController::class);
     Route::resource('prosedurlayanan', ProsedurLayananController::class);
+    Route::post('/prosedurlayanan/banner', [ProsedurLayananController::class, 'bannerStore'])->name('prosedurlayanan.banner.store');
     Route::resource('biayalayanan', BiayaLayananController::class);
 
     //Layanan PPID, kurang 1 route

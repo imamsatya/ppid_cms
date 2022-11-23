@@ -41,8 +41,8 @@ class ProsedurLayananController extends Controller
     {
         //
         $validated = $request->validate([
-            'permohonan' => 'required|mimes:png,jpg,jpeg',
-            'keberatan' => 'required|mimes:png,jpg,jpeg',
+            'permohonan' => 'required_without_all:keberatan|mimes:png,jpg,jpeg',
+            'keberatan' => 'required_without_all:permohonan|mimes:png,jpg,jpeg',
         ]);
 
         if (!$validated) {
@@ -104,6 +104,60 @@ class ProsedurLayananController extends Controller
 
 
             return redirect()->back()->with('success', 'Berhasil menyimpan Prosedur Layanan');
+        }
+    }
+
+    public function bannerStore(Request $request)
+    {
+
+        $validated = $request->validate([
+            'banner' => 'required|mimes:png,jpg,jpeg'
+        ]);
+
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        if ($validated) {
+            $prosedurLayanan = new ProsedurLayanan();
+            $prosedurLayanan = $prosedurLayanan->first();
+            if ($prosedurLayanan) {
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/standarlayanan/prosedurLayanan/banner';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+
+                        if ($fileName == 'banner') {
+                            $prosedurLayanan->banner_path = 'adminAssets/standarlayanan/prosedurLayanan/banner/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+
+                $prosedurLayanan->save();
+            } else {
+                $prosedurLayanan = new ProsedurLayanan();
+                if (count($request->files) > 0) {
+                    $files = $request->files;
+                    $upload_path = 'adminAssets/standarlayanan/prosedurLayanan/banner';
+                    foreach ($files as $fileName => $name) {
+                        $file = $request->file($fileName);
+                        if ($fileName == 'banner') {
+                            $prosedurLayanan->banner_path = 'adminAssets/standarlayanan/prosedurLayanan/banner/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                    }
+                }
+
+                $prosedurLayanan->save();
+            }
+
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Banner');
         }
     }
 

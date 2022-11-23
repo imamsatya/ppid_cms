@@ -32,6 +32,7 @@ return new class extends Migration
         Schema::create('standarlayanans_biayalayanan', function (Blueprint $table) {
             $table->id();
             $table->string('judul')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->string('banner_path')->nullable();
             $table->string('direktori_image')->nullable();
             $table->timestamps();
