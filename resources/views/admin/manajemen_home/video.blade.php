@@ -1,6 +1,6 @@
 <x-admin.layout>
     <x-slot:subMenuTitle>
-        Slider
+        Video
         </x-slot>
 
         <x-slot:mainMenuTitle>
@@ -113,17 +113,17 @@
                 <!--end::Alert-->
             @endif
 
-            <h1>Pengelolaan Slider</h1>
+            <h1>Pengelolaan Video</h1>
             <br>
 
 
             <div class="card card-flush shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">Home Slider PPID</h3>
+                    <h3 class="card-title">Video PPID</h3>
                     <div class="card-toolbar">
                         @can('kontak.create')
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_tambahSlider">Tambah</a>
+                                data-bs-target="#kt_modal_tambahvideo">Tambah</a>
                         @endcan
                     </div>
                 </div>
@@ -132,8 +132,8 @@
                         <thead>
                             <tr class="fw-semibold fs-6 text-gray-800">
                                 <th>No</th>
-                                <th>Image</th>
-                                <th>Judul</th>
+
+                                <th>URL</th>
                                 <th>Deskripsi</th>
                                 <th>Urutan</th>
                                 @can('kontak.delete')
@@ -143,20 +143,18 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($slider as $slider_row)
+                            @foreach ($video as $video_row)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td> <img width="100" height="100"
-                                            src="{{ asset($slider_row->image_path) }}" />
-                                    </td>
-                                    <td>{{ $slider_row->judul }}</td>
-                                    <td>{{ $slider_row->deskripsi }}</td>
-                                    <td>{{ $slider_row->urutan }}</td>
+
+                                    <td>{{ $video_row->url }}</td>
+                                    <td>{{ $video_row->deskripsi }}</td>
+                                    <td>{{ $video_row->urutan }}</td>
                                     @canany(['peraturan kip.edit', 'peraturan kip.delete'])
                                         <td>
                                             @can('peraturan kip.edit')
                                                 <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                    data-bs-target="#kt_modal_editSlider"
+                                                    data-bs-target="#kt_modal_editvideo"
                                                     onclick="editDialog({{ $loop->index }})"
                                                     class="btn btn-icon btn-primary me-2"><i class="bi bi-pencil fs-4 "></i></a>
                                             @endcan
@@ -176,8 +174,8 @@
 
             </div>
 
-            <!--begin::Modal - Tambah Slider-->
-            <div class="modal fade" id="kt_modal_tambahSlider" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - Tambah video-->
+            <div class="modal fade" id="kt_modal_tambahvideo" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -185,7 +183,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Tambah Konten Slider</h2>
+                            <h2>Tambah Konten video</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -209,78 +207,25 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                                action="{{ route('admin.slider.store') }}" method="POST" class="form">
+                                action="{{ route('admin.video.store') }}" method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
 
 
-                                    <!--begin::Input group-->
-                                    <div class="row mb-6">
-                                        <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Image</label>
-                                        <!--end::Label-->
-                                        <!--begin::Col-->
-                                        <div class="col-lg-8 fv-row">
 
-                                            <div class="image-input image-input-outline" data-kt-image-input="true"
-                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-
-                                                <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                                </div>
-
-                                                @can('kontak.edit')
-                                                    <!--begin::Edit button-->
-                                                    <label
-                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                        data-bs-dismiss="click" title="Change Image">
-                                                        <i class="bi bi-pencil-fill fs-7"></i>
-
-                                                        <!--begin::Inputs-->
-                                                        <input type="file" name="slider"
-                                                            accept=".png, .jpg, .jpeg" />
-                                                        <input type="hidden" name="slider_remove" />
-                                                        <!--end::Inputs-->
-                                                    </label>
-                                                    <!--end::Edit button-->
-
-                                                    <!--begin::Cancel button-->
-                                                    <span
-                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                                        data-bs-dismiss="click" title="Cancel Image">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <!--end::Cancel button-->
-
-                                                    <!--begin::Remove button-->
-                                                    <span
-                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                                        data-bs-dismiss="click" title="Remove Image">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <!--end::Remove button-->
-                                                @endcan
-                                            </div>
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Input group-->
 
 
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul</label>
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">URL</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" name="judul"
+                                            <input type="text" name="url"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Judul" value="" />
+                                                placeholder="url" value="" />
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -345,10 +290,10 @@
                 </div>
                 <!--end::Modal dialog-->
             </div>
-            <!--end::Modal - Tambah Slider-->
+            <!--end::Modal - Tambah video-->
 
-            <!--begin::Modal - Edit Slider-->
-            <div class="modal fade" id="kt_modal_editSlider" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - Edit video-->
+            <div class="modal fade" id="kt_modal_editvideo" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -356,7 +301,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Edit Konten Slider</h2>
+                            <h2>Edit Konten video</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -386,78 +331,19 @@
                                 <div class="card-body  p-9">
 
 
-                                    <!--begin::Input group-->
-                                    <div class="row mb-6">
-                                        <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Image</label>
-                                        <!--end::Label-->
-                                        <!--begin::Col-->
-                                        <div class="col-lg-8 fv-row">
 
-                                            <div class="image-input image-input-outline" data-kt-image-input="true"
-                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-
-
-                                                {{-- <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset($slider->banner_path) }})">
-                                                </div> --}}
-
-                                                <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                                </div>
-
-
-                                                @can('kontak.edit')
-                                                    <!--begin::Edit button-->
-                                                    <label
-                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                        data-bs-dismiss="click" title="Change Image">
-                                                        <i class="bi bi-pencil-fill fs-7"></i>
-
-                                                        <!--begin::Inputs-->
-                                                        <input type="file" name="slider" id="editSlider"
-                                                            accept=".png, .jpg, .jpeg" />
-                                                        <input type="hidden" name="slider_remove" />
-                                                        <!--end::Inputs-->
-                                                    </label>
-                                                    <!--end::Edit button-->
-
-                                                    <!--begin::Cancel button-->
-                                                    <span
-                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                                        data-bs-dismiss="click" title="Cancel Image">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <!--end::Cancel button-->
-
-                                                    <!--begin::Remove button-->
-                                                    <span
-                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                                        data-bs-dismiss="click" title="Remove Image">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <!--end::Remove button-->
-                                                @endcan
-                                            </div>
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Input group-->
 
 
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul</label>
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">url</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" name="judul" id="editJudul"
+                                            <input type="text" name="url" id="editurl"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Judul" value="" />
+                                                placeholder="url" value="" />
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -522,7 +408,7 @@
                 </div>
                 <!--end::Modal dialog-->
             </div>
-            <!--end::Modal - Edit Slider-->
+            <!--end::Modal - Edit video-->
 
             <br>
             @push('child-scripts')
@@ -541,12 +427,12 @@
 
                     function deleteDialog(index) {
 
-                        let slider = {{ Js::from($slider) }}
+                        let video = {{ Js::from($video) }}
 
-                        slider = slider[index]
+                        video = video[index]
 
                         Swal.fire({
-                            html: `Apakah yakin akan <strong>menghapus</strong> slider <span class="badge badge-primary"> ${slider.judul}</span> ?`,
+                            html: `Apakah yakin akan <strong>menghapus</strong> video <span class="badge badge-primary"> ${video.url}</span> ?`,
                             icon: "error",
                             buttonsStyling: false,
                             showCancelButton: true,
@@ -563,13 +449,13 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/slider/" + slider.id,
+                                    url: "/admin/video/" + video.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
 
                                             icon: 'success',
-                                            title: 'Berhasil menghapus Slider',
+                                            title: 'Berhasil menghapus video',
                                             showConfirmButton: false,
                                             timer: 500
                                         }).then(() => {
@@ -593,17 +479,17 @@
 
                     function editDialog(index) {
 
-                        let sliderRow = {{ Js::from($slider) }}
-                        sliderRow = sliderRow[index]
+                        let videoRow = {{ Js::from($video) }}
+                        videoRow = videoRow[index]
                         console.log(document.getElementById('editImage'))
-                        document.getElementById('editJudul').value = sliderRow.judul
-                        // document.getElementById('editFile').value = sliderRow.file_path
-                        document.getElementById('editDeskripsi').value = sliderRow.deskripsi
-                        document.getElementById('editUrutan').value = sliderRow.urutan
+                        document.getElementById('editurl').value = videoRow.url
+                        // document.getElementById('editFile').value = videoRow.file_path
+                        document.getElementById('editDeskripsi').value = videoRow.deskripsi
+                        document.getElementById('editUrutan').value = videoRow.urutan
 
 
-                        document.getElementById('editForm').setAttribute('action', 'slider/' +
-                            sliderRow.id)
+                        document.getElementById('editForm').setAttribute('action', 'video/' +
+                            videoRow.id)
                     };
                 </script>
             @endpush

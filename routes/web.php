@@ -189,7 +189,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Manajemen Home
     Route::resource('slider', SliderController::class);
     Route::resource('informasi', InformasiController::class);
-    // informasi image
+    Route::post('/informasi/image', [InformasiController::class, 'imageStore'])->name('informasi.image.store');
+
     Route::resource('video', VideoController::class);
 });
 
@@ -199,35 +200,3 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 Route::get('/layout', function () {
     return view('layout');
 });
-
-
-// Route::middleware(['role:user'])->group(function () {
-//     //Regulasi
-//     Route::resource('peraturan_kip', PeraturanKIPController::class);
-//     Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPController::class);
-// });
-
-  // Route::middleware(['role:user'])->group(function () {
-    //     //Regulasi
-    //     Route::resource('peraturan_kip', PeraturanKIPController::class);
-    //     Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPController::class);
-    // });
-
-    // Route::middleware(['role:admin'])->group(function () {
-    //     //Profil
-    //     Route::resource('profilsingkat', ProfilSingkatController::class);
-    //     Route::resource('tugasdanfungsi', TugasDanFungsiController::class);
-    //     Route::resource('strukturorganisasi', StrukturOrganisasiController::class);
-    //     Route::resource('visimisi', VisiMisiController::class);
-    //     Route::resource('kontak', KontakController::class);
-    //     Route::resource('sosialmedia', SosialMediaController::class);
-    // });
-
-
-// Route::get('/home', function () {
-//     return view('profil.visimisi')->middleware(['auth', 'verified']);;
-// });
-
-// Route::get('/home', function () {
-//     return view('profil.visimisi');
-// })->middleware(['auth', 'verified']);;

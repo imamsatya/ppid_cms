@@ -131,7 +131,25 @@
             <div class="informasi_publik">
                 <div class="row pt-4">
                     <div class="col-md-3"></div>
-                    <div class="col-md-3 box_publik">
+                    @if ($informasi)
+                        @foreach ($informasi as $informasi_row)
+                            <div class="col-md-3 box_publik">
+                                <div class="content_publik">
+                                    <a href="{{ route('informasipublik.index') }}">
+                                        <img class="img-fluid img_center" src="{{ asset($informasi_row->image_path) }}"
+                                            alt="" />
+                                        <div class="informasi_content">
+                                            <label for="">{{ $informasi_row->judul }}</label>
+                                            <p>
+                                                {{ $informasi_row->deskripsi }}
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                    {{-- <div class="col-md-3 box_publik">
                         <div class="content_publik">
                             <img class="img-fluid img_center"
                                 src="{{ asset('ppid_fe/assets/images/content/icon/ic_informasi_berkala.png') }}"
@@ -168,7 +186,7 @@
                                 <p>Informasi yang Wajib Tersedia Setiap Saat</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -257,7 +275,7 @@
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
                         <div class="slider_video owl-carousel ">
-                            <div class="row outer_custom">
+                            {{-- <div class="row outer_custom">
                                 <div class="col-md-12">
                                     <iframe class="w-100 video-galeri" height="315"
                                         src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player"
@@ -266,16 +284,24 @@
                                         allowfullscreen></iframe>
                                 </div>
                             </div>
+                            
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <iframe width="560" height="315"
-                                        src="https://www.youtube.com/embed/53agHpqOGj8" title="YouTube video player"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
-                            </div>
+                            </div> --}}
+                            @foreach ($video as $video_row)
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <iframe width="560" height="315" src="{{ $video_row->url }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                     <div class="col-md-6 text-center pt-5">
@@ -558,6 +584,27 @@
 
             const myChart = new Chart(document.getElementById("myChart"), config);
         </script>
+
+        <style>
+            .publik .informasi_publik {
+                width: 100%;
+                height: 400px;
+                background-size: 340px 400px;
+                background-repeat: no-repeat;
+                background-image: url({{ asset($informasiImage->sideimage_path) }});
+            }
+
+            .publik .informasi_publik .box_publik {
+                width: 100%;
+                height: 351px;
+                background-size: 256px 351px;
+                background-repeat: no-repeat;
+                background-image: url({{ asset($informasiImage->backgroundimage_path) }});
+                z-index: 1;
+                filter: drop-shadow(11px 14px 10px #EFEFEF);
+                transition: all .8s ease-in-out;
+            }
+        </style>
     @endpush
 
 

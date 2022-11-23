@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Frontend\Home;
 
+use Illuminate\Http\Request;
+use App\Models\ManajemenHome\Video;
 use App\Http\Controllers\Controller;
 use App\Models\ManajemenHome\Slider;
-use Illuminate\Http\Request;
+use App\Models\ManajemenHome\Informasi;
+use App\Models\ManajemenHome\InformasiImage;
 
 class HomeController extends Controller
 {
@@ -19,7 +22,18 @@ class HomeController extends Controller
         // dd('halo');
         $slider = new Slider();
         $slider = $slider::all();
-        return view('index', compact('slider'));
+
+        $informasi = new Informasi();
+        $informasi = $informasi::all()->sortBy('urutan');
+
+        $informasiImage = new InformasiImage();
+        $informasiImage = $informasiImage->first();
+
+        $video = new Video();
+        $video = $video::all();
+
+
+        return view('index', compact('slider', 'informasi', 'informasiImage', 'video'));
     }
 
     /**
