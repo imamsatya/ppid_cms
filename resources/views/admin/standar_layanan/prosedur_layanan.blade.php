@@ -118,7 +118,8 @@
             <br>
 
 
-            <form action="{{ route('admin.prosedurlayanan.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.prosedurlayanan.banner.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -183,9 +184,27 @@
                             @endcan
 
                         </div>
+                        <p>minimal dimensi 369x454 pixel</p>
+                        <br>
+                        @can('peraturan kip.create')
+                            <button type="submit" class="btn btn-primary" id="addButton"
+                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                                    Simpan
+                                </span>
+                                <span class="indicator-progress">
+                                    Mohon Menunggu... <span
+                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        @endcan
                     </div>
 
                 </div>
+            </form>
+
+
+            <form action="{{ route('admin.prosedurlayanan.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <br>
                 <div class="card card-flush shadow-sm">
 

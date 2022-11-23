@@ -17,11 +17,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <p>
-                            Pelayanan informasi publik di lingkungan Kementerian BUMN
-                            <strong>tidak dipungut biaya</strong> Adapun biaya penggandaan
-                            atau perekaman yang timbul ditanggung oleh Pemohon Informasi
-                            Publik, kecuali untuk informasi yang telah ditentukan biaya
-                            Penerimaan Negara Bukan Pajak (PNBP).
+
+                            {!! $biayaLayanan->deskripsi !!}
                         </p>
                     </div>
                 </div>

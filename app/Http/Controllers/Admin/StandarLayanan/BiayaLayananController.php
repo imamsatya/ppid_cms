@@ -51,7 +51,7 @@ class BiayaLayananController extends Controller
         }
 
         if ($validated) {
-            $biayaLayanan = new biayaLayanan();
+            $biayaLayanan = new BiayaLayanan();
             $biayaLayanan = $biayaLayanan->first();
             if ($biayaLayanan) {
                 if (count($request->files) > 0) {
@@ -72,9 +72,10 @@ class BiayaLayananController extends Controller
                     }
                 }
                 $biayaLayanan->judul = $request->judul;
+                $biayaLayanan->deskripsi = $request->deskripsi;
                 $biayaLayanan->save();
             } else {
-                $biayaLayanan = new biayaLayanan();
+                $biayaLayanan = new BiayaLayanan();
                 if (count($request->files) > 0) {
                     $files = $request->files;
                     $upload_path = 'adminAssets/standarlayanan/biayaLayanan';
@@ -92,11 +93,12 @@ class BiayaLayananController extends Controller
                     }
                 }
                 $biayaLayanan->judul = $request->judul;
+                $biayaLayanan->deskripsi = $request->deskripsi;
                 $biayaLayanan->save();
             }
 
 
-            return redirect()->back()->with('success', 'Berhasil menyimpan maklumat');
+            return redirect()->back()->with('success', 'Berhasil menyimpan Biaya Layanan');
         }
     }
 

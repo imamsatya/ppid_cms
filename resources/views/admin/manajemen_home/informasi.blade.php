@@ -304,7 +304,7 @@
                             @endcan
                         </div>
                         {{-- <p>minimal dimensi 369x454 pixel</p> --}}
-                        <br>
+                        <br> <br>
                         @can('informasi secara berkala.create')
                             <button type="submit" class="btn btn-primary" id="addButton"
                                 onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
@@ -643,6 +643,7 @@
 
                                 </div>
                                 <!--end::Card body-->
+
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
