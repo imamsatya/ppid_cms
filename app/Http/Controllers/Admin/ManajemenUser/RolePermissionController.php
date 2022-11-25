@@ -86,7 +86,7 @@ class RolePermissionController extends Controller
         //
 
         $role = Role::with('permissions')->where('id', $id)->first();
-        $permissions = Permission::all();
+        $permissions =  utf8_encode(Permission::all());
 
 
 
