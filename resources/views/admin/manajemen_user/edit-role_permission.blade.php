@@ -4417,9 +4417,7 @@
                         <x-slot:mainMenuTitle>
                             Manajemen User
                             </x-slot>
-                            @push('head-scripts')
-                                <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-                            @endpush
+
 
                             @push('child-scripts')
                                 <script>

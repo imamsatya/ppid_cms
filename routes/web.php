@@ -20,6 +20,12 @@ use App\Http\Controllers\Admin\InformasiPublik\InformasiSertaMertaController;
 use App\Http\Controllers\Admin\InformasiPublik\InformasiSetiapSaatController;
 use App\Http\Controllers\Admin\InformasiPublik\InformasiSecaraBerkalaController;
 
+//Laporan
+use App\Http\Controllers\Admin\Laporan\LaporanTriwulananController;
+use App\Http\Controllers\Admin\Laporan\LaporanTahunanController;
+use App\Http\Controllers\Admin\Laporan\LaporanHasilSurveiController;
+use App\Http\Controllers\Admin\Laporan\LaporanBannerController;
+
 //Layanan PPID
 use App\Http\Controllers\Admin\LayananPPID\DataPermohonanController;
 
@@ -36,6 +42,9 @@ use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
 use App\Http\Controllers\Admin\ManajemenHome\SliderController;
 use App\Http\Controllers\Admin\ManajemenHome\InformasiController;
 use App\Http\Controllers\Admin\ManajemenHome\VideoController;
+
+//Manajemen Menu
+use App\Http\Controllers\Admin\ManajemenMenu\MenuController;
 
 // User
 use App\Http\Controllers\Frontend\Home\HomeController;
@@ -174,6 +183,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('informasi_setiap_saat', InformasiSetiapSaatController::class);
     Route::post('/informasi_secara_berkala/banner', [InformasiSecaraBerkalaController::class, 'bannerStore'])->name('informasi_secara_berkala.banner.store');
 
+    //Laporan
+    Route::resource('laporan_triwulanan', LaporanTriwulananController::class);
+    Route::resource('laporan_tahunan', LaporanTahunanController::class);
+    Route::resource('laporan_hasil_survei', LaporanHasilSurveiController::class);
+    Route::resource('laporan_banner', LaporanBannerController::class);
+
+
+
     //Standar Layanan
     Route::resource('maklumat', MaklumatController::class);
     Route::resource('prosedurlayanan', ProsedurLayananController::class);
@@ -191,8 +208,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('slider', SliderController::class);
     Route::resource('informasi', InformasiController::class);
     Route::post('/informasi/image', [InformasiController::class, 'imageStore'])->name('informasi.image.store');
-
     Route::resource('video', VideoController::class);
+
+    //Manajemen Menu
+    Route::resource('manajemen_menu', MenuController::class);
 });
 
 
