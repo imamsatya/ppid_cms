@@ -126,9 +126,7 @@ Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaControllerUser
 
 
 //Standar Layanan
-// Route::get('/maklumat', function () {
-//     return view('frontend.standarlayanan.standart-maklumat');
-// })->name('maklumat.index');
+
 Route::resource('maklumat', MaklumatControllerUser::class);
 
 // Route::get('/standarlayananprosedur', function () {

@@ -4,9 +4,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   text-decoration: none !important;
-  text-transform: capitalize;
+/*  text-transform: capitalize;*/
 }
 
 .btn-outline-primary-ppid {
@@ -75,6 +75,7 @@ body {
   font-size: 14px;
   line-height: 17px;
   color: #363636;
+  text-align: center;
 }
 
 .data_banner .informasi label {
@@ -100,8 +101,8 @@ body {
 }
 
 .informasi_kontak .images img {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
 }
 
 .mapping {
@@ -168,3 +169,16 @@ body {
   max-height: 400px;
   object-fit: fill;
 }
+
+
+p::first-letter {
+ text-transform: uppercase;
+ }
+
+ p{
+  text-align: center !important;
+ }
+
+ .bold{
+  font-weight: bold;
+ }

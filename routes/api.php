@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(RegisterController::class)->group(function(){
+Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
@@ -51,7 +51,7 @@ Route::resource('video', VideoController::class);
 
 // StandarLayanan
 Route::resource('biaya', BiayaLayananController::class);
-Route::resource('maklumat', MaklumatController::class);
+// Route::resource('maklumat', MaklumatController::class);
 Route::resource('prosedur', ProsedurLayananController::class);
 
 // Profil

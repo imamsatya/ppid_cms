@@ -671,87 +671,103 @@
             <!--end::Modal - Edit informasi-->
 
             <br>
-            @push('child-scripts')
-                <script>
-                    $("#kt_datatable_column_rendering").DataTable({
-                        "language": {
-                            "lengthMenu": "Show _MENU_",
-                        },
-                        "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
+            <x-slot:isShowAccordion_manajemenHome>
+                show
+                </x-slot>
+                <x-slot:isActiveLink_manajemenHome>
+                    active
+                    </x-slot>
+                    <x-slot:isActiveLink_informasi>
+                        active
+                        </x-slot>
+                        <x-slot:subMenuTitle>
+                            Informasi
+                            </x-slot>
 
-                    function deleteDialog(index) {
+                            <x-slot:mainMenuTitle>
+                                Manajemen Home
+                                </x-slot>
+                                @push('child-scripts')
+                                    <script>
+                                        $("#kt_datatable_column_rendering").DataTable({
+                                            "language": {
+                                                "lengthMenu": "Show _MENU_",
+                                            },
+                                            "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                                                "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                                                "<'row'" +
+                                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                                ">"
+                                        });
 
-                        let informasi = {{ Js::from($informasi) }}
+                                        function deleteDialog(index) {
 
-                        informasi = informasi[index]
+                                            let informasi = {{ Js::from($informasi) }}
 
-                        Swal.fire({
-                            html: `Apakah yakin akan <strong>menghapus</strong> informasi <span class="badge badge-primary"> ${informasi.judul}</span> ?`,
-                            icon: "error",
-                            buttonsStyling: false,
-                            showCancelButton: true,
-                            reverseButtons: true,
-                            cancelButtonText: 'Batal',
-                            confirmButtonText: "Iya",
-                            customClass: {
-                                cancelButton: 'btn btn-danger',
-                                confirmButton: "btn btn-primary",
-                            }
-                        }).then((result) => {
-                            if (result.isConfirmed) {
+                                            informasi = informasi[index]
 
-                                console.log('delete confirmed')
-                                $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/informasi/" + informasi.id,
-                                    cache: false,
-                                    success: function(html) {
-                                        Swal.fire({
+                                            Swal.fire({
+                                                html: `Apakah yakin akan <strong>menghapus</strong> informasi <span class="badge badge-primary"> ${informasi.judul}</span> ?`,
+                                                icon: "error",
+                                                buttonsStyling: false,
+                                                showCancelButton: true,
+                                                reverseButtons: true,
+                                                cancelButtonText: 'Batal',
+                                                confirmButtonText: "Iya",
+                                                customClass: {
+                                                    cancelButton: 'btn btn-danger',
+                                                    confirmButton: "btn btn-primary",
+                                                }
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
 
-                                            icon: 'success',
-                                            title: 'Berhasil menghapus informasi',
-                                            showConfirmButton: false,
-                                            timer: 500
-                                        }).then(() => {
-                                            window.location.reload();
-                                        })
+                                                    console.log('delete confirmed')
+                                                    $.ajax({
+                                                        type: "DELETE",
+                                                        url: "/admin/informasi/" + informasi.id,
+                                                        cache: false,
+                                                        success: function(html) {
+                                                            Swal.fire({
 
-
-                                    }
-                                });
-
-                                // window.location = '/visimisi'
-                            } else {
-                                console.log('delete canceled')
-                            }
-                        });
-
-                        // Swal.fire({
-                        //     template: '#my-template'
-                        // })
-                    };
-
-                    function editDialog(index) {
-
-                        let informasiRow = {{ Js::from($informasi) }}
-                        informasiRow = informasiRow[index]
-                        console.log(document.getElementById('editImage'))
-                        document.getElementById('editJudul').value = informasiRow.judul
-                        // document.getElementById('editFile').value = informasiRow.file_path
-                        document.getElementById('editDeskripsi').value = informasiRow.deskripsi
-                        document.getElementById('editUrutan').value = informasiRow.urutan
+                                                                icon: 'success',
+                                                                title: 'Berhasil menghapus informasi',
+                                                                showConfirmButton: false,
+                                                                timer: 500
+                                                            }).then(() => {
+                                                                window.location.reload();
+                                                            })
 
 
-                        document.getElementById('editForm').setAttribute('action', 'informasi/' +
-                            informasiRow.id)
-                    };
-                </script>
-            @endpush
+                                                        }
+                                                    });
+
+                                                    // window.location = '/visimisi'
+                                                } else {
+                                                    console.log('delete canceled')
+                                                }
+                                            });
+
+                                            // Swal.fire({
+                                            //     template: '#my-template'
+                                            // })
+                                        };
+
+                                        function editDialog(index) {
+
+                                            let informasiRow = {{ Js::from($informasi) }}
+                                            informasiRow = informasiRow[index]
+                                            console.log(document.getElementById('editImage'))
+                                            document.getElementById('editJudul').value = informasiRow.judul
+                                            // document.getElementById('editFile').value = informasiRow.file_path
+                                            document.getElementById('editDeskripsi').value = informasiRow.deskripsi
+                                            document.getElementById('editUrutan').value = informasiRow.urutan
+
+
+                                            document.getElementById('editForm').setAttribute('action', 'informasi/' +
+                                                informasiRow.id)
+                                        };
+                                    </script>
+                                @endpush
 
 </x-admin.layout>

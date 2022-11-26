@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   text-decoration: none !important;
-  text-transform: capitalize;
+  /*  text-transform: capitalize;*/
 }
 
 .btn-outline-primary-ppid {
@@ -55,8 +55,8 @@ body {
 .banner .data_banner {
   padding-bottom: 80px;
   margin-top: 80px;
-  /* background-image: url("../../../../images/content/background/bg_tentang_ppid.png"); */
-  background-repeat: no-repeat;
+  background-image: url("../../../../images/content/background/bg_tentang_ppid.png");
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
   background-size: 100% 300px;
   height: 300px;
   padding: 100px 100px 100px 100px;
@@ -75,6 +75,7 @@ body {
   font-size: 14px;
   line-height: 17px;
   color: #363636;
+  text-align: center;
 }
 
 .data_banner .informasi label {
@@ -132,6 +133,8 @@ body {
   font-weight: 400;
   font-size: 1rem;
   line-height: 158%;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* .informasi_tugas_fungsi .list_fungsi ul li::marker {

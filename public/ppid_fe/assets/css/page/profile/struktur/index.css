@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   text-decoration: none !important;
-  text-transform: capitalize;
+  /*  text-transform: capitalize;*/
 }
 
 .btn-outline-primary-ppid {
@@ -75,6 +75,7 @@ body {
   font-size: 14px;
   line-height: 17px;
   color: #363636;
+  text-align: center;
 }
 
 .data_banner .informasi label {

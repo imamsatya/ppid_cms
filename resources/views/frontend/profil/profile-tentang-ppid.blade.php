@@ -14,7 +14,7 @@
                 <div class="col-md-8" id="konten">
 
 
-                    {!! $profilSingkat->konten !!}
+                    {!! $profilSingkat->konten ?? '' !!}
 
 
 
@@ -40,7 +40,7 @@
                 </x-slot>
                 @push('child-scripts')
                     <script>
-                        document.getElementById('konten').childNodes[1].className = 'informasi'
+                        // document.getElementById('konten').childNodes[1].className = 'informasi'
                     </script>
                     <style>
                         .banner .data_banner {

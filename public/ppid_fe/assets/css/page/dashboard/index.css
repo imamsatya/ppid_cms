@@ -196,3 +196,24 @@ input {
 textarea.form-control {
   background: rgba(0, 0, 0, 0.05);
 }
+p {
+  text-transform: capitalize;
+}
+span {
+  text-transform: capitalize;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  text-transform: capitalize;
+}
+.zoomed{
+        zoom: 0.9;
+        /*transform: scale(0.9);*/
+        /*-moz-transform: scale(0.9);*/
+        /*-moz-transform-origin: 0 0;*/
+      }

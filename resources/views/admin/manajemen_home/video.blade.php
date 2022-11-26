@@ -411,87 +411,103 @@
             <!--end::Modal - Edit video-->
 
             <br>
-            @push('child-scripts')
-                <script>
-                    $("#kt_datatable_column_rendering").DataTable({
-                        "language": {
-                            "lengthMenu": "Show _MENU_",
-                        },
-                        "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
+            <x-slot:isShowAccordion_manajemenHome>
+                show
+                </x-slot>
+                <x-slot:isActiveLink_manajemenHome>
+                    active
+                    </x-slot>
+                    <x-slot:isActiveLink_video>
+                        active
+                        </x-slot>
+                        <x-slot:subMenuTitle>
+                            Video
+                            </x-slot>
 
-                    function deleteDialog(index) {
+                            <x-slot:mainMenuTitle>
+                                Manajemen Home
+                                </x-slot>
+                                @push('child-scripts')
+                                    <script>
+                                        $("#kt_datatable_column_rendering").DataTable({
+                                            "language": {
+                                                "lengthMenu": "Show _MENU_",
+                                            },
+                                            "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                                                "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                                                "<'row'" +
+                                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                                ">"
+                                        });
 
-                        let video = {{ Js::from($video) }}
+                                        function deleteDialog(index) {
 
-                        video = video[index]
+                                            let video = {{ Js::from($video) }}
 
-                        Swal.fire({
-                            html: `Apakah yakin akan <strong>menghapus</strong> video <span class="badge badge-primary"> ${video.url}</span> ?`,
-                            icon: "error",
-                            buttonsStyling: false,
-                            showCancelButton: true,
-                            reverseButtons: true,
-                            cancelButtonText: 'Batal',
-                            confirmButtonText: "Iya",
-                            customClass: {
-                                cancelButton: 'btn btn-danger',
-                                confirmButton: "btn btn-primary",
-                            }
-                        }).then((result) => {
-                            if (result.isConfirmed) {
+                                            video = video[index]
 
-                                console.log('delete confirmed')
-                                $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/video/" + video.id,
-                                    cache: false,
-                                    success: function(html) {
-                                        Swal.fire({
+                                            Swal.fire({
+                                                html: `Apakah yakin akan <strong>menghapus</strong> video <span class="badge badge-primary"> ${video.url}</span> ?`,
+                                                icon: "error",
+                                                buttonsStyling: false,
+                                                showCancelButton: true,
+                                                reverseButtons: true,
+                                                cancelButtonText: 'Batal',
+                                                confirmButtonText: "Iya",
+                                                customClass: {
+                                                    cancelButton: 'btn btn-danger',
+                                                    confirmButton: "btn btn-primary",
+                                                }
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
 
-                                            icon: 'success',
-                                            title: 'Berhasil menghapus video',
-                                            showConfirmButton: false,
-                                            timer: 500
-                                        }).then(() => {
-                                            window.location.reload();
-                                        })
+                                                    console.log('delete confirmed')
+                                                    $.ajax({
+                                                        type: "DELETE",
+                                                        url: "/admin/video/" + video.id,
+                                                        cache: false,
+                                                        success: function(html) {
+                                                            Swal.fire({
 
-
-                                    }
-                                });
-
-                                // window.location = '/visimisi'
-                            } else {
-                                console.log('delete canceled')
-                            }
-                        });
-
-                        // Swal.fire({
-                        //     template: '#my-template'
-                        // })
-                    };
-
-                    function editDialog(index) {
-
-                        let videoRow = {{ Js::from($video) }}
-                        videoRow = videoRow[index]
-                        console.log(document.getElementById('editImage'))
-                        document.getElementById('editurl').value = videoRow.url
-                        // document.getElementById('editFile').value = videoRow.file_path
-                        document.getElementById('editDeskripsi').value = videoRow.deskripsi
-                        document.getElementById('editUrutan').value = videoRow.urutan
+                                                                icon: 'success',
+                                                                title: 'Berhasil menghapus video',
+                                                                showConfirmButton: false,
+                                                                timer: 500
+                                                            }).then(() => {
+                                                                window.location.reload();
+                                                            })
 
 
-                        document.getElementById('editForm').setAttribute('action', 'video/' +
-                            videoRow.id)
-                    };
-                </script>
-            @endpush
+                                                        }
+                                                    });
+
+                                                    // window.location = '/visimisi'
+                                                } else {
+                                                    console.log('delete canceled')
+                                                }
+                                            });
+
+                                            // Swal.fire({
+                                            //     template: '#my-template'
+                                            // })
+                                        };
+
+                                        function editDialog(index) {
+
+                                            let videoRow = {{ Js::from($video) }}
+                                            videoRow = videoRow[index]
+                                            console.log(document.getElementById('editImage'))
+                                            document.getElementById('editurl').value = videoRow.url
+                                            // document.getElementById('editFile').value = videoRow.file_path
+                                            document.getElementById('editDeskripsi').value = videoRow.deskripsi
+                                            document.getElementById('editUrutan').value = videoRow.urutan
+
+
+                                            document.getElementById('editForm').setAttribute('action', 'video/' +
+                                                videoRow.id)
+                                        };
+                                    </script>
+                                @endpush
 
 </x-admin.layout>

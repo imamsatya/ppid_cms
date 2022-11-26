@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   text-decoration: none !important;
   text-transform: capitalize;
 }
@@ -98,7 +98,7 @@ padding: 120px 0px 120px 0px;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 34px;
   color: #000000;
 }
