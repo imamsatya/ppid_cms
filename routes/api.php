@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\API\ManajemenHome\InformasiController;
 use App\Http\Controllers\API\auth\RegisterController;
 use App\Http\Controllers\API\InformasiPublik\InformasiBerkalaController;
 use App\Http\Controllers\API\InformasiPublik\InformasiPublikController;
 use App\Http\Controllers\API\InformasiPublik\InformasiSertaMertaController;
 use App\Http\Controllers\API\InformasiPublik\InformasiSetiapSaatController;
+use App\Http\Controllers\API\ManajemenHome\InformasiImageController;
+use App\Http\Controllers\API\ManajemenHome\SliderController;
+use App\Http\Controllers\API\ManajemenHome\VideoController;
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
 use App\Http\Controllers\API\Profil\ProfilSingkatController;
@@ -17,6 +21,9 @@ use App\Http\Controllers\API\Profil\VisiMisiController;
 use App\Http\Controllers\API\Regulasi\PeraturanKIPController;
 use App\Http\Controllers\API\Regulasi\RancanganPeraturanKIPController;
 use App\Http\Controllers\API\Regulasi\RegulasiController;
+use App\Http\Controllers\API\StandarLayanan\BiayaLayananController;
+use App\Http\Controllers\API\StandarLayanan\MaklumatController;
+use App\Http\Controllers\API\StandarLayanan\ProsedurLayananController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +42,17 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
+
+// ManajemenHome
+Route::resource('informasi', InformasiController::class);
+Route::resource('informasi_image', InformasiImageController::class);
+Route::resource('slider', SliderController::class);
+Route::resource('video', VideoController::class);
+
+// StandarLayanan
+Route::resource('biaya', BiayaLayananController::class);
+Route::resource('maklumat', MaklumatController::class);
+Route::resource('prosedur', ProsedurLayananController::class);
 
 // Profil
 Route::resource('kontaks', KontakController::class);
