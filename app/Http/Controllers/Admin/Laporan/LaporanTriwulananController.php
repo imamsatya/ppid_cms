@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Laporan\LaporanBanner;
 use App\Models\Laporan\LaporanTriwulanan;
+use Illuminate\Support\Facades\File;
+use Session;
 
 class LaporanTriwulananController extends Controller
 {
@@ -47,7 +49,8 @@ class LaporanTriwulananController extends Controller
 
         $validated = $request->validate([
             'judulLaporan' => 'required',
-            'file' => 'required|mimes:pdf'
+            'file' => 'required|mimes:pdf|max:5120',
+            'laporanImage' => 'max:5120'
         ]);
         if (!$validated) {
             return redirect()->back()->withErrors($validated)->withInput();
@@ -67,6 +70,7 @@ class LaporanTriwulananController extends Controller
                     if ($fileName == 'laporanImage') {
                         $laporanTriwulanan->thumbnail_path = 'adminAssets/laporan/laporan_triwulanan/' . $request->file($fileName)->getClientOriginalName();
                     }
+
 
                     $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
                 }
@@ -112,6 +116,47 @@ class LaporanTriwulananController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate([
+            'judulLaporan' => 'required',
+            'file' => 'mimes:pdf'
+
+        ]);
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        if ($validated) {
+
+            $laporanTriwulanan = new laporanTriwulanan();
+            $laporanTriwulanan = $laporanTriwulanan->where('id', $id)->first();
+            $laporanTriwulanan->judul_laporan = $request->judulLaporan;
+            if (count($request->files) > 0) {
+
+
+                $files = $request->files;
+                $upload_path = 'adminAssets/laporan/laporan_triwulanan';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        File::delete($laporanTriwulanan->file_path);
+                        $laporanTriwulanan->file_path = 'adminAssets/laporan/laporan_triwulanan/' . $request->file($fileName)->getClientOriginalName();
+                    }
+                    if ($fileName == 'laporanImage') {
+                        File::delete($laporanTriwulanan->thumbnail_path);
+                        $laporanTriwulanan->thumbnail_path = 'adminAssets/laporan/laporan_triwulanan/' . $request->file($fileName)->getClientOriginalName();
+                    }
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                }
+            }
+
+
+
+
+            $laporanTriwulanan->save();
+
+            return redirect()->back()->with('success', 'Berhasil mengubah Laporan Triwulanan');
+        }
     }
 
     /**
@@ -123,5 +168,11 @@ class LaporanTriwulananController extends Controller
     public function destroy($id)
     {
         //
+        $laporanTriwulanan = new LaporanTriwulanan();
+        File::delete($laporanTriwulanan->where('id', $id)->first()->file_path);
+        File::delete($laporanTriwulanan->where('id', $id)->first()->thumbnail_path);
+        $laporanTriwulanan = $laporanTriwulanan->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus peraturan KIP");
     }
 }

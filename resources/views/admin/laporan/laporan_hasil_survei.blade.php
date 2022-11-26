@@ -1,10 +1,10 @@
 <x-admin.layout>
     <x-slot:subMenuTitle>
-        Peraturan KIP
+        Laporan Hasil Survei PIP
         </x-slot>
 
         <x-slot:mainMenuTitle>
-            Regulasi
+            Laporan
             </x-slot>
             @if ($errors->any())
                 <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
@@ -27,9 +27,9 @@
                     <!--end::Icon-->
 
                     <!--begin::Wrapper-->
-                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                         <!--begin::Title-->
-                        <h4 class="mb-2 light">Error !</h4>
+                        <h4 class="mb-2 text-white">Error !</h4>
                         <!--end::Title-->
 
                         <!--begin::Content-->
@@ -112,7 +112,7 @@
             @endif
 
 
-            <form action="{{ route('admin.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.laporan_banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -124,10 +124,10 @@
                         <div class="image-input image-input-outline" data-kt-image-input="true"
                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
                             <!--begin::Image preview wrapper-->
-                            @if ($regulasiBanner)
-                                @if ($regulasiBanner->banner_path)
+                            @if ($laporanBanner)
+                                @if ($laporanBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($regulasiBanner->banner_path) }})">
+                                        style="background-image: url({{ asset($laporanBanner->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -142,7 +142,7 @@
                             @endif
                             <!--end::Image preview wrapper-->
 
-                            @can('peraturan kip.edit')
+                            @can('laporan hasil survei.edit')
                                 <!--begin::Edit button-->
                                 <label
                                     class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -177,9 +177,9 @@
                             @endcan
                         </div>
                         <p>minimal dimensi 369x454 pixel</p>
-                        <br> @can('peraturan kip.create')
-                            <button type="submit" class="btn btn-primary" id="addButton"
-                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                        <br> @can('laporan hasil survei.create')
+                            <button type="submit" class="btn btn-primary" id="addBannerButton"
+                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
                                     Simpan
                                 </span>
                                 <span class="indicator-progress">
@@ -193,52 +193,53 @@
                 </div>
             </form>
             <br>
-            <h1>Pengelolaan Regulasi</h1>
+            <h1>Pengelolaan Laporan Hasil Survei PIP</h1>
             <br>
             <div class="card card-flush shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">Peraturan KIP</h3>
+                    <h3 class="card-title">Laporan Hasil Survei PIP</h3>
                     <div class="card-toolbar">
-                        @can('peraturan kip.create')
+                        @can('laporan hasil survei.create')
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_tambahlaporanTriwulanan">Tambah</a>
+                                data-bs-target="#kt_modal_tambahlaporanHasilSurvei">Tambah</a>
                         @endcan
                     </div>
                 </div>
                 <div class="card-body py-5">
 
 
-                    <table id="kt_datatable_dom_positioning_laporanTriwulanan"
+                    <table id="kt_datatable_dom_positioning_laporanHasilSurvei"
                         class="table table-striped table-row-bordered gy-5 gs-7">
                         <thead>
                             <tr class="fw-semibold fs-6 text-gray-800">
                                 <th>No</th>
-                                <th>Judul Peraturan</th>
-                                <th>File PDF</th>
-                                <th>Urutan</th>
+                                <th>Judul Laporan</th>
+                                <th>File</th>
+                                <th>Thumbnail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($laporanTriwulanan)
-                                @foreach ($laporanTriwulanan as $laporanTriwulanan_row)
+                            @if ($laporanHasilSurvei)
+                                @foreach ($laporanHasilSurvei as $laporanHasilSurvei_row)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $laporanTriwulanan_row->judul_peraturan }}</td>
+                                        <td>{{ $laporanHasilSurvei_row->judul_laporan }}</td>
                                         <td><a
-                                                href="{{ asset($laporanTriwulanan_row->file_path) }}">{{ $laporanTriwulanan_row->judul_peraturan . '.pdf' }}</a>
+                                                href="{{ asset($laporanHasilSurvei_row->file_path) }}">{{ $laporanHasilSurvei_row->judul_laporan . '.pdf' }}</a>
                                         </td>
-                                        <td>{{ $laporanTriwulanan_row->urutan }}</td>
-                                        @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                                        <td><img width="100" height="100"
+                                                src="{{ asset($laporanHasilSurvei_row->thumbnail_path) }}" /></td>
+                                        @canany(['laporan hasil survei.edit', 'laporan hasil survei.delete'])
                                             <td>
-                                                @can('peraturan kip.edit')
+                                                @can('laporan hasil survei.edit')
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#kt_modal_editlaporanTriwulanan"
+                                                        data-bs-target="#kt_modal_editlaporanHasilSurvei"
                                                         onclick="editDialog({{ $loop->index }})"
                                                         class="btn btn-icon btn-primary me-2"><i
                                                             class="bi bi-pencil fs-4 "></i></a>
                                                 @endcan
-                                                @can('peraturan kip.delete')
+                                                @can('laporan hasil survei.delete')
                                                     <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
                                                         class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
                                                 @endcan
@@ -255,75 +256,10 @@
 
             </div>
             <br>
-            {{-- Rancangan Peraturan KIP --}}
-            {{-- <div class="card card-flush shadow-sm">
-                <div class="card-header">
-                    <h3 class="card-title">Rancangan Peraturan KIP</h3>
-                    <div class="card-toolbar">
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Tambah
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body py-5">
 
-
-                    <table id="kt_datatable_dom_positioning_laporanTriwulanan"
-                        class="table table-striped table-row-bordered gy-5 gs-7">
-                        <thead>
-                            <tr class="fw-semibold fs-6 text-gray-800">
-                                <th>No</th>
-                                <th>Judul Peraturan</th>
-                                <th>File PDF</th>
-                                <th>Urutan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Peraturan no 1</td>
-                                <td>peraturan1.pdf</td>
-                                <td>1</td>
-                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                            class="bi bi-pencil fs-4 "></i></a>
-                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                            class="bi bi-x-lg fs-4 "></i></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Peraturan no 2</td>
-                                <td>peraturan2.pdf</td>
-                                <td>2</td>
-                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                            class="bi bi-pencil fs-4 "></i></a>
-                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                            class="bi bi-x-lg fs-4 "></i></a>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Peraturan no 3</td>
-                                <td>peraturan3.pdf</td>
-                                <td>3</td>
-                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                            class="bi bi-pencil fs-4 "></i></a>
-                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                            class="bi bi-x-lg fs-4 "></i></a>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <br> --}}
 
             <!--begin::Modal - Tambah Bagan Kanan-->
-            <div class="modal fade" id="kt_modal_tambahlaporanTriwulanan" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="kt_modal_tambahlaporanHasilSurvei" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -331,7 +267,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Tambah Peraturan KIP</h2>
+                            <h2>Tambah Laporan Hasil Survei PIP</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -365,11 +301,11 @@
                                     <div class="row mb-6">
                                         <!--begin::Label-->
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul
-                                            Peraturan</label>
+                                            Laporan</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" name="judulPeraturan"
+                                            <input type="text" name="judulLaporan"
                                                 class="form-control form-control-lg form-control-solid"
                                                 placeholder="Judul Peraturan" value="" />
                                         </div>
@@ -395,17 +331,58 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Urutan</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Thumbnail</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="number" min=1 name="urutan"
-                                                class="form-control form-control-lg form-control-solid"
-                                                placeholder="Urutan" value="" />
+
+                                            <div class="image-input image-input-outline" data-kt-image-input="true"
+                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+                                                <div class="image-input-wrapper w-250px  h-125px"
+                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                                </div>
+
+                                                @can('laporan hasil survei.edit')
+                                                    <!--begin::Edit button-->
+                                                    <label
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Change Image">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                        <!--begin::Inputs-->
+                                                        <input type="file" name="laporanImage"
+                                                            accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="laporanImage_remove" />
+                                                        <!--end::Inputs-->
+                                                    </label>
+                                                    <!--end::Edit button-->
+
+                                                    <!--begin::Cancel button-->
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Cancel Image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <!--end::Cancel button-->
+
+                                                    <!--begin::Remove button-->
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Remove Image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <!--end::Remove button-->
+                                                @endcan
+                                            </div>
                                         </div>
                                         <!--end::Col-->
                                     </div>
                                     <!--end::Input group-->
+
 
 
                                     <!--end::Input group-->
@@ -415,10 +392,10 @@
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('peraturan kip.create')
+                                    @can('laporan hasil survei.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                                Tambah
+                                                Simpan
                                             </span>
                                             <span class="indicator-progress">
                                                 Mohon Menunggu... <span
@@ -439,7 +416,7 @@
             <!--end::Modal - Tambah Bagan Kanan-->
 
             <!--begin::Modal - Edit Bagan Kanan-->
-            <div class="modal fade" id="kt_modal_editlaporanTriwulanan" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="kt_modal_editlaporanHasilSurvei" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -447,7 +424,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Edit Peraturan KIP</h2>
+                            <h2>Edit Laporan Hasil Survei PIP</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -486,7 +463,7 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" id="editJudulPeraturan" name="judulPeraturan"
+                                            <input type="text" id="editjudulLaporan" name="judulLaporan"
                                                 class="form-control form-control-lg form-control-solid"
                                                 placeholder="Judul Peraturan" value="" />
                                         </div>
@@ -513,13 +490,53 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Urutan</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Thumbnail</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="number" id="editUrutan" min=1 name="urutan"
-                                                class="form-control form-control-lg form-control-solid"
-                                                placeholder="Urutan" value="" />
+
+                                            <div class="image-input image-input-outline" data-kt-image-input="true"
+                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+                                                <div class="image-input-wrapper w-250px  h-125px"
+                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                                </div>
+
+                                                @can('laporan hasil survei.edit')
+                                                    <!--begin::Edit button-->
+                                                    <label
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Change Image">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                        <!--begin::Inputs-->
+                                                        <input type="file" name="laporanImage"
+                                                            accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="laporanImage_remove" />
+                                                        <!--end::Inputs-->
+                                                    </label>
+                                                    <!--end::Edit button-->
+
+                                                    <!--begin::Cancel button-->
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Cancel Image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <!--end::Cancel button-->
+
+                                                    <!--begin::Remove button-->
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Remove Image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <!--end::Remove button-->
+                                                @endcan
+                                            </div>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -533,7 +550,7 @@
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('peraturan kip.create')
+                                    @can('laporan hasil survei.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#updateButton')"><span
                                                 class="indicator-label">
@@ -558,7 +575,7 @@
             <!--end::Modal - Edit Bagan Kanan-->
             @push('child-scripts')
                 <script>
-                    $("#kt_datatable_dom_positioning_laporanTriwulanan").DataTable({
+                    $("#kt_datatable_dom_positioning_laporanHasilSurvei").DataTable({
                         "language": {
                             "lengthMenu": "Show _MENU_",
                         },
@@ -585,12 +602,12 @@
 
                     function deleteDialog(index) {
 
-                        let laporanTriwulanan = {{ Js::from($laporanTriwulanan) }}
+                        let laporanHasilSurvei = {{ Js::from($laporanHasilSurvei) }}
 
-                        laporanTriwulanan = laporanTriwulanan[index]
+                        laporanHasilSurvei = laporanHasilSurvei[index]
 
                         Swal.fire({
-                            html: `Apakah yakin akan <strong>menghapus</strong> peraturan KIP <span class="badge badge-primary"> ${laporanTriwulanan.judul_peraturan}</span> ?`,
+                            html: `Apakah yakin akan <strong>menghapus</strong> Laporan HasilSurvei PIP <span class="badge badge-primary"> ${laporanHasilSurvei.judul_laporan}</span> ?`,
                             icon: "error",
                             buttonsStyling: false,
                             showCancelButton: true,
@@ -607,13 +624,13 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/peraturan_kip/" + laporanTriwulanan.id,
+                                    url: "/admin/laporan_hasil_survei/" + laporanHasilSurvei.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
 
                                             icon: 'success',
-                                            title: 'Berhasil menghapus Peraturan KIP',
+                                            title: 'Berhasil menghapus laporan hasil survei',
                                             showConfirmButton: false,
                                             timer: 500
                                         }).then(() => {
@@ -637,16 +654,16 @@
 
                     function editDialog(index) {
 
-                        let laporanTriwulanan = {{ Js::from($laporanTriwulanan) }}
-                        laporanTriwulanan = laporanTriwulanan[index]
-                        document.getElementById('editJudulPeraturan').value = laporanTriwulanan.judul_peraturan
-                        // document.getElementById('editFile').value = laporanTriwulanan.file_path
-                        console.log(document.getElementById('editFile'))
-                        document.getElementById('editUrutan').value = laporanTriwulanan.urutan
+                        let laporanHasilSurvei = {{ Js::from($laporanHasilSurvei) }}
+                        laporanHasilSurvei = laporanHasilSurvei[index]
+                        document.getElementById('editjudulLaporan').value = laporanHasilSurvei.judul_laporan
+                        // document.getElementById('editFile').value = laporanHasilSurvei.file_path
+                        // console.log(document.getElementById('editFile'))
+                        // document.getElementById('editthumbnail').value = laporanHasilSurvei.thumbnail
 
 
-                        document.getElementById('editForm').setAttribute('action', 'peraturan_kip/' +
-                            laporanTriwulanan.id)
+                        document.getElementById('editForm').setAttribute('action', 'laporan_hasil_survei/' +
+                            laporanHasilSurvei.id)
                     };
                 </script>
             @endpush

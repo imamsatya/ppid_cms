@@ -27,9 +27,9 @@
                     <!--end::Icon-->
 
                     <!--begin::Wrapper-->
-                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                         <!--begin::Title-->
-                        <h4 class="mb-2 light">Error !</h4>
+                        <h4 class="mb-2 text-white">Error !</h4>
                         <!--end::Title-->
 
                         <!--begin::Content-->
@@ -392,6 +392,18 @@
                     }
 
                     tinymce.init(options);
+
+                    function activateLoadingButton(idButton) {
+                        console.log('active')
+                        let button = document.querySelector(`${idButton}`);
+                        button.setAttribute("data-kt-indicator", "on");
+                        // Handle button click event
+
+                        // // Disable indicator after 3 seconds
+                        // setTimeout(function() {
+                        //     button.removeAttribute("data-kt-indicator");
+                        // }, 3000);
+                    }
                 </script>
             @endpush
 </x-admin.layout>

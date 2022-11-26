@@ -27,9 +27,9 @@
                     <!--end::Icon-->
 
                     <!--begin::Wrapper-->
-                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                         <!--begin::Title-->
-                        <h4 class="mb-2 light">Error !</h4>
+                        <h4 class="mb-2 text-white">Error !</h4>
                         <!--end::Title-->
 
                         <!--begin::Content-->
@@ -187,8 +187,8 @@
                         <p>minimal dimensi 369x454 pixel</p>
                         <br>
                         @can('peraturan kip.create')
-                            <button type="submit" class="btn btn-primary" id="addButton"
-                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                            <button type="submit" class="btn btn-primary" id="addBannerButton"
+                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
                                     Simpan
                                 </span>
                                 <span class="indicator-progress">
@@ -350,4 +350,19 @@
                 <br>
 
             </form>
+            @push('child-scripts')
+                <script>
+                    function activateLoadingButton(idButton) {
+                        console.log('active')
+                        let button = document.querySelector(`${idButton}`);
+                        button.setAttribute("data-kt-indicator", "on");
+                        // Handle button click event
+
+                        // // Disable indicator after 3 seconds
+                        // setTimeout(function() {
+                        //     button.removeAttribute("data-kt-indicator");
+                        // }, 3000);
+                    }
+                </script>
+            @endpush
 </x-admin.layout>

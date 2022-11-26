@@ -318,12 +318,15 @@
                                     @endcan
 
                                     @can('struktur organisasi.create')
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-roles-modal-action="submit">
-                                            <span class="indicator-label">Simpan</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        <button type="submit" class="btn btn-primary" id="addStrukturButton"
+                                            onclick="activateLoadingButton('#addStrukturButton')"><span
+                                                class="indicator-label">
+                                                Simpan
+                                            </span>
+                                            <span class="indicator-progress">
+                                                Mohon Menunggu... <span
+                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                            </span>
                                         </button>
                                     @endcan
                                 </div>
@@ -532,7 +535,7 @@
                                     @can('struktur organisasi.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                                Tambah
+                                                Simpan
                                             </span>
                                             <span class="indicator-progress">
                                                 Mohon Menunggu... <span
@@ -648,7 +651,7 @@
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
                                     @can('struktur organisasi.create')
-                                        <button type="submit" class="btn btn-primary" id="addButton"
+                                        <button type="submit" class="btn btn-primary" id="updateButton"
                                             onclick="activateLoadingButton('#updateButton')"><span
                                                 class="indicator-label">
                                                 Update

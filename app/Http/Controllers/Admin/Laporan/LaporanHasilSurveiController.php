@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin\Laporan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Laporan\LaporanBanner;
+use App\Models\Laporan\LaporanHasilSurvei;
+use Illuminate\Support\Facades\File;
+use Session;
 
 class LaporanHasilSurveiController extends Controller
 {
@@ -15,6 +19,12 @@ class LaporanHasilSurveiController extends Controller
     public function index()
     {
         //
+        $laporanBanner = new LaporanBanner();
+        $laporanBanner = $laporanBanner->first();
+
+        $laporanHasilSurvei = new LaporanHasilSurvei();
+        $laporanHasilSurvei = $laporanHasilSurvei::all();
+        return view('admin.laporan.laporan_hasil_survei', compact('laporanBanner', 'laporanHasilSurvei'));
     }
 
     /**
@@ -36,6 +46,42 @@ class LaporanHasilSurveiController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            'judulLaporan' => 'required',
+            'file' => 'required|mimes:pdf|max:5120',
+            'laporanImage' => 'max:5120'
+        ]);
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        if ($validated) {
+            $laporanHasilSurvei = new LaporanHasilSurvei();
+            $laporanHasilSurvei->judul_laporan = $request->judulLaporan;
+            if (count($request->files) > 0) {
+                $files = $request->files;
+                $upload_path = 'adminAssets/laporan/laporan_hasil_survei';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        $laporanHasilSurvei->file_path = 'adminAssets/laporan/laporan_hasil_survei/' . $request->file($fileName)->getClientOriginalName();
+                    }
+                    if ($fileName == 'laporanImage') {
+                        $laporanHasilSurvei->thumbnail_path = 'adminAssets/laporan/laporan_hasil_survei/' . $request->file($fileName)->getClientOriginalName();
+                    }
+
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                }
+            }
+
+
+
+            $laporanHasilSurvei->save();
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Laporan Hasil Survei');
+        }
     }
 
     /**
@@ -70,6 +116,47 @@ class LaporanHasilSurveiController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate([
+            'judulLaporan' => 'required',
+            'file' => 'required|mimes:pdf'
+
+        ]);
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        if ($validated) {
+
+            $laporanHasilSurvei = new laporanHasilSurvei();
+            $laporanHasilSurvei = $laporanHasilSurvei->where('id', $id)->first();
+            $laporanHasilSurvei->judul_laporan = $request->judulLaporan;
+            if (count($request->files) > 0) {
+
+
+                $files = $request->files;
+                $upload_path = 'adminAssets/laporan/laporan_hasil_survei';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        File::delete($laporanHasilSurvei->file_path);
+                        $laporanHasilSurvei->file_path = 'adminAssets/laporan/laporan_hasil_survei/' . $request->file($fileName)->getClientOriginalName();
+                    }
+                    if ($fileName == 'laporanImage') {
+                        File::delete($laporanHasilSurvei->thumbnail_path);
+                        $laporanHasilSurvei->thumbnail_path = 'adminAssets/laporan/laporan_hasil_survei/' . $request->file($fileName)->getClientOriginalName();
+                    }
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                }
+            }
+
+
+
+
+            $laporanHasilSurvei->save();
+
+            return redirect()->back()->with('success', 'Berhasil mengubah Laporan HasilSurvei');
+        }
     }
 
     /**
@@ -81,5 +168,11 @@ class LaporanHasilSurveiController extends Controller
     public function destroy($id)
     {
         //
+        $laporanHasilSurvei = new LaporanHasilSurvei();
+        File::delete($laporanHasilSurvei->where('id', $id)->first()->file_path);
+        File::delete($laporanHasilSurvei->where('id', $id)->first()->thumbnail_path);
+        $laporanHasilSurvei = $laporanHasilSurvei->where('id', $id)->delete();
+
+        Session::flash('success', "Berhasil menghapus Laporan Hasil Survei");
     }
 }
