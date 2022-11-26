@@ -525,87 +525,103 @@
             <!--end::Modal - Edit Slider-->
 
             <br>
-            @push('child-scripts')
-                <script>
-                    $("#kt_datatable_column_rendering").DataTable({
-                        "language": {
-                            "lengthMenu": "Show _MENU_",
-                        },
-                        "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
+            <x-slot:isShowAccordion_manajemenHome>
+                show
+                </x-slot>
+                <x-slot:isActiveLink_manajemenHome>
+                    active
+                    </x-slot>
+                    <x-slot:isActiveLink_slider>
+                        active
+                        </x-slot>
+                        <x-slot:subMenuTitle>
+                            Slider
+                            </x-slot>
 
-                    function deleteDialog(index) {
+                            <x-slot:mainMenuTitle>
+                                Manajemen Home
+                                </x-slot>
+                                @push('child-scripts')
+                                    <script>
+                                        $("#kt_datatable_column_rendering").DataTable({
+                                            "language": {
+                                                "lengthMenu": "Show _MENU_",
+                                            },
+                                            "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                                                "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                                                "<'row'" +
+                                                "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                                                "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                                                ">"
+                                        });
 
-                        let slider = {{ Js::from($slider) }}
+                                        function deleteDialog(index) {
 
-                        slider = slider[index]
+                                            let slider = {{ Js::from($slider) }}
 
-                        Swal.fire({
-                            html: `Apakah yakin akan <strong>menghapus</strong> slider <span class="badge badge-primary"> ${slider.judul}</span> ?`,
-                            icon: "error",
-                            buttonsStyling: false,
-                            showCancelButton: true,
-                            reverseButtons: true,
-                            cancelButtonText: 'Batal',
-                            confirmButtonText: "Iya",
-                            customClass: {
-                                cancelButton: 'btn btn-danger',
-                                confirmButton: "btn btn-primary",
-                            }
-                        }).then((result) => {
-                            if (result.isConfirmed) {
+                                            slider = slider[index]
 
-                                console.log('delete confirmed')
-                                $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/slider/" + slider.id,
-                                    cache: false,
-                                    success: function(html) {
-                                        Swal.fire({
+                                            Swal.fire({
+                                                html: `Apakah yakin akan <strong>menghapus</strong> slider <span class="badge badge-primary"> ${slider.judul}</span> ?`,
+                                                icon: "error",
+                                                buttonsStyling: false,
+                                                showCancelButton: true,
+                                                reverseButtons: true,
+                                                cancelButtonText: 'Batal',
+                                                confirmButtonText: "Iya",
+                                                customClass: {
+                                                    cancelButton: 'btn btn-danger',
+                                                    confirmButton: "btn btn-primary",
+                                                }
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
 
-                                            icon: 'success',
-                                            title: 'Berhasil menghapus Slider',
-                                            showConfirmButton: false,
-                                            timer: 500
-                                        }).then(() => {
-                                            window.location.reload();
-                                        })
+                                                    console.log('delete confirmed')
+                                                    $.ajax({
+                                                        type: "DELETE",
+                                                        url: "/admin/slider/" + slider.id,
+                                                        cache: false,
+                                                        success: function(html) {
+                                                            Swal.fire({
 
-
-                                    }
-                                });
-
-                                // window.location = '/visimisi'
-                            } else {
-                                console.log('delete canceled')
-                            }
-                        });
-
-                        // Swal.fire({
-                        //     template: '#my-template'
-                        // })
-                    };
-
-                    function editDialog(index) {
-
-                        let sliderRow = {{ Js::from($slider) }}
-                        sliderRow = sliderRow[index]
-                        console.log(document.getElementById('editImage'))
-                        document.getElementById('editJudul').value = sliderRow.judul
-                        // document.getElementById('editFile').value = sliderRow.file_path
-                        document.getElementById('editDeskripsi').value = sliderRow.deskripsi
-                        document.getElementById('editUrutan').value = sliderRow.urutan
+                                                                icon: 'success',
+                                                                title: 'Berhasil menghapus Slider',
+                                                                showConfirmButton: false,
+                                                                timer: 500
+                                                            }).then(() => {
+                                                                window.location.reload();
+                                                            })
 
 
-                        document.getElementById('editForm').setAttribute('action', 'slider/' +
-                            sliderRow.id)
-                    };
-                </script>
-            @endpush
+                                                        }
+                                                    });
+
+                                                    // window.location = '/visimisi'
+                                                } else {
+                                                    console.log('delete canceled')
+                                                }
+                                            });
+
+                                            // Swal.fire({
+                                            //     template: '#my-template'
+                                            // })
+                                        };
+
+                                        function editDialog(index) {
+
+                                            let sliderRow = {{ Js::from($slider) }}
+                                            sliderRow = sliderRow[index]
+                                            console.log(document.getElementById('editImage'))
+                                            document.getElementById('editJudul').value = sliderRow.judul
+                                            // document.getElementById('editFile').value = sliderRow.file_path
+                                            document.getElementById('editDeskripsi').value = sliderRow.deskripsi
+                                            document.getElementById('editUrutan').value = sliderRow.urutan
+
+
+                                            document.getElementById('editForm').setAttribute('action', 'slider/' +
+                                                sliderRow.id)
+                                        };
+                                    </script>
+                                @endpush
 
 </x-admin.layout>

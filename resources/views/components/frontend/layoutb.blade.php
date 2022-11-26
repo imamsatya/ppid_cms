@@ -3,85 +3,29 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>PPID KBUMN</title>
-
-    <!-- Favicon -->
-    <link href="assets/images/content/logo/favicon.ico" rel="icon" />
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link href="{{ asset('ppid_fe/assets/css/navbar/index.css') }}" rel="stylesheet" />
-    <link href="{{ asset('ppid_fe/assets/css/navbar/animate.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('ppid_fe/assets/css/footer/index.css') }}" rel="stylesheet" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
-    <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-
-    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        .bwstyle {
-            -moz-filter: grayscale(100%);
-            -webkit-filter: grayscale(100%);
-            filter: gray;
-            /* IE6-9 */
-            filter: grayscale(100%);
-        }
-
-        .posfix {
-            position: fixed !important;
-        }
-
-        .zoomed {
-            zoom: 0.9;
-            /*transform: scale(0.9);*/
-            /*-moz-transform: scale(0.9);*/
-            /*-moz-transform-origin: 0 0;*/
-        }
-
-        .delay-1 {
-            animation-delay: .25s;
-        }
-
-        .delay-2 {
-            animation-delay: .5s;
-        }
-
-        .delay-3 {
-            animation-delay: .75s;
-        }
-
-        .delay-4 {
-            animation-delay: 1s;
-        }
-    </style>
-    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        .bwstyle {
-            -moz-filter: grayscale(100%);
-            -webkit-filter: grayscale(100%);
-            filter: gray;
-            /* IE6-9 */
-            filter: grayscale(100%);
-        }
-
-        .posfix {
-            position: fixed;
-        }
-    </style>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+    </style>
+
     @stack('head-scripts')
+
 </head>
 
-<body class="zoomed">
+<body class="{{ Route::current()->getName() == 'index' ? 'zoomed' : '' }} magnify" id="bwStyle">
+
     <!-- navbar -->
     <section>
-        <header id="headerNav" class="blackw ">
+        <header id="headerNav">
             <a href="{{ route('index') }}" class="logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid.png') }}" alt="" />
             </a>
@@ -186,13 +130,12 @@
     </section>
     <!-- navbar -->
 
-    <!-- Banner -->
     @if (substr(URL::current(), -5) != 'login' &&
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register')
         <!-- Banner -->
-        <section class="banner blackw magnif">
+        <section class="banner">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -208,34 +151,9 @@
         </section>
         <!-- Banner -->
     @endif
-    <!-- Carousel Start -->
-
-    <!-- Carousel End -->
-    <!-- <section class="carousel_slider blackw">
-      <div
-        id="carouselExampleCaptions"
-        class="carousel slide"
-        data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="./assets/images/content/content-image/content_banner_1.png"
-              class="d-block w-100"
-              alt="..." />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./assets/images/content/content-image/content_banner_2.png"
-              class="d-block w-100"
-              alt="..." />
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- Banner -->
 
     <!-- Content -->
-    <div class="blackw magnif">
+    <div class="blackw">
         {{ $slot }}
     </div>
     <!-- Content -->
@@ -259,7 +177,6 @@
         </div>
         <!-- Button Back -->
     @endif
-
 
     <!-- Footer -->
     <footer class="footer blackw">
@@ -342,151 +259,14 @@
         </div>
     </footer>
     <!-- Footer -->
-    <div id="cont" class="posfix"></div>
 
     <!-- script bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <!-- <script src="assets/js/homepage/wow.min.js"></script> -->
 
     <!--  -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous">
-    </script> -->
-
-    <script src="{{ asset('ppid_fe/assets/float/fab.js') }}"></script>
-    <!-- <img src="assets/images/content/icon/difable.png" width="75%"> -->
-    <script type="text/javascript">
-        var fab = new Fab({
-            selector: "#cont",
-            button: {
-                style: "large teal",
-                html: "",
-            },
-            icon: {
-                style: `{{ URL::asset('ppid_fe/assets/images/content/icon/difable.png') }}  " width="75%`,
-                html: "",
-            },
-            // "top-left" || "top-right" || "bottom-left" || "bottom-right"
-            position: "bottom-left",
-            // "horizontal" || "vertical"
-            direction: "vertical",
-            buttons: [{
-                    button: {
-                        style: "small blue",
-                        html: "",
-                    },
-                    icon: {
-                        style: `{{ URL::asset('ppid_fe/assets/images/content/icon/mag-zin.png') }} " width="55%'`,
-                        html: "",
-                    },
-                    link: {
-                        style: "increaseFont",
-                        html: "",
-                    },
-                    valuenya: {
-                        style: "increase",
-                        html: "",
-                    },
-                    onClick: function() {
-                        console.log("fire");
-                    },
-                },
-                {
-                    button: {
-                        style: "small blue",
-                        html: "",
-                    },
-                    icon: {
-                        style: `{{ URL::asset('ppid_fe/assets/images/content/icon/mag-zout.png') }}" width="55%`,
-                        html: "",
-                    },
-                    link: {
-                        style: "decreaseFont",
-                        html: "",
-                    },
-                    valuenya: {
-                        style: "decrease",
-                        html: "",
-                    },
-                    onClick: function() {
-                        console.log("ice");
-                    },
-                },
-                {
-                    button: {
-                        style: "small blue",
-                        html: "",
-                    },
-                    icon: {
-                        style: `{{ URL::asset('ppid_fe/assets/images/content/icon/eye.png') }}" width="75%'`,
-                        html: "",
-                    },
-                    link: {
-                        style: "",
-                        html: "",
-                    },
-                    valuenya: {
-                        style: "eye",
-                        html: "",
-                    },
-
-                    onClick: function() {
-                        var element = document.getElementsByClassName("blackw");
-                        console.log(element);
-
-                        for (let elm of element) {
-                            console.log(elm);
-                            if (elm.classList.contains("bwstyle"))
-                                elm.classList.remove("bwstyle");
-                            else elm.classList.add("bwstyle");
-                        }
-
-                        console.log(document.getElementsByClassName("blackw").classList);
-                    },
-                },
-                // {
-                //   button: {
-                //     style: "small green",
-                //     html: ""
-                //   },
-                //   icon:{
-                //     style: "chart pie icon",
-                //     html: ""
-                //   },
-                //   onClick: function(){
-                //     console.log("ice");
-                //   }
-                // }
-            ],
-            onOpen: function() {},
-            onClose: function() {},
-        });
-    </script>
-    <script type="text/javascript">
-        var currSize = 1.00;
-        $(document).ready(function() {
-            $(".increaseFont,.decreaseFont").click(function() {
-                var type = $(this).val();
-                // var curFontSize = $("#magnif").css("zoom");
-                var curFontSize = $(".magnif").css("transform");
-
-                if (type == "increase") {
-                    // $("#magnif").css("zoom", parseFloat(curFontSize) + 0.01);
-                    currSize += 0.01;
-
-                } else {
-                    // $("#magnif").css("zoom", parseFloat(curFontSize) - 0.01);
-                    currSize -= 0.01;
-                }
-                $(".magnif").css("transform", 'scale(' + currSize + ')');
-
-                // alert($('.magnify').css('font-size'));
-            });
-        });
-    </script>
     <script>
         $(".slider").owlCarousel({
             loop: true,
@@ -506,32 +286,6 @@
             navText: [
                 "<div class='nav-button owl-prev'><i class='fa fa-chevron-left'/></div>",
                 "<div class='nav-button owl-next'><i class='fa fa-chevron-right'/></div>",
-            ],
-            autoplayTimeout: 5000, //2000ms = 2s;
-            autoplayHoverPause: true,
-            // <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        });
-    </script>
-    <script>
-        $(".header-carousel").owlCarousel({
-            loop: true,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                600: {
-                    items: 2,
-                },
-                1000: {
-                    items: 1,
-                },
-            },
-            nav: true,
-
-            navText: [
-                "<div class='nav-button owl-prev-custom'><img src='./assets/images/content/content-image/down-arrow.png'></div>",
-                "<div class='nav-button owl-next-custom'><img src='./assets/images/content/content-image/up-arrow.png'></div>",
             ],
             autoplayTimeout: 5000, //2000ms = 2s;
             autoplayHoverPause: true,
@@ -618,9 +372,18 @@
 
         const myChart = new Chart(document.getElementById("myChart"), config);
     </script>
+
+    <script>
+        let url = window.location.href;
+        let result = url.indexOf("profile");
+        let element = document.getElementById("titleNavProfile");
+        if (result > 0) {
+            element.classList.add("active");
+        }
+    </script>
+    @stack('child-scripts')
     <!-- Banner script -->
     <!-- Banner script  -->
-    @stack('child-scripts')
 </body>
 
 </html>
