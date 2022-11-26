@@ -8,6 +8,7 @@ use App\Models\Profil\StrukturOrganisasi;
 use App\Models\Profil\KontakDokumentasiRuang;
 use App\Models\Profil\StrukturOrganisasiBaganKiri;
 use App\Models\Profil\StrukturOrganisasiBaganKanan;
+use Session;
 
 class StrukturOrganisasiController extends Controller
 {

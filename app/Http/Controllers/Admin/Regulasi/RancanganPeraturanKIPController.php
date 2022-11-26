@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Regulasi\RegulasiBanner;
 use App\Models\Regulasi\RancanganPeraturanKIP;
+use Illuminate\Support\Facades\File;
+use Session;
 
 class RancanganPeraturanKIPController extends Controller
 {

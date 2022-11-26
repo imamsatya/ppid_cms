@@ -27,9 +27,9 @@
                     <!--end::Icon-->
 
                     <!--begin::Wrapper-->
-                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                         <!--begin::Title-->
-                        <h4 class="mb-2 light">Error !</h4>
+                        <h4 class="mb-2 text-white">Error !</h4>
                         <!--end::Title-->
 
                         <!--begin::Content-->
@@ -178,8 +178,8 @@
                         </div>
                         <p>minimal dimensi 369x454 pixel</p>
                         <br> @can('laporan triwulanan pip.create')
-                            <button type="submit" class="btn btn-primary" id="addButton"
-                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                            <button type="submit" class="btn btn-primary" id="addBannerButton"
+                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
                                     Simpan
                                 </span>
                                 <span class="indicator-progress">
@@ -395,7 +395,7 @@
                                     @can('laporan triwulanan pip.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                                Tambah
+                                                Simpan
                                             </span>
                                             <span class="indicator-progress">
                                                 Mohon Menunggu... <span
@@ -424,7 +424,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Edit laporan triwulanan pip</h2>
+                            <h2>Edit Laporan Triwulanan PIP</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -624,7 +624,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/peraturan_kip/" + laporanTriwulanan.id,
+                                    url: "/admin/laporan_triwulanan/" + laporanTriwulanan.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -658,11 +658,11 @@
                         laporanTriwulanan = laporanTriwulanan[index]
                         document.getElementById('editjudulLaporan').value = laporanTriwulanan.judul_laporan
                         // document.getElementById('editFile').value = laporanTriwulanan.file_path
-                        console.log(document.getElementById('editFile'))
-                        document.getElementById('editthumbnail').value = laporanTriwulanan.thumbnail
+                        // console.log(document.getElementById('editFile'))
+                        // document.getElementById('editthumbnail').value = laporanTriwulanan.thumbnail
 
 
-                        document.getElementById('editForm').setAttribute('action', 'peraturan_kip/' +
+                        document.getElementById('editForm').setAttribute('action', 'laporan_triwulanan/' +
                             laporanTriwulanan.id)
                     };
                 </script>

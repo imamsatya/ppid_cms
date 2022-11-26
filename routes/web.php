@@ -34,6 +34,10 @@ use App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController;
 use App\Http\Controllers\Admin\StandarLayanan\BiayaLayananController;
 use App\Http\Controllers\Admin\StandarLayanan\MaklumatController;
 
+//FAQ
+use App\Http\Controllers\Admin\FAQ\FaqController;
+use App\Http\Controllers\Admin\FAQ\FaqBannerController;
+
 //Manajemen User
 use App\Http\Controllers\Admin\ManajemenUser\RolePermissionController;
 use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
@@ -73,6 +77,8 @@ use App\Http\Controllers\Frontend\LayananPPID\DataPermohonanController as DataPe
 use App\Http\Controllers\Frontend\StandarLayanan\MaklumatController as MaklumatControllerUser;
 use App\Http\Controllers\Frontend\StandarLayanan\ProsedurLayananController as ProsedurLayananControllerUser;
 use App\Http\Controllers\Frontend\StandarLayanan\BiayaLayananController as BiayaLayananControllerUser;
+
+
 
 
 
@@ -189,13 +195,15 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('laporan_hasil_survei', LaporanHasilSurveiController::class);
     Route::resource('laporan_banner', LaporanBannerController::class);
 
-
-
     //Standar Layanan
     Route::resource('maklumat', MaklumatController::class);
     Route::resource('prosedurlayanan', ProsedurLayananController::class);
     Route::post('/prosedurlayanan/banner', [ProsedurLayananController::class, 'bannerStore'])->name('prosedurlayanan.banner.store');
     Route::resource('biayalayanan', BiayaLayananController::class);
+
+    //FAQ
+    Route::resource('faq', FaqController::class);
+    Route::resource('faq_banner', FaqBannerController::class);
 
     //Layanan PPID, kurang 1 route
     Route::resource('data_permohonan', DataPermohonanController::class);

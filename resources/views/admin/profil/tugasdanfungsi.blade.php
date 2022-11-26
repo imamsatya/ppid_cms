@@ -100,6 +100,18 @@
                     }
 
                     tinymce.init(options);
+
+                    function activateLoadingButton(idButton) {
+                        console.log('active')
+                        let button = document.querySelector(`${idButton}`);
+                        button.setAttribute("data-kt-indicator", "on");
+                        // Handle button click event
+
+                        // // Disable indicator after 3 seconds
+                        // setTimeout(function() {
+                        //     button.removeAttribute("data-kt-indicator");
+                        // }, 3000);
+                    }
                 </script>
             @endpush
             @if ($errors->any())
@@ -408,10 +420,13 @@
 
                 <br>
                 @can('tugas dan fungsi ppid.create')
-                    <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
-                        <span class="indicator-label">Simpan</span>
-                        <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    <button type="submit" class="btn btn-primary" id="addButton"
+                        onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                            Simpan
+                        </span>
+                        <span class="indicator-progress">
+                            Mohon Menunggu... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
                     </button>
                 @endcan
             </form>

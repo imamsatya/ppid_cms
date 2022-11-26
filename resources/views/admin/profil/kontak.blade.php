@@ -139,6 +139,18 @@
                         //     template: '#my-template'
                         // })
                     };
+
+                    function activateLoadingButton(idButton) {
+                        console.log('active')
+                        let button = document.querySelector(`${idButton}`);
+                        button.setAttribute("data-kt-indicator", "on");
+                        // Handle button click event
+
+                        // // Disable indicator after 3 seconds
+                        // setTimeout(function() {
+                        //     button.removeAttribute("data-kt-indicator");
+                        // }, 3000);
+                    }
                 </script>
             @endpush
             @if ($errors->any())
@@ -162,9 +174,9 @@
                     <!--end::Icon-->
 
                     <!--begin::Wrapper-->
-                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                         <!--begin::Title-->
-                        <h4 class="mb-2 light">Error !</h4>
+                        <h4 class="mb-2 text-white">Error !</h4>
                         <!--end::Title-->
 
                         <!--begin::Content-->
@@ -551,10 +563,14 @@
                         <div class="card-footer d-flex justify-content-start py-6 px-9">
                             {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
                             @can('kontak.create')
-                                <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
-                                    <span class="indicator-label">Simpan</span>
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                <button type="submit" class="btn btn-primary" id="addKontakButton"
+                                    onclick="activateLoadingButton('#addKontakButton')"><span class="indicator-label">
+                                        Simpan
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Mohon Menunggu... <span
+                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
                                 </button>
                             @endcan
                         </div>
@@ -746,9 +762,10 @@
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
                                     @can('kontak.create')
-                                        <button type="submit" class="btn btn-primary" id="addButton"
-                                            onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                                Tambah
+                                        <button type="submit" class="btn btn-primary" id="addDokumentasiButton"
+                                            onclick="activateLoadingButton('#addDokumentasiButton')"><span
+                                                class="indicator-label">
+                                                Simpan
                                             </span>
                                             <span class="indicator-progress">
                                                 Mohon Menunggu... <span

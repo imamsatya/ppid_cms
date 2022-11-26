@@ -27,9 +27,9 @@
                     <!--end::Icon-->
 
                     <!--begin::Wrapper-->
-                    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                    <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                         <!--begin::Title-->
-                        <h4 class="mb-2 light">Error !</h4>
+                        <h4 class="mb-2 text-white">Error !</h4>
                         <!--end::Title-->
 
                         <!--begin::Content-->
@@ -178,8 +178,8 @@
                         </div>
                         <p>minimal dimensi 369x454 pixel</p>
                         <br> @can('peraturan kip.create')
-                            <button type="submit" class="btn btn-primary" id="addButton"
-                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                            <button type="submit" class="btn btn-primary" id="addBannerButton"
+                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
                                     Simpan
                                 </span>
                                 <span class="indicator-progress">
@@ -418,7 +418,7 @@
                                     @can('rancangan peraturan kip.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                                Tambah
+                                                Simpan
                                             </span>
                                             <span class="indicator-progress">
                                                 Mohon Menunggu... <span
