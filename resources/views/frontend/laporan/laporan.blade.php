@@ -45,66 +45,39 @@
                         <div class="tab-pane fade show active" id="pills-triwulan" role="tabpanel"
                             aria-labelledby="pills-triwulan-tab">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
+                                @if ($laporanTriwulanan)
+                                    @foreach ($laporanTriwulanan as $laporanTriwulanan_row)
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card card-informasi w-100">
+                                                @if ($laporanTriwulanan_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset($laporanTriwulanan_row->thumbnail_path) }}"
+                                                        alt="Card image cap" />
+                                                @else
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
+                                                        alt="Card image cap" />
+                                                @endif
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                        {{ $laporanTriwulanan_row->judul_laporan }}
+                                                    </p>
 
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="{{ asset($laporanTriwulanan_row->file_path) }}"
+                                                            download class="unduh ml-auto">
+                                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
+                                                                class="img-fluid" alt="" />
+                                                            <span>Unduh / View</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
+                                    @endforeach
+                                @endif
 
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
 
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
@@ -138,26 +111,38 @@
                         <div class="tab-pane fade" id="pills-tahunan" role="tabpanel"
                             aria-labelledby="pills-tahunan-tab">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
+                                @if ($laporanTahunan)
+                                    @foreach ($laporanTahunan as $laporanTahunan_row)
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card card-informasi w-100">
+                                                @if ($laporanTahunan_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset($laporanTahunan_row->thumbnail_path) }}"
+                                                        alt="Card image cap" />
+                                                @else
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
+                                                        alt="Card image cap" />
+                                                @endif
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                        {{ $laporanTahunan_row->judul_laporan }}
+                                                    </p>
 
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="{{ asset($laporanTahunan_row->file_path) }}" download
+                                                            class="unduh ml-auto">
+                                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
+                                                                class="img-fluid" alt="" />
+                                                            <span>Unduh / View</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endif
+
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
@@ -191,26 +176,37 @@
                         <div class="tab-pane fade" id="pills-survey" role="tabpanel"
                             aria-labelledby="pills-survey-tab">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
+                                @if ($laporanHasilSurvei)
+                                    @foreach ($laporanHasilSurvei as $laporanHasilSurvei_row)
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card card-informasi w-100">
+                                                @if ($laporanHasilSurvei_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset($laporanHasilSurvei_row->thumbnail_path) }}"
+                                                        alt="Card image cap" />
+                                                @else
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_laporan.png') }}"
+                                                        alt="Card image cap" />
+                                                @endif
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                        {{ $laporanHasilSurvei_row->judul_laporan }}
+                                                    </p>
 
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
+                                                    <div class="d-flex align-items-center">
+                                                        <a href="{{ asset($laporanHasilSurvei_row->file_path) }}"
+                                                            download class="unduh ml-auto">
+                                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
+                                                                class="img-fluid" alt="" />
+                                                            <span>Unduh / View</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
@@ -259,4 +255,17 @@
             <x-slot:isActiveLaporan>
                 active
                 </x-slot>
+                @push('child-scripts')
+                    <style>
+                        .banner .data_banner {
+                            padding-bottom: 80px;
+                            margin-top: 80px;
+                            background-image: url({{ asset($laporanBanner->banner_path) }});
+                            background-repeat: no-repeat;
+                            background-size: 100% 300px;
+                            height: 300px;
+                            padding: 100px 100px 100px 100px;
+                        }
+                    </style>
+                @endpush
 </x-frontend.layout>

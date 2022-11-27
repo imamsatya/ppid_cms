@@ -422,6 +422,58 @@
                 filter: drop-shadow(11px 14px 10px #EFEFEF);
                 transition: all .8s ease-in-out;
             }
+
+            @media (min-width: 320px) and (max-width: 880px) {
+                /* Styles here */
+
+                .publik .informasi_publik {
+                    background-image: none;
+                }
+
+                .informasi_publik .content_publik img {
+                    max-width: none;
+                    max-height: none;
+                    width: 62%;
+                    height: auto;
+                    margin: auto;
+                    margin-top: 42px;
+                }
+
+                .informasi_publik .content_publik .informasi_content {
+                    margin: 19px 0px 0px 70px;
+                }
+
+                .publik .informasi_publik .box_publik {
+                    width: 100%;
+                    height: 351px;
+                    z-index: 1;
+                    filter: drop-shadow(11px 14px 10px #EFEFEF);
+                    transition: all .8s ease-in-out;
+                    background: radial-gradient(ellipse at center, rgba(101, 193, 230, 1) 0%, rgba(101, 193, 230, 1) 2%, rgba(173, 233, 250, 1) 28%, rgba(255, 255, 255, 1) 58%, rgba(255, 255, 255, 1) 100%);
+                    background: -moz-radial-gradient(center, ellipse cover, rgba(101, 193, 230, 1) 0%, rgba(101, 193, 230, 1) 2%, rgba(173, 233, 250, 1) 28%, rgba(255, 255, 255, 1) 58%, rgba(255, 255, 255, 1) 100%);
+                }
+
+                .publik .container {
+                    height: 1138px;
+                }
+
+                .carousel_custom .card {
+                    box-shadow: 10px 2px 25px rgb(0 0 0 / 5%);
+                    border-radius: 12px;
+                    border: 0;
+                    height: 355px;
+                    width: auto;
+                }
+
+                .col-md-7 .pers {
+                    margin-top: 61px;
+                }
+
+                .galeri_video {
+
+                    height: 894px;
+                }
+            }
         </style>
     @endpush
 
