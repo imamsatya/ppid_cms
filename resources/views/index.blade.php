@@ -283,7 +283,7 @@
                         items: 2,
                     },
                     1000: {
-                        items: 1,
+                        items: 2,
                     },
                 },
                 nav: true,
