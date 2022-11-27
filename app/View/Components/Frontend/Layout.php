@@ -2,6 +2,8 @@
 
 namespace App\View\Components\Frontend;
 
+use App\Models\ManajemenHome\LinkApp;
+use App\Models\ManajemenHome\SosialMedia;
 use Illuminate\View\Component;
 
 class Layout extends Component
@@ -23,6 +25,11 @@ class Layout extends Component
      */
     public function render()
     {
-        return view('components.frontend.layout');
+        $sosialMedia = new SosialMedia();
+        $sosialMedia = $sosialMedia::all();
+
+        $linkApp = new LinkApp();
+        $linkApp = $linkApp::all();
+        return view('components.frontend.layout', compact('sosialMedia', 'linkApp'));
     }
 }

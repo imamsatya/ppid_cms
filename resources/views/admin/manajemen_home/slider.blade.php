@@ -555,6 +555,18 @@
                                                 ">"
                                         });
 
+                                        function activateLoadingButton(idButton) {
+                                            console.log('active')
+                                            let button = document.querySelector(`${idButton}`);
+                                            button.setAttribute("data-kt-indicator", "on");
+                                            // Handle button click event
+
+                                            // // Disable indicator after 3 seconds
+                                            // setTimeout(function() {
+                                            //     button.removeAttribute("data-kt-indicator");
+                                            // }, 3000);
+                                        }
+
                                         function deleteDialog(index) {
 
                                             let slider = {{ Js::from($slider) }}

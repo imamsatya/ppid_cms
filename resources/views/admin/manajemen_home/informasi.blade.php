@@ -689,6 +689,17 @@
                                 </x-slot>
                                 @push('child-scripts')
                                     <script>
+                                        function activateLoadingButton(idButton) {
+                                            console.log('active')
+                                            let button = document.querySelector(`${idButton}`);
+                                            button.setAttribute("data-kt-indicator", "on");
+                                            // Handle button click event
+
+                                            // // Disable indicator after 3 seconds
+                                            // setTimeout(function() {
+                                            //     button.removeAttribute("data-kt-indicator");
+                                            // }, 3000);
+                                        }
                                         $("#kt_datatable_column_rendering").DataTable({
                                             "language": {
                                                 "lengthMenu": "Show _MENU_",

@@ -46,6 +46,7 @@ use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
 use App\Http\Controllers\Admin\ManajemenHome\SliderController;
 use App\Http\Controllers\Admin\ManajemenHome\InformasiController;
 use App\Http\Controllers\Admin\ManajemenHome\VideoController;
+use App\Http\Controllers\Admin\ManajemenHome\FooterController;
 
 //Manajemen Menu
 use App\Http\Controllers\Admin\ManajemenMenu\MenuController;
@@ -224,7 +225,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('informasi', InformasiController::class);
     Route::post('/informasi/image', [InformasiController::class, 'imageStore'])->name('informasi.image.store');
     Route::resource('video', VideoController::class);
+    Route::resource('footer', FooterController::class);
+    Route::post('/footer/sosialmedia', [FooterController::class, 'sosialmediaStore'])->name('footer.sosialmedia.store');
+    Route::patch('/footer/sosialmedia/{id}', [FooterController::class, 'sosialmediaUpdate'])->name('footer.sosialmedia.update');
+    Route::delete('/footer/sosialmedia/delete/{id}', [FooterController::class, 'sosialmediaDestroy'])->name('footer.sosialmedia.delete');
 
+    Route::post('/footer/linkapp', [FooterController::class, 'linkAppStore'])->name('footer.linkapp.store');
+    Route::patch('/footer/linkapp/{id}', [FooterController::class, 'linkAppUpdate'])->name('footer.linkapp.update');
+    Route::delete('/footer/linkapp/delete/{id}', [FooterController::class, 'linkAppDestroy'])->name('footer.linkapp.delete');
     //Manajemen Menu
     Route::resource('manajemen_menu', MenuController::class);
 });

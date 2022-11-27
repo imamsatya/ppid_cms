@@ -248,7 +248,7 @@
         <div class="container mt-4 mb-4">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="#">
+                    <a href="{{ route('index') }}">
                         <button class="btn btn-back">
                             <i class="fa fa-chevron-left" aria-hidden="true"></i>
                         </button>
@@ -285,6 +285,9 @@
                                     <li>Email : ppid@bumn.go.id</li>
                                     <li>
                                         <div class="d-flex align-items-center">
+                                            @foreach ($sosialMedia as $sosialMedia_row)
+                                                <i class="{{ $sosialMedia_row->icon }}" aria-hidden="true"></i>
+                                            @endforeach
                                             <div class="icon_social youtube">
                                                 <i class="fa fa-youtube-play" aria-hidden="true"></i>
                                             </div>
@@ -307,7 +310,15 @@
                             <div class="detail_footer">
                                 <ul>
                                     <li>Unduh Aplikasi Mobile melalui :</li>
-                                    <li>
+                                    @foreach ($linkApp as $linkApp_row)
+                                        <li>
+                                            <a href="{{ $linkApp_row->url }}"
+                                                title="Image from freepnglogos.com"><img
+                                                    src="{{ $linkApp_row->icon }}" width="200"
+                                                    alt="play store logo black background hd picture" /></a>
+                                        </li>
+                                    @endforeach
+                                    {{-- <li>
                                         <a href="https://www.freepnglogos.com/pics/play-store-logo"
                                             title="Image from freepnglogos.com"><img
                                                 src="https://www.freepnglogos.com/uploads/play-store-logo-png/play-store-logo-nisi-filters-australia-11.png"
@@ -319,7 +330,7 @@
                                             title="Image from freepnglogos.com"><img
                                                 src="https://www.pngmart.com/files/10/Download-On-The-App-Store-PNG-Clipart.png"
                                                 width="200" alt="available the app store badge vector" /></a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
