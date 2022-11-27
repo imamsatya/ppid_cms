@@ -78,6 +78,12 @@ use App\Http\Controllers\Frontend\StandarLayanan\MaklumatController as MaklumatC
 use App\Http\Controllers\Frontend\StandarLayanan\ProsedurLayananController as ProsedurLayananControllerUser;
 use App\Http\Controllers\Frontend\StandarLayanan\BiayaLayananController as BiayaLayananControllerUser;
 
+//Laporan
+use App\Http\Controllers\Frontend\Laporan\LaporanController as LaporanControllerUser;
+
+//Faq
+use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
+
 
 
 
@@ -126,7 +132,6 @@ Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaControllerUser
 
 
 //Standar Layanan
-
 Route::resource('maklumat', MaklumatControllerUser::class);
 
 // Route::get('/standarlayananprosedur', function () {
@@ -139,14 +144,18 @@ Route::resource('prosedurlayanan', ProsedurLayananControllerUser::class);
 //     return view('frontend.standarlayanan.standart-biaya-layanan');
 // })->name('standarlayananbiaya.index');
 Route::resource('standarlayananbiaya', BiayaLayananControllerUser::class);
-//Laporan
-Route::get('/laporan', function () {
-    return view('frontend.laporan.laporan');
-})->name('laporan.index');
 
-Route::get('/faq', function () {
-    return view('frontend.faq.faq');
-})->name('faq.index');
+//Laporan
+// Route::get('/laporan', function () {
+//     return view('frontend.laporan.laporan');
+// })->name('laporan.index');
+Route::resource('laporan', LaporanControllerUser::class);
+
+
+// Route::get('/faq', function () {
+//     return view('frontend.faq.faq');
+// })->name('faq.index');
+Route::resource('faq', FaqControllerUser::class);
 
 Route::get('/dashboard', function () {
     return view('frontend.dashboard.dashboard');
