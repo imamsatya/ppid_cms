@@ -83,21 +83,21 @@ return new class extends Migration
         });
 
 
-        //Sosial Media
-        Schema::create('sosialmedias', function (Blueprint $table) {
-            $table->id();
-            $table->string('icon');
-            $table->string('url');
-            $table->integer('urutan');
-            $table->timestamps();
-        });
+        // //Sosial Media
+        // Schema::create('sosialmedias', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('icon');
+        //     $table->string('url');
+        //     $table->integer('urutan');
+        //     $table->timestamps();
+        // });
 
-        Schema::create('sosialmedias_linkapps', function (Blueprint $table) {
-            $table->id();
-            $table->string('icon');
-            $table->string('url');
-            $table->timestamps();
-        });
+        // Schema::create('sosialmedias_linkapps', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('icon');
+        //     $table->string('url');
+        //     $table->timestamps();
+        // });
     }
 
     /**

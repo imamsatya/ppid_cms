@@ -453,26 +453,7 @@
                     background: -moz-radial-gradient(center, ellipse cover, rgba(101, 193, 230, 1) 0%, rgba(101, 193, 230, 1) 2%, rgba(173, 233, 250, 1) 28%, rgba(255, 255, 255, 1) 58%, rgba(255, 255, 255, 1) 100%);
                 }
 
-                .publik .container {
-                    height: 1138px;
-                }
 
-                .carousel_custom .card {
-                    box-shadow: 10px 2px 25px rgb(0 0 0 / 5%);
-                    border-radius: 12px;
-                    border: 0;
-                    height: 355px;
-                    width: auto;
-                }
-
-                .col-md-7 .pers {
-                    margin-top: 61px;
-                }
-
-                .galeri_video {
-
-                    height: 894px;
-                }
             }
         </style>
     @endpush

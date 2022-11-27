@@ -47,6 +47,22 @@ return new class extends Migration
             $table->integer('urutan');
             $table->timestamps();
         });
+
+        // Footer
+        Schema::create('sosialmedias', function (Blueprint $table) {
+            $table->id();
+            $table->string('icon');
+            $table->string('url');
+            $table->integer('urutan');
+            $table->timestamps();
+        });
+
+        Schema::create('linkapps', function (Blueprint $table) {
+            $table->id();
+            $table->string('icon');
+            $table->string('url');
+            $table->timestamps();
+        });
     }
 
     /**
