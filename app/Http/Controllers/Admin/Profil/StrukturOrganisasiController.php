@@ -54,6 +54,7 @@ class StrukturOrganisasiController extends Controller
         $validated = $request->validate([
             'judul' => 'required',
             'nomenklaturRepeater' => 'required',
+            'banner' => 'max:5120'
         ]);
 
         if (!$validated) {
