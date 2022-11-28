@@ -19,7 +19,7 @@
                 @foreach ($slider as $slider_row)
                     <div class="owl-carousel-item position-relative"
                         style="background-image: url({{ asset($slider_row->image_path) }}">
-                            <!-- <img
+                        <!-- <img
                         class="img-fluid"
                         src="./assets/images/content/content-image/carousel-2.jpg"
                         alt="" /> -->
@@ -175,34 +175,35 @@
                         <div class="d-flex">
                             <div>
                                 <label for="">Siaran Pers</label>
-                               
+
                             </div>
                             <div class="ml-auto"></div>
                         </div>
                         <div class="slider owl-carousel carousel_custom">
-                            
-                            @for ($i = 0; $i < count($siaranPers); $i++)
-                                 <div class="row">
-                                <a href="{{route('siaranpers.show', $siaranPers[$i]['id'])}}">
-                                                       
-                                                   
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <img class="card-img-top img-fluid"
-                                            src="{{ 'https://bumn.go.id/storage/'.$siaranPers[$i]['image_path']  }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <span class="card-title">  {{$siaranPers[$i]['tanggal_publish'] }}</span>
-                                            <p class="card-text mt-2">
-                                                
 
-                                                {{$siaranPers[$i]['title'] }}
-                                            </p>
+                            @for ($i = 0; $i < count($siaranPers); $i++)
+                                <div class="row">
+                                    <a href="{{ route('siaranpers.show', $siaranPers[$i]['id']) }}">
+
+
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid"
+                                                    src="{{ 'https://bumn.go.id/storage/' . $siaranPers[$i]['image_path'] }}"
+                                                    alt="Card image cap" />
+                                                <div class="card-body">
+                                                    <span class="card-title">
+                                                        {{ $siaranPers[$i]['tanggal_publish'] }}</span>
+                                                    <p class="card-text mt-2">
+
+
+                                                        {{ $siaranPers[$i]['title'] }}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                                 </a>
-                            </div>
                             @endfor
                         </div>
                     </div>
@@ -404,7 +405,7 @@
                 height: 400px;
                 background-size: 340px 400px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset($informasiImage->sideimage_path) }});
+                background-image: url({{ asset($informasiImage->sideimage_path ?? '') }});
             }
 
             .publik .informasi_publik .box_publik {
@@ -412,7 +413,7 @@
                 height: 351px;
                 background-size: 256px 351px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset($informasiImage->backgroundimage_path) }});
+                background-image: url({{ asset($informasiImage->backgroundimage_path ?? '') }});
                 z-index: 1;
                 filter: drop-shadow(11px 14px 10px #EFEFEF);
                 transition: all .8s ease-in-out;

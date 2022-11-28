@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <label for="" class="title_struktur">{{ $strukturOrganisasi->judul }}</label>
+                    <label for="" class="title_struktur">{{ $strukturOrganisasi->judul ?? '' }}</label>
                     <a href="#" download class="unduh_materi">Unduh Struktur</a>
                 </div>
             </div>
@@ -95,6 +95,23 @@
             <x-slot:isActiveProfil>
                 active
                 </x-slot>
+                @push('child-scripts')
+                    {{-- <script>
+                         document.getElementById('konten').childNodes[1].className = 'informasi'
+                    </script> --}}
+                    <style>
+                        .banner .data_banner {
+                            padding-bottom: 80px;
+                            margin-top: 80px;
+                            background-image: url({{ asset($strukturOrganisasi->banner_path ?? '') }});
+                            background-repeat: no-repeat;
+                            /*Prevent showing multiple background images*/
+                            background-size: 100% 300px;
+                            height: 300px;
+                            padding: 100px 100px 100px 100px;
+                        }
+                    </style>
+                @endpush
 </x-frontend.layout>
 
 <!DOCTYPE html>

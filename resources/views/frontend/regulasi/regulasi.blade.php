@@ -232,7 +232,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($regulasiBanner->banner_path) }});
+                            background-image: url({{ asset($regulasiBanner->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

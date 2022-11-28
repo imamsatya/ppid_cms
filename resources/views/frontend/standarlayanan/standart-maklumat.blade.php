@@ -37,4 +37,17 @@
             <x-slot:isActiveStandarLayanan>
                 active
                 </x-slot>
+                @push('child-scripts')
+                    <style>
+                        .banner .data_banner {
+                            padding-bottom: 80px;
+                            margin-top: 80px;
+                            background-image: url({{ asset($maklumat->banner_path ?? '') }});
+                            background-repeat: no-repeat;
+                            background-size: 100% 300px;
+                            height: 300px;
+                            padding: 100px 100px 100px 100px;
+                        }
+                    </style>
+                @endpush
 </x-frontend.layout>

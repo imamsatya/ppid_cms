@@ -230,7 +230,8 @@
                                 <div class="form-group">
 
                                     <div data-repeater-list="nomenklaturRepeater">
-                                        @if ($baganKiri)
+
+                                        @if (count($baganKiri) > 0)
                                             @foreach ($baganKiri as $baganKiri_row)
                                                 @if (auth()->user()->can('struktur organisasi.edit'))
                                                     <div>

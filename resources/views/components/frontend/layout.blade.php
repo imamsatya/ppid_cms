@@ -314,7 +314,7 @@
                                         <li>
                                             <a href="{{ $linkApp_row->url }}"
                                                 title="Image from freepnglogos.com"><img
-                                                    src="{{ $linkApp_row->icon }}" width="200"
+                                                    src="{{ asset($linkApp_row->icon) }}" width="200"
                                                     alt="play store logo black background hd picture" /></a>
                                         </li>
                                     @endforeach

@@ -35,7 +35,7 @@ return new class extends Migration
         Schema::create('strukturorganisasis', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('banner_path');
+            $table->string('banner_path')->nullable();
             $table->timestamps();
         });
 
@@ -67,6 +67,7 @@ return new class extends Migration
             $table->id();
             $table->string('alamat');
             $table->string('telepon');
+            $table->string('email');
             $table->text('waktu_pelayanan');
             $table->string('banner_path');
             $table->string('latitude');

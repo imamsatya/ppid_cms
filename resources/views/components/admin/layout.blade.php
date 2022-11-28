@@ -538,7 +538,6 @@ License: For each use you must have a valid license purchased only from above li
                                     organisasi.view',
                                     'visi dan misi.view',
                                     'kontak.view',
-                                    'sosial media.view',
                                     ])
                                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                         <!--begin:Menu link-->
@@ -641,20 +640,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--end:Menu item-->
                                             @endcan
 
-                                            @can('sosial media.view')
-                                                <!--begin:Menu item-->
-                                                <div class="menu-item">
-                                                    <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.sosialmedia.index') }}">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
-                                                        <span class="menu-title">Sosial Media</span>
-                                                    </a>
-                                                    <!--end:Menu link-->
-                                                </div>
-                                                <!--end:Menu item-->
-                                            @endcan
+
 
                                         </div>
                                         <!--end:Menu sub-->
