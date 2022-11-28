@@ -52,7 +52,7 @@ class InformasiController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'urutan' => 'required',
-            'informasi' => 'required|mimes:png,jpg,jpeg'
+            'informasi' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
 
         if ($validated) {
@@ -81,8 +81,8 @@ class InformasiController extends Controller
     {
         // dd($request);
         $validated = $request->validate([
-            'sideimage' => 'required_without_all:backgroundimage|mimes:png,jpg,jpeg',
-            'backgroundimage' => 'required_without_all:sideimage|mimes:png,jpg,jpeg',
+            'sideimage' => 'required_without_all:backgroundimage|mimes:png,jpg,jpeg|max:5120',
+            'backgroundimage' => 'required_without_all:sideimage|mimes:png,jpg,jpeg|max:5120',
         ]);
 
 

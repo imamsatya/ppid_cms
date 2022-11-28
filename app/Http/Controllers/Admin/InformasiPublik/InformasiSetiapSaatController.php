@@ -49,6 +49,7 @@ class InformasiSetiapSaatController extends Controller
         $validated = $request->validate([
             'judulInformasi' => 'required',
             'url' => 'required',
+            'file_pendukung' => 'mimes:pdf|max:5120',
 
         ]);
         if (!$validated) {
@@ -114,6 +115,7 @@ class InformasiSetiapSaatController extends Controller
         $validated = $request->validate([
             'judulInformasi' => 'required',
             'url' => 'required',
+            'file' => 'mimes:pdf|max:5120',
 
         ]);
 

@@ -48,6 +48,7 @@ class VisiMisiController extends Controller
         $validated = $request->validate([
             'visi' => 'required',
             'misi' => 'required',
+            'banner' => 'max:5120|mimes:png,jpg,jpeg'
         ]);
 
         if ($validated) {

@@ -45,6 +45,8 @@ class TugasDanFungsiController extends Controller
         $validated = $request->validate([
             'judul' => 'required',
             'konten' => 'required',
+            'banner' => 'max:5120|mimes:png,jpg,jpeg',
+            'sideImage' => 'max:5120|mimes:png,jpg,jpeg'
         ]);
 
         if ($validated) {

@@ -48,7 +48,7 @@ class SliderController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'urutan' => 'required',
-            'slider' => 'required|mimes:png,jpg,jpeg'
+            'slider' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
 
         if ($validated) {
@@ -110,6 +110,7 @@ class SliderController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'urutan' => 'required',
+            'slider' => 'mimes:png,jpg,jpeg|max:5120'
 
         ]);
         if ($validated) {

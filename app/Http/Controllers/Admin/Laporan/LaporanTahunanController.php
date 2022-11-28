@@ -50,7 +50,7 @@ class LaporanTahunanController extends Controller
         $validated = $request->validate([
             'judulLaporan' => 'required',
             'file' => 'required|mimes:pdf|max:5120',
-            'laporanImage' => 'max:5120'
+            'laporanImage' => 'mimes:png,jpg,jpeg|max:5120'
         ]);
         if (!$validated) {
             return redirect()->back()->withErrors($validated)->withInput();
@@ -118,8 +118,8 @@ class LaporanTahunanController extends Controller
         //
         $validated = $request->validate([
             'judulLaporan' => 'required',
-            'file' => 'required|mimes:pdf'
-
+            'file' => 'mimes:pdf|max:5120'
+            'laporanImage' => 'mimes:png,jpg,jpeg|max:5120'
         ]);
 
         if (!$validated) {

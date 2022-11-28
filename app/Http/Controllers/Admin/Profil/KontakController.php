@@ -52,7 +52,7 @@ class KontakController extends Controller
             'waktu_pelayanan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
-            'banner' => 'max:5120'
+            'banner' => 'max:5120|mimes:png,jpg,jpeg'
         ]);
 
         if ($validated) {
@@ -119,7 +119,7 @@ class KontakController extends Controller
             'dokumentasi' => 'required',
             'keterangan' => 'required',
             'urutan' => 'required',
-            'dokumentasi' => 'max:5120'
+            'dokumentasi' => 'max:5120|mimes:png,jpg,jpeg'
         ]);
 
         if ($validated) {

@@ -49,7 +49,7 @@ class RancanganPeraturanKIPController extends Controller
         $validated = $request->validate([
             'judulPeraturan' => 'required',
             'urutan' => 'required',
-            'file' => 'required|mimes:pdf'
+            'file' => 'required|mimes:pdf|max:5120'
         ]);
         if (!$validated) {
             return redirect()->back()->withErrors($validated)->withInput();
@@ -114,6 +114,7 @@ class RancanganPeraturanKIPController extends Controller
         $validated = $request->validate([
             'judulPeraturan' => 'required',
             'urutan' => 'required',
+            'file' => 'mimes:pdf|max:5120'
 
         ]);
 

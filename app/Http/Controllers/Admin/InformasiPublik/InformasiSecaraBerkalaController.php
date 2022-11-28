@@ -50,6 +50,7 @@ class InformasiSecaraBerkalaController extends Controller
         $validated = $request->validate([
             'judulInformasi' => 'required',
             'url' => 'required',
+            'file_pendukung' => 'mimes:pdf|max:5120',
 
         ]);
         if (!$validated) {
@@ -84,7 +85,7 @@ class InformasiSecaraBerkalaController extends Controller
     {
 
         $validated = $request->validate([
-            'banner' => 'required|mimes:png,jpg,jpeg'
+            'banner' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
 
 
@@ -170,6 +171,7 @@ class InformasiSecaraBerkalaController extends Controller
         $validated = $request->validate([
             'judulInformasi' => 'required',
             'url' => 'required',
+            'file' => 'mimes:pdf|max:5120',
 
         ]);
 

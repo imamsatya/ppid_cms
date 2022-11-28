@@ -42,7 +42,10 @@ class BiayaLayananController extends Controller
     {
         //
         $validated = $request->validate([
-            'biaya' => 'required|mimes:png,jpg,jpeg'
+            'biaya' => 'mimes:png,jpg,jpeg|max:5120',
+            'banner' => 'mimes:png,jpg,jpeg|max:5120',
+            'judul' => 'required',
+            'deskripsi' => 'required'
         ]);
 
 

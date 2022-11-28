@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ManajemenHome\Slider;
 use App\Models\ManajemenHome\Informasi;
 use App\Models\ManajemenHome\InformasiImage;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -32,8 +33,17 @@ class HomeController extends Controller
         $video = new Video();
         $video = $video::all();
 
+        $response = Http::get('https://bumn.go.id/api/pressconference');
+        $siaranPers = $response->json();
+     
+        if ($siaranPers['status'] == 1) {
+            $siaranPers = $siaranPers['data'];
+        }else{
+            $siaranPers = null;
+        }
+        
 
-        return view('index', compact('slider', 'informasi', 'informasiImage', 'video'));
+        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers'));
     }
 
     /**
