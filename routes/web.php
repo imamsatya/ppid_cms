@@ -109,7 +109,7 @@ use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 // User
 //Home
 Route::resource('/', HomeController::class);
-Route::get('siaranpers/{id}', [SiaranPersController::class, 'showSiaran'])->name('siaranpers.show');
+Route::get('siaranpers/{id}', [SiaranPersController::class, 'show'])->name('siaranpers.show');
 //Profil
 Route::resource('tentangppid', ProfilSingkatControllerUser::class);
 Route::resource('tugasdanfungsi', TugasDanFungsiControllerUser::class);

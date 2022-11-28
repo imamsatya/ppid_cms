@@ -1,6 +1,7 @@
 <x-frontend.layout>
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/profile/kontak/index.css') }}" rel="stylesheet" />
+        <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
     @endpush
     <!-- Informasi -->
     <section class="informasi_kontak">
@@ -76,13 +77,25 @@
         <div class="container">
             <label class="mb-4" for="">Ruang Pelayanan Informasi</label>
             <div class="row">
-                @if ($dokumentasi)
-                    @foreach ($dokumentasi as $dokumentasi)
+            <div class="owl-carousel header-carousel position-relative">
+ 
+            @if ($dokumentasi)
+                @foreach ($dokumentasi as $dokumentasi_row)
+                    <div class="owl-carousel-item position-relative"
+                        style="background-image: url({{ asset($dokumentasi_row->image_path) }}">
+                        
+                      
+                    </div>
+                @endforeach
+            @endif
+        </div>
+                {{-- @if ($dokumentasi)
+                    @foreach ($dokumentasi as $dokumentasi_row)
                         <div class="col-md-6 mb-4">
-                            <img src="{{ asset($dokumentasi->image_path) }}" alt="" />
+                            <img src="{{ asset($dokumentasi_row->image_path) }}" alt="" />
                         </div>
                     @endforeach
-                @endif
+                @endif --}}
 
                 {{-- <div class="col-md-6">
                     <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_kontak_2.png') }}"
@@ -90,6 +103,7 @@
                 </div> --}}
             </div>
         </div>
+         
     </section>
     <!-- Ruang Pelayanan -->
     <x-slot:bannerText1>
@@ -102,6 +116,34 @@
                 active
                 </x-slot>
                 @push('child-scripts')
+              
+                 <script>
+            $(".header-carousel").owlCarousel({
+                loop: true,
+                autoplay: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    600: {
+                        items: 2,
+                    },
+                    1000: {
+                        items: 1,
+                    },
+                },
+                nav: true,
+
+                navText: [
+                    "<div class='nav-button owl-prev-custom'><img src='{{ asset('ppid_fe/assets/images/content/content-image/down-arrow.png') }}'></div>",
+                    "<div class='nav-button owl-next-custom'><img src='{{ asset('ppid_fe/assets/images/content/content-image/up-arrow.png') }}'></div>",
+                ],
+                autoplayTimeout: 5000, //2000ms = 2s;
+                autoplayHoverPause: true,
+                // <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            });
+        </script>
+              
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;
@@ -114,5 +156,6 @@
                             padding: 100px 100px 100px 100px;
                         }
                     </style>
+                    
                 @endpush
 </x-frontend.layout>
