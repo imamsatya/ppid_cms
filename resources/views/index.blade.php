@@ -19,10 +19,10 @@
                 @foreach ($slider as $slider_row)
                     <div class="owl-carousel-item position-relative"
                         style="background-image: url({{ asset($slider_row->image_path) }}">
-                        <!-- <img
-                    class="img-fluid"
-                    src="./assets/images/content/content-image/carousel-2.jpg"
-                    alt="" /> -->
+                            <!-- <img
+                        class="img-fluid"
+                        src="./assets/images/content/content-image/carousel-2.jpg"
+                        alt="" /> -->
                         <div class="container title-banner">
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">

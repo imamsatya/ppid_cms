@@ -67,30 +67,7 @@ class SiaranPersController extends Controller
         $regulasiBanner = $regulasiBanner->first();
         return view('frontend.api_route.siaranpers', compact('selectedSiaran', 'regulasiBanner'));
     }
-    public function showSiaran($id)
-    {
-        //
-        $response = Http::get('https://bumn.go.id/api/pressconference');
-        $siaranPers = $response->json();
-        if ($siaranPers['status'] == 1) {
-            $siaranPers = $siaranPers['data'];
-        }else{
-            $siaranPers = null;
-        }
-        $selectedSiaran = null;
-        for ($i=0; $i < count($siaranPers) ; $i++) { 
-            if ($siaranPers[$i]['id'] == $id) {
-                $selectedSiaran = $siaranPers[$i];
-            }
-        }
-
-        $regulasiBanner = new RegulasiBanner();
-        $regulasiBanner = $regulasiBanner->first();
-        return view('frontend.api_route.siaranpers', compact('selectedSiaran', 'regulasiBanner'));
-        
-        
-       
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
