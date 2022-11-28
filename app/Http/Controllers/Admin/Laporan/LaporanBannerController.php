@@ -39,7 +39,7 @@ class LaporanBannerController extends Controller
     {
 
         $validated = $request->validate([
-            'banner' => 'required|mimes:png,jpg,jpeg'
+            'banner' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
 
 

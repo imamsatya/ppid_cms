@@ -51,7 +51,7 @@ class PeraturanKIPController extends Controller
         $validated = $request->validate([
             'judulPeraturan' => 'required',
             'urutan' => 'required',
-            'file' => 'required|mimes:pdf'
+            'file' => 'required|mimes:pdf|max:5120'
         ]);
         if (!$validated) {
             return redirect()->back()->withErrors($validated)->withInput();
@@ -85,7 +85,7 @@ class PeraturanKIPController extends Controller
     {
 
         $validated = $request->validate([
-            'banner' => 'required|mimes:png,jpg,jpeg'
+            'banner' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
 
 
@@ -172,6 +172,7 @@ class PeraturanKIPController extends Controller
         $validated = $request->validate([
             'judulPeraturan' => 'required',
             'urutan' => 'required',
+            'file' => 'mimes:pdf|max:5120'
 
         ]);
 

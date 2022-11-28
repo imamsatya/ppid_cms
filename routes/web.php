@@ -53,6 +53,7 @@ use App\Http\Controllers\Admin\ManajemenMenu\MenuController;
 
 // User
 use App\Http\Controllers\Frontend\Home\HomeController;
+use App\Http\Controllers\Frontend\Home\SiaranPersController;
 
 //Profil
 use App\Http\Controllers\Frontend\Profil\ProfilSingkatController as ProfilSingkatControllerUser;
@@ -108,6 +109,7 @@ use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 // User
 //Home
 Route::resource('/', HomeController::class);
+Route::get('siaranpers/{id}', [SiaranPersController::class, 'showSiaran'])->name('siaranpers.show');
 //Profil
 Route::resource('tentangppid', ProfilSingkatControllerUser::class);
 Route::resource('tugasdanfungsi', TugasDanFungsiControllerUser::class);

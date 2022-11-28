@@ -175,40 +175,35 @@
                         <div class="d-flex">
                             <div>
                                 <label for="">Siaran Pers</label>
+                               
                             </div>
                             <div class="ml-auto"></div>
                         </div>
                         <div class="slider owl-carousel carousel_custom">
-                            <div class="row">
+                            
+                            @for ($i = 0; $i < count($siaranPers); $i++)
+                                 <div class="row">
+                                <a href="{{route('siaranpers.show', $siaranPers[$i]['id'])}}">
+                                                       
+                                                   
                                 <div class="col-md-12">
                                     <div class="card">
                                         <img class="card-img-top img-fluid"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_speaking.jpg') }}"
+                                            src="{{ 'https://bumn.go.id/storage/'.$siaranPers[$i]['image_path']  }}"
                                             alt="Card image cap" />
                                         <div class="card-body">
-                                            <span class="card-title">02 AGUSTUS 2022</span>
+                                            <span class="card-title">  {{$siaranPers[$i]['tanggal_publish'] }}</span>
                                             <p class="card-text mt-2">
-                                                Jasindo Perkuat Digitalisasi di Bulan Kemerdekaan
+                                                
+
+                                                {{$siaranPers[$i]['title'] }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                 </a>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <img class="card-img-top img-fluid"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_speaking.jpg') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <span class="card-title">02 AGUSTUS 2022</span>
-                                            <p class="card-text mt-2">
-                                                Jasindo Perkuat Digitalisasi di Bulan Kemerdekaan
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endfor
                         </div>
                     </div>
                 </div>

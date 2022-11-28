@@ -41,8 +41,8 @@ class ProsedurLayananController extends Controller
     {
         //
         $validated = $request->validate([
-            'permohonan' => 'required_without_all:keberatan|mimes:png,jpg,jpeg',
-            'keberatan' => 'required_without_all:permohonan|mimes:png,jpg,jpeg',
+            'permohonan' => 'required_without_all:keberatan|mimes:png,jpg,jpeg|max:5120',
+            'keberatan' => 'required_without_all:permohonan|mimes:png,jpg,jpeg|max:5120',
         ]);
 
         if (!$validated) {
@@ -111,7 +111,7 @@ class ProsedurLayananController extends Controller
     {
 
         $validated = $request->validate([
-            'banner' => 'required|mimes:png,jpg,jpeg'
+            'banner' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
 
 

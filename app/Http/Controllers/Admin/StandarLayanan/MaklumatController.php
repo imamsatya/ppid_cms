@@ -41,7 +41,8 @@ class MaklumatController extends Controller
     {
         //
         $validated = $request->validate([
-            'maklumat' => 'required|mimes:png,jpg,jpeg'
+            'maklumat' => 'mimes:png,jpg,jpeg|max:5120',
+            'banner' => 'mimes:png,jpg,jpeg|max:5120'
         ]);
 
 
