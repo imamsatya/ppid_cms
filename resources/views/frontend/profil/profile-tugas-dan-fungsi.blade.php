@@ -63,7 +63,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="images">
-                        <img src="{{ asset($tugasDanFungsi->side_image_path) }}" class="img-fluid" alt="" />
+                        <img src="{{ asset($tugasDanFungsi->side_image_path ?? '') }}" class="img-fluid"
+                            alt="" />
                     </div>
                 </div>
             </div>
@@ -89,7 +90,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($tugasDanFungsi->banner_path) }});
+                            background-image: url({{ asset($tugasDanFungsi->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

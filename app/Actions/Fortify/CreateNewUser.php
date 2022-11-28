@@ -20,6 +20,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        dd($input);
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -30,11 +31,25 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'jenispemohon' => ['required'],
+            'jenisidentitas' => ['required'],
+            'noidentitas' => ['required'],
+            'alamat' => ['required'],
+            'nohp' => ['required'],
+            'npwp' => ['required'],
+            'pekerjaan' => ['required'],
         ])->validate();
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'jenispemohon' => $input['jenispemohon'],
+            'jenisidentitas' => $input['jenisidentitas'],
+            'noidentitas' => $input['noidentitas'],
+            'alamat' => $input['alamat'],
+            'nohp' => $input['nohp'],
+            'npwp' => $input['npwp'],
+            'pekerjaan' => $input['pekerjaan'],
         ]);
         $user->assignRole('user');
         return $user;

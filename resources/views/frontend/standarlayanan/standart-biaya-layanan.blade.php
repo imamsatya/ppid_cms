@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <p>
 
-                            {!! $biayaLayanan->deskripsi !!}
+                            {!! $biayaLayanan->deskripsi ?? '' !!}
                         </p>
                     </div>
                 </div>

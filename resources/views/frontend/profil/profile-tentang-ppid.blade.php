@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <label for="" class="title_tentang_ppid">{{ $profilSingkat->judul }}</label>
+                    <label for="" class="title_tentang_ppid">{{ $profilSingkat->judul ?? '' }}</label>
                 </div>
             </div>
 
@@ -23,7 +23,8 @@
                     <div class="images">
                         {{-- <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_tentang_ppid.png') }}"
                             class="img-fluid" alt="" /> --}}
-                        <img src="{{ asset($profilSingkat->side_image_path) }}" class="img-fluid" alt="" />
+                        <img src="{{ asset($profilSingkat->side_image_path ?? '') }}" class="img-fluid"
+                            alt="" />
                     </div>
                 </div>
             </div>
@@ -46,7 +47,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($profilSingkat->banner_path) }});
+                            background-image: url({{ asset($profilSingkat->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

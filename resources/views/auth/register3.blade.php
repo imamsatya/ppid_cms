@@ -44,7 +44,7 @@
                         </p>
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="./index.html">
+                                <a href="{{ route('index') }}">
                                     <button class="btn btn-back">
                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
                                     </button>
@@ -55,92 +55,107 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-login">
-                        <div class="label-login d-flex align-items-center">
-                            <img src="/assets/images/content/icon/ic_people.svg" alt="" />
-                            <span class="ml-2">Registrasi Pemohon Informasi</span>
-                        </div>
-                        <div class="form-data">
-                            <div class="form-group">
-                                <select class="custom-select" placeholder="">
-                                    <option selected>Jenis Pemohon</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                    <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-login">
+                            <div class="label-login d-flex align-items-center">
+                                <img src="/assets/images/content/icon/ic_people.svg" alt="" />
+                                <span class="ml-2">Registrasi Pemohon Informasi</span>
                             </div>
-                            <div class="form-group">
-                                <select class="custom-select" placeholder="">
-                                    <option selected>Jenis Identitas</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="No Identitas (KTP)" />
-                            </div>
+                            <div class="form-data">
+                                <div class="form-group">
+                                    <select class="custom-select" placeholder="Jenis Pemohon" id="jenispemohon"
+                                        name="jenispemohon" onchange="selectJenisPemohon()">
+                                        <option selected>Jenis Pemohon</option>
+                                        <option value="1">Perorangan</option>
+                                        <option value="2">Kelompok</option>
+                                        <option value="3">Badan Hukum</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select" disabled placeholder="Jenis Identitas"
+                                        id="jenisidentitas" name="jenisidentitas">
+                                        <option selected>Jenis Identitas</option>
+                                        <option value="1">KTP/NPWP</option>
+                                        <option value="2">Surat Kuasa</option>
+                                        <option value="3">Anggaran Dasar</option>
+                                    </select>
+                                    <input type="text" hidden name="jenisidentitas" id="inputJenisIdentitas"
+                                        value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="noidentitas" name="noidentitas"
+                                        aria-describedby="noidentitas" placeholder="No Identitas (KTP)" />
+                                </div>
 
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Alamat" />
-                            </div>
-                            <div class="form-group">
-                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="No Handphone" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="NPWP" />
-                            </div>
-                            <div class="form-group">
-                                <select class="custom-select" placeholder="">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        aria-describedby="alamat" placeholder="Alamat" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="nohp" pattern="[0-9]{9,15}"
+                                        required="" oninvalid="setCustomValidity('No Handphone hanya 9 - 15 digit')"
+                                        name="nohp" aria-describedby="nohp" placeholder="No Handphone" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="npwp" id="npwp"
+                                        name="npwp" aria-describedby="npwp" placeholder="NPWP" />
+                                </div>
+                                <div class="form-group">
+                                    {{-- <select class="custom-select" placeholder="">
                                     <option selected>Pekerjaan</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group d-flex align-items-start">
-                                <div class="upload-btn-wrapper">
-                                    <button class="btn">
-                                        <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_file.svg') }}"
-                                            alt="" />
-                                        Upload KTP
-                                    </button>
-                                    <input type="file" name="myfile" />
+                                </select> --}}
+                                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
+                                        aria-describedby="pekerjaan" placeholder="Pekerjaan" />
                                 </div>
-                                <span class="ml-3 file-format">Format JPG/PDF maksimal 500KB</span>
-                            </div>
 
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Alamat Email" />
-                            </div>
+                                <div class="form-group d-flex align-items-start">
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn">
+                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_file.svg') }}"
+                                                alt="" />
+                                            Upload KTP
+                                        </button>
+                                        <input type="file" name="identitasfile" onchange="PreviewImage();"
+                                            id="uploadImage" />
+                                    </div>
 
-                            <div class="form-group">
-                                <div class="input-group d-flex align-items-center" id="show_hide_password">
-                                    <input class="form-control input-password" placeholder="Password" type="password" />
-                                    <div class="input-group-addon text-center">
-                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    <span class="ml-3 mr-3 file-format">Format JPG/PDF maksimal 500KB</span>
+                                    <br>
+                                    <img id="uploadPreview" hidden style="width: 200px; height: 100px;" />
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="Alamat Email" />
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
+                                        <input class="form-control input-password" placeholder="Password"
+                                            name="password" type="password" />
+                                        <div class="input-group-addon text-center">
+                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
+                                        <input class="form-control input-password" placeholder="Ulangi Password"
+                                            type="password" name="repeat_password" />
+                                        <div class="input-group-addon text-center">
+                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group d-flex align-items-center" id="show_hide_password">
-                                    <input class="form-control input-password" placeholder="Ulangi Password"
-                                        type="password" />
-                                    <div class="input-group-addon text-center">
-                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Daftar</button>
+                            {{-- <a href="./dashboard-pemohon.html" class="btn btn-lg btn-primary-ppid mt-3">Daftar</a> --}}
                         </div>
-
-                        <a href="./dashboard-pemohon.html" class="btn btn-lg btn-primary-ppid mt-3">Daftar</a>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -153,106 +168,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <!--  -->
 
-        <script src="assets/float/fab.js"></script>
+
         <!-- <img src="assets/images/content/icon/difable.png" width="75%"> -->
-        <script type="text/javascript">
-            var fab = new Fab({
-                selector: "#cont",
-                button: {
-                    style: "large teal",
-                    html: "",
-                },
-                icon: {
-                    style: 'assets/images/content/icon/difable.png" width="75%',
-                    html: "",
-                },
-                // "top-left" || "top-right" || "bottom-left" || "bottom-right"
-                position: "bottom-left",
-                // "horizontal" || "vertical"
-                direction: "vertical",
-                buttons: [{
-                        button: {
-                            style: "small blue",
-                            html: "",
-                        },
-                        icon: {
-                            style: 'assets/images/content/icon/mag-zin.png" width="55%',
-                            html: "",
-                        },
-                        link: {
-                            style: "increaseFont",
-                            html: "",
-                        },
-                        valuenya: {
-                            style: "increase",
-                            html: "",
-                        },
-                        onClick: function() {
-                            console.log("fire");
-                        },
-                    },
-                    {
-                        button: {
-                            style: "small blue",
-                            html: "",
-                        },
-                        icon: {
-                            style: 'assets/images/content/icon/mag-zout.png" width="55%',
-                            html: "",
-                        },
-                        link: {
-                            style: "decreaseFont",
-                            html: "",
-                        },
-                        valuenya: {
-                            style: "decrease",
-                            html: "",
-                        },
-                        onClick: function() {
-                            console.log("ice");
-                        },
-                    },
-                    {
-                        button: {
-                            style: "small blue",
-                            html: "",
-                        },
-                        icon: {
-                            style: 'assets/images/content/icon/eye.png" width="75%',
-                            html: "",
-                        },
-                        link: {
-                            style: "",
-                            html: "",
-                        },
-                        valuenya: {
-                            style: "eye",
-                            html: "",
-                        },
-                        onClick: function() {
-                            var element = document.getElementById("bwStyle");
-                            element.classList.add("bwstyle");
-                            console.log("ice");
-                        },
-                    },
-                    // {
-                    //   button: {
-                    //     style: "small green",
-                    //     html: ""
-                    //   },
-                    //   icon:{
-                    //     style: "chart pie icon",
-                    //     html: ""
-                    //   },
-                    //   onClick: function(){
-                    //     console.log("ice");
-                    //   }
-                    // }
-                ],
-                onOpen: function() {},
-                onClose: function() {},
-            });
-        </script>
+
         <!-- <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-36251023-1']);
@@ -269,21 +187,7 @@
                 s.parentNode.insertBefore(ga, s);
             })();
         </script> -->
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".increaseFont,.decreaseFont").click(function() {
-                    var type = $(this).val();
-                    var curFontSize = $(".magnify").css("zoom");
 
-                    if (type == "increase") {
-                        $(".magnify").css("zoom", parseFloat(curFontSize) + 0.01);
-                    } else {
-                        $(".magnify").css("zoom", parseFloat(curFontSize) - 0.01);
-                    }
-                    // alert($('.magnify').css('font-size'));
-                });
-            });
-        </script>
 
         <script>
             function clickSearch() {
@@ -318,6 +222,24 @@
                     }
                 });
             });
+
+            function PreviewImage() {
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+                oFReader.onload = function(oFREvent) {
+                    document.getElementById("uploadPreview").src = oFREvent.target.result;
+                    document.getElementById("uploadPreview").removeAttribute("hidden");
+
+                };
+            }
+
+            function selectJenisPemohon() {
+
+                console.log(document.getElementById('inputJenisIdentitas'))
+                document.getElementById('jenisidentitas').value = document.getElementById('jenispemohon').value
+                document.getElementById('inputJenisIdentitas').value = document.getElementById('jenisidentitas').value
+            }
         </script>
     @endpush
 
