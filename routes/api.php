@@ -17,6 +17,7 @@ use App\Http\Controllers\API\ManajemenHome\SliderController;
 use App\Http\Controllers\API\ManajemenHome\VideoController;
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
+use App\Http\Controllers\API\Profil\LinkAppController;
 use App\Http\Controllers\API\Profil\ProfilSingkatController;
 use App\Http\Controllers\API\Profil\SosialMediaController;
 use App\Http\Controllers\API\Profil\StrukturOrganisasiController;
@@ -80,6 +81,7 @@ Route::resource('struktur_organisasi_kanan', StrukturOrganisasiKananController::
 Route::resource('tugas_fungsi', TugasFungsiController::class);
 Route::resource('visi_misi', VisiMisiController::class);
 Route::resource('sosial_media', SosialMediaController::class);
+Route::resource('linkapp', LinkAppController::class);
 
 // Regulasi
 Route::resource('peraturan_kip', PeraturanKIPController::class);
