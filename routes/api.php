@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\FAQ\FAQBannerController;
+use App\Http\Controllers\API\FAQ\FAQController;
+use App\Http\Controllers\API\Laporan\LaporanBannerController;
+use App\Http\Controllers\API\Laporan\LaporanHasilSurveiController;
+use App\Http\Controllers\API\Laporan\LaporanTahunanController;
+use App\Http\Controllers\API\Laporan\LaporanTriwulananController;
 use App\Http\Controllers\API\ManajemenHome\InformasiController;
 use App\Http\Controllers\API\auth\RegisterController;
 use App\Http\Controllers\API\InformasiPublik\InformasiBerkalaController;
@@ -43,6 +49,16 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('login', 'login');
 });
 
+// FAQ
+Route::resource('faq', FAQController::class);
+Route::resource('faq_banner', FAQBannerController::class);
+
+// Laporan
+Route::resource('laporan_banner', LaporanBannerController::class);
+Route::resource('laporan_hasil_survei', LaporanHasilSurveiController::class);
+Route::resource('laporan_tahunan', LaporanTahunanController::class);
+Route::resource('laporan_triwulanan', LaporanTriwulananController::class);
+
 // ManajemenHome
 Route::resource('informasi', InformasiController::class);
 Route::resource('informasi_image', InformasiImageController::class);
@@ -51,7 +67,7 @@ Route::resource('video', VideoController::class);
 
 // StandarLayanan
 Route::resource('biaya', BiayaLayananController::class);
-// Route::resource('maklumat', MaklumatController::class);
+Route::resource('maklumat', MaklumatController::class);
 Route::resource('prosedur', ProsedurLayananController::class);
 
 // Profil
