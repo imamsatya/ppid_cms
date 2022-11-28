@@ -51,6 +51,7 @@ class ProfilSingkatController extends Controller
         $validated = $request->validate([
             'judul' => 'required',
             'konten' => 'required',
+            'banner' => 'max:5120'
         ]);
 
         if ($validated) {

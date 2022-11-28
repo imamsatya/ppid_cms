@@ -52,6 +52,7 @@ class KontakController extends Controller
             'waktu_pelayanan' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'banner' => 'max:5120'
         ]);
 
         if ($validated) {
@@ -118,6 +119,7 @@ class KontakController extends Controller
             'dokumentasi' => 'required',
             'keterangan' => 'required',
             'urutan' => 'required',
+            'dokumentasi' => 'max:5120'
         ]);
 
         if ($validated) {
