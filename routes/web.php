@@ -111,6 +111,14 @@ use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 // Frontend
 
 
+//User PPID
+Route::get('/login', 'Auth\UserPPIDLoginController@showLoginForm')->name('admin.login');
+Route::post('/userppid/login', 'Auth\UserPPIDLoginController@login')->name('admin.login.post');
+Route::post('/userppid/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');//Admin Home page after login
+Route::group(['middleware'=>'admin'], function() {
+    Route::get('/admin/home', 'Admin\HomeController@index');
+})
+
 // User
 //Home
 Route::resource('/', HomeController::class);
