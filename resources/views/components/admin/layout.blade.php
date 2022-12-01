@@ -1072,7 +1072,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end:Menu item-->
 
                                 <!--begin:Menu Manajemen Home-->
-                                @canany(['user pemohon.view', 'user admin.view', 'role permission.view'])
+                                @canany(['slider.view', 'informasi.view', 'video.view', 'footer.view'])
                                     <div data-kt-menu-trigger="click"
                                         class="menu-item menu-accordion {{ $isShowAccordion_manajemenHome ?? '' }}">
                                         <!--begin:Menu link-->
@@ -1098,7 +1098,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--end:Menu link-->
                                         <!--begin:Menu sub-->
                                         <div class="menu-sub menu-sub-accordion">
-                                            @can('user pemohon.view')
+                                            @can('slider.view')
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
@@ -1113,7 +1113,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--end:Menu item-->
                                             @endcan
 
-                                            @can('user pemohon.view')
+                                            @can('informasi.view')
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
@@ -1128,7 +1128,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--end:Menu item-->
                                             @endcan
 
-                                            @can('user pemohon.view')
+                                            @can('video.view')
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
@@ -1143,7 +1143,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--end:Menu item-->
                                             @endcan
 
-                                            @can('user pemohon.view')
+                                            @can('footer.view')
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->

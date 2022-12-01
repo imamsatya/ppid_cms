@@ -121,7 +121,7 @@
                 <div class="card-header">
                     <h3 class="card-title">informasi PPID</h3>
                     <div class="card-toolbar">
-                        @can('kontak.create')
+                        @can('informasi.create')
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#kt_modal_tambahinformasi">Tambah</a>
                         @endcan
@@ -136,7 +136,7 @@
                                 <th>Judul</th>
                                 <th>Deskripsi</th>
                                 <th>Urutan</th>
-                                @can('kontak.delete')
+                                @canany(['informasi.delete', 'informasi.edit'])
                                     <th>Aksi</th>
                                 @endcan
                             </tr>
@@ -161,7 +161,7 @@
                                                         class="btn btn-icon btn-primary me-2"><i
                                                             class="bi bi-pencil fs-4 "></i></a>
                                                 @endcan
-                                                @can('kontak.delete')
+                                                @can('informasi.delete')
                                                     <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
                                                         class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
                                                 @endcan
@@ -375,7 +375,7 @@
                                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                                 </div>
 
-                                                @can('kontak.edit')
+                                                @can('informasi.edit')
                                                     <!--begin::Edit button-->
                                                     <label
                                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -469,7 +469,7 @@
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('kontak.create')
+                                    @can('informasi.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Simpan
@@ -552,7 +552,7 @@
                                                 </div>
 
 
-                                                @can('kontak.edit')
+                                                @can('informasi.edit')
                                                     <!--begin::Edit button-->
                                                     <label
                                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -647,7 +647,7 @@
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('kontak.create')
+                                    @can('informasi.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Update
