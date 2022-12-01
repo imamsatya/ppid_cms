@@ -44,7 +44,7 @@ class VideoController extends Controller
         //
         $validated = $request->validate([
             'url' => 'required',
-            'deskripsi' => 'required',
+            // 'deskripsi' => 'required',
             'urutan' => 'required',
 
         ]);
@@ -101,7 +101,7 @@ class VideoController extends Controller
         //
         $validated = $request->validate([
             'url' => 'required',
-            'deskripsi' => 'required',
+            // 'deskripsi' => 'required',
             'urutan' => 'required',
 
         ]);

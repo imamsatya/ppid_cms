@@ -27,7 +27,7 @@
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
                                     <h1 class="display-2 text-white animated slideInDown">
-                                        {{ $slider_row->judul }}
+                                        {!! $slider_row->judul !!}
                                     </h1>
                                     <p class="fs-5 fw-medium text-white mb-4 pb-3 animated slideInDown">
                                         {{-- Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et
@@ -263,7 +263,7 @@
             </div>
         </div>
     </section>
-    <div id="cont" class="posfix"></div>
+
     <!-- Galeri -->
 
     @push('child-scripts')

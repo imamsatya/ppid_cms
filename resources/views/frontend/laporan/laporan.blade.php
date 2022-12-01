@@ -50,7 +50,7 @@
                                         <div class="col-md-4 mb-4">
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanTriwulanan_row->thumbnail_path)
-                                                    <img class="card-img-top"
+                                                    <img class="card-img-top isw-cardImage"
                                                         src="{{ asset($laporanTriwulanan_row->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
@@ -83,26 +83,41 @@
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
                                         <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">
-                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                            @if ($laporanTriwulanan->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $laporanTriwulanan->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($laporanTriwulanan->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $laporanTriwulanan->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
                                             <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
+                                                <a class="page-link"
+                                                    href="#">{{ $laporanTriwulanan->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
                                             </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                            </li>
+                                            @if ($laporanTriwulanan->currentPage() < $laporanTriwulanan->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $laporanTriwulanan->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($laporanTriwulanan->currentPage() != $laporanTriwulanan->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $laporanTriwulanan->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -116,7 +131,7 @@
                                         <div class="col-md-4 mb-4">
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanTahunan_row->thumbnail_path)
-                                                    <img class="card-img-top"
+                                                    <img class="card-img-top isw-cardImage"
                                                         src="{{ asset($laporanTahunan_row->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
@@ -148,26 +163,41 @@
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
                                         <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">
-                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                            @if ($laporanTahunan->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $laporanTahunan->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($laporanTahunan->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $laporanTahunan->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
                                             <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
+                                                <a class="page-link"
+                                                    href="#">{{ $laporanTahunan->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
                                             </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                            </li>
+                                            @if ($laporanTahunan->currentPage() < $laporanTahunan->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $laporanTahunan->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($laporanTahunan->currentPage() != $laporanTahunan->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $laporanTahunan->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -181,7 +211,7 @@
                                         <div class="col-md-4 mb-4">
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanHasilSurvei_row->thumbnail_path)
-                                                    <img class="card-img-top"
+                                                    <img class="card-img-top isw-cardImage"
                                                         src="{{ asset($laporanHasilSurvei_row->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
@@ -212,26 +242,41 @@
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
                                         <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">
-                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                            @if ($laporanHasilSurvei->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $laporanHasilSurvei->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($laporanHasilSurvei->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $laporanHasilSurvei->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
                                             <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
+                                                <a class="page-link"
+                                                    href="#">{{ $laporanHasilSurvei->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
                                             </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                            </li>
+                                            @if ($laporanHasilSurvei->currentPage() < $laporanHasilSurvei->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $laporanHasilSurvei->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($laporanHasilSurvei->currentPage() != $laporanHasilSurvei->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $laporanHasilSurvei->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -265,6 +310,12 @@
                             background-size: 100% 300px;
                             height: 300px;
                             padding: 100px 100px 100px 100px;
+                        }
+
+                        .isw-cardImage {
+                            width: 100%;
+                            height: 24vh;
+                            object-fit: cover;
                         }
                     </style>
                 @endpush

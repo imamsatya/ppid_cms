@@ -42,14 +42,19 @@ class FortifyServiceProvider extends ServiceProvider
                 $user = Auth::user();
                 // dd($user);
 
-                if ($user->hasRole('admin')) {
-                    return redirect()->route('admin.profilsingkat.index');
-                }
+                // if ($user->hasRole('admin')) {
+                //     return redirect('admin.dashboard.index');
+                // }
 
+                // if ($user->hasRole('user')) {
+                //     return redirect('dashboard.index');
+                // }
                 if ($user->hasRole('user')) {
                     return redirect()->route('dashboard.index');
+                } else {
+                    return redirect()->route('admin.dashboard.index');
                 }
-                return redirect('/admin/profilsingkat');
+                // return redirect('/');
             }
         });
     }

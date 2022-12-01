@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::create('informasipubliks_secaraberkala', function (Blueprint $table) {
             $table->id();
             $table->string('judul_informasi');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();
         });
@@ -29,7 +29,7 @@ return new class extends Migration
         Schema::create('informasipubliks_sertamerta', function (Blueprint $table) {
             $table->id();
             $table->string('judul_informasi');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();
         });
@@ -37,7 +37,7 @@ return new class extends Migration
         Schema::create('informasipubliks_setiapsaat', function (Blueprint $table) {
             $table->id();
             $table->string('judul_informasi');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->string('file_path')->nullable();
             $table->timestamps();
         });

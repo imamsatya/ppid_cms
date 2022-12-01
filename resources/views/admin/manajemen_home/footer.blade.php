@@ -138,7 +138,10 @@
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
 
-                            <td><i class="{{ $sosialMedia_row->icon }} fs-2x" aria-hidden="true"></i></td>
+                            <td><a href="{{ $sosialMedia_row->url }}" target="_blank">
+                                    <img class="img-fluid" src="{{ asset($sosialMedia_row->icon) }}" alt=""
+                                        style="width: 40px;height:40px">
+                                </a></i></td>
                             <td>{{ $sosialMedia_row->url }}</td>
                             <td>{{ $sosialMedia_row->urutan }}</td>
                             @canany(['peraturan kip.edit', 'peraturan kip.delete'])
@@ -270,10 +273,46 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="text" name="icon"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Icon"
-                                        value="" />
-                                    <p>icon diambil dari fontawesome, contoh: fa fa-youtube-play</p>
+                                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+
+                                        @can('kontak.edit')
+                                            <!--begin::Edit button-->
+                                            <label
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Change Image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                <!--begin::Inputs-->
+                                                <input type="file" name="icon" accept=".png, .jpg, .jpeg" />
+                                                <input type="hidden" name="icon_remove" />
+                                                <!--end::Inputs-->
+                                            </label>
+                                            <!--end::Edit button-->
+
+                                            <!--begin::Cancel button-->
+                                            <span
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Cancel Image">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </span>
+                                            <!--end::Cancel button-->
+
+                                            <!--begin::Remove button-->
+                                            <span
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Remove Image">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </span>
+                                            <!--end::Remove button-->
+                                        @endcan
+                                    </div>
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -387,9 +426,54 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="text" name="icon" id="editIcon"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Icon"
-                                        value="" />
+                                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+
+                                        {{-- <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset($informasi->banner_path) }})">
+                                        </div> --}}
+
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+
+
+                                        @can('kontak.edit')
+                                            <!--begin::Edit button-->
+                                            <label
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Change Image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                <!--begin::Inputs-->
+                                                <input type="file" name="icon" id="editLinkAppIcon"
+                                                    accept=".png, .jpg, .jpeg" />
+                                                <input type="hidden" name="icon_remove" />
+                                                <!--end::Inputs-->
+                                            </label>
+                                            <!--end::Edit button-->
+
+                                            <!--begin::Cancel button-->
+                                            <span
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Cancel Image">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </span>
+                                            <!--end::Cancel button-->
+
+                                            <!--begin::Remove button-->
+                                            <span
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Remove Image">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </span>
+                                            <!--end::Remove button-->
+                                        @endcan
+                                    </div>
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -842,9 +926,9 @@
                                     console.log(document.getElementById('editImage'))
                                     document.getElementById('editUrl').value = sosialMediaRow.url
                                     // document.getElementById('editFile').value = sosialMediaRow.file_path
-                                    document.getElementById('editIcon').value = sosialMediaRow.icon
+                                    // document.getElementById('editIcon').value = sosialMediaRow.icon
                                     document.getElementById('editUrutan').value = sosialMediaRow.urutan
-
+                                    console.log('editUrutan', document.getElementById('editUrutan').value)
 
                                     document.getElementById('editForm').setAttribute('action', 'footer/sosialmedia/' +
                                         sosialMediaRow.id)

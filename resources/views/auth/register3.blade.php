@@ -21,6 +21,7 @@
         </style>
         <title>Home</title>
     @endpush
+
     <!-- content -->
     <section class="content-login">
         <div class="bg-bumn"></div>
@@ -41,6 +42,15 @@
                             permohonan informasi, keberatan informasi, atau untuk mengetahui
                             status permohonan informasi dan keberatan informasi yang sudah
                             diajukan.
+                            {{-- @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif --}}
                         </p>
                         <div class="row">
                             <div class="col-md-12">
@@ -64,13 +74,41 @@
                             </div>
                             <div class="form-data">
                                 <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        aria-describedby="name" placeholder="Name" />
+                                    @error('name')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <select class="custom-select" placeholder="Jenis Pemohon" id="jenispemohon"
                                         name="jenispemohon" onchange="selectJenisPemohon()">
-                                        <option selected>Jenis Pemohon</option>
+                                        <option selected value="">Jenis Pemohon</option>
                                         <option value="1">Perorangan</option>
                                         <option value="2">Kelompok</option>
                                         <option value="3">Badan Hukum</option>
                                     </select>
+                                    @error('jenispemohon')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+
+                                    {{-- @if ($errors->any())
+                                        {{ dd($errors->messages()) }}
+                                        <div class="alert
+                                            alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <div class="invalid-feedback">
+                                                        {{ dd($errors) }}
+                                                    </div>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif --}}
                                 </div>
                                 <div class="form-group">
                                     <select class="custom-select" disabled placeholder="Jenis Identitas"
@@ -82,24 +120,49 @@
                                     </select>
                                     <input type="text" hidden name="jenisidentitas" id="inputJenisIdentitas"
                                         value="" />
+                                    @error('jenisidentitas')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="noidentitas" name="noidentitas"
                                         aria-describedby="noidentitas" placeholder="No Identitas (KTP)" />
+                                    @error('noidentitas')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="alamat" name="alamat"
                                         aria-describedby="alamat" placeholder="Alamat" />
+                                    @error('alamat')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="nohp" pattern="[0-9]{9,15}"
-                                        required="" oninvalid="setCustomValidity('No Handphone hanya 9 - 15 digit')"
+                                    <input type="text" class="form-control" id="nohp" {{-- pattern="[0-9]{9,15}"
+                                        required="" oninvalid="setCustomValidity('No Handphone hanya 9 - 15 digit')" --}}
                                         name="nohp" aria-describedby="nohp" placeholder="No Handphone" />
+                                    @error('nohp')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="npwp" id="npwp"
                                         name="npwp" aria-describedby="npwp" placeholder="NPWP" />
+                                    @error('npwp')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     {{-- <select class="custom-select" placeholder="">
@@ -110,6 +173,11 @@
                                 </select> --}}
                                     <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
                                         aria-describedby="pekerjaan" placeholder="Pekerjaan" />
+                                    @error('pekerjaan')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group d-flex align-items-start">
@@ -121,6 +189,11 @@
                                         </button>
                                         <input type="file" name="identitasfile" onchange="PreviewImage();"
                                             id="uploadImage" />
+                                        @error('identitasfile')
+                                            <div class="" style="color: red">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <span class="ml-3 mr-3 file-format">Format JPG/PDF maksimal 500KB</span>
@@ -129,8 +202,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" placeholder="Alamat Email" />
+                                    <input type="email" name="email" class="form-control"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        placeholder="Alamat Email" />
+                                    @error('email')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
@@ -141,15 +220,25 @@
                                             <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
+                                    @error('password')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group d-flex align-items-center" id="show_hide_password">
                                         <input class="form-control input-password" placeholder="Ulangi Password"
-                                            type="password" name="repeat_password" />
+                                            type="password" name="password_confirmation" />
                                         <div class="input-group-addon text-center">
                                             <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
+                                    @error('confirmed')
+                                        <div class="" style="color: red">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Daftar</button>

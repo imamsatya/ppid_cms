@@ -45,8 +45,8 @@ class SliderController extends Controller
         //
         // dd($request);
         $validated = $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
+            // 'judul' => 'required',
+            // 'deskripsi' => 'required',
             'urutan' => 'required',
             'slider' => 'required|mimes:png,jpg,jpeg|max:5120'
         ]);
@@ -107,8 +107,8 @@ class SliderController extends Controller
         //
 
         $validated = $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'required',
+            // 'judul' => 'required',
+            // 'deskripsi' => 'required',
             'urutan' => 'required',
             'slider' => 'mimes:png,jpg,jpeg|max:5120'
 

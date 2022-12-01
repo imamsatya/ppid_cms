@@ -85,7 +85,8 @@ class PeraturanKIPController extends Controller
     {
 
         $validated = $request->validate([
-            'banner' => 'required|mimes:png,jpg,jpeg|max:5120'
+            'banner' => 'required_without_all:thumbnail|mimes:png,jpg,jpeg|max:5120',
+            'thumbnail' => 'required_without_all:banner|mimes:png,jpg,jpeg|max:5120'
         ]);
 
 
@@ -107,6 +108,10 @@ class PeraturanKIPController extends Controller
                             $banner->banner_path = 'adminAssets/regulasi/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
+                        if ($fileName == 'thumbnail') {
+                            $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
+                        }
+
                         $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
                     }
                 }
@@ -121,6 +126,10 @@ class PeraturanKIPController extends Controller
                         $file = $request->file($fileName);
                         if ($fileName == 'banner') {
                             $banner->banner_path = 'adminAssets/regulasi/banner/banner.' . $file->getClientOriginalExtension();
+                        }
+
+                        if ($fileName == 'thumbnail') {
+                            $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
                         }
 
                         $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());

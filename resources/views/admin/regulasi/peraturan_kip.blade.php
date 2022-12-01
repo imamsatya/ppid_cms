@@ -114,69 +114,134 @@
 
             <form action="{{ route('admin.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
                 <div class="card card-flush shadow-sm">
 
                     <div class="card-body py-5">
 
-
-                        <label for="" class="required form-label">Banner Image</label>
-                        <br>
-                        <div class="image-input image-input-outline" data-kt-image-input="true"
-                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                            <!--begin::Image preview wrapper-->
-                            @if ($regulasiBanner)
-                                @if ($regulasiBanner->banner_path)
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($regulasiBanner->banner_path) }})">
-                                    </div>
+                        <div>
+                            <label for="" class="required form-label">Banner Image</label>
+                            <br>
+                            <div class="image-input image-input-outline" data-kt-image-input="true"
+                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                                <!--begin::Image preview wrapper-->
+                                @if ($regulasiBanner)
+                                    @if ($regulasiBanner->banner_path)
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset($regulasiBanner->banner_path) }})">
+                                        </div>
+                                    @else
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+                                    @endif
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
                                         style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                     </div>
+
                                 @endif
-                            @else
-                                <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                </div>
+                                <!--end::Image preview wrapper-->
 
-                            @endif
-                            <!--end::Image preview wrapper-->
+                                @can('peraturan kip.edit')
+                                    <!--begin::Edit button-->
+                                    <label
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                        title="Change Banner">
+                                        <i class="bi bi-pencil-fill fs-7"></i>
 
-                            @can('peraturan kip.edit')
-                                <!--begin::Edit button-->
-                                <label
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Change Banner">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                        <!--begin::Inputs-->
+                                        <input type="file" name="banner" accept=".png, .jpg, .jpeg" />
+                                        <input type="hidden" name="banner_remove" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Edit button-->
 
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="banner" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="banner_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit button-->
+                                    <!--begin::Cancel button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                        title="Cancel Banner">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Cancel button-->
 
-                                <!--begin::Cancel button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Cancel Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel button-->
-
-                                <!--begin::Remove button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Remove Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove button-->
-                            @endcan
+                                    <!--begin::Remove button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Remove Banner">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Remove button-->
+                                @endcan
+                            </div>
+                            <p>minimal dimensi 369x454 pixel</p>
                         </div>
-                        <p>minimal dimensi 369x454 pixel</p>
+
+                        <br>
+                        <div>
+                            <label for="" class="required form-label">Card Background Image</label>
+                            <br>
+                            <div class="image-input image-input-outline" data-kt-image-input="true"
+                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                                <!--begin::Image preview wrapper-->
+                                @if ($regulasiBanner)
+                                    @if ($regulasiBanner->thumbnail_path)
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset($regulasiBanner->thumbnail_path) }})">
+                                        </div>
+                                    @else
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    </div>
+
+                                @endif
+                                <!--end::Image preview wrapper-->
+
+                                @can('peraturan kip.edit')
+                                    <!--begin::Edit button-->
+                                    <label
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Change Banner">
+                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                        <!--begin::Inputs-->
+                                        <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
+                                        <input type="hidden" name="thumbnail_remove" />
+                                        <!--end::Inputs-->
+                                    </label>
+                                    <!--end::Edit button-->
+
+                                    <!--begin::Cancel button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Cancel Banner">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Cancel button-->
+
+                                    <!--begin::Remove button-->
+                                    <span
+                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                        data-bs-dismiss="click" title="Remove Banner">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </span>
+                                    <!--end::Remove button-->
+                                @endcan
+                            </div>
+                            <p>minimal dimensi 369x454 pixel</p>
+                        </div>
+
                         <br> @can('peraturan kip.create')
                             <button type="submit" class="btn btn-primary" id="addBannerButton"
                                 onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
@@ -191,6 +256,8 @@
                     </div>
 
                 </div>
+
+
             </form>
             <br>
             <h1>Pengelolaan Regulasi</h1>

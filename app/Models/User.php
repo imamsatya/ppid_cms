@@ -24,6 +24,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'jenispemohon',
+        'jenisidentitas',
+        'noidentitas',
+        'alamat',
+        'nohp',
+        'npwp',
+        'pekerjaan',
+        'identitas_file_path'
     ];
 
     /**

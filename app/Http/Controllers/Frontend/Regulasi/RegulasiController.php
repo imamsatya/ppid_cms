@@ -21,9 +21,9 @@ class RegulasiController extends Controller
         $regulasiBanner = new RegulasiBanner();
         $regulasiBanner = $regulasiBanner->first();
         $peraturanKIP = new PeraturanKIP();
-        $peraturanKIP = $peraturanKIP::all()->sortBy('urutan');
+        $peraturanKIP = $peraturanKIP::orderBy('urutan')->paginate(9);
         $rancanganPeraturanKIP = new RancanganPeraturanKIP();
-        $rancanganPeraturanKIP = $rancanganPeraturanKIP::all()->sortBy('urutan');
+        $rancanganPeraturanKIP = $rancanganPeraturanKIP::orderBy('urutan')->paginate(9);
         return view('frontend.regulasi.regulasi', compact('regulasiBanner', 'peraturanKIP', 'rancanganPeraturanKIP'));
     }
 

@@ -43,18 +43,31 @@
                                     @foreach ($peraturanKIP as $peraturanKIP_row)
                                         <div class="col-md-4 mt-2">
                                             <div class="card card-informasi w-100">
-                                                <img class="card-img-top"
-                                                    src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
-                                                    alt="Card image cap" />
+                                                @if ($peraturanKIP_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+                                                        alt="Card image cap" />
+                                                @else
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+                                                        alt="Card image cap" />
+                                                @endif
+
                                                 <div class="card-body">
-                                                    <p class="card-text">
-                                                        {{ $peraturanKIP_row->judul_peraturan }}
+                                                    <p class="card-text" id="textKIP{{ $loop->index }}">
+                                                        @if (strlen($peraturanKIP_row->judul_peraturan) <= 70)
+                                                            {{ $peraturanKIP_row->judul_peraturan }}
+                                                        @else
+                                                            {{ substr($peraturanKIP_row->judul_peraturan, 0, 70) . '...' }}
+                                                        @endif
                                                     </p>
-                                                    <span class="title">
+                                                    <a href="javascript:void(0)"
+                                                        onclick="seeMoreJudulRegulasi({{ $loop->index }})"
+                                                        class="title">
                                                         <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_title.png') }}"
                                                             class="img-fluid" alt="" />
                                                         Lihat Judul Lengkap
-                                                    </span>
+                                                    </a>
                                                     <div class="d-flex align-items-center">
                                                         <a href="{{ asset($peraturanKIP_row->file_path) }}" download
                                                             class="unduh ml-auto">
@@ -67,81 +80,47 @@
                                             </div>
                                         </div>
                                     @endforeach
+
                                 @endif
 
-                                {{-- <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
-                                            <span class="title">
-                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_title.png') }}"
-                                                    class="img-fluid" alt="" />
-                                                Lihat Judul Lengkap
-                                            </span>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card card-informasi w-100">
-                                        <img class="card-img-top"
-                                            src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
-                                            alt="Card image cap" />
-                                        <div class="card-body">
-                                            <p class="card-text">
-                                                Some quick example text to build on the card title
-                                            </p>
-                                            <span class="title">
-                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_title.png') }}"
-                                                    class="img-fluid" alt="" />
-                                                Lihat Judul Lengkap
-                                            </span>
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript(0)" download class="unduh ml-auto">
-                                                    <img src="./assets/images/content/icon/ic_download.png"
-                                                        class="img-fluid" alt="" />
-                                                    <span>Unduh / View</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
                                         <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">
-                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                            @if ($peraturanKIP->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link" href="{{ $peraturanKIP->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($peraturanKIP->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $peraturanKIP->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
                                             <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
+                                                <a class="page-link" href="#">{{ $peraturanKIP->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
                                             </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                            </li>
+                                            @if ($peraturanKIP->currentPage() < $peraturanKIP->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $peraturanKIP->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($peraturanKIP->currentPage() != $peraturanKIP->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link" href="{{ $peraturanKIP->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -155,18 +134,30 @@
                                         <div class="col-md-4 mt-2">
 
                                             <div class="card card-informasi w-100">
-                                                <img class="card-img-top"
-                                                    src="{{ asset('ppid_fe/assets/images/content/content-image/content_rancangan.png') }}"
-                                                    alt="Card image cap" />
+                                                @if ($peraturanKIP_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+                                                        alt="Card image cap" />
+                                                @else
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+                                                        alt="Card image cap" />
+                                                @endif
                                                 <div class="card-body">
-                                                    <p class="card-text">
-                                                        {{ $rancanganPeraturanKIP_row->judul_peraturan }}
+                                                    <p class="card-text" id="textRancanganKIP{{ $loop->index }}">
+                                                        @if (strlen($rancanganPeraturanKIP_row->judul_peraturan) <= 70)
+                                                            {{ $rancanganPeraturanKIP_row->judul_peraturan }}
+                                                        @else
+                                                            {{ substr($rancanganPeraturanKIP_row->judul_peraturan, 0, 70) . '...' }}
+                                                        @endif
                                                     </p>
-                                                    <span class="title">
+                                                    <a href="javascript:void(0)"
+                                                        onclick="seeMoreJudulRancanganRegulasi({{ $loop->index }})"
+                                                        class="title">
                                                         <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_title.png') }}"
                                                             class="img-fluid" alt="" />
                                                         Lihat Judul Lengkap
-                                                    </span>
+                                                    </a>
                                                     <div class="d-flex align-items-center">
                                                         <a href="{{ asset($rancanganPeraturanKIP_row->file_path) }}"
                                                             download class="unduh ml-auto">
@@ -187,26 +178,41 @@
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
                                         <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">
-                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                            @if ($rancanganPeraturanKIP->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $rancanganPeraturanKIP->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($rancanganPeraturanKIP->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $rancanganPeraturanKIP->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
                                             <li class="page-item active">
-                                                <a class="page-link" href="#">2 <span
-                                                        class="sr-only">(current)</span></a>
+                                                <a class="page-link"
+                                                    href="#">{{ $rancanganPeraturanKIP->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
                                             </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                            </li>
+                                            @if ($rancanganPeraturanKIP->currentPage() < $rancanganPeraturanKIP->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $rancanganPeraturanKIP->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($rancanganPeraturanKIP->currentPage() != $rancanganPeraturanKIP->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $rancanganPeraturanKIP->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -228,6 +234,60 @@
                 active
                 </x-slot>
                 @push('child-scripts')
+                    <script type="text/javascript">
+                        function seeMoreJudulRegulasi(index) {
+                            let peraturanKIP = {{ Js::from($peraturanKIP) }}
+
+                            peraturanKIP = peraturanKIP['data']
+
+                            let htmlLength = document.getElementById(`textKIP${index}`)
+                                .innerHTML.trim().length
+                            let realLength = peraturanKIP[index]['judul_peraturan'].length
+
+                            if ((htmlLength < 74) && (realLength > 70)) {
+                                console.log('halo')
+                                document.getElementById('textKIP' + index).innerHTML = peraturanKIP[index]['judul_peraturan']
+                                return;
+                            }
+
+                            if ((realLength > 70) && (htmlLength > 70)) {
+                                document.getElementById('textKIP' + index).innerHTML = peraturanKIP[index]['judul_peraturan']
+                                    .substring(0, 70) + '...'
+                                return;
+                            }
+
+
+
+                        }
+
+                        function seeMoreJudulRancanganRegulasi(index) {
+
+                            let rancanganPeraturanKIP = {{ Js::from($rancanganPeraturanKIP) }}
+                            rancanganPeraturanKIP = rancanganPeraturanKIP['data']
+                            let htmlLength = document.getElementById('textRancanganKIP' + index)
+                                .innerHTML.trim().length
+                            let realLength = rancanganPeraturanKIP[index]['judul_peraturan'].length
+
+                            if ((htmlLength < 74) && (realLength > 70)) {
+                                console.log('halo')
+                                document.getElementById('textRancanganKIP' + index).innerHTML = rancanganPeraturanKIP[index][
+                                    'judul_peraturan'
+                                ]
+                                return;
+                            }
+
+                            if ((realLength > 70) && (htmlLength > 70)) {
+                                document.getElementById('textRancanganKIP' + index).innerHTML = rancanganPeraturanKIP[index][
+                                        'judul_peraturan'
+                                    ]
+                                    .substring(0, 70) + '...'
+                                return;
+                            }
+
+
+
+                        }
+                    </script>
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;

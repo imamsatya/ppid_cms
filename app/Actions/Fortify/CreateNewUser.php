@@ -20,7 +20,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        dd($input);
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -31,6 +31,7 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'password_confirmation' => ['required', 'same:password'],
             'jenispemohon' => ['required'],
             'jenisidentitas' => ['required'],
             'noidentitas' => ['required'],
@@ -38,7 +39,11 @@ class CreateNewUser implements CreatesNewUsers
             'nohp' => ['required'],
             'npwp' => ['required'],
             'pekerjaan' => ['required'],
+            'identitasfile' => ['required', 'mimes:png,jpg,jpeg', 'max:500']
         ])->validate();
+        $file = $input['identitasfile'];
+        $upload_path = 'adminAssets/user/identitas';
+        $fileName = now()->getTimestampMs();
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
@@ -50,7 +55,9 @@ class CreateNewUser implements CreatesNewUsers
             'nohp' => $input['nohp'],
             'npwp' => $input['npwp'],
             'pekerjaan' => $input['pekerjaan'],
+            'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . $file->getClientOriginalExtension(),
         ]);
+        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
         $user->assignRole('user');
         return $user;
     }

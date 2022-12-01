@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 //Admin
+//Dashboard
+use App\Http\Controllers\Admin\Dashboard\DashboardController;
 //Profil
 use App\Http\Controllers\Admin\Profil\KontakController;
 use App\Http\Controllers\Admin\Profil\VisiMisiController;
@@ -54,6 +56,9 @@ use App\Http\Controllers\Admin\ManajemenMenu\MenuController;
 // User
 use App\Http\Controllers\Frontend\Home\HomeController;
 use App\Http\Controllers\Frontend\Home\SiaranPersController;
+
+//Dashboard
+use App\Http\Controllers\Frontend\Dashboard\DashboardController as DashboardControllerUser;
 
 //Profil
 use App\Http\Controllers\Frontend\Profil\ProfilSingkatController as ProfilSingkatControllerUser;
@@ -160,17 +165,18 @@ Route::resource('laporan', LaporanControllerUser::class);
 // })->name('faq.index');
 Route::resource('faq', FaqControllerUser::class);
 
-Route::get('/dashboard', function () {
-    return view('frontend.dashboard.dashboard');
-})->name('dashboard.index');
-
+// Route::get('/dashboard', function () {
+//     return view('frontend.dashboard.dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard.index');
+Route::resource('dashboard', DashboardControllerUser::class)->middleware(['auth', 'verified']);
 
 //Admin
 Route::get('/admin/login', function () {
     return view('auth.admin-login2');
 })->name('admin.login');
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-
+    //Dashboard
+    Route::resource('dashboard', DashboardController::class);
     //Profil
     Route::resource('profilsingkat', ProfilSingkatController::class);
     Route::resource('tugasdanfungsi', TugasDanFungsiController::class);
@@ -242,6 +248,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
 
 // Route::get('/visimisi', [VisiMisiController::class, 'index'])->name('visimisi.index');
-Route::get('/layout', function () {
-    return view('layout');
-});
+// Route::get('/layout', function () {
+//     return view('layout');
+// });

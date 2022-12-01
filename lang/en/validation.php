@@ -153,8 +153,29 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'jenispemohon' => [
+            'required' => 'jenis pemohon harus terisi',
+        ],
+        'jenisidentitas' => [
+            'required' => 'jenis identitas harus terisi',
+        ],
+        'noidentitas' => [
+            'required' => 'no identitas harus terisi',
+        ],
+        'alamat' => [
+            'required' => 'alamat harus terisi',
+        ],
+        'nohp' => [
+            'required' => 'no hp harus terisi',
+        ],
+        'npwp' => [
+            'required' => 'npwp harus terisi',
+        ],
+        'identitasfile' => [
+            'required' => 'identitas file harus terisi',
+        ],
+        'email' => [
+            'required' => 'email harus terisi',
         ],
     ],
 
