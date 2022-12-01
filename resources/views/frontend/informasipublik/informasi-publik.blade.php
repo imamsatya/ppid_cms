@@ -50,40 +50,64 @@
                                 <div class="col-md-12">
                                     @if ($informasiSecaraBerkala)
                                         @foreach ($informasiSecaraBerkala as $informasiSecaraBerkala_row)
-                                            <div class="data_list">
-                                                <span><a
-                                                        href="{{ $informasiSecaraBerkala_row->url }}">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
+                                            <div class="data_list"
+                                                style="{{ $informasiSecaraBerkala_row->url || $informasiSecaraBerkala_row->file_path ?? 'cursor: default' }}">
+                                                @if ($informasiSecaraBerkala_row->url)
+                                                    <span><a style="color:#104e70; "
+                                                            href="{{ $informasiSecaraBerkala_row->url }}">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
+                                                @else
+                                                    <span><a style="color:#104e70; cursor: default;"
+                                                            href="javascript:void(0)">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
+                                                @endif
                                             </div>
                                         @endforeach
                                     @endif
 
-                                    {{-- <div class="data_list">
-                                        <span>Daftar Rancangan Peraturan tentang Kementerian BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Informasi Publik yang Wajib Disediakan dan Diumumkan Secara
-                                            Berkala</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Rancangan Peraturan tentang Kementerian BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Informasi Publik yang Wajib Disediakan dan Diumumkan Secara
-                                            Berkala</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div> --}}
 
+
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $informasiSecaraBerkala->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $informasiSecaraBerkala->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                    href="#">{{ $informasiSecaraBerkala->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            @if ($informasiSecaraBerkala->currentPage() < $informasiSecaraBerkala->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($informasiSecaraBerkala->currentPage() != $informasiSecaraBerkala->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $informasiSecaraBerkala->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +120,14 @@
                                             @if ($informasiSetiapSaat)
                                                 @foreach ($informasiSetiapSaat as $informasiSetiapSaat_row)
                                                     <div class="data_list">
-                                                        <span><a
-                                                                href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+
+                                                        @if ($informasiSetiapSaat_row->url)
+                                                            <span><a style="color:#104e70; "
+                                                                    href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+                                                        @else
+                                                            <span><a style="color:#104e70; cursor: default;"
+                                                                    href="javascript:void(0)">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+                                                        @endif
                                                     </div>
                                                 @endforeach
                                             @endif
@@ -106,40 +136,54 @@
 
                                         </div>
                                     </div>
-                                    {{-- <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Rancangan Peraturan tentang Kementerian BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Informasi Publik yang Wajib Disediakan dan Diumumkan Secara
-                                            Berkala</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Rancangan Peraturan tentang Kementerian BUMN</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Daftar Informasi Publik yang Wajib Disediakan dan Diumumkan Secara
-                                            Berkala</span>
-                                    </div>
-                                    <div class="data_list">
-                                        <span>Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian
-                                            BUMN</span>
-                                    </div> --}}
+
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($informasiSetiapSaat->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $informasiSetiapSaat->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($informasiSetiapSaat->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $informasiSetiapSaat->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                    href="#">{{ $informasiSetiapSaat->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            @if ($informasiSetiapSaat->currentPage() < $informasiSetiapSaat->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $informasiSetiapSaat->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($informasiSetiapSaat->currentPage() != $informasiSetiapSaat->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $informasiSetiapSaat->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade show active" id="v-pills-sertamerta" role="tabpanel"
+                        <div class="tab-pane fade " id="v-pills-sertamerta" role="tabpanel"
                             aria-labelledby="v-pills-sertamerta-tab">
 
                             <div class="row">
@@ -147,14 +191,62 @@
                                     @if ($informasiSertaMerta)
                                         @foreach ($informasiSertaMerta as $informasiSertaMerta_row)
                                             <div class="data_list">
-                                                <span><a
-                                                        href="{{ $informasiSertaMerta_row->url }}">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
+                                                @if ($informasiSertaMerta_row->url)
+                                                    <span><a style="color:#104e70; "
+                                                            href="{{ $informasiSertaMerta_row->url }}">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
+                                                @else
+                                                    <span><a style="color:#104e70; cursor: default;"
+                                                            href="javascript:void(0)">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
+                                                @endif
                                             </div>
                                         @endforeach
                                     @endif
 
 
 
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($informasiSertaMerta->currentPage() - 1 != 0)
+                                                <li class="page-item ">
+                                                    <a class="page-link"
+                                                        href="{{ $informasiSertaMerta->previousPageUrl() }}"
+                                                        tabindex="-1">
+                                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                            @if ($informasiSertaMerta->currentPage() - 1 != 0)
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $informasiSertaMerta->currentPage() - 1 }}</a>
+                                                </li>
+                                            @endif
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                    href="#">{{ $informasiSertaMerta->currentPage() }}
+                                                    <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            @if ($informasiSertaMerta->currentPage() < $informasiSertaMerta->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="#">{{ $informasiSertaMerta->currentPage() + 1 }}</a>
+                                                </li>
+                                            @endif
+                                            @if ($informasiSertaMerta->currentPage() != $informasiSertaMerta->lastPage())
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                        href="{{ $informasiSertaMerta->nextPageUrl() }}"><i
+                                                            class="fa fa-chevron-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>

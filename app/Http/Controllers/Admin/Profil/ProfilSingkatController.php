@@ -55,6 +55,8 @@ class ProfilSingkatController extends Controller
             'sideImage' => 'max:5120|mimes:png,jpg,jpeg'
         ]);
 
+
+
         if ($validated) {
 
 

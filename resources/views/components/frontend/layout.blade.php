@@ -145,31 +145,29 @@
                     <li>
                         <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
                     </li>
-                    @if (Route::current()->getName() != 'dashboard.index')
-                        <li>
-                            <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Login
-                            </a>
-                            <!-- <a href="#" class="btn btn_login"> Login </a> -->
-                        </li>
-                    @endif
 
-                    @if (Route::current()->getName() == 'dashboard.index')
+                    @if (Auth::check())
                         <li>
-                            {{-- <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Logout
-                            </a> --}}
                             <form action="{{ route('logout') }}" method="post" id="logout-form">
                                 @csrf
-                                {{-- <button type="submit" class="btn btn-sm btn_login" style="text-align: center">
-                                    Logout
-                                </button> --}}
+
                                 <a href=""
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     class="btn btn-sm btn_login"> Logout
                                 </a>
                             </form>
-                            <!-- <a href="#" class="btn btn_login"> Login </a> -->
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Login
+                            </a>
                         </li>
                     @endif
+
+
+
+
+
                 </ul>
             </nav>
         </header>
@@ -284,7 +282,13 @@
                                     <li>Telp : 021 - 2993 5678</li>
                                     <li>Email : ppid@bumn.go.id</li>
                                     <li>
-                                        <div class="d-flex align-items-center">
+                                        @foreach ($sosialMedia as $sosialMedia_row)
+                                            <a href="{{ $sosialMedia_row->url }}" target="_blank">
+                                                <img class="img-fluid" src="{{ $sosialMedia_row->icon }}"
+                                                    alt="" style="width: 40px;height:40px">
+                                            </a>
+                                        @endforeach
+                                        {{-- <div class="d-flex align-items-center">
                                             @foreach ($sosialMedia as $sosialMedia_row)
                                                 <i class="{{ $sosialMedia_row->icon }}" aria-hidden="true"></i>
                                             @endforeach
@@ -300,7 +304,7 @@
                                             <div class="icon_social facebook">
                                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </li>
                                 </ul>
                             </div>

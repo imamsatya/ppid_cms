@@ -1,8 +1,7 @@
 <x-frontend.layout>
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/login/index.css') }}" rel="stylesheet" />
-        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
-        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
         <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
@@ -108,106 +107,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <!--  -->
 
-        <script src="assets/float/fab.js"></script>
+
         <!-- <img src="assets/images/content/icon/difable.png" width="75%"> -->
-        <script type="text/javascript">
-            var fab = new Fab({
-                selector: "#cont",
-                button: {
-                    style: "large teal",
-                    html: "",
-                },
-                icon: {
-                    style: 'assets/images/content/icon/difable.png" width="75%',
-                    html: "",
-                },
-                // "top-left" || "top-right" || "bottom-left" || "bottom-right"
-                position: "bottom-left",
-                // "horizontal" || "vertical"
-                direction: "vertical",
-                buttons: [{
-                        button: {
-                            style: "small blue",
-                            html: "",
-                        },
-                        icon: {
-                            style: 'assets/images/content/icon/mag-zin.png" width="55%',
-                            html: "",
-                        },
-                        link: {
-                            style: "increaseFont",
-                            html: "",
-                        },
-                        valuenya: {
-                            style: "increase",
-                            html: "",
-                        },
-                        onClick: function() {
-                            console.log("fire");
-                        },
-                    },
-                    {
-                        button: {
-                            style: "small blue",
-                            html: "",
-                        },
-                        icon: {
-                            style: 'assets/images/content/icon/mag-zout.png" width="55%',
-                            html: "",
-                        },
-                        link: {
-                            style: "decreaseFont",
-                            html: "",
-                        },
-                        valuenya: {
-                            style: "decrease",
-                            html: "",
-                        },
-                        onClick: function() {
-                            console.log("ice");
-                        },
-                    },
-                    {
-                        button: {
-                            style: "small blue",
-                            html: "",
-                        },
-                        icon: {
-                            style: 'assets/images/content/icon/eye.png" width="75%',
-                            html: "",
-                        },
-                        link: {
-                            style: "",
-                            html: "",
-                        },
-                        valuenya: {
-                            style: "eye",
-                            html: "",
-                        },
-                        onClick: function() {
-                            var element = document.getElementById("bwStyle");
-                            element.classList.add("bwstyle");
-                            console.log("ice");
-                        },
-                    },
-                    // {
-                    //   button: {
-                    //     style: "small green",
-                    //     html: ""
-                    //   },
-                    //   icon:{
-                    //     style: "chart pie icon",
-                    //     html: ""
-                    //   },
-                    //   onClick: function(){
-                    //     console.log("ice");
-                    //   }
-                    // }
-                ],
-                onOpen: function() {},
-                onClose: function() {},
-            });
-        </script>
+
         <!-- <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-36251023-1']);
@@ -224,21 +126,7 @@
                 s.parentNode.insertBefore(ga, s);
             })();
         </script> -->
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".increaseFont,.decreaseFont").click(function() {
-                    var type = $(this).val();
-                    var curFontSize = $(".magnify").css("zoom");
 
-                    if (type == "increase") {
-                        $(".magnify").css("zoom", parseFloat(curFontSize) + 0.01);
-                    } else {
-                        $(".magnify").css("zoom", parseFloat(curFontSize) - 0.01);
-                    }
-                    // alert($('.magnify').css('font-size'));
-                });
-            });
-        </script>
 
         <script>
             function clickSearch() {

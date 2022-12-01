@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('regulasis_banner', function (Blueprint $table) {
             $table->id();
             $table->string('banner_path')->nullable();
+            $table->string('thumbnail_path')->nullable();
             $table->timestamps();
         });
 

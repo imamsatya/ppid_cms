@@ -52,9 +52,8 @@ class FooterController extends Controller
     {
         //
 
-
         $validated = $request->validate([
-            'icon' => 'required',
+            'icon' => 'required|mimes:png,jpg,jpeg|max:5120',
             'url' => 'required',
             'urutan' => 'required',
         ]);
@@ -63,9 +62,13 @@ class FooterController extends Controller
         }
         if ($validated) {
             $sosialMedia = new SosialMedia();
-            $sosialMedia->icon = $request->icon;
             $sosialMedia->url = $request->url;
             $sosialMedia->urutan = $request->urutan;
+            $file = $request->file('icon');
+            $upload_path = 'adminAssets/home/footer/sosialmedia';
+            $sosialMedia->icon = 'adminAssets/home/footer/sosialmedia/' . $request->file('icon')->getClientOriginalName();
+            $file->move($upload_path, $request->file('icon')->getClientOriginalName());
+            $sosialMedia->save();
             $sosialMedia->save();
 
             return redirect()->back()->with('success', 'Berhasil menyimpan Sosial Media');
@@ -78,7 +81,7 @@ class FooterController extends Controller
 
 
         $validated = $request->validate([
-            'icon' => 'required|mimes:png,jpg,jpeg',
+            'icon' => 'required|mimes:png,jpg,jpeg|max:5120',
         ]);
         if (!$validated) {
             return redirect()->back()->withErrors($validated)->withInput();
@@ -89,8 +92,8 @@ class FooterController extends Controller
             $linkApp->url = $request->url;
             $file = $request->file('icon');
 
-            $upload_path = 'adminAssets/home/footer';
-            $linkApp->icon = 'adminAssets/home/footer/' . $request->file('icon')->getClientOriginalName();
+            $upload_path = 'adminAssets/home/footer/linkapps';
+            $linkApp->icon = 'adminAssets/home/footer/linkapps/' . $request->file('icon')->getClientOriginalName();
             $file->move($upload_path, $request->file('icon')->getClientOriginalName());
             $linkApp->save();
 
@@ -137,7 +140,7 @@ class FooterController extends Controller
         //
         //
         $validated = $request->validate([
-            'icon' => 'required',
+            'icon' => 'required|mimes:png,jpg,jpeg|max:5120',
             'url' => 'required',
             'urutan' => 'required'
         ]);
@@ -147,9 +150,17 @@ class FooterController extends Controller
         if ($validated) {
             $sosialMedia = new SosialMedia();
             $sosialMedia = $sosialMedia->where('id', $id)->first();
-            $sosialMedia->icon = $request->icon;
+
             $sosialMedia->url = $request->url;
             $sosialMedia->urutan = $request->urutan;
+            if (count($request->files) > 0) {
+                $file = $request->file('icon');
+                File::delete($sosialMedia->icon);
+                $file = $request->file('icon');
+                $upload_path = 'adminAssets/home/footer/sosialmedia';
+                $sosialMedia->icon = 'adminAssets/home/footer/sosialmedia/' . $request->file('icon')->getClientOriginalName();
+                $file->move($upload_path, $request->file('icon')->getClientOriginalName());
+            }
             $sosialMedia->save();
 
             return redirect()->back()->with('success', 'Berhasil mengubah Sosial Media');
@@ -170,13 +181,14 @@ class FooterController extends Controller
             $linkApp = new LinkApp();
             $linkApp = $linkApp->where('id', $id)->first();
             $linkApp->url = $request->url;
-            $file = $request->file('icon');
+
 
             if (count($request->files) > 0) {
+                $file = $request->file('icon');
                 File::delete($linkApp->icon);
                 $file = $request->file('icon');
-                $upload_path = 'adminAssets/home/footer';
-                $linkApp->icon = 'adminAssets/home/footer/' . $request->file('icon')->getClientOriginalName();
+                $upload_path = 'adminAssets/home/footer/linkapps';
+                $linkApp->icon = 'adminAssets/home/footer/linkapps/' . $request->file('icon')->getClientOriginalName();
                 $file->move($upload_path, $request->file('icon')->getClientOriginalName());
             }
             $linkApp->save();

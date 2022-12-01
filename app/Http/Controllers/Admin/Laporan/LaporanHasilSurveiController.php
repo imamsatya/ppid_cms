@@ -49,7 +49,7 @@ class LaporanHasilSurveiController extends Controller
 
         $validated = $request->validate([
             'judulLaporan' => 'required',
-            'file' => 'required|mimes:pdf|max:5120',
+            'file' => 'required|mimes:pdf|max:15360',
             'laporanImage' => 'mimes:png,jpg,jpeg|max:5120'
         ]);
         if (!$validated) {
@@ -118,7 +118,7 @@ class LaporanHasilSurveiController extends Controller
         //
         $validated = $request->validate([
             'judulLaporan' => 'required',
-            'file' => 'mimes:pdf|max:5120',
+            'file' => 'mimes:pdf|max:15360',
             'laporanImage' => 'mimes:png,jpg,jpeg|max:5120'
 
         ]);
