@@ -113,7 +113,7 @@
         <div class="card-header">
             <h3 class="card-title">Sosial Media</h3>
             <div class="card-toolbar">
-                @can('kontak.create')
+                @can('footer.create')
                     <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                         data-bs-target="#kt_modal_tambahSosialMedia">Tambah</a>
                 @endcan
@@ -127,7 +127,7 @@
                         <th>icon</th>
                         <th>URL</th>
                         <th>Urutan</th>
-                        @can('kontak.delete')
+                        @can('footer.delete')
                             <th>Aksi</th>
                         @endcan
                     </tr>
@@ -144,15 +144,15 @@
                                 </a></i></td>
                             <td>{{ $sosialMedia_row->url }}</td>
                             <td>{{ $sosialMedia_row->urutan }}</td>
-                            @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                            @canany(['footer.edit', 'footer.delete'])
                                 <td>
-                                    @can('peraturan kip.edit')
+                                    @can('footer.edit')
                                         <a href="javascript:void(0)" data-bs-toggle="modal"
                                             data-bs-target="#kt_modal_editSosialMedia"
                                             onclick="editSosialMediaDialog({{ $loop->index }})"
                                             class="btn btn-icon btn-primary me-2"><i class="bi bi-pencil fs-4 "></i></a>
                                     @endcan
-                                    @can('kontak.delete')
+                                    @can('footer.delete')
                                         <a href="javascript:void(0)" onclick="deleteSosialMediaDialog({{ $loop->index }})"
                                             class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
                                     @endcan
@@ -172,7 +172,7 @@
         <div class="card-header">
             <h3 class="card-title">Link Apps</h3>
             <div class="card-toolbar">
-                @can('kontak.create')
+                @can('footer.create')
                     <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                         data-bs-target="#kt_modal_tambahLinkApp">Tambah</a>
                 @endcan
@@ -186,7 +186,7 @@
                         <th>icon</th>
                         <th>URL</th>
 
-                        @can('kontak.delete')
+                        @can('footer.delete')
                             <th>Aksi</th>
                         @endcan
                     </tr>
@@ -202,15 +202,15 @@
                                         alt="play store logo black background hd picture" /></a></td>
                             <td>{{ $linkApp_row->url }}</td>
 
-                            @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                            @canany(['footer.edit', 'footer.delete'])
                                 <td>
-                                    @can('peraturan kip.edit')
+                                    @can('footer.edit')
                                         <a href="javascript:void(0)" data-bs-toggle="modal"
                                             data-bs-target="#kt_modal_editLinkApp"
                                             onclick="editLinkAppDialog({{ $loop->index }})"
                                             class="btn btn-icon btn-primary me-2"><i class="bi bi-pencil fs-4 "></i></a>
                                     @endcan
-                                    @can('kontak.delete')
+                                    @can('footer.delete')
                                         <a href="javascript:void(0)" onclick="deleteLinkAppDialog({{ $loop->index }})"
                                             class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
                                     @endcan
@@ -279,7 +279,7 @@
                                             style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                         </div>
 
-                                        @can('kontak.edit')
+                                        @can('footer.edit')
                                             <!--begin::Edit button-->
                                             <label
                                                 class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -356,7 +356,7 @@
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
                             {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                            @can('kontak.create')
+                            @can('footer.create')
                                 <button type="submit" class="btn btn-primary" id="addSosialMediaButton"
                                     onclick="activateLoadingButton('#addSosialMediaButton')"><span
                                         class="indicator-label">
@@ -439,7 +439,7 @@
                                         </div>
 
 
-                                        @can('kontak.edit')
+                                        @can('footer.edit')
                                             <!--begin::Edit button-->
                                             <label
                                                 class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -518,7 +518,7 @@
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
                             {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                            @can('kontak.create')
+                            @can('footer.create')
                                 <button type="submit" class="btn btn-primary" id="updateSosialMediaButton"
                                     onclick="activateLoadingButton('#updateSosialMediaButton')"><span
                                         class="indicator-label">
@@ -594,7 +594,7 @@
                                             style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                         </div>
 
-                                        @can('kontak.edit')
+                                        @can('footer.edit')
                                             <!--begin::Edit button-->
                                             <label
                                                 class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -660,7 +660,7 @@
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
                             {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                            @can('kontak.create')
+                            @can('footer.create')
                                 <button type="submit" class="btn btn-primary" id="addLinkAppButton"
                                     onclick="activateLoadingButton('#addLinkAppButton')"><span class="indicator-label">
                                         Simpan
@@ -741,7 +741,7 @@
                                         </div>
 
 
-                                        @can('kontak.edit')
+                                        @can('footer.edit')
                                             <!--begin::Edit button-->
                                             <label
                                                 class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -809,7 +809,7 @@
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
                             {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                            @can('kontak.create')
+                            @can('footer.create')
                                 <button type="submit" class="btn btn-primary" id="updateLinkAppButton"
                                     onclick="activateLoadingButton('#updateLinkAppButton')"><span class="indicator-label">
                                         Update

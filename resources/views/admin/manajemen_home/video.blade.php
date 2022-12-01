@@ -121,7 +121,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Video PPID</h3>
                     <div class="card-toolbar">
-                        @can('kontak.create')
+                        @can('video.create')
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#kt_modal_tambahvideo">Tambah</a>
                         @endcan
@@ -136,7 +136,7 @@
                                 <th>URL</th>
                                 <th>Deskripsi</th>
                                 <th>Urutan</th>
-                                @can('kontak.delete')
+                                @canany(['video.delete', 'video.edit'])
                                     <th>Aksi</th>
                                 @endcan
                             </tr>
@@ -150,15 +150,15 @@
                                     <td>{{ $video_row->url }}</td>
                                     <td>{{ $video_row->deskripsi }}</td>
                                     <td>{{ $video_row->urutan }}</td>
-                                    @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                                    @canany(['video.edit', 'video.delete'])
                                         <td>
-                                            @can('peraturan kip.edit')
+                                            @can('video.edit')
                                                 <a href="javascript:void(0)" data-bs-toggle="modal"
                                                     data-bs-target="#kt_modal_editvideo"
                                                     onclick="editDialog({{ $loop->index }})"
                                                     class="btn btn-icon btn-primary me-2"><i class="bi bi-pencil fs-4 "></i></a>
                                             @endcan
-                                            @can('kontak.delete')
+                                            @can('video.delete')
                                                 <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
                                                     class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
                                             @endcan
@@ -269,7 +269,7 @@
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('kontak.create')
+                                    @can('video.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Simpan
@@ -387,7 +387,7 @@
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
                                     {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('kontak.create')
+                                    @can('video.create')
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Update

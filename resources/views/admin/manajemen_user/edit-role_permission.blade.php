@@ -1309,7 +1309,7 @@
 
                                             <!--end::FAQ row-->
 
-                                            <!--begin::Standar Layanan row-->
+                                            <!--begin::Manajemen User row-->
                                             <tr>
                                                 <!--begin::Label-->
                                                 <td class="text-gray-800">
@@ -1317,7 +1317,7 @@
                                                 <!--end::Label-->
                                             </tr>
 
-                                            <!--begin::Sub Standar Layanan row-->
+                                            <!--begin::Sub Manajemen User row-->
                                             <tr>
                                                 <!--begin::Label-->
                                                 <td class="text-gray-800">
@@ -1461,8 +1461,212 @@
                                                 </td>
                                                 <!--end::Options-->
                                             </tr>
-                                            <!--end::Sub Standar Layanan row-->
-                                            <!--end::Standar Layanan row-->
+                                            <!--end::Sub Manajemen User row-->
+                                            <!--end::Manajemen User row-->
+
+
+                                            <!--begin::Manajemen Home row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Manajemen Home</td>
+                                                <!--end::Label-->
+                                            </tr>
+
+                                            <!--begin::Sub Manajemen User row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Slider</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="slider.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="slider.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="slider.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="slider.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Informasi</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="informasi.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Video</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="video.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="video.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="video.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="video.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Footer</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="footer.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="footer.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="footer.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="footer.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+                                            <!--end::Sub Manajemen User row-->
+                                            <!--end::Manajemen User row-->
 
 
                                             <!--begin::Table row-->
@@ -1786,7 +1990,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="profil singkat ppid.create"
+                                                                    type="checkbox"
+                                                                    value="profil singkat ppid.create"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Create</span>
                                                             </label>
@@ -1814,7 +2019,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="profil singkat ppid.delete"
+                                                                    type="checkbox"
+                                                                    value="profil singkat ppid.delete"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Delete</span>
                                                             </label>
@@ -1848,7 +2054,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="tugas dan fungsi ppid.view"
+                                                                    type="checkbox"
+                                                                    value="tugas dan fungsi ppid.view"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">View</span>
                                                             </label>
@@ -1857,7 +2064,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="tugas dan fungsi ppid.edit"
+                                                                    type="checkbox"
+                                                                    value="tugas dan fungsi ppid.edit"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Edit</span>
                                                             </label>
@@ -1892,7 +2100,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="struktur organisasi.create"
+                                                                    type="checkbox"
+                                                                    value="struktur organisasi.create"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Create</span>
                                                             </label>
@@ -1920,7 +2129,8 @@
                                                             <label
                                                                 class="form-check form-check-sm form-check-custom form-check-solid">
                                                                 <input class="form-check-input addCheck"
-                                                                    type="checkbox" value="struktur organisasi.delete"
+                                                                    type="checkbox"
+                                                                    value="struktur organisasi.delete"
                                                                     name="permissions[]" />
                                                                 <span class="form-check-label">Delete</span>
                                                             </label>

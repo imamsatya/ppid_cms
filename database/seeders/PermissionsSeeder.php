@@ -193,5 +193,30 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'role permission.view']);
         Permission::create(['name' => 'role permission.edit']);
         Permission::create(['name' => 'role permission.delete']);
+
+        //Manajemen Home
+        //Slider
+        Permission::create(['name' => 'slider.create']);
+        Permission::create(['name' => 'slider.view']);
+        Permission::create(['name' => 'slider.edit']);
+        Permission::create(['name' => 'slider.delete']);
+
+        //Informasi
+        Permission::create(['name' => 'informasi.create']);
+        Permission::create(['name' => 'informasi.view']);
+        Permission::create(['name' => 'informasi.edit']);
+        Permission::create(['name' => 'informasi.delete']);
+
+        //Video
+        Permission::create(['name' => 'video.create']);
+        Permission::create(['name' => 'video.view']);
+        Permission::create(['name' => 'video.edit']);
+        Permission::create(['name' => 'video.delete']);
+
+        //Footer
+        Permission::create(['name' => 'footer.create']);
+        Permission::create(['name' => 'footer.view']);
+        Permission::create(['name' => 'footer.edit']);
+        Permission::create(['name' => 'footer.delete']);
     }
 }

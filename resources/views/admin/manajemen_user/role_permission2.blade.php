@@ -147,8 +147,8 @@
                         <div class="card-body pt-1">
 
                             <!--begin::Users-->
-                            <div class="fw-bold text-gray-600 mb-5">Total users with
-                                this role: 5</div>
+                            {{-- <div class="fw-bold text-gray-600 mb-5">Total users with
+                                this role: 5</div> --}}
                             <?php
                             $permissionGroup = [];
                             foreach ($role['permissions'] as $key => $permission) {
@@ -208,6 +208,13 @@
                             $showUserPemohon = in_array('user pemohon', $permissionGroup);
                             $showUserAdmin = in_array('user admin', $permissionGroup);
                             $showRolePermission = in_array('role permission', $permissionGroup);
+                            
+                            //Manajemen Home
+                            $showManajemenHome = in_array('slider', $permissionGroup) || in_array('informasi', $permissionGroup) || in_array('video', $permissionGroup) || in_array('footer', $permissionGroup);
+                            $showSlider = in_array('slider', $permissionGroup);
+                            $showInformasi = in_array('informasi', $permissionGroup);
+                            $showVideo = in_array('video', $permissionGroup);
+                            $showFooter = in_array('footer', $permissionGroup);
                             ?>
 
                             <!--end::Users-->
@@ -249,8 +256,7 @@
                                             <!--begin::Profil-->
                                             @if ($showProfil)
                                                 <div class="d-flex align-items-center py-2">
-                                                    <span
-                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Profil
+                                                    <span class="bullet bullet-vertical bg-secondary me-3"></span>Profil
                                                 </div>
 
                                                 @if ($showProfilSingkat)
@@ -339,7 +345,7 @@
                                             <!--end::Informasi Publik-->
                                         </div>
                                     @endif
-                                    @if ($showLaporan || $showStandarLayanan || $showFAQ || $showManajemenUser)
+                                    @if ($showLaporan || $showStandarLayanan || $showFAQ || $showManajemenUser || $showManajemenHome)
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <!--begin::Laporan-->
 
@@ -423,6 +429,38 @@
                                             @endif
                                             <!--end::Manajmen User-->
 
+                                            <!--begin::Manajmen Home-->
+
+                                            @if ($showManajemenHome)
+                                                <div class="d-flex align-items-center py-2">
+                                                    <span
+                                                        class="bullet bullet-vertical bg-secondary me-3"></span>Manajemen
+                                                    Home
+                                                </div>
+                                                @if ($showSlider)
+                                                    <div class="d-flex align-items-center py-2 px-4">
+                                                        <span class="bullet bg-primary me-3"></span>Slider
+                                                    </div>
+                                                @endif
+                                                @if ($showInformasi)
+                                                    <div class="d-flex align-items-center py-2 px-4">
+                                                        <span class="bullet bg-primary me-3"></span>Informasi
+                                                    </div>
+                                                @endif
+                                                @if ($showVideo)
+                                                    <div class="d-flex align-items-center py-2 px-4">
+                                                        <span class="bullet bg-primary me-3"></span>Video
+                                                    </div>
+                                                @endif
+                                                @if ($showFooter)
+                                                    <div class="d-flex align-items-center py-2 px-4">
+                                                        <span class="bullet bg-primary me-3"></span>Footer
+                                                    </div>
+                                                @endif
+                                            @endif
+                                            <!--end::Manajmen Home-->
+
+
                                             <!--begin::Setting Kalender-->
 
                                             <div class="d-flex align-items-center py-2">
@@ -435,9 +473,9 @@
                                             <!--end::Setting Kalender-->
 
                                             <!--begin::Setting Frontend-->
-                                            <div class="d-flex align-items-center py-2">
+                                            {{-- <div class="d-flex align-items-center py-2">
                                                 <span class="bullet bg-primary me-3"></span>Setting Frontend
-                                            </div>
+                                            </div> --}}
                                             <!--begin::Setting Frontend-->
 
 
