@@ -216,28 +216,22 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Informasi yang diminta"></textarea>
+                                        <textarea class="form-control tox-target" id="area-informasi-diminta" placeholder="Informasi yang diminta"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <select class="custom-select" placeholder="">
-                                            <option selected>Cara memperoleh informasi</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select class="custom-select" id="select-memperoleh-informasi" placeholder="">
+                                            <option>Cara memperoleh informasi</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select class="custom-select" placeholder="">
-                                            <option selected>Cara memberikan informasi</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select class="custom-select" id="select-memberikan-informasi" placeholder="">
+                                            <option>Cara memberikan informasi</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="9"
+                                        <textarea class="form-control" id="area-tujuan-penggunaan"
                                             placeholder="Tujuan penggunaan informasi"></textarea>
                                     </div>
                                 </div>
@@ -248,7 +242,7 @@
                         <button type="button" class="btn btn-outline-primary-ppid" data-dismiss="modal">
                             Batal
                         </button>
-                        <button type="button" class="btn btn-lg btn-primary-ppid w-25">
+                        <button type="button" id="save-permohonan" class="btn btn-lg btn-primary-ppid w-25">
                             Submit
                         </button>
                     </div>
@@ -260,7 +254,69 @@
 
     <!-- Content -->
 
+    @push('child-scripts')    
+    <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>    
+    <script>
+        $(document).ready(function(){
+             
+            const getDataPpidCaraMendapatkan = () => {
+               return $.ajax({
+                    type: 'GET',
+                    url: "/ppid-cara-mendapatkan",
+                    dataType: 'json'
+                });
+            }
 
+            async function ppidCaraMendapatkan() {
+                try {
+                    const result = await getDataPpidCaraMendapatkan()
+                    let option = '<option selected value="-">-- Cara memperoleh informasi --</option>'
+                    for(let i=0; i<result.result.length; i++) {
+                        option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+                    }
+                    $("#select-memperoleh-informasi").html(option)
+                } catch(err) {
+                    console.log(err.responseText)
+                }
+            }
+
+            const getDataPpidCaraMemberikan = () => {
+               return $.ajax({
+                    type: 'GET',
+                    url: "/ppid-cara-memberikan",
+                    dataType: 'json'
+                });
+            }
+
+            async function ppidCaraMemberikan() {
+                try {
+                    const result = await getDataPpidCaraMemberikan()
+                    let option = '<option selected value="-">-- Cara memberikan informasi --</option>'
+                    for(let i=0; i<result.result.length; i++) {
+                        option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+                    }
+                    $("#select-memberikan-informasi").html(option)
+                } catch(err) {
+                    console.log(err.responseText)
+                }
+            }
+
+            ppidCaraMendapatkan()
+            ppidCaraMemberikan()
+
+            let configAreaInformasiDiminta = {selector: "#area-informasi-diminta", height : "300"};
+            let configAreaTujuanPenggunaan = {selector: "#area-tujuan-penggunaan", height : "300"};
+            tinymce.init(configAreaInformasiDiminta);
+            tinymce.init(configAreaTujuanPenggunaan);
+
+            $("#save-permohonan").click(function(){
+                console.log("okee")
+            })
+            
+        })
+    </script>
+    @endpush
 
 
 </x-frontend.layout>
