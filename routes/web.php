@@ -128,9 +128,9 @@ Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name
 //     ->name('user.home');
 Route::get('/admin/login', [UserAdminAuthController::class, 'login'])
     ->name('admin.login');
-Route::post('/login', [UserAdminAuthController::class, 'handleLogin'])
+Route::post('/admin/login', [UserAdminAuthController::class, 'handleLogin'])
     ->name('admin.handleLogin');
-Route::post('/logout', [UserAdminAuthController::class, 'logout'])
+Route::post('/admin/logout', [UserAdminAuthController::class, 'logout'])
     ->name('admin.logout');
 // User
 
