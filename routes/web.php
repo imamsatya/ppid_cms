@@ -116,17 +116,17 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
 //     ->name('admin.home');
-Route::get('login', [UserPPIDLoginController::class, 'login'])->name('userppid.login');
+Route::get('login', [UserPPIDLoginController::class, 'login'])->middleware('guest:usersppid')->name('userppid.login');
 Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->name('userppid.handleLogin');
 Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
-Route::get('signup',  [UserPPIDLoginController::class, 'register'])->name('signup');
+Route::get('signup',  [UserPPIDLoginController::class, 'register'])->middleware('guest:usersppid')->name('signup');
 Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
 
 
 //User Admin
 // Route::get('/', [UserSAminController::class, 'index'])
 //     ->name('user.home');
-Route::get('/admin/login', [UserAdminAuthController::class, 'login'])
+Route::get('/admin/login', [UserAdminAuthController::class, 'login'])->middleware('guest:web')
     ->name('admin.login');
 Route::post('/admin/login', [UserAdminAuthController::class, 'handleLogin'])
     ->name('admin.handleLogin');
