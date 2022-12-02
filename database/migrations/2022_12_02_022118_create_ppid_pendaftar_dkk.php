@@ -12,7 +12,7 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {        
+    {
         Schema::create('jenis_identitas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -36,8 +36,8 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('npwp');
             $table->string('email');
-            $table->string('password_login');
-            $table->string('status');
+            $table->string('password');
+            $table->string('status')->nullable();
             $table->string('identitas_file_path');
             $table->rememberToken();
             $table->timestamps();

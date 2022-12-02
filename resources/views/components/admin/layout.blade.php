@@ -351,7 +351,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item px-5">
 
                                         {{-- <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a> --}}
-                                        <form action="{{ route('logout') }}" method="post">
+                                        <form action="{{ route('admin.logout') }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-primary">
                                                 Sign Out

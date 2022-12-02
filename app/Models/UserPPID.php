@@ -13,14 +13,14 @@ class UserPPID extends Authenticatable
     protected $table = 'ppid_pendaftar';
     use Notifiable;
     protected $fillable = [
-        'name',
+        'nama_lengkap',
         'email',
         'password',
-        'jenispemohon',
-        'jenisidentitas',
-        'noidentitas',
+        'jenis_pemohon',
+        'jenis_identitas',
+        'nomor_identitas',
         'alamat',
-        'nohp',
+        'no_hp',
         'npwp',
         'pekerjaan',
         'identitas_file_path'
