@@ -29,7 +29,7 @@ class RedirectIfAuthenticated
                 // if ($user->hasRole('admin')) {
                 //     return redirect()->route('admin.dashboard.index');
                 // }
-
+                return redirect()->route('dashboard.index');
                 if ($user->hasRole('user')) {
                     return redirect()->route('dashboard.index');
                 } else {
