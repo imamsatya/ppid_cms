@@ -148,7 +148,7 @@
 
                     @if (Auth::guard('usersppid')->check())
                         <li>
-                            <form action="" method="post" id="logout-form">
+                            <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
                                 @csrf
 
                                 <a href=""
@@ -156,6 +156,13 @@
                                     class="btn btn-sm btn_login"> Logout
                                 </a>
                             </form>
+
+                            {{-- <form action="{{ route('userppid.logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">
+                                    Sign Out
+                                </button>
+                            </form> --}}
                         </li>
                     @else
                         <li>
