@@ -148,7 +148,7 @@
 
                     @if (Auth::guard('usersppid')->check())
                         <li>
-                            <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
+                            <form action="" method="post" id="logout-form">
                                 @csrf
 
                                 <a href=""
