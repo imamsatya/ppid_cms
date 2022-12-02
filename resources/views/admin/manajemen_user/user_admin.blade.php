@@ -184,9 +184,9 @@
             <!--end::Icon-->
 
             <!--begin::Wrapper-->
-            <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+            <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                 <!--begin::Title-->
-                <h4 class="mb-2 light">Sukses !</h4>
+                <h4 class="mb-2 text-white">Sukses !</h4>
                 <!--end::Title-->
 
                 <!--begin::Content-->
@@ -385,8 +385,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <select class="form-select form-select-sm form-select-solid" id="addP"
                                         data-control="select2" data-close-on-select="false"
-                                        data-placeholder="Pilih Role" data-allow-clear="true" multiple="multiple"
-                                        name="roles[]">
+                                        data-placeholder="Pilih Role" name="roles[]">
                                         <option></option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->name }}">
@@ -406,7 +405,7 @@
                             {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
                             <button type="submit" class="btn btn-primary" id="addButton"
                                 onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                    Tambah
+                                    Simpan
                                 </span>
                                 <span class="indicator-progress">
                                     Mohon Menunggu... <span
@@ -516,8 +515,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <select class="form-select form-select-sm form-select-solid"
                                         data-control="select2" data-close-on-select="false"
-                                        data-placeholder="Pilih Role" data-allow-clear="true" multiple="multiple"
-                                        name="edit_roles[]" id="editRoles">
+                                        data-placeholder="Pilih Role" name="edit_roles[]" id="editRoles">
                                         <option></option>
 
                                     </select>
