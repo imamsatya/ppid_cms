@@ -5,7 +5,7 @@
 -- Dumped from database version 12.12
 -- Dumped by pg_dump version 12.12
 
--- Started on 2022-12-01 14:22:32
+-- Started on 2022-12-02 09:15:01
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 217 (class 1259 OID 34337)
+-- TOC entry 205 (class 1259 OID 34337)
 -- Name: failed_jobs; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -41,7 +41,7 @@ CREATE TABLE public.failed_jobs (
 ALTER TABLE public.failed_jobs OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 34335)
+-- TOC entry 204 (class 1259 OID 34335)
 -- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -56,8 +56,8 @@ CREATE SEQUENCE public.failed_jobs_id_seq
 ALTER TABLE public.failed_jobs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3526 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3540 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -65,7 +65,7 @@ ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
 
 
 --
--- TOC entry 315 (class 1259 OID 34938)
+-- TOC entry 303 (class 1259 OID 34938)
 -- Name: faqs; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -81,7 +81,7 @@ CREATE TABLE public.faqs (
 ALTER TABLE public.faqs OWNER TO postgres;
 
 --
--- TOC entry 313 (class 1259 OID 34930)
+-- TOC entry 301 (class 1259 OID 34930)
 -- Name: faqs_banner; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -96,7 +96,7 @@ CREATE TABLE public.faqs_banner (
 ALTER TABLE public.faqs_banner OWNER TO postgres;
 
 --
--- TOC entry 312 (class 1259 OID 34928)
+-- TOC entry 300 (class 1259 OID 34928)
 -- Name: faqs_banner_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -111,8 +111,8 @@ CREATE SEQUENCE public.faqs_banner_id_seq
 ALTER TABLE public.faqs_banner_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3527 (class 0 OID 0)
--- Dependencies: 312
+-- TOC entry 3541 (class 0 OID 0)
+-- Dependencies: 300
 -- Name: faqs_banner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -120,7 +120,7 @@ ALTER SEQUENCE public.faqs_banner_id_seq OWNED BY public.faqs_banner.id;
 
 
 --
--- TOC entry 314 (class 1259 OID 34936)
+-- TOC entry 302 (class 1259 OID 34936)
 -- Name: faqs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -135,8 +135,8 @@ CREATE SEQUENCE public.faqs_id_seq
 ALTER TABLE public.faqs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3528 (class 0 OID 0)
--- Dependencies: 314
+-- TOC entry 3542 (class 0 OID 0)
+-- Dependencies: 302
 -- Name: faqs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -144,7 +144,7 @@ ALTER SEQUENCE public.faqs_id_seq OWNED BY public.faqs.id;
 
 
 --
--- TOC entry 275 (class 1259 OID 34722)
+-- TOC entry 263 (class 1259 OID 34722)
 -- Name: informasipubliks_banner; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -159,7 +159,7 @@ CREATE TABLE public.informasipubliks_banner (
 ALTER TABLE public.informasipubliks_banner OWNER TO postgres;
 
 --
--- TOC entry 274 (class 1259 OID 34720)
+-- TOC entry 262 (class 1259 OID 34720)
 -- Name: informasipubliks_banner_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -174,8 +174,8 @@ CREATE SEQUENCE public.informasipubliks_banner_id_seq
 ALTER TABLE public.informasipubliks_banner_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3529 (class 0 OID 0)
--- Dependencies: 274
+-- TOC entry 3543 (class 0 OID 0)
+-- Dependencies: 262
 -- Name: informasipubliks_banner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -183,7 +183,7 @@ ALTER SEQUENCE public.informasipubliks_banner_id_seq OWNED BY public.informasipu
 
 
 --
--- TOC entry 277 (class 1259 OID 34730)
+-- TOC entry 265 (class 1259 OID 34730)
 -- Name: informasipubliks_secaraberkala; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -200,7 +200,7 @@ CREATE TABLE public.informasipubliks_secaraberkala (
 ALTER TABLE public.informasipubliks_secaraberkala OWNER TO postgres;
 
 --
--- TOC entry 276 (class 1259 OID 34728)
+-- TOC entry 264 (class 1259 OID 34728)
 -- Name: informasipubliks_secaraberkala_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -215,8 +215,8 @@ CREATE SEQUENCE public.informasipubliks_secaraberkala_id_seq
 ALTER TABLE public.informasipubliks_secaraberkala_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3530 (class 0 OID 0)
--- Dependencies: 276
+-- TOC entry 3544 (class 0 OID 0)
+-- Dependencies: 264
 -- Name: informasipubliks_secaraberkala_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -224,7 +224,7 @@ ALTER SEQUENCE public.informasipubliks_secaraberkala_id_seq OWNED BY public.info
 
 
 --
--- TOC entry 279 (class 1259 OID 34741)
+-- TOC entry 267 (class 1259 OID 34741)
 -- Name: informasipubliks_sertamerta; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -241,7 +241,7 @@ CREATE TABLE public.informasipubliks_sertamerta (
 ALTER TABLE public.informasipubliks_sertamerta OWNER TO postgres;
 
 --
--- TOC entry 278 (class 1259 OID 34739)
+-- TOC entry 266 (class 1259 OID 34739)
 -- Name: informasipubliks_sertamerta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -256,8 +256,8 @@ CREATE SEQUENCE public.informasipubliks_sertamerta_id_seq
 ALTER TABLE public.informasipubliks_sertamerta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3531 (class 0 OID 0)
--- Dependencies: 278
+-- TOC entry 3545 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: informasipubliks_sertamerta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -265,7 +265,7 @@ ALTER SEQUENCE public.informasipubliks_sertamerta_id_seq OWNED BY public.informa
 
 
 --
--- TOC entry 281 (class 1259 OID 34752)
+-- TOC entry 269 (class 1259 OID 34752)
 -- Name: informasipubliks_setiapsaat; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -282,7 +282,7 @@ CREATE TABLE public.informasipubliks_setiapsaat (
 ALTER TABLE public.informasipubliks_setiapsaat OWNER TO postgres;
 
 --
--- TOC entry 280 (class 1259 OID 34750)
+-- TOC entry 268 (class 1259 OID 34750)
 -- Name: informasipubliks_setiapsaat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -297,8 +297,8 @@ CREATE SEQUENCE public.informasipubliks_setiapsaat_id_seq
 ALTER TABLE public.informasipubliks_setiapsaat_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3532 (class 0 OID 0)
--- Dependencies: 280
+-- TOC entry 3546 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: informasipubliks_setiapsaat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -306,7 +306,7 @@ ALTER SEQUENCE public.informasipubliks_setiapsaat_id_seq OWNED BY public.informa
 
 
 --
--- TOC entry 291 (class 1259 OID 34807)
+-- TOC entry 279 (class 1259 OID 34807)
 -- Name: informasis; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -324,7 +324,7 @@ CREATE TABLE public.informasis (
 ALTER TABLE public.informasis OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 34805)
+-- TOC entry 278 (class 1259 OID 34805)
 -- Name: informasis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -339,8 +339,8 @@ CREATE SEQUENCE public.informasis_id_seq
 ALTER TABLE public.informasis_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3533 (class 0 OID 0)
--- Dependencies: 290
+-- TOC entry 3547 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: informasis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -348,7 +348,7 @@ ALTER SEQUENCE public.informasis_id_seq OWNED BY public.informasis.id;
 
 
 --
--- TOC entry 293 (class 1259 OID 34818)
+-- TOC entry 281 (class 1259 OID 34818)
 -- Name: informasis_image; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -364,7 +364,7 @@ CREATE TABLE public.informasis_image (
 ALTER TABLE public.informasis_image OWNER TO postgres;
 
 --
--- TOC entry 292 (class 1259 OID 34816)
+-- TOC entry 280 (class 1259 OID 34816)
 -- Name: informasis_image_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -379,8 +379,8 @@ CREATE SEQUENCE public.informasis_image_id_seq
 ALTER TABLE public.informasis_image_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3534 (class 0 OID 0)
--- Dependencies: 292
+-- TOC entry 3548 (class 0 OID 0)
+-- Dependencies: 280
 -- Name: informasis_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -388,7 +388,7 @@ ALTER SEQUENCE public.informasis_image_id_seq OWNED BY public.informasis_image.i
 
 
 --
--- TOC entry 265 (class 1259 OID 34670)
+-- TOC entry 253 (class 1259 OID 34670)
 -- Name: kontaks; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -409,7 +409,7 @@ CREATE TABLE public.kontaks (
 ALTER TABLE public.kontaks OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 34681)
+-- TOC entry 255 (class 1259 OID 34681)
 -- Name: kontaks_dokumentasiruangppid; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -426,7 +426,7 @@ CREATE TABLE public.kontaks_dokumentasiruangppid (
 ALTER TABLE public.kontaks_dokumentasiruangppid OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 34679)
+-- TOC entry 254 (class 1259 OID 34679)
 -- Name: kontaks_dokumentasiruangppid_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -441,8 +441,8 @@ CREATE SEQUENCE public.kontaks_dokumentasiruangppid_id_seq
 ALTER TABLE public.kontaks_dokumentasiruangppid_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3535 (class 0 OID 0)
--- Dependencies: 266
+-- TOC entry 3549 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: kontaks_dokumentasiruangppid_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -450,7 +450,7 @@ ALTER SEQUENCE public.kontaks_dokumentasiruangppid_id_seq OWNED BY public.kontak
 
 
 --
--- TOC entry 264 (class 1259 OID 34668)
+-- TOC entry 252 (class 1259 OID 34668)
 -- Name: kontaks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -465,8 +465,8 @@ CREATE SEQUENCE public.kontaks_id_seq
 ALTER TABLE public.kontaks_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3536 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 3550 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: kontaks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -474,7 +474,7 @@ ALTER SEQUENCE public.kontaks_id_seq OWNED BY public.kontaks.id;
 
 
 --
--- TOC entry 233 (class 1259 OID 34453)
+-- TOC entry 221 (class 1259 OID 34453)
 -- Name: laporan_berkala; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -492,7 +492,7 @@ CREATE TABLE public.laporan_berkala (
 ALTER TABLE public.laporan_berkala OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 34451)
+-- TOC entry 220 (class 1259 OID 34451)
 -- Name: laporan_berkala_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -507,8 +507,8 @@ CREATE SEQUENCE public.laporan_berkala_id_seq
 ALTER TABLE public.laporan_berkala_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3537 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3551 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: laporan_berkala_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -516,7 +516,7 @@ ALTER SEQUENCE public.laporan_berkala_id_seq OWNED BY public.laporan_berkala.id;
 
 
 --
--- TOC entry 235 (class 1259 OID 34469)
+-- TOC entry 223 (class 1259 OID 34469)
 -- Name: laporan_serta_merta; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -534,7 +534,7 @@ CREATE TABLE public.laporan_serta_merta (
 ALTER TABLE public.laporan_serta_merta OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 34467)
+-- TOC entry 222 (class 1259 OID 34467)
 -- Name: laporan_serta_merta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -549,8 +549,8 @@ CREATE SEQUENCE public.laporan_serta_merta_id_seq
 ALTER TABLE public.laporan_serta_merta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3538 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3552 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: laporan_serta_merta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -558,7 +558,7 @@ ALTER SEQUENCE public.laporan_serta_merta_id_seq OWNED BY public.laporan_serta_m
 
 
 --
--- TOC entry 237 (class 1259 OID 34485)
+-- TOC entry 225 (class 1259 OID 34485)
 -- Name: laporan_setiap_saat; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -576,7 +576,7 @@ CREATE TABLE public.laporan_setiap_saat (
 ALTER TABLE public.laporan_setiap_saat OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 34483)
+-- TOC entry 224 (class 1259 OID 34483)
 -- Name: laporan_setiap_saat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -591,8 +591,8 @@ CREATE SEQUENCE public.laporan_setiap_saat_id_seq
 ALTER TABLE public.laporan_setiap_saat_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3539 (class 0 OID 0)
--- Dependencies: 236
+-- TOC entry 3553 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: laporan_setiap_saat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -600,7 +600,7 @@ ALTER SEQUENCE public.laporan_setiap_saat_id_seq OWNED BY public.laporan_setiap_
 
 
 --
--- TOC entry 305 (class 1259 OID 34889)
+-- TOC entry 293 (class 1259 OID 34889)
 -- Name: laporans_banner; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -615,7 +615,7 @@ CREATE TABLE public.laporans_banner (
 ALTER TABLE public.laporans_banner OWNER TO postgres;
 
 --
--- TOC entry 304 (class 1259 OID 34887)
+-- TOC entry 292 (class 1259 OID 34887)
 -- Name: laporans_banner_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -630,8 +630,8 @@ CREATE SEQUENCE public.laporans_banner_id_seq
 ALTER TABLE public.laporans_banner_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3540 (class 0 OID 0)
--- Dependencies: 304
+-- TOC entry 3554 (class 0 OID 0)
+-- Dependencies: 292
 -- Name: laporans_banner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -639,7 +639,7 @@ ALTER SEQUENCE public.laporans_banner_id_seq OWNED BY public.laporans_banner.id;
 
 
 --
--- TOC entry 311 (class 1259 OID 34919)
+-- TOC entry 299 (class 1259 OID 34919)
 -- Name: laporans_hasil_survei; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -656,7 +656,7 @@ CREATE TABLE public.laporans_hasil_survei (
 ALTER TABLE public.laporans_hasil_survei OWNER TO postgres;
 
 --
--- TOC entry 310 (class 1259 OID 34917)
+-- TOC entry 298 (class 1259 OID 34917)
 -- Name: laporans_hasil_survei_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -671,8 +671,8 @@ CREATE SEQUENCE public.laporans_hasil_survei_id_seq
 ALTER TABLE public.laporans_hasil_survei_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3541 (class 0 OID 0)
--- Dependencies: 310
+-- TOC entry 3555 (class 0 OID 0)
+-- Dependencies: 298
 -- Name: laporans_hasil_survei_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -680,7 +680,7 @@ ALTER SEQUENCE public.laporans_hasil_survei_id_seq OWNED BY public.laporans_hasi
 
 
 --
--- TOC entry 309 (class 1259 OID 34908)
+-- TOC entry 297 (class 1259 OID 34908)
 -- Name: laporans_tahunan; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -697,7 +697,7 @@ CREATE TABLE public.laporans_tahunan (
 ALTER TABLE public.laporans_tahunan OWNER TO postgres;
 
 --
--- TOC entry 308 (class 1259 OID 34906)
+-- TOC entry 296 (class 1259 OID 34906)
 -- Name: laporans_tahunan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -712,8 +712,8 @@ CREATE SEQUENCE public.laporans_tahunan_id_seq
 ALTER TABLE public.laporans_tahunan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3542 (class 0 OID 0)
--- Dependencies: 308
+-- TOC entry 3556 (class 0 OID 0)
+-- Dependencies: 296
 -- Name: laporans_tahunan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -721,7 +721,7 @@ ALTER SEQUENCE public.laporans_tahunan_id_seq OWNED BY public.laporans_tahunan.i
 
 
 --
--- TOC entry 307 (class 1259 OID 34897)
+-- TOC entry 295 (class 1259 OID 34897)
 -- Name: laporans_triwulanan; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -738,7 +738,7 @@ CREATE TABLE public.laporans_triwulanan (
 ALTER TABLE public.laporans_triwulanan OWNER TO postgres;
 
 --
--- TOC entry 306 (class 1259 OID 34895)
+-- TOC entry 294 (class 1259 OID 34895)
 -- Name: laporans_triwulanan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -753,8 +753,8 @@ CREATE SEQUENCE public.laporans_triwulanan_id_seq
 ALTER TABLE public.laporans_triwulanan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3543 (class 0 OID 0)
--- Dependencies: 306
+-- TOC entry 3557 (class 0 OID 0)
+-- Dependencies: 294
 -- Name: laporans_triwulanan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -762,7 +762,7 @@ ALTER SEQUENCE public.laporans_triwulanan_id_seq OWNED BY public.laporans_triwul
 
 
 --
--- TOC entry 299 (class 1259 OID 34851)
+-- TOC entry 287 (class 1259 OID 34851)
 -- Name: linkapps; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -778,7 +778,7 @@ CREATE TABLE public.linkapps (
 ALTER TABLE public.linkapps OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1259 OID 34849)
+-- TOC entry 286 (class 1259 OID 34849)
 -- Name: linkapps_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -793,8 +793,8 @@ CREATE SEQUENCE public.linkapps_id_seq
 ALTER TABLE public.linkapps_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3544 (class 0 OID 0)
--- Dependencies: 298
+-- TOC entry 3558 (class 0 OID 0)
+-- Dependencies: 286
 -- Name: linkapps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -802,7 +802,7 @@ ALTER SEQUENCE public.linkapps_id_seq OWNED BY public.linkapps.id;
 
 
 --
--- TOC entry 301 (class 1259 OID 34862)
+-- TOC entry 289 (class 1259 OID 34862)
 -- Name: mainmenus; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -820,7 +820,7 @@ CREATE TABLE public.mainmenus (
 ALTER TABLE public.mainmenus OWNER TO postgres;
 
 --
--- TOC entry 300 (class 1259 OID 34860)
+-- TOC entry 288 (class 1259 OID 34860)
 -- Name: mainmenus_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -835,8 +835,8 @@ CREATE SEQUENCE public.mainmenus_id_seq
 ALTER TABLE public.mainmenus_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3545 (class 0 OID 0)
--- Dependencies: 300
+-- TOC entry 3559 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: mainmenus_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -844,7 +844,7 @@ ALTER SEQUENCE public.mainmenus_id_seq OWNED BY public.mainmenus.id;
 
 
 --
--- TOC entry 215 (class 1259 OID 34326)
+-- TOC entry 315 (class 1259 OID 35051)
 -- Name: menus; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -864,7 +864,7 @@ CREATE TABLE public.menus (
 ALTER TABLE public.menus OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 34324)
+-- TOC entry 314 (class 1259 OID 35049)
 -- Name: menus_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -879,8 +879,8 @@ CREATE SEQUENCE public.menus_id_seq
 ALTER TABLE public.menus_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3546 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3560 (class 0 OID 0)
+-- Dependencies: 314
 -- Name: menus_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -918,7 +918,7 @@ CREATE SEQUENCE public.migrations_id_seq
 ALTER TABLE public.migrations_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3547 (class 0 OID 0)
+-- TOC entry 3561 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -927,7 +927,7 @@ ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
 
 
 --
--- TOC entry 211 (class 1259 OID 34287)
+-- TOC entry 311 (class 1259 OID 35012)
 -- Name: model_has_permissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -941,7 +941,7 @@ CREATE TABLE public.model_has_permissions (
 ALTER TABLE public.model_has_permissions OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 34298)
+-- TOC entry 312 (class 1259 OID 35023)
 -- Name: model_has_roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -955,7 +955,7 @@ CREATE TABLE public.model_has_roles (
 ALTER TABLE public.model_has_roles OWNER TO postgres;
 
 --
--- TOC entry 206 (class 1259 OID 34254)
+-- TOC entry 306 (class 1259 OID 34979)
 -- Name: password_resets; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -969,7 +969,7 @@ CREATE TABLE public.password_resets (
 ALTER TABLE public.password_resets OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 34263)
+-- TOC entry 308 (class 1259 OID 34988)
 -- Name: permissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -985,7 +985,7 @@ CREATE TABLE public.permissions (
 ALTER TABLE public.permissions OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 34261)
+-- TOC entry 307 (class 1259 OID 34986)
 -- Name: permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1000,8 +1000,8 @@ CREATE SEQUENCE public.permissions_id_seq
 ALTER TABLE public.permissions_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3548 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 3562 (class 0 OID 0)
+-- Dependencies: 307
 -- Name: permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1009,7 +1009,7 @@ ALTER SEQUENCE public.permissions_id_seq OWNED BY public.permissions.id;
 
 
 --
--- TOC entry 219 (class 1259 OID 34351)
+-- TOC entry 207 (class 1259 OID 34351)
 -- Name: personal_access_tokens; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1030,7 +1030,7 @@ CREATE TABLE public.personal_access_tokens (
 ALTER TABLE public.personal_access_tokens OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 34349)
+-- TOC entry 206 (class 1259 OID 34349)
 -- Name: personal_access_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1045,8 +1045,8 @@ CREATE SEQUENCE public.personal_access_tokens_id_seq
 ALTER TABLE public.personal_access_tokens_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3549 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3563 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: personal_access_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1054,7 +1054,7 @@ ALTER SEQUENCE public.personal_access_tokens_id_seq OWNED BY public.personal_acc
 
 
 --
--- TOC entry 247 (class 1259 OID 34565)
+-- TOC entry 235 (class 1259 OID 34565)
 -- Name: ppid_biaya; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1071,7 +1071,7 @@ CREATE TABLE public.ppid_biaya (
 ALTER TABLE public.ppid_biaya OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 34563)
+-- TOC entry 234 (class 1259 OID 34563)
 -- Name: ppid_biaya_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1086,8 +1086,8 @@ CREATE SEQUENCE public.ppid_biaya_id_seq
 ALTER TABLE public.ppid_biaya_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3550 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3564 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: ppid_biaya_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1095,7 +1095,7 @@ ALTER SEQUENCE public.ppid_biaya_id_seq OWNED BY public.ppid_biaya.id;
 
 
 --
--- TOC entry 241 (class 1259 OID 34517)
+-- TOC entry 229 (class 1259 OID 34517)
 -- Name: ppid_faq; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1114,7 +1114,7 @@ CREATE TABLE public.ppid_faq (
 ALTER TABLE public.ppid_faq OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1259 OID 34515)
+-- TOC entry 228 (class 1259 OID 34515)
 -- Name: ppid_faq_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1129,8 +1129,8 @@ CREATE SEQUENCE public.ppid_faq_id_seq
 ALTER TABLE public.ppid_faq_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3551 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3565 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: ppid_faq_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1138,7 +1138,7 @@ ALTER SEQUENCE public.ppid_faq_id_seq OWNED BY public.ppid_faq.id;
 
 
 --
--- TOC entry 245 (class 1259 OID 34549)
+-- TOC entry 233 (class 1259 OID 34549)
 -- Name: ppid_infografis; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1157,7 +1157,7 @@ CREATE TABLE public.ppid_infografis (
 ALTER TABLE public.ppid_infografis OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 34547)
+-- TOC entry 232 (class 1259 OID 34547)
 -- Name: ppid_infografis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1172,8 +1172,8 @@ CREATE SEQUENCE public.ppid_infografis_id_seq
 ALTER TABLE public.ppid_infografis_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3552 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3566 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: ppid_infografis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1181,7 +1181,7 @@ ALTER SEQUENCE public.ppid_infografis_id_seq OWNED BY public.ppid_infografis.id;
 
 
 --
--- TOC entry 223 (class 1259 OID 34376)
+-- TOC entry 211 (class 1259 OID 34376)
 -- Name: ppid_jenis_profil; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1196,7 +1196,7 @@ CREATE TABLE public.ppid_jenis_profil (
 ALTER TABLE public.ppid_jenis_profil OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 34374)
+-- TOC entry 210 (class 1259 OID 34374)
 -- Name: ppid_jenis_profil_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1211,8 +1211,8 @@ CREATE SEQUENCE public.ppid_jenis_profil_id_seq
 ALTER TABLE public.ppid_jenis_profil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3553 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3567 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: ppid_jenis_profil_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1220,7 +1220,7 @@ ALTER SEQUENCE public.ppid_jenis_profil_id_seq OWNED BY public.ppid_jenis_profil
 
 
 --
--- TOC entry 227 (class 1259 OID 34405)
+-- TOC entry 215 (class 1259 OID 34405)
 -- Name: ppid_kontak; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1238,7 +1238,7 @@ CREATE TABLE public.ppid_kontak (
 ALTER TABLE public.ppid_kontak OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 34403)
+-- TOC entry 214 (class 1259 OID 34403)
 -- Name: ppid_kontak_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1253,8 +1253,8 @@ CREATE SEQUENCE public.ppid_kontak_id_seq
 ALTER TABLE public.ppid_kontak_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3554 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3568 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: ppid_kontak_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1262,7 +1262,7 @@ ALTER SEQUENCE public.ppid_kontak_id_seq OWNED BY public.ppid_kontak.id;
 
 
 --
--- TOC entry 239 (class 1259 OID 34501)
+-- TOC entry 227 (class 1259 OID 34501)
 -- Name: ppid_lap_survey; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1281,7 +1281,7 @@ CREATE TABLE public.ppid_lap_survey (
 ALTER TABLE public.ppid_lap_survey OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 34499)
+-- TOC entry 226 (class 1259 OID 34499)
 -- Name: ppid_lap_survey_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1296,8 +1296,8 @@ CREATE SEQUENCE public.ppid_lap_survey_id_seq
 ALTER TABLE public.ppid_lap_survey_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3555 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 3569 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: ppid_lap_survey_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1305,7 +1305,7 @@ ALTER SEQUENCE public.ppid_lap_survey_id_seq OWNED BY public.ppid_lap_survey.id;
 
 
 --
--- TOC entry 229 (class 1259 OID 34421)
+-- TOC entry 217 (class 1259 OID 34421)
 -- Name: ppid_lap_th; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1324,7 +1324,7 @@ CREATE TABLE public.ppid_lap_th (
 ALTER TABLE public.ppid_lap_th OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 34419)
+-- TOC entry 216 (class 1259 OID 34419)
 -- Name: ppid_lap_th_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1339,8 +1339,8 @@ CREATE SEQUENCE public.ppid_lap_th_id_seq
 ALTER TABLE public.ppid_lap_th_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3556 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3570 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: ppid_lap_th_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1348,7 +1348,7 @@ ALTER SEQUENCE public.ppid_lap_th_id_seq OWNED BY public.ppid_lap_th.id;
 
 
 --
--- TOC entry 231 (class 1259 OID 34437)
+-- TOC entry 219 (class 1259 OID 34437)
 -- Name: ppid_lap_tw; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1367,7 +1367,7 @@ CREATE TABLE public.ppid_lap_tw (
 ALTER TABLE public.ppid_lap_tw OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 34435)
+-- TOC entry 218 (class 1259 OID 34435)
 -- Name: ppid_lap_tw_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1382,8 +1382,8 @@ CREATE SEQUENCE public.ppid_lap_tw_id_seq
 ALTER TABLE public.ppid_lap_tw_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3557 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3571 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: ppid_lap_tw_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1391,7 +1391,7 @@ ALTER SEQUENCE public.ppid_lap_tw_id_seq OWNED BY public.ppid_lap_tw.id;
 
 
 --
--- TOC entry 243 (class 1259 OID 34533)
+-- TOC entry 231 (class 1259 OID 34533)
 -- Name: ppid_maklumat; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1409,7 +1409,7 @@ CREATE TABLE public.ppid_maklumat (
 ALTER TABLE public.ppid_maklumat OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 34531)
+-- TOC entry 230 (class 1259 OID 34531)
 -- Name: ppid_maklumat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1424,8 +1424,8 @@ CREATE SEQUENCE public.ppid_maklumat_id_seq
 ALTER TABLE public.ppid_maklumat_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3558 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 3572 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: ppid_maklumat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1433,7 +1433,7 @@ ALTER SEQUENCE public.ppid_maklumat_id_seq OWNED BY public.ppid_maklumat.id;
 
 
 --
--- TOC entry 221 (class 1259 OID 34365)
+-- TOC entry 209 (class 1259 OID 34365)
 -- Name: ppid_menu; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1450,7 +1450,7 @@ CREATE TABLE public.ppid_menu (
 ALTER TABLE public.ppid_menu OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 34363)
+-- TOC entry 208 (class 1259 OID 34363)
 -- Name: ppid_menu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1465,8 +1465,8 @@ CREATE SEQUENCE public.ppid_menu_id_seq
 ALTER TABLE public.ppid_menu_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3559 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3573 (class 0 OID 0)
+-- Dependencies: 208
 -- Name: ppid_menu_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1474,7 +1474,7 @@ ALTER SEQUENCE public.ppid_menu_id_seq OWNED BY public.ppid_menu.id;
 
 
 --
--- TOC entry 225 (class 1259 OID 34384)
+-- TOC entry 213 (class 1259 OID 34384)
 -- Name: ppid_profil; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1493,7 +1493,7 @@ CREATE TABLE public.ppid_profil (
 ALTER TABLE public.ppid_profil OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 34382)
+-- TOC entry 212 (class 1259 OID 34382)
 -- Name: ppid_profil_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1508,8 +1508,8 @@ CREATE SEQUENCE public.ppid_profil_id_seq
 ALTER TABLE public.ppid_profil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3560 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3574 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: ppid_profil_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1517,7 +1517,7 @@ ALTER SEQUENCE public.ppid_profil_id_seq OWNED BY public.ppid_profil.id;
 
 
 --
--- TOC entry 249 (class 1259 OID 34578)
+-- TOC entry 237 (class 1259 OID 34578)
 -- Name: ppid_regulasi; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1532,7 +1532,7 @@ CREATE TABLE public.ppid_regulasi (
 ALTER TABLE public.ppid_regulasi OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 34576)
+-- TOC entry 236 (class 1259 OID 34576)
 -- Name: ppid_regulasi_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1547,8 +1547,8 @@ CREATE SEQUENCE public.ppid_regulasi_id_seq
 ALTER TABLE public.ppid_regulasi_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3561 (class 0 OID 0)
--- Dependencies: 248
+-- TOC entry 3575 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: ppid_regulasi_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1556,7 +1556,7 @@ ALTER SEQUENCE public.ppid_regulasi_id_seq OWNED BY public.ppid_regulasi.id;
 
 
 --
--- TOC entry 251 (class 1259 OID 34586)
+-- TOC entry 239 (class 1259 OID 34586)
 -- Name: ppid_regulasi_peraturan; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1575,7 +1575,7 @@ CREATE TABLE public.ppid_regulasi_peraturan (
 ALTER TABLE public.ppid_regulasi_peraturan OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 34584)
+-- TOC entry 238 (class 1259 OID 34584)
 -- Name: ppid_regulasi_peraturan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1590,8 +1590,8 @@ CREATE SEQUENCE public.ppid_regulasi_peraturan_id_seq
 ALTER TABLE public.ppid_regulasi_peraturan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3562 (class 0 OID 0)
--- Dependencies: 250
+-- TOC entry 3576 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: ppid_regulasi_peraturan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1599,7 +1599,7 @@ ALTER SEQUENCE public.ppid_regulasi_peraturan_id_seq OWNED BY public.ppid_regula
 
 
 --
--- TOC entry 253 (class 1259 OID 34607)
+-- TOC entry 241 (class 1259 OID 34607)
 -- Name: profilsingkats; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1617,7 +1617,7 @@ CREATE TABLE public.profilsingkats (
 ALTER TABLE public.profilsingkats OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 34605)
+-- TOC entry 240 (class 1259 OID 34605)
 -- Name: profilsingkats_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1632,8 +1632,8 @@ CREATE SEQUENCE public.profilsingkats_id_seq
 ALTER TABLE public.profilsingkats_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3563 (class 0 OID 0)
--- Dependencies: 252
+-- TOC entry 3577 (class 0 OID 0)
+-- Dependencies: 240
 -- Name: profilsingkats_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1641,7 +1641,7 @@ ALTER SEQUENCE public.profilsingkats_id_seq OWNED BY public.profilsingkats.id;
 
 
 --
--- TOC entry 269 (class 1259 OID 34692)
+-- TOC entry 257 (class 1259 OID 34692)
 -- Name: regulasis_banner; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1657,7 +1657,7 @@ CREATE TABLE public.regulasis_banner (
 ALTER TABLE public.regulasis_banner OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 34690)
+-- TOC entry 256 (class 1259 OID 34690)
 -- Name: regulasis_banner_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1672,8 +1672,8 @@ CREATE SEQUENCE public.regulasis_banner_id_seq
 ALTER TABLE public.regulasis_banner_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3564 (class 0 OID 0)
--- Dependencies: 268
+-- TOC entry 3578 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: regulasis_banner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1681,7 +1681,7 @@ ALTER SEQUENCE public.regulasis_banner_id_seq OWNED BY public.regulasis_banner.i
 
 
 --
--- TOC entry 271 (class 1259 OID 34700)
+-- TOC entry 259 (class 1259 OID 34700)
 -- Name: regulasis_peraturankip; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1698,7 +1698,7 @@ CREATE TABLE public.regulasis_peraturankip (
 ALTER TABLE public.regulasis_peraturankip OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 34698)
+-- TOC entry 258 (class 1259 OID 34698)
 -- Name: regulasis_peraturankip_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1713,8 +1713,8 @@ CREATE SEQUENCE public.regulasis_peraturankip_id_seq
 ALTER TABLE public.regulasis_peraturankip_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3565 (class 0 OID 0)
--- Dependencies: 270
+-- TOC entry 3579 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: regulasis_peraturankip_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1722,7 +1722,7 @@ ALTER SEQUENCE public.regulasis_peraturankip_id_seq OWNED BY public.regulasis_pe
 
 
 --
--- TOC entry 273 (class 1259 OID 34711)
+-- TOC entry 261 (class 1259 OID 34711)
 -- Name: regulasis_rancanganperaturankip; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1739,7 +1739,7 @@ CREATE TABLE public.regulasis_rancanganperaturankip (
 ALTER TABLE public.regulasis_rancanganperaturankip OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 34709)
+-- TOC entry 260 (class 1259 OID 34709)
 -- Name: regulasis_rancanganperaturankip_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1754,8 +1754,8 @@ CREATE SEQUENCE public.regulasis_rancanganperaturankip_id_seq
 ALTER TABLE public.regulasis_rancanganperaturankip_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3566 (class 0 OID 0)
--- Dependencies: 272
+-- TOC entry 3580 (class 0 OID 0)
+-- Dependencies: 260
 -- Name: regulasis_rancanganperaturankip_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1763,7 +1763,7 @@ ALTER SEQUENCE public.regulasis_rancanganperaturankip_id_seq OWNED BY public.reg
 
 
 --
--- TOC entry 213 (class 1259 OID 34309)
+-- TOC entry 313 (class 1259 OID 35034)
 -- Name: role_has_permissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1776,7 +1776,7 @@ CREATE TABLE public.role_has_permissions (
 ALTER TABLE public.role_has_permissions OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 34276)
+-- TOC entry 310 (class 1259 OID 35001)
 -- Name: roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1792,7 +1792,7 @@ CREATE TABLE public.roles (
 ALTER TABLE public.roles OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 34274)
+-- TOC entry 309 (class 1259 OID 34999)
 -- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1807,8 +1807,8 @@ CREATE SEQUENCE public.roles_id_seq
 ALTER TABLE public.roles_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3567 (class 0 OID 0)
--- Dependencies: 209
+-- TOC entry 3581 (class 0 OID 0)
+-- Dependencies: 309
 -- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1816,7 +1816,7 @@ ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
 
 
 --
--- TOC entry 289 (class 1259 OID 34796)
+-- TOC entry 277 (class 1259 OID 34796)
 -- Name: sliders; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1834,7 +1834,7 @@ CREATE TABLE public.sliders (
 ALTER TABLE public.sliders OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 34794)
+-- TOC entry 276 (class 1259 OID 34794)
 -- Name: sliders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1849,8 +1849,8 @@ CREATE SEQUENCE public.sliders_id_seq
 ALTER TABLE public.sliders_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3568 (class 0 OID 0)
--- Dependencies: 288
+-- TOC entry 3582 (class 0 OID 0)
+-- Dependencies: 276
 -- Name: sliders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1858,7 +1858,7 @@ ALTER SEQUENCE public.sliders_id_seq OWNED BY public.sliders.id;
 
 
 --
--- TOC entry 297 (class 1259 OID 34840)
+-- TOC entry 285 (class 1259 OID 34840)
 -- Name: sosialmedias; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1875,7 +1875,7 @@ CREATE TABLE public.sosialmedias (
 ALTER TABLE public.sosialmedias OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1259 OID 34838)
+-- TOC entry 284 (class 1259 OID 34838)
 -- Name: sosialmedias_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1890,8 +1890,8 @@ CREATE SEQUENCE public.sosialmedias_id_seq
 ALTER TABLE public.sosialmedias_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3569 (class 0 OID 0)
--- Dependencies: 296
+-- TOC entry 3583 (class 0 OID 0)
+-- Dependencies: 284
 -- Name: sosialmedias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1899,7 +1899,7 @@ ALTER SEQUENCE public.sosialmedias_id_seq OWNED BY public.sosialmedias.id;
 
 
 --
--- TOC entry 287 (class 1259 OID 34785)
+-- TOC entry 275 (class 1259 OID 34785)
 -- Name: standarlayanans_biayalayanan; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1917,7 +1917,7 @@ CREATE TABLE public.standarlayanans_biayalayanan (
 ALTER TABLE public.standarlayanans_biayalayanan OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 34783)
+-- TOC entry 274 (class 1259 OID 34783)
 -- Name: standarlayanans_biayalayanan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1932,8 +1932,8 @@ CREATE SEQUENCE public.standarlayanans_biayalayanan_id_seq
 ALTER TABLE public.standarlayanans_biayalayanan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3570 (class 0 OID 0)
--- Dependencies: 286
+-- TOC entry 3584 (class 0 OID 0)
+-- Dependencies: 274
 -- Name: standarlayanans_biayalayanan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1941,7 +1941,7 @@ ALTER SEQUENCE public.standarlayanans_biayalayanan_id_seq OWNED BY public.standa
 
 
 --
--- TOC entry 283 (class 1259 OID 34763)
+-- TOC entry 271 (class 1259 OID 34763)
 -- Name: standarlayanans_maklumat; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1958,7 +1958,7 @@ CREATE TABLE public.standarlayanans_maklumat (
 ALTER TABLE public.standarlayanans_maklumat OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 34761)
+-- TOC entry 270 (class 1259 OID 34761)
 -- Name: standarlayanans_maklumat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1973,8 +1973,8 @@ CREATE SEQUENCE public.standarlayanans_maklumat_id_seq
 ALTER TABLE public.standarlayanans_maklumat_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3571 (class 0 OID 0)
--- Dependencies: 282
+-- TOC entry 3585 (class 0 OID 0)
+-- Dependencies: 270
 -- Name: standarlayanans_maklumat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1982,7 +1982,7 @@ ALTER SEQUENCE public.standarlayanans_maklumat_id_seq OWNED BY public.standarlay
 
 
 --
--- TOC entry 285 (class 1259 OID 34774)
+-- TOC entry 273 (class 1259 OID 34774)
 -- Name: standarlayanans_prosedurlayanan; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1999,7 +1999,7 @@ CREATE TABLE public.standarlayanans_prosedurlayanan (
 ALTER TABLE public.standarlayanans_prosedurlayanan OWNER TO postgres;
 
 --
--- TOC entry 284 (class 1259 OID 34772)
+-- TOC entry 272 (class 1259 OID 34772)
 -- Name: standarlayanans_prosedurlayanan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2014,8 +2014,8 @@ CREATE SEQUENCE public.standarlayanans_prosedurlayanan_id_seq
 ALTER TABLE public.standarlayanans_prosedurlayanan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3572 (class 0 OID 0)
--- Dependencies: 284
+-- TOC entry 3586 (class 0 OID 0)
+-- Dependencies: 272
 -- Name: standarlayanans_prosedurlayanan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2023,7 +2023,7 @@ ALTER SEQUENCE public.standarlayanans_prosedurlayanan_id_seq OWNED BY public.sta
 
 
 --
--- TOC entry 257 (class 1259 OID 34629)
+-- TOC entry 245 (class 1259 OID 34629)
 -- Name: strukturorganisasis; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2039,7 +2039,7 @@ CREATE TABLE public.strukturorganisasis (
 ALTER TABLE public.strukturorganisasis OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 34648)
+-- TOC entry 249 (class 1259 OID 34648)
 -- Name: strukturorganisasis_bagankanan; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2056,7 +2056,7 @@ CREATE TABLE public.strukturorganisasis_bagankanan (
 ALTER TABLE public.strukturorganisasis_bagankanan OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 34646)
+-- TOC entry 248 (class 1259 OID 34646)
 -- Name: strukturorganisasis_bagankanan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2071,8 +2071,8 @@ CREATE SEQUENCE public.strukturorganisasis_bagankanan_id_seq
 ALTER TABLE public.strukturorganisasis_bagankanan_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3573 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 3587 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: strukturorganisasis_bagankanan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2080,7 +2080,7 @@ ALTER SEQUENCE public.strukturorganisasis_bagankanan_id_seq OWNED BY public.stru
 
 
 --
--- TOC entry 259 (class 1259 OID 34640)
+-- TOC entry 247 (class 1259 OID 34640)
 -- Name: strukturorganisasis_bagankiri; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2095,7 +2095,7 @@ CREATE TABLE public.strukturorganisasis_bagankiri (
 ALTER TABLE public.strukturorganisasis_bagankiri OWNER TO postgres;
 
 --
--- TOC entry 258 (class 1259 OID 34638)
+-- TOC entry 246 (class 1259 OID 34638)
 -- Name: strukturorganisasis_bagankiri_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2110,8 +2110,8 @@ CREATE SEQUENCE public.strukturorganisasis_bagankiri_id_seq
 ALTER TABLE public.strukturorganisasis_bagankiri_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3574 (class 0 OID 0)
--- Dependencies: 258
+-- TOC entry 3588 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: strukturorganisasis_bagankiri_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2119,7 +2119,7 @@ ALTER SEQUENCE public.strukturorganisasis_bagankiri_id_seq OWNED BY public.struk
 
 
 --
--- TOC entry 256 (class 1259 OID 34627)
+-- TOC entry 244 (class 1259 OID 34627)
 -- Name: strukturorganisasis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2134,8 +2134,8 @@ CREATE SEQUENCE public.strukturorganisasis_id_seq
 ALTER TABLE public.strukturorganisasis_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3575 (class 0 OID 0)
--- Dependencies: 256
+-- TOC entry 3589 (class 0 OID 0)
+-- Dependencies: 244
 -- Name: strukturorganisasis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2143,7 +2143,7 @@ ALTER SEQUENCE public.strukturorganisasis_id_seq OWNED BY public.strukturorganis
 
 
 --
--- TOC entry 303 (class 1259 OID 34873)
+-- TOC entry 291 (class 1259 OID 34873)
 -- Name: submenus; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2162,7 +2162,7 @@ CREATE TABLE public.submenus (
 ALTER TABLE public.submenus OWNER TO postgres;
 
 --
--- TOC entry 302 (class 1259 OID 34871)
+-- TOC entry 290 (class 1259 OID 34871)
 -- Name: submenus_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2177,8 +2177,8 @@ CREATE SEQUENCE public.submenus_id_seq
 ALTER TABLE public.submenus_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3576 (class 0 OID 0)
--- Dependencies: 302
+-- TOC entry 3590 (class 0 OID 0)
+-- Dependencies: 290
 -- Name: submenus_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2186,7 +2186,7 @@ ALTER SEQUENCE public.submenus_id_seq OWNED BY public.submenus.id;
 
 
 --
--- TOC entry 255 (class 1259 OID 34618)
+-- TOC entry 243 (class 1259 OID 34618)
 -- Name: tugasdanfungsis; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2204,7 +2204,7 @@ CREATE TABLE public.tugasdanfungsis (
 ALTER TABLE public.tugasdanfungsis OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 34616)
+-- TOC entry 242 (class 1259 OID 34616)
 -- Name: tugasdanfungsis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2219,8 +2219,8 @@ CREATE SEQUENCE public.tugasdanfungsis_id_seq
 ALTER TABLE public.tugasdanfungsis_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3577 (class 0 OID 0)
--- Dependencies: 254
+-- TOC entry 3591 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: tugasdanfungsis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2228,7 +2228,7 @@ ALTER SEQUENCE public.tugasdanfungsis_id_seq OWNED BY public.tugasdanfungsis.id;
 
 
 --
--- TOC entry 205 (class 1259 OID 34243)
+-- TOC entry 305 (class 1259 OID 34968)
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2248,17 +2248,14 @@ CREATE TABLE public.users (
     identitas_file_path character varying(255),
     remember_token character varying(100),
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone,
-    two_factor_secret text,
-    two_factor_recovery_codes text,
-    two_factor_confirmed_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone
 );
 
 
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 204 (class 1259 OID 34241)
+-- TOC entry 304 (class 1259 OID 34966)
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2273,8 +2270,8 @@ CREATE SEQUENCE public.users_id_seq
 ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3578 (class 0 OID 0)
--- Dependencies: 204
+-- TOC entry 3592 (class 0 OID 0)
+-- Dependencies: 304
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2282,7 +2279,58 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- TOC entry 295 (class 1259 OID 34829)
+-- TOC entry 317 (class 1259 OID 35062)
+-- Name: usersppid; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usersppid (
+    id bigint NOT NULL,
+    name character varying(255),
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    jenispemohon integer,
+    jenisidentitas integer,
+    noidentitas character varying(255),
+    alamat character varying(255),
+    nohp character varying(255),
+    npwp character varying(255),
+    pekerjaan character varying(255),
+    identitas_file_path character varying(255),
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.usersppid OWNER TO postgres;
+
+--
+-- TOC entry 316 (class 1259 OID 35060)
+-- Name: usersppid_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usersppid_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usersppid_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3593 (class 0 OID 0)
+-- Dependencies: 316
+-- Name: usersppid_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usersppid_id_seq OWNED BY public.usersppid.id;
+
+
+--
+-- TOC entry 283 (class 1259 OID 34829)
 -- Name: videos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2299,7 +2347,7 @@ CREATE TABLE public.videos (
 ALTER TABLE public.videos OWNER TO postgres;
 
 --
--- TOC entry 294 (class 1259 OID 34827)
+-- TOC entry 282 (class 1259 OID 34827)
 -- Name: videos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2314,8 +2362,8 @@ CREATE SEQUENCE public.videos_id_seq
 ALTER TABLE public.videos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3579 (class 0 OID 0)
--- Dependencies: 294
+-- TOC entry 3594 (class 0 OID 0)
+-- Dependencies: 282
 -- Name: videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2323,7 +2371,7 @@ ALTER SEQUENCE public.videos_id_seq OWNED BY public.videos.id;
 
 
 --
--- TOC entry 263 (class 1259 OID 34659)
+-- TOC entry 251 (class 1259 OID 34659)
 -- Name: visimisis; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2340,7 +2388,7 @@ CREATE TABLE public.visimisis (
 ALTER TABLE public.visimisis OWNER TO postgres;
 
 --
--- TOC entry 262 (class 1259 OID 34657)
+-- TOC entry 250 (class 1259 OID 34657)
 -- Name: visimisis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2355,8 +2403,8 @@ CREATE SEQUENCE public.visimisis_id_seq
 ALTER TABLE public.visimisis_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3580 (class 0 OID 0)
--- Dependencies: 262
+-- TOC entry 3595 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: visimisis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -2364,7 +2412,7 @@ ALTER SEQUENCE public.visimisis_id_seq OWNED BY public.visimisis.id;
 
 
 --
--- TOC entry 3080 (class 2604 OID 34340)
+-- TOC entry 3083 (class 2604 OID 34340)
 -- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2372,7 +2420,7 @@ ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3130 (class 2604 OID 34941)
+-- TOC entry 3133 (class 2604 OID 34941)
 -- Name: faqs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2380,7 +2428,7 @@ ALTER TABLE ONLY public.faqs ALTER COLUMN id SET DEFAULT nextval('public.faqs_id
 
 
 --
--- TOC entry 3129 (class 2604 OID 34933)
+-- TOC entry 3132 (class 2604 OID 34933)
 -- Name: faqs_banner id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2388,7 +2436,7 @@ ALTER TABLE ONLY public.faqs_banner ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3110 (class 2604 OID 34725)
+-- TOC entry 3113 (class 2604 OID 34725)
 -- Name: informasipubliks_banner id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2396,7 +2444,7 @@ ALTER TABLE ONLY public.informasipubliks_banner ALTER COLUMN id SET DEFAULT next
 
 
 --
--- TOC entry 3111 (class 2604 OID 34733)
+-- TOC entry 3114 (class 2604 OID 34733)
 -- Name: informasipubliks_secaraberkala id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2404,7 +2452,7 @@ ALTER TABLE ONLY public.informasipubliks_secaraberkala ALTER COLUMN id SET DEFAU
 
 
 --
--- TOC entry 3112 (class 2604 OID 34744)
+-- TOC entry 3115 (class 2604 OID 34744)
 -- Name: informasipubliks_sertamerta id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2412,7 +2460,7 @@ ALTER TABLE ONLY public.informasipubliks_sertamerta ALTER COLUMN id SET DEFAULT 
 
 
 --
--- TOC entry 3113 (class 2604 OID 34755)
+-- TOC entry 3116 (class 2604 OID 34755)
 -- Name: informasipubliks_setiapsaat id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2420,7 +2468,7 @@ ALTER TABLE ONLY public.informasipubliks_setiapsaat ALTER COLUMN id SET DEFAULT 
 
 
 --
--- TOC entry 3118 (class 2604 OID 34810)
+-- TOC entry 3121 (class 2604 OID 34810)
 -- Name: informasis id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2428,7 +2476,7 @@ ALTER TABLE ONLY public.informasis ALTER COLUMN id SET DEFAULT nextval('public.i
 
 
 --
--- TOC entry 3119 (class 2604 OID 34821)
+-- TOC entry 3122 (class 2604 OID 34821)
 -- Name: informasis_image id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2436,7 +2484,7 @@ ALTER TABLE ONLY public.informasis_image ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 3105 (class 2604 OID 34673)
+-- TOC entry 3108 (class 2604 OID 34673)
 -- Name: kontaks id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2444,7 +2492,7 @@ ALTER TABLE ONLY public.kontaks ALTER COLUMN id SET DEFAULT nextval('public.kont
 
 
 --
--- TOC entry 3106 (class 2604 OID 34684)
+-- TOC entry 3109 (class 2604 OID 34684)
 -- Name: kontaks_dokumentasiruangppid id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2452,7 +2500,7 @@ ALTER TABLE ONLY public.kontaks_dokumentasiruangppid ALTER COLUMN id SET DEFAULT
 
 
 --
--- TOC entry 3089 (class 2604 OID 34456)
+-- TOC entry 3092 (class 2604 OID 34456)
 -- Name: laporan_berkala id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2460,7 +2508,7 @@ ALTER TABLE ONLY public.laporan_berkala ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3090 (class 2604 OID 34472)
+-- TOC entry 3093 (class 2604 OID 34472)
 -- Name: laporan_serta_merta id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2468,7 +2516,7 @@ ALTER TABLE ONLY public.laporan_serta_merta ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3091 (class 2604 OID 34488)
+-- TOC entry 3094 (class 2604 OID 34488)
 -- Name: laporan_setiap_saat id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2476,7 +2524,7 @@ ALTER TABLE ONLY public.laporan_setiap_saat ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3125 (class 2604 OID 34892)
+-- TOC entry 3128 (class 2604 OID 34892)
 -- Name: laporans_banner id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2484,7 +2532,7 @@ ALTER TABLE ONLY public.laporans_banner ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3128 (class 2604 OID 34922)
+-- TOC entry 3131 (class 2604 OID 34922)
 -- Name: laporans_hasil_survei id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2492,7 +2540,7 @@ ALTER TABLE ONLY public.laporans_hasil_survei ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 3127 (class 2604 OID 34911)
+-- TOC entry 3130 (class 2604 OID 34911)
 -- Name: laporans_tahunan id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2500,7 +2548,7 @@ ALTER TABLE ONLY public.laporans_tahunan ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 3126 (class 2604 OID 34900)
+-- TOC entry 3129 (class 2604 OID 34900)
 -- Name: laporans_triwulanan id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2508,7 +2556,7 @@ ALTER TABLE ONLY public.laporans_triwulanan ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3122 (class 2604 OID 34854)
+-- TOC entry 3125 (class 2604 OID 34854)
 -- Name: linkapps id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2516,7 +2564,7 @@ ALTER TABLE ONLY public.linkapps ALTER COLUMN id SET DEFAULT nextval('public.lin
 
 
 --
--- TOC entry 3123 (class 2604 OID 34865)
+-- TOC entry 3126 (class 2604 OID 34865)
 -- Name: mainmenus id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2524,7 +2572,7 @@ ALTER TABLE ONLY public.mainmenus ALTER COLUMN id SET DEFAULT nextval('public.ma
 
 
 --
--- TOC entry 3079 (class 2604 OID 34329)
+-- TOC entry 3137 (class 2604 OID 35054)
 -- Name: menus id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2532,7 +2580,7 @@ ALTER TABLE ONLY public.menus ALTER COLUMN id SET DEFAULT nextval('public.menus_
 
 
 --
--- TOC entry 3075 (class 2604 OID 34238)
+-- TOC entry 3082 (class 2604 OID 34238)
 -- Name: migrations id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2540,7 +2588,7 @@ ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.m
 
 
 --
--- TOC entry 3077 (class 2604 OID 34266)
+-- TOC entry 3135 (class 2604 OID 34991)
 -- Name: permissions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2548,7 +2596,7 @@ ALTER TABLE ONLY public.permissions ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3082 (class 2604 OID 34354)
+-- TOC entry 3085 (class 2604 OID 34354)
 -- Name: personal_access_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2556,7 +2604,7 @@ ALTER TABLE ONLY public.personal_access_tokens ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 3096 (class 2604 OID 34568)
+-- TOC entry 3099 (class 2604 OID 34568)
 -- Name: ppid_biaya id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2564,7 +2612,7 @@ ALTER TABLE ONLY public.ppid_biaya ALTER COLUMN id SET DEFAULT nextval('public.p
 
 
 --
--- TOC entry 3093 (class 2604 OID 34520)
+-- TOC entry 3096 (class 2604 OID 34520)
 -- Name: ppid_faq id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2572,7 +2620,7 @@ ALTER TABLE ONLY public.ppid_faq ALTER COLUMN id SET DEFAULT nextval('public.ppi
 
 
 --
--- TOC entry 3095 (class 2604 OID 34552)
+-- TOC entry 3098 (class 2604 OID 34552)
 -- Name: ppid_infografis id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2580,7 +2628,7 @@ ALTER TABLE ONLY public.ppid_infografis ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3084 (class 2604 OID 34379)
+-- TOC entry 3087 (class 2604 OID 34379)
 -- Name: ppid_jenis_profil id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2588,7 +2636,7 @@ ALTER TABLE ONLY public.ppid_jenis_profil ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3086 (class 2604 OID 34408)
+-- TOC entry 3089 (class 2604 OID 34408)
 -- Name: ppid_kontak id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2596,7 +2644,7 @@ ALTER TABLE ONLY public.ppid_kontak ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3092 (class 2604 OID 34504)
+-- TOC entry 3095 (class 2604 OID 34504)
 -- Name: ppid_lap_survey id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2604,7 +2652,7 @@ ALTER TABLE ONLY public.ppid_lap_survey ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3087 (class 2604 OID 34424)
+-- TOC entry 3090 (class 2604 OID 34424)
 -- Name: ppid_lap_th id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2612,7 +2660,7 @@ ALTER TABLE ONLY public.ppid_lap_th ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3088 (class 2604 OID 34440)
+-- TOC entry 3091 (class 2604 OID 34440)
 -- Name: ppid_lap_tw id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2620,7 +2668,7 @@ ALTER TABLE ONLY public.ppid_lap_tw ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3094 (class 2604 OID 34536)
+-- TOC entry 3097 (class 2604 OID 34536)
 -- Name: ppid_maklumat id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2628,7 +2676,7 @@ ALTER TABLE ONLY public.ppid_maklumat ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3083 (class 2604 OID 34368)
+-- TOC entry 3086 (class 2604 OID 34368)
 -- Name: ppid_menu id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2636,7 +2684,7 @@ ALTER TABLE ONLY public.ppid_menu ALTER COLUMN id SET DEFAULT nextval('public.pp
 
 
 --
--- TOC entry 3085 (class 2604 OID 34387)
+-- TOC entry 3088 (class 2604 OID 34387)
 -- Name: ppid_profil id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2644,7 +2692,7 @@ ALTER TABLE ONLY public.ppid_profil ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3097 (class 2604 OID 34581)
+-- TOC entry 3100 (class 2604 OID 34581)
 -- Name: ppid_regulasi id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2652,7 +2700,7 @@ ALTER TABLE ONLY public.ppid_regulasi ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3098 (class 2604 OID 34589)
+-- TOC entry 3101 (class 2604 OID 34589)
 -- Name: ppid_regulasi_peraturan id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2660,7 +2708,7 @@ ALTER TABLE ONLY public.ppid_regulasi_peraturan ALTER COLUMN id SET DEFAULT next
 
 
 --
--- TOC entry 3099 (class 2604 OID 34610)
+-- TOC entry 3102 (class 2604 OID 34610)
 -- Name: profilsingkats id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2668,7 +2716,7 @@ ALTER TABLE ONLY public.profilsingkats ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3107 (class 2604 OID 34695)
+-- TOC entry 3110 (class 2604 OID 34695)
 -- Name: regulasis_banner id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2676,7 +2724,7 @@ ALTER TABLE ONLY public.regulasis_banner ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 3108 (class 2604 OID 34703)
+-- TOC entry 3111 (class 2604 OID 34703)
 -- Name: regulasis_peraturankip id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2684,7 +2732,7 @@ ALTER TABLE ONLY public.regulasis_peraturankip ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 3109 (class 2604 OID 34714)
+-- TOC entry 3112 (class 2604 OID 34714)
 -- Name: regulasis_rancanganperaturankip id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2692,7 +2740,7 @@ ALTER TABLE ONLY public.regulasis_rancanganperaturankip ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 3078 (class 2604 OID 34279)
+-- TOC entry 3136 (class 2604 OID 35004)
 -- Name: roles id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2700,7 +2748,7 @@ ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_
 
 
 --
--- TOC entry 3117 (class 2604 OID 34799)
+-- TOC entry 3120 (class 2604 OID 34799)
 -- Name: sliders id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2708,7 +2756,7 @@ ALTER TABLE ONLY public.sliders ALTER COLUMN id SET DEFAULT nextval('public.slid
 
 
 --
--- TOC entry 3121 (class 2604 OID 34843)
+-- TOC entry 3124 (class 2604 OID 34843)
 -- Name: sosialmedias id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2716,7 +2764,7 @@ ALTER TABLE ONLY public.sosialmedias ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3116 (class 2604 OID 34788)
+-- TOC entry 3119 (class 2604 OID 34788)
 -- Name: standarlayanans_biayalayanan id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2724,7 +2772,7 @@ ALTER TABLE ONLY public.standarlayanans_biayalayanan ALTER COLUMN id SET DEFAULT
 
 
 --
--- TOC entry 3114 (class 2604 OID 34766)
+-- TOC entry 3117 (class 2604 OID 34766)
 -- Name: standarlayanans_maklumat id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2732,7 +2780,7 @@ ALTER TABLE ONLY public.standarlayanans_maklumat ALTER COLUMN id SET DEFAULT nex
 
 
 --
--- TOC entry 3115 (class 2604 OID 34777)
+-- TOC entry 3118 (class 2604 OID 34777)
 -- Name: standarlayanans_prosedurlayanan id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2740,7 +2788,7 @@ ALTER TABLE ONLY public.standarlayanans_prosedurlayanan ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 3101 (class 2604 OID 34632)
+-- TOC entry 3104 (class 2604 OID 34632)
 -- Name: strukturorganisasis id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2748,7 +2796,7 @@ ALTER TABLE ONLY public.strukturorganisasis ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3103 (class 2604 OID 34651)
+-- TOC entry 3106 (class 2604 OID 34651)
 -- Name: strukturorganisasis_bagankanan id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2756,7 +2804,7 @@ ALTER TABLE ONLY public.strukturorganisasis_bagankanan ALTER COLUMN id SET DEFAU
 
 
 --
--- TOC entry 3102 (class 2604 OID 34643)
+-- TOC entry 3105 (class 2604 OID 34643)
 -- Name: strukturorganisasis_bagankiri id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2764,7 +2812,7 @@ ALTER TABLE ONLY public.strukturorganisasis_bagankiri ALTER COLUMN id SET DEFAUL
 
 
 --
--- TOC entry 3124 (class 2604 OID 34876)
+-- TOC entry 3127 (class 2604 OID 34876)
 -- Name: submenus id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2772,7 +2820,7 @@ ALTER TABLE ONLY public.submenus ALTER COLUMN id SET DEFAULT nextval('public.sub
 
 
 --
--- TOC entry 3100 (class 2604 OID 34621)
+-- TOC entry 3103 (class 2604 OID 34621)
 -- Name: tugasdanfungsis id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2780,7 +2828,7 @@ ALTER TABLE ONLY public.tugasdanfungsis ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 3076 (class 2604 OID 34246)
+-- TOC entry 3134 (class 2604 OID 34971)
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2788,7 +2836,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- TOC entry 3120 (class 2604 OID 34832)
+-- TOC entry 3138 (class 2604 OID 35065)
+-- Name: usersppid id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usersppid ALTER COLUMN id SET DEFAULT nextval('public.usersppid_id_seq'::regclass);
+
+
+--
+-- TOC entry 3123 (class 2604 OID 34832)
 -- Name: videos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2796,7 +2852,7 @@ ALTER TABLE ONLY public.videos ALTER COLUMN id SET DEFAULT nextval('public.video
 
 
 --
--- TOC entry 3104 (class 2604 OID 34662)
+-- TOC entry 3107 (class 2604 OID 34662)
 -- Name: visimisis id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -2805,7 +2861,7 @@ ALTER TABLE ONLY public.visimisis ALTER COLUMN id SET DEFAULT nextval('public.vi
 
 --
 -- TOC entry 3422 (class 0 OID 34337)
--- Dependencies: 217
+-- Dependencies: 205
 -- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2815,7 +2871,7 @@ COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed
 
 --
 -- TOC entry 3520 (class 0 OID 34938)
--- Dependencies: 315
+-- Dependencies: 303
 -- Data for Name: faqs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2827,7 +2883,7 @@ COPY public.faqs (id, pertanyaan, jawaban, created_at, updated_at) FROM stdin;
 
 --
 -- TOC entry 3518 (class 0 OID 34930)
--- Dependencies: 313
+-- Dependencies: 301
 -- Data for Name: faqs_banner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2838,7 +2894,7 @@ COPY public.faqs_banner (id, banner_path, created_at, updated_at) FROM stdin;
 
 --
 -- TOC entry 3480 (class 0 OID 34722)
--- Dependencies: 275
+-- Dependencies: 263
 -- Data for Name: informasipubliks_banner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2849,7 +2905,7 @@ COPY public.informasipubliks_banner (id, banner_path, created_at, updated_at) FR
 
 --
 -- TOC entry 3482 (class 0 OID 34730)
--- Dependencies: 277
+-- Dependencies: 265
 -- Data for Name: informasipubliks_secaraberkala; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2870,7 +2926,7 @@ COPY public.informasipubliks_secaraberkala (id, judul_informasi, url, file_path,
 
 --
 -- TOC entry 3484 (class 0 OID 34741)
--- Dependencies: 279
+-- Dependencies: 267
 -- Data for Name: informasipubliks_sertamerta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2881,7 +2937,7 @@ COPY public.informasipubliks_sertamerta (id, judul_informasi, url, file_path, cr
 
 --
 -- TOC entry 3486 (class 0 OID 34752)
--- Dependencies: 281
+-- Dependencies: 269
 -- Data for Name: informasipubliks_setiapsaat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2902,7 +2958,7 @@ COPY public.informasipubliks_setiapsaat (id, judul_informasi, url, file_path, cr
 
 --
 -- TOC entry 3496 (class 0 OID 34807)
--- Dependencies: 291
+-- Dependencies: 279
 -- Data for Name: informasis; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2915,7 +2971,7 @@ COPY public.informasis (id, image_path, judul, deskripsi, urutan, created_at, up
 
 --
 -- TOC entry 3498 (class 0 OID 34818)
--- Dependencies: 293
+-- Dependencies: 281
 -- Data for Name: informasis_image; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2926,7 +2982,7 @@ COPY public.informasis_image (id, sideimage_path, backgroundimage_path, created_
 
 --
 -- TOC entry 3470 (class 0 OID 34670)
--- Dependencies: 265
+-- Dependencies: 253
 -- Data for Name: kontaks; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2937,7 +2993,7 @@ COPY public.kontaks (id, alamat, telepon, waktu_pelayanan, banner_path, latitude
 
 --
 -- TOC entry 3472 (class 0 OID 34681)
--- Dependencies: 267
+-- Dependencies: 255
 -- Data for Name: kontaks_dokumentasiruangppid; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2949,7 +3005,7 @@ COPY public.kontaks_dokumentasiruangppid (id, image_path, keterangan, urutan, cr
 
 --
 -- TOC entry 3438 (class 0 OID 34453)
--- Dependencies: 233
+-- Dependencies: 221
 -- Data for Name: laporan_berkala; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2959,7 +3015,7 @@ COPY public.laporan_berkala (id, nama_laporan, support_link, deskripsi, created_
 
 --
 -- TOC entry 3440 (class 0 OID 34469)
--- Dependencies: 235
+-- Dependencies: 223
 -- Data for Name: laporan_serta_merta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2969,7 +3025,7 @@ COPY public.laporan_serta_merta (id, nama_laporan, support_link, deskripsi, crea
 
 --
 -- TOC entry 3442 (class 0 OID 34485)
--- Dependencies: 237
+-- Dependencies: 225
 -- Data for Name: laporan_setiap_saat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2979,7 +3035,7 @@ COPY public.laporan_setiap_saat (id, nama_laporan, support_link, deskripsi, crea
 
 --
 -- TOC entry 3510 (class 0 OID 34889)
--- Dependencies: 305
+-- Dependencies: 293
 -- Data for Name: laporans_banner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2990,7 +3046,7 @@ COPY public.laporans_banner (id, banner_path, created_at, updated_at) FROM stdin
 
 --
 -- TOC entry 3516 (class 0 OID 34919)
--- Dependencies: 311
+-- Dependencies: 299
 -- Data for Name: laporans_hasil_survei; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3001,7 +3057,7 @@ COPY public.laporans_hasil_survei (id, judul_laporan, file_path, thumbnail_path,
 
 --
 -- TOC entry 3514 (class 0 OID 34908)
--- Dependencies: 309
+-- Dependencies: 297
 -- Data for Name: laporans_tahunan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3014,7 +3070,7 @@ COPY public.laporans_tahunan (id, judul_laporan, file_path, thumbnail_path, crea
 
 --
 -- TOC entry 3512 (class 0 OID 34897)
--- Dependencies: 307
+-- Dependencies: 295
 -- Data for Name: laporans_triwulanan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3028,7 +3084,7 @@ COPY public.laporans_triwulanan (id, judul_laporan, file_path, thumbnail_path, c
 
 --
 -- TOC entry 3504 (class 0 OID 34851)
--- Dependencies: 299
+-- Dependencies: 287
 -- Data for Name: linkapps; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3039,7 +3095,7 @@ COPY public.linkapps (id, icon, url, created_at, updated_at) FROM stdin;
 
 --
 -- TOC entry 3506 (class 0 OID 34862)
--- Dependencies: 301
+-- Dependencies: 289
 -- Data for Name: mainmenus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3048,8 +3104,8 @@ COPY public.mainmenus (id, nama_menu, routing, nama_permission, urutan, created_
 
 
 --
--- TOC entry 3420 (class 0 OID 34326)
--- Dependencies: 215
+-- TOC entry 3532 (class 0 OID 35051)
+-- Dependencies: 315
 -- Data for Name: menus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3058,18 +3114,12 @@ COPY public.menus (id, parent_id, label, icon, status, route_name, "order", crea
 
 
 --
--- TOC entry 3408 (class 0 OID 34235)
+-- TOC entry 3420 (class 0 OID 34235)
 -- Dependencies: 203
 -- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.migrations (id, migration, batch) FROM stdin;
-1	2014_10_12_000000_create_users_table	1
-2	2014_10_12_100000_create_password_resets_table	1
-3	2022_10_21_011702_create_foos_table	1
-4	2022_10_23_032325_create_roles_table	1
-5	2022_10_23_073819_create_permission_tables	1
-6	2022_10_24_032253_create_menus_table	1
 7	2014_10_12_200000_add_two_factor_columns_to_users_table	2
 8	2019_08_19_000000_create_failed_jobs_table	2
 9	2019_12_14_000001_create_personal_access_tokens_table	2
@@ -3083,12 +3133,19 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 17	2022_11_24_022005_create_manajemenmenus_table	2
 18	2022_11_25_020835_create_laporans_table	2
 19	2022_11_26_055528_create_faqs_table	2
+20	2014_10_12_000000_create_users_table	3
+21	2014_10_12_100000_create_password_resets_table	3
+22	2022_10_21_011702_create_foos_table	3
+23	2022_10_23_032325_create_roles_table	3
+24	2022_10_23_073819_create_permission_tables	3
+25	2022_10_24_032253_create_menus_table	3
+26	2022_12_01_095604_create_usersppid_table	4
 \.
 
 
 --
--- TOC entry 3416 (class 0 OID 34287)
--- Dependencies: 211
+-- TOC entry 3528 (class 0 OID 35012)
+-- Dependencies: 311
 -- Data for Name: model_has_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3097,8 +3154,8 @@ COPY public.model_has_permissions (permission_id, model_type, model_id) FROM std
 
 
 --
--- TOC entry 3417 (class 0 OID 34298)
--- Dependencies: 212
+-- TOC entry 3529 (class 0 OID 35023)
+-- Dependencies: 312
 -- Data for Name: model_has_roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3106,16 +3163,13 @@ COPY public.model_has_roles (role_id, model_type, model_id) FROM stdin;
 1	App\\Models\\User	1
 2	App\\Models\\User	2
 3	App\\Models\\User	3
-2	App\\Models\\User	4
-2	App\\Models\\User	5
-2	App\\Models\\User	6
-2	App\\Models\\User	7
+1	App\\Models\\User	4
 \.
 
 
 --
--- TOC entry 3411 (class 0 OID 34254)
--- Dependencies: 206
+-- TOC entry 3523 (class 0 OID 34979)
+-- Dependencies: 306
 -- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3124,114 +3178,130 @@ COPY public.password_resets (email, token, created_at) FROM stdin;
 
 
 --
--- TOC entry 3413 (class 0 OID 34263)
--- Dependencies: 208
+-- TOC entry 3525 (class 0 OID 34988)
+-- Dependencies: 308
 -- Data for Name: permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.permissions (id, name, guard_name, created_at, updated_at) FROM stdin;
-1	dashboard.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-2	dashboard.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-3	dashboard.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-4	dashboard.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-5	data permohonan.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-6	data permohonan.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-7	data permohonan.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-8	data permohonan.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-9	data keberatan.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-10	data keberatan.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-11	data keberatan.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-12	data keberatan.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-13	profil singkat ppid.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-14	profil singkat ppid.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-15	profil singkat ppid.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-16	profil singkat ppid.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-17	tugas dan fungsi ppid.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-18	tugas dan fungsi ppid.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-19	tugas dan fungsi ppid.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-20	tugas dan fungsi ppid.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-21	struktur organisasi.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-22	struktur organisasi.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-23	struktur organisasi.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-24	struktur organisasi.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-25	visi dan misi.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-26	visi dan misi.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-27	visi dan misi.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-28	visi dan misi.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-29	kontak.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-30	kontak.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-31	kontak.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-32	kontak.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-33	sosial media.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-34	sosial media.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-35	sosial media.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-36	sosial media.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-37	peraturan kip.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-38	peraturan kip.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-39	peraturan kip.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-40	peraturan kip.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-41	rancangan peraturan kip.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-42	rancangan peraturan kip.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-43	rancangan peraturan kip.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-44	rancangan peraturan kip.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-45	informasi secara berkala.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-46	informasi secara berkala.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-47	informasi secara berkala.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-48	informasi secara berkala.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-49	informasi serta merta.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-50	informasi serta merta.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-51	informasi serta merta.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-52	informasi serta merta.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-53	informasi setiap saat.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-54	informasi setiap saat.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-55	informasi setiap saat.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-56	informasi setiap saat.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-57	laporan triwulanan pip.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-58	laporan triwulanan pip.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-59	laporan triwulanan pip.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-60	laporan triwulanan pip.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-61	laporan tahunan pip.create	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-62	laporan tahunan pip.view	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-63	laporan tahunan pip.edit	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-64	laporan tahunan pip.delete	web	2022-11-28 18:40:22	2022-11-28 18:40:22
-65	laporan hasil survei.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-66	laporan hasil survei.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-67	laporan hasil survei.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-68	laporan hasil survei.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-69	maklumat pelayanan.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-70	maklumat pelayanan.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-71	maklumat pelayanan.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-72	maklumat pelayanan.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-73	prosedur pelayanan.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-74	prosedur pelayanan.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-75	prosedur pelayanan.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-76	prosedur pelayanan.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-77	biaya pelayanan.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-78	biaya pelayanan.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-79	biaya pelayanan.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-80	biaya pelayanan.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-81	faq.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-82	faq.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-83	faq.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-84	faq.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-85	user pemohon.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-86	user pemohon.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-87	user pemohon.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-88	user pemohon.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-89	user admin.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-90	user admin.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-91	user admin.edit	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-92	user admin.delete	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-93	role permission.create	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-94	role permission.view	web	2022-11-28 18:40:23	2022-11-28 18:40:23
-95	role permission.edit	web	2022-11-28 18:40:24	2022-11-28 18:40:24
-96	role permission.delete	web	2022-11-28 18:40:24	2022-11-28 18:40:24
+1	dashboard.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+2	dashboard.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+3	dashboard.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+4	dashboard.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+5	data permohonan.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+6	data permohonan.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+7	data permohonan.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+8	data permohonan.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+9	data keberatan.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+10	data keberatan.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+11	data keberatan.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+12	data keberatan.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+13	profil singkat ppid.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+14	profil singkat ppid.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+15	profil singkat ppid.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+16	profil singkat ppid.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+17	tugas dan fungsi ppid.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+18	tugas dan fungsi ppid.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+19	tugas dan fungsi ppid.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+20	tugas dan fungsi ppid.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+21	struktur organisasi.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+22	struktur organisasi.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+23	struktur organisasi.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+24	struktur organisasi.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+25	visi dan misi.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+26	visi dan misi.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+27	visi dan misi.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+28	visi dan misi.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+29	kontak.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+30	kontak.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+31	kontak.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+32	kontak.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+33	sosial media.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+34	sosial media.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+35	sosial media.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+36	sosial media.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+37	peraturan kip.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+38	peraturan kip.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+39	peraturan kip.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+40	peraturan kip.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+41	rancangan peraturan kip.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+42	rancangan peraturan kip.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+43	rancangan peraturan kip.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+44	rancangan peraturan kip.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+45	informasi secara berkala.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+46	informasi secara berkala.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+47	informasi secara berkala.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+48	informasi secara berkala.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+49	informasi serta merta.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+50	informasi serta merta.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+51	informasi serta merta.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+52	informasi serta merta.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+53	informasi setiap saat.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+54	informasi setiap saat.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+55	informasi setiap saat.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+56	informasi setiap saat.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+57	laporan triwulanan pip.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+58	laporan triwulanan pip.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+59	laporan triwulanan pip.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+60	laporan triwulanan pip.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+61	laporan tahunan pip.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+62	laporan tahunan pip.view	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+63	laporan tahunan pip.edit	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+64	laporan tahunan pip.delete	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+65	laporan hasil survei.create	web	2022-12-01 07:55:24	2022-12-01 07:55:24
+66	laporan hasil survei.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+67	laporan hasil survei.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+68	laporan hasil survei.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+69	maklumat pelayanan.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+70	maklumat pelayanan.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+71	maklumat pelayanan.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+72	maklumat pelayanan.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+73	prosedur pelayanan.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+74	prosedur pelayanan.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+75	prosedur pelayanan.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+76	prosedur pelayanan.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+77	biaya pelayanan.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+78	biaya pelayanan.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+79	biaya pelayanan.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+80	biaya pelayanan.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+81	faq.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+82	faq.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+83	faq.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+84	faq.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+85	user pemohon.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+86	user pemohon.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+87	user pemohon.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+88	user pemohon.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+89	user admin.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+90	user admin.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+91	user admin.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+92	user admin.delete	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+93	role permission.create	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+94	role permission.view	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+95	role permission.edit	web	2022-12-01 07:55:25	2022-12-01 07:55:25
+96	role permission.delete	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+97	slider.create	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+98	slider.view	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+99	slider.edit	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+100	slider.delete	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+101	informasi.create	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+102	informasi.view	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+103	informasi.edit	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+104	informasi.delete	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+105	video.create	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+106	video.view	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+107	video.edit	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+108	video.delete	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+109	footer.create	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+110	footer.view	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+111	footer.edit	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+112	footer.delete	web	2022-12-01 07:55:26	2022-12-01 07:55:26
 \.
 
 
 --
 -- TOC entry 3424 (class 0 OID 34351)
--- Dependencies: 219
+-- Dependencies: 207
 -- Data for Name: personal_access_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3241,7 +3311,7 @@ COPY public.personal_access_tokens (id, tokenable_type, tokenable_id, name, toke
 
 --
 -- TOC entry 3452 (class 0 OID 34565)
--- Dependencies: 247
+-- Dependencies: 235
 -- Data for Name: ppid_biaya; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3251,7 +3321,7 @@ COPY public.ppid_biaya (id, deskripsi, is_active, created_at, updated_at, parent
 
 --
 -- TOC entry 3446 (class 0 OID 34517)
--- Dependencies: 241
+-- Dependencies: 229
 -- Data for Name: ppid_faq; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3261,7 +3331,7 @@ COPY public.ppid_faq (id, judul, deskripsi, "order", is_active, created_at, upda
 
 --
 -- TOC entry 3450 (class 0 OID 34549)
--- Dependencies: 245
+-- Dependencies: 233
 -- Data for Name: ppid_infografis; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3271,7 +3341,7 @@ COPY public.ppid_infografis (id, deskripsi, direktori_image, "order", is_active,
 
 --
 -- TOC entry 3428 (class 0 OID 34376)
--- Dependencies: 223
+-- Dependencies: 211
 -- Data for Name: ppid_jenis_profil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3281,7 +3351,7 @@ COPY public.ppid_jenis_profil (id, jenis_profil, created_at, updated_at) FROM st
 
 --
 -- TOC entry 3432 (class 0 OID 34405)
--- Dependencies: 227
+-- Dependencies: 215
 -- Data for Name: ppid_kontak; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3291,7 +3361,7 @@ COPY public.ppid_kontak (id, nama_data, deskripsi, sisi, created_at, updated_at,
 
 --
 -- TOC entry 3444 (class 0 OID 34501)
--- Dependencies: 239
+-- Dependencies: 227
 -- Data for Name: ppid_lap_survey; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3301,7 +3371,7 @@ COPY public.ppid_lap_survey (id, judul, direktori_file, "order", is_active, crea
 
 --
 -- TOC entry 3434 (class 0 OID 34421)
--- Dependencies: 229
+-- Dependencies: 217
 -- Data for Name: ppid_lap_th; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3311,7 +3381,7 @@ COPY public.ppid_lap_th (id, judul, direktori_file, "order", is_active, created_
 
 --
 -- TOC entry 3436 (class 0 OID 34437)
--- Dependencies: 231
+-- Dependencies: 219
 -- Data for Name: ppid_lap_tw; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3321,7 +3391,7 @@ COPY public.ppid_lap_tw (id, judul, direktori_file, "order", is_active, created_
 
 --
 -- TOC entry 3448 (class 0 OID 34533)
--- Dependencies: 243
+-- Dependencies: 231
 -- Data for Name: ppid_maklumat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3331,7 +3401,7 @@ COPY public.ppid_maklumat (id, direktori_image, deskripsi, is_active, created_at
 
 --
 -- TOC entry 3426 (class 0 OID 34365)
--- Dependencies: 221
+-- Dependencies: 209
 -- Data for Name: ppid_menu; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3341,7 +3411,7 @@ COPY public.ppid_menu (id, nama_menu, routing, "order", created_at, updated_at) 
 
 --
 -- TOC entry 3430 (class 0 OID 34384)
--- Dependencies: 225
+-- Dependencies: 213
 -- Data for Name: ppid_profil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3351,7 +3421,7 @@ COPY public.ppid_profil (id, judul, narasi, direktori_image, created_at, updated
 
 --
 -- TOC entry 3454 (class 0 OID 34578)
--- Dependencies: 249
+-- Dependencies: 237
 -- Data for Name: ppid_regulasi; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3361,7 +3431,7 @@ COPY public.ppid_regulasi (id, jenis_regulasi, created_at, updated_at) FROM stdi
 
 --
 -- TOC entry 3456 (class 0 OID 34586)
--- Dependencies: 251
+-- Dependencies: 239
 -- Data for Name: ppid_regulasi_peraturan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3371,7 +3441,7 @@ COPY public.ppid_regulasi_peraturan (id, nama_regulasi, direktori_file, "order",
 
 --
 -- TOC entry 3458 (class 0 OID 34607)
--- Dependencies: 253
+-- Dependencies: 241
 -- Data for Name: profilsingkats; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3382,7 +3452,7 @@ COPY public.profilsingkats (id, judul, konten, banner_path, side_image_path, cre
 
 --
 -- TOC entry 3474 (class 0 OID 34692)
--- Dependencies: 269
+-- Dependencies: 257
 -- Data for Name: regulasis_banner; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3393,7 +3463,7 @@ COPY public.regulasis_banner (id, banner_path, created_at, updated_at, thumbnail
 
 --
 -- TOC entry 3476 (class 0 OID 34700)
--- Dependencies: 271
+-- Dependencies: 259
 -- Data for Name: regulasis_peraturankip; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3406,7 +3476,7 @@ COPY public.regulasis_peraturankip (id, judul_peraturan, file_path, urutan, crea
 
 --
 -- TOC entry 3478 (class 0 OID 34711)
--- Dependencies: 273
+-- Dependencies: 261
 -- Data for Name: regulasis_rancanganperaturankip; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3416,8 +3486,8 @@ COPY public.regulasis_rancanganperaturankip (id, judul_peraturan, file_path, uru
 
 
 --
--- TOC entry 3418 (class 0 OID 34309)
--- Dependencies: 213
+-- TOC entry 3530 (class 0 OID 35034)
+-- Dependencies: 313
 -- Data for Name: role_has_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3550,39 +3620,55 @@ COPY public.role_has_permissions (permission_id, role_id) FROM stdin;
 94	3
 95	3
 96	3
+97	3
+98	3
+99	3
+100	3
+101	3
+102	3
+103	3
+104	3
+105	3
+106	3
+107	3
+108	3
+109	3
+110	3
+111	3
+112	3
 \.
 
 
 --
--- TOC entry 3415 (class 0 OID 34276)
--- Dependencies: 210
+-- TOC entry 3527 (class 0 OID 35001)
+-- Dependencies: 310
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.roles (id, name, guard_name, created_at, updated_at) FROM stdin;
-1	admin	web	2022-11-28 18:40:24	2022-11-28 18:40:24
-2	user	web	2022-11-28 18:40:24	2022-11-28 18:40:24
-3	super	web	2022-11-28 18:40:24	2022-11-28 18:40:24
+1	admin	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+2	user	web	2022-12-01 07:55:26	2022-12-01 07:55:26
+3	super	web	2022-12-01 07:55:27	2022-12-01 07:55:27
 \.
 
 
 --
 -- TOC entry 3494 (class 0 OID 34796)
--- Dependencies: 289
+-- Dependencies: 277
 -- Data for Name: sliders; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.sliders (id, image_path, judul, deskripsi, urutan, created_at, updated_at) FROM stdin;
-1	adminAssets/home/slider/carousel-1.jpg	Selamat Datang <br> Di PPID Kementrian BUMN	\N	1	2022-11-30 12:04:48	2022-11-30 14:47:43
 2	adminAssets/home/slider/g20real.png	\N	\N	2	2022-11-30 14:49:16	2022-11-30 14:49:16
 3	adminAssets/home/slider/kinerja20212.png	\N	\N	3	2022-11-30 14:50:17	2022-11-30 14:50:17
 4	adminAssets/home/slider/carousel-2.jpg	Mobile Apps PPID	Akses Informasi Lebih Cepat Dan Mudah	4	2022-11-30 14:50:55	2022-11-30 14:51:54
+1	adminAssets/home/slider/carousel-1.jpg	Selamat Datang  Di PPID Kementrian BUMN	\N	1	2022-11-30 12:04:48	2022-12-01 08:52:56
 \.
 
 
 --
 -- TOC entry 3502 (class 0 OID 34840)
--- Dependencies: 297
+-- Dependencies: 285
 -- Data for Name: sosialmedias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3596,7 +3682,7 @@ COPY public.sosialmedias (id, icon, url, urutan, created_at, updated_at) FROM st
 
 --
 -- TOC entry 3492 (class 0 OID 34785)
--- Dependencies: 287
+-- Dependencies: 275
 -- Data for Name: standarlayanans_biayalayanan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3607,7 +3693,7 @@ COPY public.standarlayanans_biayalayanan (id, judul, deskripsi, banner_path, dir
 
 --
 -- TOC entry 3488 (class 0 OID 34763)
--- Dependencies: 283
+-- Dependencies: 271
 -- Data for Name: standarlayanans_maklumat; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3618,7 +3704,7 @@ COPY public.standarlayanans_maklumat (id, judul, banner_path, direktori_image, c
 
 --
 -- TOC entry 3490 (class 0 OID 34774)
--- Dependencies: 285
+-- Dependencies: 273
 -- Data for Name: standarlayanans_prosedurlayanan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3629,7 +3715,7 @@ COPY public.standarlayanans_prosedurlayanan (id, banner_path, permohonan_direkto
 
 --
 -- TOC entry 3462 (class 0 OID 34629)
--- Dependencies: 257
+-- Dependencies: 245
 -- Data for Name: strukturorganisasis; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3640,7 +3726,7 @@ COPY public.strukturorganisasis (id, judul, banner_path, created_at, updated_at)
 
 --
 -- TOC entry 3466 (class 0 OID 34648)
--- Dependencies: 261
+-- Dependencies: 249
 -- Data for Name: strukturorganisasis_bagankanan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3653,7 +3739,7 @@ COPY public.strukturorganisasis_bagankanan (id, nomenklatur, deskripsi, urutan, 
 
 --
 -- TOC entry 3464 (class 0 OID 34640)
--- Dependencies: 259
+-- Dependencies: 247
 -- Data for Name: strukturorganisasis_bagankiri; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3666,7 +3752,7 @@ COPY public.strukturorganisasis_bagankiri (id, nomenklatur, created_at, updated_
 
 --
 -- TOC entry 3508 (class 0 OID 34873)
--- Dependencies: 303
+-- Dependencies: 291
 -- Data for Name: submenus; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3676,7 +3762,7 @@ COPY public.submenus (id, nama_menu, routing, nama_permission, urutan, created_a
 
 --
 -- TOC entry 3460 (class 0 OID 34618)
--- Dependencies: 255
+-- Dependencies: 243
 -- Data for Name: tugasdanfungsis; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3686,25 +3772,35 @@ COPY public.tugasdanfungsis (id, judul, konten, banner_path, side_image_path, cr
 
 
 --
--- TOC entry 3410 (class 0 OID 34243)
--- Dependencies: 205
+-- TOC entry 3522 (class 0 OID 34968)
+-- Dependencies: 305
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, name, email, email_verified_at, password, jenispemohon, jenisidentitas, noidentitas, alamat, nohp, npwp, pekerjaan, identitas_file_path, remember_token, created_at, updated_at, two_factor_secret, two_factor_recovery_codes, two_factor_confirmed_at) FROM stdin;
-1	Admin Role	admin@role.test	\N	$2y$10$1gESzXSynp/7eKjjJlil9uLSvmhMmxQ3j4IoTUtd.aQSqEnch3QmK	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-11-28 18:40:27	2022-11-28 18:40:27	\N	\N	\N
-2	User Role	user@role.test	\N	$2y$10$7KiiTjHEawDw2UdntaFhK.rlrUT4UrHVThVVb8lGK4HM.VvV1IaHm	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-11-28 18:40:27	2022-11-28 18:40:27	\N	\N	\N
-3	Super Role	super@role.test	\N	$2y$10$0BKD1VeGVQIHcFyWqXmp/eHzgUbd54ZCobIKmwxgUMkR4esdr0pVq	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-11-28 18:40:27	2022-11-28 18:40:27	\N	\N	\N
-4	\N	tes@tes.tes	\N	$2y$10$0BKD1VeGVQIHcFyWqXmp/eHzgUbd54ZCobIKmwxgUMkR4esdr0pVq	1	1	1234123412341234	aaaa	123412341234	12341234	aaasssaaa	adminAssets/user/identitas/1669705727060jpg	\N	2022-11-29 07:08:47	2022-11-29 07:08:47	\N	\N	\N
-5	\N	qwe@qwe.qwe	\N	$2y$10$NzR3lwtQp/vDFSfpoRdf7esgLrQWMutmv/Ht0yt6P7KHSeWiWf8b2	1	1	1234123412341234	aaaaa	1231231231	123412341	aaasssaa	adminAssets/user/identitas/1669706390148png	\N	2022-11-29 07:19:50	2022-11-29 07:19:50	\N	\N	\N
-6	\N	zxc@zxc.zxc	\N	$2y$10$nXgmu3P/OdXYhrRUU9kOHudX70qr.sfcXmVfbBHJ5WaF1k2MQGB7m	1	1	4321432143214321	zxc	432143214321	43214321	aaaaa	adminAssets/user/identitas/1669706547196png	\N	2022-11-29 07:22:27	2022-11-29 07:22:27	\N	\N	\N
-7	\N	xcv@xcv.xcv	\N	$2y$10$vhMGZMHhZAbynjQx5qdyGO1fF/r5TRRwSn0fkRd41fTnzp2ZsvuNO	1	1	123412341234	xcvxcv	12344321	13245678	asdfg	adminAssets/user/identitas/1669707002292png	\N	2022-11-29 07:30:02	2022-11-29 07:30:02	\N	\N	\N
+COPY public.users (id, name, email, email_verified_at, password, jenispemohon, jenisidentitas, noidentitas, alamat, nohp, npwp, pekerjaan, identitas_file_path, remember_token, created_at, updated_at) FROM stdin;
+1	Admin Role	admin@role.test	\N	$2y$10$NsP2PQycmW9eUhXnqn2qA.92xA7ACQLSTVj03BLugQyuGil4M9XhS	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
+2	User Role	user@role.test	\N	$2y$10$orU/biBH2Qk17UlHu/FBa.hOyjuqIdivYhp9AP9tZ6HKqaKCGgm0e	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
+3	Super Role	super@role.test	\N	$2y$10$mHmTo0QInRN/fF/OJczX3ebu1LdW3sd1Bl.2U7ZZVg9v4tGjNHs4a	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
+4	czxczx	admin123@asd.asd	\N	$2y$10$5neNdhi36QPTRqyblvF4W.6R8/EDHpyF/8messIjtPpYFOUiz0XrO	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-02 02:09:48	2022-12-02 02:09:48
+\.
+
+
+--
+-- TOC entry 3534 (class 0 OID 35062)
+-- Dependencies: 317
+-- Data for Name: usersppid; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.usersppid (id, name, email, email_verified_at, password, jenispemohon, jenisidentitas, noidentitas, alamat, nohp, npwp, pekerjaan, identitas_file_path, remember_token, created_at, updated_at) FROM stdin;
+3	\N	tes123@tes.tes	\N	$2y$10$DzwxwbPL3f8lnemuElkcq.kkX4zJwm1S/uh8mnstd3BgjUwaasV/O	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 15:11:40	2022-12-01 15:11:40
+4	zzz	tes123123@tes.tes	\N	$2y$10$h1rka0NonSIrrUvYnYRxB.6qeqxA0AcnJr77XZGcD9Vcfp2uSEyjK	1	1	1234123412341234	asddsa	123412341234	asdsad	sadadssad	adminAssets/user/identitas/1669908001659png	\N	2022-12-01 15:20:01	2022-12-01 15:20:01
+5	adssad	cxz@cxz.cxz	\N	$2y$10$Z2FT4tZS/DfsRa.cELNSHe34PNgwJYf3KXfX6NQ7Z4kZJYZfVdQiu	1	1	1234123412341234	dsasdasdasda	432143214321	43214321	saddsa	adminAssets/user/identitas/1669946393590png	\N	2022-12-02 01:59:53	2022-12-02 01:59:53
 \.
 
 
 --
 -- TOC entry 3500 (class 0 OID 34829)
--- Dependencies: 295
+-- Dependencies: 283
 -- Data for Name: videos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3716,7 +3812,7 @@ COPY public.videos (id, url, deskripsi, urutan, created_at, updated_at) FROM std
 
 --
 -- TOC entry 3468 (class 0 OID 34659)
--- Dependencies: 263
+-- Dependencies: 251
 -- Data for Name: visimisis; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -3726,8 +3822,8 @@ COPY public.visimisis (id, visi, misi, banner_path, created_at, updated_at) FROM
 
 
 --
--- TOC entry 3581 (class 0 OID 0)
--- Dependencies: 216
+-- TOC entry 3596 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3735,8 +3831,8 @@ SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
 
 
 --
--- TOC entry 3582 (class 0 OID 0)
--- Dependencies: 312
+-- TOC entry 3597 (class 0 OID 0)
+-- Dependencies: 300
 -- Name: faqs_banner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3744,8 +3840,8 @@ SELECT pg_catalog.setval('public.faqs_banner_id_seq', 1, true);
 
 
 --
--- TOC entry 3583 (class 0 OID 0)
--- Dependencies: 314
+-- TOC entry 3598 (class 0 OID 0)
+-- Dependencies: 302
 -- Name: faqs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3753,8 +3849,8 @@ SELECT pg_catalog.setval('public.faqs_id_seq', 2, true);
 
 
 --
--- TOC entry 3584 (class 0 OID 0)
--- Dependencies: 274
+-- TOC entry 3599 (class 0 OID 0)
+-- Dependencies: 262
 -- Name: informasipubliks_banner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3762,8 +3858,8 @@ SELECT pg_catalog.setval('public.informasipubliks_banner_id_seq', 1, true);
 
 
 --
--- TOC entry 3585 (class 0 OID 0)
--- Dependencies: 276
+-- TOC entry 3600 (class 0 OID 0)
+-- Dependencies: 264
 -- Name: informasipubliks_secaraberkala_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3771,8 +3867,8 @@ SELECT pg_catalog.setval('public.informasipubliks_secaraberkala_id_seq', 13, tru
 
 
 --
--- TOC entry 3586 (class 0 OID 0)
--- Dependencies: 278
+-- TOC entry 3601 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: informasipubliks_sertamerta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3780,8 +3876,8 @@ SELECT pg_catalog.setval('public.informasipubliks_sertamerta_id_seq', 1, true);
 
 
 --
--- TOC entry 3587 (class 0 OID 0)
--- Dependencies: 280
+-- TOC entry 3602 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: informasipubliks_setiapsaat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3789,8 +3885,8 @@ SELECT pg_catalog.setval('public.informasipubliks_setiapsaat_id_seq', 11, true);
 
 
 --
--- TOC entry 3588 (class 0 OID 0)
--- Dependencies: 290
+-- TOC entry 3603 (class 0 OID 0)
+-- Dependencies: 278
 -- Name: informasis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3798,8 +3894,8 @@ SELECT pg_catalog.setval('public.informasis_id_seq', 3, true);
 
 
 --
--- TOC entry 3589 (class 0 OID 0)
--- Dependencies: 292
+-- TOC entry 3604 (class 0 OID 0)
+-- Dependencies: 280
 -- Name: informasis_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3807,8 +3903,8 @@ SELECT pg_catalog.setval('public.informasis_image_id_seq', 1, true);
 
 
 --
--- TOC entry 3590 (class 0 OID 0)
--- Dependencies: 266
+-- TOC entry 3605 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: kontaks_dokumentasiruangppid_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3816,8 +3912,8 @@ SELECT pg_catalog.setval('public.kontaks_dokumentasiruangppid_id_seq', 2, true);
 
 
 --
--- TOC entry 3591 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 3606 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: kontaks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3825,8 +3921,8 @@ SELECT pg_catalog.setval('public.kontaks_id_seq', 1, true);
 
 
 --
--- TOC entry 3592 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3607 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: laporan_berkala_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3834,8 +3930,8 @@ SELECT pg_catalog.setval('public.laporan_berkala_id_seq', 1, false);
 
 
 --
--- TOC entry 3593 (class 0 OID 0)
--- Dependencies: 234
+-- TOC entry 3608 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: laporan_serta_merta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3843,8 +3939,8 @@ SELECT pg_catalog.setval('public.laporan_serta_merta_id_seq', 1, false);
 
 
 --
--- TOC entry 3594 (class 0 OID 0)
--- Dependencies: 236
+-- TOC entry 3609 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: laporan_setiap_saat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3852,8 +3948,8 @@ SELECT pg_catalog.setval('public.laporan_setiap_saat_id_seq', 1, false);
 
 
 --
--- TOC entry 3595 (class 0 OID 0)
--- Dependencies: 304
+-- TOC entry 3610 (class 0 OID 0)
+-- Dependencies: 292
 -- Name: laporans_banner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3861,8 +3957,8 @@ SELECT pg_catalog.setval('public.laporans_banner_id_seq', 1, true);
 
 
 --
--- TOC entry 3596 (class 0 OID 0)
--- Dependencies: 310
+-- TOC entry 3611 (class 0 OID 0)
+-- Dependencies: 298
 -- Name: laporans_hasil_survei_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3870,8 +3966,8 @@ SELECT pg_catalog.setval('public.laporans_hasil_survei_id_seq', 1, true);
 
 
 --
--- TOC entry 3597 (class 0 OID 0)
--- Dependencies: 308
+-- TOC entry 3612 (class 0 OID 0)
+-- Dependencies: 296
 -- Name: laporans_tahunan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3879,8 +3975,8 @@ SELECT pg_catalog.setval('public.laporans_tahunan_id_seq', 4, true);
 
 
 --
--- TOC entry 3598 (class 0 OID 0)
--- Dependencies: 306
+-- TOC entry 3613 (class 0 OID 0)
+-- Dependencies: 294
 -- Name: laporans_triwulanan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3888,8 +3984,8 @@ SELECT pg_catalog.setval('public.laporans_triwulanan_id_seq', 4, true);
 
 
 --
--- TOC entry 3599 (class 0 OID 0)
--- Dependencies: 298
+-- TOC entry 3614 (class 0 OID 0)
+-- Dependencies: 286
 -- Name: linkapps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3897,8 +3993,8 @@ SELECT pg_catalog.setval('public.linkapps_id_seq', 1, true);
 
 
 --
--- TOC entry 3600 (class 0 OID 0)
--- Dependencies: 300
+-- TOC entry 3615 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: mainmenus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3906,8 +4002,8 @@ SELECT pg_catalog.setval('public.mainmenus_id_seq', 1, false);
 
 
 --
--- TOC entry 3601 (class 0 OID 0)
--- Dependencies: 214
+-- TOC entry 3616 (class 0 OID 0)
+-- Dependencies: 314
 -- Name: menus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3915,26 +4011,26 @@ SELECT pg_catalog.setval('public.menus_id_seq', 1, false);
 
 
 --
--- TOC entry 3602 (class 0 OID 0)
+-- TOC entry 3617 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.migrations_id_seq', 19, true);
+SELECT pg_catalog.setval('public.migrations_id_seq', 26, true);
 
 
 --
--- TOC entry 3603 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 3618 (class 0 OID 0)
+-- Dependencies: 307
 -- Name: permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.permissions_id_seq', 96, true);
+SELECT pg_catalog.setval('public.permissions_id_seq', 112, true);
 
 
 --
--- TOC entry 3604 (class 0 OID 0)
--- Dependencies: 218
+-- TOC entry 3619 (class 0 OID 0)
+-- Dependencies: 206
 -- Name: personal_access_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3942,8 +4038,8 @@ SELECT pg_catalog.setval('public.personal_access_tokens_id_seq', 1, false);
 
 
 --
--- TOC entry 3605 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 3620 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: ppid_biaya_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3951,8 +4047,8 @@ SELECT pg_catalog.setval('public.ppid_biaya_id_seq', 1, false);
 
 
 --
--- TOC entry 3606 (class 0 OID 0)
--- Dependencies: 240
+-- TOC entry 3621 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: ppid_faq_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3960,8 +4056,8 @@ SELECT pg_catalog.setval('public.ppid_faq_id_seq', 1, false);
 
 
 --
--- TOC entry 3607 (class 0 OID 0)
--- Dependencies: 244
+-- TOC entry 3622 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: ppid_infografis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3969,8 +4065,8 @@ SELECT pg_catalog.setval('public.ppid_infografis_id_seq', 1, false);
 
 
 --
--- TOC entry 3608 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3623 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: ppid_jenis_profil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3978,8 +4074,8 @@ SELECT pg_catalog.setval('public.ppid_jenis_profil_id_seq', 1, false);
 
 
 --
--- TOC entry 3609 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3624 (class 0 OID 0)
+-- Dependencies: 214
 -- Name: ppid_kontak_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3987,8 +4083,8 @@ SELECT pg_catalog.setval('public.ppid_kontak_id_seq', 1, false);
 
 
 --
--- TOC entry 3610 (class 0 OID 0)
--- Dependencies: 238
+-- TOC entry 3625 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: ppid_lap_survey_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3996,8 +4092,8 @@ SELECT pg_catalog.setval('public.ppid_lap_survey_id_seq', 1, false);
 
 
 --
--- TOC entry 3611 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3626 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: ppid_lap_th_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4005,8 +4101,8 @@ SELECT pg_catalog.setval('public.ppid_lap_th_id_seq', 1, false);
 
 
 --
--- TOC entry 3612 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3627 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: ppid_lap_tw_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4014,8 +4110,8 @@ SELECT pg_catalog.setval('public.ppid_lap_tw_id_seq', 1, false);
 
 
 --
--- TOC entry 3613 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 3628 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: ppid_maklumat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4023,8 +4119,8 @@ SELECT pg_catalog.setval('public.ppid_maklumat_id_seq', 1, false);
 
 
 --
--- TOC entry 3614 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3629 (class 0 OID 0)
+-- Dependencies: 208
 -- Name: ppid_menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4032,8 +4128,8 @@ SELECT pg_catalog.setval('public.ppid_menu_id_seq', 1, false);
 
 
 --
--- TOC entry 3615 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3630 (class 0 OID 0)
+-- Dependencies: 212
 -- Name: ppid_profil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4041,8 +4137,8 @@ SELECT pg_catalog.setval('public.ppid_profil_id_seq', 1, false);
 
 
 --
--- TOC entry 3616 (class 0 OID 0)
--- Dependencies: 248
+-- TOC entry 3631 (class 0 OID 0)
+-- Dependencies: 236
 -- Name: ppid_regulasi_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4050,8 +4146,8 @@ SELECT pg_catalog.setval('public.ppid_regulasi_id_seq', 1, false);
 
 
 --
--- TOC entry 3617 (class 0 OID 0)
--- Dependencies: 250
+-- TOC entry 3632 (class 0 OID 0)
+-- Dependencies: 238
 -- Name: ppid_regulasi_peraturan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4059,8 +4155,8 @@ SELECT pg_catalog.setval('public.ppid_regulasi_peraturan_id_seq', 1, false);
 
 
 --
--- TOC entry 3618 (class 0 OID 0)
--- Dependencies: 252
+-- TOC entry 3633 (class 0 OID 0)
+-- Dependencies: 240
 -- Name: profilsingkats_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4068,8 +4164,8 @@ SELECT pg_catalog.setval('public.profilsingkats_id_seq', 2, true);
 
 
 --
--- TOC entry 3619 (class 0 OID 0)
--- Dependencies: 268
+-- TOC entry 3634 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: regulasis_banner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4077,8 +4173,8 @@ SELECT pg_catalog.setval('public.regulasis_banner_id_seq', 1, true);
 
 
 --
--- TOC entry 3620 (class 0 OID 0)
--- Dependencies: 270
+-- TOC entry 3635 (class 0 OID 0)
+-- Dependencies: 258
 -- Name: regulasis_peraturankip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4086,8 +4182,8 @@ SELECT pg_catalog.setval('public.regulasis_peraturankip_id_seq', 3, true);
 
 
 --
--- TOC entry 3621 (class 0 OID 0)
--- Dependencies: 272
+-- TOC entry 3636 (class 0 OID 0)
+-- Dependencies: 260
 -- Name: regulasis_rancanganperaturankip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4095,8 +4191,8 @@ SELECT pg_catalog.setval('public.regulasis_rancanganperaturankip_id_seq', 1, tru
 
 
 --
--- TOC entry 3622 (class 0 OID 0)
--- Dependencies: 209
+-- TOC entry 3637 (class 0 OID 0)
+-- Dependencies: 309
 -- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4104,8 +4200,8 @@ SELECT pg_catalog.setval('public.roles_id_seq', 3, true);
 
 
 --
--- TOC entry 3623 (class 0 OID 0)
--- Dependencies: 288
+-- TOC entry 3638 (class 0 OID 0)
+-- Dependencies: 276
 -- Name: sliders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4113,8 +4209,8 @@ SELECT pg_catalog.setval('public.sliders_id_seq', 4, true);
 
 
 --
--- TOC entry 3624 (class 0 OID 0)
--- Dependencies: 296
+-- TOC entry 3639 (class 0 OID 0)
+-- Dependencies: 284
 -- Name: sosialmedias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4122,8 +4218,8 @@ SELECT pg_catalog.setval('public.sosialmedias_id_seq', 4, true);
 
 
 --
--- TOC entry 3625 (class 0 OID 0)
--- Dependencies: 286
+-- TOC entry 3640 (class 0 OID 0)
+-- Dependencies: 274
 -- Name: standarlayanans_biayalayanan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4131,8 +4227,8 @@ SELECT pg_catalog.setval('public.standarlayanans_biayalayanan_id_seq', 1, true);
 
 
 --
--- TOC entry 3626 (class 0 OID 0)
--- Dependencies: 282
+-- TOC entry 3641 (class 0 OID 0)
+-- Dependencies: 270
 -- Name: standarlayanans_maklumat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4140,8 +4236,8 @@ SELECT pg_catalog.setval('public.standarlayanans_maklumat_id_seq', 1, true);
 
 
 --
--- TOC entry 3627 (class 0 OID 0)
--- Dependencies: 284
+-- TOC entry 3642 (class 0 OID 0)
+-- Dependencies: 272
 -- Name: standarlayanans_prosedurlayanan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4149,8 +4245,8 @@ SELECT pg_catalog.setval('public.standarlayanans_prosedurlayanan_id_seq', 1, tru
 
 
 --
--- TOC entry 3628 (class 0 OID 0)
--- Dependencies: 260
+-- TOC entry 3643 (class 0 OID 0)
+-- Dependencies: 248
 -- Name: strukturorganisasis_bagankanan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4158,8 +4254,8 @@ SELECT pg_catalog.setval('public.strukturorganisasis_bagankanan_id_seq', 3, true
 
 
 --
--- TOC entry 3629 (class 0 OID 0)
--- Dependencies: 258
+-- TOC entry 3644 (class 0 OID 0)
+-- Dependencies: 246
 -- Name: strukturorganisasis_bagankiri_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4167,8 +4263,8 @@ SELECT pg_catalog.setval('public.strukturorganisasis_bagankiri_id_seq', 3, true)
 
 
 --
--- TOC entry 3630 (class 0 OID 0)
--- Dependencies: 256
+-- TOC entry 3645 (class 0 OID 0)
+-- Dependencies: 244
 -- Name: strukturorganisasis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4176,8 +4272,8 @@ SELECT pg_catalog.setval('public.strukturorganisasis_id_seq', 3, true);
 
 
 --
--- TOC entry 3631 (class 0 OID 0)
--- Dependencies: 302
+-- TOC entry 3646 (class 0 OID 0)
+-- Dependencies: 290
 -- Name: submenus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4185,8 +4281,8 @@ SELECT pg_catalog.setval('public.submenus_id_seq', 1, false);
 
 
 --
--- TOC entry 3632 (class 0 OID 0)
--- Dependencies: 254
+-- TOC entry 3647 (class 0 OID 0)
+-- Dependencies: 242
 -- Name: tugasdanfungsis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4194,17 +4290,26 @@ SELECT pg_catalog.setval('public.tugasdanfungsis_id_seq', 1, true);
 
 
 --
--- TOC entry 3633 (class 0 OID 0)
--- Dependencies: 204
+-- TOC entry 3648 (class 0 OID 0)
+-- Dependencies: 304
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 7, true);
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
 
 
 --
--- TOC entry 3634 (class 0 OID 0)
--- Dependencies: 294
+-- TOC entry 3649 (class 0 OID 0)
+-- Dependencies: 316
+-- Name: usersppid_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usersppid_id_seq', 5, true);
+
+
+--
+-- TOC entry 3650 (class 0 OID 0)
+-- Dependencies: 282
 -- Name: videos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4212,8 +4317,8 @@ SELECT pg_catalog.setval('public.videos_id_seq', 2, true);
 
 
 --
--- TOC entry 3635 (class 0 OID 0)
--- Dependencies: 262
+-- TOC entry 3651 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: visimisis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -4221,7 +4326,7 @@ SELECT pg_catalog.setval('public.visimisis_id_seq', 1, true);
 
 
 --
--- TOC entry 3157 (class 2606 OID 34346)
+-- TOC entry 3142 (class 2606 OID 34346)
 -- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4230,7 +4335,7 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- TOC entry 3159 (class 2606 OID 34348)
+-- TOC entry 3144 (class 2606 OID 34348)
 -- Name: failed_jobs failed_jobs_uuid_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4239,7 +4344,7 @@ ALTER TABLE ONLY public.failed_jobs
 
 
 --
--- TOC entry 3258 (class 2606 OID 34935)
+-- TOC entry 3243 (class 2606 OID 34935)
 -- Name: faqs_banner faqs_banner_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4248,7 +4353,7 @@ ALTER TABLE ONLY public.faqs_banner
 
 
 --
--- TOC entry 3260 (class 2606 OID 34946)
+-- TOC entry 3245 (class 2606 OID 34946)
 -- Name: faqs faqs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4257,7 +4362,7 @@ ALTER TABLE ONLY public.faqs
 
 
 --
--- TOC entry 3220 (class 2606 OID 34727)
+-- TOC entry 3205 (class 2606 OID 34727)
 -- Name: informasipubliks_banner informasipubliks_banner_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4266,7 +4371,7 @@ ALTER TABLE ONLY public.informasipubliks_banner
 
 
 --
--- TOC entry 3222 (class 2606 OID 34738)
+-- TOC entry 3207 (class 2606 OID 34738)
 -- Name: informasipubliks_secaraberkala informasipubliks_secaraberkala_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4275,7 +4380,7 @@ ALTER TABLE ONLY public.informasipubliks_secaraberkala
 
 
 --
--- TOC entry 3224 (class 2606 OID 34749)
+-- TOC entry 3209 (class 2606 OID 34749)
 -- Name: informasipubliks_sertamerta informasipubliks_sertamerta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4284,7 +4389,7 @@ ALTER TABLE ONLY public.informasipubliks_sertamerta
 
 
 --
--- TOC entry 3226 (class 2606 OID 34760)
+-- TOC entry 3211 (class 2606 OID 34760)
 -- Name: informasipubliks_setiapsaat informasipubliks_setiapsaat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4293,7 +4398,7 @@ ALTER TABLE ONLY public.informasipubliks_setiapsaat
 
 
 --
--- TOC entry 3238 (class 2606 OID 34826)
+-- TOC entry 3223 (class 2606 OID 34826)
 -- Name: informasis_image informasis_image_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4302,7 +4407,7 @@ ALTER TABLE ONLY public.informasis_image
 
 
 --
--- TOC entry 3236 (class 2606 OID 34815)
+-- TOC entry 3221 (class 2606 OID 34815)
 -- Name: informasis informasis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4311,7 +4416,7 @@ ALTER TABLE ONLY public.informasis
 
 
 --
--- TOC entry 3212 (class 2606 OID 34689)
+-- TOC entry 3197 (class 2606 OID 34689)
 -- Name: kontaks_dokumentasiruangppid kontaks_dokumentasiruangppid_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4320,7 +4425,7 @@ ALTER TABLE ONLY public.kontaks_dokumentasiruangppid
 
 
 --
--- TOC entry 3210 (class 2606 OID 34678)
+-- TOC entry 3195 (class 2606 OID 34678)
 -- Name: kontaks kontaks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4329,7 +4434,7 @@ ALTER TABLE ONLY public.kontaks
 
 
 --
--- TOC entry 3178 (class 2606 OID 34461)
+-- TOC entry 3163 (class 2606 OID 34461)
 -- Name: laporan_berkala laporan_berkala_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4338,7 +4443,7 @@ ALTER TABLE ONLY public.laporan_berkala
 
 
 --
--- TOC entry 3180 (class 2606 OID 34477)
+-- TOC entry 3165 (class 2606 OID 34477)
 -- Name: laporan_serta_merta laporan_serta_merta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4347,7 +4452,7 @@ ALTER TABLE ONLY public.laporan_serta_merta
 
 
 --
--- TOC entry 3182 (class 2606 OID 34493)
+-- TOC entry 3167 (class 2606 OID 34493)
 -- Name: laporan_setiap_saat laporan_setiap_saat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4356,7 +4461,7 @@ ALTER TABLE ONLY public.laporan_setiap_saat
 
 
 --
--- TOC entry 3250 (class 2606 OID 34894)
+-- TOC entry 3235 (class 2606 OID 34894)
 -- Name: laporans_banner laporans_banner_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4365,7 +4470,7 @@ ALTER TABLE ONLY public.laporans_banner
 
 
 --
--- TOC entry 3256 (class 2606 OID 34927)
+-- TOC entry 3241 (class 2606 OID 34927)
 -- Name: laporans_hasil_survei laporans_hasil_survei_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4374,7 +4479,7 @@ ALTER TABLE ONLY public.laporans_hasil_survei
 
 
 --
--- TOC entry 3254 (class 2606 OID 34916)
+-- TOC entry 3239 (class 2606 OID 34916)
 -- Name: laporans_tahunan laporans_tahunan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4383,7 +4488,7 @@ ALTER TABLE ONLY public.laporans_tahunan
 
 
 --
--- TOC entry 3252 (class 2606 OID 34905)
+-- TOC entry 3237 (class 2606 OID 34905)
 -- Name: laporans_triwulanan laporans_triwulanan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4392,7 +4497,7 @@ ALTER TABLE ONLY public.laporans_triwulanan
 
 
 --
--- TOC entry 3244 (class 2606 OID 34859)
+-- TOC entry 3229 (class 2606 OID 34859)
 -- Name: linkapps linkapps_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4401,7 +4506,7 @@ ALTER TABLE ONLY public.linkapps
 
 
 --
--- TOC entry 3246 (class 2606 OID 34870)
+-- TOC entry 3231 (class 2606 OID 34870)
 -- Name: mainmenus mainmenus_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4410,7 +4515,7 @@ ALTER TABLE ONLY public.mainmenus
 
 
 --
--- TOC entry 3155 (class 2606 OID 34334)
+-- TOC entry 3268 (class 2606 OID 35059)
 -- Name: menus menus_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4419,7 +4524,7 @@ ALTER TABLE ONLY public.menus
 
 
 --
--- TOC entry 3132 (class 2606 OID 34240)
+-- TOC entry 3140 (class 2606 OID 34240)
 -- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4428,7 +4533,7 @@ ALTER TABLE ONLY public.migrations
 
 
 --
--- TOC entry 3148 (class 2606 OID 34297)
+-- TOC entry 3261 (class 2606 OID 35022)
 -- Name: model_has_permissions model_has_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4437,7 +4542,7 @@ ALTER TABLE ONLY public.model_has_permissions
 
 
 --
--- TOC entry 3151 (class 2606 OID 34308)
+-- TOC entry 3264 (class 2606 OID 35033)
 -- Name: model_has_roles model_has_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4446,7 +4551,7 @@ ALTER TABLE ONLY public.model_has_roles
 
 
 --
--- TOC entry 3139 (class 2606 OID 34273)
+-- TOC entry 3252 (class 2606 OID 34998)
 -- Name: permissions permissions_name_guard_name_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4455,7 +4560,7 @@ ALTER TABLE ONLY public.permissions
 
 
 --
--- TOC entry 3141 (class 2606 OID 34271)
+-- TOC entry 3254 (class 2606 OID 34996)
 -- Name: permissions permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4464,7 +4569,7 @@ ALTER TABLE ONLY public.permissions
 
 
 --
--- TOC entry 3161 (class 2606 OID 34359)
+-- TOC entry 3146 (class 2606 OID 34359)
 -- Name: personal_access_tokens personal_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4473,7 +4578,7 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- TOC entry 3163 (class 2606 OID 34362)
+-- TOC entry 3148 (class 2606 OID 34362)
 -- Name: personal_access_tokens personal_access_tokens_token_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4482,7 +4587,7 @@ ALTER TABLE ONLY public.personal_access_tokens
 
 
 --
--- TOC entry 3192 (class 2606 OID 34570)
+-- TOC entry 3177 (class 2606 OID 34570)
 -- Name: ppid_biaya ppid_biaya_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4491,7 +4596,7 @@ ALTER TABLE ONLY public.ppid_biaya
 
 
 --
--- TOC entry 3186 (class 2606 OID 34525)
+-- TOC entry 3171 (class 2606 OID 34525)
 -- Name: ppid_faq ppid_faq_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4500,7 +4605,7 @@ ALTER TABLE ONLY public.ppid_faq
 
 
 --
--- TOC entry 3190 (class 2606 OID 34557)
+-- TOC entry 3175 (class 2606 OID 34557)
 -- Name: ppid_infografis ppid_infografis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4509,7 +4614,7 @@ ALTER TABLE ONLY public.ppid_infografis
 
 
 --
--- TOC entry 3168 (class 2606 OID 34381)
+-- TOC entry 3153 (class 2606 OID 34381)
 -- Name: ppid_jenis_profil ppid_jenis_profil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4518,7 +4623,7 @@ ALTER TABLE ONLY public.ppid_jenis_profil
 
 
 --
--- TOC entry 3172 (class 2606 OID 34413)
+-- TOC entry 3157 (class 2606 OID 34413)
 -- Name: ppid_kontak ppid_kontak_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4527,7 +4632,7 @@ ALTER TABLE ONLY public.ppid_kontak
 
 
 --
--- TOC entry 3184 (class 2606 OID 34509)
+-- TOC entry 3169 (class 2606 OID 34509)
 -- Name: ppid_lap_survey ppid_lap_survey_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4536,7 +4641,7 @@ ALTER TABLE ONLY public.ppid_lap_survey
 
 
 --
--- TOC entry 3174 (class 2606 OID 34429)
+-- TOC entry 3159 (class 2606 OID 34429)
 -- Name: ppid_lap_th ppid_lap_th_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4545,7 +4650,7 @@ ALTER TABLE ONLY public.ppid_lap_th
 
 
 --
--- TOC entry 3176 (class 2606 OID 34445)
+-- TOC entry 3161 (class 2606 OID 34445)
 -- Name: ppid_lap_tw ppid_lap_tw_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4554,7 +4659,7 @@ ALTER TABLE ONLY public.ppid_lap_tw
 
 
 --
--- TOC entry 3188 (class 2606 OID 34541)
+-- TOC entry 3173 (class 2606 OID 34541)
 -- Name: ppid_maklumat ppid_maklumat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4563,7 +4668,7 @@ ALTER TABLE ONLY public.ppid_maklumat
 
 
 --
--- TOC entry 3166 (class 2606 OID 34373)
+-- TOC entry 3151 (class 2606 OID 34373)
 -- Name: ppid_menu ppid_menu_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4572,7 +4677,7 @@ ALTER TABLE ONLY public.ppid_menu
 
 
 --
--- TOC entry 3170 (class 2606 OID 34392)
+-- TOC entry 3155 (class 2606 OID 34392)
 -- Name: ppid_profil ppid_profil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4581,7 +4686,7 @@ ALTER TABLE ONLY public.ppid_profil
 
 
 --
--- TOC entry 3196 (class 2606 OID 34594)
+-- TOC entry 3181 (class 2606 OID 34594)
 -- Name: ppid_regulasi_peraturan ppid_regulasi_peraturan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4590,7 +4695,7 @@ ALTER TABLE ONLY public.ppid_regulasi_peraturan
 
 
 --
--- TOC entry 3194 (class 2606 OID 34583)
+-- TOC entry 3179 (class 2606 OID 34583)
 -- Name: ppid_regulasi ppid_regulasi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4599,7 +4704,7 @@ ALTER TABLE ONLY public.ppid_regulasi
 
 
 --
--- TOC entry 3198 (class 2606 OID 34615)
+-- TOC entry 3183 (class 2606 OID 34615)
 -- Name: profilsingkats profilsingkats_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4608,7 +4713,7 @@ ALTER TABLE ONLY public.profilsingkats
 
 
 --
--- TOC entry 3214 (class 2606 OID 34697)
+-- TOC entry 3199 (class 2606 OID 34697)
 -- Name: regulasis_banner regulasis_banner_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4617,7 +4722,7 @@ ALTER TABLE ONLY public.regulasis_banner
 
 
 --
--- TOC entry 3216 (class 2606 OID 34708)
+-- TOC entry 3201 (class 2606 OID 34708)
 -- Name: regulasis_peraturankip regulasis_peraturankip_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4626,7 +4731,7 @@ ALTER TABLE ONLY public.regulasis_peraturankip
 
 
 --
--- TOC entry 3218 (class 2606 OID 34719)
+-- TOC entry 3203 (class 2606 OID 34719)
 -- Name: regulasis_rancanganperaturankip regulasis_rancanganperaturankip_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4635,7 +4740,7 @@ ALTER TABLE ONLY public.regulasis_rancanganperaturankip
 
 
 --
--- TOC entry 3153 (class 2606 OID 34323)
+-- TOC entry 3266 (class 2606 OID 35048)
 -- Name: role_has_permissions role_has_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4644,7 +4749,7 @@ ALTER TABLE ONLY public.role_has_permissions
 
 
 --
--- TOC entry 3143 (class 2606 OID 34286)
+-- TOC entry 3256 (class 2606 OID 35011)
 -- Name: roles roles_name_guard_name_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4653,7 +4758,7 @@ ALTER TABLE ONLY public.roles
 
 
 --
--- TOC entry 3145 (class 2606 OID 34284)
+-- TOC entry 3258 (class 2606 OID 35009)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4662,7 +4767,7 @@ ALTER TABLE ONLY public.roles
 
 
 --
--- TOC entry 3234 (class 2606 OID 34804)
+-- TOC entry 3219 (class 2606 OID 34804)
 -- Name: sliders sliders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4671,7 +4776,7 @@ ALTER TABLE ONLY public.sliders
 
 
 --
--- TOC entry 3242 (class 2606 OID 34848)
+-- TOC entry 3227 (class 2606 OID 34848)
 -- Name: sosialmedias sosialmedias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4680,7 +4785,7 @@ ALTER TABLE ONLY public.sosialmedias
 
 
 --
--- TOC entry 3232 (class 2606 OID 34793)
+-- TOC entry 3217 (class 2606 OID 34793)
 -- Name: standarlayanans_biayalayanan standarlayanans_biayalayanan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4689,7 +4794,7 @@ ALTER TABLE ONLY public.standarlayanans_biayalayanan
 
 
 --
--- TOC entry 3228 (class 2606 OID 34771)
+-- TOC entry 3213 (class 2606 OID 34771)
 -- Name: standarlayanans_maklumat standarlayanans_maklumat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4698,7 +4803,7 @@ ALTER TABLE ONLY public.standarlayanans_maklumat
 
 
 --
--- TOC entry 3230 (class 2606 OID 34782)
+-- TOC entry 3215 (class 2606 OID 34782)
 -- Name: standarlayanans_prosedurlayanan standarlayanans_prosedurlayanan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4707,7 +4812,7 @@ ALTER TABLE ONLY public.standarlayanans_prosedurlayanan
 
 
 --
--- TOC entry 3206 (class 2606 OID 34656)
+-- TOC entry 3191 (class 2606 OID 34656)
 -- Name: strukturorganisasis_bagankanan strukturorganisasis_bagankanan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4716,7 +4821,7 @@ ALTER TABLE ONLY public.strukturorganisasis_bagankanan
 
 
 --
--- TOC entry 3204 (class 2606 OID 34645)
+-- TOC entry 3189 (class 2606 OID 34645)
 -- Name: strukturorganisasis_bagankiri strukturorganisasis_bagankiri_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4725,7 +4830,7 @@ ALTER TABLE ONLY public.strukturorganisasis_bagankiri
 
 
 --
--- TOC entry 3202 (class 2606 OID 34637)
+-- TOC entry 3187 (class 2606 OID 34637)
 -- Name: strukturorganisasis strukturorganisasis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4734,7 +4839,7 @@ ALTER TABLE ONLY public.strukturorganisasis
 
 
 --
--- TOC entry 3248 (class 2606 OID 34881)
+-- TOC entry 3233 (class 2606 OID 34881)
 -- Name: submenus submenus_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4743,7 +4848,7 @@ ALTER TABLE ONLY public.submenus
 
 
 --
--- TOC entry 3200 (class 2606 OID 34626)
+-- TOC entry 3185 (class 2606 OID 34626)
 -- Name: tugasdanfungsis tugasdanfungsis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4752,7 +4857,7 @@ ALTER TABLE ONLY public.tugasdanfungsis
 
 
 --
--- TOC entry 3134 (class 2606 OID 34253)
+-- TOC entry 3247 (class 2606 OID 34978)
 -- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4761,7 +4866,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3136 (class 2606 OID 34251)
+-- TOC entry 3249 (class 2606 OID 34976)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4770,7 +4875,25 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3240 (class 2606 OID 34837)
+-- TOC entry 3270 (class 2606 OID 35072)
+-- Name: usersppid usersppid_email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usersppid
+    ADD CONSTRAINT usersppid_email_unique UNIQUE (email);
+
+
+--
+-- TOC entry 3272 (class 2606 OID 35070)
+-- Name: usersppid usersppid_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usersppid
+    ADD CONSTRAINT usersppid_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3225 (class 2606 OID 34837)
 -- Name: videos videos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4779,7 +4902,7 @@ ALTER TABLE ONLY public.videos
 
 
 --
--- TOC entry 3208 (class 2606 OID 34667)
+-- TOC entry 3193 (class 2606 OID 34667)
 -- Name: visimisis visimisis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4788,7 +4911,7 @@ ALTER TABLE ONLY public.visimisis
 
 
 --
--- TOC entry 3146 (class 1259 OID 34290)
+-- TOC entry 3259 (class 1259 OID 35015)
 -- Name: model_has_permissions_model_id_model_type_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -4796,7 +4919,7 @@ CREATE INDEX model_has_permissions_model_id_model_type_index ON public.model_has
 
 
 --
--- TOC entry 3149 (class 1259 OID 34301)
+-- TOC entry 3262 (class 1259 OID 35026)
 -- Name: model_has_roles_model_id_model_type_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -4804,7 +4927,7 @@ CREATE INDEX model_has_roles_model_id_model_type_index ON public.model_has_roles
 
 
 --
--- TOC entry 3137 (class 1259 OID 34260)
+-- TOC entry 3250 (class 1259 OID 34985)
 -- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -4812,7 +4935,7 @@ CREATE INDEX password_resets_email_index ON public.password_resets USING btree (
 
 
 --
--- TOC entry 3164 (class 1259 OID 34360)
+-- TOC entry 3149 (class 1259 OID 34360)
 -- Name: personal_access_tokens_tokenable_type_tokenable_id_index; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -4820,7 +4943,7 @@ CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON public.
 
 
 --
--- TOC entry 3270 (class 2606 OID 34462)
+-- TOC entry 3278 (class 2606 OID 34462)
 -- Name: laporan_berkala laporan_berkala_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4829,7 +4952,7 @@ ALTER TABLE ONLY public.laporan_berkala
 
 
 --
--- TOC entry 3271 (class 2606 OID 34478)
+-- TOC entry 3279 (class 2606 OID 34478)
 -- Name: laporan_serta_merta laporan_serta_merta_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4838,7 +4961,7 @@ ALTER TABLE ONLY public.laporan_serta_merta
 
 
 --
--- TOC entry 3272 (class 2606 OID 34494)
+-- TOC entry 3280 (class 2606 OID 34494)
 -- Name: laporan_setiap_saat laporan_setiap_saat_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4847,7 +4970,7 @@ ALTER TABLE ONLY public.laporan_setiap_saat
 
 
 --
--- TOC entry 3261 (class 2606 OID 34291)
+-- TOC entry 3289 (class 2606 OID 35016)
 -- Name: model_has_permissions model_has_permissions_permission_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4856,7 +4979,7 @@ ALTER TABLE ONLY public.model_has_permissions
 
 
 --
--- TOC entry 3262 (class 2606 OID 34302)
+-- TOC entry 3290 (class 2606 OID 35027)
 -- Name: model_has_roles model_has_roles_role_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4865,7 +4988,7 @@ ALTER TABLE ONLY public.model_has_roles
 
 
 --
--- TOC entry 3277 (class 2606 OID 34571)
+-- TOC entry 3285 (class 2606 OID 34571)
 -- Name: ppid_biaya ppid_biaya_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4874,7 +4997,7 @@ ALTER TABLE ONLY public.ppid_biaya
 
 
 --
--- TOC entry 3274 (class 2606 OID 34526)
+-- TOC entry 3282 (class 2606 OID 34526)
 -- Name: ppid_faq ppid_faq_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4883,7 +5006,7 @@ ALTER TABLE ONLY public.ppid_faq
 
 
 --
--- TOC entry 3276 (class 2606 OID 34558)
+-- TOC entry 3284 (class 2606 OID 34558)
 -- Name: ppid_infografis ppid_infografis_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4892,7 +5015,7 @@ ALTER TABLE ONLY public.ppid_infografis
 
 
 --
--- TOC entry 3267 (class 2606 OID 34414)
+-- TOC entry 3275 (class 2606 OID 34414)
 -- Name: ppid_kontak ppid_kontak_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4901,7 +5024,7 @@ ALTER TABLE ONLY public.ppid_kontak
 
 
 --
--- TOC entry 3273 (class 2606 OID 34510)
+-- TOC entry 3281 (class 2606 OID 34510)
 -- Name: ppid_lap_survey ppid_lap_survey_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4910,7 +5033,7 @@ ALTER TABLE ONLY public.ppid_lap_survey
 
 
 --
--- TOC entry 3268 (class 2606 OID 34430)
+-- TOC entry 3276 (class 2606 OID 34430)
 -- Name: ppid_lap_th ppid_lap_th_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4919,7 +5042,7 @@ ALTER TABLE ONLY public.ppid_lap_th
 
 
 --
--- TOC entry 3269 (class 2606 OID 34446)
+-- TOC entry 3277 (class 2606 OID 34446)
 -- Name: ppid_lap_tw ppid_lap_tw_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4928,7 +5051,7 @@ ALTER TABLE ONLY public.ppid_lap_tw
 
 
 --
--- TOC entry 3275 (class 2606 OID 34542)
+-- TOC entry 3283 (class 2606 OID 34542)
 -- Name: ppid_maklumat ppid_maklumat_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4937,7 +5060,7 @@ ALTER TABLE ONLY public.ppid_maklumat
 
 
 --
--- TOC entry 3266 (class 2606 OID 34398)
+-- TOC entry 3274 (class 2606 OID 34398)
 -- Name: ppid_profil ppid_profil_id_ppid_jenis_profil_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4946,7 +5069,7 @@ ALTER TABLE ONLY public.ppid_profil
 
 
 --
--- TOC entry 3265 (class 2606 OID 34393)
+-- TOC entry 3273 (class 2606 OID 34393)
 -- Name: ppid_profil ppid_profil_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4955,7 +5078,7 @@ ALTER TABLE ONLY public.ppid_profil
 
 
 --
--- TOC entry 3279 (class 2606 OID 34600)
+-- TOC entry 3287 (class 2606 OID 34600)
 -- Name: ppid_regulasi_peraturan ppid_regulasi_peraturan_id_jenis_regulasi_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4964,7 +5087,7 @@ ALTER TABLE ONLY public.ppid_regulasi_peraturan
 
 
 --
--- TOC entry 3278 (class 2606 OID 34595)
+-- TOC entry 3286 (class 2606 OID 34595)
 -- Name: ppid_regulasi_peraturan ppid_regulasi_peraturan_parent_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4973,7 +5096,7 @@ ALTER TABLE ONLY public.ppid_regulasi_peraturan
 
 
 --
--- TOC entry 3263 (class 2606 OID 34312)
+-- TOC entry 3291 (class 2606 OID 35037)
 -- Name: role_has_permissions role_has_permissions_permission_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4982,7 +5105,7 @@ ALTER TABLE ONLY public.role_has_permissions
 
 
 --
--- TOC entry 3264 (class 2606 OID 34317)
+-- TOC entry 3292 (class 2606 OID 35042)
 -- Name: role_has_permissions role_has_permissions_role_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4991,7 +5114,7 @@ ALTER TABLE ONLY public.role_has_permissions
 
 
 --
--- TOC entry 3280 (class 2606 OID 34882)
+-- TOC entry 3288 (class 2606 OID 34882)
 -- Name: submenus submenus_main_menu_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4999,7 +5122,7 @@ ALTER TABLE ONLY public.submenus
     ADD CONSTRAINT submenus_main_menu_id_foreign FOREIGN KEY (main_menu_id) REFERENCES public.mainmenus(id);
 
 
--- Completed on 2022-12-01 14:22:32
+-- Completed on 2022-12-02 09:15:01
 
 --
 -- PostgreSQL database dump complete
