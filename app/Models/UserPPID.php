@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class UserPPID extends Authenticatable
 {
     use HasFactory;
-    protected $table = 'usersppid';
+    protected $table = 'ppid_pendaftar';
     use Notifiable;
     protected $fillable = [
         'name',
