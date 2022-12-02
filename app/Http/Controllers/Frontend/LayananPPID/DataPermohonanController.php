@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\LayananPPID;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataPermohonanController extends Controller
 {
@@ -81,5 +82,15 @@ class DataPermohonanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ppidCaraMendapatkan() {
+        $result = DB::table('ppid_mendapatkan')->get();
+        echo json_encode(array('result' => $result));
+    }
+
+    public function ppidCaraMemberikan() {
+        $result = DB::table('ppid_memberikan')->get();
+        echo json_encode(array('result' => $result));
     }
 }

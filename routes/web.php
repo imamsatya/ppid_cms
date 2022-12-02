@@ -113,6 +113,7 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 
 
 //User PPID
+
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
 //     ->name('admin.home');
 Route::get('login', [UserPPIDLoginController::class, 'login'])->name('userppid.login');
@@ -188,6 +189,10 @@ Route::resource('laporan', LaporanControllerUser::class);
 Route::resource('faq', FaqControllerUser::class);
 
 
+
+// yovi
+Route::get('ppid-cara-mendapatkan', [DataPermohonanControllerUser::class, 'ppidCaraMendapatkan']);
+Route::get('ppid-cara-memberikan', [DataPermohonanControllerUser::class, 'ppidCaraMemberikan']);
 
 //Admin
 Route::get('/admin/login', function () {
