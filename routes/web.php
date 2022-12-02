@@ -52,7 +52,7 @@ use App\Http\Controllers\Admin\ManajemenHome\FooterController;
 
 //Manajemen Menu
 use App\Http\Controllers\Admin\ManajemenMenu\MenuController;
-
+use App\Http\Controllers\Admin\Referensi\SettingKalenderController;
 // User
 use App\Http\Controllers\Frontend\Home\HomeController;
 use App\Http\Controllers\Frontend\Home\SiaranPersController;
@@ -267,6 +267,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::delete('/footer/linkapp/delete/{id}', [FooterController::class, 'linkAppDestroy'])->name('footer.linkapp.delete');
     //Manajemen Menu
     Route::resource('manajemen_menu', MenuController::class);
+
+    //Referensi
+    Route::resource('setting_kalender', SettingKalenderController::class);
 });
 
 
