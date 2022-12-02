@@ -91,8 +91,9 @@ use App\Http\Controllers\Frontend\Laporan\LaporanController as LaporanController
 //Faq
 use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 
-
-
+//Users PPID Auth
+use App\Http\Controllers\Auth\UserPPIDLoginController;
+use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 
 
 
@@ -112,14 +113,27 @@ use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 
 
 //User PPID
-Route::get('/login', 'Auth\UserPPIDLoginController@showLoginForm')->name('admin.login');
-Route::post('/userppid/login', 'Auth\UserPPIDLoginController@login')->name('admin.login.post');
-Route::post('/userppid/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');//Admin Home page after login
-Route::group(['middleware'=>'admin'], function() {
-    Route::get('/admin/home', 'Admin\HomeController@index');
-})
+// Route::get('admin/', [UserPPIDLoginController::class, 'index'])
+//     ->name('admin.home');
+Route::get('login', [UserPPIDLoginController::class, 'login'])->name('userppid.login');
+Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->name('userppid.handleLogin');
+Route::get('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
+Route::get('signup',  [UserPPIDLoginController::class, 'register'])->name('signup');
+Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
 
+
+//User Admin
+// Route::get('/', [UserSAminController::class, 'index'])
+//     ->name('user.home');
+Route::get('/admin/login', [UserAdminAuthController::class, 'login'])
+    ->name('admin.login');
+Route::post('/login', [UserAdminAuthController::class, 'handleLogin'])
+    ->name('admin.handleLogin');
+Route::get('/logout', [UserAdminAuthController::class, 'index'])
+    ->name('admin.logout');
 // User
+
+Route::resource('dashboard', DashboardControllerUser::class)->middleware('auth:usersppid');;
 //Home
 Route::resource('/', HomeController::class);
 Route::get('siaranpers/{id}', [SiaranPersController::class, 'show'])->name('siaranpers.show');
@@ -173,10 +187,7 @@ Route::resource('laporan', LaporanControllerUser::class);
 // })->name('faq.index');
 Route::resource('faq', FaqControllerUser::class);
 
-// Route::get('/dashboard', function () {
-//     return view('frontend.dashboard.dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard.index');
-Route::resource('dashboard', DashboardControllerUser::class)->middleware(['auth', 'verified']);
+
 
 //Admin
 Route::get('/admin/login', function () {

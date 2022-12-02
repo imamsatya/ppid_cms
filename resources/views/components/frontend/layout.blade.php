@@ -146,7 +146,7 @@
                         <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
                     </li>
 
-                    @if (Auth::check())
+                    @if (Auth::guard('usersppid')->check())
                         <li>
                             <form action="{{ route('logout') }}" method="post" id="logout-form">
                                 @csrf
@@ -159,7 +159,7 @@
                         </li>
                     @else
                         <li>
-                            <a href="{{ route('login') }}" class="btn btn-sm btn_login"> Login
+                            <a href="{{ route('userppid.login') }}" class="btn btn-sm btn_login"> Login
                             </a>
                         </li>
                     @endif
@@ -188,7 +188,8 @@
     @if (substr(URL::current(), -5) != 'login' &&
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
-        Route::current()->getName() != 'register')
+        Route::current()->getName() != 'register' &&
+        Route::current()->getName() != 'signup')
         <!-- Banner -->
         <section class="banner blackw magnif">
             <div class="container">
@@ -241,7 +242,8 @@
     @if (substr(URL::current(), -5) != 'login' &&
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
-        Route::current()->getName() != 'register')
+        Route::current()->getName() != 'register' &&
+        Route::current()->getName() != 'signup')
         <!-- Button Back -->
         <div class="container mt-4 mb-4">
             <div class="row">

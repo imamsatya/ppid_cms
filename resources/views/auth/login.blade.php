@@ -55,7 +55,7 @@
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.svg') }}" alt="" />
                             <span class="ml-2">Login</span>
                         </div>
-                        <form action="{{ route('login') }}" method="POST">
+                        <form action="{{ route('userppid.handleLogin') }}" method="POST">
                             @csrf
                             <div class="form-data">
                                 <div class="form-group">
@@ -90,7 +90,7 @@
                             </div>
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
                             <div class="not-register text-center mt-3">
-                                <span>Belum terdaftar?</span><a href="{{ route('register') }}"
+                                <span>Belum terdaftar?</span><a href="{{ route('signup') }}"
                                     class="font-weight-bold">Daftar</a>
                             </div>
                         </form>

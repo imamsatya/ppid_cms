@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('signup.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-login">
                             <div class="label-login d-flex align-items-center">
