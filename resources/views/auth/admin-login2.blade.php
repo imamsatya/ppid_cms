@@ -15,8 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="../../../">
-    <title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel
-        by Keenthemes</title>
+    <title>PPID - Admin Login</title>
     <meta charset="utf-8" />
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -171,7 +170,7 @@ License: For each use you must have a valid license purchased only from above li
 
                         @endif
                         <!--begin::Form-->
-                        <form class="form w-100" action="{{ route('login') }}" method="POST">
+                        <form class="form w-100" action="{{ route('admin.handleLogin') }}" method="POST">
                             @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-11">

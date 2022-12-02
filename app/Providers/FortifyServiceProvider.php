@@ -49,12 +49,11 @@ class FortifyServiceProvider extends ServiceProvider
                 // if ($user->hasRole('user')) {
                 //     return redirect('dashboard.index');
                 // }
-                if ($user->hasRole('user')) {
-                    return redirect()->route('dashboard.index');
-                } else {
+
+                if ($user) {
                     return redirect()->route('admin.dashboard.index');
                 }
-                // return redirect('/');
+                return redirect('/');
             }
         });
     }
