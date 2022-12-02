@@ -113,6 +113,7 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 
 
 //User PPID
+<<<<<<< HEAD
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
 //     ->name('admin.home');
 Route::get('login', [UserPPIDLoginController::class, 'login'])->name('userppid.login');
@@ -120,6 +121,14 @@ Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->nam
 Route::get('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
 Route::get('signup',  [UserPPIDLoginController::class, 'register'])->name('signup');
 Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
+=======
+// Route::get('/login', 'Auth\UserPPIDLoginController@showLoginForm')->name('admin.login');
+// Route::post('/userppid/login', 'Auth\UserPPIDLoginController@login')->name('admin.login.post');
+// Route::post('/userppid/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');//Admin Home page after login
+// Route::group(['middleware'=>'admin'], function() {
+//     Route::get('/admin/home', 'Admin\HomeController@index');
+// });
+>>>>>>> 069b2a0 (fitur yovi 1)
 
 
 //User Admin
@@ -188,6 +197,10 @@ Route::resource('laporan', LaporanControllerUser::class);
 Route::resource('faq', FaqControllerUser::class);
 
 
+
+// yovi
+Route::get('ppid-cara-mendapatkan', [DataPermohonanControllerUser::class, 'ppidCaraMendapatkan']);
+Route::get('ppid-cara-memberikan', [DataPermohonanControllerUser::class, 'ppidCaraMemberikan']);
 
 //Admin
 Route::get('/admin/login', function () {
