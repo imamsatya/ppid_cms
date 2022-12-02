@@ -118,7 +118,7 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 //     ->name('admin.home');
 Route::get('login', [UserPPIDLoginController::class, 'login'])->name('userppid.login');
 Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->name('userppid.handleLogin');
-Route::get('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
+Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
 Route::get('signup',  [UserPPIDLoginController::class, 'register'])->name('signup');
 Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
 
@@ -130,7 +130,7 @@ Route::get('/admin/login', [UserAdminAuthController::class, 'login'])
     ->name('admin.login');
 Route::post('/login', [UserAdminAuthController::class, 'handleLogin'])
     ->name('admin.handleLogin');
-Route::get('/logout', [UserAdminAuthController::class, 'index'])
+Route::post('/logout', [UserAdminAuthController::class, 'logout'])
     ->name('admin.logout');
 // User
 

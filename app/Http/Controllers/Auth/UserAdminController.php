@@ -37,6 +37,6 @@ class UserAdminController extends Controller
         Auth::logout();
 
         return redirect()
-            ->route('user.login');
+            ->route('index');
     }
 }
