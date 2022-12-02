@@ -21,10 +21,12 @@ class SettingKalenderController extends Controller
         $kalender = $response->json();
 
         $kalenderLibur = Arr::where($kalender['data'], function ($value, $key) {
-            return $value['jenis'] == 1;
+            return $value['keterangan'] !== null && $value['jenis'] == 1;
         });
+        // dd($kalenderLibur);
 
-        return view('admin.referensi.setting_kalender');
+
+        return view('admin.referensi.setting_kalender', compact('kalenderLibur'));
     }
 
     /**

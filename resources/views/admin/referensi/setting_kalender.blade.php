@@ -135,6 +135,43 @@
                 </div>
                 <!--end::Card body-->
             </div>
+            <br>
+            <div class="card card-flush shadow-sm">
+                <div class="card-header">
+                    <h3 class="card-title">Kalendar Hari Libur</h3>
+
+                </div>
+                <div class="card-body py-5">
+
+
+                    <table id="kt_datatable_dom_positioning_kalender"
+                        class="table table-striped table-row-bordered gy-5 gs-7">
+                        <thead>
+                            <tr class="fw-semibold fs-6 text-gray-800">
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Hari</th>
+                                <th>Keterangan</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ($kalenderLibur)
+                                @foreach ($kalenderLibur as $kalenderLibur_row)
+                                    <tr>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>{{ $kalenderLibur_row['tanggal'] }}</td>
+                                        <td>{{ $kalenderLibur_row['hari'] }}</td>
+                                        <td>{{ $kalenderLibur_row['keterangan'] }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
             <!--end::Card-->
             @push('child-scripts')
                 <!--begin::Vendors Javascript(used by this page)-->
@@ -150,6 +187,18 @@
                             initialView: 'dayGridMonth'
                         });
                         calendar.render();
+                    });
+
+                    $("#kt_datatable_dom_positioning_kalender").DataTable({
+                        "language": {
+                            "lengthMenu": "Show _MENU_",
+                        },
+                        "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                            "<'row'" +
+                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                            ">"
                     });
                 </script>
             @endpush
