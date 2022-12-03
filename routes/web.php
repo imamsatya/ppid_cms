@@ -193,6 +193,13 @@ Route::resource('faq', FaqControllerUser::class);
 // yovi
 Route::get('ppid-cara-mendapatkan', [DataPermohonanControllerUser::class, 'ppidCaraMendapatkan']);
 Route::get('ppid-cara-memberikan', [DataPermohonanControllerUser::class, 'ppidCaraMemberikan']);
+Route::post('submit-data-permohonan', [DataPermohonanControllerUser::class, 'submitPermintaanUser']);
+Route::get('ppid-data-permohonan', [DataPermohonanControllerUser::class, 'ppidDataPermohonan']);
+Route::get('ppid-data-permohonan-spec/{id}', [DataPermohonanControllerUser::class, 'ppidDataPermohonanSpec']);
+Route::get('ppid-jenis-pemohon', [DataPermohonanControllerUser::class, 'ppidJenisPemohon']);
+Route::delete('ppid-data-permohonan/{id}', [DataPermohonanControllerUser::class, 'ppidHapusDataPermohonan']);
+Route::get('ppid-status-permohonan', [DataPermohonanControllerUser::class, 'ppidStatusPermohonan']);
+
 
 //Admin
 Route::get('/admin/login', function () {
@@ -266,7 +273,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::patch('/footer/linkapp/{id}', [FooterController::class, 'linkAppUpdate'])->name('footer.linkapp.update');
     Route::delete('/footer/linkapp/delete/{id}', [FooterController::class, 'linkAppDestroy'])->name('footer.linkapp.delete');
     //Manajemen Menu
-    Route::resource('manajemen_menu', MenuController::class);
+    Route::resource('manajemen_menu', MenuController::class);    
+    
+    //Layanan PPID
+    Route::get('/ppid-data-permohonan', [DataPermohonanController::class, 'ppidDataPermohonan']);
 });
 
 
