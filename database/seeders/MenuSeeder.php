@@ -17,58 +17,100 @@ class MenuSeeder extends Seeder
     {
         //id 1
         DB::table('mainmenus')->insert([
-            'nama_menu' => 'Dashboard',
-            'routing' => null,
-            'nama_permission' => 'dashboard.view',
-            'urutan' => 1,
-        ]);
-
-        //id 2
-        DB::table('mainmenus')->insert([
             'nama_menu' => 'Profil',
             'routing' => null,
-            'nama_permission' => null,
-            'urutan' => 2,
+            'urutan' => 1,
         ]);
 
         DB::table('submenus')->insert([
-            'nama_menu' => 'Profil Singkat PPID',
-            'routing' => 'admin.profilsingkat.index',
-            'nama_permission' => 'profil singkat ppid.view',
+            'nama_menu' => 'Tentang PPID',
+            'routing' => 'tentangppid.index',
             'urutan' => 1,
-            'main_menu_id' => 2,
+            'main_menu_id' => 1,
         ]);
 
         DB::table('submenus')->insert([
             'nama_menu' => 'Tugas dan Fungsi',
-            'routing' => 'admin.tugasdanfungsi.index',
-            'nama_permission' => 'tugas dan fungsi ppid.view',
+            'routing' => 'tugasdanfungsi.index',
             'urutan' => 2,
-            'main_menu_id' => 2,
+            'main_menu_id' => 1,
+        ]);
+
+        DB::table('submenus')->insert([
+            'nama_menu' => 'Struktur PPID',
+            'routing' => 'strukturppid.index',
+            'urutan' => 3,
+            'main_menu_id' => 1,
+        ]);
+
+        DB::table('submenus')->insert([
+            'nama_menu' => 'Visi dan Misi',
+            'routing' => 'visimisi.index',
+            'urutan' => 4,
+            'main_menu_id' => 1,
+        ]);
+
+        DB::table('submenus')->insert([
+            'nama_menu' => 'Kontak',
+            'routing' => 'kontak.index',
+            'urutan' => 5,
+            'main_menu_id' => 1,
+        ]);
+
+        //id 2
+        DB::table('mainmenus')->insert([
+            'nama_menu' => 'Regulasi',
+            'routing' => 'regulasi.index',
+            'urutan' => 2,
         ]);
 
         //id 3
         DB::table('mainmenus')->insert([
-            'nama_menu' => 'Regulasi',
-            'routing' => null,
-            'nama_permission' => null,
+            'nama_menu' => 'Informasi Publik',
+            'routing' => 'informasipublik.index',
             'urutan' => 3,
         ]);
 
-        DB::table('submenus')->insert([
-            'nama_menu' => 'Peraturan KIP',
-            'routing' => 'admin.peraturan_kip.index',
-            'nama_permission' => 'peraturan kip.view',
-            'urutan' => 1,
-            'main_menu_id' => 3,
+        //id 4
+        DB::table('mainmenus')->insert([
+            'nama_menu' => 'Standar Layanan',
+            'routing' => null,
+            'urutan' => 4,
         ]);
 
         DB::table('submenus')->insert([
-            'nama_menu' => 'Rancangan Peraturan KIP',
-            'routing' => 'admin.rancangan_peraturan_kip.index',
-            'nama_permission' => 'rancangan peraturan kip.view',
+            'nama_menu' => 'Maklumat',
+            'routing' => 'maklumat.index',
+            'urutan' => 1,
+            'main_menu_id' => 4,
+        ]);
+
+        DB::table('submenus')->insert([
+            'nama_menu' => 'Prosedur Layanan',
+            'routing' => 'prosedurlayanan.index',
             'urutan' => 2,
-            'main_menu_id' => 3,
+            'main_menu_id' => 4,
+        ]);
+
+        DB::table('submenus')->insert([
+            'nama_menu' => 'Biaya Layanan',
+            'routing' => 'standarlayananbiaya.index',
+            'urutan' => 3,
+            'main_menu_id' => 4,
+        ]);
+
+        //id 5
+        DB::table('mainmenus')->insert([
+            'nama_menu' => 'Laporan',
+            'routing' => 'laporan.index',
+            'urutan' => 5,
+        ]);
+
+        //id 6
+        DB::table('mainmenus')->insert([
+            'nama_menu' => 'FAQ',
+            'routing' => 'faq.index',
+            'urutan' => 6,
         ]);
     }
 }

@@ -43,6 +43,7 @@ use App\Http\Controllers\Admin\FAQ\FaqBannerController;
 //Manajemen User
 use App\Http\Controllers\Admin\ManajemenUser\RolePermissionController;
 use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
+use App\Http\Controllers\Admin\ManajemenUser\UserPemohonController;
 
 //Manajemen Home
 use App\Http\Controllers\Admin\ManajemenHome\SliderController;
@@ -251,6 +252,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Manajemen User
     Route::resource('role_permission', RolePermissionController::class);
     Route::resource('user_admin', UserAdminController::class);
+    Route::resource('user_pemohon', UserPemohonController::class);
 
     //Manajemen Home
     Route::resource('slider', SliderController::class);

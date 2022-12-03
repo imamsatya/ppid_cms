@@ -83,12 +83,12 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
+        // Fortify::loginView(function () {
+        //     return view('auth.login');
+        // });
 
-        Fortify::registerView(function () {
-            return view('auth.register3');
-        });
+        // Fortify::registerView(function () {
+        //     return view('auth.register3');
+        // });
     }
 }

@@ -2,9 +2,10 @@
 
 namespace App\View\Components\Frontend;
 
-use App\Models\ManajemenHome\LinkApp;
-use App\Models\ManajemenHome\SosialMedia;
 use Illuminate\View\Component;
+use App\Models\ManajemenHome\LinkApp;
+use App\Models\ManajemenMenu\MainMenu;
+use App\Models\ManajemenHome\SosialMedia;
 
 class Layout extends Component
 {
@@ -30,6 +31,9 @@ class Layout extends Component
 
         $linkApp = new LinkApp();
         $linkApp = $linkApp::all();
-        return view('components.frontend.layout', compact('sosialMedia', 'linkApp'));
+
+        $menus = new MainMenu();
+        $menus = $menus::with('submenus')->orderBy('urutan', 'asc')->get();
+        return view('components.frontend.layout', compact('sosialMedia', 'linkApp', 'menus'));
     }
 }
