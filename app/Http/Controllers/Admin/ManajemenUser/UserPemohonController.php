@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ManajemenMenu;
+namespace App\Http\Controllers\Admin\ManajemenUser;
 
-use App\Http\Controllers\Controller;
-use App\Models\ManajemenMenu\MainMenu;
-use App\Models\ManajemenMenu\SubMenu;
+use App\Models\UserPPID;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class MenuController extends Controller
+class UserPemohonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,10 @@ class MenuController extends Controller
     public function index()
     {
         //
-        $menus = new MainMenu();
-        $menus = $menus::with('submenus')->get();
-
-        return view('admin.manajemen_menu.manajemen_menu', compact('menus'));
+        $usersPPID = UserPPID::all();
+        return view('admin.manajemen_user.user_pemohon', compact('usersPPID'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -42,31 +40,6 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         //
-
-        $menus = ($request->data['newMainMenu']);
-        $subMenus = ($request->data['newSubMenu']);
-        // dd($subMenus);
-
-        foreach ($menus as $key => $menu) {
-            // dd($menu['id_menu']);
-            $mainMenu = new MainMenu();
-            $mainMenu = $mainMenu->where('id', $menu['id_menu'])->first();
-            $mainMenu->urutan = $menu['urutan'];
-            $mainMenu->save();
-        }
-
-        foreach ($subMenus as $key => $submenu) {
-            // dd($menu['id_menu']);
-            // dd((int)$submenu['idsubmenu']);
-            $submenu_row = new SubMenu();
-            $submenu_row = $submenu_row->where('id', (int)$submenu['idsubmenu'])->first();
-
-            $submenu_row->main_menu_id = (int)$submenu['idmainmenu'];
-            $submenu_row->urutan = (int)$submenu['urutan'];
-            $submenu_row->save();
-        }
-
-        return redirect()->back()->with('success', 'Berhasil menyimpan Pengelolaan Menu');
     }
 
     /**

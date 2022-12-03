@@ -16,9 +16,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp;
-        Laravel
-        by Keenthemes</title>
+    <title>PPID - Admin</title>
     <meta charset="utf-8" />
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Blazor, Django, Flask &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -38,7 +36,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used by this page)-->
     {{-- <link href="{{ asset('template/dist/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" --}}
-    rel="stylesheet" type="text/css" />
+
     <link href="{{ asset('template/dist/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <!--end::Vendor Stylesheets-->
@@ -910,8 +908,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon--
-                                                                            </span>
-                                                                            <!--end::Svg Icon-->
+                                                                                                                </span>
+                                                                                                                <!--end::Svg Icon-->
                                             </span>
                                             <span class="menu-title">Standar Layanan</span>
                                             <span class="menu-arrow"></span>
@@ -1034,8 +1032,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link "
-                                                        href="../../demo1/dist/pages/user-profile/overview.html">
+                                                    <a class="menu-link " href="{{ route('admin.user_pemohon.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1177,9 +1174,10 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin:Manajemen Menu-->
 
                                 @can('faq.view')
-                                    <div class="menu-item">
+                                    <div class="menu-item ">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link " href="{{ route('admin.manajemen_menu.index') }}">
+                                        <a class="menu-link  {{ $isActiveLink_manajemenMenu ?? '' }}"
+                                            href="{{ route('admin.manajemen_menu.index') }}">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                                 <span class="svg-icon svg-icon-2">
