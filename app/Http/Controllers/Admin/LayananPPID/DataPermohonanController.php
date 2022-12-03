@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\LayananPPID;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataPermohonanController extends Controller
 {
@@ -82,5 +83,18 @@ class DataPermohonanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ppidDataPermohonan(Request $request)
+    {
+        $result = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap')
+            ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+            ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+            ->join('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_permohonan.id_ppid_pendaftar')
+            ->where('status_permohonan.aktif', 1)
+            ->whereNotIn('status_permohonan.id_status', [6])
+            ->get();
+       echo json_encode(array('result' => $result));
     }
 }
