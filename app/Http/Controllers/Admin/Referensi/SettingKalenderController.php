@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ManajemenMenu;
+namespace App\Http\Controllers\Admin\Referensi;
 
 use App\Http\Controllers\Controller;
-use App\Models\ManajemenMenu\MainMenu;
-use App\Models\ManajemenMenu\SubMenu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Arr;
 
-class MenuController extends Controller
+class SettingKalenderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,16 @@ class MenuController extends Controller
     public function index()
     {
         //
-        $menus = new MainMenu();
-        $menus = $menus::with('submenus')->orderBy('urutan')->get();
+        $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
+        $kalender = $response->json();
 
-        return view('admin.manajemen_menu.manajemen_menu', compact('menus'));
+        $kalenderLibur = Arr::where($kalender['data'], function ($value, $key) {
+            return $value['keterangan'] !== null && $value['jenis'] == 1;
+        });
+        // dd($kalenderLibur);
+
+
+        return view('admin.referensi.setting_kalender', compact('kalenderLibur'));
     }
 
     /**
@@ -42,31 +48,6 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         //
-
-        $menus = ($request->data['newMainMenu']);
-        $subMenus = ($request->data['newSubMenu']);
-
-
-        foreach ($menus as $key => $menu) {
-            // dd($menu['id_menu']);
-            $mainMenu = new MainMenu();
-            $mainMenu = $mainMenu->where('id', $menu['id_menu'])->first();
-            $mainMenu->urutan = $menu['urutan'];
-            $mainMenu->save();
-        }
-
-        foreach ($subMenus as $key => $submenu) {
-            // dd($menu['id_menu']);
-            // dd((int)$submenu['idsubmenu']);
-            $submenuDb = new SubMenu();
-            $submenuDb = $submenuDb->where('id', (int)$submenu['idsubmenu'])->first();
-
-            $submenuDb->main_menu_id = (int)$submenu['idmainmenu'];
-            $submenuDb->urutan = (int)$submenu['urutan'];
-            $submenuDb->save();
-        }
-
-        return redirect()->back()->with('success', 'Berhasil menyimpan Pengelolaan Menu');
     }
 
     /**

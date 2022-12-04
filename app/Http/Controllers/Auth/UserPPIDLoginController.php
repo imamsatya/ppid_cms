@@ -83,7 +83,7 @@ class UserPPIDLoginController extends Controller
                 'no_hp' => $request['nohp'],
                 'npwp' => $request['npwp'],
                 'pekerjaan' => $request['pekerjaan'],
-                'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . $file->getClientOriginalExtension(),
+                'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . '.' . $file->getClientOriginalExtension(),
             ]);
             $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
 

@@ -90,7 +90,42 @@
             <label for="menu-bar">Menu</label>
             <nav class="navbar_custom">
                 <ul>
-                    <li>
+                    @if ($menus)
+                        @foreach ($menus as $menu)
+                            <li>
+                                <?php
+                                $isActive = null;
+                                $currentRoute = Route::currentRouteName();
+                                if ($currentRoute == $menu->routing) {
+                                    $isActive = 'active';
+                                }
+                                foreach ($menu['submenus'] as $key => $submenu) {
+                                    if ($submenu['routing'] == Route::currentRouteName()) {
+                                        $isActive = 'active';
+                                    }
+                                }
+                                ?>
+                                @if ($menu->routing)
+                                    <a href="{{ route($menu->routing) }}" id="titleNavProfile"
+                                        class="{{ $isActive ?? '' }}">{{ $menu->nama_menu }}
+                                    </a>
+                                @else
+                                    <a href="" id="titleNavProfile"
+                                        class="{{ $isActive ?? '' }}">{{ $menu->nama_menu }}
+                                    </a>
+                                @endif
+                                <ul>
+                                    @foreach ($menu['submenus'] as $submenu)
+                                        <li>
+                                            <a class="dropdown_menu"
+                                                href="{{ route($submenu->routing) }}">{{ $submenu->nama_menu }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
+                    @endif
+                    {{-- <li>
                         <a href="#" id="titleNavProfile" class="{{ $isActiveProfil ?? '' }}">Profil </a>
                         <ul>
                             <li>
@@ -98,7 +133,8 @@
                             </li>
 
                             <li>
-                                <a class="dropdown_menu" href="{{ route('tugasdanfungsi.index') }}">Tugas dan Fungsi</a>
+                                <a class="dropdown_menu" href="{{ route('tugasdanfungsi.index') }}">Tugas dan
+                                    Fungsi</a>
                             </li>
                             <li>
                                 <a class="dropdown_menu" href="{{ route('strukturppid.index') }}">Struktur PPID</a>
@@ -144,7 +180,9 @@
                     </li>
                     <li>
                         <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
-                    </li>
+                    </li> --}}
+
+
 
                     @if (Auth::guard('usersppid')->check())
                         <li>
@@ -212,6 +250,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Banner -->
     @endif
     <!-- Carousel Start -->

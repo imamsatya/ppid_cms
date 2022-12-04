@@ -16,40 +16,19 @@
             });
 
             function editDialog(index) {
-                let users = {{ Js::from($users) }}
-                let user = users[index]
+                let usersPPID = {{ Js::from($usersPPID) }}
+                let user = usersPPID[index]
                 console.log('user', user)
                 document.getElementById('editName').value = user.name
                 document.getElementById('editEmail').value = user.email
 
-                let roles = {{ Js::from($roles) }}
-                console.log('roles', roles);
-                //untuk reset option
-                document.getElementById("editRoles").innerHTML = '';
-                let node;
-                let textnode;
-                //untuk set option
-                roles.forEach(element => {
-                    node = document.createElement("option");
-                    node.setAttribute('value', element.name)
-                    let obj = user.roles.find(role => role.name === element.name);
 
-                    if (obj) {
-                        node.setAttribute('selected', 'selected')
-                    } else {
-                        document.getElementById("editRoles").removeAttribute("selected");
-                    }
-
-                    textnode = document.createTextNode(element.name);
-                    node.appendChild(textnode);
-                    document.getElementById("editRoles").appendChild(node);
-                })
                 document.getElementById('editForm').setAttribute('action', 'user_admin/' + user.id)
             };
 
             function deleteDialog(index) {
-                let users = {{ Js::from($users) }}
-                let user = users[index]
+                let usersPPID = {{ Js::from($usersPPID) }}
+                let user = usersPPID[index]
                 Swal.fire({
                     html: `Apakah yakin akan <strong>menghapus</strong> user <span class="badge badge-primary"> ${user.name}</span> ?`,
                     icon: "error",
@@ -236,22 +215,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($usersPPID as $user)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>
-                                @if (count($user->roles) > 0)
-                                    <ul>
-                                        @foreach ($user->roles as $role)
-                                            <li> {{ $role->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    -
-                                @endif
-                            </td>
+
                             <td><a href="javascript:void(0)" class="btn btn-icon btn-primary me-2"
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_editAdmin"
                                     onclick="editDialog({{ $loop->index }})"><i class="bi bi-pencil fs-4 "></i></a>
@@ -377,25 +346,7 @@
                             </div>
                             <!--end::Input group-->
 
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <select class="form-select form-select-sm form-select-solid" id="addP"
-                                        data-control="select2" data-close-on-select="false"
-                                        data-placeholder="Pilih Role" name="roles[]">
-                                        <option></option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->name }}">
-                                                {{ $role->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <!--end::Col-->
-                            </div>
+
                             <!--end::Input group-->
 
                         </div>
