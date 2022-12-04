@@ -271,43 +271,65 @@
                         async function saveMenu() {
                             console.log('s', swappable)
                             let newMainMenu = []
+                            let newSubMenu = []
                             let mainMenu = swappable.containers[0].children
+
+                            console.log('mM', mainMenu)
+                            console.log('tesSubmM', mainMenu[0].children[0].children[1].children[0].children.length)
                             console.log('mainMenu', mainMenu[0].attributes.namamenu.value)
                             for (let index = 0; index < mainMenu.length; index++) {
+                                //mainMenu
                                 let currentMenu = {
                                     id_menu: mainMenu[index].attributes.idmenu.value,
                                     nama_menu: mainMenu[index].attributes.namamenu.value,
                                     routing: mainMenu[index].attributes.routing.value,
-
                                     urutan: index + 1
                                 }
                                 newMainMenu.push(currentMenu)
-
-                            }
-                            console.log('newMainMenu', newMainMenu[0], 'type', typeof(newMainMenu))
-
-
-                            console.log('s2', swappable2)
-                            let newSubMenu = []
-                            let subMenus = swappable2.containers
-                            subMenus.forEach(subMenu => {
-                                let subMenuChildren = subMenu.children
-                                if (subMenuChildren.length > 0) {
-                                    for (let index = 0; index < subMenuChildren.length; index++) {
-                                        console.log('smci', subMenuChildren[index].attributes)
+                                let indexMain = index
+                                let submenu = mainMenu[indexMain].children[0].children[1].children[0].children
+                                //subMenu
+                                if (submenu.length > 0) {
+                                    for (let index2 = 0; index2 < submenu.length; index2++) {
                                         let currentSubMenu = {
-                                            idmainmenu: subMenuChildren[index].attributes.idmainmenu.value,
-                                            namasubmenu: subMenuChildren[index].attributes.namasubmenu.value,
-                                            routing: subMenuChildren[index].attributes.routing.value,
-                                            idsubmenu: subMenuChildren[index].attributes.idsubmenu.value,
+                                            idmainmenu: mainMenu[indexMain].attributes.idmenu.value,
+                                            namasubmenu: submenu[index2].attributes.namasubmenu.value,
+                                            routing: submenu[index2].attributes.routing.value,
+                                            idsubmenu: submenu[index2].attributes.idsubmenu.value,
                                             urutan: index + 1
                                         }
                                         newSubMenu.push(currentSubMenu)
-
                                     }
+
+
                                 }
 
-                            });
+
+                            }
+                            console.log('newMainMenu', newMainMenu, 'type', typeof(newMainMenu))
+
+
+                            console.log('s2', swappable2)
+                            // let newSubMenu = []
+                            // let subMenus = swappable2.containers
+                            // subMenus.forEach(subMenu => {
+                            //     let subMenuChildren = subMenu.children
+                            //     if (subMenuChildren.length > 0) {
+                            //         for (let index = 0; index < subMenuChildren.length; index++) {
+                            //             console.log('smci', subMenuChildren[index].attributes)
+                            //             let currentSubMenu = {
+                            //                 idmainmenu: subMenuChildren[index].attributes.idmainmenu.value,
+                            //                 namasubmenu: subMenuChildren[index].attributes.namasubmenu.value,
+                            //                 routing: subMenuChildren[index].attributes.routing.value,
+                            //                 idsubmenu: subMenuChildren[index].attributes.idsubmenu.value,
+                            //                 urutan: index + 1
+                            //             }
+                            //             newSubMenu.push(currentSubMenu)
+
+                            //         }
+                            //     }
+
+                            // });
                             Swal.fire({
                                 html: `Apakah yakin akan <strong>menyimpan</strong> menu  ?`,
                                 icon: "error",
