@@ -152,7 +152,9 @@ class DataPermohonanController extends Controller
         // log_permohonan
         DB::table('log_permohonan')->insert([
             'id_ppid_permohonan' => $insertedId,
-            'status' => 1 // permohonan masuk
+            'status' => 1, // permohonan masuk
+            "created_at" =>  $dateCreated,
+            "updated_at" => $dateCreated,
         ]);
     }
 
