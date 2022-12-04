@@ -18,7 +18,7 @@ class MenuController extends Controller
     {
         //
         $menus = new MainMenu();
-        $menus = $menus::with('submenus')->get();
+        $menus = $menus::with('submenus')->orderBy('urutan')->get();
 
         return view('admin.manajemen_menu.manajemen_menu', compact('menus'));
     }
@@ -45,7 +45,7 @@ class MenuController extends Controller
 
         $menus = ($request->data['newMainMenu']);
         $subMenus = ($request->data['newSubMenu']);
-        // dd($subMenus);
+
 
         foreach ($menus as $key => $menu) {
             // dd($menu['id_menu']);
@@ -58,12 +58,12 @@ class MenuController extends Controller
         foreach ($subMenus as $key => $submenu) {
             // dd($menu['id_menu']);
             // dd((int)$submenu['idsubmenu']);
-            $submenu_row = new SubMenu();
-            $submenu_row = $submenu_row->where('id', (int)$submenu['idsubmenu'])->first();
+            $submenuDb = new SubMenu();
+            $submenuDb = $submenuDb->where('id', (int)$submenu['idsubmenu'])->first();
 
-            $submenu_row->main_menu_id = (int)$submenu['idmainmenu'];
-            $submenu_row->urutan = (int)$submenu['urutan'];
-            $submenu_row->save();
+            $submenuDb->main_menu_id = (int)$submenu['idmainmenu'];
+            $submenuDb->urutan = (int)$submenu['urutan'];
+            $submenuDb->save();
         }
 
         return redirect()->back()->with('success', 'Berhasil menyimpan Pengelolaan Menu');
