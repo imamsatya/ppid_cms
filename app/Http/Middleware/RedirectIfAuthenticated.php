@@ -24,18 +24,30 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
 
+            // if (Auth::guard($guard)->check()) {
+            //     $user = Auth::user();
+            //     // if ($user->hasRole('admin')) {
+            //     //     return redirect()->route('admin.dashboard.index');
+            //     // }
+            //     return redirect()->route('dashboard.index');
+            //     if ($user->hasRole('user')) {
+            //         return redirect()->route('dashboard.index');
+            //     } else {
+            //         return redirect()->route('admin.dashboard.index');
+            //     }
+            //     // return redirect(RouteServiceProvider::HOME);
+            // }
             if (Auth::guard($guard)->check()) {
-                $user = Auth::user();
-                // if ($user->hasRole('admin')) {
-                //     return redirect()->route('admin.dashboard.index');
-                // }
-                return redirect()->route('dashboard.index');
-                if ($user->hasRole('user')) {
-                    return redirect()->route('dashboard.index');
-                } else {
+
+                if ($guard === 'web') {
                     return redirect()->route('admin.dashboard.index');
                 }
-                // return redirect(RouteServiceProvider::HOME);
+
+                if ($guard === 'usersppid') {
+                    return redirect()->route('dashboard.index');
+                }
+
+                return redirect()->route('index');;
             }
         }
 

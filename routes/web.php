@@ -43,6 +43,7 @@ use App\Http\Controllers\Admin\FAQ\FaqBannerController;
 //Manajemen User
 use App\Http\Controllers\Admin\ManajemenUser\RolePermissionController;
 use App\Http\Controllers\Admin\ManajemenUser\UserAdminController;
+use App\Http\Controllers\Admin\ManajemenUser\UserPemohonController;
 
 //Manajemen Home
 use App\Http\Controllers\Admin\ManajemenHome\SliderController;
@@ -52,7 +53,7 @@ use App\Http\Controllers\Admin\ManajemenHome\FooterController;
 
 //Manajemen Menu
 use App\Http\Controllers\Admin\ManajemenMenu\MenuController;
-
+use App\Http\Controllers\Admin\Referensi\SettingKalenderController;
 // User
 use App\Http\Controllers\Frontend\Home\HomeController;
 use App\Http\Controllers\Frontend\Home\SiaranPersController;
@@ -116,17 +117,17 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
 //     ->name('admin.home');
-Route::get('login', [UserPPIDLoginController::class, 'login'])->name('userppid.login');
+Route::get('login', [UserPPIDLoginController::class, 'login'])->middleware('guest:usersppid')->name('userppid.login');
 Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->name('userppid.handleLogin');
 Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
-Route::get('signup',  [UserPPIDLoginController::class, 'register'])->name('signup');
+Route::get('signup',  [UserPPIDLoginController::class, 'register'])->middleware('guest:usersppid')->name('signup');
 Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
 
 
 //User Admin
 // Route::get('/', [UserSAminController::class, 'index'])
 //     ->name('user.home');
-Route::get('/admin/login', [UserAdminAuthController::class, 'login'])
+Route::get('/admin/login', [UserAdminAuthController::class, 'login'])->middleware('guest:web')
     ->name('admin.login');
 Route::post('/admin/login', [UserAdminAuthController::class, 'handleLogin'])
     ->name('admin.handleLogin');
@@ -258,6 +259,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Manajemen User
     Route::resource('role_permission', RolePermissionController::class);
     Route::resource('user_admin', UserAdminController::class);
+    Route::resource('user_pemohon', UserPemohonController::class);
 
     //Manajemen Home
     Route::resource('slider', SliderController::class);
@@ -273,8 +275,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::patch('/footer/linkapp/{id}', [FooterController::class, 'linkAppUpdate'])->name('footer.linkapp.update');
     Route::delete('/footer/linkapp/delete/{id}', [FooterController::class, 'linkAppDestroy'])->name('footer.linkapp.delete');
     //Manajemen Menu
-    Route::resource('manajemen_menu', MenuController::class);    
-    
+
+    Route::resource('manajemen_menu', MenuController::class);
+
+    //Referensi
+    Route::resource('setting_kalender', SettingKalenderController::class);
+
+    Route::resource('manajemen_menu', MenuController::class);
+
     //Layanan PPID
     // yovi
     Route::get('/ppid-data-permohonan', [DataPermohonanController::class, 'ppidDataPermohonan']);
