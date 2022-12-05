@@ -25,6 +25,7 @@ use App\Http\Controllers\API\Profil\StrukturOrganisasiKananController;
 use App\Http\Controllers\API\Profil\StrukturOrganisasiKiriController;
 use App\Http\Controllers\API\Profil\TugasFungsiController;
 use App\Http\Controllers\API\Profil\VisiMisiController;
+use App\Http\Controllers\API\Referensi\SettingKalenderController;
 use App\Http\Controllers\API\Regulasi\PeraturanKIPController;
 use App\Http\Controllers\API\Regulasi\RancanganPeraturanKIPController;
 use App\Http\Controllers\API\Regulasi\RegulasiController;
@@ -82,6 +83,9 @@ Route::resource('tugas_fungsi', TugasFungsiController::class);
 Route::resource('visi_misi', VisiMisiController::class);
 Route::resource('sosial_media', SosialMediaController::class);
 Route::resource('linkapp', LinkAppController::class);
+
+// Referensi
+Route::resource('kalender', SettingKalenderController::class);
 
 // Regulasi
 Route::resource('peraturan_kip', PeraturanKIPController::class);

@@ -16,14 +16,12 @@ class SettingKalenderController extends Controller
      */
     public function index()
     {
-        //
         $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
         $kalender = $response->json();
 
         $kalenderLibur = Arr::where($kalender['data'], function ($value, $key) {
             return $value['keterangan'] !== null && $value['jenis'] == 1;
         });
-        // dd($kalenderLibur);
 
 
         return view('admin.referensi.setting_kalender', compact('kalenderLibur'));
