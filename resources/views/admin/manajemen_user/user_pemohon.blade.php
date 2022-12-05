@@ -19,7 +19,7 @@
                 let usersPPID = {{ Js::from($usersPPID) }}
                 let user = usersPPID[index]
                 console.log('user', user)
-                document.getElementById('editName').value = user.name
+                document.getElementById('editName').value = user.nama_lengkap
                 document.getElementById('editEmail').value = user.email
 
 
@@ -88,7 +88,7 @@
             }
         </script>
     @endpush
-    <h1>Daftar User Admin </h1>
+    <h1>Daftar User Pemohon </h1>
     @if ($errors->any())
         <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
             {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
@@ -196,7 +196,7 @@
     <br>
     <div class="card card-flush shadow-sm">
         <div class="card-header">
-            <h3 class="card-title">Daftar User Admin </h3>
+            <h3 class="card-title">Daftar User Pemohon </h3>
             <div class="card-toolbar">
                 <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                     data-bs-target="#kt_modal_tambahAdmin">Tambah</a>
@@ -210,7 +210,7 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Roles</th>
+                        <th>Pekerjaan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -218,9 +218,9 @@
                     @foreach ($usersPPID as $user)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->nama_lengkap }}</td>
                             <td>{{ $user->email }}</td>
-
+                            <td>{{ $user->pekerjaan }}</td>
                             <td><a href="javascript:void(0)" class="btn btn-icon btn-primary me-2"
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_editAdmin"
                                     onclick="editDialog({{ $loop->index }})"><i class="bi bi-pencil fs-4 "></i></a>
@@ -230,32 +230,7 @@
                             </td>
                         </tr>
                     @endforeach
-                    {{-- @foreach ($roles as $role)
-                                            <tr>
-                                                <td>{{ $loop->index + 1 }}</td>
-                                                <td>{{ $role->name }}</td>
-                                                <td>{{ $role->guard_name }}</td>
-                                                <td>
-                                                    @if (count($role->permissions) > 0)
-                                                        <ul>
-                                                            @foreach ($role->permissions as $permission)
-                                                                <li>{{ $permission->name }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    @else
-                                                        -
-                                                    @endif
 
-                                                </td>
-
-                                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                                            class="bi bi-pencil fs-4 "></i></a>
-                                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                                            class="bi bi-x-lg fs-4 "></i></a>
-
-                                                </td>
-                                            </tr>
-                                        @endforeach --}}
 
                 </tbody>
             </table>
@@ -513,7 +488,7 @@
                 active
                 </x-slot>
                 <x-slot:subMenuTitle>
-                    User Admin
+                    User Pemohon
                     </x-slot>
 
                     <x-slot:mainMenuTitle>
