@@ -274,10 +274,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/footer/linkapp', [FooterController::class, 'linkAppStore'])->name('footer.linkapp.store');
     Route::patch('/footer/linkapp/{id}', [FooterController::class, 'linkAppUpdate'])->name('footer.linkapp.update');
     Route::delete('/footer/linkapp/delete/{id}', [FooterController::class, 'linkAppDestroy'])->name('footer.linkapp.delete');
+
     //Manajemen Menu
-
     Route::resource('manajemen_menu', MenuController::class);
-
+    Route::post('manajemen_menu/addmainmenu', [MenuController::class, 'addMainMenu'])->name('manajemen_menu.addMainMenu');
     //Referensi
     Route::resource('setting_kalender', SettingKalenderController::class);
 

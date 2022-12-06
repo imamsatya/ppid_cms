@@ -94,7 +94,7 @@
                                             @if ($informasiSecaraBerkala->currentPage() < $informasiSecaraBerkala->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
+                                                        href="">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSecaraBerkala->currentPage() != $informasiSecaraBerkala->lastPage())

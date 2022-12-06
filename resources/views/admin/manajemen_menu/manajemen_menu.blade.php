@@ -16,7 +16,7 @@
                 @if ($errors->any())
                     <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
                         {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                </span> --}}
+                              </span> --}}
                         <!--begin::Icon-->
                         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -71,7 +71,7 @@
                     <!--begin::Alert-->
                     <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
                         {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                </span> --}}
+                          </span> --}}
                         <!--begin::Icon-->
                         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -123,8 +123,14 @@
                     <span class="badge badge-primary">Routing</span>
                     {{-- <span class="badge badge-info">Permission</span> --}}
                     <br><br>
-                    <div class="text-end mb-4">
 
+                    <div class="text-end mb-4">
+                        <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal"
+                            data-bs-target="#kt_modal_tambahMainMenu">
+                            <span class="indicator-label">Tambah Main Menu</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
                         <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit"
                             onclick="saveMenu()">
                             <span class="indicator-label">Simpan</span>
@@ -149,11 +155,23 @@
                                                 <span
                                                     class="badge badge-primary me-2">{{ $menu->routing ?? '-' }}</span>
 
-                                                <br>
+                                                @if ($menu->is_active)
+                                                    <span class="badge badge-success me-2">active</span>
+                                                @else
+                                                    <span class="badge badge-danger me-2">inactive</span>
+                                                @endif
+
+
+
+
 
 
                                             </div>
                                             <div class="card-toolbar">
+                                                <a href="#" class="btn btn-icon btn-primary btn-sm me-2"><i
+                                                        class="fas fa-pen fs-3"></i></a>
+                                                <a href="javascript:void(0)" class="btn btn-icon btn-danger btn-sm"><i
+                                                        class="bi bi-x-lg fs-4 "></i></a>
                                                 <a href="#"
                                                     class="btn btn-icon btn-sm btn-hover-light-primary draggable-handle">
                                                     <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
@@ -179,7 +197,7 @@
 
                                                 @if ($menu->submenus)
                                                     @foreach ($menu->submenus as $submenu)
-                                                        <div class="row mx-auto text-middle draggable2  "
+                                                        <div class="row mx-auto mb-2 text-middle  draggable2  "
                                                             idmainmenu="{{ $menu->id }}"
                                                             namaSubmenu="{{ $submenu->nama_menu }}"
                                                             idsubmenu="{{ $submenu->id }}"
@@ -203,17 +221,39 @@
                                                                     <!--end::Svg Icon-->
                                                                 </a>
                                                             </div>
-                                                            <div class="col-3  ">
+                                                            <div class="col-2 m-grid-col-middle ">
                                                                 {{ $submenu->nama_menu ?? '-' }}
                                                             </div>
-                                                            <div class="col-3  ">
+                                                            <div class="col-2 m-grid-col-middle ">
                                                                 {{ $submenu->routing ?? '-' }}
                                                             </div>
 
+                                                            <div class="col-2 m-grid-col-middle ">
+                                                                @if ($submenu->is_active)
+                                                                    <span
+                                                                        class="badge badge-success me-2">active</span>
+                                                                @else
+                                                                    <span
+                                                                        class="badge badge-danger me-2">inactive</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <a href="#"
+                                                                    class="btn btn-icon btn-primary btn-sm me-2"><i
+                                                                        class="fas fa-pen fs-3"></i></a>
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-icon btn-danger btn-sm"><i
+                                                                        class="bi bi-x-lg fs-4 "></i></a>
+                                                            </div>
+                                                            <hr class="mt-2">
                                                         </div>
                                                     @endforeach
                                                 @endif
                                             </div>
+                                        </div>
+                                        <div class="card-footer"><a href="#"
+                                                class="btn  btn-primary btn-sm me-2"><i
+                                                    class="fas fa-plus fs-3"></i>Tambah Sub Menu</a>
                                         </div>
                                     </div>
                                     <!--end::Card-->
@@ -224,12 +264,153 @@
 
 
                 </div>
+                <!--begin::Modal - Tambah Bagan Kanan-->
+                <div class="modal fade" id="kt_modal_tambahMainMenu" tabindex="-1" aria-hidden="true">
+                    <!--begin::Modal dialog-->
+                    <div class="modal-dialog modal-dialog-centered mw-900px">
+                        <!--begin::Modal content-->
+                        <div class="modal-content">
+                            <!--begin::Modal header-->
+                            <div class="modal-header">
+                                <!--begin::Modal title-->
+                                <h2>Tambah Main Menu</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2"
+                                                rx="1" transform="rotate(45 7.41422 6)"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-lg-10 px-lg-10">
+                                {{-- Content Modal --}}
+                                <form id="kt_account_profile_details_form"
+                                    action="{{ route('admin.manajemen_menu.addMainMenu') }}"
+                                    enctype="multipart/form-data" method="POST" class="form">
+                                    @csrf
+                                    <!--begin::Card body-->
+                                    <div class="card-body  p-9">
+
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Menu</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="namaMenu"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Menu" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Route</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="routing"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Route" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Status</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="true" id="activeStatus" />
+                                                <label class="form-check-label me-4" for="activeStatus">
+                                                    Active
+                                                </label>
+
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="false" id="inActiveStatus" />
+                                                <label class="form-check-label" for="inActiveStatus">
+                                                    Inactive
+                                                </label>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+
+
+
+                                        <!--end::Input group-->
+
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Actions-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                        @can('peraturan kip.create')
+                                            <button type="submit" class="btn btn-primary" id="addButton"
+                                                onclick="activateLoadingButton('#addButton')"><span
+                                                    class="indicator-label">
+                                                    Simpan
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Mohon Menunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                    <!--end::Actions-->
+                                </form>
+                            </div>
+                            <!--end::Modal body-->
+                        </div>
+                        <!--end::Modal content-->
+                    </div>
+                    <!--end::Modal dialog-->
+                </div>
+                <!--end::Modal - Tambah Bagan Kanan-->
                 <!--end::Row-->
                 @push('child-scripts')
                     <script src="{{ asset('template/dist/assets/plugins/custom/draggable/draggable.bundle.js') }}"></script>
 
 
                     <script>
+                        function activateLoadingButton(idButton) {
+                            console.log('active')
+                            let button = document.querySelector(`${idButton}`);
+                            button.setAttribute("data-kt-indicator", "on");
+                            // Handle button click event
+
+                            // // Disable indicator after 3 seconds
+                            // setTimeout(function() {
+                            //     button.removeAttribute("data-kt-indicator");
+                            // }, 3000);
+                        }
                         $.ajaxSetup({
 
                             headers: {
