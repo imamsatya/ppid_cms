@@ -69,6 +69,29 @@ class MenuController extends Controller
         return redirect()->back()->with('success', 'Berhasil menyimpan Pengelolaan Menu');
     }
 
+    public function addMainMenu(Request $request)
+    {
+
+        $validated = $request->validate([
+            'namaMenu' => 'required',
+        ]);
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        $mainMenu = new MainMenu();
+
+        if ($validated) {
+            $mainMenu = new MainMenu();
+            $mainMenu->nama_menu = $request->namaMenu;
+            $mainMenu->routing = $request->routing;
+            $mainMenu->is_active = ($request->statusMenu == 'true') ? true : false;
+            $mainMenu->urutan = count($mainMenu::all()) + 1;
+            $mainMenu->save();
+
+            return redirect()->back()->with('success', 'Berhasil menyimpan Main Menu');
+        }
+    }
+
     /**
      * Display the specified resource.
      *

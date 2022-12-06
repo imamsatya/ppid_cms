@@ -50,7 +50,7 @@ class InformasiSecaraBerkalaController extends Controller
         $validated = $request->validate([
             'judulInformasi' => 'required',
             // 'url' => 'required',
-            'file_pendukung' => 'mimes:pdf|max:5120',
+            // 'file_pendukung' => 'mimes:pdf|max:5120',
 
         ]);
         if (!$validated) {

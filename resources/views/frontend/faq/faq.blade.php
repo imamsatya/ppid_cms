@@ -21,11 +21,11 @@
                         @if ($faq)
                             @foreach ($faq as $faq_row)
                                 <div class="card">
-                                    <div class="card-header" id="headingOne">
+                                    <div class="card-header" id="{{ 'heading' . $loop->index }}">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link w-100 d-flex align-items-center"
-                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
+                                                data-toggle="collapse" data-target="{{ '#collapse' . $loop->index }}"
+                                                aria-expanded="true" aria-controls="{{ 'collapse' . $loop->index }}">
                                                 {{ $faq_row->pertanyaan }}
 
                                                 <span class="ml-auto">+</span>
@@ -33,8 +33,8 @@
                                         </h5>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                        data-parent="#accordion">
+                                    <div id="{{ 'collapse' . $loop->index }}" class="collapse show"
+                                        aria-labelledby="{{ 'heading' . $loop->index }}" data-parent="#accordion">
                                         <div class="card-body">
                                             {{ $faq_row->jawaban }}
                                         </div>

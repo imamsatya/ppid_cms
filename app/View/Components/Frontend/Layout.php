@@ -33,7 +33,7 @@ class Layout extends Component
         $linkApp = $linkApp::all();
 
         $menus = new MainMenu();
-        $menus = $menus::with('submenus')->orderBy('urutan', 'asc')->get();
+        $menus = $menus::with('submenus')->where('is_active', true)->orderBy('urutan', 'asc')->get();
         return view('components.frontend.layout', compact('sosialMedia', 'linkApp', 'menus'));
     }
 }
