@@ -21,7 +21,7 @@ class UserAdminController extends Controller
 
     public function handleLogin(Request $req)
     {
-        dd('HANDLE LOGIN!');
+        dd('HANDLE LOGIN! '.str($req));
         if (Auth::attempt(
             $req->only(['email', 'password'])
         ) || true) {
