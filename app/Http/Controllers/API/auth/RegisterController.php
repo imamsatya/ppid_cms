@@ -79,7 +79,8 @@ class RegisterController extends BaseController
     {
         if(Auth::guard('usersppid')
             ->attempt(['email' => $request->email, 'password' => $request->password])){
-            $user = Auth::user();
+            $user = Auth::guard('usersppid')
+                ->user();
             $success['token'] =  $user->createToken('PPID')->plainTextToken;
             $success['name'] =  $user->getAuthIdentifierName();
 
