@@ -24,14 +24,14 @@ class RegisterController extends BaseController
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'jenis_pemohon' => 'required',
-            'jenis_identitas' => 'required',
-            'nomor_identitas' => 'required',
+            'jenispemohon' => 'required',
+            'jenisidentitas' => 'required',
+            'noidentitas' => 'required',
             'alamat' => 'required',
-            'no_hp' => 'required',
+            'nohp' => 'required',
             'npwp' => 'required',
             'pekerjaan' => 'required',
-            'identitas_file_path' => 'required',
+            'identitasfile' => 'required',
         ]);
 
         if($validator->fails()){
