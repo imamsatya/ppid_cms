@@ -83,18 +83,18 @@
                                             @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSecaraBerkala->currentPage() - 1 }}</a>
+                                                        href="{{ $informasiSecaraBerkala->url($informasiSecaraBerkala->currentPage() - 1) }}">{{ $informasiSecaraBerkala->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $informasiSecaraBerkala->currentPage() }}
+                                                    href="{{ $informasiSecaraBerkala->url($informasiSecaraBerkala->currentPage()) }}">{{ $informasiSecaraBerkala->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($informasiSecaraBerkala->currentPage() < $informasiSecaraBerkala->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
+                                                        href="{{ $informasiSecaraBerkala->url($informasiSecaraBerkala->currentPage() + 1) }}">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSecaraBerkala->currentPage() != $informasiSecaraBerkala->lastPage())
@@ -155,18 +155,18 @@
                                             @if ($informasiSetiapSaat->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSetiapSaat->currentPage() - 1 }}</a>
+                                                        href="{{ $informasiSetiapSaat->url($informasiSetiapSaat->currentPage() - 1) }}">{{ $informasiSetiapSaat->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $informasiSetiapSaat->currentPage() }}
+                                                    href="{{ $informasiSetiapSaat->url($informasiSetiapSaat->currentPage()) }}">{{ $informasiSetiapSaat->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($informasiSetiapSaat->currentPage() < $informasiSetiapSaat->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSetiapSaat->currentPage() + 1 }}</a>
+                                                        href="{{ $informasiSetiapSaat->url($informasiSetiapSaat->currentPage() + 1) }}">{{ $informasiSetiapSaat->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSetiapSaat->currentPage() != $informasiSetiapSaat->lastPage())
@@ -222,7 +222,7 @@
                                             @if ($informasiSertaMerta->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSertaMerta->currentPage() - 1 }}</a>
+                                                        href="{{ $informasiSertaMerta->url($informasiSertaMerta->currentPage() - 1) }}">{{ $informasiSertaMerta->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
@@ -233,7 +233,7 @@
                                             @if ($informasiSertaMerta->currentPage() < $informasiSertaMerta->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSertaMerta->currentPage() + 1 }}</a>
+                                                        href="{{ $informasiSertaMerta->url($informasiSertaMerta->currentPage() + 1) }}">{{ $informasiSertaMerta->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSertaMerta->currentPage() != $informasiSertaMerta->lastPage())
