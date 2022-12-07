@@ -18,6 +18,7 @@ class InformasiImageResource extends JsonResource
             'id' => $this->id,
             'sideimage_path' => $this->sideimage_path,
             'backgroundimage_path' => $this->backgroundimage_path,
+            'ppidlogo_path' => $this->ppidlogo_path,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];
