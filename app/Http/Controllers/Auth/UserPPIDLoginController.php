@@ -75,7 +75,7 @@ class UserPPIDLoginController extends Controller
             $user = UserPPID::create([
                 'nama_lengkap' => $request['name'],
                 'email' => $request['email'],
-                'password' => Hash::make($request['password']),
+                'password' => bcrypt($request['password']),
                 'jenis_pemohon' => $request['jenispemohon'],
                 'jenis_identitas' => $request['jenisidentitas'],
                 'nomor_identitas' => $request['noidentitas'],
