@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API\auth;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
+use App\Models\UserPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -22,6 +24,14 @@ class RegisterController extends BaseController
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'jenis_pemohon' => 'required',
+            'jenis_identitas' => 'required',
+            'nomor_identitas' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'npwp' => 'required',
+            'pekerjaan' => 'required',
+            'identitas_file_path' => 'required',
         ]);
 
         if($validator->fails()){
@@ -30,7 +40,19 @@ class RegisterController extends BaseController
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $user = UserPPID::create([
+            'nama_lengkap' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'jenis_pemohon' => $request['jenispemohon'],
+            'jenis_identitas' => $request['jenisidentitas'],
+            'nomor_identitas' => $request['noidentitas'],
+            'alamat' => $request['alamat'],
+            'no_hp' => $request['nohp'],
+            'npwp' => $request['npwp'],
+            'pekerjaan' => $request['pekerjaan'],
+            'identitas_file_path' =>  $request['identitasfile'],
+        ]);
         $success['token'] =  $user->createToken('PPID')->plainTextToken;
         $success['name'] =  $user->name;
 
