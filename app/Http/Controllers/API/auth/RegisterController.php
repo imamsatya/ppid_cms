@@ -60,6 +60,8 @@ class RegisterController extends BaseController
             'pekerjaan' => $request['pekerjaan'],
             'identitas_file_path' =>  $identitasName,
         ]);
+        Auth::attempt(['email' => $request['email'], 'password' => $request['password']]);
+        $user = Auth::user();
         $success['token'] =  $user->createToken('PPID')->plainTextToken;
         $success['name'] =  $user->name;
 
