@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\auth;
 
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Http\File;
 use App\Models\UserPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,8 +42,8 @@ class RegisterController extends BaseController
         $input = $request->all();
         $identitas = str_replace('data:image/png;base64,', '', $request['identitasfile']);
         $identitas = str_replace(' ', '+', $identitas);
-        $identitasName = str_random(10).'.'.'png';
-        \File::put(storage_path(). '/' . $identitasName, base64_decode($identitas));
+        $identitasName = Str::random(10).'.'.'png';
+        Storage::putFileAs('adminAssets/user/identitas/',$identitas,Str::slug($identitasName));
         $user = UserPPID::create([
             'nama_lengkap' => $request['name'],
             'email' => $request['email'],
