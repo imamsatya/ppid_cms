@@ -43,9 +43,10 @@ class RegisterController extends BaseController
         $identitas = str_replace('data:image/png;base64,', '', $request['identitasfile']);
         $identitas = str_replace(' ', '+', $identitas);
         $identitasName = Str::random(10).'.'.'png';
+        $identitasPath = 'adminAssets/user/identitas/';
+        $identitasPath .= $identitasName;
         $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
-        Storage::put('adminAssets/user/identitas/'+$identitasName, $file);
-        Storage::writeStream('adminAssets/user/identitas/', $file);
+        Storage::put($identitasPath, $file);
         $user = UserPPID::create([
             'nama_lengkap' => $request['name'],
             'email' => $request['email'],
