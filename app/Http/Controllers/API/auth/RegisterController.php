@@ -60,7 +60,8 @@ class RegisterController extends BaseController
             'pekerjaan' => $request['pekerjaan'],
             'identitas_file_path' =>  $identitasName,
         ]);
-        Auth::attempt(['email' => $request['email'], 'password' => $request['password']]);
+        Auth::guard('usersppid')
+            ->attempt(['email' => $request['email'], 'password' => $request['password']]);
         $user = Auth::user();
         $success['token'] =  $user->createToken('PPID')->plainTextToken;
         $success['name'] =  $user->name;
@@ -75,7 +76,8 @@ class RegisterController extends BaseController
      */
     public function login(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if(Auth::guard('usersppid')
+            ->attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('PPID')->plainTextToken;
             $success['name'] =  $user->getAuthIdentifierName();
