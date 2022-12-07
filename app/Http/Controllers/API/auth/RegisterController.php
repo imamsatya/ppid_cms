@@ -60,14 +60,19 @@ class RegisterController extends BaseController
             'pekerjaan' => $request['pekerjaan'],
             'identitas_file_path' =>  $identitasName,
         ]);
-        Auth::guard('usersppid')
-            ->attempt(['email' => $request['email'], 'password' => $request['password']]);
-        $user = Auth::guard('usersppid')
-            ->user();
-        $success['token'] =  $user->createToken('PPID')->plainTextToken;
-        $success['name'] =  $user->name;
 
-        return $this->sendResponse($success, 'User register successfully.');
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return response()->json([
+            'name' => $request['name'],
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ]);
     }
 
     /**
@@ -77,17 +82,61 @@ class RegisterController extends BaseController
      */
     public function login(Request $request)
     {
-        if(Auth::guard('usersppid')
-            ->attempt(['email' => $request->email, 'password' => $request->password])){
-            $user = Auth::guard('usersppid')
-                ->user();
-            $success['token'] =  $user->createToken('PPID')->plainTextToken;
-            $success['name'] =  $user->getAuthIdentifierName();
+        $credentials = request(['email', 'password']);
 
-            return $this->sendResponse($success, 'User login successfully.');
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
-        else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
-        }
+
+        return $this->respondWithToken($token);
     }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        return response()->json(auth()->user());
+    }
+
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ]);
+    }
+
 }
