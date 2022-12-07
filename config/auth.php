@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -44,10 +44,6 @@ return [
             'driver' => 'jwt',
             'provider' => 'usersppid'
         ],
-        'usersppid'  => [
-            'driver'  => 'session',
-            'provider' => 'usersppid',
-        ],
     ],
 
     /*
@@ -76,11 +72,6 @@ return [
             'driver' => 'eloquent',
             'model'  => App\Models\UserPPID::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
