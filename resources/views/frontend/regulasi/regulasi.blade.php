@@ -100,17 +100,18 @@
                                             @if ($peraturanKIP->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $peraturanKIP->currentPage() - 1 }}</a>
+                                                        href="{{ $peraturanKIP->url($peraturanKIP->currentPage() - 1) }}">{{ $peraturanKIP->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
-                                                <a class="page-link" href="#">{{ $peraturanKIP->currentPage() }}
+                                                <a class="page-link"
+                                                    href="{{ $peraturanKIP->url($peraturanKIP->currentPage()) }}">{{ $peraturanKIP->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($peraturanKIP->currentPage() < $peraturanKIP->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $peraturanKIP->currentPage() + 1 }}</a>
+                                                        href="{{ $peraturanKIP->url($peraturanKIP->currentPage() + 1) }}">{{ $peraturanKIP->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($peraturanKIP->currentPage() != $peraturanKIP->lastPage())
@@ -190,18 +191,18 @@
                                             @if ($rancanganPeraturanKIP->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $rancanganPeraturanKIP->currentPage() - 1 }}</a>
+                                                        href="{{ $rancanganPeraturanKIP->url($rancanganPeraturanKIP->currentPage() - 1) }}">{{ $rancanganPeraturanKIP->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $rancanganPeraturanKIP->currentPage() }}
+                                                    href="{{ $rancanganPeraturanKIP->url($rancanganPeraturanKIP->currentPage()) }}">{{ $rancanganPeraturanKIP->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($rancanganPeraturanKIP->currentPage() < $rancanganPeraturanKIP->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $rancanganPeraturanKIP->currentPage() + 1 }}</a>
+                                                        href="{{ $rancanganPeraturanKIP->url($rancanganPeraturanKIP->currentPage() + 1) }}">{{ $rancanganPeraturanKIP->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($rancanganPeraturanKIP->currentPage() != $rancanganPeraturanKIP->lastPage())
