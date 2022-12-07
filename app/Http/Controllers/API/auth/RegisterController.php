@@ -31,7 +31,6 @@ class RegisterController extends BaseController
             'nohp' => 'required',
             'npwp' => 'required',
             'pekerjaan' => 'required',
-            'identitasfile' => 'required',
         ]);
 
         if($validator->fails()){
@@ -39,7 +38,10 @@ class RegisterController extends BaseController
         }
 
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
+        $identitas = str_replace('data:image/png;base64,', '', $request['identitasfile']);
+        $identitas = str_replace(' ', '+', $identitas);
+        $identitasName = str_random(10).'.'.'png';
+        \File::put(storage_path(). '/' . $identitasName, base64_decode($identitas));
         $user = UserPPID::create([
             'nama_lengkap' => $request['name'],
             'email' => $request['email'],
@@ -51,7 +53,7 @@ class RegisterController extends BaseController
             'no_hp' => $request['nohp'],
             'npwp' => $request['npwp'],
             'pekerjaan' => $request['pekerjaan'],
-            'identitas_file_path' =>  $request['identitasfile'],
+            'identitas_file_path' =>  $identitasName,
         ]);
         $success['token'] =  $user->createToken('PPID')->plainTextToken;
         $success['name'] =  $user->name;
