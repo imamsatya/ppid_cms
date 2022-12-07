@@ -81,8 +81,9 @@ class InformasiController extends Controller
     {
         // dd($request);
         $validated = $request->validate([
-            'sideimage' => 'required_without_all:backgroundimage|mimes:png,jpg,jpeg|max:5120',
-            'backgroundimage' => 'required_without_all:sideimage|mimes:png,jpg,jpeg|max:5120',
+            'sideimage' => 'mimes:png,jpg,jpeg|max:5120',
+            'backgroundimage' => 'mimes:png,jpg,jpeg|max:5120',
+            'ppidlogo' => 'mimes:png,jpg,jpeg|max:5120',
         ]);
 
 
@@ -108,6 +109,10 @@ class InformasiController extends Controller
                             $informasiImage->backgroundimage_path = 'adminAssets/home/informasi/backgroundimage.' . $file->getClientOriginalExtension();
                         }
 
+                        if ($fileName == 'ppidlogo') {
+                            $informasiImage->ppidlogo_path = 'adminAssets/home/informasi/ppidlogo.' . $file->getClientOriginalExtension();
+                        }
+
                         $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
                     }
                 }
@@ -127,6 +132,10 @@ class InformasiController extends Controller
 
                         if ($fileName == 'backgroundimage') {
                             $informasiImage->backgroundimage_path = 'adminAssets/home/informasi/backgroundimage.' . $file->getClientOriginalExtension();
+                        }
+
+                        if ($fileName == 'ppidlogo') {
+                            $informasiImage->ppidlogo_path = 'adminAssets/home/informasi/ppidlogo.' . $file->getClientOriginalExtension();
                         }
 
                         $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
