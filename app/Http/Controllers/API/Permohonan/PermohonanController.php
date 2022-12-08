@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Permohonan;
 
+use App\Http\Resources\FAQBannerResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\LayananPPID\DataPermohonan;
@@ -23,6 +24,9 @@ use App\Http\Resources\StatusResource;
 use App\Http\Resources\StatusPermohonanResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class PermohonanController extends BaseController
@@ -37,17 +41,16 @@ class PermohonanController extends BaseController
 
     public function index()
     {
-        $currentUser = Auth::guard('api')->user();
         $currentUserId = Auth::guard('api')->id();
         $result = DB::table('ppid_permohonan')
             ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
             ->where('status_permohonan.aktif', 1)
-            ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
+//            ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
             ->get();
 
-        return $this->sendResponse(DataPermohonanResource::collection($result),
+        return $this->sendResponse($result,
             'Data permohonan retrieved successfully');
     }
 
@@ -65,7 +68,71 @@ class PermohonanController extends BaseController
 
     public function store(Request $request)
     {
-        // TODO: ADD NEW PERMOHONAN
+        $currentUser = Auth::guard('api')->user();
+        $input = $request->all();
+        $dateCreated = \Carbon\Carbon::now();
+
+        if (!$currentUser) {
+            $this->sendError('No user!');
+        }
+
+        $validator = Validator::make($input, [
+            'id_ppid_pendaftar' => 'required',
+            'ticket_permohonan' => 'required',
+            'jenis_kanal' => 'required',
+            'informasi_diminta' => 'required',
+            'tujuan_informasi' => 'required',
+            'id_cara' => 'required',
+            'id_mendapatkan' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $identitas = $currentUser->identitas_file_path;
+
+        // ppid_permohonan
+        $insertedId = DB::table('ppid_permohonan')->insertGetId([
+            'id_ppid_pendaftar' => $input['id_ppid_pendaftar'],
+            'ticket_permohonan' => $input['ticket_permohonan'],
+            'jenis_kanal' => $input['jenis_kanal'],
+            'informasi_diminta' => $input['informasi_diminta'],
+            'tujuan_informasi' => $input['tujuan_informasi'],
+            'id_cara' => $input['id_cara'],
+            'id_mendapatkan' => $input['id_mendapatkan'],
+            'file_identitas' => $identitas,
+            "created_at" =>  $dateCreated,
+            "updated_at" => $dateCreated
+        ]);
+
+        // status_permohonan
+        DB::table('status_permohonan')->insert([
+            'id_ppid_permohonan' => $insertedId,
+            'id_status' => 1, // permohonan masuk,
+            'modified_by' => null,
+            'modified_date' => $dateCreated,
+            "created_at" =>  $dateCreated,
+            "updated_at" => $dateCreated,
+            'aktif' => 1
+        ]);
+
+        // log_permohonan
+        DB::table('log_permohonan')->insert([
+            'id_ppid_permohonan' => $insertedId,
+            'status' => 1, // permohonan masuk
+            "created_at" =>  $dateCreated,
+            "updated_at" => $dateCreated,
+        ]);
+
+        $result = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan')
+            ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+            ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->where('ppid_permohonan.id', $insertedId)->first();
+
+        return $this->sendResponse($result,
+            'Data permohonan saved successfully');
     }
 
 
@@ -78,14 +145,25 @@ class PermohonanController extends BaseController
 
      * @param  int  $id
 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
 
      */
 
     public function show($id)
 
     {
-        // TODO: SHOW SPECIFIC PERMOHONAN
+        $result = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan')
+            ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+            ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->where('ppid_permohonan.id', $id)->first();
+
+        if (is_null($result)) {
+            return $this->sendError('DataPermohonan not found.');
+        }
+
+        return $this->sendResponse(
+            $result, 'DataPermohonan retrieved successfully.');
     }
 
 
@@ -104,10 +182,86 @@ class PermohonanController extends BaseController
 
      */
 
-    public function update(Request $request, DataPermohonan $product)
+    public function update(Request $request, $id)
 
     {
-        // TODO: UPDATE SPECIFIC PERMOHONAN
+        $currentUserId = Auth::guard('api')->id();
+        $input = $request->all();
+        $dateCreated = \Carbon\Carbon::now();
+
+        $oldData = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan')
+            ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+            ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->where('ppid_permohonan.id', $id)->first();
+
+        $id_ppid_pendaftar = $oldData->id_ppid_pendaftar;
+        if (array_key_exists('id_ppid_pendaftar', $input)) {
+            $id_ppid_pendaftar = $input['id_ppid_pendaftar'];
+        }
+
+        $ticket_permohonan = $oldData->ticket_permohonan;
+        if (array_key_exists('ticket_permohonan', $input)) {
+            $ticket_permohonan = $input['ticket_permohonan'];
+        }
+
+        $jenis_kanal = $oldData->jenis_kanal;
+        if (array_key_exists('jenis_kanal', $input)) {
+            $jenis_kanal = $input['jenis_kanal'];
+        }
+
+        $informasi_diminta = $oldData->informasi_diminta;
+        if (array_key_exists('informasi_diminta', $input)) {
+            $informasi_diminta = $input['informasi_diminta'];
+        }
+
+        $tujuan_informasi = $oldData->tujuan_informasi;
+        if (array_key_exists('tujuan_informasi', $input)) {
+            $tujuan_informasi = $input['tujuan_informasi'];
+        }
+
+        $id_cara = $oldData->id_cara;
+        if (array_key_exists('id_cara', $input)) {
+            $id_cara = $input['id_cara'];
+        }
+
+        $id_mendapatkan = $oldData->id_mendapatkan;
+        if (array_key_exists('id_mendapatkan', $input)) {
+            $id_mendapatkan = $input['id_mendapatkan'];
+        }
+
+        $file_identitas = $oldData->file_identitas;
+        if (array_key_exists('file_identitas', $input)) {
+            $identitas = str_replace('data:image/png;base64,', '', $input['file_identitas']);
+            $identitas = str_replace(' ', '+', $identitas);
+            $identitasName = Str::random(10).'.'.'png';
+            $identitasPath = 'adminAssets/user/identitas/';
+            $identitasPath .= $identitasName;
+            $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
+            Storage::disk('public_uploads')->put($identitasPath, $file);
+            $file_identitas = $identitasPath.$identitasName;
+        }
+
+        DB::table('ppid_permohonan')->where('id', $id)->update([
+            'id_ppid_pendaftar' => $id_ppid_pendaftar,
+            'ticket_permohonan' => $ticket_permohonan,
+            'jenis_kanal' => $jenis_kanal,
+            'informasi_diminta' => $informasi_diminta,
+            'tujuan_informasi' => $tujuan_informasi,
+            'id_cara' => $id_cara,
+            'id_mendapatkan' => $id_mendapatkan,
+            'file_identitas' => $file_identitas,
+            "updated_at" => $dateCreated
+        ]);
+
+        $newData = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan')
+            ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+            ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->where('ppid_permohonan.id', $id)->first();
+
+        return $this->sendResponse($newData,
+            'Data permohonan saved successfully');
     }
 
 
@@ -120,14 +274,28 @@ class PermohonanController extends BaseController
 
      * @param  int  $id
 
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
 
      */
 
-    public function destroy(DataPermohonan $product)
+    public function destroy($id)
 
     {
-        // TODO: DELETE SPECIFIC PERMOHONAN
+        $statusPermohonan = DB::table('status_permohonan')->where([
+            'id_ppid_permohonan' => $id,
+            'aktif' => 1
+        ])->first();
+
+        if (! $statusPermohonan || $statusPermohonan->id_status != 1) {
+            return $this->sendError('DataPermohonan cannot be deleted.');
+        }
+
+        DB::table('status_permohonan')->where('id_ppid_permohonan', $id)->delete();
+        DB::table('log_permohonan')->where('id_ppid_permohonan', $id)->delete();
+        DB::table('ppid_permohonan')->where('id', $id)->delete();
+
+        return $this->sendResponse(
+            '', 'DataPermohonan retrieved successfully.');
     }
 
 }
