@@ -46,7 +46,6 @@ class RegisterController extends BaseController
         $identitas = str_replace(' ', '+', $identitas);
         $identitasName = Str::random(10).'.'.'png';
         $identitasPath = 'adminAssets/user/identitas/';
-        $identitasPath .= $identitasName;
         $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
         Storage::disk('public_uploads')->put($identitasPath, $file);
 
@@ -61,7 +60,7 @@ class RegisterController extends BaseController
             'no_hp' => $request['nohp'],
             'npwp' => $request['npwp'],
             'pekerjaan' => $request['pekerjaan'],
-            'identitas_file_path' =>  $identitasPath,
+            'identitas_file_path' =>  $identitasPath.$identitasName,
         ]);
 
         $credentials = request(['email', 'password']);
@@ -152,10 +151,9 @@ class RegisterController extends BaseController
             $identitas = str_replace(' ', '+', $identitas);
             $identitasName = Str::random(10).'.'.'png';
             $identitasPath = 'adminAssets/user/identitas/';
-            $identitasPath .= $identitasName;
             $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
             Storage::disk('public_uploads')->put($identitasPath, $file);
-            $identitas_file_path = $identitasPath;
+            $identitas_file_path = $identitasPath.$identitasName;
         }
 
         DB::table('ppid_pendaftar')->where('id', $currentUserId)->update([
