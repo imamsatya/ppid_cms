@@ -236,10 +236,9 @@ class PermohonanController extends BaseController
             $identitas = str_replace(' ', '+', $identitas);
             $identitasName = Str::random(10).'.'.'png';
             $identitasPath = 'adminAssets/user/identitas/';
-            $identitasPath .= $identitasName;
             $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
             Storage::disk('public_uploads')->put($identitasPath, $file);
-            $file_identitas = $identitasPath;
+            $file_identitas = $identitasPath.$identitasName;
         }
 
         DB::table('ppid_permohonan')->where('id', $id)->update([
