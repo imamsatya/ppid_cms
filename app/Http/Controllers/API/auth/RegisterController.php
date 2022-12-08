@@ -40,6 +40,7 @@ class RegisterController extends BaseController
         }
 
         $input = $request->all();
+
         $identitas = str_replace('data:image/png;base64,', '', $request['identitasfile']);
         $identitas = str_replace(' ', '+', $identitas);
         $identitasName = Str::random(10).'.'.'png';
@@ -47,6 +48,7 @@ class RegisterController extends BaseController
         $identitasPath .= $identitasName;
         $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
         Storage::disk('public_uploads')->put($identitasPath, $file);
+
         $user = UserPPID::create([
             'nama_lengkap' => $request['name'],
             'email' => $request['email'],
@@ -58,7 +60,7 @@ class RegisterController extends BaseController
             'no_hp' => $request['nohp'],
             'npwp' => $request['npwp'],
             'pekerjaan' => $request['pekerjaan'],
-            'identitas_file_path' =>  $identitasName,
+            'identitas_file_path' =>  $identitasPath . $identitasName,
         ]);
 
         $credentials = request(['email', 'password']);
