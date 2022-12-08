@@ -21,7 +21,7 @@ class SosialMediaController extends BaseController
         $sosial = SosialMedia::all();
 
         return $this->sendResponse(
-            new SosialMediaResource($sosial->first()), 'SosialMedia retrieved successfully.');
+            SosialMediaResource::collection($sosial), 'SosialMedia retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
