@@ -66,7 +66,7 @@ class RegisterController extends BaseController
 
         $credentials = request(['email', 'password']);
 
-        if (! $token = Auth::guard('api')->attempt($credentials)) {
+        if (! $token = Auth::guard('api')->setTTL(999999)->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -87,7 +87,7 @@ class RegisterController extends BaseController
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = Auth::guard('api')->attempt($credentials)) {
+        if (! $token = Auth::guard('api')->setTTL(999999)->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
