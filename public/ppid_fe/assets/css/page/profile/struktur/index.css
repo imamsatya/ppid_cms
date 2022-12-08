@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none !important;
+  /*  text-transform: capitalize;*/
+}
+
+.btn-outline-primary-ppid {
+  border: 1px solid #104e70;
+  padding: 10px 30px 10px 30px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 22px;
+  color: #104e70;
+}
+
+.btn-outline-primary-ppid:hover {
+  background-color: #104e70;
+  color: #fff;
+}
+
+.btn-back {
+  border: 1px solid #104e70;
+  color: #104e70;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.btn-back-info {
+  margin-left: 10px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 19px;
+  color: #363636;
+}
+
+.btn-back:hover {
+  background-color: #104e70;
+  color: #fff;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1;
+  background: #fff;
+}
+
+.banner .data_banner {
+  padding-bottom: 80px;
+  margin-top: 80px;
+  background-image: url("../../../../images/content/background/bg_tentang_ppid.png");
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  background-size: 100% 300px;
+  height: 300px;
+  padding: 100px 100px 100px 100px;
+}
+
+.banner .data_banner .informasi {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+
+.data_banner .informasi p {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #363636;
+  text-align: center;
+}
+
+.data_banner .informasi label {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 43px;
+  color: #363636;
+}
+
+.informasi_struktur {
+  margin-top: 77px;
+  width: 100%;
+  height: auto;
+}
+
+.informasi_struktur .title_struktur {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 38px;
+  color: #363636;
+}
+
+.informasi_struktur .unduh_materi {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 16px;
+  color: #008b99;
+}
+
+.informasi_struktur .bagan_box {
+  text-align: left;
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-left: 6px solid #1f2755 !important;
+  border: 2px solid #1f2755;
+  border-radius: 8px;
+}
+
+.informasi_struktur .bagan_box span {
+  color: #1f2755;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 10px;
+}
+
+.informasi_struktur .bagan_box_one {
+  text-align: left;
+  width: 215px;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-left: 6px solid #1f2755 !important;
+  border: 2px solid #1f2755;
+  border-radius: 8px;
+}
+
+.informasi_struktur .bagan_box_one span {
+  color: #1f2755;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 10px;
+}
+
+.triangle-down {
+  margin-left: 170px;
+  height: 0px;
+  width: 0px;
+  border-top: solid 20px #1f2755;
+  border-left: solid 20px transparent;
+  border-right: solid 20px transparent;
+}
+
+.triangle-left_one {
+  margin-top: 20px;
+  height: 0px;
+  width: 0px;
+  border-left: solid 15px #1f2755;
+  border-top: solid 15px transparent;
+  border-bottom: solid 15px transparent;
+}
+
+.triangle-left_two {
+  margin-top: 20px;
+  height: 0px;
+  width: 0px;
+  border-left: solid 15px #1b5f7d;
+  border-top: solid 15px transparent;
+  border-bottom: solid 15px transparent;
+}
+
+.triangle-left_three {
+  margin-top: 20px;
+  height: 0px;
+  width: 0px;
+  border-left: solid 15px #1797a4;
+  border-top: solid 15px transparent;
+  border-bottom: solid 15px transparent;
+}
+
+.content_struktur {
+  width: 100%;
+  height: auto;
+  border: 2px solid #1797a4;
+  border-left: solid 15px #1797a4;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.content_struktur ul {
+  list-style: none;
+}
+
+.content_struktur ul li{
+  margin-top: 20px;
+}
+
+.content_struktur .informasi {
+  width: 100%;
+  margin-left: 20px;
+}
+
+.content_struktur .informasi .title_label {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 24px;
+  color: #363636;
+}
+
+.content_struktur .informasi .description{
+  font-family: 'Lato',sans-serif;
+font-style: normal;
+font-size: 0.875rem;
+line-height: 20px;
+color: #000000;
+}
+
+.content_struktur img {
+  width: 25px;
+  height: 25px;
+}
