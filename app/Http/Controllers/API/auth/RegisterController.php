@@ -46,7 +46,7 @@ class RegisterController extends BaseController
         $identitasPath = 'adminAssets/user/identitas/';
         $identitasPath .= $identitasName;
         $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
-        Storage::put($identitasPath, $file);
+        Storage::disk('public_uploads')->put($identitasPath, $file);
         $user = UserPPID::create([
             'nama_lengkap' => $request['name'],
             'email' => $request['email'],
@@ -63,7 +63,7 @@ class RegisterController extends BaseController
 
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = Auth::guard('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -71,7 +71,7 @@ class RegisterController extends BaseController
             'name' => $request['name'],
             'token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
         ]);
     }
 
@@ -84,7 +84,7 @@ class RegisterController extends BaseController
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = Auth::guard('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -98,7 +98,7 @@ class RegisterController extends BaseController
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json(Auth::guard('api')->user());
     }
 
     /**
@@ -108,7 +108,7 @@ class RegisterController extends BaseController
      */
     public function logout()
     {
-        auth()->logout();
+        Auth::guard('api')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -120,7 +120,7 @@ class RegisterController extends BaseController
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(Auth::guard('api')->refresh());
     }
 
     /**
@@ -135,7 +135,7 @@ class RegisterController extends BaseController
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
         ]);
     }
 
