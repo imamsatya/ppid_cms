@@ -47,7 +47,7 @@ class PermohonanController extends BaseController
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
             ->where('status_permohonan.aktif', 1)
-//            ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
+            ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
             ->get();
 
         return $this->sendResponse($result,
@@ -158,10 +158,22 @@ class PermohonanController extends BaseController
             ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
             ->where('ppid_permohonan.id', $id)->first();
 
-        if (is_null($result)) {
+        $status = DB::table('status_permohonan')
+            ->select('*')
+            ->where('id_ppid_permohonan', $id)
+            ->first();
+
+        if (is_null($result) || is_null($status)) {
             return $this->sendError('DataPermohonan not found.');
         }
 
+        $status_name = DB::table('status')
+            ->select('*')
+            ->where('id', $status->id_status)
+            ->first();
+
+        $result->status = $status->id_status;
+        $result->status_name = $status_name->name;
         return $this->sendResponse(
             $result, 'DataPermohonan retrieved successfully.');
     }
