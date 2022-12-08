@@ -172,8 +172,8 @@ class PermohonanController extends BaseController
             ->where('id', $status->id_status)
             ->first();
 
-        $result->status = $status->id_status;
-        $result->status_name = $status_name->name;
+        $result->id_status = $status->id_status;
+        $result->nama_status = $status_name->name;
         return $this->sendResponse(
             $result, 'DataPermohonan retrieved successfully.');
     }
