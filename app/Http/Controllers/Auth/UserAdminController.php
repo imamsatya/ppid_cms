@@ -22,7 +22,9 @@ class UserAdminController extends Controller
     public function handleLogin(Request $req)
     {
         $credentials = request(['email', 'password']);
-        if (auth()->attempt($credentials)) {
+        if (Auth::guard('web')->attempt(
+            $req->only(['email', 'password'])
+        )) {
             return redirect()->intended('/admin/dashboard');
         }
 
