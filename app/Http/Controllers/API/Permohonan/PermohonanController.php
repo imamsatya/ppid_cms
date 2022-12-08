@@ -239,7 +239,7 @@ class PermohonanController extends BaseController
             $identitasPath .= $identitasName;
             $file = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '',$identitas));
             Storage::disk('public_uploads')->put($identitasPath, $file);
-            $file_identitas = $identitasPath.$identitasName;
+            $file_identitas = $identitasPath;
         }
 
         DB::table('ppid_permohonan')->where('id', $id)->update([
