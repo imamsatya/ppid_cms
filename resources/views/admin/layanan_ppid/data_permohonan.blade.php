@@ -71,7 +71,7 @@ margin: 0;
 
 
                                 <table id="kt_datatable_dom_positioning_daftarPermohonanMasuk"
-                                    class="table table-striped table-row-bordered gy-5 gs-7">
+                                    class="table table-row-bordered gy-5 gs-7">
                                     <thead>
                                         <tr class="fw-semibold fs-6 text-gray-800">
                                             <th>No</th>
@@ -209,7 +209,7 @@ margin: 0;
                     </div>
                     <div class="modal-footer">                        
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="save-konfirmasi-permohonan">Save changes</button>
+                        <button type="button" class="btn btn-primary" id="save-konfirmasi-permohonan">KIRIM</button>
                     </div>
                 </div>
             </div>
@@ -254,7 +254,7 @@ margin: 0;
                     </div>
                     <div class="modal-footer">                        
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="save-answer">Save changes</button>
+                        <button type="button" class="btn btn-primary" id="save-answer">KIRIM</button>
                     </div>
                 </div>
             </div>
@@ -318,7 +318,7 @@ margin: 0;
                             Data Permohonan
                         </h5>                        
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="data-cetak-field">
                         <div class="form-data">
                             <div class="row">
                                 <div class="col-md-6">
@@ -398,7 +398,10 @@ margin: 0;
         <input type="hidden" id="id-permohonan-edited">
 
 
-    @push('child-scripts')    
+    @push('child-scripts') 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
     <script>
         $(document).ready(function(){
@@ -456,6 +459,7 @@ margin: 0;
                 try {                    
                     const result = await getDataPermohonanMasuk(asal, status)
                     const data = result.result
+                    const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
                     let rowData = []
                     for(let i=0; i<data.length; i++) {
                         let btnAction = ''
@@ -472,14 +476,14 @@ margin: 0;
                             ticketAction = `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
                         }
 
-
+                        
                         rowData.push([
                             i+1,
-                            data[i].created_at,
+                            data[i].created_at.split(' ')[0],
                             ticketAction,
                             data[i].nama_lengkap,
                             data[i].jenis_kanal,
-                            '-',
+                            data[i].id_status == '1' ? '-' : ( now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1),
                             data[i].nama_status,
                             btnAction                           
                         ])
@@ -518,7 +522,7 @@ margin: 0;
                             ticketAction,
                             data[i].nama_lengkap,
                             data[i].jenis_kanal,
-                            '-',
+                            data[i].expired_date2,
                             data[i].nama_status,
                         ])
                     }
@@ -543,7 +547,16 @@ margin: 0;
                     ">",
                 initComplete: function () {
                     loadDataPermintaanMasuk()
-                }
+                },
+                "createdRow": function(row, data, dataIndex) {
+                    if (data[5] != null && data[5] != '-') {
+                        const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
+                        if(now > data[5]) {
+                            $(row).css("background-color", "Orange");
+                        }
+                        // $(row).addClass("warning");
+                    }
+                },
             });
 
             var tablePermohonanSelesai = $("#kt_datatable_dom_positioning_daftarPermohonanSelesai").DataTable({
@@ -617,14 +630,14 @@ margin: 0;
             async function statusPermohonan() {
                 try {
                     const result = await getStatusPermohonan()
-                    let dataOptionBelumSelesai = result.result.filter(data => [1,2,3,4].includes(data.id))
+                    let dataOptionBelumSelesai = result.result.filter(data => [1,2,3].includes(data.id))
                     let option = '<option value="-">-- Status Permohonan --</option>'
                     for(let i=0; i<dataOptionBelumSelesai.length; i++) {
                         option += `<option value="${dataOptionBelumSelesai[i].id}">${dataOptionBelumSelesai[i].name}</option>`
                     }
                     $("#status_permohonan").html(option)
 
-                    let dataOptionSelesai = result.result.filter(data => [5, 6].includes(data.id))
+                    let dataOptionSelesai = result.result.filter(data => [4, 5, 6].includes(data.id))
                     let optionSelesai = '<option value="-">-- Status Permohonan --</option>'
                     for(let i=0; i<dataOptionSelesai.length; i++) {
                         optionSelesai += `<option value="${dataOptionSelesai[i].id}">${dataOptionSelesai[i].name}</option>`
@@ -677,7 +690,6 @@ margin: 0;
                 modalPermohonan.block()
 
                 const dataPermohonan = await ppidPermohonanUser(data)
-                console.log(dataPermohonan)
                 $("#id-permohonan-edited").val(data)
                 tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
                 tinymce.get("area-informasi-diminta").getBody().setAttribute('contenteditable', false)
@@ -739,6 +751,15 @@ margin: 0;
                 })
             }
 
+            const jadwalKerja = () => {
+                return $.ajax({
+                    type: 'GET',
+                    url: "/admin/jadwal-kerja",
+                    dataType: 'json'
+                })
+            }
+
+            let jadwal = null
             $(document).on('click', '#save-konfirmasi-permohonan', async function() {
                 const statusKonfirmasi = $('input[name="konfirmasi-radio"]:checked').val()
                 if(statusKonfirmasi == undefined) {
@@ -765,9 +786,24 @@ margin: 0;
                         '_token': "{{ csrf_token() }}",
                         'statusKonfirmasi': statusKonfirmasi,
                         'alasanPenolakan': alasanPenolakan,
-                        'id': $("#id-permohonan-edited").val()
-                    }
+                        'id': $("#id-permohonan-edited").val(),
+                        'expired1': '-',
+                        'expired2': '-'
+                    }                                                          
+
                     modalPermohonan.block()
+
+                    if(statusKonfirmasi == 'proses') {
+                        if(jadwal == null) {
+                            jadwal = await jadwalKerja()
+                            jadwal = jadwal.result.data
+                        }
+
+                        const hariKerja = jadwal.filter(jd => jd.tanggal > new Date().toJSON().slice(0,10).replace(/-/g,'-') && jd.jenis == '0')
+                        data['expired1'] = hariKerja[8] ? hariKerja[8].tanggal : '2022-12-31'
+                        data['expired2'] = hariKerja[15] ? hariKerja[15].tanggal : '2022-12-31'
+                    } 
+
                     const result = await submitKonfirmasiPermohonan(data)
                     modalPermohonan.release()
                     $("#exampleModalCenter").modal('hide')
@@ -778,6 +814,7 @@ margin: 0;
                     })
                     loadDataPermintaanMasuk()
                 } catch (error) {
+                    modalPermohonan.release()
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
@@ -852,7 +889,9 @@ margin: 0;
                         html: result.result
                     })
                     loadDataPermintaanMasuk()
+                    loadDataPermintaanSelesai()
                 } catch (error) {
+                    modalAnswer.release()
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
@@ -942,6 +981,8 @@ margin: 0;
                 modalDetail.block()
                 const dataPermohonan = await ppidPermohonanUser(data)
                 const dataPemohon = await ppidPendaftar(dataPermohonan.result.id_ppid_pendaftar)
+
+                console.log(dataPermohonan)
                 
                 $("#id-permohonan-edited").val(data)
                 tinymce.get("area-informasi-diminta-detail").setContent(dataPermohonan.result.informasi_diminta)
@@ -960,7 +1001,7 @@ margin: 0;
                 $("#detail-alamat").val(dataPemohon.result.alamat)
                 $("#detail-pekerjaan").val(dataPemohon.result.pekerjaan)
                 $("#detail-email").val(dataPemohon.result.email)
-                $("#detail-status").val(dataPemohon.result.status)
+                $("#detail-status").val(dataPermohonan.result.nama_status_permohonan)
 
                 modalDetail.release()
             }
@@ -999,6 +1040,33 @@ margin: 0;
                 const statusPermohonan = $(this).val()
                 const asalPermohonan = $("#asal-selesai").val()
                 loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan)
+            })
+
+            $(document).on('click', '#cetak-permohonan', function(){
+                modalDetail.block()
+                // const { jsPDF } = window.jspdf
+                // window.html2canvas = html2canvas;
+                // var doc = new jsPDF();            
+                // doc.html($("#data-cetak-field")[0], {
+                //     callback: function (doc) {
+                //         doc.save('Permohonan PPID');
+                //     },
+                //     width: 170, //target width in the PDF document
+                //     windowWidth: 650, //window width in CSS pixels
+                //     x: 15,
+                //     y: 15,
+                // });
+                var opt = {
+                margin:       1,
+                filename:     'myfile.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
+                var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
+
+                modalDetail.release()
+                              
             })
             
         })
