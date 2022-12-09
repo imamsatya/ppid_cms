@@ -45,7 +45,7 @@ class PpidPermohonanDkk extends Seeder
                 ],
                 [
                     'id' => 2,
-                    'name' => 'Dikonfirmasi oleh'
+                    'name' => 'Dikonfirmasi'
                 ],
                 [
                     'id' => 3,
@@ -53,11 +53,11 @@ class PpidPermohonanDkk extends Seeder
                 ],
                 [
                     'id' => 4,
-                    'name' => 'Dijawab oleh'
+                    'name' => 'Dijawab'
                 ],
                 [
                     'id' => 5,
-                    'name' => 'Ditolak oleh'
+                    'name' => 'Ditolak'
                 ],
                 [
                     'id' => 6,

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class DataPermohonanController extends Controller
 {
@@ -100,7 +103,7 @@ class DataPermohonanController extends Controller
                 if($status != '-') {
                     $query->where('status_permohonan.id_status', $status);    
                 } else {
-                    $query->whereNotIn('status_permohonan.id_status', [5,6]); // kecuali yg selesai dan ditolak
+                    $query->whereNotIn('status_permohonan.id_status', [4,5,6]); // kecuali yg selesai dan ditolak
                 }
             })
             ->where(function($query) use ($asal) {
@@ -127,7 +130,7 @@ class DataPermohonanController extends Controller
                 if($status != '-') {
                     $query->where('status_permohonan.id_status', $status);    
                 } else {
-                    $query->whereIn('status_permohonan.id_status', [5,6]); // kecuali yg selesai dan ditolak
+                    $query->whereIn('status_permohonan.id_status', [4,5,6]); // kecuali yg selesai dan ditolak
                 }
             })
             ->where(function($query) use ($asal) {
@@ -165,6 +168,11 @@ class DataPermohonanController extends Controller
         echo json_encode(array('result' => 'Berhasil mengkonfirmasi permohonan!', 'status' => 'success'));
     }
 
+    public function jadwalKerja() {
+        $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
+        echo json_encode(array('result' => $response->json()));
+    }
+
     public function prosesPermohonan($data, $permohonan, $dateCreated) {
         
         // generate ticket_number
@@ -181,8 +189,11 @@ class DataPermohonanController extends Controller
         $ticketNumber = ($countTicket < 10 ? '0'.$countTicket : $countTicket).'/'.$tipe.'/'.$month.'/'.$year;
 
         // update ppid_permohonan
+        // date('Y-m-d', strtotime($dateCreated. ' + 10 days'))
         DB::table('ppid_permohonan')->where('id', $data['id'])->update([
-            'ticket_permohonan' => $ticketNumber
+            'ticket_permohonan' => $ticketNumber,
+            'expired_date1' => $data['expired1'],
+            'expired_date2' => $data['expired2'],
         ]);
 
         // status permohonan
@@ -263,10 +274,15 @@ class DataPermohonanController extends Controller
             $file_dukung = 'adminAssets/ppid/dukungan/'.$filename;
         }
 
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']] );
+        $nmfile = time().'_answer.pdf';
+        $pdf->save(public_path('adminAssets/ppid/answer/').''.$nmfile);
+
         
         $dataAnswer = [
             'id_ppid_permohonan' => $data['id'],
             'ket_jawaban' => $data['answer'],
+            'ket_jawaban_path' => 'adminAssets/ppid/answer/'.$nmfile,
             'file_jawaban' => $file_dukung == '' ? null : $file_dukung,
             'jawab_by' => Auth::user()->id,
             "created_at" =>  $dateCreated,
@@ -295,6 +311,7 @@ class DataPermohonanController extends Controller
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
         ]);
+        
 
         echo json_encode(array('result' => 'Berhasil menyimpan respon!', 'status' => 'success'));
     }

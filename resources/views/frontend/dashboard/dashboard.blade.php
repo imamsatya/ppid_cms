@@ -512,15 +512,11 @@
                 try {
                     const result = await getDataPermohonan()
                     const data = result.result
+                    console.log(data)
                     let rowData = []
+                    const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
                     for(let i=0; i<data.length; i++) {
-                        rowData.push([
-                            data[i].ticket_permohonan,
-                            data[i].informasi_diminta,
-                            data[i].nama_status,
-                            '-',
-                            '-',
-                            `<button class="btn btn-sm edit-permohonan" data-permohonan="${data[i].id}">
+                        let btnAction = `<button class="btn btn-sm edit-permohonan" data-permohonan="${data[i].id}">
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
                                     alt="" />
                             </button>
@@ -528,6 +524,37 @@
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
                                     alt="" />
                             </button>`
+                        if(data[i].id_status != 1) btnAction = '-'
+                        let status = ''
+                        switch(data[i].id_status) {
+                            case 1:
+                                status = 'Belum Dikonfirmasi'
+                                break
+                            case 2:
+                            case 3:
+                                status = 'Proses'
+                                break
+                            case 4:
+                                status = 'Selesai'
+                                break
+                            default:
+                                status = data[i].nama_status
+                                break
+                        }
+                        let jawaban = '-'
+                        if(data[i].id_status == 4) {
+                            jawaban = `
+                                <a class="mb-4 mr-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a>
+                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
+                            `
+                        }
+                        rowData.push([
+                            data[i].ticket_permohonan,
+                            data[i].informasi_diminta,
+                            status,
+                            data[i].id_status == '1' ? '-' : ( now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1),
+                            jawaban,
+                            btnAction
                         ])
                     }
                     
