@@ -119,7 +119,7 @@
 
             <div class="card card-flush shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">informasi PPID</h3>
+                    <h3 class="card-title">Informasi PPID</h3>
                     <div class="card-toolbar">
                         @can('informasi.create')
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"

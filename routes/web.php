@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\Laporan\LaporanBannerController;
 
 //Layanan PPID
 use App\Http\Controllers\Admin\LayananPPID\DataPermohonanController;
+use App\Http\Controllers\Admin\LayananPPID\DataKeberatanController;
 
 //Standar Layanan
 use App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController;
@@ -80,6 +81,7 @@ use App\Http\Controllers\Frontend\InformasiPublik\InformasiSecaraBerkalaControll
 
 //Layanan PPID
 use App\Http\Controllers\Frontend\LayananPPID\DataPermohonanController as DataPermohonanControllerUser;
+use App\Http\Controllers\Frontend\LayananPPID\DataKeberatanController as DataKeberatanControllerUser;
 
 //Standar Layanan
 use App\Http\Controllers\Frontend\StandarLayanan\MaklumatController as MaklumatControllerUser;
@@ -200,6 +202,11 @@ Route::get('ppid-data-permohonan-spec/{id}', [DataPermohonanControllerUser::clas
 Route::get('ppid-jenis-pemohon', [DataPermohonanControllerUser::class, 'ppidJenisPemohon']);
 Route::delete('ppid-data-permohonan/{id}', [DataPermohonanControllerUser::class, 'ppidHapusDataPermohonan']);
 Route::get('ppid-status-permohonan', [DataPermohonanControllerUser::class, 'ppidStatusPermohonan']);
+//keberatan
+Route::get('ppid-kategori-keberatan', [DataKeberatanControllerUser::class, 'ppidKategoriKeberatan']);
+Route::post('submit-data-keberatan', [DataKeberatanControllerUser::class, 'submitKeberatanUser']);
+Route::get('ppid-data-keberatan', [DataKeberatanControllerUser::class, 'ppidDataKeberatan']);
+Route::get('ppid-data-keberatan-spec/{id}', [DataKeberatanControllerUser::class, 'ppidDataKeberatanSpec']);
 
 
 //Admin
@@ -255,6 +262,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     //Layanan PPID, kurang 1 route
     Route::resource('data_permohonan', DataPermohonanController::class);
+    Route::resource('data_keberatan', DataKeberatanController::class);
 
     //Manajemen User
     Route::resource('role_permission', RolePermissionController::class);
