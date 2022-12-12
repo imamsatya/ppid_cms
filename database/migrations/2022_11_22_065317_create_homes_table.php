@@ -37,6 +37,7 @@ return new class extends Migration
             $table->id();
             $table->string('sideimage_path');
             $table->string('backgroundimage_path');
+            $table->string('ppidlogo_path');
             $table->timestamps();
         });
 

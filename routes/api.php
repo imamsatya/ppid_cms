@@ -15,6 +15,7 @@ use App\Http\Controllers\API\InformasiPublik\InformasiSetiapSaatController;
 use App\Http\Controllers\API\ManajemenHome\InformasiImageController;
 use App\Http\Controllers\API\ManajemenHome\SliderController;
 use App\Http\Controllers\API\ManajemenHome\VideoController;
+use App\Http\Controllers\API\Permohonan\PermohonanController;
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
 use App\Http\Controllers\API\Profil\LinkAppController;
@@ -49,7 +50,14 @@ use Illuminate\Support\Facades\Route;
 Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
+    Route::post('refresh', 'refresh');
+    Route::get('me', 'me');
+    Route::put('update_profile', 'updateProfile');
+    Route::put('update_password', 'updatePassword');
 });
+
+// LayananPPID
+Route::resource('permohonan', PermohonanController::class);
 
 // FAQ
 // Route::resource('faq', FAQController::class);

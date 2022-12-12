@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InformasiImageResource extends JsonResource
+class JenisPermohonanResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,10 @@ class InformasiImageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'sideimage_path' => $this->sideimage_path,
-            'backgroundimage_path' => $this->backgroundimage_path,
-            'ppidlogo_path' => $this->ppidlogo_path,
+            'judul' => $this->judul,
+            'deskripsi' => $this->deskripsi,
+            'banner_path' => $this->banner_path,
+            'direktori_image' => $this->direktori_image,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];
