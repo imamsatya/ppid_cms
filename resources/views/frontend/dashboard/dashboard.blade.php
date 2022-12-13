@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -492,418 +492,342 @@
         <script>
             $(document).ready(function() {
 
-                        //Modal Permohonan
-                        var modalPermohonan = new KTBlockUI(document.getElementById('content-modal-permohonan'), {
-                            message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
-                        });
-                        var tablePermohonanUI = new KTBlockUI(document.getElementById('bd-table-permohonan'), {
-                            message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
-                        });
+                var modalPermohonan = new KTBlockUI(document.getElementById('content-modal-permohonan'), {
+                    message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
+                });
+                var tablePermohonanUI = new KTBlockUI(document.getElementById('bd-table-permohonan'), {
+                    message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
+                });
 
-                        //Modal Keberatan
-
-
-
-                        // var bodyUI = new KTBlockUI(document.getElementsByTagName("body")[0], {
-                        //             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
-                        //         });   
+                // var bodyUI = new KTBlockUI(document.getElementsByTagName("body")[0], {
+                //             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
+                //         });   
 
 
-                        $("#btn-show-modal-permohonan").on('click', function() {
-                            loadModalPermohonan()
-                        })
+                $("#btn-show-modal-permohonan").on('click', function() {
+                    loadModalPermohonan()
+                })
+
+                async function loadModalPermohonan(type = 'add-new', data = null) {
+                    modalPermohonan.block()
+                    const user = {!! Auth::user()->toJson() !!}
+
+                    $("#name-user-modal").html(user.nama_lengkap)
+                    $("#nomor-user-modal").html(user.nomor_identitas)
+
+                    const ppidJenisPemohon = await getPpidJenisPemohon()
+                    const jenisPemohon = ppidJenisPemohon.result.find(el => el.id == user.jenis_pemohon)
+                    if (jenisPemohon != undefined) {
+                        $("#jpemohon-user-modal").html(jenisPemohon.name)
+                    } else {
+                        $("#jpemohon-user-modal").html('-')
+                    }
+
+                    await ppidCaraMendapatkan()
+                    await ppidCaraMemberikan()
+
+                    if (type == 'add-new') {
+                        tinymce.get("area-informasi-diminta").setContent('')
+                        tinymce.get("area-tujuan-penggunaan").setContent('')
+                        $("#id-permohonan-edited").val('')
+                    } else {
+                        const dataPermohonan = await ppidPermohonanUser(data)
+                        $("#id-permohonan-edited").val(data)
+                        tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
+                        tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
+                        $("#select-memberikan-informasi").val(dataPermohonan.result.id_cara)
+                        $("#select-memperoleh-informasi").val(dataPermohonan.result.id_mendapatkan)
+                    }
+
+                    modalPermohonan.release()
+                }
 
 
+                const ppidPermohonanUser = (id) => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "ppid-data-permohonan-spec/" + id,
+                        dataType: 'json'
+                    })
+                }
 
-                        async function loadModalPermohonan(type = 'add-new', data = null) {
-                            modalPermohonan.block()
-                            const user = {!! Auth::user()->toJson() !!}
+                const ppidJenisPemohon = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/ppid-jenis-pemohon",
+                        dataType: 'json'
+                    })
+                }
 
-                            $("#name-user-modal").html(user.nama_lengkap)
-                            $("#nomor-user-modal").html(user.nomor_identitas)
+                async function getPpidJenisPemohon() {
+                    try {
+                        const result = await ppidJenisPemohon()
+                        return result
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
 
-                            const ppidJenisPemohon = await getPpidJenisPemohon()
-                            const jenisPemohon = ppidJenisPemohon.result.find(el => el.id == user.jenis_pemohon)
-                            if (jenisPemohon != undefined) {
-                                $("#jpemohon-user-modal").html(jenisPemohon.name)
-                            } else {
-                                $("#jpemohon-user-modal").html('-')
+
+                const getDataPermohonan = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/ppid-data-permohonan",
+                        dataType: 'json'
+                    });
+                }
+
+                const tablePermohonan = $("#table-permohonan").DataTable({
+                    initComplete: function() {
+                        loadData()
+                    }
+                });
+
+                async function loadData() {
+                    tablePermohonanUI.block()
+                    await ppidDataPermohonan()
+                    tablePermohonanUI.release()
+                }
+
+                async function ppidDataPermohonan() {
+                    try {
+                        const result = await getDataPermohonan()
+                        const data = result.result
+                        let rowData = []
+                        const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
+                        for (let i = 0; i < data.length; i++) {
+                            let btnAction = `<button class="btn btn-sm edit-permohonan" data-permohonan="${data[i].id}">
+                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
+                        alt="" />
+                </button>
+                <button class="btn btn-sm delete-permohonan" data-permohonan="${data[i].id}">
+                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
+                        alt="" />
+                </button>`
+                            if (data[i].id_status != 1) btnAction = '-'
+                            let status = ''
+                            switch (data[i].id_status) {
+                                case 1:
+                                    status = 'Belum Dikonfirmasi'
+                                    break
+                                case 2:
+                                case 3:
+                                    status = 'Proses'
+                                    break
+                                case 4:
+                                    status = 'Selesai'
+                                    break
+                                default:
+                                    status = data[i].nama_status
+                                    break
                             }
-
-                            await ppidCaraMendapatkan()
-                            await ppidCaraMemberikan()
-
-                            if (type == 'add-new') {
-                                tinymce.get("area-informasi-diminta").setContent('')
-                                tinymce.get("area-tujuan-penggunaan").setContent('')
-                                $("#id-permohonan-edited").val('')
-                            } else {
-                                const dataPermohonan = await ppidPermohonanUser(data)
-                                $("#id-permohonan-edited").val(data)
-                                tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
-                                tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
-                                $("#select-memberikan-informasi").val(dataPermohonan.result.id_cara)
-                                $("#select-memperoleh-informasi").val(dataPermohonan.result.id_mendapatkan)
+                            let jawaban = '-'
+                            if (data[i].id_status == 4) {
+                                jawaban = `
+                    <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
+                    ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
+                `
                             }
-
-                            modalPermohonan.release()
+                            rowData.push([
+                                data[i].ticket_permohonan,
+                                data[i].informasi_diminta,
+                                status,
+                                data[i].id_status == '1' ? '-' : (now > data[i].expired_date1 ? data[i]
+                                    .expired_date2 : data[i].expired_date1),
+                                jawaban,
+                                btnAction
+                            ])
                         }
 
+                        tablePermohonan.clear().rows.add(rowData).draw()
+                    } catch (error) {
+                        console.log(error.responseText)
+                    }
+                }
 
-                        const ppidPermohonanUser = (id) => {
-                            return $.ajax({
-                                type: 'GET',
-                                url: "ppid-data-permohonan-spec/" + id,
-                                dataType: 'json'
-                            })
-                        }
+                $(document).on('click', '#cancel-permohonan', function() {
+                    $("#exampleModalCenter").modal('hide')
+                })
 
-                        const ppidJenisPemohon = () => {
-                            return $.ajax({
-                                type: 'GET',
-                                url: "/ppid-jenis-pemohon",
-                                dataType: 'json'
-                            })
-                        }
 
-                        async function getPpidJenisPemohon() {
+                $(document).on('click', '.edit-permohonan', function() {
+                    const idPermohonan = $(this).data('permohonan')
+                    $("#exampleModalCenter").modal('show')
+                    loadModalPermohonan('edit-data', idPermohonan)
+                })
+
+                const deleteDataPermohonan = (id) => {
+                    return $.ajax({
+                        type: 'DELETE',
+                        url: "/ppid-data-permohonan/" + id,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: 'json'
+                    })
+                }
+
+                $(document).on('click', '.delete-permohonan', function() {
+                    const idPermohonan = $(this).data('permohonan')
+                    Swal.fire({
+                        icon: 'question',
+                        title: 'Konfirmasi',
+                        html: 'Hapus data permohonan ?',
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, Hapus Data",
+                        customClass: {
+                            cancelButton: 'btn btn-danger',
+                            confirmButton: "btn btn-primary",
+                        },
+                        showLoaderOnConfirm: true,
+                        preConfirm: async () => {
                             try {
-                                const result = await ppidJenisPemohon()
-                                return result
+                                await deleteDataPermohonan(idPermohonan)
                             } catch (error) {
-                                console.log(error)
+                                Swal.showValidationMessage(
+                                    `Request failed: ${error}`
+                                )
                             }
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((dt) => {
+                        if (dt.isConfirmed) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                html: 'Berhasil menghapus data permohonan!'
+                            })
+                            loadData()
                         }
+                    })
+                })
 
+                const getDataPpidCaraMendapatkan = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/ppid-cara-mendapatkan",
+                        dataType: 'json'
+                    });
+                }
 
-                        const getDataPermohonan = () => {
-                            return $.ajax({
-                                type: 'GET',
-                                url: "/ppid-data-permohonan",
-                                dataType: 'json'
-                            });
+                async function ppidCaraMendapatkan() {
+                    try {
+                        const result = await getDataPpidCaraMendapatkan()
+                        let option = '<option selected value="-">-- Cara memperoleh informasi --</option>'
+                        for (let i = 0; i < result.result.length; i++) {
+                            option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
                         }
+                        $("#select-memperoleh-informasi").html(option)
+                    } catch (err) {
+                        console.log(err.responseText)
+                    }
+                }
 
-                        const tablePermohonan = $("#table-permohonan").DataTable({
-                            initComplete: function() {
+                const getDataPpidCaraMemberikan = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/ppid-cara-memberikan",
+                        dataType: 'json'
+                    });
+                }
+
+                async function ppidCaraMemberikan() {
+                    try {
+                        const result = await getDataPpidCaraMemberikan()
+                        let option = '<option selected value="-">-- Cara memberikan informasi --</option>'
+                        for (let i = 0; i < result.result.length; i++) {
+                            option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+                        }
+                        $("#select-memberikan-informasi").html(option)
+                    } catch (err) {
+                        console.log(err.responseText)
+                    }
+                }
+
+                const submitDataPermohonan = (data) => {
+                    return $.ajax({
+                        type: 'POST',
+                        url: "/submit-data-permohonan",
+                        data: data,
+                        dataType: 'json'
+                    });
+                }
+
+
+                let configAreaInformasiDiminta = {
+                    selector: "#area-informasi-diminta",
+                    height: "300"
+                };
+                let configAreaTujuanPenggunaan = {
+                    selector: "#area-tujuan-penggunaan",
+                    height: "300"
+                };
+                tinymce.init(configAreaInformasiDiminta);
+                tinymce.init(configAreaTujuanPenggunaan);
+
+                $("#save-permohonan").click(function() {
+                    const user = {!! Auth::user()->toJson() !!}
+                    const data = {
+                        'id': $("#id-permohonan-edited").val(),
+                        '_token': "{{ csrf_token() }}",
+                        'id_ppid_pendaftar': user.id,
+                        'ticket_permohonan': '-',
+                        'jenis_kanal': 'web',
+                        'informasi_diminta': tinymce.get("area-informasi-diminta").getContent(),
+                        'tujuan_informasi': tinymce.get("area-tujuan-penggunaan").getContent(),
+                        'id_cara': $("#select-memberikan-informasi").val(),
+                        'id_mendapatkan': $("#select-memperoleh-informasi").val(),
+                        'file_identitas': user.identitas_file_path,
+                    }
+
+                    if (data.informasi_diminta.length == 0 || data.tujuan_informasi.length == 0 || data
+                        .id_cara == '-' || data.id_mendapatkan == '-') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            html: 'Isian tidak lengkap!'
+                        })
+                        return
+                    }
+
+                    Swal.fire({
+                        icon: 'question',
+                        html: `Simpan permohonan ?`,
+                        cancelButtonText: 'Cancel',
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, Simpan",
+                        customClass: {
+                            cancelButton: 'btn btn-danger',
+                            confirmButton: "btn btn-primary",
+                        }
+                    }).then(async (dt) => {
+                        if (dt.isConfirmed) {
+
+                            try {
+                                modalPermohonan.block();
+                                const result = await submitDataPermohonan(data)
+                                modalPermohonan.release();
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sukses',
+                                    html: 'Berhasil menyimpan data permohonan!'
+                                })
+                                $("#cancel-permohonan").click()
                                 loadData()
-                            }
-                        });
-
-                        async function loadData() {
-                            tablePermohonanUI.block()
-                            await ppidDataPermohonan()
-                            tablePermohonanUI.release()
-                        }
-
-                        async function ppidDataPermohonan() {
-                            try {
-                                const result = await getDataPermohonan()
-                                const data = result.result
-                                let rowData = []
-                                const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
-                                for (let i = 0; i < data.length; i++) {
-                                    let btnAction = `<button class="btn btn-sm edit-permohonan" data-permohonan="${data[i].id}">
-                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                                    alt="" />
-                            </button>
-                            <button class="btn btn-sm delete-permohonan" data-permohonan="${data[i].id}">
-                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                                    alt="" />
-                            </button>`
-                                    if (data[i].id_status != 1) btnAction = '-'
-                                    let status = ''
-                                    switch (data[i].id_status) {
-                                        case 1:
-                                            status = 'Belum Dikonfirmasi'
-                                            break
-                                        case 2:
-                                        case 3:
-                                            status = 'Proses'
-                                            break
-                                        case 4:
-                                            status = 'Selesai'
-                                            break
-                                        default:
-                                            status = data[i].nama_status
-                                            break
-                                    }
-                                    let jawaban = '-'
-                                    if (data[i].id_status == 4) {
-                                        jawaban = `
-                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
-                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
-                            `
-                                    }
-                                    rowData.push([
-                                        data[i].ticket_permohonan,
-                                        data[i].informasi_diminta,
-                                        status,
-                                        data[i].id_status == '1' ? '-' : (now > data[i].expired_date1 ? data[i]
-                                            .expired_date2 : data[i].expired_date1),
-                                        jawaban,
-                                        btnAction
-                                    ])
-                                }
-
-                                tablePermohonan.clear().rows.add(rowData).draw()
                             } catch (error) {
-                                console.log(error.responseText)
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    html: 'Terjadi kesalahan!'
+                                });
+                                console.log(error)
+                                modalPermohonan.release();
                             }
                         }
+                    })
+                })
 
-                        $(document).on('click', '#cancel-permohonan', function() {
-                            $("#exampleModalCenter").modal('hide')
-                        })
-
-
-                        $(document).on('click', '.edit-permohonan', function() {
-                            const idPermohonan = $(this).data('permohonan')
-                            $("#exampleModalCenter").modal('show')
-                            loadModalPermohonan('edit-data', idPermohonan)
-                        })
-
-                        const deleteDataPermohonan = (id) => {
-                            return $.ajax({
-                                type: 'DELETE',
-                                url: "/ppid-data-permohonan/" + id,
-                                data: {
-                                    "_token": "{{ csrf_token() }}"
-                                },
-                                dataType: 'json'
-                            })
-                        }
-
-                        $(document).on('click', '.delete-permohonan', function() {
-                                    const idPermohonan = $(this).data('permohonan')
-                                    Swal.fire({
-                                            icon: 'question',
-                                            title: 'Konfirmasi',
-                                            html: 'Hapus data permohonan ?',
-                                            showCancelButton: true,
-                                            confirmButtonText: "Ya, Hapus Data",
-                                            customClass: {
-                                                cancelButton: 'btn btn-danger',
-                                                confirmButton: "btn btn-primary",
-                                            },
-                                            showLoaderOnConfirm: true,
-                                            preConfirm: async () => {
-                                                try {
-                                                    await deleteDataPermohonan(idPermohonan)
-                                                } catch (error) {
-                                                    Swal.showValidationMessage(
-                                                            `Request failed: ${error}`
-                                                        ) >>>
-                                                        >>>
-                                                        > 1 ed304d40c4330945aa3c64f208eb3b71f6ff5ab
-                                                }
-
-                                                tablePermohonan.clear().rows.add(rowData).draw()
-                                            } catch (error) {
-                                                console.log(error.responseText)
-                                            }
-                                        }
-
-                                        $(document).on('click', '#cancel-permohonan', function() {
-                                            $("#exampleModalCenter").modal('hide')
-                                        })
-
-
-                                        $(document).on('click', '.edit-permohonan', function() {
-                                            const idPermohonan = $(this).data('permohonan')
-                                            $("#exampleModalCenter").modal('show')
-                                            loadModalPermohonan('edit-data', idPermohonan)
-                                        })
-
-                                        const deleteDataPermohonan = (id) => {
-                                            return $.ajax({
-                                                type: 'DELETE',
-                                                url: "/ppid-data-permohonan/" + id,
-                                                data: {
-                                                    "_token": "{{ csrf_token() }}"
-                                                },
-                                                dataType: 'json'
-                                            })
-                                        }
-
-                                        $(document).on('click', '.delete-permohonan', function() {
-                                            const idPermohonan = $(this).data('permohonan')
-                                            Swal.fire({
-                                                icon: 'question',
-                                                title: 'Konfirmasi',
-                                                html: 'Hapus data permohonan ?',
-                                                showCancelButton: true,
-                                                confirmButtonText: "Ya, Hapus Data",
-                                                customClass: {
-                                                    cancelButton: 'btn btn-danger',
-                                                    confirmButton: "btn btn-primary",
-                                                },
-                                                showLoaderOnConfirm: true,
-                                                preConfirm: async () => {
-                                                    try {
-                                                        await deleteDataPermohonan(idPermohonan)
-                                                    } catch (error) {
-                                                        Swal.showValidationMessage(
-                                                            `Request failed: ${error}`
-                                                        )
-                                                    }
-                                                },
-                                                allowOutsideClick: () => !Swal.isLoading()
-                                            }).then((dt) => {
-                                                if (dt.isConfirmed) {
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Sukses',
-                                                        html: 'Berhasil menghapus data permohonan!'
-                                                    })
-                                                    loadData()
-                                                }
-                                            })
-                                        })
-
-                                        const getDataPpidCaraMendapatkan = () => {
-                                            return $.ajax({
-                                                type: 'GET',
-                                                url: "/ppid-cara-mendapatkan",
-                                                dataType: 'json'
-                                            });
-                                        }
-
-                                        async function ppidCaraMendapatkan() {
-                                            try {
-                                                const result = await getDataPpidCaraMendapatkan()
-                                                let option =
-                                                    '<option selected value="-">-- Cara memperoleh informasi --</option>'
-                                                for (let i = 0; i < result.result.length; i++) {
-                                                    option +=
-                                                        `<option value="${result.result[i].id}">${result.result[i].name}</option>`
-                                                }
-                                                $("#select-memperoleh-informasi").html(option)
-                                            } catch (err) {
-                                                console.log(err.responseText)
-                                            }
-                                        }
-
-                                        const getDataPpidCaraMemberikan = () => {
-                                            return $.ajax({
-                                                type: 'GET',
-                                                url: "/ppid-cara-memberikan",
-                                                dataType: 'json'
-                                            });
-                                        }
-
-
-
-                                        async function ppidCaraMemberikan() {
-                                            try {
-                                                const result = await getDataPpidCaraMemberikan()
-                                                let option =
-                                                    '<option selected value="-">-- Cara memberikan informasi --</option>'
-                                                for (let i = 0; i < result.result.length; i++) {
-                                                    option +=
-                                                        `<option value="${result.result[i].id}">${result.result[i].name}</option>`
-                                                }
-                                                $("#select-memberikan-informasi").html(option)
-                                            } catch (err) {
-                                                console.log(err.responseText)
-                                            }
-                                        }
-
-
-
-                                        const submitDataPermohonan = (data) => {
-                                            return $.ajax({
-                                                type: 'POST',
-                                                url: "/submit-data-permohonan",
-                                                data: data,
-                                                dataType: 'json'
-                                            });
-                                        }
-
-
-
-
-
-                                        let configAreaInformasiDiminta = {
-                                            selector: "#area-informasi-diminta",
-                                            height: "300"
-                                        };
-                                        let configAreaTujuanPenggunaan = {
-                                            selector: "#area-tujuan-penggunaan",
-                                            height: "300"
-                                        };
-
-                                        tinymce.init(configAreaInformasiDiminta); tinymce.init(configAreaTujuanPenggunaan);
-
-
-                                        $("#save-permohonan").click(function() {
-                                            const user = {!! Auth::user()->toJson() !!}
-                                            const data = {
-                                                'id': $("#id-permohonan-edited").val(),
-                                                '_token': "{{ csrf_token() }}",
-                                                'id_ppid_pendaftar': user.id,
-                                                'ticket_permohonan': '-',
-                                                'jenis_kanal': 'web',
-                                                'informasi_diminta': tinymce.get("area-informasi-diminta")
-                                                    .getContent(),
-                                                'tujuan_informasi': tinymce.get("area-tujuan-penggunaan")
-                                                    .getContent(),
-                                                'id_cara': $("#select-memberikan-informasi").val(),
-                                                'id_mendapatkan': $("#select-memperoleh-informasi").val(),
-                                                'file_identitas': user.identitas_file_path,
-                                            }
-
-                                            if (data.informasi_diminta.length == 0 || data.tujuan_informasi.length ==
-                                                0 || data
-                                                .id_cara == '-' || data.id_mendapatkan == '-') {
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    title: 'Warning',
-                                                    html: 'Isian tidak lengkap!'
-                                                })
-                                                return
-                                            }
-
-                                            Swal.fire({
-                                                icon: 'question',
-                                                html: `Simpan permohonan ?`,
-                                                cancelButtonText: 'Cancel',
-                                                showCancelButton: true,
-                                                confirmButtonText: "Ya, Simpan",
-                                                customClass: {
-                                                    cancelButton: 'btn btn-danger',
-                                                    confirmButton: "btn btn-primary",
-                                                }
-                                            }).then(async (dt) => {
-                                                if (dt.isConfirmed) {
-
-                                                    try {
-                                                        modalPermohonan.block();
-                                                        const result = await submitDataPermohonan(data)
-                                                        modalPermohonan.release();
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Sukses',
-                                                            html: 'Berhasil menyimpan data permohonan!'
-                                                        })
-                                                        $("#cancel-permohonan").click()
-                                                        loadData()
-                                                    } catch (error) {
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Error',
-                                                            html: 'Terjadi kesalahan!'
-                                                        });
-                                                        console.log(error)
-                                                        modalPermohonan.release();
-                                                    }
-                                                }
-                                            })
-                                        })
-
-
-
-                                    })
+            })
         </script>
     @endpush
 
