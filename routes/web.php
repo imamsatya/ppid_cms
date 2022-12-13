@@ -293,6 +293,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/submit-forward-permohonan', [DataPermohonanController::class, 'submitForwardPermohonan']);
     Route::get('/ppid-pendaftar/{id}', [DataPermohonanController::class, 'dataPpidPendaftarById']);
     Route::get('/jadwal-kerja', [DataPermohonanController::class, 'jadwalKerja']);
+    Route::get('/users-penghubung', [DataPermohonanController::class, 'getDaftarUserPenghubung']);
 });
 
 
