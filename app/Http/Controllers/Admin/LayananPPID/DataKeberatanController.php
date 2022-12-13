@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\LayananPPID;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DataKeberatanController extends Controller
 {
@@ -14,7 +15,26 @@ class DataKeberatanController extends Controller
      */
     public function index()
     {
-        return view('admin.layanan_ppid.data_keberatan');
+
+        $ppidKeberatan = DB::table('ppid_keberatan')
+            ->select(
+                'ppid_keberatan.*',
+                'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status',
+                'proses_keberatan.ket_jawaban',
+                'proses_keberatan.file_jawaban',
+                'proses_keberatan.jawab_by',
+                'ppid_pendaftar.nama_lengkap'
+            )
+            ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
+            // ->where('status_permohonan.aktif', 1)
+
+            ->orderBy('created_at', 'asc')->get();
+
+        return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan'));
     }
 
     /**

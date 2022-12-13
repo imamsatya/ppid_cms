@@ -17,7 +17,7 @@
         <x-slot:isActiveLink_layananPPID>
             active
             </x-slot>
-            <x-slot:isActiveLink_dataPermohonan>
+            <x-slot:isActiveLink_dataKeberatan>
                 active
                 </x-slot>
                 <x-slot:subMenuTitle>
@@ -49,9 +49,9 @@
 
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-12">
-                                        <select id="asal_permohonan" class="form-select"
-                                            aria-label="Select Asal Permohonan">
-                                            <option value="-"> Asal Permohonan</option>
+                                        <select id="asal_keberatan" class="form-select"
+                                            aria-label="Select Asal Keberatan">
+                                            <option value="-"> Asal Keberatan</option>
                                             <!-- <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option> -->
@@ -60,7 +60,7 @@
 
                                     <div class="col-lg-4 col-sm-12">
                                         <select id="status_permohonan" class="form-select">
-                                            <option value="-"> Status Permohonan</option>
+                                            <option value="-"> Status Keberatan</option>
                                             <!-- <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option> -->
@@ -84,7 +84,29 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="bd-table-permohonan-masuk">
+                                    {{-- bd-table-permohonan-masuk --}}
+                                    <tbody id="">
+                                        @if ($ppidKeberatan)
+                                            @foreach ($ppidKeberatan as $keberatan)
+                                                <tr>
+                                                    <td>{{ $loop->index + 1 }}</td>
+                                                    <td>{{ $keberatan->updated_at }}</td>
+                                                    <td>{{ $keberatan->ticket_keberatan }}</td>
+                                                    <td>{{ $keberatan->nama_lengkap }}</td>
+                                                    <td>{{ $keberatan->jenis_kanal }}</td>
+                                                    <td> {{ $keberatan->expired_date }} </td>
+                                                    <td>{{ $keberatan->nama_status }}</td>
+                                                    <td> <a href="javascript:void(0)"
+                                                            class="btn btn-icon btn-primary me-2 confirm-keberatan"
+                                                            data-keberatan="{{ $keberatan->id }}"><i
+                                                                class="bi bi-check-lg"></i></a>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        @endif
+
                                     </tbody>
                                 </table>
                             </div>
@@ -93,7 +115,7 @@
                         <br>
                         <div class="card card-flush shadow-sm">
                             <div class="card-header">
-                                <h3 class="card-title">Daftar Permohonan Selesai </h3>
+                                <h3 class="card-title">Daftar Keberatan Selesai </h3>
                                 <div class="card-toolbar">
                                 </div>
                             </div>
@@ -110,8 +132,8 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-12">
                                         <select id="asal-selesai" class="form-select"
-                                            aria-label="Select Asal Permohonan">
-                                            <option value="-">-- Asal Permohonan --</option>
+                                            aria-label="Select Asal Keberatan">
+                                            <option value="-">-- Asal Keberatan --</option>
                                             <!-- <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option> -->
@@ -120,8 +142,8 @@
 
                                     <div class="col-lg-4 col-sm-12">
                                         <select id="status-selesai" class="form-select"
-                                            aria-label="Select Asal Permohonan">
-                                            <option value="-">-- Status Permohonan --</option>
+                                            aria-label="Select Asal Keberatan">
+                                            <option value="-">-- Status Keberatan --</option>
                                             <!-- <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option> -->
@@ -623,11 +645,11 @@
                                     async function jenisPemohon() {
                                         try {
                                             const result = await getJenisPemohon()
-                                            let option = '<option value="-">-- Asal Permohonan --</option>'
+                                            let option = '<option value="-">-- Asal Keberatan --</option>'
                                             for (let i = 0; i < result.result.length; i++) {
                                                 option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
                                             }
-                                            $("#asal_permohonan").html(option)
+                                            $("#asal_keberatan").html(option)
                                             $("#asal-selesai").html(option)
                                             // console.log(result)
                                         } catch (error) {
@@ -722,10 +744,10 @@
                                     tinymce.init(configAreaTujuanPenggunaanDetail);
 
 
-                                    $(document).on('click', '.confirm-permohonan', function() {
-                                        const idPermohonan = $(this).data('permohonan')
+                                    $(document).on('click', '.confirm-keberatan', function() {
+                                        const idKeberatan = $(this).data('keberatan')
                                         $("#exampleModalCenter").modal('show')
-                                        loadModalPermohonan(idPermohonan)
+                                        loadModalPermohonan(idKeberatan)
                                     })
 
                                     const ppidPermohonanUser = (id) => {
@@ -1042,15 +1064,15 @@
                                         tableSelesaiUI.release()
                                     }
 
-                                    $("#asal_permohonan").on('change', function() {
-                                        const asalPermohonan = $(this).val()
-                                        const statusPermohonan = $("#status_permohonan").val()
-                                        loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan)
+                                    $("#asal_keberatan").on('change', function() {
+                                        const asalKeberatan = $(this).val()
+                                        const statusKeberatan = $("#status_permohonan").val()
+                                        loadDataPermintaanMasukByFilter(asalKeberatan, statusKeberatan)
                                     })
 
                                     $("#status_permohonan").on('change', function() {
                                         const statusPermohonan = $(this).val()
-                                        const asalPermohonan = $("#asal_permohonan").val()
+                                        const asalPermohonan = $("#asal_keberatan").val()
                                         loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan)
                                     })
 
