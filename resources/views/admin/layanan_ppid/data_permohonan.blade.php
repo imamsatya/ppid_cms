@@ -3,10 +3,22 @@
 <style>
 .form-check-custom {
     display: flex;
-align-items: center;
-padding-left: 0;
-margin: 0;
-  margin-right: 0px;
+    align-items: center;
+    padding-left: 0;
+    margin: 0;
+    margin-right: 0px;
+}
+
+.form-detail-ctm {
+    border: 1px;
+    padding: 15px;
+    border-radius: .4rem;
+    color: var(--kt-input-disabled-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    border-color: var(--kt-input-disabled-border-color);
+    background-color: var(--kt-input-disabled-bg);
 }
 </style>
 @endpush
@@ -42,7 +54,7 @@ margin: 0;
                                     <div class="mb-0">
                                         <label class="form-label">Periode Tanggal Masuk</label>
                                         <input class="form-control form-control-solid" placeholder="Pick date rage"
-                                            id="kt_daterangepicker_tanggalMasuk_permohonanMasuk" />
+                                            id="kt_daterangepicker_tanggalMasuk_permohonanMasuk" value="" />
                                     </div>
                                 </div>
                                 <br>
@@ -79,7 +91,7 @@ margin: 0;
                                             <th>No Registrasi</th>
                                             <th>Nama Pemohon</th>
                                             <th>Sumber</th>
-                                            <th> Batas Waktu </th>
+                                            <th>Batas Waktu</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -102,7 +114,7 @@ margin: 0;
                                     <div class="mb-0">
                                         <label class="form-label">Periode Tanggal Masuk</label>
                                         <input class="form-control form-control-solid" placeholder="Pick date rage"
-                                            id="kt_daterangepicker_tanggalMasuk_permohonanSelesai" />
+                                            id="kt_daterangepicker_tanggalMasuk_permohonanSelesai" value="" />
                                     </div>
                                 </div>
                                 <br>
@@ -138,7 +150,7 @@ margin: 0;
                                             <th>No Registrasi</th>
                                             <th>Nama Pemohon</th>
                                             <th>Sumber</th>
-                                            <th> Batas Waktu </th>
+                                            <th>Jawaban</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -158,12 +170,16 @@ margin: 0;
                         </h5>                        
                     </div>
                     <div class="modal-body">
-                        <div class="form-data mt-4">
-                            <div class="row">
+                        <div class="form-data">
+                            <div class="row">                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Informasi diminta</label>
-                                        <textarea class="form-control tox-target" id="area-informasi-diminta" placeholder="Informasi yang diminta"></textarea>
+                                        <div class="card card-flush shadow-sm">
+                                            <div class="card-body py-5" id="area-informasi-diminta">
+                                                Lorem Ipsum is simply dummy text...
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group mt-4">
                                         <label class="form-label">Cara mendapat informasi</label>
@@ -177,11 +193,18 @@ margin: 0;
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Tujuan Informasi</label>
-                                        <textarea class="form-control" id="area-tujuan-penggunaan"
-                                            placeholder="Tujuan penggunaan informasi"></textarea>
+                                        <div class="card card-flush shadow-sm">
+                                            <div class="card-body py-5" id="area-tujuan-penggunaan">
+                                                Lorem Ipsum is simply dummy text...
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group mt-4" id="modal-file-identitas">                                                                                
-                                    </div>
+                                    <!-- <div class="form-group mt-4" id="modal-file-identitas">                                                                                
+                                    </div> -->
+                                    <div class="form-group mt-4">
+                                        <label class="form-label">File Identitas</label>
+                                        <p><a href="javascript:void(0)" id="file-identitas-modalkonfirmasi" target="_blank" rel="noopener noreferrer">Click to open!</a></p>
+                                    </div> 
                                     <div class="form-group mt-8">  
                                         <div class="d-flex">
                                             
@@ -227,17 +250,33 @@ margin: 0;
                     <div class="modal-body">
                         <div class="form-data">
                             <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">File Identitas</label>
+                                        <p><a href="javascript:void(0)" id="file-identitas-modalanswer" target="_blank" rel="noopener noreferrer">Click to open!</a></p>
+                                    </div> 
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Informasi diminta</label>
-                                        <textarea class="form-control tox-target" id="area-informasi-diminta-answer" placeholder="Informasi yang diminta"></textarea>
+                                        <!-- <textarea class="form-control tox-target" id="area-informasi-diminta-answer" placeholder="Informasi yang diminta"></textarea> -->
+                                        <div class="card card-flush shadow-sm">
+                                            <div class="card-body py-5" id="area-informasi-diminta-answer">
+                                                Lorem Ipsum is simply dummy text...
+                                            </div>
+                                        </div>
                                     </div>                                    
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Tujuan Informasi</label>
-                                        <textarea class="form-control" id="area-tujuan-penggunaan-answer"
-                                            placeholder="Tujuan penggunaan informasi"></textarea>
+                                        <!-- <textarea class="form-control" id="area-tujuan-penggunaan-answer"
+                                            placeholder="Tujuan penggunaan informasi"></textarea> -->
+                                        <div class="card card-flush shadow-sm">
+                                            <div class="card-body py-5" id="area-tujuan-penggunaan-answer">
+                                                Lorem Ipsum is simply dummy text...
+                                            </div>
+                                        </div>
                                     </div>                                                                                                           
                                 </div>
                                 <div class="col-12 mt-4">
@@ -272,17 +311,33 @@ margin: 0;
                     <div class="modal-body">
                         <div class="form-data">
                             <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label">File Identitas</label>
+                                        <p><a href="javascript:void(0)" id="file-identitas-modalforward" target="_blank" rel="noopener noreferrer">Click to open!</a></p>
+                                    </div> 
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Informasi diminta</label>
-                                        <textarea class="form-control tox-target" id="area-informasi-diminta-forward" placeholder="Informasi yang diminta"></textarea>
+                                        <!-- <textarea class="form-control tox-target" id="area-informasi-diminta-forward" placeholder="Informasi yang diminta"></textarea> -->
+                                        <div class="card card-flush shadow-sm">
+                                            <div class="card-body py-5" id="area-informasi-diminta-forward">
+                                                Lorem Ipsum is simply dummy text...
+                                            </div>
+                                        </div>
                                     </div>                                    
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Tujuan Informasi</label>
-                                        <textarea class="form-control" id="area-tujuan-penggunaan-forward"
-                                            placeholder="Tujuan penggunaan informasi"></textarea>
+                                        <!-- <textarea class="form-control" id="area-tujuan-penggunaan-forward"
+                                            placeholder="Tujuan penggunaan informasi"></textarea> -->
+                                        <div class="card card-flush shadow-sm">
+                                            <div class="card-body py-5" id="area-tujuan-penggunaan-forward">
+                                                Lorem Ipsum is simply dummy text...
+                                            </div>
+                                        </div>
                                     </div>                                                                                                           
                                 </div>
                                 <div class="form-group mt-4">                                        
@@ -323,39 +378,39 @@ margin: 0;
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 style="text-align: center">Data Pemohon</h4>
-                                    <div class="form-group mt-4">
+                                    <div class="form-group mt-4 mb-4">
                                         <label class="form-label">Tanggal Masuk</label>
                                         <input type="text" class="form-control" id="detail-tanggal-masuk" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Nomor Registrasi</label>
                                         <input type="text" class="form-control" id="detail-noregistrasi" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Nama Pemohon</label>
                                         <input type="text" class="form-control" id="detail-nama-pemohon" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Jenis Pemohon</label>
                                         <input type="text" class="form-control" id="detail-jenis-pemohon" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Identitas</label>
                                         <input type="text" class="form-control" id="detail-identitas" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Nomor Identitas</label>
                                         <input type="text" class="form-control" id="detail-nomor-identitas" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Alamat</label>
                                         <input type="text" class="form-control" id="detail-alamat" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Pekerjaan</label>
                                         <input type="text" class="form-control" id="detail-pekerjaan" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Email</label>
                                         <input type="text" class="form-control" id="detail-email" disabled>
                                     </div>
@@ -366,23 +421,23 @@ margin: 0;
                                 </div>
                                 <div class="col-md-6">
                                     <h4 style="text-align: center">Data Permohonan</h4>
-                                    <div class="form-group mt-4">
+                                    <div class="form-group mt-4 mb-4">
                                         <label class="form-label">Informasi diminta</label>
-                                        <textarea class="form-control tox-target" id="area-informasi-diminta-detail" placeholder="Informasi yang diminta"></textarea>
+                                        <div id="area-informasi-diminta-detail-notiny" class="form-detail-ctm">-</div>
                                     </div>                                    
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Tujuan Informasi</label>
-                                        <textarea class="form-control" id="area-tujuan-penggunaan-detail"
-                                            placeholder="Tujuan penggunaan informasi"></textarea>
+                                        <div id="area-tujuan-penggunaan-detail-notiny" class="form-detail-ctm">-</div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Cara mendapat informasi</label>
                                         <input type="text" class="form-control" id="detail-cara-dapat-info" disabled>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-4">
                                         <label class="form-label">Cara memberi informasi</label>
                                         <input type="text" class="form-control" id="detail-cara-memberi-info" disabled>
                                     </div>
+                                    <div class="form-group" id="file-identitas-detail"></div>
                                 </div>                                
                             </div>
                         </div>
@@ -439,25 +494,26 @@ margin: 0;
             }
             
 
-            const getDataPermohonanMasuk = (asal, status) => {
+            const getDataPermohonanMasuk = (asal, status, date) => {
                 return $.ajax({
                     type: 'GET',
-                    url: `/admin/ppid-data-permohonan?asal=${asal}&status=${status}`,
+                    url: `/admin/ppid-data-permohonan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                     dataType: 'json'
                 });
             }
 
-            const getDataPermohonanSelesai = (asal, status) => {
+            const getDataPermohonanSelesai = (asal, status, date) => {
                 return $.ajax({
                     type: 'GET',
-                    url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
+                    // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
+                    url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                     dataType: 'json'
                 });
             }
 
-            async function ppidDataPermohonanMasuk(asal='-', status='-') {
+            async function ppidDataPermohonanMasuk(asal='-', status='-', date=null) {
                 try {                    
-                    const result = await getDataPermohonanMasuk(asal, status)
+                    const result = await getDataPermohonanMasuk(asal, status, date)
                     const data = result.result
                     const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
                     let rowData = []
@@ -494,10 +550,10 @@ margin: 0;
                     console.log(error)
                 }
             } 
-            // yovi
-            async function ppidDataPermohonanSelesai(asal='-', status='-') {
+
+            async function ppidDataPermohonanSelesai(asal='-', status='-', date=null) {
                 try {                    
-                    const result = await getDataPermohonanSelesai(asal, status)
+                    const result = await getDataPermohonanSelesai(asal, status, date)
                     const data = result.result
                     let rowData = []
                     for(let i=0; i<data.length; i++) {
@@ -515,6 +571,13 @@ margin: 0;
                             ticketAction = `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
                         }
 
+                        let jawaban = '-'
+                        if(data[i].id_status == 4) {
+                            jawaban = `
+                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer">File Jawaban</a> <br/>
+                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer">File Pendukung</a>` : '' }
+                            `
+                        }
 
                         rowData.push([
                             i+1,
@@ -522,7 +585,7 @@ margin: 0;
                             ticketAction,
                             data[i].nama_lengkap,
                             data[i].jenis_kanal,
-                            data[i].expired_date2,
+                            jawaban,
                             data[i].nama_status,
                         ])
                     }
@@ -576,22 +639,74 @@ margin: 0;
                 }
             });
 
-            $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").daterangepicker({
-                timePicker: true,
-                startDate: moment().startOf("hour"),
-                endDate: moment().startOf("hour").add(32, "hour"),
-                locale: {
-                    format: "M/DD hh:mm A"
+            $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").daterangepicker(
+                {
+                    autoUpdateInput: false,
+                    timePicker: false,
+                    locale: {
+                        format: "DD/MM/Y",
+                        cancelLabel: 'Clear'
+                    }
                 }
+                , function(start, end, label) {
+                    const filterDate = {
+                        'start': start.format('YYYY-MM-DD'),
+                        'end': end.format('YYYY-MM-DD')
+                    }
+                    // triger filter
+                    const asalPermohonan = $("#asal_permohonan").val()
+                    const statusPermohonan = $("#status_permohonan").val()
+                    loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan, filterDate)
+                }
+            );
+
+            $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").val('')
+
+            $('input[id="kt_daterangepicker_tanggalMasuk_permohonanMasuk"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/Y') + ' - ' + picker.endDate.format('DD/MM/Y'));
             });
 
-            $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").daterangepicker({
-                timePicker: true,
-                startDate: moment().startOf("hour"),
-                endDate: moment().startOf("hour").add(32, "hour"),
-                locale: {
-                    format: "M/DD hh:mm A"
+            $('input[id="kt_daterangepicker_tanggalMasuk_permohonanMasuk"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+                // trigger filter
+                const asalPermohonan = $("#asal_permohonan").val()
+                const statusPermohonan = $("#status_permohonan").val()
+                loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan)
+            });
+
+            $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").daterangepicker(
+                {
+                    autoUpdateInput: false,
+                    timePicker: false,
+                    locale: {
+                        format: "DD/MM/Y",
+                        cancelLabel: 'Clear'
+                    }
+                }, function(start, end, label) {
+                    const filterDate = {
+                        'start': start.format('YYYY-MM-DD'),
+                        'end': end.format('YYYY-MM-DD')
+                    }
+                    // triger filter
+                    const asalPermohonan = $("#asal-selesai").val()
+                    const statusPermohonan = $("#status-selesai").val()
+                    loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan, filterDate)
                 }
+            );
+
+            $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").val('')
+
+            $('input[id="kt_daterangepicker_tanggalMasuk_permohonanSelesai"]').on('apply.daterangepicker', function(ev, picker) {
+                console.log('here')
+                $(this).val(picker.startDate.format('DD/MM/Y') + ' - ' + picker.endDate.format('DD/MM/Y'));
+            });
+
+            $('input[id="kt_daterangepicker_tanggalMasuk_permohonanSelesai"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+                // trigger filter
+                const asalPermohonan = $("#asal-selesai").val()
+                const statusPermohonan = $("#status-selesai").val()
+                loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan)
             });
 
             const getJenisPemohon = () => {
@@ -650,26 +765,22 @@ margin: 0;
 
             statusPermohonan()
 
-            let configAreaInformasiDiminta = {selector: "#area-informasi-diminta", height : "300"};
-            let configAreaTujuanPenggunaan = {selector: "#area-tujuan-penggunaan", height : "300"};
-            let configAreaTujuanPenggunaanAnswer = {selector: "#area-tujuan-penggunaan-answer", height : "300"};
-            let configAreaInformasiDimintaAnswer = {selector: "#area-informasi-diminta-answer", height : "300"};
+            // let configAreaInformasiDiminta = {selector: "#area-informasi-diminta", height : "300"};
+            // let configAreaTujuanPenggunaan = {selector: "#area-tujuan-penggunaan", height : "300"};
+            // let configAreaTujuanPenggunaanAnswer = {selector: "#area-tujuan-penggunaan-answer", height : "300"};
+            // let configAreaInformasiDimintaAnswer = {selector: "#area-informasi-diminta-answer", height : "300"};
             let configAreaAnswer = {selector: "#area-answer", height : "300"};
-            let configAreaTujuanPenggunaanForward = {selector: "#area-tujuan-penggunaan-forward", height : "300"};
-            let configAreaInformasiDimintaForward = {selector: "#area-informasi-diminta-forward", height : "300"};
+            // let configAreaTujuanPenggunaanForward = {selector: "#area-tujuan-penggunaan-forward", height : "300"};
+            // let configAreaInformasiDimintaForward = {selector: "#area-informasi-diminta-forward", height : "300"};
             let configAreaForward = {selector: "#area-forward", height : "300"};
-            let configAreaTujuanPenggunaanDetail = {selector: "#area-tujuan-penggunaan-detail", height : "300"};
-            let configAreaInformasiDimintaDetail = {selector: "#area-informasi-diminta-detail", height : "300"};
-            tinymce.init(configAreaInformasiDiminta);
-            tinymce.init(configAreaTujuanPenggunaan);
-            tinymce.init(configAreaInformasiDimintaAnswer);
-            tinymce.init(configAreaTujuanPenggunaanAnswer);
+            // tinymce.init(configAreaInformasiDiminta);
+            // tinymce.init(configAreaTujuanPenggunaan);
+            // tinymce.init(configAreaInformasiDimintaAnswer);
+            // tinymce.init(configAreaTujuanPenggunaanAnswer);
             tinymce.init(configAreaAnswer);
-            tinymce.init(configAreaInformasiDimintaForward);
-            tinymce.init(configAreaTujuanPenggunaanForward);
+            // tinymce.init(configAreaInformasiDimintaForward);
+            // tinymce.init(configAreaTujuanPenggunaanForward);
             tinymce.init(configAreaForward);
-            tinymce.init(configAreaInformasiDimintaDetail);
-            tinymce.init(configAreaTujuanPenggunaanDetail);
 
 
             $(document).on('click', '.confirm-permohonan', function(){
@@ -691,16 +802,20 @@ margin: 0;
 
                 const dataPermohonan = await ppidPermohonanUser(data)
                 $("#id-permohonan-edited").val(data)
-                tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
-                tinymce.get("area-informasi-diminta").getBody().setAttribute('contenteditable', false)
-                tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
-                tinymce.get("area-tujuan-penggunaan").getBody().setAttribute('contenteditable', false)
+                $("#area-informasi-diminta").html(dataPermohonan.result.informasi_diminta)
+                // tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
+                // tinymce.get("area-informasi-diminta").getBody().setAttribute('contenteditable', false)
+                $("#area-tujuan-penggunaan").html(dataPermohonan.result.tujuan_informasi)
+                // tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
+                // tinymce.get("area-tujuan-penggunaan").getBody().setAttribute('contenteditable', false)
+
+                $("#file-identitas-modalkonfirmasi").prop('href', `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
                 $("#memberikan-informasi").val(dataPermohonan.result.cara_memberikan)
                 $("#memperoleh-informasi").val(dataPermohonan.result.cara_mendapatkan)  
-                $("#modal-file-identitas").html(`
-                    <label class="form-label">File identitas</label>
-                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
-                `)
+                // $("#modal-file-identitas").html(`
+                //     <label class="form-label">File identitas</label>
+                //     <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
+                // `)
                 $('.proses-konfirmasi').prop('checked', false)
                 $("#alasan_penolakan").hide()
                 modalPermohonan.release()
@@ -813,6 +928,7 @@ margin: 0;
                         html: result.result
                     })
                     loadDataPermintaanMasuk()
+                    loadDataPermintaanSelesai()
                 } catch (error) {
                     modalPermohonan.release()
                     Swal.fire({
@@ -835,10 +951,13 @@ margin: 0;
                 modalAnswer.block()
                 const dataPermohonan = await ppidPermohonanUser(data)
                 $("#id-permohonan-edited").val(data)
-                tinymce.get("area-informasi-diminta-answer").setContent(dataPermohonan.result.informasi_diminta)
-                tinymce.get("area-informasi-diminta-answer").getBody().setAttribute('contenteditable', false)
-                tinymce.get("area-tujuan-penggunaan-answer").setContent(dataPermohonan.result.tujuan_informasi)
-                tinymce.get("area-tujuan-penggunaan-answer").getBody().setAttribute('contenteditable', false)
+                $("#file-identitas-modalanswer").prop('href', `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
+                // tinymce.get("area-informasi-diminta-answer").setContent(dataPermohonan.result.informasi_diminta)
+                // tinymce.get("area-informasi-diminta-answer").getBody().setAttribute('contenteditable', false)
+                $("#area-informasi-diminta-answer").html(dataPermohonan.result.informasi_diminta)
+                // tinymce.get("area-tujuan-penggunaan-answer").setContent(dataPermohonan.result.tujuan_informasi)
+                // tinymce.get("area-tujuan-penggunaan-answer").getBody().setAttribute('contenteditable', false)
+                $("#area-tujuan-penggunaan-answer").html(dataPermohonan.result.tujuan_informasi)
 
                 tinymce.get("area-answer").setContent('')
                 $("#file_dukung_answer").val(null)
@@ -909,17 +1028,35 @@ margin: 0;
                 loadModalForward(idPermohonan)
             })
 
+            const getUserPenghubung = (data) => {
+                return $.ajax({
+                    type: 'GET',
+                    url: "/admin/users-penghubung",
+                    dataType: 'json'
+                })
+            }
+
             async function loadModalForward(data) {
                 modalForward.block()
+                const daftarUserPenghubung = await getUserPenghubung()
+                let optionUserPenghubung = '<option value="-">-- Pilih User --</option>'
+                for(let i=0; i<daftarUserPenghubung.result.length; i++) {
+                    optionUserPenghubung += `<option value="${daftarUserPenghubung.result[i].id}">${daftarUserPenghubung.result[i].name}</option>`
+                }
+                $("#diteruskan-kepada").html(optionUserPenghubung)
                 const dataPermohonan = await ppidPermohonanUser(data)
                 $("#id-permohonan-edited").val(data)
-                tinymce.get("area-informasi-diminta-forward").setContent(dataPermohonan.result.informasi_diminta)
-                tinymce.get("area-informasi-diminta-forward").getBody().setAttribute('contenteditable', false)
-                tinymce.get("area-tujuan-penggunaan-forward").setContent(dataPermohonan.result.tujuan_informasi)
-                tinymce.get("area-tujuan-penggunaan-forward").getBody().setAttribute('contenteditable', false)
+                // tinymce.get("area-informasi-diminta-forward").setContent(dataPermohonan.result.informasi_diminta)
+                // tinymce.get("area-informasi-diminta-forward").getBody().setAttribute('contenteditable', false)
+                $("#area-informasi-diminta-forward").html(dataPermohonan.result.informasi_diminta)
+                // tinymce.get("area-tujuan-penggunaan-forward").setContent(dataPermohonan.result.tujuan_informasi)
+                // tinymce.get("area-tujuan-penggunaan-forward").getBody().setAttribute('contenteditable', false)
+                $("#area-tujuan-penggunaan-forward").html(dataPermohonan.result.tujuan_informasi)
 
                 tinymce.get("area-forward").setContent('')
-                $("#diteruskan-kepada").val('-')
+
+                $("#file-identitas-modalforward").prop('href', `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
+                
                 $("#nomor-referensi").val('')
                 modalForward.release()
             }
@@ -940,6 +1077,16 @@ margin: 0;
                     '_token': "{{ csrf_token() }}",
                     'forward_to': $("#diteruskan-kepada").val(),
                     'nota_dinas': $("#nomor-referensi").val()
+                }
+
+                if(data.forward_to == '-') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Error',
+                        html: 'User tujuan diteruskan belum dipilih!'
+                    })
+
+                    return
                 }
 
                 try {
@@ -981,14 +1128,11 @@ margin: 0;
                 modalDetail.block()
                 const dataPermohonan = await ppidPermohonanUser(data)
                 const dataPemohon = await ppidPendaftar(dataPermohonan.result.id_ppid_pendaftar)
-
-                console.log(dataPermohonan)
                 
                 $("#id-permohonan-edited").val(data)
-                tinymce.get("area-informasi-diminta-detail").setContent(dataPermohonan.result.informasi_diminta)
-                tinymce.get("area-informasi-diminta-detail").getBody().setAttribute('contenteditable', false)
-                tinymce.get("area-tujuan-penggunaan-detail").setContent(dataPermohonan.result.tujuan_informasi)
-                tinymce.get("area-tujuan-penggunaan-detail").getBody().setAttribute('contenteditable', false)
+
+                $("#area-tujuan-penggunaan-detail-notiny").html(dataPermohonan.result.tujuan_informasi)
+                $("#area-informasi-diminta-detail-notiny").html(dataPermohonan.result.informasi_diminta)
                 $("#detail-cara-memberi-info").val(dataPermohonan.result.cara_memberikan)
                 $("#detail-cara-dapat-info").val(dataPermohonan.result.cara_mendapatkan)  
                 
@@ -1003,65 +1147,93 @@ margin: 0;
                 $("#detail-email").val(dataPemohon.result.email)
                 $("#detail-status").val(dataPermohonan.result.nama_status_permohonan)
 
+                $("#file-identitas-detail").html(`
+                    <label class="form-label">File identitas</label>
+                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
+                `)
+
                 modalDetail.release()
             }
 
-            async function loadDataPermintaanMasukByFilter(asal, status) {
+            async function loadDataPermintaanMasukByFilter(asal, status, date=null) {
                 tablePermohonanUI.block()
-                await ppidDataPermohonanMasuk(asal, status)
+                await ppidDataPermohonanMasuk(asal, status, date)
                 tablePermohonanUI.release()
             }
 
-            async function loadDataPermintaanSelesaiByFilter(asal, status) {
+            async function loadDataPermintaanSelesaiByFilter(asal, status, date=null) {
                 tableSelesaiUI.block()
-                await ppidDataPermohonanSelesai(asal, status)
+                await ppidDataPermohonanSelesai(asal, status, date)
                 tableSelesaiUI.release()
             }
 
             $("#asal_permohonan").on('change', function(){
+                const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").val()
+                let filterDate = null
+                if(dateSelected != '') {
+                    filterDate = {
+                        'start': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data('daterangepicker').startDate.format('YYYY-MM-DD'),
+                        'end': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data('daterangepicker').endDate.format('YYYY-MM-DD')
+                    }
+                }
                 const asalPermohonan = $(this).val()
                 const statusPermohonan = $("#status_permohonan").val()
-                loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan)
+                loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan, filterDate)
             })
 
             $("#status_permohonan").on('change', function(){
+                const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").val()
+                let filterDate = null
+                if(dateSelected != '') {
+                    filterDate = {
+                        'start': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data('daterangepicker').startDate.format('YYYY-MM-DD'),
+                        'end': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data('daterangepicker').endDate.format('YYYY-MM-DD')
+                    }
+                }
                 const statusPermohonan = $(this).val()
                 const asalPermohonan = $("#asal_permohonan").val()
-                loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan)
+                loadDataPermintaanMasukByFilter(asalPermohonan, statusPermohonan, filterDate)
             })
 
             $("#asal-selesai").on('change', function(){
+                const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").val()
+                let filterDate = null
+                if(dateSelected != '') {
+                    filterDate = {
+                        'start': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data('daterangepicker').startDate.format('YYYY-MM-DD'),
+                        'end': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data('daterangepicker').endDate.format('YYYY-MM-DD')
+                    }
+                }
+
                 const asalPermohonan = $(this).val()
                 const statusPermohonan = $("#status-selesai").val()
-                loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan)
+                loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan, filterDate)
             })
 
             $("#status-selesai").on('change', function(){
+                const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").val()
+                let filterDate = null
+                if(dateSelected != '') {
+                    filterDate = {
+                        'start': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data('daterangepicker').startDate.format('YYYY-MM-DD'),
+                        'end': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data('daterangepicker').endDate.format('YYYY-MM-DD')
+                    }
+                }
+
                 const statusPermohonan = $(this).val()
                 const asalPermohonan = $("#asal-selesai").val()
-                loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan)
+                loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan, filterDate)
             })
 
             $(document).on('click', '#cetak-permohonan', function(){
                 modalDetail.block()
-                // const { jsPDF } = window.jspdf
-                // window.html2canvas = html2canvas;
-                // var doc = new jsPDF();            
-                // doc.html($("#data-cetak-field")[0], {
-                //     callback: function (doc) {
-                //         doc.save('Permohonan PPID');
-                //     },
-                //     width: 170, //target width in the PDF document
-                //     windowWidth: 650, //window width in CSS pixels
-                //     x: 15,
-                //     y: 15,
-                // });
+                const filename = $("#detail-noregistrasi").val()+'.pdf'
                 var opt = {
-                margin:       1,
-                filename:     'myfile.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                    margin: 0.5,
+                    filename: filename,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
                 };
                 var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
 

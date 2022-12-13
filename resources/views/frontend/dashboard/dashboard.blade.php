@@ -184,61 +184,7 @@
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="bd-table-permohonan">
-                                        <!-- <tr>
-                                            <td scope="row">
-                                                <a href="#">10/Per-web/01/2022</a>
-                                            </td>
-                                            <td>Permohonan Informasi A</td>
-                                            <td>
-                                                <div class="confirm d-flex align-items-start">
-                                                    <div class="circle-blue"></div>
-                                                    <span class="ml-2">Menunggu <br />
-                                                        Konfirmasi</span>
-                                                </div>
-                                            </td>
-                                            <td>2 Hari</td>
-                                            <td>pdf</td>
-                                            <td>
-                                                <button class="btn btn-sm">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                                                        alt="" />
-                                                </button>
-                                                <button class="btn btn-sm">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                                                        alt="" />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="row">
-                                                <a href="#">10/Per-web/01/2022</a>
-                                            </td>
-                                            <td>Permohonan Informasi A</td>
-                                            <td>
-                                                <div class="confirm d-flex align-items-start">
-                                                    <div class="circle-yellow"></div>
-                                                    <span class="ml-2">Sedang Proses</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                5 Hari hingga batas <br />
-                                                waktu
-                                            </td>
-                                            <td>pdf</td>
-                                            <td>
-                                                <button class="btn btn-sm">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                                                        alt="" />
-                                                </button>
-                                                <button class="btn btn-sm">
-                                                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                                                        alt="" />
-                                                </button>
-                                            </td>
-                                        </tr> -->
-                                                                                
-                                    </tbody>
+                                    <tbody id="bd-table-permohonan"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -544,7 +490,7 @@
                         let jawaban = '-'
                         if(data[i].id_status == 4) {
                             jawaban = `
-                                <a class="mb-4 mr-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a>
+                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
                                 ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
                             `
                         }

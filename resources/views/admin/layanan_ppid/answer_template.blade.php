@@ -12,7 +12,7 @@
 
     <h1>Jawaban</h1>
 
-    {{ $jawaban }}
+    <p>{!! $jawaban !!}</p>
 
 </body>
 
