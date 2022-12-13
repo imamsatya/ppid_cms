@@ -22,6 +22,7 @@ return new class extends Migration
         Schema::create('ppid_keberatan', function (Blueprint $table) {
             $table->id();
             $table->string('ticket_keberatan');
+            $table->string('jenis_kanal');
             $table->string('perihal_keberatan');
             $table->unsignedBigInteger('id_kategori_keberatan');
             $table->foreign('id_kategori_keberatan')->references('id')->on('kategori_keberatan');
@@ -29,8 +30,7 @@ return new class extends Migration
             $table->foreign('id_permohonan')->references('id')->on('ppid_permohonan');
             $table->unsignedBigInteger('id_ppid_pendaftar');
             $table->foreign('id_ppid_pendaftar')->references('id')->on('ppid_pendaftar');
-            $table->timestamp('expired_date1')->nullable();
-            $table->timestamp('expired_date2')->nullable();
+            $table->timestamp('expired_date')->nullable();
             $table->timestamps();
         });
 

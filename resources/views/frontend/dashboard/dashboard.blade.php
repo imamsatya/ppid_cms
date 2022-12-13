@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -285,7 +285,7 @@
                                 <table class="table" id="table-keberatan">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">No. Permohonan</th>
+                                            <th scope="col">No. Keberatan</th>
                                             <th scope="col">Perihal</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Batas Waktu</th>
@@ -307,9 +307,10 @@
                                                             <span class="ml-2">{{ $keberatan->nama_status }}</span>
                                                         </div>
                                                     </td>
-                                                    <td>{{ $keberatan->expired_date1 }}</td>
+                                                    <td>{{ $keberatan->expired_date }}</td>
                                                     <td>{{ $keberatan->ket_jawaban }}</td>
                                                     <td>
+
                                                         <button class="btn btn-sm edit-keberatan"
                                                             data-keberatan="{{ $keberatan->id }}">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
@@ -1080,6 +1081,7 @@
                                 })
                                 $("#cancel-keberatan").click()
                                 loadDataKeberatan()
+
                             } catch (error) {
                                 Swal.fire({
                                     icon: 'error',
@@ -1103,10 +1105,63 @@
                 }
                 $("#select-kategori-keberatan").on("change", checkKategori);
 
+
+                $(document).on('click', '#cancel-keberatan', function() {
+                    $("#modalKeberatan").modal('hide')
+                })
+
                 $(document).on('click', '.edit-keberatan', function() {
+
                     const idKeberatan = $(this).data('keberatan')
+                    console.log('idKeberatan', idKeberatan)
                     $("#modalKeberatan").modal('show')
                     loadModalKeberatan('edit-data', idKeberatan)
+                })
+
+                const deleteDataKeberatan = (id) => {
+                    return $.ajax({
+                        type: 'DELETE',
+                        url: "/ppid-data-keberatan/" + id,
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: 'json'
+                    })
+                }
+
+                $(document).on('click', '.delete-keberatan', function() {
+                    const idKeberatan = $(this).data('keberatan')
+                    Swal.fire({
+                        icon: 'question',
+                        title: 'Konfirmasi',
+                        html: 'Hapus data keberatan ?',
+                        showCancelButton: true,
+                        confirmButtonText: "Ya, Hapus Data",
+                        customClass: {
+                            cancelButton: 'btn btn-danger',
+                            confirmButton: "btn btn-primary",
+                        },
+                        showLoaderOnConfirm: true,
+                        preConfirm: async () => {
+                            try {
+                                await deleteDataKeberatan(idKeberatan)
+                            } catch (error) {
+                                Swal.showValidationMessage(
+                                    `Request failed: ${error}`
+                                )
+                            }
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((dt) => {
+                        if (dt.isConfirmed) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                html: 'Berhasil menghapus data keebratan!'
+                            })
+                            // loadData()
+                        }
+                    })
                 })
 
                 const submitDataKeberatan = (data) => {
