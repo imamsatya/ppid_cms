@@ -109,4 +109,18 @@ class DataKeberatanController extends Controller
         }
         echo json_encode(array('status' => 'success', 'result' => 'Berhasil menghapus data!'));
     }
+
+    public function ppidDataPermohonanSebelumnya(Request $request, $id)
+    {
+        $result = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan', 'status_permohonan.id_status as id_status_permohonan', 'status.name as nama_status_permohonan')
+            ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+            ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+            ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+            ->where('status_permohonan.aktif', 1)
+            ->whereIn('status.id', [4, 5])
+            ->where('ppid_permohonan.id_ppid_pendaftar', $id)->get();
+        echo json_encode(array('result' => $result, 'status' => 'success'));
+    }
 }

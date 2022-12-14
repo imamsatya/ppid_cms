@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -866,6 +866,7 @@
 
 
                 async function loadModalKeberatan(type = 'add-new', data = null) {
+                    document.getElementById('select-permohonan-sebelumnya').hidden = true
                     modalKeberatan.block()
                     const user = {!! Auth::user()->toJson() !!}
 
@@ -1051,9 +1052,34 @@
                     })
                 })
 
-                function checkKategori() {
+                const getDataPpidPermohonanSebelumnya = (id) => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "ppid-permohonan-sebelumnya/" + id,
+                        dataType: 'json'
+                    });
+                }
+
+                async function ppidPermohonanSebelumnya() {
+                    const userId = {{ auth()->id() }}
+                    try {
+                        const result = await getDataPpidPermohonanSebelumnya(userId)
+                        let option = '<option selected value="-">-- No Tiket Permohonan --</option>'
+                        for (let i = 0; i < result.result.length; i++) {
+                            option +=
+                                `<option value="${result.result[i].id}">${result.result[i].ticket_permohonan}</option>`
+                        }
+                        console.log(option)
+                        $("#select-permohonan-sebelumnya").html(option)
+                    } catch (err) {
+                        console.log(err.responseText)
+                    }
+                }
+
+                async function checkKategori() {
                     let selectedKategoriId = $("#select-kategori-keberatan")[0].value
                     if (selectedKategoriId == 3 || selectedKategoriId == 4 || selectedKategoriId == 5) {
+                        await ppidPermohonanSebelumnya()
                         document.getElementById('select-permohonan-sebelumnya').hidden = false
                     } else {
                         document.getElementById('select-permohonan-sebelumnya').hidden = true
