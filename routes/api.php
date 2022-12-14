@@ -60,7 +60,7 @@ Route::controller(RegisterController::class)->group(function () {
 Route::resource('permohonan', PermohonanController::class);
 
 // FAQ
- Route::resource('faq', FAQController::class);
+Route::resource('faq_mobile', FAQController::class);
 Route::resource('faq_banner', FAQBannerController::class);
 
 // Laporan
@@ -77,7 +77,7 @@ Route::resource('video', VideoController::class);
 
 // StandarLayanan
 Route::resource('biaya', BiayaLayananController::class);
- Route::resource('maklumat', MaklumatController::class);
+Route::resource('maklumat_mobile', MaklumatController::class);
 Route::resource('prosedur', ProsedurLayananController::class);
 
 // Profil
