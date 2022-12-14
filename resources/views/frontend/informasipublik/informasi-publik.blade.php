@@ -53,10 +53,10 @@
                                             <div class="data_list"
                                                 style="{{ $informasiSecaraBerkala_row->url || $informasiSecaraBerkala_row->file_path ?? 'cursor: default' }}">
                                                 @if ($informasiSecaraBerkala_row->url)
-                                                    <span><a style="color:#104e70; "
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
                                                             href="{{ $informasiSecaraBerkala_row->url }}">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
                                                 @else
-                                                    <span><a style="color:#104e70; cursor: default;"
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                             href="javascript:void(0)">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
                                                 @endif
                                             </div>
