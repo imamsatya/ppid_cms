@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -246,7 +246,7 @@
                                             @foreach ($ppidKeberatan as $keberatan)
                                                 <tr>
                                                     <td scope="row">
-                                                        <a href="#">{{ $keberatan->ticket_keberatan }}</a>
+                                                        {{ $keberatan->ticket_keberatan }}
                                                     </td>
                                                     <td>{!! $keberatan->perihal_keberatan !!}</td>
                                                     <td>
@@ -256,19 +256,33 @@
                                                         </div>
                                                     </td>
                                                     <td>{{ $keberatan->expired_date }}</td>
-                                                    <td>{{ $keberatan->ket_jawaban }}</td>
                                                     <td>
+                                                        @if ($keberatan->ket_jawaban_path)
+                                                            <a class="mb-4"
+                                                                href="{{ asset($keberatan->ket_jawaban_path) }}">File
+                                                                Jawaban</a> <br />
+                                                        @endif
+                                                        @if ($keberatan->file_jawaban)
+                                                            <a href="{{ asset($keberatan->file_jawaban) }}">File
+                                                                Pendukung</a>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($keberatan->nama_status == 'Belum Dikonfirmasi')
+                                                            <button class="btn btn-sm edit-keberatan"
+                                                                data-keberatan="{{ $keberatan->id }}">
+                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
+                                                                    alt="" />
+                                                            </button>
+                                                            <button class="btn btn-sm delete-keberatan"
+                                                                data-keberatan="{{ $keberatan->id }}">
+                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
+                                                                    alt="" />
+                                                            </button>
+                                                        @else
+                                                            -
+                                                        @endif
 
-                                                        <button class="btn btn-sm edit-keberatan"
-                                                            data-keberatan="{{ $keberatan->id }}">
-                                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                                                                alt="" />
-                                                        </button>
-                                                        <button class="btn btn-sm delete-keberatan"
-                                                            data-keberatan="{{ $keberatan->id }}">
-                                                            <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                                                                alt="" />
-                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
