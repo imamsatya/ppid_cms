@@ -25,6 +25,7 @@ class DashboardController extends Controller
                 'jenis_status_keberatan.status as nama_status',
                 'jenis_status_keberatan.id as id_status',
                 'proses_keberatan.ket_jawaban',
+                'proses_keberatan.ket_jawaban_path',
                 'proses_keberatan.file_jawaban',
                 'proses_keberatan.jawab_by'
             )

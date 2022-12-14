@@ -30,7 +30,7 @@ return new class extends Migration
             $table->foreign('id_permohonan')->references('id')->on('ppid_permohonan');
             $table->unsignedBigInteger('id_ppid_pendaftar');
             $table->foreign('id_ppid_pendaftar')->references('id')->on('ppid_pendaftar');
-            $table->timestamp('expired_date')->nullable();
+            $table->date('expired_date')->nullable();
             $table->timestamps();
         });
 
@@ -56,8 +56,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_ppid_keberatan');
             $table->foreign('id_ppid_keberatan')->references('id')->on('ppid_keberatan');
             $table->string('ket_jawaban');
-            $table->string('file_jawaban');
+            $table->string('ket_jawaban_path');
+            $table->string('file_jawaban')->nullable();
             $table->string('jawab_by');
+            $table->timestamps();
         });
     }
 
