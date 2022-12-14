@@ -62,6 +62,107 @@ class DataKeberatanController extends Controller
         return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan', 'ppidKeberatanSelesai'));
     }
 
+    public function ppidDataKeberatan(Request $request)
+    {
+        $asal = $request->input('asal');
+        $status = $request->input('status');
+        $start = $request->input('datestart');
+        $end = $request->input('dateend');
+
+        $result = DB::table('ppid_keberatan')
+            ->select(
+                'ppid_keberatan.*',
+                'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status',
+                'proses_keberatan.ket_jawaban',
+                'proses_keberatan.ket_jawaban_path',
+                'proses_keberatan.file_jawaban',
+
+                'proses_keberatan.jawab_by',
+                'ppid_pendaftar.nama_lengkap',
+                'ppid_pendaftar.jenis_pemohon',
+            )
+            ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
+
+
+            ->orderBy('created_at', 'asc')
+            ->where(function ($query) use ($status) {
+                if ($status != '-') {
+                    $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+                } else {
+                    $query->whereNotIn('status_keberatan.id_jenis_status_keberatan', [3]); // kecuali yg selesai dan ditolak
+                }
+            })
+            ->where(function ($query) use ($asal) {
+                if ($asal != '-') {
+                    $query->where('ppid_pendaftar.jenis_pemohon', $asal);
+                }
+            })
+            ->where(function ($query) use ($start, $end) {
+                if ($start != '-') {
+                    $query->whereBetween(DB::raw('date(ppid_keberatan.created_at)'), [$start, $end]);
+                }
+            })
+            // ->where('status_permohonan.aktif', 1)
+            ->get();
+        echo json_encode(array('result' => $result));
+    }
+
+    public function ppidDataKeberatanSelesai(Request $request)
+    {
+        $asal = $request->input('asal');
+        $status = $request->input('status');
+        $start = $request->input('datestart');
+        $end = $request->input('dateend');
+
+        $result = DB::table('ppid_keberatan')
+            ->select(
+                'ppid_keberatan.*',
+                'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status',
+                'proses_keberatan.ket_jawaban',
+                'proses_keberatan.ket_jawaban_path',
+                'proses_keberatan.file_jawaban',
+
+                'proses_keberatan.jawab_by',
+                'ppid_pendaftar.nama_lengkap',
+                'ppid_pendaftar.jenis_pemohon',
+                'proses_keberatan.file_jawaban',
+                'proses_keberatan.ket_jawaban_path'
+            )
+            ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
+
+
+
+            ->orderBy('created_at', 'asc')
+            ->where(function ($query) use ($status) {
+                if ($status != '-') {
+                    $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+                } else {
+                    $query->whereNotIn('status_keberatan.id_jenis_status_keberatan', [1, 2]); // kecuali yg selesai dan ditolak
+                }
+            })
+            ->where(function ($query) use ($asal) {
+                if ($asal != '-') {
+                    $query->where('ppid_pendaftar.jenis_pemohon', $asal);
+                }
+            })
+            ->where(function ($query) use ($start, $end) {
+                if ($start != '-') {
+                    $query->whereBetween(DB::raw('date(ppid_keberatan.created_at)'), [$start, $end]);
+                }
+            })
+            // ->where('status_permohonan.aktif', 1)
+            ->get();
+        echo json_encode(array('result' => $result));
+    }
+
     public function submitKonfirmasiKeberatan(Request $request)
     {
         $data = $request->all();

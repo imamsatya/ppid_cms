@@ -54,7 +54,7 @@
                                     <div class="mb-0">
                                         <label class="form-label">Periode Tanggal Masuk</label>
                                         <input class="form-control form-control-solid" placeholder="Pick date rage"
-                                            id="kt_daterangepicker_tanggalMasuk_permohonanMasuk" value="" />
+                                            id="kt_daterangepicker_tanggalMasuk_keberatanMasuk" value="" />
                                     </div>
                                 </div>
                                 <br>
@@ -71,7 +71,7 @@
                                     </div>
 
                                     <div class="col-lg-4 col-sm-12">
-                                        <select id="status_permohonan" class="form-select">
+                                        <select id="status_keberatan" class="form-select">
                                             <option value="-"> Status Keberatan</option>
                                             <!-- <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -82,7 +82,7 @@
 
 
 
-                                <table id="kt_datatable_dom_positioning_daftarPermohonanMasuk"
+                                <table id="kt_datatable_dom_positioning_daftarKeberatanMasuk"
                                     class="table table-row-bordered gy-5 gs-7">
                                     <thead>
                                         <tr class="fw-semibold fs-6 text-gray-800">
@@ -97,8 +97,8 @@
                                         </tr>
                                     </thead>
                                     {{-- id="bd-table-keberatan-masuk" --}}
-                                    <tbody>
-                                        @foreach ($ppidKeberatan as $keberatan)
+                                    <tbody id="bd-table-keberatan-masuk">
+                                        {{-- @foreach ($ppidKeberatan as $keberatan)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $keberatan->created_at }}</td>
@@ -122,7 +122,7 @@
                                                     @endif
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -131,7 +131,7 @@
                         <br>
                         <div class="card card-flush shadow-sm">
                             <div class="card-header">
-                                <h3 class="card-title">Daftar Permohonan Selesai </h3>
+                                <h3 class="card-title">Daftar Keberatan Selesai </h3>
                                 <div class="card-toolbar">
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                                     <div class="mb-0">
                                         <label class="form-label">Periode Tanggal Masuk</label>
                                         <input class="form-control form-control-solid" placeholder="Pick date rage"
-                                            id="kt_daterangepicker_tanggalMasuk_permohonanSelesai" value="" />
+                                            id="kt_daterangepicker_tanggalMasuk_keberatanSelesai" value="" />
                                     </div>
                                 </div>
                                 <br>
@@ -169,7 +169,7 @@
 
 
 
-                                <table id="kt_datatable_dom_positioning_daftarPermohonanSelesai"
+                                <table id="kt_datatable_dom_positioning_daftarKeberatanSelesai"
                                     class="table table-striped table-row-bordered gy-5 gs-7">
                                     <thead>
                                         <tr class="fw-semibold fs-6 text-gray-800">
@@ -183,8 +183,8 @@
                                         </tr>
                                     </thead>
                                     {{-- id="bd-table-keberatan-selesai" --}}
-                                    <tbody>
-                                        @foreach ($ppidKeberatanSelesai as $keberatanSelesai)
+                                    <tbody id="bd-table-keberatan-selesai">
+                                        {{-- @foreach ($ppidKeberatanSelesai as $keberatanSelesai)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $keberatanSelesai->created_at }}</td>
@@ -195,7 +195,7 @@
                                                 <td>{{ $keberatanSelesai->nama_status }}</td>
 
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -481,9 +481,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
@@ -507,56 +507,56 @@
                                     });
 
                                     async function loadDataPermintaanMasuk() {
-                                        tablePermohonanUI.block()
-                                        await ppidDataPermohonanMasuk()
-                                        tablePermohonanUI.release()
+                                        tableKeberatanUI.block()
+                                        await ppidDataKeberatanMasuk()
+                                        tableKeberatanUI.release()
                                     }
 
                                     async function loadDataPermintaanSelesai() {
                                         tableSelesaiUI.block()
-                                        await ppidDataPermohonanSelesai()
+                                        await ppidDataKeberatanSelesai()
                                         tableSelesaiUI.release()
                                     }
 
 
-                                    const getDataPermohonanMasuk = (asal, status, date) => {
+                                    const getDataKeberatanMasuk = (asal, status, date) => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: `/admin/ppid-data-permohonan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            url: `/admin/ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
                                     }
 
-                                    const getDataPermohonanSelesai = (asal, status, date) => {
+                                    const getDataKeberatanSelesai = (asal, status, date) => {
                                         return $.ajax({
                                             type: 'GET',
                                             // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
-                                            url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            url: `/admin/ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
                                     }
 
-                                    async function ppidDataPermohonanMasuk(asal = '-', status = '-', date = null) {
+                                    async function ppidDataKeberatanMasuk(asal = '-', status = '-', date = null) {
                                         try {
-                                            const result = await getDataPermohonanMasuk(asal, status, date)
+                                            const result = await getDataKeberatanMasuk(asal, status, date)
                                             const data = result.result
                                             const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
                                             let rowData = []
                                             for (let i = 0; i < data.length; i++) {
                                                 let btnAction = ''
                                                 let ticketAction = ''
+
                                                 if (data[i].id_status == 1) {
                                                     btnAction =
-                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-permohonan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
-                                                    ticketAction = data[i].ticket_permohonan
+                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
+                                                    ticketAction = data[i].ticket_keberatan
                                                 } else {
                                                     btnAction = `
-                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
-                            <a href="javascript:void(0)" class="btn btn-icon btn-danger forward-permohonan" data-permohonan="${data[i].id}"><i
-                                    class="bi bi bi-forward fs-4 "></i></a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+                            
                             `
                                                     ticketAction =
-                                                        `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
+                                                        `<a href="javascript:void(0)" class="detail-keberatan" data-keberatan="${data[i].id}">${data[i].ticket_keberatan}</a>`
                                                 }
 
 
@@ -566,43 +566,43 @@
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
-                                                    data[i].id_status == '1' ? '-' : (now > data[i].expired_date1 ? data[i]
-                                                        .expired_date2 : data[i].expired_date1),
+                                                    data[i].id_status == '1' ? '-' : data[i].expired_date,
                                                     data[i].nama_status,
                                                     btnAction
                                                 ])
                                             }
 
-                                            tablePermohonanMasuk.clear().rows.add(rowData).draw()
+                                            tableKeberatanMasuk.clear().rows.add(rowData).draw()
                                         } catch (error) {
                                             console.log(error)
                                         }
                                     }
 
-                                    async function ppidDataPermohonanSelesai(asal = '-', status = '-', date = null) {
+                                    async function ppidDataKeberatanSelesai(asal = '-', status = '-', date = null) {
                                         try {
-                                            const result = await getDataPermohonanSelesai(asal, status, date)
+                                            const result = await getDataKeberatanSelesai(asal, status, date)
                                             const data = result.result
                                             let rowData = []
                                             for (let i = 0; i < data.length; i++) {
                                                 let btnAction = ''
                                                 let ticketAction = ''
+                                                console.log(data[i])
                                                 if (data[i].id_status == 1) {
                                                     btnAction =
-                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-permohonan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
-                                                    ticketAction = data[i].ticket_permohonan
+                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
+                                                    ticketAction = data[i].ticket_keberatan
                                                 } else {
                                                     btnAction = `
-                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
-                            <a href="javascript:void(0)" class="btn btn-icon btn-danger forward-permohonan" data-permohonan="${data[i].id}"><i
+                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-danger forward-keberatan" data-keberatan="${data[i].id}"><i
                                     class="bi bi bi-forward fs-4 "></i></a>
                             `
                                                     ticketAction =
-                                                        `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
+                                                        `<a href="javascript:void(0)" class="detail-keberatan" data-keberatan="${data[i].id}">${data[i].ticket_keberatan}</a>`
                                                 }
 
                                                 let jawaban = '-'
-                                                if (data[i].id_status == 4) {
+                                                if (data[i].id_status == 3) {
                                                     jawaban = `
                                 <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer">File Jawaban</a> <br/>
                                 ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer">File Pendukung</a>` : '' }
@@ -620,13 +620,13 @@
                                                 ])
                                             }
 
-                                            tablePermohonanSelesai.clear().rows.add(rowData).draw()
+                                            tableKeberatanSelesai.clear().rows.add(rowData).draw()
                                         } catch (error) {
                                             console.log(error)
                                         }
                                     }
 
-                                    var tablePermohonanMasuk = $("#kt_datatable_dom_positioning_daftarPermohonanMasuk").DataTable({
+                                    var tableKeberatanMasuk = $("#kt_datatable_dom_positioning_daftarKeberatanMasuk").DataTable({
                                         "language": {
                                             "lengthMenu": "Show _MENU_",
                                         },
@@ -639,10 +639,12 @@
                                             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
                                             ">",
                                         initComplete: function() {
-                                            // loadDataPermintaanMasuk()
+                                            loadDataPermintaanMasuk()
                                         },
                                         "createdRow": function(row, data, dataIndex) {
-
+                                            console.log('row', row)
+                                            console.log('data', data)
+                                            console.log('dataIndex', dataIndex)
                                             if (data[5] != null && data[5] != '-' && data[5] != '') {
                                                 const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
                                                 if (now > data[5]) {
@@ -653,7 +655,7 @@
                                         },
                                     });
 
-                                    var tablePermohonanSelesai = $("#kt_datatable_dom_positioning_daftarPermohonanSelesai").DataTable({
+                                    var tableKeberatanSelesai = $("#kt_datatable_dom_positioning_daftarKeberatanSelesai").DataTable({
                                         "language": {
                                             "lengthMenu": "Show _MENU_",
                                         },
@@ -670,7 +672,7 @@
                                         }
                                     });
 
-                                    $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").daterangepicker({
+                                    $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").daterangepicker({
                                         autoUpdateInput: false,
                                         timePicker: false,
                                         locale: {
@@ -683,28 +685,28 @@
                                             'end': end.format('YYYY-MM-DD')
                                         }
                                         // triger filter
-                                        const asalPermohonan = $("#asal_keberatan").val()
-                                        const statusKeberatan = $("#status_permohonan").val()
-                                        loadDataPermintaanMasukByFilter(asalPermohonan, statusKeberatan, filterDate)
+                                        const asalKeberatan = $("#asal_keberatan").val()
+                                        const statusKeberatan = $("#status_keberatan").val()
+                                        loadDataPermintaanMasukByFilter(asalKeberatan, statusKeberatan, filterDate)
                                     });
 
-                                    $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").val('')
+                                    $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").val('')
 
-                                    $('input[id="kt_daterangepicker_tanggalMasuk_permohonanMasuk"]').on('apply.daterangepicker', function(
+                                    $('input[id="kt_daterangepicker_tanggalMasuk_keberatanMasuk"]').on('apply.daterangepicker', function(
                                         ev, picker) {
                                         $(this).val(picker.startDate.format('DD/MM/Y') + ' - ' + picker.endDate.format('DD/MM/Y'));
                                     });
 
-                                    $('input[id="kt_daterangepicker_tanggalMasuk_permohonanMasuk"]').on('cancel.daterangepicker', function(
+                                    $('input[id="kt_daterangepicker_tanggalMasuk_keberatanMasuk"]').on('cancel.daterangepicker', function(
                                         ev, picker) {
                                         $(this).val('');
                                         // trigger filter
-                                        const asalPermohonan = $("#asal_keberatan").val()
-                                        const statusKeberatan = $("#status_permohonan").val()
-                                        loadDataPermintaanMasukByFilter(asalPermohonan, statusKeberatan)
+                                        const asalKeberatan = $("#asal_keberatan").val()
+                                        const statusKeberatan = $("#status_keberatan").val()
+                                        loadDataPermintaanMasukByFilter(asalKeberatan, statusKeberatan)
                                     });
 
-                                    $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").daterangepicker({
+                                    $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").daterangepicker({
                                         autoUpdateInput: false,
                                         timePicker: false,
                                         locale: {
@@ -717,26 +719,26 @@
                                             'end': end.format('YYYY-MM-DD')
                                         }
                                         // triger filter
-                                        const asalPermohonan = $("#asal-selesai").val()
+                                        const asalKeberatan = $("#asal-selesai").val()
                                         const statusKeberatan = $("#status-selesai").val()
-                                        loadDataPermintaanSelesaiByFilter(asalPermohonan, statusKeberatan, filterDate)
+                                        loadDataPermintaanSelesaiByFilter(asalKeberatan, statusKeberatan, filterDate)
                                     });
 
-                                    $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").val('')
+                                    $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").val('')
 
-                                    $('input[id="kt_daterangepicker_tanggalMasuk_permohonanSelesai"]').on('apply.daterangepicker', function(
+                                    $('input[id="kt_daterangepicker_tanggalMasuk_keberatanSelesai"]').on('apply.daterangepicker', function(
                                         ev, picker) {
                                         console.log('here')
                                         $(this).val(picker.startDate.format('DD/MM/Y') + ' - ' + picker.endDate.format('DD/MM/Y'));
                                     });
 
-                                    $('input[id="kt_daterangepicker_tanggalMasuk_permohonanSelesai"]').on('cancel.daterangepicker',
+                                    $('input[id="kt_daterangepicker_tanggalMasuk_keberatanSelesai"]').on('cancel.daterangepicker',
                                         function(ev, picker) {
                                             $(this).val('');
                                             // trigger filter
-                                            const asalPermohonan = $("#asal-selesai").val()
+                                            const asalKeberatan = $("#asal-selesai").val()
                                             const statusKeberatan = $("#status-selesai").val()
-                                            loadDataPermintaanSelesaiByFilter(asalPermohonan, statusKeberatan)
+                                            loadDataPermintaanSelesaiByFilter(asalKeberatan, statusKeberatan)
                                         });
 
                                     const getJenisPemohon = () => {
@@ -781,7 +783,7 @@
                                                 option +=
                                                     `<option value="${dataOptionBelumSelesai[i].id}">${dataOptionBelumSelesai[i].status}</option>`
                                             }
-                                            $("#status_permohonan").html(option)
+                                            $("#status_keberatan").html(option)
 
                                             let dataOptionSelesai = result.result.filter(data => [3].includes(data.id))
                                             let optionSelesai = '<option value="-">-- Status Keberatan --</option>'
@@ -963,8 +965,8 @@
                                                 title: 'Sukses',
                                                 html: result.result
                                             })
-                                            // loadDataPermintaanMasuk()
-                                            // loadDataPermintaanSelesai()
+                                            loadDataPermintaanMasuk()
+                                            loadDataPermintaanSelesai()
                                             window.location.reload();
                                         } catch (error) {
                                             modalKeberatan.release()
@@ -1118,7 +1120,7 @@
                                         $("#detail-alamat").val(dataPemohon.result.alamat)
                                         $("#detail-pekerjaan").val(dataPemohon.result.pekerjaan)
                                         $("#detail-email").val(dataPemohon.result.email)
-                                        $("#detail-status").val(dataPermohonan.result.nama_status_permohonan)
+                                        $("#detail-status").val(dataPermohonan.result.nama_status_keberatan)
                                         console.log(dataPermohonan.result)
                                         $("#file-identitas-detail").html(`
                     <label class="form-label">File identitas</label>
@@ -1129,81 +1131,81 @@
                                     }
 
                                     async function loadDataPermintaanMasukByFilter(asal, status, date = null) {
-                                        tablePermohonanUI.block()
-                                        await ppidDataPermohonanMasuk(asal, status, date)
-                                        tablePermohonanUI.release()
+                                        tableKeberatanUI.block()
+                                        await ppidDataKeberatanMasuk(asal, status, date)
+                                        tableKeberatanUI.release()
                                     }
 
                                     async function loadDataPermintaanSelesaiByFilter(asal, status, date = null) {
                                         tableSelesaiUI.block()
-                                        await ppidDataPermohonanSelesai(asal, status, date)
+                                        await ppidDataKeberatanSelesai(asal, status, date)
                                         tableSelesaiUI.release()
                                     }
 
                                     $("#asal_keberatan").on('change', function() {
-                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").val()
+                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").val()
                                         let filterDate = null
                                         if (dateSelected != '') {
                                             filterDate = {
-                                                'start': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data(
+                                                'start': $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").data(
                                                     'daterangepicker').startDate.format('YYYY-MM-DD'),
-                                                'end': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data(
+                                                'end': $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").data(
                                                     'daterangepicker').endDate.format('YYYY-MM-DD')
                                             }
                                         }
-                                        const asalPermohonan = $(this).val()
-                                        const statusKeberatan = $("#status_permohonan").val()
-                                        loadDataPermintaanMasukByFilter(asalPermohonan, statusKeberatan, filterDate)
+                                        const asalKeberatan = $(this).val()
+                                        const statusKeberatan = $("#status_keberatan").val()
+                                        loadDataPermintaanMasukByFilter(asalKeberatan, statusKeberatan, filterDate)
                                     })
 
-                                    $("#status_permohonan").on('change', function() {
-                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").val()
+                                    $("#status_keberatan").on('change', function() {
+                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").val()
                                         let filterDate = null
                                         if (dateSelected != '') {
                                             filterDate = {
-                                                'start': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data(
+                                                'start': $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").data(
                                                     'daterangepicker').startDate.format('YYYY-MM-DD'),
-                                                'end': $("#kt_daterangepicker_tanggalMasuk_permohonanMasuk").data(
+                                                'end': $("#kt_daterangepicker_tanggalMasuk_keberatanMasuk").data(
                                                     'daterangepicker').endDate.format('YYYY-MM-DD')
                                             }
                                         }
                                         const statusKeberatan = $(this).val()
-                                        const asalPermohonan = $("#asal_keberatan").val()
-                                        loadDataPermintaanMasukByFilter(asalPermohonan, statusKeberatan, filterDate)
+                                        const asalKeberatan = $("#asal_keberatan").val()
+                                        loadDataPermintaanMasukByFilter(asalKeberatan, statusKeberatan, filterDate)
                                     })
 
                                     $("#asal-selesai").on('change', function() {
-                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").val()
+                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").val()
                                         let filterDate = null
                                         if (dateSelected != '') {
                                             filterDate = {
-                                                'start': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data(
+                                                'start': $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").data(
                                                     'daterangepicker').startDate.format('YYYY-MM-DD'),
-                                                'end': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data(
+                                                'end': $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").data(
                                                     'daterangepicker').endDate.format('YYYY-MM-DD')
                                             }
                                         }
 
-                                        const asalPermohonan = $(this).val()
+                                        const asalKeberatan = $(this).val()
                                         const statusKeberatan = $("#status-selesai").val()
-                                        loadDataPermintaanSelesaiByFilter(asalPermohonan, statusKeberatan, filterDate)
+                                        loadDataPermintaanSelesaiByFilter(asalKeberatan, statusKeberatan, filterDate)
                                     })
 
                                     $("#status-selesai").on('change', function() {
-                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").val()
+                                        const dateSelected = $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").val()
                                         let filterDate = null
                                         if (dateSelected != '') {
                                             filterDate = {
-                                                'start': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data(
+                                                'start': $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").data(
                                                     'daterangepicker').startDate.format('YYYY-MM-DD'),
-                                                'end': $("#kt_daterangepicker_tanggalMasuk_permohonanSelesai").data(
+                                                'end': $("#kt_daterangepicker_tanggalMasuk_keberatanSelesai").data(
                                                     'daterangepicker').endDate.format('YYYY-MM-DD')
                                             }
                                         }
 
                                         const statusKeberatan = $(this).val()
-                                        const asalPermohonan = $("#asal-selesai").val()
-                                        loadDataPermintaanSelesaiByFilter(asalPermohonan, statusKeberatan, filterDate)
+                                        const asalKeberatan = $("#asal-selesai").val()
+                                        loadDataPermintaanSelesaiByFilter(asalKeberatan, statusKeberatan, filterDate)
                                     })
 
                                     $(document).on('click', '#cetak-permohonan', function() {

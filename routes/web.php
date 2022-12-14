@@ -294,7 +294,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('manajemen_menu', MenuController::class);
 
     //Layanan PPID
-    // yovi
+    // permohonan
     Route::get('/ppid-data-permohonan', [DataPermohonanController::class, 'ppidDataPermohonan']);
     Route::get('/ppid-data-permohonan-selesai', [DataPermohonanController::class, 'ppidDataPermohonanSelesai']);
     Route::get('/ppid-template-reject', [DataPermohonanController::class, 'ppidTemplateReject']);
@@ -306,6 +306,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/users-penghubung', [DataPermohonanController::class, 'getDaftarUserPenghubung']);
 
     //keberatan
+    Route::get('/ppid-data-keberatan', [DataKeberatanController::class, 'ppidDataKeberatan']);
+    Route::get('/ppid-data-keberatan-selesai', [DataKeberatanController::class, 'ppidDataKeberatanSelesai']);
     Route::post('/konfirmasi-data-keberatan', [DataKeberatanController::class, 'submitKonfirmasiKeberatan']);
     Route::post('/submit-answer-keberatan', [DataKeberatanController::class, 'submitAnswerKeberatan']);
 });
