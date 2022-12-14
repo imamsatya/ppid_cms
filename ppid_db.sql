@@ -5,7 +5,7 @@
 -- Dumped from database version 12.12
 -- Dumped by pg_dump version 12.12
 
--- Started on 2022-12-14 08:24:13
+-- Started on 2022-12-14 13:53:57
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1509,7 +1509,7 @@ CREATE TABLE public.ppid_keberatan (
     id_kategori_keberatan bigint NOT NULL,
     id_permohonan bigint,
     id_ppid_pendaftar bigint NOT NULL,
-    expired_date timestamp(0) without time zone,
+    expired_date date,
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
     jenis_kanal character varying(255) NOT NULL
@@ -2183,8 +2183,11 @@ CREATE TABLE public.proses_keberatan (
     id bigint NOT NULL,
     id_ppid_keberatan bigint NOT NULL,
     ket_jawaban character varying(255) NOT NULL,
-    file_jawaban character varying(255) NOT NULL,
-    jawab_by character varying(255) NOT NULL
+    file_jawaban character varying(255),
+    jawab_by character varying(255) NOT NULL,
+    ket_jawaban_path character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) with time zone NOT NULL
 );
 
 
@@ -4337,7 +4340,12 @@ COPY public.ppid_jenis_profil (id, jenis_profil, created_at, updated_at) FROM st
 --
 
 COPY public.ppid_keberatan (id, ticket_keberatan, perihal_keberatan, id_kategori_keberatan, id_permohonan, id_ppid_pendaftar, expired_date, created_at, updated_at, jenis_kanal) FROM stdin;
-7	-	<p>keb 1</p>	1	\N	1	\N	2022-12-13 04:50:23	2022-12-13 04:50:23	web
+9	-	<p>tes k1</p>	2	\N	1	\N	2022-12-14 03:42:33	2022-12-14 03:51:16	web
+10	-	<p>tes k2</p>	1	\N	1	\N	2022-12-14 03:43:00	2022-12-14 03:51:31	web
+7	01/Keb-web/12/2022	<p>keb 1</p>	2	\N	1	2023-01-24	2022-12-13 04:50:23	2022-12-14 03:51:04	web
+8	02/Keb-web/12/2022	<p>asddsadsadsa</p>	4	9	1	2023-01-24	2022-12-14 01:27:15	2022-12-14 01:27:15	web
+12	03/Keb-web/12/2022	<p>aaaaa</p>	1	\N	1	2023-01-24	2022-12-14 03:52:23	2022-12-14 03:52:23	web
+11	04/Keb-web/12/2022	<p>tes k3</p>	4	11	1	2023-01-24	2022-12-14 03:51:59	2022-12-14 03:51:59	web
 \.
 
 
@@ -4511,7 +4519,8 @@ COPY public.profilsingkats (id, judul, konten, banner_path, side_image_path, cre
 -- Data for Name: proses_keberatan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.proses_keberatan (id, id_ppid_keberatan, ket_jawaban, file_jawaban, jawab_by) FROM stdin;
+COPY public.proses_keberatan (id, id_ppid_keberatan, ket_jawaban, file_jawaban, jawab_by, ket_jawaban_path, created_at, updated_at) FROM stdin;
+3	7	<p>tes 1 a</p>	\N	3	keberatan/jawaban/01-Keb-web-12-2022.pdf	2022-12-14 06:39:21	2022-12-14 06:39:21+07
 \.
 
 
@@ -4821,7 +4830,12 @@ COPY public.status (id, name) FROM stdin;
 --
 
 COPY public.status_keberatan (id, id_ppid_keberatan, id_jenis_status_keberatan, modified_date, modified_by, created_at, updated_at) FROM stdin;
-5	7	1	2022-12-13 04:50:23	\N	2022-12-13 04:50:23	2022-12-13 04:50:23
+7	9	1	2022-12-14 03:42:33	\N	2022-12-14 03:42:33	2022-12-14 03:42:33
+8	10	1	2022-12-14 03:43:00	\N	2022-12-14 03:43:00	2022-12-14 03:43:00
+6	8	2	2022-12-14 01:27:15	\N	2022-12-14 01:27:15	2022-12-14 01:27:15
+10	12	2	2022-12-14 03:52:23	\N	2022-12-14 03:52:23	2022-12-14 03:52:23
+9	11	2	2022-12-14 03:51:59	\N	2022-12-14 03:51:59	2022-12-14 03:51:59
+5	7	3	2022-12-13 04:50:23	\N	2022-12-13 04:50:23	2022-12-13 04:50:23
 \.
 
 
@@ -5283,7 +5297,7 @@ SELECT pg_catalog.setval('public.ppid_jenis_profil_id_seq', 1, false);
 -- Name: ppid_keberatan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ppid_keberatan_id_seq', 7, true);
+SELECT pg_catalog.setval('public.ppid_keberatan_id_seq', 12, true);
 
 
 --
@@ -5427,7 +5441,7 @@ SELECT pg_catalog.setval('public.profilsingkats_id_seq', 2, true);
 -- Name: proses_keberatan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.proses_keberatan_id_seq', 1, false);
+SELECT pg_catalog.setval('public.proses_keberatan_id_seq', 3, true);
 
 
 --
@@ -5535,7 +5549,7 @@ SELECT pg_catalog.setval('public.status_id_seq', 1, false);
 -- Name: status_keberatan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.status_keberatan_id_seq', 5, true);
+SELECT pg_catalog.setval('public.status_keberatan_id_seq', 10, true);
 
 
 --
@@ -6740,7 +6754,7 @@ ALTER TABLE ONLY public.submenus
     ADD CONSTRAINT submenus_main_menu_id_foreign FOREIGN KEY (main_menu_id) REFERENCES public.mainmenus(id);
 
 
--- Completed on 2022-12-14 08:24:14
+-- Completed on 2022-12-14 13:53:58
 
 --
 -- PostgreSQL database dump complete
