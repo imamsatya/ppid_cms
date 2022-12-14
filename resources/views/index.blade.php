@@ -29,7 +29,8 @@
                                     <h1 class="display-2 text-white animated slideInDown">
                                         {!! $slider_row->judul !!}
                                     </h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-3 animated slideInDown">
+                                    <p class="fw-medium text-white mb-4 pb-3 animated slideInDown"
+                                        style="font-size: 24px;">
                                         {{-- Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et
                                         <br>
                                         diam justo clita et kasd rebum sea elitr. --}}
