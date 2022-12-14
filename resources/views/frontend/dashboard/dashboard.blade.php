@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -251,7 +251,7 @@
                                                     <td>{!! $keberatan->perihal_keberatan !!}</td>
                                                     <td>
                                                         <div class="confirm d-flex align-items-start">
-                                                            <div class="circle-blue"></div>
+                                                            {{-- <div class="circle-blue"></div> --}}
                                                             <span class="ml-2">{{ $keberatan->nama_status }}</span>
                                                         </div>
                                                     </td>
