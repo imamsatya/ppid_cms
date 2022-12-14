@@ -5,7 +5,7 @@
 -- Dumped from database version 12.12
 -- Dumped by pg_dump version 12.12
 
--- Started on 2022-12-12 08:02:06
+-- Started on 2022-12-14 08:24:13
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -439,10 +439,11 @@ CREATE TABLE public.jawab_permohonan (
     id bigint NOT NULL,
     id_ppid_permohonan bigint NOT NULL,
     ket_jawaban text NOT NULL,
-    file_jawaban character varying(255) NOT NULL,
+    file_jawaban character varying(255),
     jawab_by character varying(255) NOT NULL,
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    ket_jawaban_path character varying(255)
 );
 
 
@@ -1508,10 +1509,10 @@ CREATE TABLE public.ppid_keberatan (
     id_kategori_keberatan bigint NOT NULL,
     id_permohonan bigint,
     id_ppid_pendaftar bigint NOT NULL,
-    expired_date1 timestamp(0) without time zone,
-    expired_date2 timestamp(0) without time zone,
+    expired_date timestamp(0) without time zone,
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    jenis_kanal character varying(255) NOT NULL
 );
 
 
@@ -1936,7 +1937,9 @@ CREATE TABLE public.ppid_permohonan (
     id_mendapatkan bigint NOT NULL,
     file_identitas character varying(255) NOT NULL,
     created_at timestamp(0) without time zone,
-    updated_at timestamp(0) without time zone
+    updated_at timestamp(0) without time zone,
+    expired_date1 date,
+    expired_date2 date
 );
 
 
@@ -3764,7 +3767,7 @@ COPY public.faqs_banner (id, banner_path, created_at, updated_at) FROM stdin;
 --
 
 COPY public.forward_permohonan (id, id_ppid_permohonan, forward_by, forward_to, keterangan, nota_dinas, created_at, updated_at) FROM stdin;
-1	5	3	-	<p>xcvvxcvxc</p>	vcxvcxz	2022-12-04 13:20:05	2022-12-04 13:20:05
+3	11	3	6	<p>ppp 1</p>	ppp 1	2022-12-13 06:26:59	2022-12-13 06:26:59
 \.
 
 
@@ -3862,8 +3865,9 @@ COPY public.informasis_image (id, sideimage_path, backgroundimage_path, created_
 -- Data for Name: jawab_permohonan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.jawab_permohonan (id, id_ppid_permohonan, ket_jawaban, file_jawaban, jawab_by, created_at, updated_at) FROM stdin;
-1	4	<p>zzzzz zxczxczx</p>	adminAssets/ppid/dukungan/1670159512_content_peraturan.png	3	2022-12-04 13:11:52	2022-12-04 13:11:52
+COPY public.jawab_permohonan (id, id_ppid_permohonan, ket_jawaban, file_jawaban, jawab_by, created_at, updated_at, ket_jawaban_path) FROM stdin;
+4	9	<p>tes aa1</p>	\N	3	2022-12-13 06:33:02	2022-12-13 06:33:02	permohonan/jawaban/01-Per-web-12-2022.pdf
+5	11	<p>aa 3</p>	permohonan/jawaban/03-Per-web-12-2022-pendukung.png	3	2022-12-13 06:33:24	2022-12-13 06:33:24	permohonan/jawaban/03-Per-web-12-2022.pdf
 \.
 
 
@@ -4043,16 +4047,17 @@ COPY public.linkapps (id, icon, url, created_at, updated_at) FROM stdin;
 --
 
 COPY public.log_permohonan (id, id_ppid_permohonan, status, created_at, updated_at) FROM stdin;
-2	4	1	2022-12-04 13:06:40	2022-12-04 13:06:40
-3	4	2	2022-12-04 13:09:24	2022-12-04 13:09:24
-4	4	4	2022-12-04 13:11:52	2022-12-04 13:11:52
-5	5	1	2022-12-04 13:14:32	2022-12-04 13:14:32
-6	6	1	2022-12-04 13:15:27	2022-12-04 13:15:27
-7	7	1	2022-12-04 13:15:53	2022-12-04 13:15:53
-8	7	5	2022-12-04 13:16:35	2022-12-04 13:16:35
-9	6	2	2022-12-04 13:17:44	2022-12-04 13:17:44
-10	5	2	2022-12-04 13:18:33	2022-12-04 13:18:33
-11	5	3	2022-12-04 13:20:05	2022-12-04 13:20:05
+13	9	1	2022-12-13 04:49:44	2022-12-13 04:49:44
+14	10	1	2022-12-13 04:50:03	2022-12-13 04:50:03
+15	9	2	2022-12-13 06:22:53	2022-12-13 06:22:53
+16	10	5	2022-12-13 06:23:23	2022-12-13 06:23:23
+17	11	1	2022-12-13 06:24:41	2022-12-13 06:24:41
+18	11	2	2022-12-13 06:24:54	2022-12-13 06:24:54
+19	11	3	2022-12-13 06:26:59	2022-12-13 06:26:59
+20	9	4	2022-12-13 06:33:02	2022-12-13 06:33:02
+21	11	4	2022-12-13 06:33:24	2022-12-13 06:33:24
+23	13	1	2022-12-13 06:41:35	2022-12-13 06:41:35
+24	13	2	2022-12-13 06:50:24	2022-12-13 06:50:24
 \.
 
 
@@ -4139,6 +4144,7 @@ COPY public.model_has_roles (role_id, model_type, model_id) FROM stdin;
 3	App\\Models\\User	3
 3	App\\Models\\User	4
 3	App\\Models\\User	5
+4	App\\Models\\User	6
 \.
 
 
@@ -4330,10 +4336,8 @@ COPY public.ppid_jenis_profil (id, jenis_profil, created_at, updated_at) FROM st
 -- Data for Name: ppid_keberatan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.ppid_keberatan (id, ticket_keberatan, perihal_keberatan, id_kategori_keberatan, id_permohonan, id_ppid_pendaftar, expired_date1, expired_date2, created_at, updated_at) FROM stdin;
-1	-	<p>tes123</p>	1	\N	1	\N	\N	2022-12-08 18:34:16	2022-12-08 18:34:16
-2	-	<p>zzzz zzz</p>	2	\N	1	\N	\N	2022-12-09 00:57:52	2022-12-09 00:57:52
-3	-	<p>xxxx xxxz zxzx</p>	7	\N	1	\N	\N	2022-12-09 00:58:07	2022-12-09 00:58:07
+COPY public.ppid_keberatan (id, ticket_keberatan, perihal_keberatan, id_kategori_keberatan, id_permohonan, id_ppid_pendaftar, expired_date, created_at, updated_at, jenis_kanal) FROM stdin;
+7	-	<p>keb 1</p>	1	\N	1	\N	2022-12-13 04:50:23	2022-12-13 04:50:23	web
 \.
 
 
@@ -4430,9 +4434,9 @@ COPY public.ppid_menu (id, nama_menu, routing, "order", created_at, updated_at) 
 --
 
 COPY public.ppid_pendaftar (id, nama_lengkap, jenis_pemohon, jenis_identitas, nomor_identitas, alamat, pekerjaan, no_hp, npwp, email, password, status, identitas_file_path, remember_token, created_at, updated_at) FROM stdin;
-1	adssadsad	1	1	1234123412341234	adssad	adsasd	123412341234	12341234	asd@asd.asd	$2y$10$JW79/OjfZXcmG4gNyxkbtOoYzOU4nt1e9yii0Vy7XpSnHnbRd4lq2	\N	adminAssets/user/identitas/1669953041119png	\N	2022-12-02 03:50:41	2022-12-02 03:50:41
-2	zzzz	1	1	12341234	aasdads	dasdsadsa	143214321342	1111	asdf@asdf.asd	$2y$10$2l3xXnHOMmgGDVjecuhJ4OlgIuq2Rt5MSejWmo2FQAt4kaV7ETgki	\N	adminAssets/user/identitas/1669953421586png	\N	2022-12-02 03:57:01	2022-12-02 03:57:01
-3	zxxxzx	1	1	1234123412341234	adsdasasddsa	adssdadsa	123412341234	123412341234	wert@wert.qew	$2y$10$YarWlJH1EW74sQVnFnNcfOdhmtxcN5ySyL7uPdxNcjhuX2RLOQYVO	\N	adminAssets/user/identitas/1669955082462png	\N	2022-12-02 04:24:42	2022-12-02 04:24:42
+1	adssadsad	1	1	1234123412341234	adssad	adsasd	123412341234	12341234	asd@asd.asd	$2y$10$JW79/OjfZXcmG4gNyxkbtOoYzOU4nt1e9yii0Vy7XpSnHnbRd4lq2	\N	adminAssets/user/identitas/1669953041119.\npng	\N	2022-12-02 03:50:41	2022-12-02 03:50:41
+2	zzzz	1	1	12341234	aasdads	dasdsadsa	143214321342	1111	asdf@asdf.asd	$2y$10$2l3xXnHOMmgGDVjecuhJ4OlgIuq2Rt5MSejWmo2FQAt4kaV7ETgki	\N	adminAssets/user/identitas/1669953421586.\n.png	\N	2022-12-02 03:57:01	2022-12-02 03:57:01
+3	zxxxzx	1	1	1234123412341234	adsdasasddsa	adssdadsa	123412341234	123412341234	wert@wert.qew	$2y$10$YarWlJH1EW74sQVnFnNcfOdhmtxcN5ySyL7uPdxNcjhuX2RLOQYVO	\N	adminAssets/user/identitas/1669955082462.\npng	\N	2022-12-02 04:24:42	2022-12-02 04:24:42
 \.
 
 
@@ -4442,13 +4446,11 @@ COPY public.ppid_pendaftar (id, nama_lengkap, jenis_pemohon, jenis_identitas, no
 -- Data for Name: ppid_permohonan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.ppid_permohonan (id, id_ppid_pendaftar, ticket_permohonan, jenis_kanal, informasi_diminta, tujuan_informasi, id_cara, id_mendapatkan, file_identitas, created_at, updated_at) FROM stdin;
-1	1	-	web	<p>aaaa</p>	<p>ssssss</p>	1	1	adminAssets/user/identitas/1669953041119png	2022-12-04 12:57:20	2022-12-04 12:57:20
-2	1	-	web	<p>aaaa</p>	<p>ssssss</p>	1	1	adminAssets/user/identitas/1669953041119png	2022-12-04 12:57:31	2022-12-04 12:57:31
-4	1	01/Per-web/12/2022	web	<p>zzzz</p>	<p>zzzz</p>	1	3	adminAssets/user/identitas/1669953041119png	2022-12-04 13:06:40	2022-12-04 13:06:40
-7	1	-	web	<p>tttteetrerg</p>	<p>hgdghd</p>	2	1	adminAssets/user/identitas/1669953041119png	2022-12-04 13:15:53	2022-12-04 13:15:53
-6	1	02/Per-web/12/2022	web	<p>vvv vv v v v</p>	<p>vvv v v v bbbbb</p>	1	1	adminAssets/user/identitas/1669953041119png	2022-12-04 13:15:27	2022-12-04 13:15:27
-5	1	03/Per-web/12/2022	web	<p>aaa aaa aa</p>	<p>aaa aa aa aa</p>	1	1	adminAssets/user/identitas/1669953041119png	2022-12-04 13:14:32	2022-12-04 13:14:32
+COPY public.ppid_permohonan (id, id_ppid_pendaftar, ticket_permohonan, jenis_kanal, informasi_diminta, tujuan_informasi, id_cara, id_mendapatkan, file_identitas, created_at, updated_at, expired_date1, expired_date2) FROM stdin;
+9	1	01/Per-web/12/2022	web	<p>tes 1</p>	<p>tes 1 a</p>	1	1	adminAssets/user/identitas/1669953041119.png	2022-12-13 04:49:44	2022-12-13 04:49:44	2022-12-26	2023-01-04
+10	1	02/Per-web/12/2022	web	<p>tes 2</p>	<p>tes 2 a</p>	3	1	adminAssets/user/identitas/1669953041119.png	2022-12-13 04:50:03	2022-12-13 04:50:03	\N	\N
+11	1	03/Per-web/12/2022	web	<p>tes 3</p>	<p>tes 3</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-13 06:24:41	2022-12-13 06:24:41	2022-12-26	2023-01-04
+13	1	04/Per-web/12/2022	web	<p>tes 4 eeee</p>	<p>tes 4 eeee</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-13 06:41:35	2022-12-13 06:41:59	2022-12-12	2022-12-01
 \.
 
 
@@ -4555,7 +4557,7 @@ COPY public.regulasis_rancanganperaturankip (id, judul_peraturan, file_path, uru
 --
 
 COPY public.reject_permohonan (id, id_ppid_permohonan, id_template_reject, file, rejected_by, created_at, updated_at) FROM stdin;
-1	7	1	adminAssets/user/identitas/1669953041119png	3	2022-12-04 13:16:35	2022-12-04 13:16:35
+2	10	1	adminAssets/user/identitas/1669953041119.png	3	2022-12-13 06:23:23	2022-12-13 06:23:23
 \.
 
 
@@ -4804,11 +4806,11 @@ COPY public.standarlayanans_prosedurlayanan (id, banner_path, permohonan_direkto
 
 COPY public.status (id, name) FROM stdin;
 1	Permohonan Masuk
-2	Dikonfirmasi oleh
 3	Diteruskan
-4	Dijawab oleh
-5	Ditolak oleh
 6	Selesai
+2	Dikonfirmasi
+4	Dijawab
+5	Ditolak
 \.
 
 
@@ -4819,9 +4821,7 @@ COPY public.status (id, name) FROM stdin;
 --
 
 COPY public.status_keberatan (id, id_ppid_keberatan, id_jenis_status_keberatan, modified_date, modified_by, created_at, updated_at) FROM stdin;
-1	1	1	2022-12-08 18:34:16	\N	2022-12-08 18:34:16	2022-12-08 18:34:16
-2	2	1	2022-12-09 00:57:52	\N	2022-12-09 00:57:52	2022-12-09 00:57:52
-3	3	1	2022-12-09 00:58:07	\N	2022-12-09 00:58:07	2022-12-09 00:58:07
+5	7	1	2022-12-13 04:50:23	\N	2022-12-13 04:50:23	2022-12-13 04:50:23
 \.
 
 
@@ -4832,16 +4832,17 @@ COPY public.status_keberatan (id, id_ppid_keberatan, id_jenis_status_keberatan, 
 --
 
 COPY public.status_permohonan (id, id_ppid_permohonan, id_status, modified_by, modified_date, aktif, created_at, updated_at) FROM stdin;
-4	4	1	\N	2022-12-04 13:06:40	f	2022-12-04 13:06:40	2022-12-04 13:06:40
-5	4	2	3	2022-12-04 13:09:24	f	2022-12-04 13:09:24	2022-12-04 13:09:24
-6	4	4	3	2022-12-04 13:11:52	t	2022-12-04 13:11:52	2022-12-04 13:11:52
-9	7	1	\N	2022-12-04 13:15:53	f	2022-12-04 13:15:53	2022-12-04 13:15:53
-10	7	5	3	2022-12-04 13:16:35	t	2022-12-04 13:16:35	2022-12-04 13:16:35
-8	6	1	\N	2022-12-04 13:15:27	f	2022-12-04 13:15:27	2022-12-04 13:15:27
-11	6	2	3	2022-12-04 13:17:44	t	2022-12-04 13:17:44	2022-12-04 13:17:44
-7	5	1	\N	2022-12-04 13:14:32	f	2022-12-04 13:14:32	2022-12-04 13:14:32
-12	5	2	3	2022-12-04 13:18:33	f	2022-12-04 13:18:33	2022-12-04 13:18:33
-13	5	3	3	2022-12-04 13:20:05	t	2022-12-04 13:20:05	2022-12-04 13:20:05
+16	10	1	\N	2022-12-13 04:50:03	f	2022-12-13 04:50:03	2022-12-13 04:50:03
+18	10	5	3	2022-12-13 06:23:23	t	2022-12-13 06:23:23	2022-12-13 06:23:23
+15	9	1	\N	2022-12-13 04:49:44	f	2022-12-13 04:49:44	2022-12-13 04:49:44
+17	9	2	3	2022-12-13 06:22:53	f	2022-12-13 06:22:53	2022-12-13 06:22:53
+22	9	4	3	2022-12-13 06:33:02	t	2022-12-13 06:33:02	2022-12-13 06:33:02
+19	11	1	\N	2022-12-13 06:24:41	f	2022-12-13 06:24:41	2022-12-13 06:24:41
+20	11	2	3	2022-12-13 06:24:54	f	2022-12-13 06:24:54	2022-12-13 06:24:54
+21	11	3	3	2022-12-13 06:26:59	f	2022-12-13 06:26:59	2022-12-13 06:26:59
+23	11	4	3	2022-12-13 06:33:24	t	2022-12-13 06:33:24	2022-12-13 06:33:24
+25	13	1	\N	2022-12-13 06:41:35	f	2022-12-13 06:41:35	2022-12-13 06:41:35
+26	13	2	3	2022-12-13 06:50:24	t	2022-12-13 06:50:24	2022-12-13 06:50:24
 \.
 
 
@@ -4934,6 +4935,7 @@ COPY public.users (id, name, email, email_verified_at, password, jenispemohon, j
 1	Admin Role	admin@role.test	\N	$2y$10$NsP2PQycmW9eUhXnqn2qA.92xA7ACQLSTVj03BLugQyuGil4M9XhS	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
 2	User Role	user@role.test	\N	$2y$10$orU/biBH2Qk17UlHu/FBa.hOyjuqIdivYhp9AP9tZ6HKqaKCGgm0e	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
 3	Super Role	super@role.test	\N	$2y$10$mHmTo0QInRN/fF/OJczX3ebu1LdW3sd1Bl.2U7ZZVg9v4tGjNHs4a	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
+6	user p	ppp@ppp.ppp	\N	$2y$10$yLmt/fd0PR8FHPMUTEFUwuX9LpI2dgHVilnVWd3v210PVAQMV1piC	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-13 06:25:44	2022-12-13 06:25:44
 \.
 
 
@@ -4993,7 +4995,7 @@ SELECT pg_catalog.setval('public.faqs_id_seq', 2, true);
 -- Name: forward_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.forward_permohonan_id_seq', 1, true);
+SELECT pg_catalog.setval('public.forward_permohonan_id_seq', 3, true);
 
 
 --
@@ -5056,7 +5058,7 @@ SELECT pg_catalog.setval('public.informasis_image_id_seq', 1, true);
 -- Name: jawab_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.jawab_permohonan_id_seq', 1, true);
+SELECT pg_catalog.setval('public.jawab_permohonan_id_seq', 5, true);
 
 
 --
@@ -5191,7 +5193,7 @@ SELECT pg_catalog.setval('public.linkapps_id_seq', 1, true);
 -- Name: log_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.log_permohonan_id_seq', 11, true);
+SELECT pg_catalog.setval('public.log_permohonan_id_seq', 24, true);
 
 
 --
@@ -5281,7 +5283,7 @@ SELECT pg_catalog.setval('public.ppid_jenis_profil_id_seq', 1, false);
 -- Name: ppid_keberatan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ppid_keberatan_id_seq', 3, true);
+SELECT pg_catalog.setval('public.ppid_keberatan_id_seq', 7, true);
 
 
 --
@@ -5380,7 +5382,7 @@ SELECT pg_catalog.setval('public.ppid_permohonan_dkk_id_seq', 1, false);
 -- Name: ppid_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ppid_permohonan_id_seq', 7, true);
+SELECT pg_catalog.setval('public.ppid_permohonan_id_seq', 13, true);
 
 
 --
@@ -5461,7 +5463,7 @@ SELECT pg_catalog.setval('public.regulasis_rancanganperaturankip_id_seq', 1, tru
 -- Name: reject_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reject_permohonan_id_seq', 1, true);
+SELECT pg_catalog.setval('public.reject_permohonan_id_seq', 2, true);
 
 
 --
@@ -5533,7 +5535,7 @@ SELECT pg_catalog.setval('public.status_id_seq', 1, false);
 -- Name: status_keberatan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.status_keberatan_id_seq', 3, true);
+SELECT pg_catalog.setval('public.status_keberatan_id_seq', 5, true);
 
 
 --
@@ -5542,7 +5544,7 @@ SELECT pg_catalog.setval('public.status_keberatan_id_seq', 3, true);
 -- Name: status_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.status_permohonan_id_seq', 13, true);
+SELECT pg_catalog.setval('public.status_permohonan_id_seq', 26, true);
 
 
 --
@@ -5605,7 +5607,7 @@ SELECT pg_catalog.setval('public.tugasdanfungsis_id_seq', 1, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 5, true);
+SELECT pg_catalog.setval('public.users_id_seq', 6, true);
 
 
 --
@@ -6738,7 +6740,7 @@ ALTER TABLE ONLY public.submenus
     ADD CONSTRAINT submenus_main_menu_id_foreign FOREIGN KEY (main_menu_id) REFERENCES public.mainmenus(id);
 
 
--- Completed on 2022-12-12 08:02:06
+-- Completed on 2022-12-14 08:24:14
 
 --
 -- PostgreSQL database dump complete
