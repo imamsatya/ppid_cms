@@ -16,7 +16,7 @@ class KategoriKeberatanResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'jenis_keberatan' => $this->jenis_keberatan,
+            'name' => $this->jenis_keberatan,
         ];
     }
 }
