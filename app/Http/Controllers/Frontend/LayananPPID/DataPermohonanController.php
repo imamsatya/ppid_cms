@@ -86,30 +86,34 @@ class DataPermohonanController extends Controller
         //
     }
 
-    public function ppidCaraMendapatkan() {
+    public function ppidCaraMendapatkan()
+    {
         $result = DB::table('ppid_mendapatkan')->get();
         echo json_encode(array('result' => $result));
     }
 
-    public function ppidCaraMemberikan() {
+    public function ppidCaraMemberikan()
+    {
         $result = DB::table('ppid_memberikan')->get();
         echo json_encode(array('result' => $result));
     }
 
-    public function submitPermintaanUser(Request $request) {
+    public function submitPermintaanUser(Request $request)
+    {
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
 
-        if($data['id'] == '') { // new data
+        if ($data['id'] == '') { // new data
             $this->addPermohonan($data, $dateCreated);
         } else { // update data
             $this->editPermohonan($data, $dateCreated);
         }
-    
+
         echo json_encode(array('result' => 'Berhasil menyimpan data!', 'status' => 'success'));
     }
 
-    public function editPermohonan($data, $dateCreated) {
+    public function editPermohonan($data, $dateCreated)
+    {
         DB::table('ppid_permohonan')->where('id', $data['id'])->update([
             'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
             'ticket_permohonan' => $data['ticket_permohonan'],
@@ -119,11 +123,12 @@ class DataPermohonanController extends Controller
             'id_cara' => $data['id_cara'],
             'id_mendapatkan' => $data['id_mendapatkan'],
             'file_identitas' => $data['file_identitas'],
-            "updated_at" => $dateCreated 
+            "updated_at" => $dateCreated
         ]);
     }
 
-    public function addPermohonan($data, $dateCreated) {
+    public function addPermohonan($data, $dateCreated)
+    {
         // ppid_permohonan
         $insertedId = DB::table('ppid_permohonan')->insertGetId([
             'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
@@ -135,7 +140,7 @@ class DataPermohonanController extends Controller
             'id_mendapatkan' => $data['id_mendapatkan'],
             'file_identitas' => $data['file_identitas'],
             "created_at" =>  $dateCreated,
-            "updated_at" => $dateCreated 
+            "updated_at" => $dateCreated
         ]);
 
         // status_permohonan
@@ -158,47 +163,51 @@ class DataPermohonanController extends Controller
         ]);
     }
 
-    public function ppidDataPermohonan(Request $request) {
+    public function ppidDataPermohonan(Request $request)
+    {
         $user = Auth::guard('usersppid')->user();
-       $result = DB::table('ppid_permohonan')
-            ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.file_jawaban', 'jawab_permohonan.ket_jawaban_path')
+        $result = DB::table('ppid_permohonan')
+            ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
             ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where('status_permohonan.aktif', 1)
             ->where('ppid_permohonan.id_ppid_pendaftar', $user->id)
             ->get();
-       echo json_encode(array('result' => $result, 'ses'=> $user));
+        echo json_encode(array('result' => $result, 'ses' => $user));
     }
 
-    public function ppidDataPermohonanSpec(Request $request, $id) {
+    public function ppidDataPermohonanSpec(Request $request, $id)
+    {
         $result = DB::table('ppid_permohonan')
-                ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan', 'status_permohonan.id_status as id_status_permohonan', 'status.name as nama_status_permohonan')
-                ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
-                ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
-                ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
-                ->join('status', 'status.id', '=', 'status_permohonan.id_status')
-                ->where('status_permohonan.aktif', 1)
-                ->where('ppid_permohonan.id', $id)->first();
+            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan', 'status_permohonan.id_status as id_status_permohonan', 'status.name as nama_status_permohonan')
+            ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+            ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+            ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+            ->where('status_permohonan.aktif', 1)
+            ->where('ppid_permohonan.id', $id)->first();
         echo json_encode(array('result' => $result, 'status' => 'success'));
     }
 
-    public function ppidJenisPemohon() {
+    public function ppidJenisPemohon()
+    {
         $result = DB::table('jenis_pemohon')->get();
         echo json_encode(array('result' => $result));
     }
 
-    public function ppidHapusDataPermohonan(Request $request, $id) {
+    public function ppidHapusDataPermohonan(Request $request, $id)
+    {
         $statusPermohonan = DB::table('status_permohonan')->where([
             'id_ppid_permohonan' => $id,
             'aktif' => 1
         ])->first();
 
-        if($statusPermohonan && $statusPermohonan->id_status == 1) { // permohonan masuk
+        if ($statusPermohonan && $statusPermohonan->id_status == 1) { // permohonan masuk
             DB::table('status_permohonan')->where('id_ppid_permohonan', $id)->delete();
             DB::table('log_permohonan')->where('id_ppid_permohonan', $id)->delete();
             DB::table('ppid_permohonan')->where('id', $id)->delete();
-        }     
+        }
         echo json_encode(array('status' => 'success', 'result' => 'Berhasil menghapus data!'));
     }
 

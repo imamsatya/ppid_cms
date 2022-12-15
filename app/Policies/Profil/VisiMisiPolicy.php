@@ -19,8 +19,6 @@ class VisiMisiPolicy
     public function viewAny(User $user)
     {
         //
-
-        // dd($user);
         if ($user->can('visi dan misi.view')) {
             return true;
         }

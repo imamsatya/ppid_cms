@@ -16,7 +16,7 @@
                 @if ($errors->any())
                     <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
                         {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                </span> --}}
+                              </span> --}}
                         <!--begin::Icon-->
                         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -71,7 +71,7 @@
                     <!--begin::Alert-->
                     <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
                         {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                </span> --}}
+                          </span> --}}
                         <!--begin::Icon-->
                         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -121,10 +121,16 @@
                     <h1>Pengelolaan Menu</h1>
 
                     <span class="badge badge-primary">Routing</span>
-                    {{-- <span class="badge badge-info">Permission</span> --}}
+                    <span class="badge badge-success">status</span>
                     <br><br>
-                    <div class="text-end mb-4">
 
+                    <div class="text-end mb-4">
+                        <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal"
+                            data-bs-target="#kt_modal_tambahMainMenu">
+                            <span class="indicator-label">Tambah Main Menu</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
                         <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit"
                             onclick="saveMenu()">
                             <span class="indicator-label">Simpan</span>
@@ -149,11 +155,28 @@
                                                 <span
                                                     class="badge badge-primary me-2">{{ $menu->routing ?? '-' }}</span>
 
-                                                <br>
+                                                @if ($menu->is_active)
+                                                    <span class="badge badge-success me-2">active</span>
+                                                @else
+                                                    <span class="badge badge-danger me-2">inactive</span>
+                                                @endif
+
+
+
+
 
 
                                             </div>
                                             <div class="card-toolbar">
+                                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                    data-bs-target="#kt_modal_editMainMenu"
+                                                    onclick="editMenuDialog({{ $menu->id }})"
+                                                    class="btn btn-icon btn-primary btn-sm me-2"><i
+                                                        class="fas fa-pen fs-3"></i></a>
+                                                <a href="javascript:void(0)"
+                                                    onclick="deleteMenuDialog({{ $menu->id }})"
+                                                    class="btn btn-icon btn-danger btn-sm"><i
+                                                        class="bi bi-x-lg fs-4 "></i></a>
                                                 <a href="#"
                                                     class="btn btn-icon btn-sm btn-hover-light-primary draggable-handle">
                                                     <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
@@ -179,7 +202,7 @@
 
                                                 @if ($menu->submenus)
                                                     @foreach ($menu->submenus as $submenu)
-                                                        <div class="row mx-auto text-middle draggable2  "
+                                                        <div class="row mx-auto mb-2 text-middle  draggable2  "
                                                             idmainmenu="{{ $menu->id }}"
                                                             namaSubmenu="{{ $submenu->nama_menu }}"
                                                             idsubmenu="{{ $submenu->id }}"
@@ -203,17 +226,56 @@
                                                                     <!--end::Svg Icon-->
                                                                 </a>
                                                             </div>
-                                                            <div class="col-3  ">
+                                                            <div class="col-2 m-grid-col-middle ">
                                                                 {{ $submenu->nama_menu ?? '-' }}
                                                             </div>
-                                                            <div class="col-3  ">
+                                                            <div class="col-2 m-grid-col-middle ">
                                                                 {{ $submenu->routing ?? '-' }}
                                                             </div>
 
+                                                            <div class="col-2 m-grid-col-middle ">
+                                                                @if ($submenu->is_active)
+                                                                    <span
+                                                                        class="badge badge-success me-2">active</span>
+                                                                @else
+                                                                    <span
+                                                                        class="badge badge-danger me-2">inactive</span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                    data-bs-target="#kt_modal_editSubMenu"
+                                                                    onclick="editSubMenuDialog({{ $menu->id }}, {{ $submenu->id }})"
+                                                                    class="btn btn-icon btn-primary btn-sm me-2"><i
+                                                                        class="fas fa-pen fs-3"></i></a>
+                                                                <a href="javascript:void(0)"
+                                                                    onclick="deleteSubMenuDialog({{ $menu->id }}, {{ $submenu->id }})"
+                                                                    class="btn btn-icon btn-danger btn-sm"><i
+                                                                        class="bi bi-x-lg fs-4 "></i></a>
+                                                            </div>
+                                                            <hr class="mt-2">
                                                         </div>
                                                     @endforeach
                                                 @endif
                                             </div>
+                                        </div>
+                                        <div class="card-footer"><a href="javascript:void(0)"
+                                                onclick="addMainMenuId({{ $menu->id }})" data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal_tambahSubMenu"
+                                                class="btn  btn-primary btn-sm me-2"><i
+                                                    class="fas fa-plus fs-3"></i>Tambah Sub Menu</a>
+
+                                            <a href="javascript:void(0)" onclick="saveMenu()"
+                                                class="btn  btn-primary btn-sm me-2">Simpan
+                                            </a>
+
+                                            {{-- <button type="submit" class="btn btn-primary"
+                                                data-kt-roles-modal-action="submit" onclick="saveMenu()">
+                                                <span class="indicator-label">Simpan</span>
+                                                <span class="indicator-progress">Please wait...
+                                                    <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            </button> --}}
                                         </div>
                                     </div>
                                     <!--end::Card-->
@@ -224,12 +286,545 @@
 
 
                 </div>
+                <!--begin::Modal - Tambah MainMenu-->
+                <div class="modal fade" id="kt_modal_tambahMainMenu" tabindex="-1" aria-hidden="true">
+                    <!--begin::Modal dialog-->
+                    <div class="modal-dialog modal-dialog-centered mw-900px">
+                        <!--begin::Modal content-->
+                        <div class="modal-content">
+                            <!--begin::Modal header-->
+                            <div class="modal-header">
+                                <!--begin::Modal title-->
+                                <h2>Tambah Main Menu</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2"
+                                                rx="1" transform="rotate(45 7.41422 6)"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-lg-10 px-lg-10">
+                                {{-- Content Modal --}}
+                                <form id="kt_account_profile_details_form"
+                                    action="{{ route('admin.manajemen_menu.addMainMenu') }}"
+                                    enctype="multipart/form-data" method="POST" class="form">
+                                    @csrf
+                                    <!--begin::Card body-->
+                                    <div class="card-body  p-9">
+
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Menu</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="namaMenu"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Menu" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Route</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="routing"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Route" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Status</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="true" id="activeStatus" />
+                                                <label class="form-check-label me-4" for="activeStatus">
+                                                    Active
+                                                </label>
+
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="false" id="inActiveStatus" />
+                                                <label class="form-check-label" for="inActiveStatus">
+                                                    Inactive
+                                                </label>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+
+
+
+                                        <!--end::Input group-->
+
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Actions-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                        @can('peraturan kip.create')
+                                            <button type="submit" class="btn btn-primary" id="addButton"
+                                                onclick="activateLoadingButton('#addButton')"><span
+                                                    class="indicator-label">
+                                                    Simpan
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Mohon Menunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                    <!--end::Actions-->
+                                </form>
+                            </div>
+                            <!--end::Modal body-->
+                        </div>
+                        <!--end::Modal content-->
+                    </div>
+                    <!--end::Modal dialog-->
+                </div>
+                <!--end::Modal - Tambah MainMenu-->
+
+                <!--begin::Modal - Edit MainMenu-->
+                <div class="modal fade" id="kt_modal_editMainMenu" tabindex="-1" aria-hidden="true">
+                    <!--begin::Modal dialog-->
+                    <div class="modal-dialog modal-dialog-centered mw-900px">
+                        <!--begin::Modal content-->
+                        <div class="modal-content">
+                            <!--begin::Modal header-->
+                            <div class="modal-header">
+                                <!--begin::Modal title-->
+                                <h2>Edit Main Menu</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2"
+                                                rx="1" transform="rotate(45 7.41422 6)"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-lg-10 px-lg-10">
+                                {{-- Content Modal --}}
+                                <form id="editMainMenuForm" enctype="multipart/form-data" method="POST"
+                                    class="form">
+                                    @method('PATCH')
+                                    @csrf
+                                    <!--begin::Card body-->
+                                    <div class="card-body  p-9">
+
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Menu</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="namaMenu" id="editNamaMenu"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Menu" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Route</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="routing" id="editRouting"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Route" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Status</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="true" id="editActiveStatus" />
+                                                <label class="form-check-label me-4" for="activeStatus">
+                                                    Active
+                                                </label>
+
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="false" id="editInActiveStatus" />
+                                                <label class="form-check-label" for="inActiveStatus">
+                                                    Inactive
+                                                </label>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+
+
+
+                                        <!--end::Input group-->
+
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Actions-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                        @can('peraturan kip.create')
+                                            <button type="submit" class="btn btn-primary" id="updateMenuButton"
+                                                onclick="activateLoadingButton('#updateMenuButton')"><span
+                                                    class="indicator-label">
+                                                    Update
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Mohon Menunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                    <!--end::Actions-->
+                                </form>
+                            </div>
+                            <!--end::Modal body-->
+                        </div>
+                        <!--end::Modal content-->
+                    </div>
+                    <!--end::Modal dialog-->
+                </div>
+                <!--end::Modal - Edit MainMenu-->
+
+                <!--begin::Modal - Tambah SubMenu-->
+                <div class="modal fade" id="kt_modal_tambahSubMenu" tabindex="-1" aria-hidden="true">
+                    <!--begin::Modal dialog-->
+                    <div class="modal-dialog modal-dialog-centered mw-900px">
+                        <!--begin::Modal content-->
+                        <div class="modal-content">
+                            <!--begin::Modal header-->
+                            <div class="modal-header">
+                                <!--begin::Modal title-->
+                                <h2>Tambah Sub Menu</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2"
+                                                rx="1" transform="rotate(45 7.41422 6)"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-lg-10 px-lg-10">
+                                {{-- Content Modal --}}
+                                <form id="addSubMenuForm" enctype="multipart/form-data" method="POST"
+                                    class="form">
+                                    @csrf
+                                    <!--begin::Card body-->
+                                    <div class="card-body  p-9">
+
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Sub
+                                                Menu</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="namaSubMenu"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Sub Menu" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Route</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="routing"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Route" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Status</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="true" id="activeStatus" />
+                                                <label class="form-check-label me-4" for="activeStatus">
+                                                    Active
+                                                </label>
+
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="false" id="inActiveStatus" />
+                                                <label class="form-check-label" for="inActiveStatus">
+                                                    Inactive
+                                                </label>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+
+
+
+                                        <!--end::Input group-->
+
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Actions-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                        @can('peraturan kip.create')
+                                            <button type="submit" class="btn btn-primary" id="addSubMenuButton"
+                                                onclick="activateLoadingButton('#addSubMenuButton')"><span
+                                                    class="indicator-label">
+                                                    Simpan
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Mohon Menunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                    <!--end::Actions-->
+                                </form>
+                            </div>
+                            <!--end::Modal body-->
+                        </div>
+                        <!--end::Modal content-->
+                    </div>
+                    <!--end::Modal dialog-->
+                </div>
+                <!--end::Modal - Tambah SubMenu-->
+
+                <!--begin::Modal - Edit SubMenu-->
+                <div class="modal fade" id="kt_modal_editSubMenu" tabindex="-1" aria-hidden="true">
+                    <!--begin::Modal dialog-->
+                    <div class="modal-dialog modal-dialog-centered mw-900px">
+                        <!--begin::Modal content-->
+                        <div class="modal-content">
+                            <!--begin::Modal header-->
+                            <div class="modal-header">
+                                <!--begin::Modal title-->
+                                <h2>Edit Sub Menu</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                                fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2"
+                                                rx="1" transform="rotate(45 7.41422 6)"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body py-lg-10 px-lg-10">
+                                {{-- Content Modal --}}
+                                <form id="editSubMenuForm" enctype="multipart/form-data" method="POST"
+                                    class="form">
+                                    @method('PATCH')
+                                    @csrf
+                                    <!--begin::Card body-->
+                                    <div class="card-body  p-9">
+
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Menu</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="namaMenu" id="editNamaMenu-sub"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Menu" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Route</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="routing" id="editRouting-sub"
+                                                    class="form-control form-control-lg form-control-solid"
+                                                    placeholder="Route" value="" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label
+                                                class="col-lg-4 col-form-label required fw-semibold fs-6">Status</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="true" id="editActiveStatus-sub" />
+                                                <label class="form-check-label me-4" for="activeStatus">
+                                                    Active
+                                                </label>
+
+                                                <input class="form-check-input" name="statusMenu" type="radio"
+                                                    value="false" id="editInActiveStatus-sub" />
+                                                <label class="form-check-label" for="inActiveStatus">
+                                                    Inactive
+                                                </label>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+
+
+
+
+                                        <!--end::Input group-->
+
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Actions-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                        @can('peraturan kip.create')
+                                            <button type="submit" class="btn btn-primary" id="updateSubMenuButton"
+                                                onclick="activateLoadingButton('#updateSubMenuButton')"><span
+                                                    class="indicator-label">
+                                                    Update
+                                                </span>
+                                                <span class="indicator-progress">
+                                                    Mohon Menunggu... <span
+                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </span>
+                                            </button>
+                                        @endcan
+                                    </div>
+                                    <!--end::Actions-->
+                                </form>
+                            </div>
+                            <!--end::Modal body-->
+                        </div>
+                        <!--end::Modal content-->
+                    </div>
+                    <!--end::Modal dialog-->
+                </div>
+                <!--end::Modal - Edit SubMenu-->
                 <!--end::Row-->
                 @push('child-scripts')
                     <script src="{{ asset('template/dist/assets/plugins/custom/draggable/draggable.bundle.js') }}"></script>
 
 
                     <script>
+                        function activateLoadingButton(idButton) {
+                            console.log('active')
+                            let button = document.querySelector(`${idButton}`);
+                            button.setAttribute("data-kt-indicator", "on");
+                            // Handle button click event
+
+                            // // Disable indicator after 3 seconds
+                            // setTimeout(function() {
+                            //     button.removeAttribute("data-kt-indicator");
+                            // }, 3000);
+                        }
                         $.ajaxSetup({
 
                             headers: {
@@ -332,7 +927,7 @@
                             // });
                             Swal.fire({
                                 html: `Apakah yakin akan <strong>menyimpan</strong> menu  ?`,
-                                icon: "error",
+                                icon: "question",
                                 buttonsStyling: false,
                                 showCancelButton: true,
                                 reverseButtons: true,
@@ -381,6 +976,155 @@
                                 }
                             });
                         }
+
+                        function deleteMenuDialog(id) {
+                            let menus = {{ Js::from($menus) }}
+                            menu = menus.filter(menu => menu.id == id)
+                            console.log('menus', menus)
+                            console.log('selectedmenu', menu[0].id)
+
+                            Swal.fire({
+                                html: `Apakah yakin akan <strong>menghapus</strong> Main Menu <span class="badge badge-primary"> ${menu[0].nama_menu}</span> ?`,
+                                icon: "error",
+                                buttonsStyling: false,
+                                showCancelButton: true,
+                                reverseButtons: true,
+                                cancelButtonText: 'Batal',
+                                confirmButtonText: "Iya",
+                                customClass: {
+                                    cancelButton: 'btn btn-danger',
+                                    confirmButton: "btn btn-primary",
+                                }
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+
+                                    console.log('delete confirmed')
+                                    $.ajax({
+                                        type: "DELETE",
+                                        url: "/admin/manajemen_menu/delete-mainmenu/" + menu[0].id,
+                                        cache: false,
+                                        success: function(html) {
+                                            Swal.fire({
+
+                                                icon: 'success',
+                                                title: 'Berhasil menghapus Main Menu',
+                                                showConfirmButton: false,
+                                                timer: 500
+                                            }).then(() => {
+                                                window.location.reload();
+                                            })
+
+
+                                        }
+                                    });
+
+                                    // window.location = '/visimisi'
+                                } else {
+                                    console.log('delete canceled')
+                                }
+                            });
+
+                            // Swal.fire({
+                            //     template: '#my-template'
+                            // })
+                        };
+
+                        function editMenuDialog(id) {
+                            let menus = {{ Js::from($menus) }}
+                            menu = menus.filter(menu => menu.id == id)
+                            console.log(menu)
+                            document.getElementById('editNamaMenu').value = menu[0].nama_menu
+                            document.getElementById('editRouting').value = menu[0].routing
+                            if (menu[0].is_active) {
+                                document.getElementById('editActiveStatus').checked = true
+                            } else {
+                                document.getElementById('editInActiveStatus').checked = true
+                            }
+                            document.getElementById('editMainMenuForm').setAttribute('action', 'manajemen_menu/update-mainmenu/' +
+                                menu[0].id)
+
+
+
+                        }
+
+                        function addMainMenuId(id) {
+                            console.log(`id Main Menu ${id}`)
+                            document.getElementById('addSubMenuForm').setAttribute('action', 'manajemen_menu/addsubmenu/' +
+                                id)
+                        }
+
+                        function editSubMenuDialog(mainMenuId, subMenuId) {
+                            let menus = {{ Js::from($menus) }}
+                            menu = menus.filter(menu => menu.id == mainMenuId)
+                            submenu = menu[0].submenus.filter(submenu => submenu.id == subMenuId)
+                            console.log(menu)
+                            document.getElementById('editNamaMenu-sub').value = submenu[0].nama_menu
+                            document.getElementById('editRouting-sub').value = submenu[0].routing
+                            if (submenu[0].is_active) {
+                                document.getElementById('editActiveStatus-sub').checked = true
+                            } else {
+                                document.getElementById('editInActiveStatus-sub').checked = true
+                            }
+                            document.getElementById('editSubMenuForm').setAttribute('action', 'manajemen_menu/update-submenu/' +
+                                subMenuId)
+
+
+
+                        }
+
+                        function deleteSubMenuDialog(mainMenuId, subMenuId) {
+                            let menus = {{ Js::from($menus) }}
+                            menu = menus.filter(menu => menu.id == mainMenuId)
+                            console.log('menus', menus)
+                            console.log('selectedmenu', menu)
+                            submenu = menu[0].submenus.filter(submenu => submenu.id == subMenuId)
+                            console.log('selectedSubMenu', submenu)
+
+                            Swal.fire({
+                                html: `Apakah yakin akan <strong>menghapus</strong> Sub Menu <span class="badge badge-primary"> ${submenu[0].nama_menu}</span> ?`,
+                                icon: "error",
+                                buttonsStyling: false,
+                                showCancelButton: true,
+                                reverseButtons: true,
+                                cancelButtonText: 'Batal',
+                                confirmButtonText: "Iya",
+                                customClass: {
+                                    cancelButton: 'btn btn-danger',
+                                    confirmButton: "btn btn-primary",
+                                }
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+
+                                    console.log('delete confirmed')
+                                    $.ajax({
+                                        type: "DELETE",
+                                        url: "/admin/manajemen_menu/delete-submenu/" + subMenuId,
+                                        cache: false,
+                                        success: function(html) {
+                                            Swal.fire({
+
+                                                icon: 'success',
+                                                title: 'Berhasil menghapus Main Menu',
+                                                showConfirmButton: false,
+                                                timer: 500
+                                            }).then(() => {
+                                                window.location.reload();
+                                            })
+
+
+                                        }
+                                    });
+
+                                    // window.location = '/visimisi'
+                                } else {
+                                    console.log('delete canceled')
+                                }
+                            });
+
+                            // Swal.fire({
+                            //     template: '#my-template'
+                            // })
+                        };
                     </script>
                 @endpush
 

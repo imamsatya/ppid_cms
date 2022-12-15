@@ -15,6 +15,14 @@ use App\Http\Controllers\API\InformasiPublik\InformasiSetiapSaatController;
 use App\Http\Controllers\API\ManajemenHome\InformasiImageController;
 use App\Http\Controllers\API\ManajemenHome\SliderController;
 use App\Http\Controllers\API\ManajemenHome\VideoController;
+use App\Http\Controllers\API\Permohonan\JenisIdentitasController;
+use App\Http\Controllers\API\Permohonan\JenisPemohonController;
+use App\Http\Controllers\API\Permohonan\KategoriKeberatanController;
+use App\Http\Controllers\API\Permohonan\KeberatanController;
+use App\Http\Controllers\API\Permohonan\MemberikanController;
+use App\Http\Controllers\API\Permohonan\MendapatkanController;
+use App\Http\Controllers\API\Permohonan\PermohonanController;
+use App\Http\Controllers\API\Permohonan\StatusController;
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
 use App\Http\Controllers\API\Profil\LinkAppController;
@@ -25,6 +33,7 @@ use App\Http\Controllers\API\Profil\StrukturOrganisasiKananController;
 use App\Http\Controllers\API\Profil\StrukturOrganisasiKiriController;
 use App\Http\Controllers\API\Profil\TugasFungsiController;
 use App\Http\Controllers\API\Profil\VisiMisiController;
+use App\Http\Controllers\API\Referensi\SettingKalenderController;
 use App\Http\Controllers\API\Regulasi\PeraturanKIPController;
 use App\Http\Controllers\API\Regulasi\RancanganPeraturanKIPController;
 use App\Http\Controllers\API\Regulasi\RegulasiController;
@@ -48,10 +57,24 @@ use Illuminate\Support\Facades\Route;
 Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
+    Route::post('refresh', 'refresh');
+    Route::get('me', 'me');
+    Route::put('update_profile', 'updateProfile');
+    Route::put('update_password', 'updatePassword');
 });
 
+// LayananPPID
+Route::resource('permohonan', PermohonanController::class);
+Route::resource('status', StatusController::class);
+Route::resource('cara_memberikan', MemberikanController::class);
+Route::resource('jenis_identitas', JenisIdentitasController::class);
+Route::resource('jenis_pemohon', JenisPemohonController::class);
+Route::resource('mendapatkan', MendapatkanController::class);
+Route::resource('kategori_keberatan', KategoriKeberatanController::class);
+Route::resource('keberatan', KeberatanController::class);
+
 // FAQ
-// Route::resource('faq', FAQController::class);
+Route::resource('faq_mobile', FAQController::class);
 Route::resource('faq_banner', FAQBannerController::class);
 
 // Laporan
@@ -68,7 +91,7 @@ Route::resource('video', VideoController::class);
 
 // StandarLayanan
 Route::resource('biaya', BiayaLayananController::class);
-// Route::resource('maklumat', MaklumatController::class);
+Route::resource('maklumat_mobile', MaklumatController::class);
 Route::resource('prosedur', ProsedurLayananController::class);
 
 // Profil
@@ -82,6 +105,9 @@ Route::resource('tugas_fungsi', TugasFungsiController::class);
 Route::resource('visi_misi', VisiMisiController::class);
 Route::resource('sosial_media', SosialMediaController::class);
 Route::resource('linkapp', LinkAppController::class);
+
+// Referensi
+Route::resource('kalender', SettingKalenderController::class);
 
 // Regulasi
 Route::resource('peraturan_kip', PeraturanKIPController::class);

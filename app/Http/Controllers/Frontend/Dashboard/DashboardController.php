@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Frontend\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\LayananPPID\Keberatan\KeberatanPPID;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,7 +18,31 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('frontend.dashboard.dashboard');
+        $user = Auth::guard('usersppid')->user();
+        $ppidKeberatan = DB::table('ppid_keberatan')
+            ->select(
+                'ppid_keberatan.*',
+                'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status',
+                'proses_keberatan.ket_jawaban',
+                'proses_keberatan.ket_jawaban_path',
+                'proses_keberatan.file_jawaban',
+                'proses_keberatan.jawab_by'
+            )
+            ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            // ->where('status_permohonan.aktif', 1)
+            ->where('ppid_keberatan.id_ppid_pendaftar', $user->id)
+            ->orderBy('created_at', 'asc')->get();
+
+
+
+
+
+
+
+        return view('frontend.dashboard.dashboard', compact('ppidKeberatan'));
     }
 
     /**

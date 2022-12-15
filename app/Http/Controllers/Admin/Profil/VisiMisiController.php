@@ -8,15 +8,6 @@ use App\Models\Profil\VisiMisi;
 
 class VisiMisiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function __construct()
-    {
-        $this->authorizeResource(VisiMisi::class, 'visimisi');
-    }
     public function index()
     {
         //

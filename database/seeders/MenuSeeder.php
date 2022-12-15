@@ -19,12 +19,14 @@ class MenuSeeder extends Seeder
         DB::table('mainmenus')->insert([
             'nama_menu' => 'Profil',
             'routing' => null,
+            'is_active' => true,
             'urutan' => 1,
         ]);
 
         DB::table('submenus')->insert([
             'nama_menu' => 'Tentang PPID',
             'routing' => 'tentangppid.index',
+            'is_active' => true,
             'urutan' => 1,
             'main_menu_id' => 1,
         ]);
@@ -32,6 +34,7 @@ class MenuSeeder extends Seeder
         DB::table('submenus')->insert([
             'nama_menu' => 'Tugas dan Fungsi',
             'routing' => 'tugasdanfungsi.index',
+            'is_active' => true,
             'urutan' => 2,
             'main_menu_id' => 1,
         ]);
@@ -39,6 +42,7 @@ class MenuSeeder extends Seeder
         DB::table('submenus')->insert([
             'nama_menu' => 'Struktur PPID',
             'routing' => 'strukturppid.index',
+            'is_active' => true,
             'urutan' => 3,
             'main_menu_id' => 1,
         ]);
@@ -46,6 +50,7 @@ class MenuSeeder extends Seeder
         DB::table('submenus')->insert([
             'nama_menu' => 'Visi dan Misi',
             'routing' => 'visimisi.index',
+            'is_active' => true,
             'urutan' => 4,
             'main_menu_id' => 1,
         ]);
@@ -53,6 +58,7 @@ class MenuSeeder extends Seeder
         DB::table('submenus')->insert([
             'nama_menu' => 'Kontak',
             'routing' => 'kontak.index',
+            'is_active' => true,
             'urutan' => 5,
             'main_menu_id' => 1,
         ]);
@@ -61,6 +67,7 @@ class MenuSeeder extends Seeder
         DB::table('mainmenus')->insert([
             'nama_menu' => 'Regulasi',
             'routing' => 'regulasi.index',
+            'is_active' => true,
             'urutan' => 2,
         ]);
 
@@ -68,6 +75,7 @@ class MenuSeeder extends Seeder
         DB::table('mainmenus')->insert([
             'nama_menu' => 'Informasi Publik',
             'routing' => 'informasipublik.index',
+            'is_active' => true,
             'urutan' => 3,
         ]);
 
@@ -75,12 +83,14 @@ class MenuSeeder extends Seeder
         DB::table('mainmenus')->insert([
             'nama_menu' => 'Standar Layanan',
             'routing' => null,
+            'is_active' => true,
             'urutan' => 4,
         ]);
 
         DB::table('submenus')->insert([
             'nama_menu' => 'Maklumat',
             'routing' => 'maklumat.index',
+            'is_active' => true,
             'urutan' => 1,
             'main_menu_id' => 4,
         ]);
@@ -88,6 +98,7 @@ class MenuSeeder extends Seeder
         DB::table('submenus')->insert([
             'nama_menu' => 'Prosedur Layanan',
             'routing' => 'prosedurlayanan.index',
+            'is_active' => true,
             'urutan' => 2,
             'main_menu_id' => 4,
         ]);
@@ -95,6 +106,7 @@ class MenuSeeder extends Seeder
         DB::table('submenus')->insert([
             'nama_menu' => 'Biaya Layanan',
             'routing' => 'standarlayananbiaya.index',
+            'is_active' => true,
             'urutan' => 3,
             'main_menu_id' => 4,
         ]);
@@ -103,6 +115,7 @@ class MenuSeeder extends Seeder
         DB::table('mainmenus')->insert([
             'nama_menu' => 'Laporan',
             'routing' => 'laporan.index',
+            'is_active' => true,
             'urutan' => 5,
         ]);
 
@@ -110,6 +123,7 @@ class MenuSeeder extends Seeder
         DB::table('mainmenus')->insert([
             'nama_menu' => 'FAQ',
             'routing' => 'faq.index',
+            'is_active' => true,
             'urutan' => 6,
         ]);
     }

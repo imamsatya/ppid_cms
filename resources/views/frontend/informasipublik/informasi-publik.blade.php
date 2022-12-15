@@ -53,10 +53,10 @@
                                             <div class="data_list"
                                                 style="{{ $informasiSecaraBerkala_row->url || $informasiSecaraBerkala_row->file_path ?? 'cursor: default' }}">
                                                 @if ($informasiSecaraBerkala_row->url)
-                                                    <span><a style="color:#104e70; "
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
                                                             href="{{ $informasiSecaraBerkala_row->url }}">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
                                                 @else
-                                                    <span><a style="color:#104e70; cursor: default;"
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                             href="javascript:void(0)">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
                                                 @endif
                                             </div>
@@ -83,18 +83,18 @@
                                             @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSecaraBerkala->currentPage() - 1 }}</a>
+                                                        href="{{ $informasiSecaraBerkala->url($informasiSecaraBerkala->currentPage() - 1) }}">{{ $informasiSecaraBerkala->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $informasiSecaraBerkala->currentPage() }}
+                                                    href="{{ $informasiSecaraBerkala->url($informasiSecaraBerkala->currentPage()) }}">{{ $informasiSecaraBerkala->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($informasiSecaraBerkala->currentPage() < $informasiSecaraBerkala->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
+                                                        href="{{ $informasiSecaraBerkala->url($informasiSecaraBerkala->currentPage() + 1) }}">{{ $informasiSecaraBerkala->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSecaraBerkala->currentPage() != $informasiSecaraBerkala->lastPage())
@@ -122,10 +122,10 @@
                                                     <div class="data_list">
 
                                                         @if ($informasiSetiapSaat_row->url)
-                                                            <span><a style="color:#104e70; "
+                                                            <span><a style="color:#104e70; font-size: 1rem;"
                                                                     href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
                                                         @else
-                                                            <span><a style="color:#104e70; cursor: default;"
+                                                            <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                                     href="javascript:void(0)">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
                                                         @endif
                                                     </div>
@@ -155,18 +155,18 @@
                                             @if ($informasiSetiapSaat->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSetiapSaat->currentPage() - 1 }}</a>
+                                                        href="{{ $informasiSetiapSaat->url($informasiSetiapSaat->currentPage() - 1) }}">{{ $informasiSetiapSaat->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $informasiSetiapSaat->currentPage() }}
+                                                    href="{{ $informasiSetiapSaat->url($informasiSetiapSaat->currentPage()) }}">{{ $informasiSetiapSaat->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($informasiSetiapSaat->currentPage() < $informasiSetiapSaat->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSetiapSaat->currentPage() + 1 }}</a>
+                                                        href="{{ $informasiSetiapSaat->url($informasiSetiapSaat->currentPage() + 1) }}">{{ $informasiSetiapSaat->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSetiapSaat->currentPage() != $informasiSetiapSaat->lastPage())
@@ -192,10 +192,10 @@
                                         @foreach ($informasiSertaMerta as $informasiSertaMerta_row)
                                             <div class="data_list">
                                                 @if ($informasiSertaMerta_row->url)
-                                                    <span><a style="color:#104e70; "
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
                                                             href="{{ $informasiSertaMerta_row->url }}">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
                                                 @else
-                                                    <span><a style="color:#104e70; cursor: default;"
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                             href="javascript:void(0)">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
                                                 @endif
                                             </div>
@@ -222,7 +222,7 @@
                                             @if ($informasiSertaMerta->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSertaMerta->currentPage() - 1 }}</a>
+                                                        href="{{ $informasiSertaMerta->url($informasiSertaMerta->currentPage() - 1) }}">{{ $informasiSertaMerta->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
@@ -233,7 +233,7 @@
                                             @if ($informasiSertaMerta->currentPage() < $informasiSertaMerta->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $informasiSertaMerta->currentPage() + 1 }}</a>
+                                                        href="{{ $informasiSertaMerta->url($informasiSertaMerta->currentPage() + 1) }}">{{ $informasiSertaMerta->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($informasiSertaMerta->currentPage() != $informasiSertaMerta->lastPage())

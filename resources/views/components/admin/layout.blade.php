@@ -514,8 +514,8 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link"
-                                                        href="../../demo1/dist/pages/user-profile/projects.html">
+                                                    <a class="menu-link {{ $isActiveLink_dataKeberatan ?? '' }}"
+                                                        href="{{ route('admin.data_keberatan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -908,8 +908,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon--
-                                                                                                                </span>
-                                                                                                                <!--end::Svg Icon-->
+                                                                                                                            </span>
+                                                                                                                            <!--end::Svg Icon-->
                                             </span>
                                             <span class="menu-title">Standar Layanan</span>
                                             <span class="menu-arrow"></span>

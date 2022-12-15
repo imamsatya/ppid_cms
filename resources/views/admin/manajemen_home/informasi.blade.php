@@ -119,7 +119,7 @@
 
             <div class="card card-flush shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">informasi PPID</h3>
+                    <h3 class="card-title">Informasi PPID</h3>
                     <div class="card-toolbar">
                         @can('informasi.create')
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
@@ -280,6 +280,64 @@
                                     <!--begin::Inputs-->
                                     <input type="file" name="backgroundimage" accept=".png, .jpg, .jpeg" />
                                     <input type="hidden" name="backgroundimage_remove" />
+                                    <!--end::Inputs-->
+                                </label>
+                                <!--end::Edit button-->
+
+                                <!--begin::Cancel button-->
+                                <span
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Cancel Banner">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Cancel button-->
+
+                                <!--begin::Remove button-->
+                                <span
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Remove Banner">
+                                    <i class="bi bi-x fs-2"></i>
+                                </span>
+                                <!--end::Remove button-->
+                            @endcan
+                        </div>
+                        <br>
+                        <label for="" class=" form-label">PPID Logo Image</label>
+                        <br>
+                        <div class="image-input image-input-outline" data-kt-image-input="true"
+                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                            <!--begin::Image preview wrapper-->
+                            @if ($informasiImage)
+                                @if ($informasiImage->ppidlogo_path)
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                         style="background-image: url({{ asset($informasiImage->ppidlogo_path) }})">
+                                    </div>
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                         style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    </div>
+                                @endif
+                            @else
+                                <div class="image-input-wrapper w-250px  h-125px"
+                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                </div>
+
+                            @endif
+                            <!--end::Image preview wrapper-->
+
+                            @can('informasi secara berkala.edit')
+                                <!--begin::Edit button-->
+                                <label
+                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
+                                    title="Change Banner">
+                                    <i class="bi bi-pencil-fill fs-7"></i>
+
+                                    <!--begin::Inputs-->
+                                    <input type="file" name="ppidlogo" accept=".png, .jpg, .jpeg" />
+                                    <input type="hidden" name="ppidlogo_remove" />
                                     <!--end::Inputs-->
                                 </label>
                                 <!--end::Edit button-->
