@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ManajemenMenu\MainMenu;
 use App\Models\ManajemenMenu\SubMenu;
 use Illuminate\Http\Request;
+use Session;
 
 class MenuController extends Controller
 {
@@ -90,6 +91,90 @@ class MenuController extends Controller
 
             return redirect()->back()->with('success', 'Berhasil menyimpan Main Menu');
         }
+    }
+
+    public function deleteMainMenu($id)
+    {
+
+        $mainmenu = MainMenu::find($id);
+        $mainmenu->submenus()->delete();
+        $mainmenu->delete();
+
+        Session::flash('success', "Berhasil menghapus Main Manu");
+    }
+
+    public function updateMainMenu(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'namaMenu' => 'required',
+        ]);
+
+        if ($validated) {
+            $mainMenu = new MainMenu();
+            $mainMenu = $mainMenu->where('id', $id)->first();
+            $mainMenu->nama_menu = $request->namaMenu;
+            $mainMenu->routing = $request->routing;
+            $mainMenu->is_active = ($request->statusMenu == 'true') ? true : false;
+
+            $mainMenu->save();
+
+            return redirect()->back()->with('success', 'Berhasil mengubah Main Menu');
+        }
+    }
+
+    public function addSubMenu(Request $request, $mainMenuId)
+    {
+
+        $validated = $request->validate([
+            'namaSubMenu' => 'required',
+            'routing' => 'required',
+        ]);
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        $subMenu = new SubMenu();
+
+        if ($validated) {
+            $subMenu = new SubMenu();
+            $subMenu->nama_menu = $request->namaSubMenu;
+            $subMenu->routing = $request->routing;
+            $subMenu->is_active = ($request->statusMenu == 'true') ? true : false;
+            $subMenu->main_menu_id = $mainMenuId;
+            $subMenu->urutan = count($subMenu::where('main_menu_id', $mainMenuId)->get()) + 1;
+            $subMenu->save();
+
+            return redirect()->back()->with('success', 'Berhasil menambah Sub Menu');
+        }
+    }
+
+    public function updateSubMenu(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'namaMenu' => 'required',
+            'routing' => 'required',
+        ]);
+
+        if ($validated) {
+            $subMenu = new SubMenu();
+            $subMenu = $subMenu->where('id', $id)->first();
+            $subMenu->nama_menu = $request->namaMenu;
+            $subMenu->routing = $request->routing;
+            $subMenu->is_active = ($request->statusMenu == 'true') ? true : false;
+
+            $subMenu->save();
+
+            return redirect()->back()->with('success', 'Berhasil mengubah Sub Menu');
+        }
+    }
+
+    public function deleteSubMenu($id)
+    {
+
+
+        $subMenu = SubMenu::find($id);
+        $subMenu->delete();
+
+        Session::flash('success', "Berhasil menghapus Sub Manu");
     }
 
     /**

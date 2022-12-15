@@ -283,7 +283,7 @@
                                 <th>Judul Peraturan</th>
                                 <th>File PDF</th>
                                 <th>Urutan</th>
-                                <th>Aksi</th>
+                                <th style="min-width: 15%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
