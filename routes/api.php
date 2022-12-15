@@ -17,6 +17,8 @@ use App\Http\Controllers\API\ManajemenHome\SliderController;
 use App\Http\Controllers\API\ManajemenHome\VideoController;
 use App\Http\Controllers\API\Permohonan\JenisIdentitasController;
 use App\Http\Controllers\API\Permohonan\JenisPemohonController;
+use App\Http\Controllers\API\Permohonan\KategoriKeberatanController;
+use App\Http\Controllers\API\Permohonan\KeberatanController;
 use App\Http\Controllers\API\Permohonan\MemberikanController;
 use App\Http\Controllers\API\Permohonan\MendapatkanController;
 use App\Http\Controllers\API\Permohonan\PermohonanController;
@@ -68,6 +70,8 @@ Route::resource('cara_memberikan', MemberikanController::class);
 Route::resource('jenis_identitas', JenisIdentitasController::class);
 Route::resource('jenis_pemohon', JenisPemohonController::class);
 Route::resource('mendapatkan', MendapatkanController::class);
+Route::resource('kategori_keberatan', KategoriKeberatanController::class);
+Route::resource('keberatan', KeberatanController::class);
 
 // FAQ
 Route::resource('faq_mobile', FAQController::class);
