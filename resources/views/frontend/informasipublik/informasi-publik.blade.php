@@ -53,10 +53,10 @@
                                             <div class="data_list"
                                                 style="{{ $informasiSecaraBerkala_row->url || $informasiSecaraBerkala_row->file_path ?? 'cursor: default' }}">
                                                 @if ($informasiSecaraBerkala_row->url)
-                                                    <span><a style="color:#104e70; "
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
                                                             href="{{ $informasiSecaraBerkala_row->url }}">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
                                                 @else
-                                                    <span><a style="color:#104e70; cursor: default;"
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                             href="javascript:void(0)">{{ $informasiSecaraBerkala_row->judul_informasi }}</a></span>
                                                 @endif
                                             </div>
@@ -122,10 +122,10 @@
                                                     <div class="data_list">
 
                                                         @if ($informasiSetiapSaat_row->url)
-                                                            <span><a style="color:#104e70; "
+                                                            <span><a style="color:#104e70; font-size: 1rem;"
                                                                     href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
                                                         @else
-                                                            <span><a style="color:#104e70; cursor: default;"
+                                                            <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                                     href="javascript:void(0)">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
                                                         @endif
                                                     </div>
@@ -192,10 +192,10 @@
                                         @foreach ($informasiSertaMerta as $informasiSertaMerta_row)
                                             <div class="data_list">
                                                 @if ($informasiSertaMerta_row->url)
-                                                    <span><a style="color:#104e70; "
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
                                                             href="{{ $informasiSertaMerta_row->url }}">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
                                                 @else
-                                                    <span><a style="color:#104e70; cursor: default;"
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
                                                             href="javascript:void(0)">{{ $informasiSertaMerta_row->judul_informasi }}</a></span>
                                                 @endif
                                             </div>
