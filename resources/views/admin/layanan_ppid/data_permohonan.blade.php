@@ -92,6 +92,7 @@
                                             <th>Nama Pemohon</th>
                                             <th>Sumber</th>
                                             <th>Batas Waktu</th>
+                                            <th>Batas Waktu R</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -532,6 +533,18 @@
                             ticketAction = `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
                         }
 
+                        let expiredDate = now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1
+                        if(expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
+                            var start = moment().startOf('day');
+                            var end = moment(expiredDate, "YYYY-MM-DD");
+
+                            //Difference in number of days  
+                            let diff = moment.duration(end.diff(start)).asDays()
+                             
+                            expiredDate = diff >= 0 ?  `${diff} Hari Hingga Batas Waktu` : `Lewat Batas Waktu ${Math.abs(diff)} Hari`;
+                        } else {
+                            expiredDate = '-- Selesai --'
+                        } 
                         
                         rowData.push([
                             i+1,
@@ -539,7 +552,8 @@
                             ticketAction,
                             data[i].nama_lengkap,
                             data[i].jenis_kanal,
-                            data[i].id_status == '1' ? '-' : ( now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1),
+                            data[i].id_status == '1' ? '-' : expiredDate,
+                            data[i].id_status == '1' ? '-' : (now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1),
                             data[i].nama_status,
                             btnAction                           
                         ])
@@ -580,8 +594,8 @@
                         }
 
                         rowData.push([
-                            i+1,
-                            data[i].created_at,
+                            i+1,                            
+                            data[i].created_at.split(' ')[0],
                             ticketAction,
                             data[i].nama_lengkap,
                             data[i].jenis_kanal,
@@ -611,13 +625,25 @@
                 initComplete: function () {
                     loadDataPermintaanMasuk()
                 },
+                columnDefs: [
+                    {
+                        target: 6,
+                        visible: false,
+                        searchable: false
+                    }
+                ],
                 "createdRow": function(row, data, dataIndex) {
                     if (data[5] != null && data[5] != '-') {
-                        const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
-                        if(now > data[5]) {
-                            $(row).css("background-color", "Orange");
+                        
+                        let expiredDate = data[6]
+                        var start = moment().startOf('day');
+                        var end = moment(expiredDate, "YYYY-MM-DD");
+                        //Difference in number of days  
+                        let diff = moment.duration(end.diff(start)).asDays()                        
+
+                        if(diff < 0) {
+                            $(row).addClass("bg-light-danger text-danger")
                         }
-                        // $(row).addClass("warning");
                     }
                 },
             });
