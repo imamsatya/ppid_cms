@@ -458,7 +458,6 @@
                 try {
                     const result = await getDataPermohonan()
                     const data = result.result
-                    console.log(data)
                     let rowData = []
                     const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
                     for(let i=0; i<data.length; i++) {
@@ -494,11 +493,25 @@
                                 ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
                             `
                         }
+
+                        let expiredDate = now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1
+                        if(expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
+                            var start = moment().startOf('day');
+                            var end = moment(expiredDate, "YYYY-MM-DD");
+
+                            //Difference in number of days  
+                            let diff = moment.duration(end.diff(start)).asDays()
+                             
+                            expiredDate = diff >= 0 ?  `${diff} Hari Hingga Batas Waktu` : `Lewat Batas Waktu ${Math.abs(diff)} Hari`;
+                        } else {
+                            expiredDate = '-- Selesai --'
+                        }                      
+
                         rowData.push([
                             data[i].ticket_permohonan,
                             data[i].informasi_diminta,
                             status,
-                            data[i].id_status == '1' ? '-' : ( now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1),
+                            data[i].id_status == '1' || data[i].id_status == '5' ? '-' : expiredDate,
                             jawaban,
                             btnAction
                         ])
