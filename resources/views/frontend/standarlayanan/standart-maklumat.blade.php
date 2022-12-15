@@ -14,7 +14,8 @@
                 </div>
             </div>
 
-            <div class="images-maklumat">
+            <div class="">
+                {{-- images-maklumat --}}
                 <div class="row">
                     @if ($maklumat)
                         <div class="col-md-12">

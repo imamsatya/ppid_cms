@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_menu');
             $table->string('routing')->nullable();
-
+            $table->boolean('is_active')->default(false);
             $table->string('urutan');
             $table->timestamps();
         });
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_menu');
             $table->string('routing');
-
+            $table->boolean('is_active')->default(false);
             $table->string('urutan');
             $table->timestamps();
         });

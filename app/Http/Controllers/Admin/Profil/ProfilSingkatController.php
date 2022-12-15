@@ -46,7 +46,6 @@ class ProfilSingkatController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(count($request->files));
         //banner dan side Image
         $validated = $request->validate([
             'judul' => 'required',

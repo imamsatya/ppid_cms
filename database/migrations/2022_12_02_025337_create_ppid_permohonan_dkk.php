@@ -26,6 +26,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mendapatkan');
             $table->foreign('id_mendapatkan')->references('id')->on('ppid_mendapatkan');
             $table->string('file_identitas');
+            $table->date('expired_date1')->nullable();
+            $table->date('expired_date2')->nullable();
             $table->timestamps();
         });
 
@@ -70,8 +72,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_ppid_permohonan');
             $table->foreign('id_ppid_permohonan')->references('id')->on('ppid_permohonan');
             $table->text('ket_jawaban');
-            $table->string('file_jawaban');
+            $table->string('file_jawaban')->nullable();
             $table->string('jawab_by');
+            $table->string('ket_jawaban_path');
             $table->timestamps();
         });
 
@@ -90,8 +93,6 @@ return new class extends Migration
             $table->string('rejected_by');
             $table->timestamps();
         });
-
-
     }
 
     /**

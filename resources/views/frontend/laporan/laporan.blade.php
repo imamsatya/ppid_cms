@@ -95,18 +95,18 @@
                                             @if ($laporanTriwulanan->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $laporanTriwulanan->currentPage() - 1 }}</a>
+                                                        href="{{ $laporanTriwulanan->url($laporanTriwulanan->currentPage() - 1) }}">{{ $laporanTriwulanan->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $laporanTriwulanan->currentPage() }}
+                                                    href="{{ $laporanTriwulanan->url($laporanTriwulanan->currentPage()) }}">{{ $laporanTriwulanan->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($laporanTriwulanan->currentPage() < $laporanTriwulanan->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $laporanTriwulanan->currentPage() + 1 }}</a>
+                                                        href="{{ $laporanTriwulanan->url($laporanTriwulanan->currentPage() + 1) }}">{{ $laporanTriwulanan->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($laporanTriwulanan->currentPage() != $laporanTriwulanan->lastPage())
@@ -175,18 +175,18 @@
                                             @if ($laporanTahunan->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $laporanTahunan->currentPage() - 1 }}</a>
+                                                        href="{{ $laporanTahunan->url($laporanTahunan->currentPage() - 1) }}">{{ $laporanTahunan->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $laporanTahunan->currentPage() }}
+                                                    href="{{ $laporanTahunan->url($laporanTahunan->currentPage()) }}">{{ $laporanTahunan->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($laporanTahunan->currentPage() < $laporanTahunan->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $laporanTahunan->currentPage() + 1 }}</a>
+                                                        href="{{ $laporanTahunan->url($laporanTahunan->currentPage() + 1) }}">{{ $laporanTahunan->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($laporanTahunan->currentPage() != $laporanTahunan->lastPage())
@@ -254,18 +254,18 @@
                                             @if ($laporanHasilSurvei->currentPage() - 1 != 0)
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $laporanHasilSurvei->currentPage() - 1 }}</a>
+                                                        href="{{ $laporanHasilSurvei->url($laporanHasilSurvei->currentPage() - 1) }}">{{ $laporanHasilSurvei->currentPage() - 1 }}</a>
                                                 </li>
                                             @endif
                                             <li class="page-item active">
                                                 <a class="page-link"
-                                                    href="#">{{ $laporanHasilSurvei->currentPage() }}
+                                                    href="{{ $laporanHasilSurvei->url($laporanHasilSurvei->currentPage()) }}">{{ $laporanHasilSurvei->currentPage() }}
                                                     <span class="sr-only">(current)</span></a>
                                             </li>
                                             @if ($laporanHasilSurvei->currentPage() < $laporanHasilSurvei->lastPage())
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                        href="#">{{ $laporanHasilSurvei->currentPage() + 1 }}</a>
+                                                        href="{{ $laporanHasilSurvei->url($laporanHasilSurvei->currentPage() + 1) }}">{{ $laporanHasilSurvei->currentPage() + 1 }}</a>
                                                 </li>
                                             @endif
                                             @if ($laporanHasilSurvei->currentPage() != $laporanHasilSurvei->lastPage())
