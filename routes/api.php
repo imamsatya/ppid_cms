@@ -15,7 +15,12 @@ use App\Http\Controllers\API\InformasiPublik\InformasiSetiapSaatController;
 use App\Http\Controllers\API\ManajemenHome\InformasiImageController;
 use App\Http\Controllers\API\ManajemenHome\SliderController;
 use App\Http\Controllers\API\ManajemenHome\VideoController;
+use App\Http\Controllers\API\Permohonan\JenisIdentitasController;
+use App\Http\Controllers\API\Permohonan\JenisPemohonController;
+use App\Http\Controllers\API\Permohonan\MemberikanController;
+use App\Http\Controllers\API\Permohonan\MendapatkanController;
 use App\Http\Controllers\API\Permohonan\PermohonanController;
+use App\Http\Controllers\API\Permohonan\StatusController;
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
 use App\Http\Controllers\API\Profil\LinkAppController;
@@ -58,6 +63,11 @@ Route::controller(RegisterController::class)->group(function () {
 
 // LayananPPID
 Route::resource('permohonan', PermohonanController::class);
+Route::resource('status', StatusController::class);
+Route::resource('cara_memberikan', MemberikanController::class);
+Route::resource('jenis_identitas', JenisIdentitasController::class);
+Route::resource('jenis_pemohon', JenisPemohonController::class);
+Route::resource('mendapatkan', MendapatkanController::class);
 
 // FAQ
 Route::resource('faq_mobile', FAQController::class);
