@@ -167,7 +167,7 @@ class DataPermohonanController extends Controller
     {
         $user = Auth::guard('usersppid')->user();
         $result = DB::table('ppid_permohonan')
-            ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status')
+            ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.file_jawaban', 'jawab_permohonan.ket_jawaban_path')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
             ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')

@@ -153,6 +153,9 @@ return [
     */
 
     'custom' => [
+        'name' => [
+            'required' => 'nama harus terisi',
+        ],
         'jenispemohon' => [
             'required' => 'jenis pemohon harus terisi',
         ],
@@ -171,12 +174,18 @@ return [
         'npwp' => [
             'required' => 'npwp harus terisi',
         ],
+        'pekerjaan' => [
+            'required' => 'perkerjaan harus terisi',
+        ],
         'identitasfile' => [
             'required' => 'identitas file harus terisi',
         ],
         'email' => [
             'required' => 'email harus terisi',
         ],
+        'password' => [
+            'required' => 'password harus terisi'
+        ]
     ],
 
     /*

@@ -255,10 +255,12 @@
                         <h2 style="font-weight: bold;">
                             Pengajuan Permohonan, Keberatan Informasi Publik dan/atau cek
                             status
-                        </h2>
+                        </h2>   
+                        <a href="{{ route('userppid.login') }}">
                         <button class="mt-4 btn btn-lg btn-outline-primary-ppid">
                             Klik Disini
                         </button>
+                        </a>
                     </div>
                 </div>
             </div>
