@@ -321,7 +321,7 @@
                             @if ($visiMisi)
                                 @if ($visiMisi->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($visiMisi->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/'.$visiMisi->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"

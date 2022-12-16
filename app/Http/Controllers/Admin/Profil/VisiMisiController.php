@@ -60,8 +60,8 @@ class VisiMisiController extends Controller
                         if ($fileName == 'banner') {
                             $visiMisi->banner_path = 'adminAssets/profil/visi_dan_misi/banner.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName.'.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/visi_dan_misi', $fileName2);
                     }
                 }
                 $visiMisi->save();
@@ -79,7 +79,8 @@ class VisiMisiController extends Controller
                             $visiMisi->banner_path = 'adminAssets/profil/visi_dan_misi/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName.'.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/visi_dan_misi', $fileName2);
                     }
                 }
                 $visiMisi->save();
