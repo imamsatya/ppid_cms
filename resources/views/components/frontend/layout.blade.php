@@ -116,10 +116,12 @@
                                 @endif
                                 <ul>
                                     @foreach ($menu['submenus'] as $submenu)
-                                        <li>
-                                            <a class="dropdown_menu"
-                                                href="{{ route($submenu->routing) }}">{{ $submenu->nama_menu }}</a>
-                                        </li>
+                                        @if ($submenu->is_active)
+                                            <li>
+                                                <a class="dropdown_menu"
+                                                    href="{{ route($submenu->routing) ?? '' }}">{{ $submenu->nama_menu }}</a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </li>

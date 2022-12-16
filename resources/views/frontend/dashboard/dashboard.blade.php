@@ -603,61 +603,74 @@
                     tablePermohonanUI.release()
                 }
 
-                async function ppidDataPermohonan() {
-                    try {
-                        const result = await getDataPermohonan()
-                        const data = result.result
-                        let rowData = []
-                        const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
-                        for (let i = 0; i < data.length; i++) {
-                            let btnAction = `<button class="btn btn-sm edit-permohonan" data-permohonan="${data[i].id}">
-                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                        alt="" />
-                </button>
-                <button class="btn btn-sm delete-permohonan" data-permohonan="${data[i].id}">
-                    <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                        alt="" />
-                </button>`
-                            if (data[i].id_status != 1) btnAction = '-'
-                            let status = ''
-                            switch (data[i].id_status) {
-                                case 1:
-                                    status = 'Belum Dikonfirmasi'
-                                    break
-                                case 2:
-                                case 3:
-                                    status = 'Proses'
-                                    break
-                                case 4:
-                                    status = 'Selesai'
-                                    break
-                                default:
-                                    status = data[i].nama_status
-                                    break
-                            }
-                            let jawaban = '-'
-                            if (data[i].id_status == 4) {
-                                jawaban = `
-                    <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
-                    ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
-                `
-                            }
-                            rowData.push([
-                                data[i].ticket_permohonan,
-                                data[i].informasi_diminta,
-                                status,
-                                data[i].id_status == '1' ? '-' : (now > data[i].expired_date1 ? data[i]
-                                    .expired_date2 : data[i].expired_date1),
-                                jawaban,
-                                btnAction
-                            ])
+            async function ppidDataPermohonan() {
+                try {
+                    const result = await getDataPermohonan()
+                    const data = result.result
+                    let rowData = []
+                    const now = new Date().toJSON().slice(0,10).replace(/-/g,'-').toString()
+                    for(let i=0; i<data.length; i++) {
+                        let btnAction = `<button class="btn btn-sm edit-permohonan" data-permohonan="${data[i].id}">
+                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
+                                    alt="" />
+                            </button>
+                            <button class="btn btn-sm delete-permohonan" data-permohonan="${data[i].id}">
+                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
+                                    alt="" />
+                            </button>`
+                        if(data[i].id_status != 1) btnAction = '-'
+                        let status = ''
+                        switch(data[i].id_status) {
+                            case 1:
+                                status = 'Belum Dikonfirmasi'
+                                break
+                            case 2:
+                            case 3:
+                                status = 'Proses'
+                                break
+                            case 4:
+                                status = 'Selesai'
+                                break
+                            default:
+                                status = data[i].nama_status
+                                break
+                        }
+                        let jawaban = '-'
+                        if(data[i].id_status == 4) {
+                            jawaban = `
+                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
+                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
+                            `
                         }
 
-                        tablePermohonan.clear().rows.add(rowData).draw()
-                    } catch (error) {
-                        console.log(error.responseText)
+                        let expiredDate = now > data[i].expired_date1 ? data[i].expired_date2 : data[i].expired_date1
+                        if(expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
+                            var start = moment().startOf('day');
+                            var end = moment(expiredDate, "YYYY-MM-DD");
+
+                            //Difference in number of days  
+                            let diff = moment.duration(end.diff(start)).asDays()
+                             
+                            expiredDate = diff >= 0 ?  `${diff} Hari Hingga Batas Waktu` : `Lewat Batas Waktu ${Math.abs(diff)} Hari`;
+                        } else {
+                            expiredDate = '-- Selesai --'
+                        }                      
+
+                        rowData.push([
+                            data[i].ticket_permohonan,
+                            data[i].informasi_diminta,
+                            status,
+                            data[i].id_status == '1' || data[i].id_status == '5' ? '-' : expiredDate,
+                            jawaban,
+                            btnAction
+                        ])
                     }
+                    
+                    tablePermohonan.clear().rows.add(rowData).draw()
+                } catch (error) {
+                    console.log(error.responseText)
                 }
+            }
 
                 $(document).on('click', '#cancel-permohonan', function() {
                     $("#exampleModalCenter").modal('hide')
