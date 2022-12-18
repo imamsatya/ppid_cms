@@ -171,6 +171,12 @@
                 -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%235E6278'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
                 mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%235E6278'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
             }
+
+            .jawban-file-st img {
+                width: 30%;
+                aspect-ratio:  3/2;
+                object-fit: contain;
+            }
         </style>
     @endpush
     <!-- Content -->
@@ -506,6 +512,8 @@
         <script>
             $(document).ready(function() {
 
+                $("body").tooltip({ selector: '[rel="tooltip"]' });
+                
                 var modalPermohonan = new KTBlockUI(document.getElementById('content-modal-permohonan'), {
                     message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                 });
@@ -516,7 +524,13 @@
                 // var bodyUI = new KTBlockUI(document.getElementsByTagName("body")[0], {
                 //             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                 //         });   
-
+                const jadwalKerja = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/jadwal-kerja",
+                        dataType: 'json'
+                    })
+                }
 
                 $("#btn-show-modal-permohonan").on('click', function() {
                     loadModalPermohonan()
@@ -603,8 +617,17 @@
                     tablePermohonanUI.release()
                 }
 
+                
+            
+            var jadwal = null
             async function ppidDataPermohonan() {
                 try {
+
+                    if (jadwal == null) {
+                        jadwal = await jadwalKerja()
+                        jadwal = jadwal.result.data
+                    }
+
                     const result = await getDataPermohonan()
                     const data = result.result
                     let rowData = []
@@ -638,8 +661,10 @@
                         let jawaban = '-'
                         if(data[i].id_status == 4) {
                             jawaban = `
-                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
-                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
+                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a>
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                        alt="" /></a>` : '' }
                             `
                         }
 
@@ -649,9 +674,10 @@
                             var end = moment(expiredDate, "YYYY-MM-DD");
 
                             //Difference in number of days  
+                            // yovi
                             let diff = moment.duration(end.diff(start)).asDays()
-                             
-                            expiredDate = diff >= 0 ?  `${diff} Hari Hingga Batas Waktu` : `Lewat Batas Waktu ${Math.abs(diff)} Hari`;
+                            const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") && jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')                             
+                            expiredDate = diff >= 0 ?  `${diff - hariLibur.length + 1} Hari Hingga Batas Waktu` : `Lewat Batas Waktu ${Math.abs(diff) - hariLibur.length + 1} Hari`;
                         } else {
                             expiredDate = '-- Selesai --'
                         }                      
@@ -668,7 +694,7 @@
                     
                     tablePermohonan.clear().rows.add(rowData).draw()
                 } catch (error) {
-                    console.log(error.responseText)
+                    console.log(error)
                 }
             }
 
