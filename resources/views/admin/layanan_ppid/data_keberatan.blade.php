@@ -20,12 +20,6 @@
                 border-color: var(--kt-input-disabled-border-color);
                 background-color: var(--kt-input-disabled-bg);
             }
-
-            .jawban-file-st img {
-                width: 30%;
-                aspect-ratio: 3/2;
-                object-fit: contain;
-            }
         </style>
     @endpush
 
@@ -238,7 +232,7 @@
                                                         <label class="form-label">File Identitas</label>
                                                         <p><a href="javascript:void(0)"
                                                                 id="file-identitas-modalkonfirmasi" target="_blank"
-                                                                rel="noopener noreferrer">Klik untuk melihat!</a></p>
+                                                                rel="noopener noreferrer">Click to open!</a></p>
                                                     </div>
                                                     <div class="form-group mt-8">
                                                         <div class="d-flex">
@@ -487,15 +481,12 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
-                                    $("body").tooltip({
-                                        selector: '[rel="tooltip"]'
-                                    });
                                     var tableKeberatanUI = new KTBlockUI(document.getElementById('bd-table-keberatan-masuk'), {
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
@@ -544,24 +535,12 @@
                                             dataType: 'json'
                                         });
                                     }
-                                    const jadwalKerja = () => {
-                                        return $.ajax({
-                                            type: 'GET',
-                                            url: "/jadwal-kerja",
-                                            dataType: 'json'
-                                        })
-                                    }
 
                                     async function ppidDataKeberatanMasuk(asal = '-', status = '-', date = null) {
                                         try {
-
-                                            if (jadwal == null) {
-                                                jadwal = await jadwalKerja()
-                                                jadwal = jadwal.result.data
-                                            }
                                             const result = await getDataKeberatanMasuk(asal, status, date)
                                             const data = result.result
-
+                                            const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
                                             let rowData = []
                                             for (let i = 0; i < data.length; i++) {
                                                 let btnAction = ''
@@ -569,41 +548,25 @@
 
                                                 if (data[i].id_status == 1) {
                                                     btnAction =
-                                                        `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Konfirmasi" href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
+                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
                                                     ticketAction = data[i].ticket_keberatan
                                                 } else {
                                                     btnAction = `
-                            <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Jawab" href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
                             
                             `
                                                     ticketAction =
                                                         `<a href="javascript:void(0)" class="detail-keberatan" data-keberatan="${data[i].id}">${data[i].ticket_keberatan}</a>`
                                                 }
-                                                let expiredDate = data[i].expired_date
-                                                if (expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
-                                                    var start = moment().startOf('day');
-                                                    var end = moment(expiredDate, "YYYY-MM-DD");
-
-                                                    // console.log(start.format("YYYY-MM-DD"), end.format("YYYY-MM-DD"))
-                                                    // yovi
-                                                    //Difference in number of days  
-                                                    let diff = moment.duration(end.diff(start)).asDays()
-                                                    const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
-                                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
-                                                    expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
-                                                        `Lewat Batas ${diff - hariLibur.length + 1} Hari Kerja`;
-                                                } else {
-                                                    expiredDate = '-- Selesai --'
-                                                }
 
 
                                                 rowData.push([
                                                     i + 1,
-                                                    data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
+                                                    data[i].created_at.split(' ')[0],
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
-                                                    data[i].id_status == '1' ? '-' : expiredDate,
+                                                    data[i].id_status == '1' ? '-' : data[i].expired_date,
                                                     data[i].nama_status,
                                                     btnAction
                                                 ])
@@ -641,15 +604,14 @@
                                                 let jawaban = '-'
                                                 if (data[i].id_status == 3) {
                                                     jawaban = `
-                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top"  class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
-                                                        alt="" /></a> 
-                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}" alt="" /></a>` : '' }
+                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer">File Jawaban</a> <br/>
+                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer">File Pendukung</a>` : '' }
                             `
                                                 }
 
                                                 rowData.push([
                                                     i + 1,
-                                                    data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
+                                                    data[i].created_at,
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
@@ -949,9 +911,15 @@
                                         })
                                     }
 
+                                    const jadwalKerja = () => {
+                                        return $.ajax({
+                                            type: 'GET',
+                                            url: "/admin/jadwal-kerja",
+                                            dataType: 'json'
+                                        })
+                                    }
 
-
-                                    var jadwal = null
+                                    let jadwal = null
                                     $(document).on('click', '#save-konfirmasi-keberatan', async function() {
                                         const statusKonfirmasi = $('input[name="konfirmasi-radio"]:checked').val()
                                         if (statusKonfirmasi == undefined) {

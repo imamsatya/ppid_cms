@@ -243,29 +243,15 @@ class DataPermohonanController extends Controller
             'ticket_permohonan' => $ticketNumber,
         ]);
 
-        // jawaban reject permohonan
-        DB::table('jawab_permohonan')->insert([
-            'id_ppid_permohonan' => $data['id'],
-            'ket_jawaban' => $data['areaAlasanPenolakan'],
-            'jawab_by' => Auth::user()->id,
-            "created_at" =>  $dateCreated,
-            "updated_at" => $dateCreated,
-        ]);
-
         // reject permohonan
-        $dataReject = array();
-        $userAct = Auth::user()->id;
-        foreach($data['alasanPenolakan'] as $val) {
-            array_push($dataReject, [
-                'id_ppid_permohonan' => $data['id'],
-                'id_template_reject' => $val,
-                'file' => $permohonan->file_identitas,
-                'rejected_by' => $userAct,
-                'created_at' => $dateCreated,
-                'updated_at' => $dateCreated
-            ]);
-        }
-        
+        $dataReject = [
+            'id_ppid_permohonan' => $data['id'],
+            'id_template_reject' => $data['alasanPenolakan'],
+            'file' => $permohonan->file_identitas,
+            'rejected_by' => Auth::user()->id,
+            'created_at' => $dateCreated,
+            'updated_at' => $dateCreated
+        ];
         DB::table('reject_permohonan')->insert($dataReject);
         
         // status permohonan
