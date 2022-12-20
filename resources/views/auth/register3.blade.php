@@ -127,7 +127,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="noidentitas" name="noidentitas"
+                                    <input type="text" maxlength="16" minlength="16" size="16"
+                                        class="form-control" id="noidentitas" name="noidentitas"
                                         aria-describedby="noidentitas" placeholder="No Identitas (KTP)" />
                                     @error('noidentitas')
                                         <div class="" style="color: red">
@@ -329,6 +330,12 @@
                 document.getElementById('jenisidentitas').value = document.getElementById('jenispemohon').value
                 document.getElementById('inputJenisIdentitas').value = document.getElementById('jenisidentitas').value
             }
+
+            $(function() {
+                $("input[name=noidentitas]")[0].oninvalid = function() {
+                    this.setCustomValidity("KTP harus 16 digit");
+                };
+            });
         </script>
     @endpush
 
