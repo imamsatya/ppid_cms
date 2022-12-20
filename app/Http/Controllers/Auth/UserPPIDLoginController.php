@@ -32,19 +32,20 @@ class UserPPIDLoginController extends Controller
     public function handleLogin(Request $request)
     {
         $validated = $request->validate([
-        
+
             'email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
             ],
-            'password' => ['required', 'min:6']]);
+            'password' => ['required', 'min:6']
+        ]);
         if (Auth::guard('usersppid')
             ->attempt($request->only(['email', 'password']))
         ) {
 
-            
+
             return redirect()
                 ->route('dashboard.index');
         }
