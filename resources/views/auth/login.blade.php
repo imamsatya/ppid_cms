@@ -50,22 +50,43 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+
                     <div class="form-login">
                         <div class="label-login d-flex align-items-center">
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.svg') }}" alt="" />
                             <span class="ml-2">Login</span>
                         </div>
-                         @if ($errors)
-                            {{$errors}}
-                            <div class="alert alert-danger">
+                        @if ($errors->any())
+
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <ul>
-                                
+
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         @endif
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ Session::get('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        @if (\Session::has('register-success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ Session::get('register-success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
                         <form action="{{ route('userppid.handleLogin') }}" method="POST">
                             @csrf
                             <div class="form-data">
