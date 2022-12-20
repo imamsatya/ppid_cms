@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -170,6 +170,12 @@
                 background-color: #5E6278;
                 -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%235E6278'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
                 mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6' fill='%235E6278'%3e%3cpath d='M2.72011 2.76429L4.46358 1.02083C4.63618 0.848244 4.63617 0.568419 4.46358 0.395831C4.29099 0.223244 4.01118 0.223244 3.83861 0.395831L1.52904 2.70537C1.36629 2.86808 1.36629 3.13191 1.52904 3.29462L3.83861 5.60419C4.01117 5.77675 4.29099 5.77675 4.46358 5.60419C4.63617 5.43156 4.63617 5.15175 4.46358 4.97919L2.72011 3.23571C2.58994 3.10554 2.58994 2.89446 2.72011 2.76429Z'/%3e%3c/svg%3e");
+            }
+
+            .jawban-file-st img {
+                width: 30%;
+                aspect-ratio: 3/2;
+                object-fit: contain;
             }
         </style>
     @endpush
@@ -255,16 +261,33 @@
                                                             <span class="ml-2">{{ $keberatan->nama_status }}</span>
                                                         </div>
                                                     </td>
-                                                    <td>{{ $keberatan->expired_date }}</td>
+                                                    <td id="expiredDate{{ $keberatan->id }}">
+
+                                                    </td>
                                                     <td>
                                                         @if ($keberatan->ket_jawaban_path)
-                                                            <a class="mb-4"
+                                                            {{-- <a class="mb-4"
                                                                 href="{{ asset($keberatan->ket_jawaban_path) }}">File
-                                                                Jawaban</a> <br />
+                                                                Jawaban</a> <br /> --}}
+                                                            <a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="mb-4 jawban-file-st"
+                                                                title="File Jawaban"
+                                                                href="{{ asset($keberatan->ket_jawaban_path) }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                                    alt="" /></a>
                                                         @endif
                                                         @if ($keberatan->file_jawaban)
-                                                            <a href="{{ asset($keberatan->file_jawaban) }}">File
-                                                                Pendukung</a>
+                                                            {{-- <a href="{{ asset($keberatan->file_jawaban) }}">File
+                                                                
+                                                                Pendukung</a> --}}
+                                                            <a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="jawban-file-st"
+                                                                title="File Pendukung"
+                                                                href="{{ asset($keberatan->file_jawaban) }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                    alt="" /></a>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -506,6 +529,10 @@
         <script>
             $(document).ready(function() {
 
+                $("body").tooltip({
+                    selector: '[rel="tooltip"]'
+                });
+
                 var modalPermohonan = new KTBlockUI(document.getElementById('content-modal-permohonan'), {
                     message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                 });
@@ -516,7 +543,13 @@
                 // var bodyUI = new KTBlockUI(document.getElementsByTagName("body")[0], {
                 //             message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                 //         });   
-
+                const jadwalKerja = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/jadwal-kerja",
+                        dataType: 'json'
+                    })
+                }
 
                 $("#btn-show-modal-permohonan").on('click', function() {
                     loadModalPermohonan()
@@ -603,8 +636,17 @@
                     tablePermohonanUI.release()
                 }
 
+
+
+                var jadwal = null
                 async function ppidDataPermohonan() {
                     try {
+
+                        if (jadwal == null) {
+                            jadwal = await jadwalKerja()
+                            jadwal = jadwal.result.data
+                        }
+
                         const result = await getDataPermohonan()
                         const data = result.result
                         let rowData = []
@@ -636,11 +678,12 @@
                                     break
                             }
                             let jawaban = '-'
-                            console.log('data i', data[i])
                             if (data[i].id_status == 4) {
                                 jawaban = `
-                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}">File Jawaban</a> <br/>
-                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}">File Pendukung</a>` : '' }
+                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a>
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -651,10 +694,12 @@
                                 var end = moment(expiredDate, "YYYY-MM-DD");
 
                                 //Difference in number of days  
+                                // yovi
                                 let diff = moment.duration(end.diff(start)).asDays()
-
-                                expiredDate = diff >= 0 ? `${diff} Hari Hingga Batas Waktu` :
-                                    `Lewat Batas Waktu ${Math.abs(diff)} Hari`;
+                                const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+                                expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
+                                    `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
                             } else {
                                 expiredDate = '-- Selesai --'
                             }
@@ -671,7 +716,7 @@
 
                         tablePermohonan.clear().rows.add(rowData).draw()
                     } catch (error) {
-                        console.log(error.responseText)
+                        console.log(error)
                     }
                 }
 
@@ -875,6 +920,14 @@
                     loadModalKeberatan()
                 })
 
+                const jadwalKerja = () => {
+                    return $.ajax({
+                        type: 'GET',
+                        url: "/jadwal-kerja",
+                        dataType: 'json'
+                    })
+                }
+
                 const ppidJenisPemohon = () => {
                     return $.ajax({
                         type: 'GET',
@@ -925,6 +978,23 @@
                             .perihal_keberatan)
 
                         $("#select-kategori-keberatan").val(dataKeberatan.result.id_kategori_keberatan)
+                        if (dataKeberatan.result.id_permohonan) {
+                            const userId = {{ auth()->id() }}
+                            try {
+                                const result = await getDataPpidPermohonanSebelumnya(userId)
+                                let option = '<option selected value="-">-- No Tiket Permohonan --</option>'
+                                for (let i = 0; i < result.result.length; i++) {
+                                    option +=
+                                        `<option value="${result.result[i].id}">${result.result[i].ticket_permohonan}</option>`
+                                }
+                                console.log(option)
+                                $("#select-permohonan-sebelumnya").html(option)
+                            } catch (err) {
+                                console.log(err.responseText)
+                            }
+                            document.getElementById('select-permohonan-sebelumnya').hidden = false
+                            $("#select-permohonan-sebelumnya").val(dataKeberatan.result.id_permohonan)
+                        }
 
                     }
 
@@ -1002,9 +1072,13 @@
                         console.log(error.responseText)
                     }
                 }
+
+
                 const tableKeberatan = $("#table-keberatan").DataTable({
                     initComplete: function() {
                         // loadDataKeberatan()
+                        convertExpDate()
+
                     }
                 });
                 async function loadDataKeberatan() {
@@ -1033,13 +1107,42 @@
                         'id_permohonan': permohonanSebelumnya,
 
                     }
+                    let errorValidation = []
+                    // if (data.perihal_keberatan.length == 0 || data
+                    //     .id_kategori_keberatan == '-') {
+                    //     Swal.fire({
+                    //         icon: 'warning',
+                    //         title: 'Warning',
+                    //         html: 'Isian tidak lengkap!'
+                    //     })
+                    //     return
+                    // }
+                    console.log('final data', data)
+                    if (data.perihal_keberatan.length == 0) {
+                        errorValidation.push('Perihal Keberatan Harus diisi')
+                    }
 
-                    if (data.perihal_keberatan.length == 0 || data
-                        .id_kategori_keberatan == '-') {
+                    if (data.id_kategori_keberatan == '-') {
+                        errorValidation.push('Kategori Keberatan Harus diisi')
+                    }
+
+                    if ((data.id_kategori_keberatan == "3" || data.id_kategori_keberatan == "4" || data
+                            .id_kategori_keberatan == "5") && data.id_permohonan == null) {
+                        errorValidation.push('Permohonan Sebelumnya harus dipilih')
+                    }
+
+                    if (errorValidation.length > 0) {
+                        list = document.createElement("div")
+                        errorValidation.forEach((item) => {
+                            let li = document.createElement("li");
+                            li.innerText = item;
+                            list.appendChild(li);
+                        })
+
                         Swal.fire({
                             icon: 'warning',
                             title: 'Warning',
-                            html: 'Isian tidak lengkap!'
+                            html: list
                         })
                         return
                     }
@@ -1067,7 +1170,8 @@
                                     html: 'Berhasil menyimpan data Keberatan!'
                                 })
                                 $("#cancel-keberatan").click()
-                                loadDataKeberatan()
+                                // loadDataKeberatan()
+                                window.location.reload();
 
                             } catch (error) {
                                 Swal.fire({
@@ -1172,6 +1276,7 @@
                                 html: 'Berhasil menghapus data keebratan!'
                             })
                             // loadData()
+                            window.location.reload();
                         }
                     })
                 })
@@ -1189,6 +1294,50 @@
                     height: "300"
                 }
                 tinymce.init(configPerihalKeberatanInformasi);
+
+                async function convertExpDate() {
+
+                    tableKeberatanUI.block()
+
+
+
+                    let ppidKeberatan = {{ Js::from($ppidKeberatan) }}
+                    console.log('load ppidKeberatan', ppidKeberatan)
+
+                    jadwal = await jadwalKerja()
+                    jadwal = jadwal.result.data
+
+                    ppidKeberatan.forEach(keberatan => {
+                        console.log(`id keberatan ${keberatan.id}`)
+
+                        let expiredDate = keberatan.expired_date
+                        if (expiredDate && (keberatan.id_status != 3)) {
+                            var start = moment().startOf('day');
+                            var end = moment(expiredDate, "YYYY-MM-DD");
+
+                            //Difference in number of days  
+                            // yovi
+                            let diff = moment.duration(end.diff(start)).asDays()
+                            const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
+                                        "YYYY-MM-DD") &&
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis ==
+                                '1')
+                            expiredDate = diff >= 0 ?
+                                `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
+                                `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
+                        } else {
+                            expiredDate = '-- Selesai --'
+                        }
+                        console.log('value exp date id', document.getElementById(
+                            `expiredDate${keberatan.id}`))
+                        document.getElementById(`expiredDate${keberatan.id}`).innerText =
+                            expiredDate
+
+                    });
+                    tableKeberatanUI.release()
+                }
+
+
             })
         </script>
     @endpush

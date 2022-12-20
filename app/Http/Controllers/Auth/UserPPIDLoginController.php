@@ -53,7 +53,7 @@ class UserPPIDLoginController extends Controller
 
         return redirect()
             ->back()
-            ->with('error', 'Invalid Credentials');
+            ->with('error', 'Akun tidak valid');
     }
 
     public function handleRegister(Request $request)
@@ -99,7 +99,7 @@ class UserPPIDLoginController extends Controller
             $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
 
             return redirect()
-                ->route('dashboard.index');
+                ->route('userppid.login')->with('register-success', 'Berhasil mendaftar');
         }
     }
 
