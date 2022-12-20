@@ -55,11 +55,11 @@
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.svg') }}" alt="" />
                             <span class="ml-2">Login</span>
                         </div>
-                         @if ($errors)
-                            {{$errors}}
+                        @if ($errors->any())
+
                             <div class="alert alert-danger">
                                 <ul>
-                                
+
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
