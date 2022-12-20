@@ -82,8 +82,16 @@
     <!-- navbar -->
     <section>
         <header id="headerNav" class="blackw ">
-            <a href="{{ route('index') }}" class="logo">
+            {{-- <a href="{{ route('index') }}" class="logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid.png') }}" alt="" />
+            </a> --}}
+            <a href="{{ route('index') }}" class="logo">
+                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" width="110"
+                    alt="" />
+            </a>
+            <a href="https://bumn.go.id/" class="logo">
+                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" width="110"
+                    alt="" />
             </a>
 
             <input type="checkbox" id="menu-bar" />
