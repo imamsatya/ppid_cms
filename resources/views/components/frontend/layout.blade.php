@@ -58,6 +58,16 @@
         .delay-4 {
             animation-delay: 1s;
         }
+
+        .custom-logo {
+            padding-right: 350px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .custom-logo {
+                padding-right: 0px;
+            }
+        }
     </style>
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -89,7 +99,7 @@
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" width="110"
                     alt="" />
             </a>
-            <a href="https://bumn.go.id/" class="logo">
+            <a href="https://bumn.go.id/" class="logo custom-logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" width="110"
                     alt="" />
             </a>
