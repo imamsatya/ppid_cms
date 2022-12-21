@@ -60,12 +60,12 @@
         }
 
         .custom-logo {
-            padding-right: 350px;
+            margin-right: 350px;
         }
 
         @media only screen and (max-width: 600px) {
             .custom-logo {
-                padding-right: 0px;
+                margin-right: 0px;
             }
         }
     </style>
