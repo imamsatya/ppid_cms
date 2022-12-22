@@ -247,7 +247,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
-                    <h2>Tambah User Admin</h2>
+                    <h2>Tambah User Pemohon</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -269,7 +269,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_admin.store') }}"
+                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_pemohon.store') }}"
                         method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
@@ -350,7 +350,7 @@
     </div>
     <!--end::Modal - Tambah User Admin-->
 
-    <!--begin::Modal - Edit User Admin-->
+    <!--begin::Modal - Edit User Pemohon-->
     <div class="modal fade" id="kt_modal_editAdmin" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-900px">
@@ -359,7 +359,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
-                    <h2>Edit User Admin</h2>
+                    <h2>Edit User Pemohon</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -474,7 +474,7 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Edit User Admin-->
+    <!--end::Modal - Edit User Pemohon-->
     <br>
 
 
@@ -484,7 +484,7 @@
         <x-slot:isActiveLink_manajemenUser>
             active
             </x-slot>
-            <x-slot:isActiveLink_userAdmin>
+            <x-slot:isActiveLink_userPemohon>
                 active
                 </x-slot>
                 <x-slot:subMenuTitle>
