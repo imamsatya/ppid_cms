@@ -519,9 +519,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
@@ -677,14 +677,19 @@
                                                 }
 
                                                 let jawaban = '-'
-                                                if (data[i].id_status == 4) {
+                                                if (data[i].id_status == 4 || data[i].id_status == 5) {
+                                                    let fileJawaban = ''
+                                                    if (data[i].ket_jawaban_path) {
+                                                        fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a>`
+                                                    }
                                                     jawaban = `
-                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
-                                                        alt="" /></a>
+                                ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                    alt="" /></a>` : '' }
+                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                                                 }
+
 
                                                 rowData.push([
                                                     i + 1,

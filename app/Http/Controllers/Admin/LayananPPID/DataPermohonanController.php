@@ -102,33 +102,33 @@ class DataPermohonanController extends Controller
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
             ->join('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_permohonan.id_ppid_pendaftar')
             ->where(function ($query) use ($status) {
-                if($status != '-') {
-                    $query->where('status_permohonan.id_status', $status);    
+                if ($status != '-') {
+                    $query->where('status_permohonan.id_status', $status);
                 } else {
-                    $query->whereNotIn('status_permohonan.id_status', [4,5,6]); // kecuali yg selesai dan ditolak
+                    $query->whereNotIn('status_permohonan.id_status', [4, 5, 6]); // kecuali yg selesai dan ditolak
                 }
             })
-            ->where(function($query) use ($asal) {
-                if($asal != '-') {
-                    $query->where('ppid_pendaftar.jenis_pemohon', $asal);    
+            ->where(function ($query) use ($asal) {
+                if ($asal != '-') {
+                    $query->where('ppid_pendaftar.jenis_pemohon', $asal);
                 }
             })
-            ->where(function($query) use($start, $end) {
-                if($start != '-') {
+            ->where(function ($query) use ($start, $end) {
+                if ($start != '-') {
                     $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
                 }
             })
             ->where('status_permohonan.aktif', 1)
             ->get();
-       echo json_encode(array('result' => $result));
+        echo json_encode(array('result' => $result));
     }
 
     public function ppidDataPermohonanSelesai(Request $request)
     {
         $asal = $request->input('asal');
-        $status = $request->input('status');  
+        $status = $request->input('status');
         $start = $request->input('datestart');
-        $end = $request->input('dateend');      
+        $end = $request->input('dateend');
 
         $result = DB::table('ppid_permohonan')
             ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap', 'jawab_permohonan.file_jawaban', 'jawab_permohonan.ket_jawaban_path')
@@ -137,28 +137,28 @@ class DataPermohonanController extends Controller
             ->join('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_permohonan.id_ppid_pendaftar')
             ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where(function ($query) use ($status) {
-                if($status != '-') {
-                    $query->where('status_permohonan.id_status', $status);    
+                if ($status != '-') {
+                    $query->where('status_permohonan.id_status', $status);
                 } else {
-                    $query->whereIn('status_permohonan.id_status', [4,5,6]); // yg selesai dan ditolak
+                    $query->whereIn('status_permohonan.id_status', [4, 5, 6]); // yg selesai dan ditolak
                 }
             })
-            ->where(function($query) use ($asal) {
-                if($asal != '-') {
-                    $query->where('ppid_pendaftar.jenis_pemohon', $asal);    
+            ->where(function ($query) use ($asal) {
+                if ($asal != '-') {
+                    $query->where('ppid_pendaftar.jenis_pemohon', $asal);
                 }
             })
-            ->where(function($query) use($start, $end) {
-                if($start != '-') {
+            ->where(function ($query) use ($start, $end) {
+                if ($start != '-') {
                     $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
                 }
             })
             ->where('status_permohonan.aktif', 1)
             ->get();
-       echo json_encode(array('result' => $result));
+        echo json_encode(array('result' => $result));
     }
 
-    public function ppidTemplateReject() 
+    public function ppidTemplateReject()
     {
         $result = DB::table('template_reject')->get();
         echo json_encode(array('result' => $result, 'status' => 'success'));
@@ -171,7 +171,7 @@ class DataPermohonanController extends Controller
         $permohonan = DB::table('ppid_permohonan')->where('id', $data['id'])->first();
 
         // kalau ditolak
-        if($data['statusKonfirmasi'] == 'tolak') {
+        if ($data['statusKonfirmasi'] == 'tolak') {
 
             $this->rejectPermohonan($data, $permohonan, $dateCreated);
             echo json_encode(array('result' => 'Berhasil menolak permohonan!', 'status' => 'success'));
@@ -183,12 +183,14 @@ class DataPermohonanController extends Controller
         echo json_encode(array('result' => 'Berhasil mengkonfirmasi permohonan!', 'status' => 'success'));
     }
 
-    public function jadwalKerja() {
+    public function jadwalKerja()
+    {
         $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
         echo json_encode(array('result' => $response->json()));
     }
 
-    public function generateTicket($permohonan) {
+    public function generateTicket($permohonan)
+    {
         $countTicket = DB::table('ppid_permohonan')
             ->where('ticket_permohonan', '!=', '-')
             ->count();
@@ -197,12 +199,13 @@ class DataPermohonanController extends Controller
         $month = $dateRequested->format('m');
         $year = $dateRequested->format('Y');
         $countTicket++;
-        $ticketNumber = ($countTicket < 10 ? '0'.$countTicket : $countTicket).'/'.$tipe.'/'.$month.'/'.$year;
+        $ticketNumber = ($countTicket < 10 ? '0' . $countTicket : $countTicket) . '/' . $tipe . '/' . $month . '/' . $year;
         return $ticketNumber;
     }
 
-    public function prosesPermohonan($data, $permohonan, $dateCreated) {
-        
+    public function prosesPermohonan($data, $permohonan, $dateCreated)
+    {
+
         // generate ticket_number
         $ticketNumber = $this->generateTicket($permohonan);
 
@@ -236,7 +239,8 @@ class DataPermohonanController extends Controller
         ]);
     }
 
-    public function rejectPermohonan($data, $permohonan, $dateCreated) {
+    public function rejectPermohonan($data, $permohonan, $dateCreated)
+    {
 
         $ticketNumber = $this->generateTicket($permohonan);
         DB::table('ppid_permohonan')->where('id', $data['id'])->update([
@@ -244,9 +248,15 @@ class DataPermohonanController extends Controller
         ]);
 
         // jawaban reject permohonan
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']]);
+        $ticketPermohonan = str_replace('/', '-', $ticketNumber);
+        $nmfile = $ticketPermohonan . '.pdf';
+        $pdf->save(public_path('permohonan/jawaban/') . '' . $nmfile);
+
         DB::table('jawab_permohonan')->insert([
             'id_ppid_permohonan' => $data['id'],
             'ket_jawaban' => $data['areaAlasanPenolakan'],
+            'ket_jawaban_path' => 'permohonan/jawaban/' . $nmfile,
             'jawab_by' => Auth::user()->id,
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
@@ -255,7 +265,7 @@ class DataPermohonanController extends Controller
         // reject permohonan
         $dataReject = array();
         $userAct = Auth::user()->id;
-        foreach($data['alasanPenolakan'] as $val) {
+        foreach ($data['alasanPenolakan'] as $val) {
             array_push($dataReject, [
                 'id_ppid_permohonan' => $data['id'],
                 'id_template_reject' => $val,
@@ -265,9 +275,9 @@ class DataPermohonanController extends Controller
                 'updated_at' => $dateCreated
             ]);
         }
-        
+
         DB::table('reject_permohonan')->insert($dataReject);
-        
+
         // status permohonan
         $dataStatusPermohonan = [
             'id_ppid_permohonan' => $data['id'],
@@ -298,10 +308,10 @@ class DataPermohonanController extends Controller
         $dataPermohonan = DB::table('ppid_permohonan')->where('id', $data['id'])->first();
         $ticketPermohonan = str_replace('/', '-', $dataPermohonan->ticket_permohonan);
 
-        if($request->file('file_dukung')) {
+        if ($request->file('file_dukung')) {
             $file = $request->file('file_dukung');
             // $filename = time().'_'.$file->getClientOriginalName();
-            $filename = $ticketPermohonan.'-pendukung'.'.'.$file->getClientOriginalExtension();
+            $filename = $ticketPermohonan . '-pendukung' . '.' . $file->getClientOriginalExtension();
 
             // File extension
             $extension = $file->getClientOriginalExtension();
@@ -310,22 +320,22 @@ class DataPermohonanController extends Controller
             $location = public_path('permohonan/jawaban');
 
             // Upload file
-            $file->move($location,$filename);
+            $file->move($location, $filename);
 
             // File path
-            $file_dukung = 'permohonan/jawaban/'.$filename;
+            $file_dukung = 'permohonan/jawaban/' . $filename;
         }
 
-        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']] );
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
         // $nmfile = time().'_answer.pdf';
-        $nmfile = $ticketPermohonan.'.pdf';
-        $pdf->save(public_path('permohonan/jawaban/').''.$nmfile);
+        $nmfile = $ticketPermohonan . '.pdf';
+        $pdf->save(public_path('permohonan/jawaban/') . '' . $nmfile);
 
-        
+
         $dataAnswer = [
             'id_ppid_permohonan' => $data['id'],
             'ket_jawaban' => $data['answer'],
-            'ket_jawaban_path' => 'permohonan/jawaban/'.$nmfile,
+            'ket_jawaban_path' => 'permohonan/jawaban/' . $nmfile,
             'file_jawaban' => $file_dukung == '' ? null : $file_dukung,
             'jawab_by' => Auth::user()->id,
             "created_at" =>  $dateCreated,
@@ -354,7 +364,7 @@ class DataPermohonanController extends Controller
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
         ]);
-        
+
 
         echo json_encode(array('result' => 'Berhasil menyimpan respon!', 'status' => 'success'));
     }
@@ -401,25 +411,27 @@ class DataPermohonanController extends Controller
         echo json_encode(array('result' => 'Berhasil meneruskan permohonan!', 'status' => 'success'));
     }
 
-    public function dataPpidPendaftarById(Request $request, $id) {
+    public function dataPpidPendaftarById(Request $request, $id)
+    {
         $user = DB::table('ppid_pendaftar')
-        ->select('ppid_pendaftar.*', 'jenis_identitas.name as nama_jenis_identitas', 'jenis_pemohon.name as nama_jenis_pemohon')
-        ->join('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
-        ->join('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
-        ->where('ppid_pendaftar.id', $id)
-        ->first();
+            ->select('ppid_pendaftar.*', 'jenis_identitas.name as nama_jenis_identitas', 'jenis_pemohon.name as nama_jenis_pemohon')
+            ->join('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
+            ->join('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
+            ->where('ppid_pendaftar.id', $id)
+            ->first();
         echo json_encode(array('result' => $user, 'status' => 'success'));
     }
 
-    public function getDaftarUserPenghubung() {
+    public function getDaftarUserPenghubung()
+    {
         $userPenghubungId = DB::table('roles')->where('name', 'user penghubung')->first();
         $userPenghubung = array();
-        if($userPenghubungId) {
+        if ($userPenghubungId) {
             $userPenghubung = DB::table('model_has_roles')
-                                ->select('users.*')
-                                ->join('users', 'users.id', '=', 'model_has_roles.model_id')
-                                ->where('model_has_roles.role_id', $userPenghubungId->id)
-                                ->get();
+                ->select('users.*')
+                ->join('users', 'users.id', '=', 'model_has_roles.model_id')
+                ->where('model_has_roles.role_id', $userPenghubungId->id)
+                ->get();
         }
         echo json_encode(array('result' => $userPenghubung, 'status' => 'success'));
     }
