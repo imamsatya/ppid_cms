@@ -314,7 +314,7 @@
 
                         .isw-cardImage {
                             width: 100%;
-                            height: 35vh;
+                            height: 184px;
                             object-fit: cover;
                         }
                     </style>
