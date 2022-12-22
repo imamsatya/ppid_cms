@@ -13,6 +13,30 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('ppid_mendapatkan', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        Schema::create('ppid_memberikan', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+
+
+        Schema::create('status', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        Schema::create('template_reject', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+
+
         Schema::create('ppid_permohonan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_ppid_pendaftar');
@@ -31,18 +55,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('status', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-        });
-
         Schema::create('status_permohonan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_ppid_permohonan');
             $table->foreign('id_ppid_permohonan')->references('id')->on('ppid_permohonan');
             $table->unsignedBigInteger('id_status');
             $table->foreign('id_status')->references('id')->on('status');
-            $table->string('modified_by');
+            $table->string('modified_by')->nullable();
             $table->dateTime('modified_date');
             $table->boolean('aktif');
             $table->timestamps();
@@ -74,13 +93,8 @@ return new class extends Migration
             $table->text('ket_jawaban');
             $table->string('file_jawaban')->nullable();
             $table->string('jawab_by');
-            $table->string('ket_jawaban_path');
+            $table->string('ket_jawaban_path')->nullable();
             $table->timestamps();
-        });
-
-        Schema::create('template_reject', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
         });
 
         Schema::create('reject_permohonan', function (Blueprint $table) {
@@ -89,7 +103,7 @@ return new class extends Migration
             $table->foreign('id_ppid_permohonan')->references('id')->on('ppid_permohonan');
             $table->unsignedBigInteger('id_template_reject');
             $table->foreign('id_template_reject')->references('id')->on('template_reject');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->string('rejected_by');
             $table->timestamps();
         });
@@ -102,6 +116,18 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('ppid_mendapatkan');
+        Schema::dropIfExists('ppid_memberikan');
+        Schema::dropIfExists('jenis_identitas');
+        Schema::dropIfExists('jenis_pemohon');
+        Schema::dropIfExists('status');
+        Schema::dropIfExists('template_reject');
+        Schema::dropIfExists('ppid_pendaftar');
         Schema::dropIfExists('ppid_permohonan');
+        Schema::dropIfExists('status_permohonan');
+        Schema::dropIfExists('forward_permohonan');
+        Schema::dropIfExists('log_permohonan');
+        Schema::dropIfExists('jawab_permohonan');
+        Schema::dropIfExists('reject_permohonan');
     }
 };
