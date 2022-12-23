@@ -67,7 +67,7 @@ class InformasiController extends Controller
             $upload_path = 'adminAssets/home/informasi';
             $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
 
-            $fileName2 =  $request->file('icon')->getClientOriginalName();
+            $fileName2 =  $request->file('informasi')->getClientOriginalName();
             $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
 
             $informasi->save();

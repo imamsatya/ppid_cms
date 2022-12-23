@@ -352,7 +352,7 @@
                                     <li>
                                         @foreach ($sosialMedia as $sosialMedia_row)
                                             <a href="{{ $sosialMedia_row->url }}" target="_blank">
-                                                <img class="img-fluid" src="{{ $sosialMedia_row->icon }}"
+                                                <img class="img-fluid" src="{{ 'storage/' . $sosialMedia_row->icon }}"
                                                     alt="" style="width: 40px;height:40px">
                                             </a>
                                         @endforeach
@@ -386,7 +386,7 @@
                                         <li>
                                             <a href="{{ $linkApp_row->url }}"
                                                 title="Image from freepnglogos.com"><img
-                                                    src="{{ asset($linkApp_row->icon) }}" width="200"
+                                                    src="{{ asset('storage/' . $linkApp_row->icon) }}" width="200"
                                                     alt="play store logo black background hd picture" /></a>
                                         </li>
                                     @endforeach
