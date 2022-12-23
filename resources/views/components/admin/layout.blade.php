@@ -908,8 +908,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon--
-                                                                                                                            </span>
-                                                                                                                            <!--end::Svg Icon-->
+                                                                                                                                </span>
+                                                                                                                                <!--end::Svg Icon-->
                                             </span>
                                             <span class="menu-title">Standar Layanan</span>
                                             <span class="menu-arrow"></span>
@@ -1032,7 +1032,8 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link " href="{{ route('admin.user_pemohon.index') }}">
+                                                    <a class="menu-link {{ $isActiveLink_userPemohon ?? '' }}"
+                                                        href="{{ route('admin.user_pemohon.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>

@@ -23,13 +23,16 @@ class InformasiPublikController extends Controller
         $informasiPublikBanner = $informasiPublikBanner->first();
 
         $informasiSecaraBerkala = new InformasiSecaraBerkala();
-        $informasiSecaraBerkala = $informasiSecaraBerkala::paginate(10);
+        $informasiSecaraBerkala = $informasiSecaraBerkala::paginate($perPage = 10, $columns = ['*'], $pageName = 'informasi_secara_berkala');
+
 
         $informasiSertaMerta = new InformasiSertaMerta();
-        $informasiSertaMerta = $informasiSertaMerta::paginate(10);
+        $informasiSertaMerta = $informasiSertaMerta::paginate($perPage = 10, $columns = ['*'], $pageName = 'informasi_serta_merta');
+
 
         $informasiSetiapSaat = new InformasiSetiapSaat();
-        $informasiSetiapSaat = $informasiSetiapSaat::paginate(10);
+        $informasiSetiapSaat = $informasiSetiapSaat::paginate($perPage = 10, $columns = ['*'], $pageName = 'informasi_setiap_saat');
+
 
 
         return view('frontend.informasipublik.informasi-publik', compact('informasiPublikBanner', 'informasiSecaraBerkala', 'informasiSertaMerta', 'informasiSetiapSaat'));

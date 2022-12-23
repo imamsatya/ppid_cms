@@ -31,10 +31,21 @@ class UserPPIDLoginController extends Controller
 
     public function handleLogin(Request $request)
     {
+        $validated = $request->validate([
 
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+            ],
+            'password' => ['required', 'min:6']
+        ]);
         if (Auth::guard('usersppid')
             ->attempt($request->only(['email', 'password']))
         ) {
+
+
             return redirect()
                 ->route('dashboard.index');
         }
@@ -42,7 +53,7 @@ class UserPPIDLoginController extends Controller
 
         return redirect()
             ->back()
-            ->with('error', 'Invalid Credentials');
+            ->with('error', 'Akun tidak valid');
     }
 
     public function handleRegister(Request $request)
@@ -88,7 +99,7 @@ class UserPPIDLoginController extends Controller
             $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
 
             return redirect()
-                ->route('dashboard.index');
+                ->route('userppid.login')->with('register-success', 'Berhasil mendaftar');
         }
     }
 

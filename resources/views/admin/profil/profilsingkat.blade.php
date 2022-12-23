@@ -226,7 +226,7 @@
                             @if ($profilSingkat)
                                 @if ($profilSingkat->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($profilSingkat->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/'.$profilSingkat->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -352,7 +352,7 @@
                             @if ($profilSingkat)
                                 @if ($profilSingkat->side_image_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($profilSingkat->side_image_path) }})">
+                                        style="background-image: url({{ asset('storage/'.$profilSingkat->side_image_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
