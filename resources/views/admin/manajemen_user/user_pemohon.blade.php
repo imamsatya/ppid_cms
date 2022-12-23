@@ -194,13 +194,174 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nama</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="text" name="name"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+                                    <input type="text"name="name"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Nama"
                                         value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis Pemohon</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="jenis_pemohon"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Jenis Pemohon" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis
+                                    Identitas</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="jenis_identitas"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Jenis Identitas" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Identitas</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="no_identitas"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="No Identitas" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Alamat</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="alamat"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Alamat"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Handphone</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="no_handphone"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="No Handphone" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">NPWP</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="npwp"
+                                        class="form-control form-control-lg form-control-solid" placeholder="NPWP"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Pekerjaan</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="pekerjaan"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Pekerjaan" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">KTP</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+
+
+                                        <!--begin::Edit button-->
+                                        <label
+                                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                            data-bs-dismiss="click" title="Change Image">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+
+                                            <!--begin::Inputs-->
+                                            <input type="file" name="laporanImage" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="laporanImage_remove" />
+                                            <!--end::Inputs-->
+                                        </label>
+                                        <!--end::Edit button-->
+
+                                        <!--begin::Cancel button-->
+                                        <span
+                                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                            data-bs-dismiss="click" title="Cancel Image">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <!--end::Cancel button-->
+
+                                        <!--begin::Remove button-->
+                                        <span
+                                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                            data-bs-dismiss="click" title="Remove Image">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <!--end::Remove button-->
+
+                                    </div>
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -235,10 +396,6 @@
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
-
-
-                            <!--end::Input group-->
-
                         </div>
                         <!--end::Card body-->
                         <!--begin::Actions-->
