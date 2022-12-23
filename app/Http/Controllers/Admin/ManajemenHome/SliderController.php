@@ -62,7 +62,9 @@ class SliderController extends Controller
 
             $upload_path = 'adminAssets/home/slider';
             $slider->image_path = 'adminAssets/home/slider/' . $request->file('slider')->getClientOriginalName();
-            $file->move($upload_path, $request->file('slider')->getClientOriginalName());
+
+            $fileName2 = $request->file('slider')->getClientOriginalName();
+            $path = $file->storeAs('public/adminAssets/home/slider', $fileName2);
             $slider->save();
 
 
@@ -125,7 +127,8 @@ class SliderController extends Controller
                 $file = $request->file('slider');
                 $upload_path = 'adminAssets/home/slider';
                 $slider->image_path = 'adminAssets/home/slider/' . $request->file('slider')->getClientOriginalName();
-                $file->move($upload_path, $request->file('slider')->getClientOriginalName());
+                $fileName2 = $request->file('slider')->getClientOriginalName();
+                $path = $file->storeAs('public/adminAssets/home/slider', $fileName2);
             }
             $slider->save();
             return redirect()->back()->with('success', 'Berhasil mengubah Slider');

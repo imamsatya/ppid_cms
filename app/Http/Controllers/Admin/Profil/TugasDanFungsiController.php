@@ -70,7 +70,8 @@ class TugasDanFungsiController extends Controller
                         if ($fileName == 'sideImage') {
                             $tugasDanFungsi->side_image_path = 'adminAssets/profil/tugas_dan_fungsi/sideImage.' . $file->getClientOriginalExtension();
                         }
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/tugas_dan_fungsi', $fileName2);
                     }
                 }
                 $tugasDanFungsi->save();
@@ -90,7 +91,8 @@ class TugasDanFungsiController extends Controller
                         if ($fileName == 'sideImage') {
                             $tugasDanFungsi->side_image_path = 'adminAssets/profil/tugas_dan_fungsi/sideImage.' . $file->getClientOriginalExtension();
                         }
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/tugas_dan_fungsi', $fileName2);
                     }
                 }
                 $tugasDanFungsi->save();

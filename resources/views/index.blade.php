@@ -18,7 +18,7 @@
             @if ($slider)
                 @foreach ($slider as $slider_row)
                     <div class="owl-carousel-item position-relative"
-                        style="background-image: url({{ asset($slider_row->image_path) }}">
+                        style="background-image: url({{ asset('storage/' . $slider_row->image_path) }}">
                         <!-- <img
                         class="img-fluid"
                         src="./assets/images/content/content-image/carousel-2.jpg"
@@ -87,8 +87,8 @@
                             <div class="col-md-3 box_publik">
                                 <div class="content_publik">
                                     <a href="{{ route('informasipublik.index') }}">
-                                        <img class="img-fluid img_center" src="{{ asset($informasi_row->image_path) }}"
-                                            alt="" />
+                                        <img class="img-fluid img_center"
+                                            src="{{ asset('storage/' . $informasi_row->image_path) }}" alt="" />
                                         <div class="informasi_content">
                                             <label for="">{{ $informasi_row->judul }}</label>
                                             <p>
@@ -255,11 +255,11 @@
                         <h2 style="font-weight: bold;">
                             Pengajuan Permohonan, Keberatan Informasi Publik dan/atau cek
                             status
-                        </h2>   
+                        </h2>
                         <a href="{{ route('userppid.login') }}">
-                        <button class="mt-4 btn btn-lg btn-outline-primary-ppid">
-                            Klik Disini
-                        </button>
+                            <button class="mt-4 btn btn-lg btn-outline-primary-ppid">
+                                Klik Disini
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -408,7 +408,7 @@
                 height: 400px;
                 background-size: 340px 400px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset($informasiImage->sideimage_path ?? '') }});
+                background-image: url({{ asset('storage/' . $informasiImage->sideimage_path ?? '') }});
             }
 
             .publik .informasi_publik .box_publik {
@@ -416,7 +416,7 @@
                 height: 351px;
                 background-size: 256px 351px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset($informasiImage->backgroundimage_path ?? '') }});
+                background-image: url({{ asset('storage/' . $informasiImage->backgroundimage_path ?? '') }});
                 z-index: 1;
                 filter: drop-shadow(11px 14px 10px #EFEFEF);
                 transition: all .8s ease-in-out;

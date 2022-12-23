@@ -70,9 +70,8 @@ class LaporanTahunanController extends Controller
                     if ($fileName == 'laporanImage') {
                         $laporanTahunan->thumbnail_path = 'adminAssets/laporan/laporan_tahunan/' . $request->file($fileName)->getClientOriginalName();
                     }
-
-
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/laporan/laporan_tahunan', $fileName2);
                 }
             }
 
@@ -146,7 +145,8 @@ class LaporanTahunanController extends Controller
                         $laporanTahunan->thumbnail_path = 'adminAssets/laporan/laporan_tahunan/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/laporan/laporan_tahunan', $fileName2);
                 }
             }
 

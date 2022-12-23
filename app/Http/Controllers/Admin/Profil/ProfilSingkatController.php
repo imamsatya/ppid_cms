@@ -77,7 +77,7 @@ class ProfilSingkatController extends Controller
                         if ($fileName == 'sideImage') {
                             $profilSingkat->side_image_path = 'adminAssets/profil/profil_singkat/sideImage.' . $file->getClientOriginalExtension();
                         }
-                        $fileName2 = $fileName.'.'  . $file->getClientOriginalExtension();
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/profil/profil_singkat', $fileName2);
                     }
                 }
@@ -98,7 +98,7 @@ class ProfilSingkatController extends Controller
                         if ($fileName == 'sideImage') {
                             $profilSingkat->side_image_path = 'adminAssets/profil/profil_singkat/sideImage.' . $file->getClientOriginalExtension();
                         }
-                        $fileName2 = $fileName.'.'  . $file->getClientOriginalExtension();
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/profil/profil_singkat', $fileName2);
                     }
                 }

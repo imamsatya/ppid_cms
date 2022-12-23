@@ -69,7 +69,8 @@ class InformasiSertaMertaController extends Controller
                         $informasiSertaMerta->file_path = 'adminAssets/informasiPublik/informasi_serta_merta/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_serta_merta', $fileName2);
                 }
             }
 
@@ -139,7 +140,8 @@ class InformasiSertaMertaController extends Controller
                         $informasiSertaMerta->file_path = 'adminAssets/informasiPublik/informasi_serta_merta/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_serta_merta', $fileName2);
                 }
             }
 

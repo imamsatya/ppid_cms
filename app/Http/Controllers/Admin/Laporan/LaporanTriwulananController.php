@@ -72,7 +72,8 @@ class LaporanTriwulananController extends Controller
                     }
 
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/laporan/laporan_triwulanan', $fileName2);
                 }
             }
 
@@ -147,7 +148,8 @@ class LaporanTriwulananController extends Controller
                         $laporanTriwulanan->thumbnail_path = 'adminAssets/laporan/laporan_triwulanan/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/laporan/laporan_triwulanan', $fileName2);
                 }
             }
 
