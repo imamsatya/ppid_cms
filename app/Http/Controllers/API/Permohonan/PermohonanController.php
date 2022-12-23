@@ -32,10 +32,10 @@ class PermohonanController extends BaseController
 
         $result = DB::table('ppid_permohonan')
             ->select('ppid_permohonan.*',
-                'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.file_jawaban as jawaban')
+                'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.ket_jawaban_path as jawaban')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
-            ->rightJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+            ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where('status_permohonan.aktif', 1)
             ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
             ->get();
