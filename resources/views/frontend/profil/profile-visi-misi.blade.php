@@ -3,7 +3,7 @@
         <link href="{{ asset('ppid_fe/assets/css/page/profile/visiMisi/index.css') }}" rel="stylesheet" />
     @endpush
     <section class="informasi_visi_misi">
-
+ 
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -95,7 +95,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($visiMisi->banner_path ?? '') }});
+                            background-image: url({{ asset('storage/'.$visiMisi->banner_path ?? '')  }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

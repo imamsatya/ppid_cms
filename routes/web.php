@@ -288,6 +288,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     //Manajemen Menu
     Route::resource('manajemen_menu', MenuController::class);
     Route::post('manajemen_menu/addmainmenu', [MenuController::class, 'addMainMenu'])->name('manajemen_menu.addMainMenu');
+    Route::delete('manajemen_menu/delete-mainmenu/{id}', [MenuController::class, 'deleteMainMenu'])->name('manajemen_menu.deleteMainMenu');
+    Route::patch('manajemen_menu/update-mainmenu/{id}', [MenuController::class, 'updateMainMenu'])->name('manajemen_menu.updateMainMenu');
+
+    Route::post('manajemen_menu/addsubmenu/{mainMenuId}', [MenuController::class, 'addSubMenu'])->name('manajemen_menu.addSubMenu');
+    Route::delete('manajemen_menu/delete-submenu/{id}', [MenuController::class, 'deleteSubMenu'])->name('manajemen_menu.deleteSubMenu');
+    Route::patch('manajemen_menu/update-submenu/{id}', [MenuController::class, 'updateSubMenu'])->name('manajemen_menu.updateSubMenu');
     //Referensi
     Route::resource('setting_kalender', SettingKalenderController::class);
 
@@ -302,7 +308,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/submit-answer-permohonan', [DataPermohonanController::class, 'submitAnswerPermohonan']);
     Route::post('/submit-forward-permohonan', [DataPermohonanController::class, 'submitForwardPermohonan']);
     Route::get('/ppid-pendaftar/{id}', [DataPermohonanController::class, 'dataPpidPendaftarById']);
-    Route::get('/jadwal-kerja', [DataPermohonanController::class, 'jadwalKerja']);
     Route::get('/users-penghubung', [DataPermohonanController::class, 'getDaftarUserPenghubung']);
 
     //keberatan
@@ -311,6 +316,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/konfirmasi-data-keberatan', [DataKeberatanController::class, 'submitKonfirmasiKeberatan']);
     Route::post('/submit-answer-keberatan', [DataKeberatanController::class, 'submitAnswerKeberatan']);
 });
+
+
+Route::get('/jadwal-kerja', [DataPermohonanController::class, 'jadwalKerja']);
+
 
 
 

@@ -2,26 +2,8 @@
 
 namespace App\Http\Controllers\API\Permohonan;
 
-use App\Http\Resources\FAQBannerResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\LayananPPID\DataPermohonan;
-use App\Models\LayananPPID\ForwardPermohonan;
-use App\Models\LayananPPID\JawabPermohonan;
-use App\Models\LayananPPID\JenisPermohonan;
-use App\Models\LayananPPID\LogPermohonan;
-use App\Models\LayananPPID\RejectPermohonan;
-use App\Models\LayananPPID\Status;
-use App\Models\LayananPPID\StatusPermohonan;
-
-use App\Http\Resources\DataPermohonanResource;
-use App\Http\Resources\ForwardPermohonanResource;
-use App\Http\Resources\JawabPermohonanResource;
-use App\Http\Resources\JenisPermohonanResource;
-use App\Http\Resources\LogPermohonanResource;
-use App\Http\Resources\RejectPermohonanResource;
-use App\Http\Resources\StatusResource;
-use App\Http\Resources\StatusPermohonanResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;

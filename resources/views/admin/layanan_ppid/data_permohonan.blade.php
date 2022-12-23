@@ -20,6 +20,12 @@
                 border-color: var(--kt-input-disabled-border-color);
                 background-color: var(--kt-input-disabled-bg);
             }
+
+            .jawban-file-st img {
+                width: 30%;
+                aspect-ratio: 3/2;
+                object-fit: contain;
+            }
         </style>
     @endpush
 
@@ -92,6 +98,7 @@
                                             <th>Nama Pemohon</th>
                                             <th>Sumber</th>
                                             <th>Batas Waktu</th>
+                                            <th>Batas Waktu R</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -209,7 +216,7 @@
                                                         <label class="form-label">File Identitas</label>
                                                         <p><a href="javascript:void(0)"
                                                                 id="file-identitas-modalkonfirmasi" target="_blank"
-                                                                rel="noopener noreferrer">Click to open!</a></p>
+                                                                rel="noopener noreferrer">Klik untuk melihat!</a></p>
                                                     </div>
                                                     <div class="form-group mt-8">
                                                         <div class="d-flex">
@@ -232,12 +239,25 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="form-group mt-4">
-                                                        <select style="display: none" id="alasan_penolakan"
-                                                            class="form-select" aria-label="Select Alasan Penolakan">
+                                                    <div class="form-group mt-4" id="alasan_penolakan_sl">
+                                                        <select data-control="select2" data-close-on-select="false"
+                                                            data-placeholder="Pilih alasan penolakan"
+                                                            data-allow-clear="true" multiple="multiple"
+                                                            style="display: none" id="alasan_penolakan"
+                                                            class="form-select form-select-solid"
+                                                            aria-label="Select Alasan Penolakan">
                                                             <option value="-">-- Alasan Penolakan --</option>
                                                         </select>
                                                     </div>
+                                                </div>
+                                                <div class="col-12" style="margin-top: 15px; display: none"
+                                                    id="area_penolakan">
+
+                                                    <div class="form-group">
+                                                        <label class="form-label">Jawaban Penolakan</label>
+                                                        <textarea class="form-control" id="area-alasan-tolak" placeholder="Jawaban penolakan"></textarea>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -269,7 +289,7 @@
                                                         <label class="form-label">File Identitas</label>
                                                         <p><a href="javascript:void(0)"
                                                                 id="file-identitas-modalanswer" target="_blank"
-                                                                rel="noopener noreferrer">Click to open!</a></p>
+                                                                rel="noopener noreferrer">Klik untuk melihat!</a></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -336,7 +356,7 @@
                                                         <label class="form-label">File Identitas</label>
                                                         <p><a href="javascript:void(0)"
                                                                 id="file-identitas-modalforward" target="_blank"
-                                                                rel="noopener noreferrer">Click to open!</a></p>
+                                                                rel="noopener noreferrer">Klik untuk melihat!</a></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -499,12 +519,15 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                            crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
+                                    $("body").tooltip({
+                                        selector: '[rel="tooltip"]'
+                                    });
                                     var tablePermohonanUI = new KTBlockUI(document.getElementById('bd-table-permohonan-masuk'), {
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
@@ -556,8 +579,22 @@
                                         });
                                     }
 
+                                    const jadwalKerja = () => {
+                                        return $.ajax({
+                                            type: 'GET',
+                                            url: "/jadwal-kerja",
+                                            dataType: 'json'
+                                        })
+                                    }
+
                                     async function ppidDataPermohonanMasuk(asal = '-', status = '-', date = null) {
                                         try {
+
+                                            if (jadwal == null) {
+                                                jadwal = await jadwalKerja()
+                                                jadwal = jadwal.result.data
+                                            }
+
                                             const result = await getDataPermohonanMasuk(asal, status, date)
                                             const data = result.result
                                             const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
@@ -567,25 +604,43 @@
                                                 let ticketAction = ''
                                                 if (data[i].id_status == 1) {
                                                     btnAction =
-                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-permohonan" data-permohonan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
+                                                        `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Konfirmasi" href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-permohonan" data-permohonan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
                                                     ticketAction = data[i].ticket_permohonan
                                                 } else {
                                                     btnAction = `
-                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-permohonan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
-                            <a href="javascript:void(0)" class="btn btn-icon btn-danger forward-permohonan" data-permohonan="${data[i].id}"><i
+                            <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Jawab" href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-permohonan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+                            <a ${data[i].id_status == 3 ? 'style="pointer-events: none; background-color: rgb(229, 229, 229) !important"' : ''} rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Teruskan" href="javascript:void(0)" class="btn btn-icon btn-danger forward-permohonan" data-permohonan="${data[i].id}"><i
                                     class="bi bi bi-forward fs-4 "></i></a>
                             `
                                                     ticketAction =
                                                         `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
                                                 }
 
+                                                let expiredDate = now > data[i].expired_date1 ? data[i].expired_date2 : data[i]
+                                                    .expired_date1
+                                                if (expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
+                                                    var start = moment().startOf('day');
+                                                    var end = moment(expiredDate, "YYYY-MM-DD");
+
+                                                    // console.log(start.format("YYYY-MM-DD"), end.format("YYYY-MM-DD"))
+                                                    // yovi
+                                                    //Difference in number of days  
+                                                    let diff = moment.duration(end.diff(start)).asDays()
+                                                    const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
+                                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+                                                    expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
+                                                        `Perpangjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
+                                                } else {
+                                                    expiredDate = '-- Selesai --'
+                                                }
 
                                                 rowData.push([
                                                     i + 1,
-                                                    data[i].created_at.split(' ')[0],
+                                                    data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
+                                                    data[i].id_status == '1' ? '-' : expiredDate,
                                                     data[i].id_status == '1' ? '-' : (now > data[i].expired_date1 ? data[i]
                                                         .expired_date2 : data[i].expired_date1),
                                                     data[i].nama_status,
@@ -613,25 +668,32 @@
                                                     ticketAction = data[i].ticket_permohonan
                                                 } else {
                                                     btnAction = `
-                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-permohonan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
-                            <a href="javascript:void(0)" class="btn btn-icon btn-danger forward-permohonan" data-permohonan="${data[i].id}"><i
-                                    class="bi bi bi-forward fs-4 "></i></a>
-                            `
+    <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-permohonan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+    <a href="javascript:void(0)" class="btn btn-icon btn-danger forward-permohonan" data-permohonan="${data[i].id}"><i
+            class="bi bi bi-forward fs-4 "></i></a>
+    `
                                                     ticketAction =
                                                         `<a href="javascript:void(0)" class="detail-permohonan" data-permohonan="${data[i].id}">${data[i].ticket_permohonan}</a>`
                                                 }
 
                                                 let jawaban = '-'
-                                                if (data[i].id_status == 4) {
+                                                if (data[i].id_status == 4 || data[i].id_status == 5) {
+                                                    let fileJawaban = ''
+                                                    if (data[i].ket_jawaban_path) {
+                                                        fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a>`
+                                                    }
                                                     jawaban = `
-                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer">File Jawaban</a> <br/>
-                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer">File Pendukung</a>` : '' }
+                                ${fileJawaban}
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                                                 }
 
+
                                                 rowData.push([
                                                     i + 1,
-                                                    data[i].created_at,
+                                                    data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
@@ -661,13 +723,23 @@
                                         initComplete: function() {
                                             loadDataPermintaanMasuk()
                                         },
+                                        columnDefs: [{
+                                            target: 6,
+                                            visible: false,
+                                            searchable: false
+                                        }],
                                         "createdRow": function(row, data, dataIndex) {
                                             if (data[5] != null && data[5] != '-') {
-                                                const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
-                                                if (now > data[5]) {
-                                                    $(row).addClass("bg-light-danger text-danger");
+
+                                                let expiredDate = data[6]
+                                                var start = moment().startOf('day');
+                                                var end = moment(expiredDate, "YYYY-MM-DD");
+                                                //Difference in number of days  
+                                                let diff = moment.duration(end.diff(start)).asDays()
+
+                                                if (diff < 0) {
+                                                    $(row).addClass("bg-light-danger text-danger")
                                                 }
-                                                // $(row).addClass("warning");
                                             }
                                         },
                                     });
@@ -820,6 +892,11 @@
                                     // let configAreaTujuanPenggunaan = {selector: "#area-tujuan-penggunaan", height : "300"};
                                     // let configAreaTujuanPenggunaanAnswer = {selector: "#area-tujuan-penggunaan-answer", height : "300"};
                                     // let configAreaInformasiDimintaAnswer = {selector: "#area-informasi-diminta-answer", height : "300"};
+                                    let configAreaAlasanTolak = {
+                                        selector: "#area-alasan-tolak",
+                                        height: "300"
+                                    };
+
                                     let configAreaAnswer = {
                                         selector: "#area-answer",
                                         height: "300"
@@ -838,6 +915,7 @@
                                     // tinymce.init(configAreaInformasiDimintaForward);
                                     // tinymce.init(configAreaTujuanPenggunaanForward);
                                     tinymce.init(configAreaForward);
+                                    tinymce.init(configAreaAlasanTolak);
 
 
                                     $(document).on('click', '.confirm-permohonan', function() {
@@ -866,6 +944,8 @@
                                         // tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
                                         // tinymce.get("area-tujuan-penggunaan").getBody().setAttribute('contenteditable', false)
 
+                                        tinymce.get("area-alasan-tolak").setContent('')
+
                                         $("#file-identitas-modalkonfirmasi").prop('href',
                                             `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
                                         $("#memberikan-informasi").val(dataPermohonan.result.cara_memberikan)
@@ -875,7 +955,9 @@
             //     <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
             // `)
                                         $('.proses-konfirmasi').prop('checked', false)
-                                        $("#alasan_penolakan").hide()
+                                        $("#alasan_penolakan_sl").hide()
+                                        $("#alasan_penolakan").val('').trigger('change')
+                                        $("#area_penolakan").hide()
                                         modalPermohonan.release()
                                     }
 
@@ -900,7 +982,8 @@
                                             }
 
                                             if (optionRejectData == '') {
-                                                optionRejectData = '<option value="-">-- Alasan Penolakan --</option>'
+                                                // optionRejectData = '<option value="-">-- Alasan Penolakan --</option>'
+                                                optionRejectData = ''
                                                 for (let i = 0; i < templateRejectData.length; i++) {
                                                     optionRejectData +=
                                                         `<option value="${templateRejectData[i].id}">${templateRejectData[i].name}</option>`
@@ -908,12 +991,15 @@
                                             }
 
                                             $("#alasan_penolakan").html(optionRejectData)
-                                            $("#alasan_penolakan").show()
+                                            $("#alasan_penolakan_sl").show()
+                                            $("#area_penolakan").show()
                                             modalPermohonan.release()
                                             return
                                         }
 
-                                        $("#alasan_penolakan").hide()
+                                        $("#alasan_penolakan").val('').trigger('change')
+                                        $("#alasan_penolakan_sl").hide()
+                                        $("#area_penolakan").hide()
                                     })
 
                                     const submitKonfirmasiPermohonan = (data) => {
@@ -925,15 +1011,9 @@
                                         })
                                     }
 
-                                    const jadwalKerja = () => {
-                                        return $.ajax({
-                                            type: 'GET',
-                                            url: "/admin/jadwal-kerja",
-                                            dataType: 'json'
-                                        })
-                                    }
 
-                                    let jadwal = null
+
+                                    var jadwal = null
                                     $(document).on('click', '#save-konfirmasi-permohonan', async function() {
                                         const statusKonfirmasi = $('input[name="konfirmasi-radio"]:checked').val()
                                         if (statusKonfirmasi == undefined) {
@@ -946,7 +1026,9 @@
                                         }
 
                                         const alasanPenolakan = $("#alasan_penolakan").val()
-                                        if (statusKonfirmasi == 'tolak' && alasanPenolakan == '-') {
+                                        const areaAlasanPenolakan = tinymce.get("area-alasan-tolak").getContent()
+                                        if (statusKonfirmasi == 'tolak' && (alasanPenolakan.length == 0 || areaAlasanPenolakan
+                                                .length == 0)) {
                                             Swal.fire({
                                                 icon: 'warning',
                                                 title: 'Error',
@@ -960,6 +1042,7 @@
                                                 '_token': "{{ csrf_token() }}",
                                                 'statusKonfirmasi': statusKonfirmasi,
                                                 'alasanPenolakan': alasanPenolakan,
+                                                'areaAlasanPenolakan': areaAlasanPenolakan,
                                                 'id': $("#id-permohonan-edited").val(),
                                                 'expired1': '-',
                                                 'expired2': '-'
@@ -1211,9 +1294,9 @@
                                         $("#detail-status").val(dataPermohonan.result.nama_status_permohonan)
                                         console.log(dataPermohonan.result)
                                         $("#file-identitas-detail").html(`
-                    <label class="form-label">File identitas</label>
-                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
-                `)
+<label class="form-label">File identitas</label>
+<img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
+`)
 
                                         modalDetail.release()
                                     }

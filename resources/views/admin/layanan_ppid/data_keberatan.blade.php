@@ -20,6 +20,12 @@
                 border-color: var(--kt-input-disabled-border-color);
                 background-color: var(--kt-input-disabled-bg);
             }
+
+            .jawban-file-st img {
+                width: 30%;
+                aspect-ratio: 3/2;
+                object-fit: contain;
+            }
         </style>
     @endpush
 
@@ -232,7 +238,7 @@
                                                         <label class="form-label">File Identitas</label>
                                                         <p><a href="javascript:void(0)"
                                                                 id="file-identitas-modalkonfirmasi" target="_blank"
-                                                                rel="noopener noreferrer">Click to open!</a></p>
+                                                                rel="noopener noreferrer">Klik untuk melihat!</a></p>
                                                     </div>
                                                     <div class="form-group mt-8">
                                                         <div class="d-flex">
@@ -377,7 +383,7 @@
                                 <div class="modal-content" id="content-modal-detail">
                                     <div class="modal-header">
                                         <h5 class="modal-title">
-                                            Data Permohonan
+                                            Data Keberatan
                                         </h5>
                                     </div>
                                     <div class="modal-body" id="data-cetak-field">
@@ -437,26 +443,23 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <h4 style="text-align: center">Data Permohonan</h4>
+                                                    <h4 style="text-align: center">Data Keberatan</h4>
                                                     <div class="form-group mt-4 mb-4">
-                                                        <label class="form-label">Informasi diminta</label>
-                                                        <div id="area-informasi-diminta-detail-notiny"
+                                                        <label class="form-label">Perihal Keberatan</label>
+                                                        <div id="perihal-keberatan-detail-notiny"
                                                             class="form-detail-ctm">-</div>
                                                     </div>
+
                                                     <div class="form-group mb-4">
-                                                        <label class="form-label">Tujuan Informasi</label>
-                                                        <div id="area-tujuan-penggunaan-detail-notiny"
-                                                            class="form-detail-ctm">-</div>
-                                                    </div>
-                                                    <div class="form-group mb-4">
-                                                        <label class="form-label">Cara mendapat informasi</label>
+                                                        <label class="form-label">Kategori Keberatan</label>
                                                         <input type="text" class="form-control"
-                                                            id="detail-cara-dapat-info" disabled>
+                                                            id="detail-kategori-keberatan-info" disabled>
                                                     </div>
-                                                    <div class="form-group mb-4">
-                                                        <label class="form-label">Cara memberi informasi</label>
+                                                    <div class="form-group mb-4"
+                                                        id="detail-permohonan-sebelumnya-form">
+                                                        <label class="form-label">Permohonan Sebelumnya</label>
                                                         <input type="text" class="form-control"
-                                                            id="detail-cara-memberi-info" disabled>
+                                                            id="detail-permohonan-sebelumnya-info" disabled>
                                                     </div>
                                                     <div class="form-group" id="file-identitas-detail"></div>
                                                 </div>
@@ -466,8 +469,8 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary"
-                                            id="cetak-permohonan">CETAK</button>
+                                        {{-- <button type="button" class="btn btn-primary"
+                                            id="cetak-permohonan">CETAK</button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -481,12 +484,15 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
+                                    $("body").tooltip({
+                                        selector: '[rel="tooltip"]'
+                                    });
                                     var tableKeberatanUI = new KTBlockUI(document.getElementById('bd-table-keberatan-masuk'), {
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
@@ -535,12 +541,24 @@
                                             dataType: 'json'
                                         });
                                     }
+                                    const jadwalKerja = () => {
+                                        return $.ajax({
+                                            type: 'GET',
+                                            url: "/jadwal-kerja",
+                                            dataType: 'json'
+                                        })
+                                    }
 
                                     async function ppidDataKeberatanMasuk(asal = '-', status = '-', date = null) {
                                         try {
+
+                                            if (jadwal == null) {
+                                                jadwal = await jadwalKerja()
+                                                jadwal = jadwal.result.data
+                                            }
                                             const result = await getDataKeberatanMasuk(asal, status, date)
                                             const data = result.result
-                                            const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
+
                                             let rowData = []
                                             for (let i = 0; i < data.length; i++) {
                                                 let btnAction = ''
@@ -548,25 +566,41 @@
 
                                                 if (data[i].id_status == 1) {
                                                     btnAction =
-                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
+                                                        `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Konfirmasi" href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
                                                     ticketAction = data[i].ticket_keberatan
                                                 } else {
                                                     btnAction = `
-                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+                            <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Jawab" href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
                             
                             `
                                                     ticketAction =
                                                         `<a href="javascript:void(0)" class="detail-keberatan" data-keberatan="${data[i].id}">${data[i].ticket_keberatan}</a>`
                                                 }
+                                                let expiredDate = data[i].expired_date
+                                                if (expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
+                                                    var start = moment().startOf('day');
+                                                    var end = moment(expiredDate, "YYYY-MM-DD");
+
+                                                    // console.log(start.format("YYYY-MM-DD"), end.format("YYYY-MM-DD"))
+                                                    // yovi
+                                                    //Difference in number of days  
+                                                    let diff = moment.duration(end.diff(start)).asDays()
+                                                    const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
+                                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+                                                    expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
+                                                        `Lewat Batas ${diff - hariLibur.length + 1} Hari Kerja`;
+                                                } else {
+                                                    expiredDate = '-- Selesai --'
+                                                }
 
 
                                                 rowData.push([
                                                     i + 1,
-                                                    data[i].created_at.split(' ')[0],
+                                                    data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
-                                                    data[i].id_status == '1' ? '-' : data[i].expired_date,
+                                                    data[i].id_status == '1' ? '-' : expiredDate,
                                                     data[i].nama_status,
                                                     btnAction
                                                 ])
@@ -604,14 +638,15 @@
                                                 let jawaban = '-'
                                                 if (data[i].id_status == 3) {
                                                     jawaban = `
-                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer">File Jawaban</a> <br/>
-                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer">File Pendukung</a>` : '' }
+                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top"  class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a> 
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}" alt="" /></a>` : '' }
                             `
                                                 }
 
                                                 rowData.push([
                                                     i + 1,
-                                                    data[i].created_at,
+                                                    data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
                                                     data[i].nama_lengkap,
                                                     data[i].jenis_kanal,
@@ -911,15 +946,9 @@
                                         })
                                     }
 
-                                    const jadwalKerja = () => {
-                                        return $.ajax({
-                                            type: 'GET',
-                                            url: "/admin/jadwal-kerja",
-                                            dataType: 'json'
-                                        })
-                                    }
 
-                                    let jadwal = null
+
+                                    var jadwal = null
                                     $(document).on('click', '#save-konfirmasi-keberatan', async function() {
                                         const statusKonfirmasi = $('input[name="konfirmasi-radio"]:checked').val()
                                         if (statusKonfirmasi == undefined) {
@@ -1085,10 +1114,10 @@
 
 
 
-                                    $(document).on('click', '.detail-permohonan', function() {
-                                        const idPermohonan = $(this).data('permohonan');
+                                    $(document).on('click', '.detail-keberatan', function() {
+                                        const idKeberatan = $(this).data('keberatan');
                                         $("#modalDetail").modal('show')
-                                        loadModalDetail(idPermohonan)
+                                        loadModalDetail(idKeberatan)
                                     })
 
                                     const ppidPendaftar = (data) => {
@@ -1101,18 +1130,21 @@
 
                                     async function loadModalDetail(data) {
                                         modalDetail.block()
-                                        const dataPermohonan = await ppidPermohonanUser(data)
-                                        const dataPemohon = await ppidPendaftar(dataPermohonan.result.id_ppid_pendaftar)
-
+                                        const dataKeberatan = await ppidKeberatanUser(data)
+                                        const dataPemohon = await ppidPendaftar(dataKeberatan.result.id_ppid_pendaftar)
+                                        console.log('detail', dataKeberatan)
                                         $("#id-keberatan-edited").val(data)
 
-                                        $("#area-tujuan-penggunaan-detail-notiny").html(dataPermohonan.result.tujuan_informasi)
-                                        $("#area-informasi-diminta-detail-notiny").html(dataPermohonan.result.informasi_diminta)
-                                        $("#detail-cara-memberi-info").val(dataPermohonan.result.cara_memberikan)
-                                        $("#detail-cara-dapat-info").val(dataPermohonan.result.cara_mendapatkan)
+                                        $("#perihal-keberatan-detail-notiny").html(dataKeberatan.result.perihal_keberatan)
+
+                                        $("#detail-kategori-keberatan-info").val(dataKeberatan.result.jenis_keberatan)
+                                        $("#detail-permohonan-sebelumnya-info").val(dataKeberatan.result.ticket_permohonan)
+                                        if (dataKeberatan.result.ticket_permohonan == null) {
+                                            document.getElementById('detail-permohonan-sebelumnya-form').hidden = true
+                                        }
 
                                         $("#detail-tanggal-masuk").val(dataPemohon.result.created_at)
-                                        $("#detail-noregistrasi").val(dataPermohonan.result.ticket_permohonan)
+                                        $("#detail-noregistrasi").val(dataKeberatan.result.ticket_keberatan)
                                         $("#detail-nama-pemohon").val(dataPemohon.result.nama_lengkap)
                                         $("#detail-jenis-pemohon").val(dataPemohon.result.nama_jenis_pemohon)
                                         $("#detail-identitas").val(dataPemohon.result.nama_jenis_identitas)
@@ -1120,11 +1152,11 @@
                                         $("#detail-alamat").val(dataPemohon.result.alamat)
                                         $("#detail-pekerjaan").val(dataPemohon.result.pekerjaan)
                                         $("#detail-email").val(dataPemohon.result.email)
-                                        $("#detail-status").val(dataPermohonan.result.nama_status_keberatan)
-                                        console.log(dataPermohonan.result)
+                                        $("#detail-status").val(dataKeberatan.result.nama_status_keberatan)
+                                        console.log(dataKeberatan.result)
                                         $("#file-identitas-detail").html(`
                     <label class="form-label">File identitas</label>
-                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
+                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataKeberatan.result.identitas_file_path}') }}" alt="" srcset="">
                 `)
 
                                         modalDetail.release()

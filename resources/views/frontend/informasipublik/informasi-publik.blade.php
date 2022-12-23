@@ -16,18 +16,23 @@
     <!-- Filter -->
 
     <!-- content -->
+    {{ count(app('request')->all()) }}
     <section class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-berkala-tab" data-toggle="pill" href="#v-pills-berkala"
-                            role="tab" aria-controls="v-pills-berkala" aria-selected="true">
+                        <a class="nav-link {{ app('request')->input('informasi_secara_berkala') ? 'active' : null }} 
+                            {{ count(app('request')->all()) < 1 ? 'active' : null }}
+                            "
+                            id="v-pills-berkala-tab" data-toggle="pill" href="#v-pills-berkala" role="tab"
+                            aria-controls="v-pills-berkala" aria-selected="true">
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_informasi.png') }}"
                                 alt="">
                             Informasi Secara Berkala</a>
-                        <a class="nav-link" id="v-pills-setiapsaat-tab" data-toggle="pill" href="#v-pills-setiapsaat"
-                            role="tab" aria-controls="v-pills-setiapsaat" aria-selected="false">
+                        <a class="nav-link {{ app('request')->input('informasi_setiap_saat') ? 'active' : null }}"
+                            id="v-pills-setiapsaat-tab" data-toggle="pill" href="#v-pills-setiapsaat" role="tab"
+                            aria-controls="v-pills-setiapsaat" aria-selected="false">
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_informasi.png') }}"
                                 alt="">
 
@@ -43,8 +48,8 @@
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-berkala" role="tabpanel"
-                            aria-labelledby="v-pills-berkala-tab">
+                        <div class="tab-pane fade show  {{ app('request')->input('informasi_secara_berkala') ? 'show active' : null }} {{ count(app('request')->all()) < 1 ? 'show active' : null }}"
+                            id="v-pills-berkala" role="tabpanel" aria-labelledby="v-pills-berkala-tab">
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -73,7 +78,7 @@
                                         <ul class="pagination">
                                             @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
                                                 <li class="page-item ">
-                                                    <a class="page-link"
+                                                    <a class="page-link" href="javascript:void(0)"
                                                         href="{{ $informasiSecaraBerkala->previousPageUrl() }}"
                                                         tabindex="-1">
                                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -111,8 +116,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-setiapsaat" role="tabpanel"
-                            aria-labelledby="v-pills-setiapsaat-tab">
+                        <div class="tab-pane fade {{ app('request')->input('informasi_setiap_saat') ? 'show active' : null }}
+                            "
+                            id="v-pills-setiapsaat" role="tabpanel" aria-labelledby="v-pills-setiapsaat-tab">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
@@ -183,8 +189,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade " id="v-pills-sertamerta" role="tabpanel"
-                            aria-labelledby="v-pills-sertamerta-tab">
+                        <div class="tab-pane fade {{ app('request')->input('informasi_serta_merta') ? 'show active' : null }}"
+                            id="v-pills-sertamerta" role="tabpanel" aria-labelledby="v-pills-sertamerta-tab">
 
                             <div class="row">
                                 <div class="col-md-12">

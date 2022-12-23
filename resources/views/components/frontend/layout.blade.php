@@ -58,6 +58,16 @@
         .delay-4 {
             animation-delay: 1s;
         }
+
+        .custom-logo {
+            margin-right: 350px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .custom-logo {
+                margin-right: 0px;
+            }
+        }
     </style>
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -82,8 +92,16 @@
     <!-- navbar -->
     <section>
         <header id="headerNav" class="blackw ">
-            <a href="{{ route('index') }}" class="logo">
+            {{-- <a href="{{ route('index') }}" class="logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid.png') }}" alt="" />
+            </a> --}}
+            <a href="{{ route('index') }}" class="logo">
+                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" width="110"
+                    alt="" />
+            </a>
+            <a href="https://bumn.go.id/" class="logo custom-logo">
+                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" width="110"
+                    alt="" />
             </a>
 
             <input type="checkbox" id="menu-bar" />
@@ -116,10 +134,12 @@
                                 @endif
                                 <ul>
                                     @foreach ($menu['submenus'] as $submenu)
-                                        <li>
-                                            <a class="dropdown_menu"
-                                                href="{{ route($submenu->routing) }}">{{ $submenu->nama_menu }}</a>
-                                        </li>
+                                        @if ($submenu->is_active)
+                                            <li>
+                                                <a class="dropdown_menu"
+                                                    href="{{ route($submenu->routing) ?? '' }}">{{ $submenu->nama_menu }}</a>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </li>
