@@ -303,7 +303,7 @@
                                 <!--end::Remove button-->
                             @endcan
                         </div>
-                        <br>
+                        {{-- <br><br>
                         <label for="" class=" form-label">PPID Logo Image</label>
                         <br>
                         <div class="image-input image-input-outline" data-kt-image-input="true"
@@ -360,8 +360,8 @@
                                 </span>
                                 <!--end::Remove button-->
                             @endcan
-                        </div>
-                        {{-- <p>minimal dimensi 369x454 pixel</p> --}}
+                        </div> --}}
+
                         <br> <br>
                         @can('informasi secara berkala.create')
                             <button type="submit" class="btn btn-primary" id="addButton"
