@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\ManajemenUser;
 use App\Models\UserPPID;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class UserPemohonController extends Controller
 {
@@ -16,7 +17,17 @@ class UserPemohonController extends Controller
     public function index()
     {
         //
-        $usersPPID = UserPPID::all();
+        // $usersPPID = UserPPID::all();
+        $usersPPID = DB::table('ppid_pendaftar')->select(
+            'ppid_pendaftar.*',
+            'jenis_pemohon.name as jenis_pemohon_name',
+            'jenis_identitas.name as jenis_identitas_name',
+
+        )
+            ->leftjoin('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
+            ->leftjoin('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
+
+            ->get();
         return view('admin.manajemen_user.user_pemohon', compact('usersPPID'));
     }
 
