@@ -251,7 +251,10 @@ class DataPermohonanController extends Controller
         $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']]);
         $ticketPermohonan = str_replace('/', '-', $ticketNumber);
         $nmfile = $ticketPermohonan . '.pdf';
-        $pdf->save(public_path('permohonan/jawaban/') . '' . $nmfile);
+
+        $content = $pdf->download()->getOriginalContent();
+        Storage::put('public/permohonan/jawaban/' . $nmfile, $content);
+        // $pdf->save(public_path('permohonan/jawaban/') . '' . $nmfile);
 
         DB::table('jawab_permohonan')->insert([
             'id_ppid_permohonan' => $data['id'],
@@ -320,7 +323,8 @@ class DataPermohonanController extends Controller
             $location = public_path('permohonan/jawaban');
 
             // Upload file
-            $file->move($location, $filename);
+            // $file->move($location, $filename);
+            $path = $file->storeAs('public/permohonan/jawaban', $filename);
 
             // File path
             $file_dukung = 'permohonan/jawaban/' . $filename;
@@ -329,7 +333,9 @@ class DataPermohonanController extends Controller
         $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
         // $nmfile = time().'_answer.pdf';
         $nmfile = $ticketPermohonan . '.pdf';
-        $pdf->save(public_path('permohonan/jawaban/') . '' . $nmfile);
+        $content = $pdf->download()->getOriginalContent();
+        Storage::put('public/permohonan/jawaban/' . $nmfile, $content);
+        // $pdf->save(public_path('permohonan/jawaban/') . '' . $nmfile);
 
 
         $dataAnswer = [

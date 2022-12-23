@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -273,7 +273,7 @@
                                                                 data-bs-custom-class="tooltip-inverse"
                                                                 data-bs-placement="top" class="mb-4 jawban-file-st"
                                                                 title="File Jawaban"
-                                                                href="{{ asset($keberatan->ket_jawaban_path) }}"><img
+                                                                href="{{ asset('storage/' . $keberatan->ket_jawaban_path) }}"><img
                                                                     src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
                                                                     alt="" /></a>
                                                         @endif
@@ -285,7 +285,7 @@
                                                                 data-bs-custom-class="tooltip-inverse"
                                                                 data-bs-placement="top" class="jawban-file-st"
                                                                 title="File Pendukung"
-                                                                href="{{ asset($keberatan->file_jawaban) }}"><img
+                                                                href="{{ asset('storage/' . $keberatan->file_jawaban) }}"><img
                                                                     src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
                                                                     alt="" /></a>
                                                         @endif
@@ -681,13 +681,13 @@
                             if (data[i].id_status == 4 || data[i].id_status == 5) {
                                 let fileJawaban = ''
                                 if (data[i].ket_jawaban_path) {
-                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
                                                         alt="" /></a>`
                                 }
                                 jawaban = `
                                 ${fileJawaban}
-                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                alt="" /></a>` : '' }
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                alt="" /></a>` : '' }
                             `
                             }
 
