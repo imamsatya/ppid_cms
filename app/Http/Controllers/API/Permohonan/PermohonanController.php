@@ -35,7 +35,7 @@ class PermohonanController extends BaseController
                 'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.file_jawaban as jawaban')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
-            ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+            ->join('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where('status_permohonan.aktif', 1)
             ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
             ->get();
