@@ -157,7 +157,12 @@ class PermohonanController extends BaseController
             ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where('ppid_permohonan.id', $id)->first();
 
-        $status = DB::table('status_permohonan')
+        $jawab = DB::table('status_permohonan')
+            ->select('*')
+            ->where('id_ppid_permohonan', $id)
+            ->first();
+
+        $status = DB::table('jawab_permohonan')
             ->select('*')
             ->where('id_ppid_permohonan', $id)
             ->first();
@@ -171,6 +176,7 @@ class PermohonanController extends BaseController
             ->where('id', $status->id_status)
             ->first();
 
+        $result->jawaban = $jawab;
         $result->id_status = $status->id_status;
         $result->nama_status = $status_name->name;
         return $this->sendResponse(
