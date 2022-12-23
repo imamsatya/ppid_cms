@@ -127,7 +127,7 @@
                             @if ($faqBanner)
                                 @if ($faqBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($faqBanner->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $faqBanner->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"

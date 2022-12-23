@@ -133,7 +133,7 @@
                             @if ($biayaLayanan)
                                 @if ($biayaLayanan->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($biayaLayanan->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $biayaLayanan->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -243,7 +243,7 @@
                                 @if ($biayaLayanan)
                                     @if ($biayaLayanan->direktori_image)
                                         <div class="image-input-wrapper w-500px  h-350px"
-                                            style="background-image: url({{ asset($biayaLayanan->direktori_image) }})">
+                                            style="background-image: url({{ asset('storage/' . $biayaLayanan->direktori_image) }})">
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-500px  h-350px"

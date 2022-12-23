@@ -128,7 +128,7 @@
                             @if ($informasiPublikBanner)
                                 @if ($informasiPublikBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($informasiPublikBanner->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $informasiPublikBanner->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -229,7 +229,8 @@
                                         <td>{{ $informasiSertaMerta_row->url }}</td>
                                         <td>
                                             @if ($informasiSertaMerta_row->file_path)
-                                                <a href="{{ asset($informasiSertaMerta_row->file_path) }}">file</a>
+                                                <a
+                                                    href="{{ asset('storage/' . $informasiSertaMerta_row->file_path) }}">file</a>
                                             @endif
                                         </td>
                                         @canany(['informasi serta merta.edit', 'informasi serta merta.delete'])

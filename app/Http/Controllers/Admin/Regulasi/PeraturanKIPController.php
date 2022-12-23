@@ -68,8 +68,8 @@ class PeraturanKIPController extends Controller
                     if ($fileName == 'file') {
                         $peraturanKIP->file_path = 'adminAssets/regulasi/peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
-
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/regulasi/peraturan_kip', $fileName2);
                 }
             }
 
@@ -111,8 +111,8 @@ class PeraturanKIPController extends Controller
                         if ($fileName == 'thumbnail') {
                             $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/regulasi/banner', $fileName2);
                     }
                 }
 
@@ -132,7 +132,8 @@ class PeraturanKIPController extends Controller
                             $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/regulasi/banner', $fileName2);
                     }
                 }
 
@@ -202,8 +203,8 @@ class PeraturanKIPController extends Controller
                     if ($fileName == 'file') {
                         $peraturanKIP->file_path = 'adminAssets/regulasi/peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
-
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/regulasi/peraturan_kip', $fileName2);
                 }
             }
 

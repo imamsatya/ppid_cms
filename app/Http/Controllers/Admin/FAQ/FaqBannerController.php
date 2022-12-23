@@ -59,7 +59,8 @@ class FaqBannerController extends Controller
                             $banner->banner_path = 'adminAssets/faq/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/faq/banner', $fileName2);
                     }
                 }
 
@@ -75,7 +76,8 @@ class FaqBannerController extends Controller
                             $banner->banner_path = 'adminAssets/faq/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/faq/banner', $fileName2);
                     }
                 }
 
