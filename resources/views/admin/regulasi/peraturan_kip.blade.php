@@ -128,7 +128,7 @@
                                 @if ($regulasiBanner)
                                     @if ($regulasiBanner->banner_path)
                                         <div class="image-input-wrapper w-250px  h-125px"
-                                            style="background-image: url({{ asset($regulasiBanner->banner_path) }})">
+                                            style="background-image: url({{ asset('storage/' . $regulasiBanner->banner_path) }})">
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-250px  h-125px"
@@ -190,7 +190,7 @@
                                 @if ($regulasiBanner)
                                     @if ($regulasiBanner->thumbnail_path)
                                         <div class="image-input-wrapper w-250px  h-125px"
-                                            style="background-image: url({{ asset($regulasiBanner->thumbnail_path) }})">
+                                            style="background-image: url({{ asset('storage/' . $regulasiBanner->thumbnail_path) }})">
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-250px  h-125px"
@@ -293,7 +293,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $peraturanKIP_row->judul_peraturan }}</td>
                                         <td><a
-                                                href="{{ asset($peraturanKIP_row->file_path) }}">{{ $peraturanKIP_row->judul_peraturan . '.pdf' }}</a>
+                                                href="{{ asset('storage/' . $peraturanKIP_row->file_path) }}">{{ $peraturanKIP_row->judul_peraturan . '.pdf' }}</a>
                                         </td>
                                         <td>{{ $peraturanKIP_row->urutan }}</td>
                                         @canany(['peraturan kip.edit', 'peraturan kip.delete'])

@@ -134,7 +134,7 @@
                             @if ($prosedurLayanan)
                                 @if ($prosedurLayanan->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($prosedurLayanan->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $prosedurLayanan->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -222,7 +222,7 @@
                                     @if ($prosedurLayanan)
                                         @if ($prosedurLayanan->permohonan_direktori_image)
                                             <div class="image-input-wrapper w-500px  h-350px"
-                                                style="background-image: url({{ asset($prosedurLayanan->permohonan_direktori_image) }})">
+                                                style="background-image: url({{ asset('storage/' . $prosedurLayanan->permohonan_direktori_image) }})">
                                             </div>
                                         @else
                                             <div class="image-input-wrapper w-500px  h-350px"
@@ -281,7 +281,7 @@
                                     @if ($prosedurLayanan)
                                         @if ($prosedurLayanan->keberatan_direktori_image)
                                             <div class="image-input-wrapper w-500px  h-350px"
-                                                style="background-image: url({{ asset($prosedurLayanan->keberatan_direktori_image) }})">
+                                                style="background-image: url({{ asset('storage/' . $prosedurLayanan->keberatan_direktori_image) }})">
                                             </div>
                                         @else
                                             <div class="image-input-wrapper w-500px  h-350px"

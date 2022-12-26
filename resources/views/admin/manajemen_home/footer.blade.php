@@ -139,8 +139,8 @@
                             <td>{{ $loop->index + 1 }}</td>
 
                             <td><a href="{{ $sosialMedia_row->url }}" target="_blank">
-                                    <img class="img-fluid" src="{{ asset($sosialMedia_row->icon) }}" alt=""
-                                        style="width: 40px;height:40px">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $sosialMedia_row->icon) }}"
+                                        alt="" style="width: 40px;height:40px">
                                 </a></i></td>
                             <td>{{ $sosialMedia_row->url }}</td>
                             <td>{{ $sosialMedia_row->urutan }}</td>
@@ -198,7 +198,7 @@
                             <td>{{ $loop->index + 1 }}</td>
 
                             <td><a href="{{ $linkApp_row->url }}" title="Image from freepnglogos.com"><img
-                                        src="{{ asset($linkApp_row->icon) }}" width="200"
+                                        src="{{ asset('storage/' . $linkApp_row->icon) }}" width="200"
                                         alt="play store logo black background hd picture" /></a></td>
                             <td>{{ $linkApp_row->url }}</td>
 

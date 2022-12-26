@@ -88,7 +88,8 @@ class StrukturOrganisasiController extends Controller
                             $strukturOrganisasi->banner_path = 'adminAssets/profil/struktur_organisasi/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/struktur_organisasi', $fileName2);
                     }
                 }
 
@@ -116,7 +117,8 @@ class StrukturOrganisasiController extends Controller
                             $strukturOrganisasi->banner_path = 'adminAssets/profil/struktur_organisasi/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/struktur_organisasi', $fileName2);
                     }
                 }
                 $strukturOrganisasi->save();

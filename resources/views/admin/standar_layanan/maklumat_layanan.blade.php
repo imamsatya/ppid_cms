@@ -133,7 +133,7 @@
                             @if ($maklumat)
                                 @if ($maklumat->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($maklumat->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $maklumat->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -222,7 +222,7 @@
                                 @if ($maklumat)
                                     @if ($maklumat->direktori_image)
                                         <div class="image-input-wrapper w-500px  h-350px"
-                                            style="background-image: url({{ asset($maklumat->direktori_image) }})">
+                                            style="background-image: url({{ asset('storage/' . $maklumat->direktori_image) }})">
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-500px  h-350px"

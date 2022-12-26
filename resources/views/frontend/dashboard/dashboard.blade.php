@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -273,7 +273,7 @@
                                                                 data-bs-custom-class="tooltip-inverse"
                                                                 data-bs-placement="top" class="mb-4 jawban-file-st"
                                                                 title="File Jawaban"
-                                                                href="{{ asset($keberatan->ket_jawaban_path) }}"><img
+                                                                href="{{ asset('storage/' . $keberatan->ket_jawaban_path) }}"><img
                                                                     src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
                                                                     alt="" /></a>
                                                         @endif
@@ -285,7 +285,7 @@
                                                                 data-bs-custom-class="tooltip-inverse"
                                                                 data-bs-placement="top" class="jawban-file-st"
                                                                 title="File Pendukung"
-                                                                href="{{ asset($keberatan->file_jawaban) }}"><img
+                                                                href="{{ asset('storage/' . $keberatan->file_jawaban) }}"><img
                                                                     src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
                                                                     alt="" /></a>
                                                         @endif
@@ -678,12 +678,16 @@
                                     break
                             }
                             let jawaban = '-'
-                            if (data[i].id_status == 4) {
+                            if (data[i].id_status == 4 || data[i].id_status == 5) {
+                                let fileJawaban = ''
+                                if (data[i].ket_jawaban_path) {
+                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a>`
+                                }
                                 jawaban = `
-                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
-                                                        alt="" /></a>
-                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
+                                ${fileJawaban}
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -855,12 +859,40 @@
                         'file_identitas': user.identitas_file_path,
                     }
 
+                    // if (data.informasi_diminta.length == 0 || data.tujuan_informasi.length == 0 || data
+                    //     .id_cara == '-' || data.id_mendapatkan == '-') {
+                    //     Swal.fire({
+                    //         icon: 'warning',
+                    //         title: 'Warning',
+                    //         html: 'Isian tidak lengkap!'
+                    //     })
+                    //     return
+                    // }
                     if (data.informasi_diminta.length == 0 || data.tujuan_informasi.length == 0 || data
                         .id_cara == '-' || data.id_mendapatkan == '-') {
+                        let errtxt = '<ul style="text-align: left; color: red">'
+                        if (data.informasi_diminta.length == 0) {
+                            errtxt += '<li>- Informasi yang diminta harus terisi!</li>'
+                        }
+
+                        if (data.tujuan_informasi.length == 0) {
+                            errtxt += '<li>- Tujuan penggunaan infomasi harus terisi!</li>'
+                        }
+
+                        if (data.id_cara == '-') {
+                            errtxt += '<li>- Pilihan cara memperoleh informasi harus terisi!</li>'
+                        }
+
+                        if (data.id_mendapatkan == '-') {
+                            errtxt += '<li>- Pilihan cara memberikan informasi harus terisi!</li>'
+                        }
+                        errtxt += '</ul>'
+
+
                         Swal.fire({
                             icon: 'warning',
                             title: 'Warning',
-                            html: 'Isian tidak lengkap!'
+                            html: `<p style="font-weight: bold">Isian tidak lengkap:</p>${errtxt}`
                         })
                         return
                     }
@@ -1132,17 +1164,20 @@
                     }
 
                     if (errorValidation.length > 0) {
-                        list = document.createElement("div")
+                        // list = document.createElement("div")
+                        let errtxt = '<ul style="text-align: left; color: red">'
                         errorValidation.forEach((item) => {
-                            let li = document.createElement("li");
-                            li.innerText = item;
-                            list.appendChild(li);
+                            // let li = document.createElement("li");
+                            // li.innerText = '- ' + item;
+                            // li.style.cssText = 'text-align: left; color: red'
+                            // list.appendChild(li);
+                            errtxt += '<li>- ' + item + '!</li>'
                         })
 
                         Swal.fire({
                             icon: 'warning',
                             title: 'Warning',
-                            html: list
+                            html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
                         })
                         return
                     }

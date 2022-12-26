@@ -1,93 +1,7 @@
 <x-admin.layout>
 
 
-    @push('child-scripts')
-        <script>
-            $("#kt_datatable_dom_positioning_role").DataTable({
-                "language": {
-                    "lengthMenu": "Show _MENU_",
-                },
-                "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
-                    "<'row'" +
-                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                    ">"
-            });
 
-            function editDialog(index) {
-                let usersPPID = {{ Js::from($usersPPID) }}
-                let user = usersPPID[index]
-                console.log('user', user)
-                document.getElementById('editName').value = user.nama_lengkap
-                document.getElementById('editEmail').value = user.email
-
-
-                document.getElementById('editForm').setAttribute('action', 'user_admin/' + user.id)
-            };
-
-            function deleteDialog(index) {
-                let usersPPID = {{ Js::from($usersPPID) }}
-                let user = usersPPID[index]
-                Swal.fire({
-                    html: `Apakah yakin akan <strong>menghapus</strong> user <span class="badge badge-primary"> ${user.name}</span> ?`,
-                    icon: "error",
-                    buttonsStyling: false,
-                    showCancelButton: true,
-                    reverseButtons: true,
-                    cancelButtonText: 'Batal',
-                    confirmButtonText: "Iya",
-                    customClass: {
-                        cancelButton: 'btn btn-danger',
-                        confirmButton: "btn btn-primary",
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-
-                        console.log('delete confirmed')
-                        $.ajax({
-                            type: "DELETE",
-                            url: "/admin/user_admin/" + user.id,
-                            cache: false,
-                            success: function(html) {
-                                Swal.fire({
-
-                                    icon: 'success',
-                                    title: 'Berhasil menghapus User',
-                                    showConfirmButton: false,
-                                    timer: 500
-                                }).then(() => {
-                                    window.location.reload();
-                                })
-
-
-                            }
-                        });
-
-                        // window.location = '/visimisi'
-                    } else {
-                        console.log('delete canceled')
-                    }
-                });
-
-                // Swal.fire({
-                //     template: '#my-template'
-                // })
-            };
-
-            function activateLoadingButton(idButton) {
-                console.log('active')
-                let button = document.querySelector(`${idButton}`);
-                button.setAttribute("data-kt-indicator", "on");
-                // Handle button click event
-
-                // // Disable indicator after 3 seconds
-                // setTimeout(function() {
-                //     button.removeAttribute("data-kt-indicator");
-                // }, 3000);
-            }
-        </script>
-    @endpush
     <h1>Daftar User Pemohon </h1>
     @if ($errors->any())
         <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
@@ -194,6 +108,7 @@
     @endif
 
     <br>
+    {{-- {{ $usersPPID }} --}}
     <div class="card card-flush shadow-sm">
         <div class="card-header">
             <h3 class="card-title">Daftar User Pemohon </h3>
@@ -247,7 +162,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
-                    <h2>Tambah User Admin</h2>
+                    <h2>Tambah User Pemohon</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -269,7 +184,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_admin.store') }}"
+                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_pemohon.store') }}"
                         method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
@@ -279,13 +194,174 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nama</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="text" name="name"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+                                    <input type="text"name="name"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Nama"
                                         value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis Pemohon</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="jenis_pemohon"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Jenis Pemohon" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis
+                                    Identitas</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="jenis_identitas"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Jenis Identitas" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Identitas</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="no_identitas"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="No Identitas" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Alamat</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="alamat"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Alamat"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Handphone</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="no_handphone"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="No Handphone" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">NPWP</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="npwp"
+                                        class="form-control form-control-lg form-control-solid" placeholder="NPWP"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Pekerjaan</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="pekerjaan"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Pekerjaan" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">KTP</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+
+
+                                        <!--begin::Edit button-->
+                                        <label
+                                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                            data-bs-dismiss="click" title="Change Image">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+
+                                            <!--begin::Inputs-->
+                                            <input type="file" name="laporanImage" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="laporanImage_remove" />
+                                            <!--end::Inputs-->
+                                        </label>
+                                        <!--end::Edit button-->
+
+                                        <!--begin::Cancel button-->
+                                        <span
+                                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                            data-bs-dismiss="click" title="Cancel Image">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <!--end::Cancel button-->
+
+                                        <!--begin::Remove button-->
+                                        <span
+                                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                            data-bs-dismiss="click" title="Remove Image">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <!--end::Remove button-->
+
+                                    </div>
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -320,10 +396,6 @@
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
-
-
-                            <!--end::Input group-->
-
                         </div>
                         <!--end::Card body-->
                         <!--begin::Actions-->
@@ -350,7 +422,7 @@
     </div>
     <!--end::Modal - Tambah User Admin-->
 
-    <!--begin::Modal - Edit User Admin-->
+    <!--begin::Modal - Edit User Pemohon-->
     <div class="modal fade" id="kt_modal_editAdmin" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-900px">
@@ -359,7 +431,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
-                    <h2>Edit User Admin</h2>
+                    <h2>Edit User Pemohon</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -406,6 +478,168 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis Pemohon</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_jenis_pemohon" id="editJenisPemohon"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Jenis Pemohon" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis
+                                    Identitas</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_jenis_identitas" id="editJenisIdentitas"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Jenis Identitas" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Identitas</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_no_identitas" id="editNoIdentitas"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="No Identitas" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Alamat</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_alamat" id="editAlamat"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Alamat"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Handphone</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_no_handphone" id="editNoHandphone"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="No Handphone" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">NPWP</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_npwp" id="editNpwp"
+                                        class="form-control form-control-lg form-control-solid" placeholder="NPWP"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Pekerjaan</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_pekerjaan" id="editPekerjaan"
+                                        class="form-control form-control-lg form-control-solid"
+                                        placeholder="Pekerjaan" value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">KTP</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                                        id="editKtp"
+                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        </div>
+
+                                        @can('laporan triwulanan pip.edit')
+                                            <!--begin::Edit button-->
+                                            <label
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Change Image">
+                                                <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                <!--begin::Inputs-->
+                                                <input type="file" name="laporanImage" accept=".png, .jpg, .jpeg" />
+                                                <input type="hidden" name="laporanImage_remove" />
+                                                <!--end::Inputs-->
+                                            </label>
+                                            <!--end::Edit button-->
+
+                                            <!--begin::Cancel button-->
+                                            <span
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Cancel Image">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </span>
+                                            <!--end::Cancel button-->
+
+                                            <!--begin::Remove button-->
+                                            <span
+                                                class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                data-bs-dismiss="click" title="Remove Image">
+                                                <i class="bi bi-x fs-2"></i>
+                                            </span>
+                                            <!--end::Remove button-->
+                                        @endcan
+                                    </div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
@@ -432,24 +666,6 @@
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
-
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <select class="form-select form-select-sm form-select-solid"
-                                        data-control="select2" data-close-on-select="false"
-                                        data-placeholder="Pilih Role" name="edit_roles[]" id="editRoles">
-                                        <option></option>
-
-                                    </select>
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
                         </div>
                         <!--end::Card body-->
                         <!--begin::Actions-->
@@ -474,9 +690,101 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Edit User Admin-->
+    <!--end::Modal - Edit User Pemohon-->
     <br>
 
+    @push('child-scripts')
+        <script>
+            $("#kt_datatable_dom_positioning_role").DataTable({
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+            });
+
+            function editDialog(index) {
+                let usersPPID = {{ Js::from($usersPPID) }}
+                let user = usersPPID[index]
+                console.log('user', user)
+                document.getElementById('editName').value = user.nama_lengkap
+                document.getElementById('editJenisPemohon').value = user.jenis_pemohon_name
+                document.getElementById('editNoIdentitas').value = user.nomor_identitas
+                document.getElementById('editAlamat').value = user.alamat
+                document.getElementById('editNoHandphone').value = user.no_hp
+                document.getElementById('editNpwp').value = user.npwp
+                document.getElementById('editPekerjaan').value = user.pekerjaan
+                document.getElementById('editEmail').value = user.email
+                // document.getElementById('editKtp')
+                document.getElementById('editForm').setAttribute('action', 'user_admin/' + user.id)
+            };
+
+            function deleteDialog(index) {
+                let usersPPID = {{ Js::from($usersPPID) }}
+                let user = usersPPID[index]
+                Swal.fire({
+                    html: `Apakah yakin akan <strong>menghapus</strong> user <span class="badge badge-primary"> ${user.name}</span> ?`,
+                    icon: "error",
+                    buttonsStyling: false,
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    cancelButtonText: 'Batal',
+                    confirmButtonText: "Iya",
+                    customClass: {
+                        cancelButton: 'btn btn-danger',
+                        confirmButton: "btn btn-primary",
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        console.log('delete confirmed')
+                        $.ajax({
+                            type: "DELETE",
+                            url: "/admin/user_admin/" + user.id,
+                            cache: false,
+                            success: function(html) {
+                                Swal.fire({
+
+                                    icon: 'success',
+                                    title: 'Berhasil menghapus User',
+                                    showConfirmButton: false,
+                                    timer: 500
+                                }).then(() => {
+                                    window.location.reload();
+                                })
+
+
+                            }
+                        });
+
+                        // window.location = '/visimisi'
+                    } else {
+                        console.log('delete canceled')
+                    }
+                });
+
+                // Swal.fire({
+                //     template: '#my-template'
+                // })
+            };
+
+            function activateLoadingButton(idButton) {
+                console.log('active')
+                let button = document.querySelector(`${idButton}`);
+                button.setAttribute("data-kt-indicator", "on");
+                // Handle button click event
+
+                // // Disable indicator after 3 seconds
+                // setTimeout(function() {
+                //     button.removeAttribute("data-kt-indicator");
+                // }, 3000);
+            }
+        </script>
+    @endpush
 
     <x-slot:isShowAccordion_manajemenUser>
         show
@@ -484,7 +792,7 @@
         <x-slot:isActiveLink_manajemenUser>
             active
             </x-slot>
-            <x-slot:isActiveLink_userAdmin>
+            <x-slot:isActiveLink_userPemohon>
                 active
                 </x-slot>
                 <x-slot:subMenuTitle>

@@ -76,10 +76,20 @@ class DataKeberatanController extends Controller
     {
 
         $result = DB::table('ppid_keberatan')
-            ->select('ppid_keberatan.*', 'kategori_keberatan.jenis_keberatan as jenis_keberatan', 'ppid_permohonan.ticket_permohonan', 'ppid_permohonan.informasi_diminta', 'ppid_pendaftar.identitas_file_path')
+            ->select(
+                'ppid_keberatan.*',
+                'kategori_keberatan.jenis_keberatan as jenis_keberatan',
+                'ppid_permohonan.ticket_permohonan',
+                'ppid_permohonan.informasi_diminta',
+                'ppid_pendaftar.identitas_file_path',
+                'status_keberatan.id_jenis_status_keberatan as id_status_keberatan',
+                'jenis_status_keberatan.status as nama_status_keberatan'
+            )
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
             ->leftjoin('ppid_permohonan', 'ppid_permohonan.id', '=', 'ppid_keberatan.id_permohonan')
             ->leftjoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
+            ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
             ->where('ppid_keberatan.id', $id)->first();
 
         echo json_encode(array('result' => $result, 'status' => 'success'));

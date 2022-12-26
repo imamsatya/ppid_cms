@@ -66,7 +66,10 @@ class InformasiController extends Controller
 
             $upload_path = 'adminAssets/home/informasi';
             $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
-            $file->move($upload_path, $request->file('informasi')->getClientOriginalName());
+
+            $fileName2 =  $request->file('informasi')->getClientOriginalName();
+            $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
+
             $informasi->save();
 
 
@@ -112,8 +115,8 @@ class InformasiController extends Controller
                         if ($fileName == 'ppidlogo') {
                             $informasiImage->ppidlogo_path = 'adminAssets/home/informasi/ppidlogo.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
                     }
                 }
 
@@ -138,7 +141,8 @@ class InformasiController extends Controller
                             $informasiImage->ppidlogo_path = 'adminAssets/home/informasi/ppidlogo.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
                     }
                 }
 
@@ -202,6 +206,10 @@ class InformasiController extends Controller
                 $file = $request->file('informasi');
                 $upload_path = 'adminAssets/home/informasi';
                 $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
+
+                $fileName2 = $request->file('informasi')->getClientOriginalName();
+                $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
+
                 $file->move($upload_path, $request->file('informasi')->getClientOriginalName());
             }
             $informasi->save();
