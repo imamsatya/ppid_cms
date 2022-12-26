@@ -16,7 +16,7 @@
     <!-- Filter -->
 
     <!-- content -->
-    {{ count(app('request')->all()) }}
+    {{-- {{ count(app('request')->all()) }} --}}
     <section class="content">
         <div class="container">
             <div class="row">
@@ -276,7 +276,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($informasiPublikBanner->banner_path ?? '') }});
+                            background-image: url({{ asset('storage/' . $informasiPublikBanner->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

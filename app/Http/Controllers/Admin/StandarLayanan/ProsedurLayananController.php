@@ -71,7 +71,8 @@ class ProsedurLayananController extends Controller
                             $prosedurLayanan->banner_path = 'adminAssets/standarlayanan/prosedurLayanan/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/standarlayanan/prosedurLayanan', $fileName2);
                     }
                 }
 
@@ -95,7 +96,8 @@ class ProsedurLayananController extends Controller
                             $prosedurLayanan->banner_path = 'adminAssets/standarlayanan/prosedurLayanan/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/standarlayanan/prosedurLayanan', $fileName2);
                     }
                 }
 
@@ -133,7 +135,8 @@ class ProsedurLayananController extends Controller
                             $prosedurLayanan->banner_path = 'adminAssets/standarlayanan/prosedurLayanan/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/standarlayanan/prosedurLayanan/banner', $fileName2);
                     }
                 }
 
@@ -149,7 +152,8 @@ class ProsedurLayananController extends Controller
                             $prosedurLayanan->banner_path = 'adminAssets/standarlayanan/prosedurLayanan/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/standarlayanan/prosedurLayanan/banner', $fileName2);
                     }
                 }
 

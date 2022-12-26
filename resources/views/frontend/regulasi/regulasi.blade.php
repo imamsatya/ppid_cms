@@ -69,8 +69,8 @@
                                                         Lihat Judul Lengkap
                                                     </a>
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset($peraturanKIP_row->file_path) }}" download
-                                                            class="unduh ml-auto">
+                                                        <a href="{{ asset('storage/' . $peraturanKIP_row->file_path) }}"
+                                                            download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
                                                             <span>Unduh / View</span>
@@ -160,7 +160,7 @@
                                                         Lihat Judul Lengkap
                                                     </a>
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset($rancanganPeraturanKIP_row->file_path) }}"
+                                                        <a href="{{ asset('storage/' . $rancanganPeraturanKIP_row->file_path) }}"
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -293,7 +293,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($regulasiBanner->banner_path ?? '') }});
+                            background-image: url({{ asset('storage/' . $regulasiBanner->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

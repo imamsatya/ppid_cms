@@ -82,7 +82,7 @@
                     @if ($dokumentasi)
                         @foreach ($dokumentasi as $dokumentasi_row)
                             <div class="owl-carousel-item position-relative"
-                                style="background-image: url({{ asset($dokumentasi_row->image_path ?? '') }}">
+                                style="background-image: url({{ asset('storage/' . $dokumentasi_row->image_path ?? '') }}">
 
 
                             </div>
@@ -147,7 +147,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($kontak->banner_path ?? '') }});
+                            background-image: url({{ asset('storage/' . $kontak->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

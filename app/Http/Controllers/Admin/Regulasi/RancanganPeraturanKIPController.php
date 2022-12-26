@@ -66,8 +66,8 @@ class RancanganPeraturanKIPController extends Controller
                     if ($fileName == 'file') {
                         $rancanganPeraturanKIP->file_path = 'adminAssets/regulasi/rancangan_peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
-
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/regulasi/rancangan_peraturan_kip', $fileName2);
                 }
             }
 
@@ -136,7 +136,8 @@ class RancanganPeraturanKIPController extends Controller
                         $rancanganPeraturanKIP->file_path = 'adminAssets/regulasi/rancangan_peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/regulasi/rancangan_peraturan_kip', $fileName2);
                 }
             }
 

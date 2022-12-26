@@ -148,7 +148,7 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td> <img width="100" height="100"
-                                            src="{{ asset($slider_row->image_path) }}" />
+                                            src="{{ asset('storage/' . $slider_row->image_path) }}" />
                                     </td>
                                     <td>{{ $slider_row->judul }}</td>
                                     <td>{{ $slider_row->deskripsi }}</td>

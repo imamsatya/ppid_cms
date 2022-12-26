@@ -128,7 +128,7 @@
                             @if ($informasiPublikBanner)
                                 @if ($informasiPublikBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($informasiPublikBanner->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $informasiPublikBanner->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -229,7 +229,8 @@
                                         <td>{{ $informasiSecaraBerkala_row->url }}</td>
                                         <td>
                                             @if ($informasiSecaraBerkala_row->file_path)
-                                                <a href="{{ asset($informasiSecaraBerkala_row->file_path) }}">file</a>
+                                                <a
+                                                    href="{{ asset('storage/' . $informasiSecaraBerkala_row->file_path) }}">file</a>
                                             @endif
                                         </td>
                                         @canany(['informasi secara berkala.edit', 'informasi secara berkala.delete'])

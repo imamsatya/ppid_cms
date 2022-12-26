@@ -275,7 +275,7 @@
                             @if ($kontak)
                                 @if ($kontak->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($kontak->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $kontak->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -611,7 +611,7 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td> <img width="100" height="100"
-                                            src="{{ asset($dokumentasi->image_path) }}" />
+                                            src="{{ asset('storage/' . $dokumentasi->image_path) }}" />
                                     </td>
                                     <td>{{ $dokumentasi->keterangan }}</td>
                                     <td>{{ $dokumentasi->urutan }}</td>

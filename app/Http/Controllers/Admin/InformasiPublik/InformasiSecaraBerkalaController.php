@@ -68,8 +68,8 @@ class InformasiSecaraBerkalaController extends Controller
                     if ($fileName == 'file_pendukung') {
                         $informasiSecaraBerkala->file_path = 'adminAssets/informasiPublik/informasi_secara_berkala/' . $request->file($fileName)->getClientOriginalName();
                     }
-
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_secara_berkala', $fileName2);
                 }
             }
 
@@ -106,8 +106,8 @@ class InformasiSecaraBerkalaController extends Controller
                         if ($fileName == 'banner') {
                             $banner->banner_path = 'adminAssets/informasiPublik/banner/banner.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/informasiPublik/banner', $fileName2);
                     }
                 }
 
@@ -123,7 +123,8 @@ class InformasiSecaraBerkalaController extends Controller
                             $banner->banner_path = 'adminAssets/informasiPublik/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/informasiPublik/banner', $fileName2);
                     }
                 }
 
@@ -192,8 +193,8 @@ class InformasiSecaraBerkalaController extends Controller
                     if ($fileName == 'file') {
                         $informasiSecaraBerkala->file_path = 'adminAssets/informasiPublik/informasi_secara_berkala/' . $request->file($fileName)->getClientOriginalName();
                     }
-
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_secara_berkala', $fileName2);
                 }
             }
 
