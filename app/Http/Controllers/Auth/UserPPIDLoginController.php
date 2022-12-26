@@ -58,6 +58,7 @@ class UserPPIDLoginController extends Controller
 
     public function handleRegister(Request $request)
     {
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -82,7 +83,7 @@ class UserPPIDLoginController extends Controller
         if ($validated) {
             $file = $request['identitasfile'];
             $upload_path = 'adminAssets/user/identitas';
-            $fileName = now()->getTimestampMs();
+            $fileName = substr($request->name, 0, 5) . '-' . now()->getTimestampMs();
             $user = UserPPID::create([
                 'nama_lengkap' => $request['name'],
                 'email' => $request['email'],
