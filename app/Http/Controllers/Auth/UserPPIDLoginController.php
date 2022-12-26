@@ -96,7 +96,10 @@ class UserPPIDLoginController extends Controller
                 'pekerjaan' => $request['pekerjaan'],
                 'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . '.' . $file->getClientOriginalExtension(),
             ]);
-            $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+
+            $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/adminAssets/user/identitas', $fileName2);
+            // $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
 
             return redirect()
                 ->route('userppid.login')->with('register-success', 'Berhasil mendaftar');

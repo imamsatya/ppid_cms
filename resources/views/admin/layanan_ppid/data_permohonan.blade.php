@@ -519,9 +519,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
@@ -686,7 +686,7 @@
                                                     jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                    alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                    alt="" /></a>` : '' }
                             `
                                                 }
 
@@ -947,7 +947,7 @@
                                         tinymce.get("area-alasan-tolak").setContent('')
 
                                         $("#file-identitas-modalkonfirmasi").prop('href',
-                                            `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
+                                            `{{ asset('storage/${dataPermohonan.result.file_identitas}') }}`)
                                         $("#memberikan-informasi").val(dataPermohonan.result.cara_memberikan)
                                         $("#memperoleh-informasi").val(dataPermohonan.result.cara_mendapatkan)
                                         // $("#modal-file-identitas").html(`
@@ -1095,7 +1095,7 @@
                                         const dataPermohonan = await ppidPermohonanUser(data)
                                         $("#id-permohonan-edited").val(data)
                                         $("#file-identitas-modalanswer").prop('href',
-                                            `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
+                                            `{{ asset('storage/${dataPermohonan.result.file_identitas}') }}`)
                                         // tinymce.get("area-informasi-diminta-answer").setContent(dataPermohonan.result.informasi_diminta)
                                         // tinymce.get("area-informasi-diminta-answer").getBody().setAttribute('contenteditable', false)
                                         $("#area-informasi-diminta-answer").html(dataPermohonan.result.informasi_diminta)
@@ -1201,7 +1201,7 @@
                                         tinymce.get("area-forward").setContent('')
 
                                         $("#file-identitas-modalforward").prop('href',
-                                            `{{ asset('${dataPermohonan.result.file_identitas}') }}`)
+                                            `{{ asset('storage/${dataPermohonan.result.file_identitas}') }}`)
 
                                         $("#nomor-referensi").val('')
                                         modalForward.release()
@@ -1295,7 +1295,7 @@
                                         console.log(dataPermohonan.result)
                                         $("#file-identitas-detail").html(`
 <label class="form-label">File identitas</label>
-<img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
+<img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('storage/${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
 `)
 
                                         modalDetail.release()
