@@ -39,7 +39,8 @@ class UserPPIDLoginController extends Controller
                 'email',
                 'max:255',
             ],
-            'password' => ['required', 'min:6']
+            'password' => ['required', 'min:6'],
+            'g-recaptcha-response' => 'recaptcha',
         ]);
         if (Auth::guard('usersppid')
             ->attempt($request->only(['email', 'password']))

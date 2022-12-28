@@ -1,5 +1,6 @@
 <x-frontend.layout>
     @push('head-scripts')
+        <meta name="csrf-token">
         <link href="{{ asset('ppid_fe/assets/css/page/login/index.css') }}" rel="stylesheet" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -19,6 +20,38 @@
             }
         </style>
         <title>Home</title>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+        {{-- <script type="text/javascript">
+            function onSubmit(token) {
+                document.getElementById("demo-form").submit();
+            }
+
+            function callbackThen(response) {
+
+                // read Promise object
+                response.json().then(function(data) {
+                    console.log(data);
+                    if (data.success && data.score >= 0.6) {
+                        console.log('valid recaptcha');
+                    } else {
+                        document.getElementById('contactForm').addEventListener('submit', function(event) {
+                            event.preventDefault();
+                            alert('recaptcha error');
+                        });
+                    }
+                });
+            }
+
+            function callbackCatch(error) {
+                console.error('Error:', error)
+            }
+        </script> --}}
+        {{-- {!! htmlScriptTagJsApi([
+            'callback_then' => 'callbackThen',
+            'callback_catch' => 'callbackCatch',
+        ]) !!} --}}
     @endpush
     <!-- content -->
     <section class="content-login">
@@ -66,7 +99,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{ route('userppid.handleLogin') }}" method="POST">
+                        <form action="{{ route('userppid.handleLogin') }}" id="demo-form" method="POST">
                             @csrf
                             <div class="form-data">
                                 <div class="form-group">
@@ -93,6 +126,14 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group d-flex align-items-center">
+                                        <div class="g-recaptcha"
+                                            data-sitekey="6Ld5ltQZAAAAAIAD42x5RHixukIAlkF1owhviA-M"></div>
+
                                     </div>
                                 </div>
                             </div>
