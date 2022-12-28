@@ -1,0 +1,165 @@
+.footer {
+  background: #006b89;
+  width: 100%;
+  height: auto;
+  /* margin: 80px 0px 0px 0px; */
+  padding: 40px 0px 20px 20px;
+}
+
+.footer .content img {
+  width: 205px;
+}
+
+.footer .detail_footer label {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 24px;
+  color: #ffffff;
+}
+
+.footer .detail_footer ul {
+  list-style-type: none;
+}
+
+.footer .detail_footer ul li {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #fff;
+  line-height: 24px;
+}
+
+.detail_footer img {
+  width: 170px;
+}
+
+.footer .label_info {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 17px;
+  color: #f8f7f7;
+}
+
+.footer .informasi_email .input_custom {
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.footer .informasi_email .btn-berlangganan {
+  padding: 8px;
+  background: #1f2855;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.footer hr {
+  border: 0.1px solid #fff;
+  margin: 32px 0px 28px 0px;
+}
+
+.footer .copyright .company_name {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #f8f7f7;
+}
+
+.footer .copyright .social_media a {
+  margin: 0px 0px 0px 24px;
+}
+
+.footer .copyright .social_media a img {
+  width: 22px;
+  height: 22px;
+}
+
+.icon_social {
+  width: 40px;
+  border-radius: 50%;
+  height: 40px;
+  margin: 10px 10px 0px 0px;
+}
+
+.youtube {
+  background-color: red;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.instagram {
+  background: radial-gradient(
+      circle farthest-corner at 35% 90%,
+      #fec564,
+      transparent 50%
+    ),
+    radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+    radial-gradient(
+      ellipse farthest-corner at 20% -50%,
+      #5258cf,
+      transparent 50%
+    ),
+    radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+    radial-gradient(
+      ellipse farthest-corner at 60% -20%,
+      #893dc2,
+      transparent 50%
+    ),
+    radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+    linear-gradient(
+      #6559ca,
+      #bc318f 30%,
+      #e33f5f 50%,
+      #f77638 70%,
+      #fec66d 100%
+    );
+  text-align: center;
+  padding-top: 8px;
+}
+
+.twitter {
+  background-color: #1da1f2;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.facebook {
+  background-color: #4267b2;
+  text-align: center;
+  padding-top: 8px;
+}
+/*p {
+  text-transform: lowercase;
+}*/
+p::first-letter {
+ text-transform: uppercase;
+ }
+span {
+  text-transform: capitalize;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  text-transform: capitalize;
+}
+.zoomed{
+        zoom: 0.9;
+        /*transform: scale(0.9);*/
+        /*-moz-transform: scale(0.9);*/
+        /*-moz-transform-origin: 0 0;*/
+      }
+p{
+  text-align: justify;
+  text-justify: inter-word;
+}
