@@ -60,8 +60,8 @@ class LaporanBannerController extends Controller
                         if ($fileName == 'banner') {
                             $banner->banner_path = 'adminAssets/laporan/banner/banner.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/laporan/banner', $fileName2);
                     }
                 }
 
@@ -77,7 +77,8 @@ class LaporanBannerController extends Controller
                             $banner->banner_path = 'adminAssets/laporan/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/laporan/banner', $fileName2);
                     }
                 }
 

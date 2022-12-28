@@ -9,5 +9,5 @@ class StatusKeberatan extends Model
 {
     use HasFactory;
 
-    protected $table = 'status_keberatan';
+    protected $table = 'jenis_status_keberatan';
 }

@@ -127,7 +127,7 @@
                             @if ($laporanBanner)
                                 @if ($laporanBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($laporanBanner->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $laporanBanner->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -226,10 +226,11 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $laporanHasilSurvei_row->judul_laporan }}</td>
                                         <td><a
-                                                href="{{ asset($laporanHasilSurvei_row->file_path) }}">{{ $laporanHasilSurvei_row->judul_laporan . '.pdf' }}</a>
+                                                href="{{ asset('storage/' . $laporanHasilSurvei_row->file_path) }}">{{ $laporanHasilSurvei_row->judul_laporan . '.pdf' }}</a>
                                         </td>
                                         <td><img width="100" height="100"
-                                                src="{{ asset($laporanHasilSurvei_row->thumbnail_path) }}" /></td>
+                                                src="{{ asset('storage/' . $laporanHasilSurvei_row->thumbnail_path) }}" />
+                                        </td>
                                         @canany(['laporan hasil survei.edit', 'laporan hasil survei.delete'])
                                             <td>
                                                 @can('laporan hasil survei.edit')

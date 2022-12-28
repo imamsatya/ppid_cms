@@ -68,7 +68,8 @@ class InformasiSetiapSaatController extends Controller
                         $informasiSetiapSaat->file_path = 'adminAssets/informasiPublik/informasi_setiap_saat/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_setiap_saat', $fileName2);
                 }
             }
 
@@ -137,7 +138,8 @@ class InformasiSetiapSaatController extends Controller
                         $informasiSetiapSaat->file_path = 'adminAssets/informasiPublik/informasi_setiap_saat/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_setiap_saat', $fileName2);
                 }
             }
 

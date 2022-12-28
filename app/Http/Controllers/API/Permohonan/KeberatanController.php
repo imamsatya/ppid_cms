@@ -21,13 +21,21 @@ class KeberatanController extends BaseController
 
     public function index()
     {
+        $currentUser = Auth::guard('api')->user();
         $currentUserId = Auth::guard('api')->id();
 
+        if (!$currentUser) {
+            $this->sendError('No user!');
+        }
+
         $result = DB::table('ppid_keberatan')
-            ->select('ppid_keberatan.*', 'jenis_status_keberatan.status as nama_status', 'jenis_status_keberatan.id as id_status', 'kategori_keberatan.jenis_keberatan as jenis_keberatan')
+            ->select('ppid_keberatan.*', 'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status', 'kategori_keberatan.jenis_keberatan as jenis_keberatan',
+                'proses_keberatan.ket_jawaban_path as jawaban')
             ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             ->where('ppid_keberatan.id_ppid_pendaftar', $currentUserId)
             ->get();
 
@@ -111,11 +119,20 @@ class KeberatanController extends BaseController
     public function show($id)
 
     {
+        $currentUser = Auth::guard('api')->user();
+
+        if (!$currentUser) {
+            $this->sendError('No user!');
+        }
         $result = DB::table('ppid_keberatan')
-            ->select('ppid_keberatan.*', 'kategori_keberatan.jenis_keberatan as jenis_keberatan', 'ppid_permohonan.ticket_permohonan', 'ppid_permohonan.informasi_diminta', 'ppid_pendaftar.identitas_file_path')
+            ->select('ppid_keberatan.*',
+                'kategori_keberatan.jenis_keberatan as jenis_keberatan', 'ppid_permohonan.ticket_permohonan',
+                'ppid_permohonan.informasi_diminta', 'ppid_pendaftar.identitas_file_path',
+                'proses_keberatan.ket_jawaban_path as jawaban')
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
             ->leftjoin('ppid_permohonan', 'ppid_permohonan.id', '=', 'ppid_keberatan.id_permohonan')
             ->leftjoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             ->where('ppid_keberatan.id', $id)->first();
         return $this->sendResponse(
             $result, 'DataKeberatan retrieved successfully.');

@@ -77,8 +77,8 @@ class KontakController extends Controller
                         if ($fileName == 'banner') {
                             $kontak->banner_path = 'adminAssets/profil/kontak/banner.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
                     }
                 }
                 $kontak->save();
@@ -99,7 +99,8 @@ class KontakController extends Controller
                         if ($fileName == 'banner') {
                             $kontak->banner_path = 'adminAssets/profil/kontak/banner.' . $file->getClientOriginalExtension();
                         }
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
                     }
                 }
                 $kontak->save();
@@ -135,7 +136,10 @@ class KontakController extends Controller
             $file = $request->file('dokumentasi');
             $upload_path = 'adminAssets/profil/kontak';
             $dokumentasi->image_path = 'adminAssets/profil/kontak/dokumentasi' . $indexImage . '.' . $file->getClientOriginalExtension();
-            $file->move($upload_path, 'dokumentasi' . $indexImage . '.' . $file->getClientOriginalExtension());
+
+            $fileName2 = 'dokumentasi' . $indexImage . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
+
             $dokumentasi->save();
 
 

@@ -72,7 +72,8 @@ class LaporanHasilSurveiController extends Controller
                     }
 
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/laporan/laporan_hasil_survei', $fileName2);
                 }
             }
 
@@ -147,7 +148,8 @@ class LaporanHasilSurveiController extends Controller
                         $laporanHasilSurvei->thumbnail_path = 'adminAssets/laporan/laporan_hasil_survei/' . $request->file($fileName)->getClientOriginalName();
                     }
 
-                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+                    $fileName2 = $request->file($fileName)->getClientOriginalName();
+                    $path = $file->storeAs('public/adminAssets/laporan/laporan_hasil_survei', $fileName2);
                 }
             }
 

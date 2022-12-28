@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use PDF;
+use Illuminate\Support\Facades\Storage;
 
 class DataKeberatanController extends Controller
 {
@@ -239,7 +240,8 @@ class DataKeberatanController extends Controller
             $location = public_path('keberatan/jawaban');
 
             // Upload file
-            $file->move($location, $filename);
+            // $file->move($location, $filename);
+            $path = $file->storeAs('public/keberatan/jawaban', $filename);
 
             // File path
             $file_dukung = 'keberatan/jawaban/' . $filename;
@@ -248,7 +250,9 @@ class DataKeberatanController extends Controller
         $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
         // $nmfile = time().'_answer.pdf';
         $nmfile = $ticketKeberatan . '.pdf';
-        $pdf->save(public_path('keberatan/jawaban/') . '' . $nmfile);
+        $content = $pdf->download()->getOriginalContent();
+        Storage::put('public/keberatan/jawaban/' . $nmfile, $content);
+        // $pdf->save(public_path('keberatan/jawaban/') . '' . $nmfile);
 
 
         $dataAnswer = [

@@ -147,7 +147,7 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td> <img width="100" height="100"
-                                                src="{{ asset($informasi_row->image_path) }}" />
+                                                src="{{ asset('storage/' . $informasi_row->image_path) }}" />
                                         </td>
                                         <td>{{ $informasi_row->judul }}</td>
                                         <td>{{ $informasi_row->deskripsi }}</td>
@@ -194,7 +194,7 @@
                             @if ($informasiImage)
                                 @if ($informasiImage->sideimage_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($informasiImage->sideimage_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $informasiImage->sideimage_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -254,7 +254,7 @@
                             @if ($informasiImage)
                                 @if ($informasiImage->backgroundimage_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($informasiImage->backgroundimage_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $informasiImage->backgroundimage_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -303,25 +303,25 @@
                                 <!--end::Remove button-->
                             @endcan
                         </div>
-                        <br>
+                        {{-- <br><br>
                         <label for="" class=" form-label">PPID Logo Image</label>
                         <br>
                         <div class="image-input image-input-outline" data-kt-image-input="true"
-                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
                             <!--begin::Image preview wrapper-->
                             @if ($informasiImage)
                                 @if ($informasiImage->ppidlogo_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                         style="background-image: url({{ asset($informasiImage->ppidlogo_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $informasiImage->ppidlogo_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                         style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                     </div>
                                 @endif
                             @else
                                 <div class="image-input-wrapper w-250px  h-125px"
-                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
                                 </div>
 
                             @endif
@@ -360,8 +360,8 @@
                                 </span>
                                 <!--end::Remove button-->
                             @endcan
-                        </div>
-                        {{-- <p>minimal dimensi 369x454 pixel</p> --}}
+                        </div> --}}
+
                         <br> <br>
                         @can('informasi secara berkala.create')
                             <button type="submit" class="btn btn-primary" id="addButton"

@@ -39,7 +39,8 @@ class UserPPIDLoginController extends Controller
                 'email',
                 'max:255',
             ],
-            'password' => ['required', 'min:6']
+            'password' => ['required', 'min:6'],
+            'g-recaptcha-response' => 'recaptcha',
         ]);
         if (Auth::guard('usersppid')
             ->attempt($request->only(['email', 'password']))
@@ -58,6 +59,7 @@ class UserPPIDLoginController extends Controller
 
     public function handleRegister(Request $request)
     {
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -82,7 +84,7 @@ class UserPPIDLoginController extends Controller
         if ($validated) {
             $file = $request['identitasfile'];
             $upload_path = 'adminAssets/user/identitas';
-            $fileName = now()->getTimestampMs();
+            $fileName = substr($request->name, 0, 5) . '-' . now()->getTimestampMs();
             $user = UserPPID::create([
                 'nama_lengkap' => $request['name'],
                 'email' => $request['email'],
@@ -96,7 +98,10 @@ class UserPPIDLoginController extends Controller
                 'pekerjaan' => $request['pekerjaan'],
                 'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . '.' . $file->getClientOriginalExtension(),
             ]);
-            $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+
+            $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/adminAssets/user/identitas', $fileName2);
+            // $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
 
             return redirect()
                 ->route('userppid.login')->with('register-success', 'Berhasil mendaftar');

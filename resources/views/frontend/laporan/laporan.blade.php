@@ -51,7 +51,7 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanTriwulanan_row->thumbnail_path)
                                                     <img class="card-img-top isw-cardImage"
-                                                        src="{{ asset($laporanTriwulanan_row->thumbnail_path) }}"
+                                                        src="{{ asset('storage/' . $laporanTriwulanan_row->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -64,7 +64,7 @@
                                                     </p>
 
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset($laporanTriwulanan_row->file_path) }}"
+                                                        <a href="{{ asset('storage/' . $laporanTriwulanan_row->file_path) }}"
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -132,7 +132,7 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanTahunan_row->thumbnail_path)
                                                     <img class="card-img-top isw-cardImage"
-                                                        src="{{ asset($laporanTahunan_row->thumbnail_path) }}"
+                                                        src="{{ asset('storage/' . $laporanTahunan_row->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -145,8 +145,8 @@
                                                     </p>
 
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset($laporanTahunan_row->file_path) }}" download
-                                                            class="unduh ml-auto">
+                                                        <a href="{{ asset('storage/' . $laporanTahunan_row->file_path) }}"
+                                                            download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
                                                             <span>Unduh / View</span>
@@ -212,7 +212,7 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanHasilSurvei_row->thumbnail_path)
                                                     <img class="card-img-top isw-cardImage"
-                                                        src="{{ asset($laporanHasilSurvei_row->thumbnail_path) }}"
+                                                        src="{{ asset('storage/' . $laporanHasilSurvei_row->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -225,7 +225,7 @@
                                                     </p>
 
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset($laporanHasilSurvei_row->file_path) }}"
+                                                        <a href="{{ asset('storage/' . $laporanHasilSurvei_row->file_path) }}"
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -305,7 +305,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset($laporanBanner->banner_path ?? '') }});
+                            background-image: url({{ asset('storage/' . $laporanBanner->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;
@@ -314,7 +314,7 @@
 
                         .isw-cardImage {
                             width: 100%;
-                            height: 35vh;
+                            height: 184px;
                             object-fit: cover;
                         }
                     </style>

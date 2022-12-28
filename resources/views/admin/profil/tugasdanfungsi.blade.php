@@ -235,7 +235,7 @@
                             @if ($tugasDanFungsi)
                                 @if ($tugasDanFungsi->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($tugasDanFungsi->banner_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $tugasDanFungsi->banner_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -362,7 +362,7 @@
                             @if ($tugasDanFungsi)
                                 @if ($tugasDanFungsi->side_image_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset($tugasDanFungsi->side_image_path) }})">
+                                        style="background-image: url({{ asset('storage/' . $tugasDanFungsi->side_image_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"

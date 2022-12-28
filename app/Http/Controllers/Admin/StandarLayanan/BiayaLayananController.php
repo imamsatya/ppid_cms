@@ -70,8 +70,8 @@ class BiayaLayananController extends Controller
                         if ($fileName == 'banner') {
                             $biayaLayanan->banner_path = 'adminAssets/standarlayanan/biayaLayanan/banner.' . $file->getClientOriginalExtension();
                         }
-
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/standarlayanan/biayaLayanan', $fileName2);
                     }
                 }
                 $biayaLayanan->judul = $request->judul;
@@ -92,7 +92,8 @@ class BiayaLayananController extends Controller
                             $biayaLayanan->banner_path = 'adminAssets/standarlayanan/biayaLayanan/banner.' . $file->getClientOriginalExtension();
                         }
 
-                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+                        $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('public/adminAssets/standarlayanan/biayaLayanan', $fileName2);
                     }
                 }
                 $biayaLayanan->judul = $request->judul;

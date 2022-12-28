@@ -23,11 +23,19 @@ class PermohonanController extends BaseController
 
     public function index()
     {
+        $currentUser = Auth::guard('api')->user();
         $currentUserId = Auth::guard('api')->id();
+
+        if (!$currentUser) {
+            $this->sendError('No user!');
+        }
+
         $result = DB::table('ppid_permohonan')
-            ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status')
+            ->select('ppid_permohonan.*',
+                'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.ket_jawaban_path as jawaban')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+            ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where('status_permohonan.aktif', 1)
             ->where('ppid_permohonan.id_ppid_pendaftar', $currentUserId)
             ->get();
@@ -134,13 +142,27 @@ class PermohonanController extends BaseController
     public function show($id)
 
     {
+        $currentUser = Auth::guard('api')->user();
+
+        if (!$currentUser) {
+            $this->sendError('No user!');
+        }
+
         $result = DB::table('ppid_permohonan')
-            ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan')
+            ->select('ppid_permohonan.*',
+                'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan'
+                , 'jawab_permohonan.file_jawaban as jawaban')
             ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
             ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+            ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->where('ppid_permohonan.id', $id)->first();
 
         $status = DB::table('status_permohonan')
+            ->select('*')
+            ->where('id_ppid_permohonan', $id)
+            ->first();
+
+        $jawab = DB::table('jawab_permohonan')
             ->select('*')
             ->where('id_ppid_permohonan', $id)
             ->first();
@@ -154,6 +176,7 @@ class PermohonanController extends BaseController
             ->where('id', $status->id_status)
             ->first();
 
+        $result->jawaban = $jawab;
         $result->id_status = $status->id_status;
         $result->nama_status = $status_name->name;
         return $this->sendResponse(
