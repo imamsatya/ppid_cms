@@ -179,12 +179,16 @@ return [
         ],
         'identitasfile' => [
             'required' => 'identitas file harus terisi',
+            'mimes' => ':attribute harus berformat: :values.',
         ],
         'email' => [
             'required' => 'email harus terisi',
         ],
         'password' => [
             'required' => 'password harus terisi'
+        ],
+        'password_confirmation' => [
+            'required' => 'konfirmasi password harus terisi'
         ]
     ],
 
