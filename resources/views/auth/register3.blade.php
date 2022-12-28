@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" maxlength="16" minlength="16" size="16"
-                                        class="form-control" id="noidentitas" name="noidentitas"
+                                        pattern="[0-9]{16}" class="form-control" id="noidentitas" name="noidentitas"
                                         aria-describedby="noidentitas" placeholder="No Identitas (KTP)" />
                                     @error('noidentitas')
                                         <div class="" style="color: red">
@@ -296,6 +296,13 @@
         </script>
 
         <script>
+            const $input = document.querySelector("#noidentitas");
+            const IDENTITASNUMBER_ALLOWED_CHARS_REGEXP = /[0-9]+/;
+            $input.addEventListener("keypress", event => {
+                if (!IDENTITASNUMBER_ALLOWED_CHARS_REGEXP.test(event.key)) {
+                    event.preventDefault();
+                }
+            });
             $(document).ready(function() {
                 $("#show_hide_password a").on("click", function(event) {
                     event.preventDefault();
