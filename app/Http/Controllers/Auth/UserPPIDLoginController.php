@@ -31,7 +31,7 @@ class UserPPIDLoginController extends Controller
 
     public function handleLogin(Request $request)
     {
-        dd($request);
+
         $validated = $request->validate([
 
             'email' => [
