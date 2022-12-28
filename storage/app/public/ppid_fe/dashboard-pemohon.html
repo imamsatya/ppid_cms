@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link href="assets/css/navbar/index.css" rel="stylesheet" />
+    <link href="assets/css/page/dashboard/index.css" rel="stylesheet" />
+    <link href="assets/css/footer/index.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/float/float.css" />
+    <link rel="stylesheet" href="assets/float/fab.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <link
+      href="https://www.jqueryscript.net/css/jquerysctipttop.css"
+      rel="stylesheet"
+      type="text/css" />
+    <style type="text/css">
+      .bwstyle {
+        -moz-filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        filter: gray; /* IE6-9 */
+        filter: grayscale(100%);
+      }
+      .posfix {
+        position: fixed;
+      }
+    </style>
+    <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="magnify zoomed" id="bwStyle">
+    <!-- navbar -->
+    <section>
+      <header id="headerNav">
+        <a href="./index.html" class="logo">
+          <img src="./assets/images/content//logo/logo_ppid.png" alt="" />
+        </a>
+
+        <input type="checkbox" id="menu-bar" />
+        <label for="menu-bar">Menu</label>
+        <nav class="navbar_custom">
+          <ul>
+            <li>
+              <a href="#" id="titleNavProfile">Profil </a>
+              <ul>
+                <li>
+                  <a class="dropdown_menu" href="./profile-tentang-ppid.html"
+                    >Tentang PPID</a
+                  >
+                </li>
+
+                <li>
+                  <a
+                    class="dropdown_menu"
+                    href="./profile-tugas-dan-fungsi.html"
+                    >Tugas dan Fungsi</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown_menu" href="./profile-struktur-ppid.html"
+                    >Struktur PPID</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown_menu" href="./profile-visi-misi.html"
+                    >Visi dan Misi</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown_menu" href="./profile-kontak.html"
+                    >Kontak</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="./regulasi.html" id="titleNavRegulasi">Regulasi </a>
+            </li>
+            <li>
+              <a id="titleNavInformasiPublik" href="./informasi-publik.html"
+                >Informasi Publik</a
+              >
+            </li>
+            <li>
+              <a id="titleNavStandarLayanan" href="#">Standar Layanan </a>
+              <ul>
+                <li>
+                  <a class="dropdown_menu" href="./standart-maklumat.html"
+                    >Maklumat</a
+                  >
+                </li>
+
+                <li>
+                  <a
+                    class="dropdown_menu"
+                    href="./standart-prosudur-layanan.html"
+                    >Prosedur Layanan</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown_menu" href="./standart-biaya-layanan.html"
+                    >Biaya Layanan</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a id="titleNavLaporan" href="./laporan.html">Laporan </a>
+            </li>
+            <li>
+              <a id="titleNavFaq" href="./faq.html">FAQ</a>
+            </li>
+            <li>
+              <a href="" class="btn btn-sm btn_login"> Login </a>
+              <!-- <a href="#" class="btn btn_login"> Login </a> -->
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div
+        id="searchComponent"
+        class="navbar_search text-center"
+        style="display: none">
+        <div class="sb-example-1">
+          <div class="search">
+            <input
+              type="text"
+              class="searchTerm p-2"
+              placeholder="Pencarian... " />
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- navbar -->
+
+    <!-- content -->
+    <div class="content-dashboard">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="title">
+            <h2>Dashboard Pemohon</h2>
+            <div class="line"></div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="title-sub d-flex align-items-end">
+                  <div>
+                    <div class="title">Riwayat Permohonan</div>
+                    <div class="sub-title">
+                      Daftar informasi atas status dan batas waktu atas perihal
+                      permohonan informasi yang diajukan
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-sm ml-auto"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    + Form Permohonan
+                  </button>
+                </div>
+                <div class="body-dashboard mt-4">
+                  <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">No. Permohonan</th>
+                        <th scope="col">Perihal</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Batas Waktu</th>
+                        <th scope="col">Jawaban</th>
+                        <th scope="col">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                          <a href="#">10/Per-web/01/2022</a>
+                        </td>
+                        <td>Permohonan Informasi A</td>
+                        <td>
+                          <div class="confirm d-flex align-items-start">
+                            <div class="circle-blue"></div>
+                            <span class="ml-2"
+                              >Menunggu <br />
+                              Konfirmasi</span
+                            >
+                          </div>
+                        </td>
+                        <td>2 Hari</td>
+                        <td>pdf</td>
+                        <td>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_edit.svg"
+                              alt="" />
+                          </button>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_trash.svg"
+                              alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <a href="#">10/Per-web/01/2022</a>
+                        </td>
+                        <td>Permohonan Informasi A</td>
+                        <td>
+                          <div class="confirm d-flex align-items-start">
+                            <div class="circle-yellow"></div>
+                            <span class="ml-2">Sedang Proses</span>
+                          </div>
+                        </td>
+                        <td>
+                          5 Hari hingga batas <br />
+                          waktu
+                        </td>
+                        <td>pdf</td>
+                        <td>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_edit.svg"
+                              alt="" />
+                          </button>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_trash.svg"
+                              alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-md-12 mt-5">
+                <div class="title-sub d-flex align-items-end">
+                  <div>
+                    <div class="title">Riwayat Keberatan</div>
+                    <div class="sub-title">
+                      Daftar informasi atas status dan batas waktu atas perihal
+                      keberatan informasi yang diajukan
+                    </div>
+                  </div>
+                  <button class="btn btn-sm ml-auto">+ Form Keberatan</button>
+                </div>
+                <div class="body-dashboard mt-4">
+                  <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">No. Permohonan</th>
+                        <th scope="col">Perihal</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Batas Waktu</th>
+                        <th scope="col">Jawaban</th>
+                        <th scope="col">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                          <a href="#">10/Per-web/01/2022</a>
+                        </td>
+                        <td>Permohonan Informasi A</td>
+                        <td>
+                          <div class="confirm d-flex align-items-start">
+                            <div class="circle-blue"></div>
+                            <span class="ml-2"
+                              >Menunggu <br />
+                              Konfirmasi</span
+                            >
+                          </div>
+                        </td>
+                        <td>2 Hari</td>
+                        <td>pdf</td>
+                        <td>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_edit.svg"
+                              alt="" />
+                          </button>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_trash.svg"
+                              alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <a href="#">10/Per-web/01/2022</a>
+                        </td>
+                        <td>Permohonan Informasi A</td>
+                        <td>
+                          <div class="confirm d-flex align-items-start">
+                            <div class="circle-yellow"></div>
+                            <span class="ml-2">Sedang Proses</span>
+                          </div>
+                        </td>
+                        <td>
+                          5 Hari hingga batas <br />
+                          waktu
+                        </td>
+                        <td>pdf</td>
+                        <td>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_edit.svg"
+                              alt="" />
+                          </button>
+                          <button class="btn btn-sm">
+                            <img
+                              src="./assets/images//content/icon/ic_trash.svg"
+                              alt="" />
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div
+          class="modal-dialog modal-lg modal-dialog-centered"
+          role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Form Pemohon Informasi
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="data-title">
+                <div class="d-flex align-items-center">
+                  <img
+                    src="/assets/images/content/icon/ic_people.svg"
+                    class="img-fluid"
+                    alt="" />
+                  <div class="ml-2">
+                    <div class="name font-weight-bold">
+                      Aulian Farzan Almaher
+                    </div>
+                    <div class="number">352639485700001</div>
+                  </div>
+                  <div class="ml-auto">
+                    <div class="jenis">Jenis pemohon</div>
+                    <div class="type font-weight-bold">PERORANGAN</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-data mt-4">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <textarea
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        placeholder="Informasi yang diminta"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <select class="custom-select" placeholder="">
+                        <option selected>Cara memperoleh informasi</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <select class="custom-select" placeholder="">
+                        <option selected>Cara memberikan informasi</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <textarea
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="9"
+                        placeholder="Tujuan penggunaan informasi"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-primary-ppid"
+                data-dismiss="modal">
+                Batal
+              </button>
+              <button type="button" class="btn btn-lg btn-primary-ppid w-25">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="content">
+              <img
+                class="img-fluid"
+                src="./assets/images/content/logo/logo_ppid_white.png"
+                alt="" />
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="detail_footer">
+                  <label for="">Alamat Kami</label>
+                  <ul>
+                    <li>
+                      Jl. Medan Merdeka Selatan No.13 Jakarta 10110 Indonesia
+                    </li>
+                    <li>Telp : 021 - 2993 5678</li>
+                    <li>Email : ppid@bumn.go.id</li>
+                    <li>
+                      <div class="d-flex align-items-center">
+                        <div class="icon_social youtube">
+                          <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        </div>
+                        <div class="icon_social instagram">
+                          <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                        <div class="icon_social twitter">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </div>
+                        <div class="icon_social facebook">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-4">
+                <div class="detail_footer">
+                  <ul>
+                    <li>Unduh Aplikasi Mobile melalui :</li>
+                    <li>
+                      <a
+                        href="https://www.freepnglogos.com/pics/play-store-logo"
+                        title="Image from freepnglogos.com"
+                        ><img
+                          src="https://www.freepnglogos.com/uploads/play-store-logo-png/play-store-logo-nisi-filters-australia-11.png"
+                          width="200"
+                          alt="play store logo black background hd picture"
+                      /></a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.freepnglogos.com/pics/app-store-png-logo"
+                        title="Image from freepnglogos.com"
+                        ><img
+                          src="https://www.pngmart.com/files/10/Download-On-The-App-Store-PNG-Clipart.png"
+                          width="200"
+                          alt="available the app store badge vector"
+                      /></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3 text-center">
+                <div class="company_name">
+                  @2022 - PPID Kementerian Badan Usaha Milik Negara
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer -->
+    <div id="cont" class="posfix"></div>
+
+    <!-- script bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!--  -->
+
+    <script src="assets/float/fab.js"></script>
+    <!-- <img src="assets/images/content/icon/difable.png" width="75%"> -->
+    <script type="text/javascript">
+      var fab = new Fab({
+        selector: "#cont",
+        button: {
+          style: "large teal",
+          html: "",
+        },
+        icon: {
+          style: 'assets/images/content/icon/difable.png" width="75%',
+          html: "",
+        },
+        // "top-left" || "top-right" || "bottom-left" || "bottom-right"
+        position: "bottom-left",
+        // "horizontal" || "vertical"
+        direction: "vertical",
+        buttons: [
+          {
+            button: {
+              style: "small blue",
+              html: "",
+            },
+            icon: {
+              style: 'assets/images/content/icon/mag-zin.png" width="55%',
+              html: "",
+            },
+            link: {
+              style: "increaseFont",
+              html: "",
+            },
+            valuenya: {
+              style: "increase",
+              html: "",
+            },
+            onClick: function () {
+              console.log("fire");
+            },
+          },
+          {
+            button: {
+              style: "small blue",
+              html: "",
+            },
+            icon: {
+              style: 'assets/images/content/icon/mag-zout.png" width="55%',
+              html: "",
+            },
+            link: {
+              style: "decreaseFont",
+              html: "",
+            },
+            valuenya: {
+              style: "decrease",
+              html: "",
+            },
+            onClick: function () {
+              console.log("ice");
+            },
+          },
+          {
+            button: {
+              style: "small blue",
+              html: "",
+            },
+            icon: {
+              style: 'assets/images/content/icon/eye.png" width="75%',
+              html: "",
+            },
+            link: {
+              style: "",
+              html: "",
+            },
+            valuenya: {
+              style: "eye",
+              html: "",
+            },
+            onClick: function () {
+              var element = document.getElementById("bwStyle");
+              element.classList.add("bwstyle");
+              console.log("ice");
+            },
+          },
+          // {
+          //   button: {
+          //     style: "small green",
+          //     html: ""
+          //   },
+          //   icon:{
+          //     style: "chart pie icon",
+          //     html: ""
+          //   },
+          //   onClick: function(){
+          //     console.log("ice");
+          //   }
+          // }
+        ],
+        onOpen: function () {},
+        onClose: function () {},
+      });
+    </script>
+    <!-- <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script> -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $(".increaseFont,.decreaseFont").click(function () {
+          var type = $(this).val();
+          var curFontSize = $(".magnify").css("zoom");
+
+          if (type == "increase") {
+            $(".magnify").css("zoom", parseFloat(curFontSize) + 0.01);
+          } else {
+            $(".magnify").css("zoom", parseFloat(curFontSize) - 0.01);
+          }
+          // alert($('.magnify').css('font-size'));
+        });
+      });
+    </script>
+
+    <script>
+      function clickSearch() {
+        let header = document.getElementById("headerNav");
+        let searchData = document.getElementById("searchComponent");
+        if (searchData.style.display === `none`) {
+          searchData.style.display = "block";
+          searchData.style.boxShadow = "0 5px 10px rgb(0 0 0 / 10%)";
+          header.style.boxShadow = "none";
+        } else {
+          searchData.style.display = "none";
+          searchData.transition = " all .35s ease-in-out";
+          header.style.boxShadow = "0 5px 10px rgb(0 0 0 / 10%)";
+        }
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $("#show_hide_password a").on("click", function (event) {
+          event.preventDefault();
+          if ($("#show_hide_password input").attr("type") == "text") {
+            $("#show_hide_password input").attr("type", "password");
+            $("#show_hide_password i").addClass("fa-eye-slash");
+            $("#show_hide_password i").removeClass("fa-eye");
+          } else if (
+            $("#show_hide_password input").attr("type") == "password"
+          ) {
+            $("#show_hide_password input").attr("type", "text");
+            $("#show_hide_password i").removeClass("fa-eye-slash");
+            $("#show_hide_password i").addClass("fa-eye");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
