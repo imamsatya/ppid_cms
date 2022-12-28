@@ -60,7 +60,7 @@
         }
 
         .custom-logo {
-            margin-right: 350px;
+            margin-right: 200px;
         }
 
         @media only screen and (max-width: 600px) {
@@ -95,14 +95,16 @@
             {{-- <a href="{{ route('index') }}" class="logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid.png') }}" alt="" />
             </a> --}}
-            <a href="{{ route('index') }}" class="logo">
-                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" width="110"
-                    alt="" />
-            </a>
-            <a href="https://bumn.go.id/" class="logo custom-logo">
-                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" width="110"
-                    alt="" />
-            </a>
+            <div class="logo">
+                <a href="{{ route('index') }}">
+                    <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" height="54"
+                        width="151" alt="" />
+                </a>
+                <a href="https://bumn.go.id/">
+                    <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" height="54"
+                        width="151" alt="" />
+                </a>
+            </div>
 
             <input type="checkbox" id="menu-bar" />
             <label for="menu-bar">Menu</label>
@@ -352,8 +354,9 @@
                                     <li>
                                         @foreach ($sosialMedia as $sosialMedia_row)
                                             <a href="{{ $sosialMedia_row->url }}" target="_blank">
-                                                <img class="img-fluid" src="{{ 'storage/' . $sosialMedia_row->icon }}"
-                                                    alt="" style="width: 40px;height:40px">
+                                                <img class="img-fluid"
+                                                    src="{{ 'storage/' . $sosialMedia_row->icon }}" alt=""
+                                                    style="width: 40px;height:40px">
                                             </a>
                                         @endforeach
                                         {{-- <div class="d-flex align-items-center">
