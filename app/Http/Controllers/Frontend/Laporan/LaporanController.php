@@ -22,11 +22,11 @@ class LaporanController extends Controller
         $laporanBanner = new LaporanBanner();
         $laporanBanner = $laporanBanner->first();
         $laporanTriwulanan = new LaporanTriwulanan();
-        $laporanTriwulanan = $laporanTriwulanan::paginate(9);
+        $laporanTriwulanan = $laporanTriwulanan::paginate($perPage = 9, $columns = ['*'], $pageName = 'laporan_triwulanan');
         $laporanTahunan = new LaporanTahunan();
-        $laporanTahunan = $laporanTahunan::paginate(9);
+        $laporanTahunan = $laporanTahunan::paginate($perPage = 9, $columns = ['*'], $pageName = 'laporan_tahunan');
         $laporanHasilSurvei = new LaporanHasilSurvei();
-        $laporanHasilSurvei = $laporanHasilSurvei::paginate(9);
+        $laporanHasilSurvei = $laporanHasilSurvei::paginate($perPage = 9, $columns = ['*'], $pageName = 'laporan_hasil_survei');
 
         return view('frontend.laporan.laporan', compact('laporanBanner', 'laporanTriwulanan', 'laporanTahunan', 'laporanHasilSurvei'));
     }
