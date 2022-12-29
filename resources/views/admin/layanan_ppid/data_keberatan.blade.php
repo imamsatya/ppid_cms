@@ -99,7 +99,9 @@
                                             <th>Sumber</th>
                                             <th>Batas Waktu</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            @can('data keberatan.create')
+                                                <th>Aksi</th>
+                                            @endcan
                                         </tr>
                                     </thead>
                                     {{-- id="bd-table-keberatan-masuk" --}}
@@ -157,8 +159,8 @@
                                             aria-label="Select Asal Keberatan">
                                             <option value="-">-- Asal Keberatan --</option>
                                             <!-- <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option> -->
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
                                         </select>
                                     </div>
 
@@ -167,8 +169,8 @@
                                             aria-label="Select Asal Keberatan">
                                             <option value="-">-- Status Keberatan --</option>
                                             <!-- <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option> -->
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -278,7 +280,7 @@
                                                             class="form-control" disabled />
                                                     </div>
                                                     <!-- <div class="form-group mt-4" id="modal-file-identitas">
-                                                     </div> -->
+                                                             </div> -->
 
 
                                                     <div class="form-group mt-4">
@@ -484,9 +486,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
