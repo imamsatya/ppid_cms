@@ -16,7 +16,7 @@
             <div class="informasi ml-5 mr-5 text-center">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>
+                        <p style="text-transform: none;">
 
                             {!! $biayaLayanan->deskripsi ?? '' !!}
                         </p>
