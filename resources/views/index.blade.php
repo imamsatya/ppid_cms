@@ -222,23 +222,28 @@
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
                         <div class="slider_video owl-carousel ">
-                            {{-- <div class="row outer_custom">
+                            @foreach ($video as $video_row)
+                                <div class="row {{ $loop->index < 1 ? 'outer_custom' : null }}">
+                                    <div class="col-md-12">
+                                        <iframe class="w-100 video-galeri" height="315"
+                                            src="{{ $video_row->url }}" title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
+                            {{-- <div class="row">
                                 <div class="col-md-12">
-                                    <iframe class="w-100 video-galeri" height="315"
+                                    <iframe width="560" height="315"
                                         src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 </div>
-                            </div>
-                            
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
                             </div> --}}
-                            @foreach ($video as $video_row)
+                            {{-- @foreach ($video as $video_row)
                                 <div class="row ">
                                     <div class="col-md-12">
                                         <iframe width="560" height="315" src="{{ $video_row->url }}"
@@ -247,7 +252,7 @@
                                             allowfullscreen></iframe>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endforeach --}}
 
                         </div>
                     </div>

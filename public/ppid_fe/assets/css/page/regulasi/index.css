@@ -6,7 +6,7 @@
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
   text-decoration: none !important;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .pagination .page-item.active .page-link{

@@ -166,6 +166,7 @@ class DataKeberatanController extends Controller
 
     public function submitKonfirmasiKeberatan(Request $request)
     {
+
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
         $keberatan = DB::table('ppid_keberatan')->where('id', $data['id'])->first();
@@ -175,6 +176,7 @@ class DataKeberatanController extends Controller
 
         // kalau keberatan diterima / diproses
         $this->prosesKeberatan($data, $keberatan, $dateCreated);
+
         echo json_encode(array('result' => 'Berhasil mengkonfirmasi permohonan!', 'status' => 'success'));
     }
 
