@@ -606,7 +606,7 @@
                                                 </div> --}}
 
                                                 <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                                    id="editInformasiImage">
                                                 </div>
 
 
@@ -831,7 +831,8 @@
                                             // document.getElementById('editFile').value = informasiRow.file_path
                                             document.getElementById('editDeskripsi').value = informasiRow.deskripsi
                                             document.getElementById('editUrutan').value = informasiRow.urutan
-
+                                            document.getElementById('editInformasiImage').style.cssText =
+                                                `background-image: url({{ asset('storage/${informasiRow.image_path}') }})`
 
                                             document.getElementById('editForm').setAttribute('action', 'informasi/' +
                                                 informasiRow.id)

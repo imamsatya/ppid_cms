@@ -230,6 +230,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('kontak', KontakController::class);
     Route::post('/kontak/dokumentasi_ruang', [KontakController::class, 'dokumentasiStore'])->name('kontak.dokumentasi.store');
+    Route::patch('/kontak/dokumentasi_ruang/update/{id}', [KontakController::class, 'dokumentasiUpdate'])->name('kontak.dokumentasi.update');
     Route::delete('/kontak/dokumentasi_ruang/delete/{id}', [KontakController::class, 'dokumentasiDestroy'])->name('kontak.dokumentasi.delete');
 
     Route::resource('sosialmedia', SosialMediaController::class);

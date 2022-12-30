@@ -22,7 +22,7 @@ return new class extends Migration
 
         Schema::create('regulasis_peraturankip', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_peraturan');
+            $table->text('judul_peraturan');
             $table->string('file_path');
             $table->integer('urutan');
             $table->timestamps();
@@ -30,7 +30,7 @@ return new class extends Migration
 
         Schema::create('regulasis_rancanganperaturankip', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_peraturan');
+            $table->text('judul_peraturan');
             $table->string('file_path');
             $table->integer('urutan');
             $table->timestamps();
