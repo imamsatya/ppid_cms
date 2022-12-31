@@ -52,6 +52,7 @@
             'callback_then' => 'callbackThen',
             'callback_catch' => 'callbackCatch',
         ]) !!} --}}
+        {!! htmlScriptTagJsApi() !!}
     @endpush
     <!-- content -->
     <section class="content-login">
@@ -89,16 +90,33 @@
                             <span class="ml-2">Login</span>
                         </div>
                         @if ($errors->any())
-
                             <div class="alert alert-danger">
-                                <ul>
 
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+
                             </div>
                         @endif
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ Session::get('error') }}
+                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        @if (\Session::has('register-success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ Session::get('register-success') }}
+                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
                         <form action="{{ route('userppid.handleLogin') }}" id="demo-form" method="POST">
                             @csrf
                             <div class="form-data">
@@ -131,8 +149,7 @@
 
                                 <div class="form-group">
                                     <div class="input-group d-flex align-items-center">
-                                        <div class="g-recaptcha" name="g-recaptcha-response"
-                                            data-sitekey="6Ld5ltQZAAAAAIAD42x5RHixukIAlkF1owhviA-M"></div>
+                                        {!! htmlFormSnippet() !!}
 
                                     </div>
                                 </div>

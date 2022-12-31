@@ -41,7 +41,7 @@ class UserPPIDLoginController extends Controller
                 'max:255',
             ],
             'password' => ['required', 'min:6'],
-            'g-recaptcha-response' => 'recaptcha',
+            'g-recaptcha-response' =>  'recaptcha',
         ]);
         if (Auth::guard('usersppid')
             ->attempt($request->only(['email', 'password']))
@@ -77,9 +77,10 @@ class UserPPIDLoginController extends Controller
             'noidentitas' => ['required'],
             'alamat' => ['required'],
             'nohp' => ['required'],
-            'npwp' => ['required'],
+            // 'npwp' => ['required'],
             'pekerjaan' => ['required'],
-            'identitasfile' => ['required', 'mimes:png,jpg,jpeg', 'max:500']
+            'identitasfile' => ['required', 'mimes:png,jpg,jpeg', 'max:500'],
+            'g-recaptcha-response' =>  'recaptcha',
 
         ]);
         if ($validated) {
@@ -95,7 +96,7 @@ class UserPPIDLoginController extends Controller
                 'nomor_identitas' => $request['noidentitas'],
                 'alamat' => $request['alamat'],
                 'no_hp' => $request['nohp'],
-                'npwp' => $request['npwp'],
+                // 'npwp' => $request['npwp'],
                 'pekerjaan' => $request['pekerjaan'],
                 'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . '.' . $file->getClientOriginalExtension(),
             ]);

@@ -491,15 +491,17 @@
                         <div class="card-body  p-9">
 
 
+
+
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Password</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="text"name="name" id="editName"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+                                    <input type="password" name="password" id="editPassword"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Password"
                                         value="" />
                                 </div>
                                 <!--end::Col-->
@@ -509,226 +511,19 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis Pemohon</label>
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Ulangi
+                                    Password</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <select class="form-select form-control form-control-lg form-control-solid"
-                                        aria-label="Select example" name="jenispemohon"
-                                        onchange="selectJenisPemohonEdit()" id="edit-jenispemohon">
-                                        <option value="">Jenis Pemohon</option>
-                                        <option value="1">Perorangan</option>
-                                        <option value="2">Kelompok</option>
-                                        <option value="3">Badan Hukum</option>
-                                    </select>
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jenis
-                                    Identitas</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    {{-- <input type="text"name="jenis_identitas" id="editJenisIdentitas"
-                                        class="form-control form-control-lg form-control-solid"
-                                        placeholder="Jenis Identitas" value="" /> --}}
-                                    <select class="form-select form-control form-control-lg form-control-solid"
-                                        aria-label="Select example" disabled id="editJenisIdentitas"
-                                        name="jenisidentitas">
-                                        <option>Jenis Identitas</option>
-                                        <option value="1">KTP/NPWP</option>
-                                        <option value="2">Surat Kuasa</option>
-                                        <option value="3">Anggaran Dasar</option>
-                                    </select>
-                                    <input type="text" hidden name="jenisidentitas" id="editInputJenisIdentitas"
+                                    <input type="password" name="password_confirmation" id="editPasswordConfirmation"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Password"
                                         value="" />
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Identitas</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text"name="noidentitas" id="editNoIdentitas"
-                                        class="form-control form-control-lg form-control-solid"
-                                        placeholder="No Identitas" value="" />
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Alamat</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text"name="alamat" id="editAlamat"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Alamat"
-                                        value="" />
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Handphone</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text"name="nohp" id="editNoHandphone"
-                                        class="form-control form-control-lg form-control-solid"
-                                        placeholder="No Handphone" value="" />
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">NPWP</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text"name="npwp" id="editNpwp"
-                                        class="form-control form-control-lg form-control-solid" placeholder="NPWP"
-                                        value="" />
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Pekerjaan</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text"name="pekerjaan" id="editPekerjaan"
-                                        class="form-control form-control-lg form-control-solid"
-                                        placeholder="Pekerjaan" value="" />
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">KTP</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-
-                                        <div id="editImageKTP" class="image-input-wrapper w-250px  h-125px"
-                                            {{-- style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})"> --}} </div>
-
-                                            @can('laporan triwulanan pip.edit')
-                                                <!--begin::Edit button-->
-                                                <label
-                                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                    data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                    data-bs-dismiss="click" title="Change Image">
-                                                    <i class="bi bi-pencil-fill fs-7"></i>
-
-                                                    <!--begin::Inputs-->
-                                                    <input type="file" name="identitasfile"
-                                                        accept=".png, .jpg, .jpeg" />
-                                                    <input type="hidden" name="identitasfile_remove" />
-                                                    <!--end::Inputs-->
-                                                </label>
-                                                <!--end::Edit button-->
-
-                                                <!--begin::Cancel button-->
-                                                <span
-                                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                                    data-bs-dismiss="click" title="Cancel Image">
-                                                    <i class="bi bi-x fs-2"></i>
-                                                </span>
-                                                <!--end::Cancel button-->
-
-                                                <!--begin::Remove button-->
-                                                <span
-                                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                                    data-bs-dismiss="click" title="Remove Image">
-                                                    <i class="bi bi-x fs-2"></i>
-                                                </span>
-                                                <!--end::Remove button-->
-                                            @endcan
-                                        </div>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="row mb-6">
-                                    <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-8 fv-row">
-                                        <input type="email" name="email" id="editEmail"
-                                            class="form-control form-control-lg form-control-solid"
-                                            placeholder="Email" value="" />
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="row mb-6">
-                                    <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Password</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-8 fv-row">
-                                        <input type="password" name="password" id="editPassword"
-                                            class="form-control form-control-lg form-control-solid"
-                                            placeholder="Password" value="" />
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="row mb-6">
-                                    <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Ulangi
-                                        Password</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-8 fv-row">
-                                        <input type="password" name="password_confirmation"
-                                            id="editPasswordConfirmation"
-                                            class="form-control form-control-lg form-control-solid"
-                                            placeholder="Password" value="" />
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
-                            </div>
                             <!--end::Card body-->
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
@@ -772,21 +567,6 @@
             function editDialog(index) {
                 let usersPPID = {{ Js::from($usersPPID) }}
                 let user = usersPPID[index]
-                console.log('user', user)
-                document.getElementById('editName').value = user.nama_lengkap
-                document.getElementById('edit-jenispemohon').value = user.jenis_pemohon
-                document.getElementById('editJenisIdentitas').value = user.jenis_identitas
-                document.getElementById('editInputJenisIdentitas').value = document.getElementById('editJenisIdentitas').value
-                document.getElementById('editNoIdentitas').value = user.nomor_identitas
-                document.getElementById('editAlamat').value = user.alamat
-                document.getElementById('editNoHandphone').value = user.no_hp
-                document.getElementById('editNpwp').value = user.npwp
-                document.getElementById('editPekerjaan').value = user.pekerjaan
-                document.getElementById('editEmail').value = user.email
-
-
-                document.getElementById('editImageKTP').style.cssText =
-                    `background-image: url({{ asset('storage/${ user.identitas_file_path}') }})`
 
                 document.getElementById('editForm').setAttribute('action', 'user_pemohon/' + user.id)
 
