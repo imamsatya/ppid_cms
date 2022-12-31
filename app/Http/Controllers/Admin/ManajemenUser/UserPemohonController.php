@@ -143,47 +143,14 @@ class UserPemohonController extends Controller
         //
 
         $validated = $request->validate([
-            'name' => ['string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-            ],
-            // 'password' => ['required', 'min:6'],
-            // 'password_confirmation' => ['required', 'same:password'],
-            'jenispemohon' => ['required'],
-            'jenisidentitas' => ['required'],
-            'noidentitas' => ['required'],
-            'alamat' => ['required'],
-            'nohp' => ['required'],
-            'npwp' => ['required'],
-            'pekerjaan' => ['required'],
-            'identitasfile' => ['mimes:png,jpg,jpeg', 'max:500']
-
+            'password' => ['required', 'min:6'],
+            'password_confirmation' => ['required', 'same:password'],
         ]);
         if ($validated) {
-            $file = $request['identitasfile'];
-            $upload_path = 'adminAssets/user/identitas';
-            $fileName = substr($request->name, 0, 5) . '-' . now()->getTimestampMs();
+
             $user = UserPPID::where('id', $id)->first();
 
-            $user->nama_lengkap = $request['name'];
-            $user->email = $request['email'];
 
-            $user->jenis_pemohon = $request['jenispemohon'];
-            $user->jenis_identitas = $request['jenisidentitas'];
-            $user->nomor_identitas = $request['noidentitas'];
-            $user->alamat = $request['alamat'];
-            $user->no_hp = $request['nohp'];
-            $user->npwp = $request['npwp'];
-            $user->pekerjaan = $request['pekerjaan'];
-            if ($file) {
-                Storage::delete('public/' . $user->identitas_file_path);
-                $user->identitas_file_path = 'adminAssets/user/identitas/' . $fileName . '.' . $file->getClientOriginalExtension();
-                $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
-                $path = $file->storeAs('public/adminAssets/user/identitas', $fileName2);
-            }
             if ($request['password']) {
                 $user->password = bcrypt($request['password']);
             }
@@ -191,7 +158,7 @@ class UserPemohonController extends Controller
             $user->save();
 
             return redirect()
-                ->back()->with('success', 'Berhasil mengubah user');
+                ->back()->with('success', 'Berhasil mengubah password user');
         } else {
             return redirect()->back()->withErrors($validated)->withInput();
         }

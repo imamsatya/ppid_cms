@@ -191,7 +191,7 @@
                                             <div class="card">
                                                 <img class="card-img-top img-fluid"
                                                     src="{{ 'https://bumn.go.id/storage/' . $siaranPers[$i]['image_path'] }}"
-                                                    alt="Card image cap" />
+                                                    alt="Card image cap" style="width: 100%;height: auto;" />
                                                 <div class="card-body">
                                                     <span class="card-title">
                                                         {{ $siaranPers[$i]['tanggal_publish'] }}</span>

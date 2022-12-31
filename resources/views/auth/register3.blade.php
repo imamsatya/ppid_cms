@@ -20,6 +20,7 @@
             }
         </style>
         <title>Home</title>
+        {!! htmlScriptTagJsApi() !!}
     @endpush
 
     <!-- content -->
@@ -127,9 +128,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" maxlength="16" minlength="16" size="16"
-                                        pattern="[0-9]{16}" class="form-control" id="noidentitas" name="noidentitas"
-                                        aria-describedby="noidentitas" placeholder="No Identitas (KTP)" />
+                                    <input type="text" class="form-control" id="noidentitas" name="noidentitas"
+                                        aria-describedby="noidentitas" placeholder="No Identitas (KTP/NPWP)" />
                                     @error('noidentitas')
                                         <div class="" style="color: red">
                                             {{ $message }}
@@ -156,11 +156,11 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="npwp" id="npwp"
+                                <div class="form-group" hidden>
+                                    <input type="text" hidden class="form-control" id="npwp" id="npwp"
                                         name="npwp" aria-describedby="npwp" placeholder="NPWP" />
                                     @error('npwp')
-                                        <div class="" style="color: red">
+                                        <div class="" hidden style="color: red">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -186,7 +186,7 @@
                                         <button class="btn">
                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_file.svg') }}"
                                                 alt="" />
-                                            Upload KTP
+                                            <span id="dokumenText"> Upload KTP </span>
                                         </button>
                                         <input type="file" name="identitasfile" onchange="PreviewImage();"
                                             id="uploadImage" />
@@ -240,6 +240,13 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
+                                        {!! htmlFormSnippet() !!}
+                                    </div>
+
                                 </div>
                             </div>
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Daftar</button>
@@ -297,7 +304,7 @@
 
         <script>
             const $input = document.querySelector("#noidentitas");
-            const IDENTITASNUMBER_ALLOWED_CHARS_REGEXP = /[0-9]+/;
+            const IDENTITASNUMBER_ALLOWED_CHARS_REGEXP = /[0-9.-]+/;
             $input.addEventListener("keypress", event => {
                 if (!IDENTITASNUMBER_ALLOWED_CHARS_REGEXP.test(event.key)) {
                     event.preventDefault();
@@ -336,13 +343,19 @@
                 console.log(document.getElementById('inputJenisIdentitas'))
                 document.getElementById('jenisidentitas').value = document.getElementById('jenispemohon').value
                 document.getElementById('inputJenisIdentitas').value = document.getElementById('jenisidentitas').value
+
+                if (document.getElementById('jenispemohon').value == '1') {
+                    document.getElementById('dokumenText').textContent = 'Upload KTP'
+                } else {
+                    document.getElementById('dokumenText').textContent = 'Upload Dokumen'
+                }
             }
 
-            $(function() {
-                $("input[name=noidentitas]")[0].oninvalid = function() {
-                    this.setCustomValidity("KTP harus 16 digit");
-                };
-            });
+            // $(function() {
+            //     $("input[name=noidentitas]")[0].oninvalid = function() {
+            //         this.setCustomValidity("KTP harus 16 digit");
+            //     };
+            // });
         </script>
     @endpush
 
