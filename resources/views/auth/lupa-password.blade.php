@@ -67,9 +67,8 @@
                             <div class="circle-two"></div>
                         </div>
                         <p class="detail">
-                            Silahkan Login untuk mengajukan permohonan informasi, keberatan
-                            informasi, atau untuk mengetahui status permohonan informasi dan
-                            keberatan informasi yang sudah diajukan.
+                            Silahkan masukkan email anda yang terdaftar dengan aplikasi PPID Kementerian Badan Usaha
+                            Milik Negara.
                         </p>
                         <div class="row">
                             <div class="col-md-12">
@@ -87,7 +86,7 @@
                     <div class="form-login">
                         <div class="label-login d-flex align-items-center">
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.svg') }}" alt="" />
-                            <span class="ml-2">Login</span>
+                            <span class="ml-2">Reset Password</span>
                         </div>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -130,7 +129,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <div class="input-group d-flex align-items-center" id="show_hide_password">
                                         <input
                                             class="form-control  @error('password') is-invalid @enderror input-password"
@@ -152,12 +151,10 @@
                                         {!! htmlFormSnippet() !!}
 
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
-                            <div class="lupa-password d-flex">
-                                <a href="{{ route('userppid.lupa_password') }}" class="ml-auto">Lupa Password</a>
-                            </div>
-                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
+
+                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Kirim Email</button>
                             <div class="not-register text-center mt-3">
                                 <span>Belum terdaftar?</span><a href="{{ route('signup') }}" class="font-weight-bold">
                                     Daftar</a>

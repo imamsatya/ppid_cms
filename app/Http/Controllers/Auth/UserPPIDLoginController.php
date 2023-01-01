@@ -110,6 +110,40 @@ class UserPPIDLoginController extends Controller
         }
     }
 
+    public function lupaPassword()
+    {
+        return view('auth.lupa-password');
+    }
+
+    public function gantiPassword()
+    {
+        return view('auth.ganti-password');
+    }
+
+    public function handleGantiPassword(Request $request)
+    {
+
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+
+        #Match The Old Password
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", "Password lama tidak sesuai");
+        }
+
+
+        #Update the new Password
+        UserPPID::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("status", "Password berhasil diubah!");
+    }
+
     public function logout()
     {
         Auth::guard('usersppid')
