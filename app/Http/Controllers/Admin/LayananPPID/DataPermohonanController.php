@@ -125,6 +125,7 @@ class DataPermohonanController extends Controller
                 })
                 ->where('status_permohonan.aktif', 1)
                 ->where('forward_permohonan.forward_to', $user->id)
+                ->orderByDesc('ppid_permohonan.created_at')
                 ->get();
             echo json_encode(array('result' => $result));
             return;
@@ -153,6 +154,7 @@ class DataPermohonanController extends Controller
                 }
             })
             ->where('status_permohonan.aktif', 1)
+            ->orderByDesc('ppid_permohonan.created_at')
             ->get();
         echo json_encode(array('result' => $result));
     }
@@ -192,6 +194,7 @@ class DataPermohonanController extends Controller
                 })
                 ->where('status_permohonan.aktif', 1)
                 ->where('jawab_permohonan.jawab_by', $user->id)
+                ->orderByDesc('ppid_permohonan.created_at')
                 ->get();
             echo json_encode(array('result' => $result));
             return;
@@ -220,6 +223,7 @@ class DataPermohonanController extends Controller
                 }
             })
             ->where('status_permohonan.aktif', 1)
+            ->orderByDesc('ppid_permohonan.created_at')
             ->get();
         echo json_encode(array('result' => $result));
     }
