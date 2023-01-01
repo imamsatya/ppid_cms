@@ -124,6 +124,9 @@ Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->nam
 Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
 Route::get('signup',  [UserPPIDLoginController::class, 'register'])->middleware('guest:usersppid')->name('signup');
 Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
+Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+Route::get('ganti_password', [UserPPIDLoginController::class, 'gantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password');
+Route::post('ganti_password', [UserPPIDLoginController::class, 'handleGantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password.store');
 
 
 //User Admin

@@ -63,6 +63,22 @@
             margin-right: 200px;
         }
 
+        .btn_login-custom {
+            font-size: 28px;
+            margin: 10px 0px 18px 0px;
+            padding: 20px 20px 20px 20px;
+            color: #ffffff;
+            font-family: "Lato", sans-serif;
+            /* display: block; */
+            font-weight: 300;
+            height: 30px;
+            background: #104e70;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
         @media only screen and (max-width: 600px) {
             .custom-logo {
                 margin-right: 0px;
@@ -147,75 +163,39 @@
                             </li>
                         @endforeach
                     @endif
-                    {{-- <li>
-                        <a href="#" id="titleNavProfile" class="{{ $isActiveProfil ?? '' }}">Profil </a>
-                        <ul>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('tentangppid.index') }}">Tentang PPID</a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('tugasdanfungsi.index') }}">Tugas dan
-                                    Fungsi</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('strukturppid.index') }}">Struktur PPID</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('visimisi.index') }}">Visi dan Misi</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('kontak.index') }}">Kontak</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{ route('regulasi.index') }}" class="{{ $isActiveRegulasi ?? '' }}"
-                            id="titleNavRegulasi">Regulasi </a>
-                    </li>
-                    <li>
-                        <a id="titleNavInformasiPublik" class="{{ $isActiveInformasiPublik ?? '' }}"
-                            href="{{ route('informasipublik.index') }}">Informasi
-                            Publik</a>
-                    </li>
-                    <li>
-                        <a id="titleNavStandarLayanan" class="{{ $isActiveStandarLayanan ?? '' }}"
-                            href="#">Standar Layanan </a>
-                        <ul>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('maklumat.index') }}">Maklumat</a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('prosedurlayanan.index') }}">Prosedur
-                                    Layanan</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('standarlayananbiaya.index') }}">Biaya
-                                    Layanan</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a id="titleNavLaporan" class="{{ $isActiveLaporan ?? '' }}"
-                            href="{{ route('laporan.index') }}">Laporan </a>
-                    </li>
-                    <li>
-                        <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
-                    </li> --}}
 
 
 
                     @if (Auth::guard('usersppid')->check())
                         <li>
-                            <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
-                                @csrf
 
-                                <a href=""
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                    class="btn btn-sm btn_login"> Logout
-                                </a>
-                            </form>
+
+
+
+                            <button type="button" class="btn btn-sm btn_login-custom  text-white"><i
+                                    class="fa fa-user  " aria-hidden="true"></i></button>
+
+                            <ul>
+                                <li>
+                                    <a class="dropdown_menu" href="{{ route('dashboard.index') }}">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown_menu" href="{{ route('userppid.ganti_password') }}">Ganti
+                                        Password</a>
+                                </li>
+
+                                <li>
+                                    <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
+                                        @csrf
+
+                                        <a href=""
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown_menu"> Logout
+                                        </a>
+                                    </form>
+                                </li>
+
+                            </ul>
 
                             {{-- <form action="{{ route('userppid.logout') }}" method="post">
                                 @csrf
@@ -256,7 +236,9 @@
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register' &&
-        Route::current()->getName() != 'signup')
+        Route::current()->getName() != 'signup' &&
+        Route::current()->getName() != 'userppid.lupa_password' &&
+        Route::current()->getName() != 'userppid.ganti_password')
         <!-- Banner -->
         <section class="banner blackw magnif">
             <div class="container">
@@ -311,7 +293,9 @@
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register' &&
-        Route::current()->getName() != 'signup')
+        Route::current()->getName() != 'signup' &&
+        Route::current()->getName() != 'userppid.lupa_password' &&
+        Route::current()->getName() != 'userppid.ganti_password')
         <!-- Button Back -->
         <div class="container mt-4 mb-4">
             <div class="row">
