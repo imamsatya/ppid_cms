@@ -5,7 +5,7 @@
 -- Dumped from database version 12.12
 -- Dumped by pg_dump version 12.12
 
--- Started on 2022-12-23 13:53:35
+-- Started on 2023-01-02 07:57:47
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1884,7 +1884,7 @@ CREATE TABLE public.ppid_pendaftar (
     alamat character varying(255) NOT NULL,
     pekerjaan character varying(255) NOT NULL,
     no_hp character varying(255) NOT NULL,
-    npwp character varying(255) NOT NULL,
+    npwp character varying(255),
     email character varying(255) NOT NULL,
     password character varying(255) NOT NULL,
     status character varying(255),
@@ -2264,7 +2264,7 @@ ALTER SEQUENCE public.regulasis_banner_id_seq OWNED BY public.regulasis_banner.i
 
 CREATE TABLE public.regulasis_peraturankip (
     id bigint NOT NULL,
-    judul_peraturan character varying(255) NOT NULL,
+    judul_peraturan text NOT NULL,
     file_path character varying(255) NOT NULL,
     urutan integer NOT NULL,
     created_at timestamp(0) without time zone,
@@ -2305,7 +2305,7 @@ ALTER SEQUENCE public.regulasis_peraturankip_id_seq OWNED BY public.regulasis_pe
 
 CREATE TABLE public.regulasis_rancanganperaturankip (
     id bigint NOT NULL,
-    judul_peraturan character varying(255) NOT NULL,
+    judul_peraturan text NOT NULL,
     file_path character varying(255) NOT NULL,
     urutan integer NOT NULL,
     created_at timestamp(0) without time zone,
@@ -3772,6 +3772,7 @@ COPY public.faqs_banner (id, banner_path, created_at, updated_at) FROM stdin;
 COPY public.forward_permohonan (id, id_ppid_permohonan, forward_by, forward_to, keterangan, nota_dinas, created_at, updated_at) FROM stdin;
 3	11	3	6	<p>ppp 1</p>	ppp 1	2022-12-13 06:26:59	2022-12-13 06:26:59
 4	20	7	6	<p>sdfdfs</p>	zzz	2022-12-19 08:14:06	2022-12-19 08:14:06
+6	26	7	8	<p>123123</p>	123	2022-12-29 06:25:51	2022-12-29 06:25:51
 \.
 
 
@@ -3825,7 +3826,6 @@ COPY public.informasipubliks_sertamerta (id, judul_informasi, url, file_path, cr
 --
 
 COPY public.informasipubliks_setiapsaat (id, judul_informasi, url, file_path, created_at, updated_at) FROM stdin;
-1	Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian BUMN	https://jdih.bumn.go.id/	\N	2022-12-01 01:22:46	2022-12-01 01:22:46
 2	Ringkasan Laporan Pengelolaan Whistleblowing System	https://wbs.bumn.go.id/index.php/home	\N	2022-12-01 01:23:03	2022-12-01 01:23:03
 3	Berita/Artikel	https://bumn.go.id/media/news	\N	2022-12-01 01:23:16	2022-12-01 01:23:16
 4	Siaran Pers	https://bumn.go.id/media/press-conference	\N	2022-12-01 01:23:28	2022-12-01 01:23:28
@@ -3836,6 +3836,7 @@ COPY public.informasipubliks_setiapsaat (id, judul_informasi, url, file_path, cr
 9	Nota Kesepahaman antar Kementerian/Lembaga yang tidak rahasia	\N	\N	2022-12-01 01:26:17	2022-12-01 01:26:17
 10	Daftar Informasi Publik	https://ppid.bumn.go.id/profileinformasipublik	\N	2022-12-01 01:26:44	2022-12-01 01:26:44
 11	Informasi Kegiatan Pelayanan Informasi Publik	https://ppid.bumn.go.id/profilelaporan	\N	2022-12-01 01:27:23	2022-12-01 01:27:23
+1	Informasi tentang Peraturan, Keputusan dan/atau Kebijakan kementerian BUMN	https://jdih.bumn.go.id/	adminAssets/informasiPublik/informasi_setiap_saat/PP 61 TAHUN 2010.pdf	2022-12-01 01:22:46	2022-12-23 08:59:25
 \.
 
 
@@ -3846,9 +3847,9 @@ COPY public.informasipubliks_setiapsaat (id, judul_informasi, url, file_path, cr
 --
 
 COPY public.informasis (id, image_path, judul, deskripsi, urutan, created_at, updated_at) FROM stdin;
-1	adminAssets/home/informasi/ic_informasi_berkala.png	Informasi Berkala	Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala	1	2022-11-30 14:54:47	2022-11-30 14:54:47
-2	adminAssets/home/informasi/ic_informasi_sertamerta.png	Informasi Serta Merta	Informasi yang dapat mengancam Hajat Hidup Orang Banyak dan Ketertiban Umum	2	2022-11-30 14:56:06	2022-11-30 14:56:06
-3	adminAssets/home/informasi/ic_informasi_setiapsaat.png	Informasi Setiap Saat	Informasi yang Wajib Tersedia Setiap Saat	3	2022-11-30 14:56:41	2022-11-30 14:56:41
+1	adminAssets/home/informasi/logo-bumn.png	Informasi Berkala	Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala	1	2022-11-30 14:54:47	2022-12-30 03:07:45
+3	adminAssets/home/informasi/logo-bumn.png	Informasi Setiap Saat	Informasi yang Wajib Tersedia Setiap Saat	3	2022-11-30 14:56:41	2022-12-30 03:07:56
+2	adminAssets/home/informasi/eyeem-153355172.jpg	Informasi Serta Merta	Informasi yang dapat mengancam Hajat Hidup Orang Banyak dan Ketertiban Umum	2	2022-11-30 14:56:06	2022-12-30 14:12:29
 \.
 
 
@@ -3875,6 +3876,11 @@ COPY public.jawab_permohonan (id, id_ppid_permohonan, ket_jawaban, file_jawaban,
 6	14	<p>j1</p>	\N	3	2022-12-15 07:42:45	2022-12-15 07:42:45	permohonan/jawaban/05-Per-web-12-2022.pdf
 7	18	<p>tes tolak</p>	\N	7	2022-12-19 04:31:58	2022-12-19 04:31:58	\N
 8	17	<p>zczxczczxc</p>	\N	7	2022-12-22 14:55:50	2022-12-22 14:55:50	permohonan/jawaban/10-Per-web-12-2022.pdf
+9	21	<p>111 11 11 111</p>	permohonan/jawaban/11-Per-web-12-2022-pendukung.jpg	7	2022-12-23 14:26:23	2022-12-23 14:26:23	permohonan/jawaban/11-Per-web-12-2022.pdf
+10	22	<p>222 22 22 2</p>	\N	7	2022-12-23 14:26:50	2022-12-23 14:26:50	permohonan/jawaban/12-Per-web-12-2022.pdf
+11	19	<p>zzzzzzzzzzzzzzzzzzzzz zzzzzzzzzzzzzz</p>	\N	7	2022-12-23 14:31:01	2022-12-23 14:31:01	permohonan/jawaban/13-Per-web-12-2022.pdf
+12	23	<p>bbbb bb bbb</p>	\N	7	2022-12-23 14:35:10	2022-12-23 14:35:10	permohonan/jawaban/14-Per-web-12-2022.pdf
+13	26	<p>pppppppppp</p>	\N	8	2022-12-29 06:33:04	2022-12-29 06:33:04	permohonan/jawaban/15-Per-web-12-2022.pdf
 \.
 
 
@@ -3952,8 +3958,8 @@ COPY public.kontaks (id, alamat, telepon, waktu_pelayanan, banner_path, latitude
 --
 
 COPY public.kontaks_dokumentasiruangppid (id, image_path, keterangan, urutan, created_at, updated_at) FROM stdin;
-1	adminAssets/profil/kontak/dokumentasi1.png	1	1	2022-11-28 19:27:17	2022-11-28 19:27:17
-2	adminAssets/profil/kontak/dokumentasi2.png	2	2	2022-11-28 19:27:29	2022-11-28 19:27:29
+4	adminAssets/profil/kontak/dokumentasi2.png	2	2	2022-12-23 07:52:26	2022-12-23 07:52:26
+3	adminAssets/profil/kontak/dokumentasi1.jpg	1x	5	2022-12-23 07:52:17	2022-12-30 13:50:01
 \.
 
 
@@ -4005,7 +4011,7 @@ COPY public.laporans_banner (id, banner_path, created_at, updated_at) FROM stdin
 --
 
 COPY public.laporans_hasil_survei (id, judul_laporan, file_path, thumbnail_path, created_at, updated_at) FROM stdin;
-1	zzzzz	adminAssets/laporan/laporan_hasil_survei/Desain_Proses_Permohonan-1.pdf	adminAssets/laporan/laporan_hasil_survei/waterfall_river_precipice_137045_3840x2400.jpg	2022-12-01 04:23:11	2022-12-01 04:23:11
+2	Laporan Hasil Survei PIP	adminAssets/laporan/laporan_hasil_survei/LPPPID2021_opt-1.pdf	adminAssets/laporan/laporan_hasil_survei/alphamon.jpg	2022-12-23 13:29:04	2022-12-23 13:29:04
 \.
 
 
@@ -4016,9 +4022,7 @@ COPY public.laporans_hasil_survei (id, judul_laporan, file_path, thumbnail_path,
 --
 
 COPY public.laporans_tahunan (id, judul_laporan, file_path, thumbnail_path, created_at, updated_at) FROM stdin;
-1	Laporan Pelayanan Informasi Tahun 2021	adminAssets/laporan/laporan_tahunan/Desain_Proses_Permohonan-1.pdf	adminAssets/laporan/laporan_tahunan/matcha3.png	2022-12-01 03:54:18	2022-12-01 03:54:18
-2	zcxcxz	adminAssets/laporan/laporan_tahunan/Desain_Proses_Permohonan-1.pdf	adminAssets/laporan/laporan_tahunan/waterfall_river_precipice_137045_3840x2400.jpg	2022-12-01 03:54:51	2022-12-01 03:54:51
-4	zzxczczxc	adminAssets/laporan/laporan_tahunan/Desain_Proses_Permohonan-1.pdf	\N	2022-12-01 03:55:57	2022-12-01 03:55:57
+5	Laporan Tahunan PIP 1	adminAssets/laporan/laporan_tahunan/LPPPID2021_opt-1.pdf	adminAssets/laporan/laporan_tahunan/matcha3.png	2022-12-23 13:28:01	2022-12-23 13:28:01
 \.
 
 
@@ -4029,10 +4033,7 @@ COPY public.laporans_tahunan (id, judul_laporan, file_path, thumbnail_path, crea
 --
 
 COPY public.laporans_triwulanan (id, judul_laporan, file_path, thumbnail_path, created_at, updated_at) FROM stdin;
-1	Laporan Pelayanan Informasi Tahun 2021	adminAssets/laporan/laporan_triwulanan/LPPPID2021_opt.pdf	adminAssets/laporan/laporan_triwulanan/waterfall_river_precipice_137045_3840x2400.jpg	2022-12-01 02:16:00	2022-12-01 02:16:00
-2	zzzzz	adminAssets/laporan/laporan_triwulanan/Dokumen_teknis.pdf	adminAssets/laporan/laporan_triwulanan/ic_informasi_sertamerta.png	2022-12-01 02:17:32	2022-12-01 02:17:32
-3	Laporan Pelayanan Informasi Tahun 2020	adminAssets/laporan/laporan_triwulanan/Desain_Proses_Permohonan-1.pdf	adminAssets/laporan/laporan_triwulanan/matcha3.png	2022-12-01 03:12:08	2022-12-01 03:12:08
-4	Laporan Pelayanan Informasi Tahun 2019	adminAssets/laporan/laporan_triwulanan/Desain_Proses_Permohonan-1.pdf	adminAssets/laporan/laporan_triwulanan/alphamon.jpg	2022-12-01 03:13:02	2022-12-01 03:13:02
+5	Laporan Pelayanan Informasi Tahun 2021	adminAssets/laporan/laporan_triwulanan/LPPPID2021_opt-1.pdf	adminAssets/laporan/laporan_triwulanan/logo_bumn.png	2022-12-23 13:26:48	2022-12-30 13:58:34
 \.
 
 
@@ -4080,6 +4081,26 @@ COPY public.log_permohonan (id, id_ppid_permohonan, status, created_at, updated_
 37	20	2	2022-12-19 04:33:39	2022-12-19 04:33:39
 38	20	3	2022-12-19 08:14:06	2022-12-19 08:14:06
 39	17	5	2022-12-22 14:55:50	2022-12-22 14:55:50
+40	21	1	2022-12-23 14:24:41	2022-12-23 14:24:41
+41	22	1	2022-12-23 14:24:49	2022-12-23 14:24:49
+42	21	2	2022-12-23 14:26:04	2022-12-23 14:26:04
+43	21	4	2022-12-23 14:26:23	2022-12-23 14:26:23
+44	22	5	2022-12-23 14:26:50	2022-12-23 14:26:50
+45	19	5	2022-12-23 14:31:01	2022-12-23 14:31:01
+46	23	1	2022-12-23 14:34:49	2022-12-23 14:34:49
+47	23	5	2022-12-23 14:35:10	2022-12-23 14:35:10
+48	24	1	2022-12-27 04:50:23	2022-12-27 04:50:23
+49	25	1	2022-12-27 04:52:51	2022-12-27 04:52:51
+50	26	1	2022-12-29 06:23:04	2022-12-29 06:23:04
+51	27	1	2022-12-29 06:23:18	2022-12-29 06:23:18
+52	28	1	2022-12-29 06:23:29	2022-12-29 06:23:29
+53	29	1	2022-12-29 06:23:41	2022-12-29 06:23:41
+54	26	2	2022-12-29 06:24:55	2022-12-29 06:24:55
+55	26	3	2022-12-29 06:25:51	2022-12-29 06:25:51
+56	26	4	2022-12-29 06:33:04	2022-12-29 06:33:04
+57	24	2	2022-12-29 09:18:02	2022-12-29 09:18:02
+58	29	2	2023-01-01 15:53:04	2023-01-01 15:53:04
+59	28	2	2023-01-01 15:53:39	2023-01-01 15:53:39
 \.
 
 
@@ -4167,6 +4188,7 @@ COPY public.model_has_roles (role_id, model_type, model_id) FROM stdin;
 3	App\\Models\\User	5
 4	App\\Models\\User	6
 3	App\\Models\\User	7
+4	App\\Models\\User	8
 \.
 
 
@@ -4465,7 +4487,6 @@ COPY public.ppid_menu (id, nama_menu, routing, "order", created_at, updated_at) 
 --
 
 COPY public.ppid_pendaftar (id, nama_lengkap, jenis_pemohon, jenis_identitas, nomor_identitas, alamat, pekerjaan, no_hp, npwp, email, password, status, identitas_file_path, remember_token, created_at, updated_at) FROM stdin;
-1	adssadsad	1	1	1234123412341234	adssad	adsasd	123412341234	12341234	asd@asd.asd	$2y$10$JW79/OjfZXcmG4gNyxkbtOoYzOU4nt1e9yii0Vy7XpSnHnbRd4lq2	\N	adminAssets/user/identitas/1669953041119.\npng	\N	2022-12-02 03:50:41	2022-12-02 03:50:41
 2	zzzz	1	1	12341234	aasdads	dasdsadsa	143214321342	1111	asdf@asdf.asd	$2y$10$2l3xXnHOMmgGDVjecuhJ4OlgIuq2Rt5MSejWmo2FQAt4kaV7ETgki	\N	adminAssets/user/identitas/1669953421586.\n.png	\N	2022-12-02 03:57:01	2022-12-02 03:57:01
 3	zxxxzx	1	1	1234123412341234	adsdasasddsa	adssdadsa	123412341234	123412341234	wert@wert.qew	$2y$10$YarWlJH1EW74sQVnFnNcfOdhmtxcN5ySyL7uPdxNcjhuX2RLOQYVO	\N	adminAssets/user/identitas/1669955082462.\npng	\N	2022-12-02 04:24:42	2022-12-02 04:24:42
 4	tes2	1	1	1234123412341234	tes2	1234	123412341234	12341234	tes2@tes.tes	$2y$10$Oyby0T2q6fKkICsPezE96eHSy05xH/2.LWB8YuaQc4am7x5zlEFjO	\N	adminAssets/user/identitas/1671089120045.png	\N	2022-12-15 07:25:20	2022-12-15 07:25:20
@@ -4475,6 +4496,12 @@ COPY public.ppid_pendaftar (id, nama_lengkap, jenis_pemohon, jenis_identitas, no
 8	zzzz	1	1	1234123412341234	asddsaads	1234	123412341234	12341234	wer2@wer.wer	$2y$10$vZjvXl8uV5dxx2GWaiSUaOFGSm3FSGhcbHLUZBOYth8j/bu0NYxB2	\N	adminAssets/user/identitas/1671500480687.jpg	\N	2022-12-20 01:41:20	2022-12-20 01:41:20
 9	a	1	1	1234123412341234	a	qa	123412341234	12341234	asd1@asd.asd	$2y$10$neSZgUnBAo3/ukmVn7RJ9OS24nIK66CWgsMjudCxtGeWoRoKdOtF6	\N	adminAssets/user/identitas/1671500715275.jpg	\N	2022-12-20 01:45:15	2022-12-20 01:45:15
 10	a	1	1	1234123412341234	a	qa	123412341234	12341234	asd2@asd.asd	$2y$10$oGB330JZ/KCEMOP2ejTBUOtmxU5Wf3QlUl1pt3NRfaO76knQBFSgO	\N	adminAssets/user/identitas/1671500749008.jpg	\N	2022-12-20 01:45:49	2022-12-20 01:45:49
+11	123456789	1	1	1234123412341234	123412341234	1234	123412341234	12341234	mnbv@mnbv.mnbv	$2y$10$QF.XljrbiaF76pBhesogtujQ9WXG067UUFVKdifguKmPeOzTWnaYC	\N	adminAssets/user/identitas/12345-1672017274418.jpg	\N	2022-12-26 01:14:34	2022-12-26 01:14:34
+12	tes 5	1	1	55555555	555	5	5555666677778888	8888777766665555	tyui@tyu.tyu	$2y$10$/Ibb/xzuW/tM2Gy.ZSpl3uyvz6J5HaliL5rbya9N.5KkW8MjhFV5e	\N	adminAssets/user/identitas/tes 5-1672115545352.jpg	\N	2022-12-27 04:32:25	2022-12-27 04:32:25
+13	a	1	1	123456778	1234567	asdfgd	1234567	123456557	mnb@mnb.mnb	$2y$10$b3I2vA9aM/3W7JVcRq/K/uv6fMy7ULIKKeP8Cx.39BNHfO3xj2g4e	\N	adminAssets/user/identitas/a-1672403971451.png	\N	2022-12-27 04:51:56	2022-12-30 12:39:31
+15	ssssss sssssss	1	1	2134123213.34213---423432	sssss	sss ss	121221211123	\N	sss@sss.sss	$2y$10$n5Spoqqk2c6p0phz0D0y0Olobf6vtwxhC1y2ZsbDwdvpZW6XJEEHC	\N	adminAssets/user/identitas/sssss-1672443105747.png	\N	2022-12-30 23:31:45	2022-12-30 23:31:45
+16	ffff	1	1	123456789.-876854	sdfsdfds	12344	987654321	\N	fff@fff.fff	$2y$10$IgcihD6VR4n1tSrraf2iweTUmJPasDrVo7YZJyFm5oxtU7F/8ambq	\N	adminAssets/user/identitas/ffff-1672443659307.png	\N	2022-12-30 23:40:59	2022-12-30 23:40:59
+1	adssadsad	1	1	1234123412341234	adssad	adsasd	123412341234	12341234	asd@asd.asd	$2y$10$44852m25ll5uFGO147ZgI.uCDwj0cM1n5Nhz8ytdKTlcnCBgTiWSG	\N	adminAssets/user/identitas/1669953041119.\npng	\N	2022-12-02 03:50:41	2023-01-01 07:42:58
 \.
 
 
@@ -4485,6 +4512,8 @@ COPY public.ppid_pendaftar (id, nama_lengkap, jenis_pemohon, jenis_identitas, no
 --
 
 COPY public.ppid_permohonan (id, id_ppid_pendaftar, ticket_permohonan, jenis_kanal, informasi_diminta, tujuan_informasi, id_cara, id_mendapatkan, file_identitas, created_at, updated_at, expired_date1, expired_date2) FROM stdin;
+29	1	17/Per-web/12/2022	web	<p>2222s</p>	<p>22222s</p>	2	3	adminAssets/user/identitas/1669953041119.\npng	2022-12-29 06:23:41	2022-12-29 06:23:41	2023-01-12	2023-01-23
+28	1	18/Per-web/12/2022	web	<p>222222</p>	<p>22222222</p>	2	3	adminAssets/user/identitas/1669953041119.\npng	2022-12-29 06:23:29	2022-12-29 06:23:29	2023-01-12	2023-01-23
 9	1	01/Per-web/12/2022	web	<p>tes 1</p>	<p>tes 1 a</p>	1	1	adminAssets/user/identitas/1669953041119.png	2022-12-13 04:49:44	2022-12-13 04:49:44	2022-12-26	2023-01-04
 10	1	02/Per-web/12/2022	web	<p>tes 2</p>	<p>tes 2 a</p>	3	1	adminAssets/user/identitas/1669953041119.png	2022-12-13 04:50:03	2022-12-13 04:50:03	\N	\N
 11	1	03/Per-web/12/2022	web	<p>tes 3</p>	<p>tes 3</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-13 06:24:41	2022-12-13 06:24:41	2022-12-26	2023-01-04
@@ -4492,10 +4521,17 @@ COPY public.ppid_permohonan (id, id_ppid_pendaftar, ticket_permohonan, jenis_kan
 14	4	05/Per-web/12/2022	web	<p>1</p>	<p>1</p>	1	1	adminAssets/user/identitas/1671089120045.png	2022-12-15 07:34:19	2022-12-15 07:34:19	2022-12-28	2023-01-06
 15	1	06/Per-web/12/2022	web	<p>2</p>	<p>2</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-15 07:56:05	2022-12-15 07:56:05	2022-12-28	2023-01-06
 16	1	07/Per-web/12/2022	web	<p>3</p>	<p>3</p>	3	3	adminAssets/user/identitas/1669953041119.\npng	2022-12-15 07:56:27	2022-12-15 07:56:27	\N	\N
-19	1	-	web	<p>sadas</p>	<p>asddasdsa</p>	2	2	adminAssets/user/identitas/1669953041119.\npng	2022-12-19 03:49:10	2022-12-19 03:49:10	\N	\N
 18	1	08/Per-web/12/2022	web	<p>z</p>	<p>z</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-19 03:48:52	2022-12-19 03:48:52	\N	\N
 20	1	09/Per-web/12/2022	web	<p>tes tes</p>	<p>tes tes</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-19 04:32:52	2022-12-19 04:32:52	2022-12-30	2023-01-10
 17	1	10/Per-web/12/2022	web	<p>z</p>	<p>z</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-18 01:12:41	2022-12-18 01:12:41	\N	\N
+21	1	11/Per-web/12/2022	web	<p>1</p>	<p>1</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-23 14:24:41	2022-12-23 14:24:41	2023-01-05	2023-01-16
+22	1	12/Per-web/12/2022	web	<p>2</p>	<p>2</p>	2	2	adminAssets/user/identitas/1669953041119.\npng	2022-12-23 14:24:49	2022-12-23 14:24:49	\N	\N
+19	1	13/Per-web/12/2022	web	<p>sadas</p>	<p>asddasdsa</p>	2	2	adminAssets/user/identitas/1669953041119.\npng	2022-12-19 03:49:10	2022-12-19 03:49:10	\N	\N
+23	1	14/Per-web/12/2022	web	<p>cccc cc cc</p>	<p>cc ccc cc</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-23 14:34:49	2022-12-23 14:34:49	\N	\N
+25	13	-	web	<p>777</p>	<p>777</p>	1	1	adminAssets/user/identitas/a-1672116716351.jpg	2022-12-27 04:52:51	2022-12-27 04:52:51	\N	\N
+27	1	-	web	<p>111111111q</p>	<p>1111111q</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-29 06:23:18	2022-12-29 06:23:18	\N	\N
+26	1	15/Per-web/12/2022	web	<p>1111111111111</p>	<p>1111111111111111</p>	1	1	adminAssets/user/identitas/1669953041119.\npng	2022-12-29 06:23:04	2022-12-29 06:23:04	2023-01-11	2023-01-20
+24	12	16/Per-web/12/2022	web	<p>1</p>	<p>1</p>	1	1	adminAssets/user/identitas/tes 5-1672115545352.jpg	2022-12-27 04:50:23	2022-12-27 04:50:23	2023-01-11	2023-01-20
 \.
 
 
@@ -4546,7 +4582,7 @@ COPY public.ppid_regulasi_peraturan (id, nama_regulasi, direktori_file, "order",
 --
 
 COPY public.profilsingkats (id, judul, konten, banner_path, side_image_path, created_at, updated_at) FROM stdin;
-2	Tentang PPID Kementerian BUMN	<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p style="line-height: 1.4;"><span style="color: #474747; font-family: Lato, sans-serif; font-size: 11pt; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Sejalan dengan semangat Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik, Pelayanan Informasi Publik di lingkungan Kementerian BUMN mengacu pada Peraturan Menteri BUMN Nomor: PER-09/MBU/08/2020 tentang Perubahan Kedua Atas Peraturan Menteri BUMN Nomor: PER-08/MBU/2014 tanggal 30Juni 2014 tentang Pedoman Pengelolaan Informasi dan Dokumentasi di lingkungan Kementerian BUMN, yang di dalamnya mencakup ruang lingkup kewenangan Pelayanan Informasi Publik Kementerian BUMN serta penunjukan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Kementerian BUMN. Pemenuhan Pelayanan Informasi Publik di Kementerian BUMN juga mengacu pada Keputusan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Nomor KEP-01/PPID.KBUMN/09/2020 tanggal 8 September 2020 tentang Daftar Informasi Publik di Lingkungan Kementerian BUMN serta Keputusan PPID Nomor KEP-02/PPID.KBUMN/12/2018 Tanggal 21 Desember 2018 dan Daftar Informasi Dikecualikan di lingkungan Kementerian BUMN. Dalam rangka penilaian implementasi keterbukaan informasi Badan Publik tahun 2020, PPID Kementerian BUMN mendapat nilai skor 85.27 dengan kategori Keterbukaan Badan Publik &ldquo;Menuju Informatif&rdquo;. Tentunya hal ini semakin memacu PPID Kementerian BUMN untuk terus meningkatkan kualitas pelayanan informasi publik yang sejalan dengan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik. Selain menerima permohonan secara langsung, PPID Kementerian BUMN juga melayani permohonan informasi yang disampaikan secara tidak langsung. Pada Februari 2021, PPID Kementerian BUMN resmi meluncurkan Aplikasi Mobile PPID sehingga memperkaya kanal informasi yang dapat dimanfaatkan oleh masyarakat untuk mendapatkan informasi publik Kementerian BUMN.</span></p>\r\n</body>\r\n</html>	adminAssets/profil/profil_singkat/banner.png	adminAssets/profil/profil_singkat/sideImage.jpg	2022-11-28 18:49:55	2022-12-16 04:06:08
+2	Tentang PPID Kementerian BUMN	<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p style="line-height: 1.4;"><span style="color: #474747; font-family: Lato, sans-serif; font-size: 11pt; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Sejalan dengan semangat Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik, Pelayanan Informasi Publik di lingkungan Kementerian BUMN mengacu pada Peraturan Menteri BUMN Nomor: PER-09/MBU/08/2020 tentang Perubahan Kedua Atas Peraturan Menteri BUMN Nomor: PER-08/MBU/2014 tanggal 30Juni 2014 tentang Pedoman Pengelolaan Informasi dan Dokumentasi di lingkungan Kementerian BUMN, yang di dalamnya mencakup ruang lingkup kewenangan Pelayanan Informasi Publik Kementerian BUMN serta penunjukan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Kementerian BUMN. Pemenuhan Pelayanan Informasi Publik di Kementerian BUMN juga mengacu pada Keputusan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Nomor KEP-01/PPID.KBUMN/09/2020 tanggal 8 September 2020 tentang Daftar Informasi Publik di Lingkungan Kementerian BUMN serta Keputusan PPID Nomor KEP-02/PPID.KBUMN/12/2018 Tanggal 21 Desember 2018 dan Daftar Informasi Dikecualikan di lingkungan Kementerian BUMN. Dalam rangka penilaian implementasi keterbukaan informasi Badan Publik tahun 2020, PPID Kementerian BUMN mendapat nilai skor 85.27 dengan kategori Keterbukaan Badan Publik &ldquo;Menuju Informatif&rdquo;. Tentunya hal ini semakin memacu PPID Kementerian BUMN untuk terus meningkatkan kualitas pelayanan informasi publik yang sejalan dengan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik. Selain menerima permohonan secara langsung, PPID Kementerian BUMN juga melayani permohonan informasi yang disampaikan secara tidak langsung. Pada Februari 2021, PPID Kementerian BUMN resmi meluncurkan Aplikasi Mobile PPID sehingga memperkaya kanal informasi yang dapat dimanfaatkan oleh masyarakat untuk mendapatkan informasi publik Kementerian BUMN.</span></p>\r\n</body>\r\n</html>	adminAssets/profil/profil_singkat/banner.png	adminAssets/profil/profil_singkat/sideImage.jpg	2022-11-28 18:49:55	2022-12-30 11:52:48
 \.
 
 
@@ -4560,6 +4596,8 @@ COPY public.proses_keberatan (id, id_ppid_keberatan, ket_jawaban, file_jawaban, 
 3	7	<p>tes 1 a</p>	\N	3	keberatan/jawaban/01-Keb-web-12-2022.pdf	2022-12-14 06:39:21	2022-12-14 06:39:21+07
 4	8	<p>asd keb 2</p>	keberatan/jawaban/02-Keb-web-12-2022-pendukung.jpg	3	keberatan/jawaban/02-Keb-web-12-2022.pdf	2022-12-14 07:21:48	2022-12-14 07:21:48+07
 5	13	<p>keb1</p>	\N	3	keberatan/jawaban/05-Keb-web-12-2022.pdf	2022-12-15 07:44:33	2022-12-15 07:44:33+07
+6	12	<p>tes sto</p>	keberatan/jawaban/03-Keb-web-12-2022-pendukung.png	7	keberatan/jawaban/03-Keb-web-12-2022.pdf	2022-12-23 14:02:25	2022-12-23 14:02:25+07
+7	11	<p>2222 222 222</p>	keberatan/jawaban/04-Keb-web-12-2022-pendukung.jpg	7	keberatan/jawaban/04-Keb-web-12-2022.pdf	2022-12-23 14:18:07	2022-12-23 14:18:07+07
 \.
 
 
@@ -4581,9 +4619,7 @@ COPY public.regulasis_banner (id, banner_path, created_at, updated_at, thumbnail
 --
 
 COPY public.regulasis_peraturankip (id, judul_peraturan, file_path, urutan, created_at, updated_at) FROM stdin;
-2	Peraturan Pemerintah Republik Indonesia Nomor 61 Tahun 2010 tentang Pelaksanaan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik	adminAssets/regulasi/peraturan_kip/PP 61 TAHUN 2010.pdf	2	2022-11-30 05:10:57	2022-11-30 05:10:57
-3	Peraturan Komisi Informasi Nomor 1 Tahun 2013 tentang Penyelesaian Sengketa Informasi Publik	adminAssets/regulasi/peraturan_kip/Perki_No.1_Tahun_2013_.pdf	3	2022-11-30 09:48:02	2022-11-30 09:48:02
-1	Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik	adminAssets/regulasi/peraturan_kip/UU_No_14_Tahun_2008.pdf	1	2022-11-28 19:31:08	2022-11-30 09:48:08
+4	Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik	adminAssets/regulasi/peraturan_kip/UU_No_14_Tahun_2008.pdf	1	2022-12-23 08:15:07	2022-12-23 08:15:07
 \.
 
 
@@ -4594,7 +4630,7 @@ COPY public.regulasis_peraturankip (id, judul_peraturan, file_path, urutan, crea
 --
 
 COPY public.regulasis_rancanganperaturankip (id, judul_peraturan, file_path, urutan, created_at, updated_at) FROM stdin;
-1	Rancangan Keputusan PPID Kementerian BUMN tentang Daftar Informasi Publik di Lingkungan Kementerian BUMN	adminAssets/regulasi/rancangan_peraturan_kip/Desain_Proses_Permohonan.pdf	1	2022-11-28 19:32:40	2022-11-28 19:32:40
+2	PP 61 Tahun 2010	adminAssets/regulasi/rancangan_peraturan_kip/PP 61 TAHUN 2010.pdf	1	2022-12-23 08:48:10	2022-12-23 08:48:41
 \.
 
 
@@ -4612,6 +4648,12 @@ COPY public.reject_permohonan (id, id_ppid_permohonan, id_template_reject, file,
 6	18	3	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-19 04:31:58	2022-12-19 04:31:58
 7	17	1	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-22 14:55:50	2022-12-22 14:55:50
 8	17	2	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-22 14:55:50	2022-12-22 14:55:50
+9	22	1	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-23 14:26:50	2022-12-23 14:26:50
+10	22	2	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-23 14:26:50	2022-12-23 14:26:50
+11	22	3	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-23 14:26:50	2022-12-23 14:26:50
+12	19	1	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-23 14:31:01	2022-12-23 14:31:01
+13	19	2	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-23 14:31:01	2022-12-23 14:31:01
+14	23	2	adminAssets/user/identitas/1669953041119.\npng	7	2022-12-23 14:35:10	2022-12-23 14:35:10
 \.
 
 
@@ -4664,6 +4706,39 @@ COPY public.role_has_permissions (permission_id, role_id) FROM stdin;
 12	3
 13	3
 14	3
+1	1
+2	1
+3	1
+4	1
+5	1
+6	1
+7	1
+8	1
+9	1
+10	1
+11	1
+12	1
+13	1
+14	1
+15	1
+16	1
+17	1
+18	1
+19	1
+20	1
+21	1
+22	1
+23	1
+24	1
+25	1
+26	1
+27	1
+28	1
+29	1
+30	1
+31	1
+32	1
+33	1
 15	3
 16	3
 17	3
@@ -4762,39 +4837,6 @@ COPY public.role_has_permissions (permission_id, role_id) FROM stdin;
 110	3
 111	3
 112	3
-1	1
-2	1
-3	1
-4	1
-5	1
-6	1
-7	1
-8	1
-9	1
-10	1
-11	1
-12	1
-13	1
-14	1
-15	1
-16	1
-17	1
-18	1
-19	1
-20	1
-21	1
-22	1
-23	1
-24	1
-25	1
-26	1
-27	1
-28	1
-29	1
-30	1
-31	1
-32	1
-33	1
 34	1
 35	1
 36	1
@@ -4898,10 +4940,10 @@ COPY public.roles (id, name, guard_name, created_at, updated_at) FROM stdin;
 --
 
 COPY public.sliders (id, image_path, judul, deskripsi, urutan, created_at, updated_at) FROM stdin;
-2	adminAssets/home/slider/g20real.png	\N	\N	2	2022-11-30 14:49:16	2022-11-30 14:49:16
-3	adminAssets/home/slider/kinerja20212.png	\N	\N	3	2022-11-30 14:50:17	2022-11-30 14:50:17
-4	adminAssets/home/slider/carousel-2.jpg	Mobile Apps PPID	Akses Informasi Lebih Cepat Dan Mudah	4	2022-11-30 14:50:55	2022-11-30 14:51:54
-1	adminAssets/home/slider/carousel-1.jpg	Selamat Datang  Di PPID Kementrian BUMN	\N	1	2022-11-30 12:04:48	2022-12-01 08:52:56
+5	adminAssets/home/slider/logo-bumn.png	1	1	1	2022-12-23 13:35:49	2022-12-30 03:06:53
+7	adminAssets/home/slider/logo-bumn.png	3	3	3	2022-12-23 13:36:07	2022-12-30 03:07:03
+6	adminAssets/home/slider/logo-bumn.png	2	2	2	2022-12-23 13:35:58	2022-12-30 03:07:22
+8	adminAssets/home/slider/logo-bumn.png	4	4	4	2022-12-23 13:36:22	2022-12-30 03:07:31
 \.
 
 
@@ -4926,7 +4968,7 @@ COPY public.sosialmedias (id, icon, url, urutan, created_at, updated_at) FROM st
 --
 
 COPY public.standarlayanans_biayalayanan (id, judul, deskripsi, banner_path, direktori_image, created_at, updated_at) FROM stdin;
-1	Bebas Biaya	<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p><span style="color: #000000; font-family: Lato; font-size: 20px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: capitalize; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Pelayanan Informasi Publik Di Lingkungan Kementerian BUMN&nbsp;</span><strong style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: Lato, sans-serif; text-transform: capitalize; text-decoration-line: none !important; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-weight: bolder; color: #000000; font-size: 20px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff;">Tidak Dipungut Biaya</strong><span style="color: #000000; font-family: Lato; font-size: 20px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: capitalize; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">&nbsp;Adapun Biaya Penggandaan Atau Perekaman Yang Timbul Ditanggung Oleh Pemohon Informasi Publik, Kecuali Untuk Informasi Yang Telah Ditentukan Biaya Penerimaan Negara Bukan Pajak (PNBP).</span></p>\r\n</body>\r\n</html>	adminAssets/standarlayanan/biayaLayanan/banner.png	adminAssets/standarlayanan/biayaLayanan/biaya.png	2022-12-01 01:40:03	2022-12-01 01:43:52
+1	Bebas Biaya xxxx	<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>pelayanan informasi publik xxxxx</p>\r\n</body>\r\n</html>	adminAssets/standarlayanan/biayaLayanan/banner.png	adminAssets/standarlayanan/biayaLayanan/biaya.jpg	2022-12-01 01:40:03	2022-12-30 14:10:50
 \.
 
 
@@ -4937,7 +4979,7 @@ COPY public.standarlayanans_biayalayanan (id, judul, deskripsi, banner_path, dir
 --
 
 COPY public.standarlayanans_maklumat (id, judul, banner_path, direktori_image, created_at, updated_at) FROM stdin;
-1	Maklumat PPID Kementerian BUMN	adminAssets/standarlayanan/maklumat/banner.png	adminAssets/standarlayanan/maklumat/maklumat.png	2022-12-01 01:37:40	2022-12-01 01:37:40
+1	Maklumat PPID Kementerian BUMN	adminAssets/standarlayanan/maklumat/banner.jpg	adminAssets/standarlayanan/maklumat/maklumat.jpg	2022-12-01 01:37:40	2022-12-30 14:08:36
 \.
 
 
@@ -4948,7 +4990,7 @@ COPY public.standarlayanans_maklumat (id, judul, banner_path, direktori_image, c
 --
 
 COPY public.standarlayanans_prosedurlayanan (id, banner_path, permohonan_direktori_image, keberatan_direktori_image, created_at, updated_at) FROM stdin;
-1	adminAssets/standarlayanan/prosedurLayanan/banner/banner.png	adminAssets/standarlayanan/prosedurLayanan/permohonan.png	adminAssets/standarlayanan/prosedurLayanan/keberatan.png	2022-12-01 01:38:13	2022-12-01 01:39:31
+1	adminAssets/standarlayanan/prosedurLayanan/banner/banner.jpg	adminAssets/standarlayanan/prosedurLayanan/permohonan.jpg	adminAssets/standarlayanan/prosedurLayanan/keberatan.jpg	2022-12-01 01:38:13	2022-12-30 14:10:13
 \.
 
 
@@ -4975,8 +5017,6 @@ COPY public.status (id, name) FROM stdin;
 --
 
 COPY public.status_keberatan (id, id_ppid_keberatan, id_jenis_status_keberatan, modified_date, modified_by, created_at, updated_at) FROM stdin;
-10	12	2	2022-12-14 03:52:23	\N	2022-12-14 03:52:23	2022-12-14 03:52:23
-9	11	2	2022-12-14 03:51:59	\N	2022-12-14 03:51:59	2022-12-14 03:51:59
 5	7	3	2022-12-13 04:50:23	\N	2022-12-13 04:50:23	2022-12-13 04:50:23
 6	8	3	2022-12-14 01:27:15	\N	2022-12-14 01:27:15	2022-12-14 01:27:15
 11	13	3	2022-12-15 07:43:53	\N	2022-12-15 07:43:53	2022-12-15 07:43:53
@@ -4985,6 +5025,8 @@ COPY public.status_keberatan (id, id_ppid_keberatan, id_jenis_status_keberatan, 
 13	15	1	2022-12-20 04:43:24	\N	2022-12-20 04:43:24	2022-12-20 04:43:24
 14	16	1	2022-12-20 04:45:11	\N	2022-12-20 04:45:11	2022-12-20 04:45:11
 15	17	1	2022-12-20 06:29:55	\N	2022-12-20 06:29:55	2022-12-20 06:29:55
+10	12	3	2022-12-14 03:52:23	\N	2022-12-14 03:52:23	2022-12-14 03:52:23
+9	11	3	2022-12-14 03:51:59	\N	2022-12-14 03:51:59	2022-12-14 03:51:59
 \.
 
 
@@ -5013,7 +5055,6 @@ COPY public.status_permohonan (id, id_ppid_permohonan, id_status, modified_by, m
 32	15	2	3	2022-12-15 07:56:48	t	2022-12-15 07:56:48	2022-12-15 07:56:48
 31	16	1	\N	2022-12-15 07:56:27	f	2022-12-15 07:56:27	2022-12-15 07:56:27
 33	16	5	3	2022-12-15 07:56:56	t	2022-12-15 07:56:56	2022-12-15 07:56:56
-36	19	1	\N	2022-12-19 03:49:10	t	2022-12-19 03:49:10	2022-12-19 03:49:10
 35	18	1	\N	2022-12-19 03:48:52	f	2022-12-19 03:48:52	2022-12-19 03:48:52
 37	18	5	7	2022-12-19 04:31:58	t	2022-12-19 04:31:58	2022-12-19 04:31:58
 38	20	1	\N	2022-12-19 04:32:52	f	2022-12-19 04:32:52	2022-12-19 04:32:52
@@ -5021,6 +5062,27 @@ COPY public.status_permohonan (id, id_ppid_permohonan, id_status, modified_by, m
 40	20	3	7	2022-12-19 08:14:06	t	2022-12-19 08:14:06	2022-12-19 08:14:06
 34	17	1	\N	2022-12-18 01:12:41	f	2022-12-18 01:12:41	2022-12-18 01:12:41
 41	17	5	7	2022-12-22 14:55:50	t	2022-12-22 14:55:50	2022-12-22 14:55:50
+42	21	1	\N	2022-12-23 14:24:41	f	2022-12-23 14:24:41	2022-12-23 14:24:41
+44	21	2	7	2022-12-23 14:26:04	f	2022-12-23 14:26:04	2022-12-23 14:26:04
+45	21	4	7	2022-12-23 14:26:23	t	2022-12-23 14:26:23	2022-12-23 14:26:23
+43	22	1	\N	2022-12-23 14:24:49	f	2022-12-23 14:24:49	2022-12-23 14:24:49
+46	22	5	7	2022-12-23 14:26:50	t	2022-12-23 14:26:50	2022-12-23 14:26:50
+36	19	1	\N	2022-12-19 03:49:10	f	2022-12-19 03:49:10	2022-12-19 03:49:10
+47	19	5	7	2022-12-23 14:31:01	t	2022-12-23 14:31:01	2022-12-23 14:31:01
+48	23	1	\N	2022-12-23 14:34:49	f	2022-12-23 14:34:49	2022-12-23 14:34:49
+49	23	5	7	2022-12-23 14:35:10	t	2022-12-23 14:35:10	2022-12-23 14:35:10
+51	25	1	\N	2022-12-27 04:52:51	t	2022-12-27 04:52:51	2022-12-27 04:52:51
+53	27	1	\N	2022-12-29 06:23:18	t	2022-12-29 06:23:18	2022-12-29 06:23:18
+52	26	1	\N	2022-12-29 06:23:04	f	2022-12-29 06:23:04	2022-12-29 06:23:04
+56	26	2	7	2022-12-29 06:24:55	f	2022-12-29 06:24:55	2022-12-29 06:24:55
+57	26	3	7	2022-12-29 06:25:51	f	2022-12-29 06:25:51	2022-12-29 06:25:51
+58	26	4	8	2022-12-29 06:33:04	t	2022-12-29 06:33:04	2022-12-29 06:33:04
+50	24	1	\N	2022-12-27 04:50:23	f	2022-12-27 04:50:23	2022-12-27 04:50:23
+59	24	2	7	2022-12-29 09:18:02	t	2022-12-29 09:18:02	2022-12-29 09:18:02
+55	29	1	\N	2022-12-29 06:23:41	f	2022-12-29 06:23:41	2022-12-29 06:23:41
+60	29	2	7	2023-01-01 15:53:04	t	2023-01-01 15:53:04	2023-01-01 15:53:04
+54	28	1	\N	2022-12-29 06:23:29	f	2022-12-29 06:23:29	2022-12-29 06:23:29
+61	28	2	7	2023-01-01 15:53:39	t	2023-01-01 15:53:39	2023-01-01 15:53:39
 \.
 
 
@@ -5055,9 +5117,9 @@ COPY public.strukturorganisasis_bagankanan (id, nomenklatur, deskripsi, urutan, 
 --
 
 COPY public.strukturorganisasis_bagankiri (id, nomenklatur, created_at, updated_at) FROM stdin;
-1	Menteri BUMN	2022-11-28 19:18:24	2022-11-28 19:18:24
-2	Atasan PPID Kementerian BUMN	2022-11-28 19:18:24	2022-11-28 19:18:24
-3	PPID Kementerian BUMN	2022-11-28 19:18:24	2022-11-28 19:18:24
+1	Menteri BUMN	2022-12-30 12:02:50	2022-12-30 12:02:50
+2	Atasan PPID Kementerian BUMN	2022-12-30 12:02:50	2022-12-30 12:02:50
+3	PPID Kementerian BUMN	2022-12-30 12:02:50	2022-12-30 12:02:50
 \.
 
 
@@ -5113,7 +5175,7 @@ COPY public.users (id, name, email, email_verified_at, password, jenispemohon, j
 2	User Role	user@role.test	\N	$2y$10$orU/biBH2Qk17UlHu/FBa.hOyjuqIdivYhp9AP9tZ6HKqaKCGgm0e	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-01 07:55:29
 6	user p	ppp@ppp.ppp	\N	$2y$10$yLmt/fd0PR8FHPMUTEFUwuX9LpI2dgHVilnVWd3v210PVAQMV1piC	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-13 06:25:44	2022-12-13 06:25:44
 7	super	super@role.test	\N	$2y$10$QHtc/TKisIinVcQj/aTqjeoPcekzMFYPE538j8ygQF.JSUgCAOfiW	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-15 08:54:28	2022-12-15 08:54:28
-1	adssadsad v	asd@asd.asd	\N	$2y$10$NsP2PQycmW9eUhXnqn2qA.92xA7ACQLSTVj03BLugQyuGil4M9XhS	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-01 07:55:29	2022-12-22 15:56:49
+8	user p2	p2p2@tes.tes	\N	$2y$10$gBwMwCZJsJAV8Tx17zytK.1HnT04Jo9oXCQgKiGn1Wbk0oJwLXU3u	\N	\N	\N	\N	\N	\N	\N	\N	\N	2022-12-29 05:07:04	2022-12-29 05:07:04
 \.
 
 
@@ -5173,7 +5235,7 @@ SELECT pg_catalog.setval('public.faqs_id_seq', 2, true);
 -- Name: forward_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.forward_permohonan_id_seq', 4, true);
+SELECT pg_catalog.setval('public.forward_permohonan_id_seq', 6, true);
 
 
 --
@@ -5218,7 +5280,7 @@ SELECT pg_catalog.setval('public.informasipubliks_setiapsaat_id_seq', 11, true);
 -- Name: informasis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.informasis_id_seq', 3, true);
+SELECT pg_catalog.setval('public.informasis_id_seq', 4, true);
 
 
 --
@@ -5236,7 +5298,7 @@ SELECT pg_catalog.setval('public.informasis_image_id_seq', 1, true);
 -- Name: jawab_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.jawab_permohonan_id_seq', 8, true);
+SELECT pg_catalog.setval('public.jawab_permohonan_id_seq', 13, true);
 
 
 --
@@ -5281,7 +5343,7 @@ SELECT pg_catalog.setval('public.kategori_keberatan_id_seq', 7, true);
 -- Name: kontaks_dokumentasiruangppid_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.kontaks_dokumentasiruangppid_id_seq', 2, true);
+SELECT pg_catalog.setval('public.kontaks_dokumentasiruangppid_id_seq', 4, true);
 
 
 --
@@ -5335,7 +5397,7 @@ SELECT pg_catalog.setval('public.laporans_banner_id_seq', 1, true);
 -- Name: laporans_hasil_survei_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.laporans_hasil_survei_id_seq', 1, true);
+SELECT pg_catalog.setval('public.laporans_hasil_survei_id_seq', 2, true);
 
 
 --
@@ -5344,7 +5406,7 @@ SELECT pg_catalog.setval('public.laporans_hasil_survei_id_seq', 1, true);
 -- Name: laporans_tahunan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.laporans_tahunan_id_seq', 4, true);
+SELECT pg_catalog.setval('public.laporans_tahunan_id_seq', 5, true);
 
 
 --
@@ -5353,7 +5415,7 @@ SELECT pg_catalog.setval('public.laporans_tahunan_id_seq', 4, true);
 -- Name: laporans_triwulanan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.laporans_triwulanan_id_seq', 4, true);
+SELECT pg_catalog.setval('public.laporans_triwulanan_id_seq', 5, true);
 
 
 --
@@ -5371,7 +5433,7 @@ SELECT pg_catalog.setval('public.linkapps_id_seq', 1, true);
 -- Name: log_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.log_permohonan_id_seq', 39, true);
+SELECT pg_catalog.setval('public.log_permohonan_id_seq', 59, true);
 
 
 --
@@ -5542,7 +5604,7 @@ SELECT pg_catalog.setval('public.ppid_menu_id_seq', 1, false);
 -- Name: ppid_pendaftar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ppid_pendaftar_id_seq', 10, true);
+SELECT pg_catalog.setval('public.ppid_pendaftar_id_seq', 16, true);
 
 
 --
@@ -5560,7 +5622,7 @@ SELECT pg_catalog.setval('public.ppid_permohonan_dkk_id_seq', 1, false);
 -- Name: ppid_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ppid_permohonan_id_seq', 20, true);
+SELECT pg_catalog.setval('public.ppid_permohonan_id_seq', 29, true);
 
 
 --
@@ -5605,7 +5667,7 @@ SELECT pg_catalog.setval('public.profilsingkats_id_seq', 2, true);
 -- Name: proses_keberatan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.proses_keberatan_id_seq', 5, true);
+SELECT pg_catalog.setval('public.proses_keberatan_id_seq', 7, true);
 
 
 --
@@ -5623,7 +5685,7 @@ SELECT pg_catalog.setval('public.regulasis_banner_id_seq', 1, true);
 -- Name: regulasis_peraturankip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.regulasis_peraturankip_id_seq', 3, true);
+SELECT pg_catalog.setval('public.regulasis_peraturankip_id_seq', 4, true);
 
 
 --
@@ -5632,7 +5694,7 @@ SELECT pg_catalog.setval('public.regulasis_peraturankip_id_seq', 3, true);
 -- Name: regulasis_rancanganperaturankip_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.regulasis_rancanganperaturankip_id_seq', 1, true);
+SELECT pg_catalog.setval('public.regulasis_rancanganperaturankip_id_seq', 2, true);
 
 
 --
@@ -5641,7 +5703,7 @@ SELECT pg_catalog.setval('public.regulasis_rancanganperaturankip_id_seq', 1, tru
 -- Name: reject_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reject_permohonan_id_seq', 8, true);
+SELECT pg_catalog.setval('public.reject_permohonan_id_seq', 14, true);
 
 
 --
@@ -5659,7 +5721,7 @@ SELECT pg_catalog.setval('public.roles_id_seq', 4, true);
 -- Name: sliders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sliders_id_seq', 4, true);
+SELECT pg_catalog.setval('public.sliders_id_seq', 8, true);
 
 
 --
@@ -5722,7 +5784,7 @@ SELECT pg_catalog.setval('public.status_keberatan_id_seq', 15, true);
 -- Name: status_permohonan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.status_permohonan_id_seq', 41, true);
+SELECT pg_catalog.setval('public.status_permohonan_id_seq', 61, true);
 
 
 --
@@ -5785,7 +5847,7 @@ SELECT pg_catalog.setval('public.tugasdanfungsis_id_seq', 1, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 7, true);
+SELECT pg_catalog.setval('public.users_id_seq', 8, true);
 
 
 --
@@ -6918,7 +6980,7 @@ ALTER TABLE ONLY public.submenus
     ADD CONSTRAINT submenus_main_menu_id_foreign FOREIGN KEY (main_menu_id) REFERENCES public.mainmenus(id);
 
 
--- Completed on 2022-12-23 13:53:37
+-- Completed on 2023-01-02 07:57:48
 
 --
 -- PostgreSQL database dump complete
