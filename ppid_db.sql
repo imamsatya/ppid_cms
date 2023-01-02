@@ -5,7 +5,7 @@
 -- Dumped from database version 12.12
 -- Dumped by pg_dump version 12.12
 
--- Started on 2023-01-02 07:57:47
+-- Started on 2023-01-02 11:36:54
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -4582,7 +4582,7 @@ COPY public.ppid_regulasi_peraturan (id, nama_regulasi, direktori_file, "order",
 --
 
 COPY public.profilsingkats (id, judul, konten, banner_path, side_image_path, created_at, updated_at) FROM stdin;
-2	Tentang PPID Kementerian BUMN	<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p style="line-height: 1.4;"><span style="color: #474747; font-family: Lato, sans-serif; font-size: 11pt; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Sejalan dengan semangat Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik, Pelayanan Informasi Publik di lingkungan Kementerian BUMN mengacu pada Peraturan Menteri BUMN Nomor: PER-09/MBU/08/2020 tentang Perubahan Kedua Atas Peraturan Menteri BUMN Nomor: PER-08/MBU/2014 tanggal 30Juni 2014 tentang Pedoman Pengelolaan Informasi dan Dokumentasi di lingkungan Kementerian BUMN, yang di dalamnya mencakup ruang lingkup kewenangan Pelayanan Informasi Publik Kementerian BUMN serta penunjukan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Kementerian BUMN. Pemenuhan Pelayanan Informasi Publik di Kementerian BUMN juga mengacu pada Keputusan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Nomor KEP-01/PPID.KBUMN/09/2020 tanggal 8 September 2020 tentang Daftar Informasi Publik di Lingkungan Kementerian BUMN serta Keputusan PPID Nomor KEP-02/PPID.KBUMN/12/2018 Tanggal 21 Desember 2018 dan Daftar Informasi Dikecualikan di lingkungan Kementerian BUMN. Dalam rangka penilaian implementasi keterbukaan informasi Badan Publik tahun 2020, PPID Kementerian BUMN mendapat nilai skor 85.27 dengan kategori Keterbukaan Badan Publik &ldquo;Menuju Informatif&rdquo;. Tentunya hal ini semakin memacu PPID Kementerian BUMN untuk terus meningkatkan kualitas pelayanan informasi publik yang sejalan dengan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik. Selain menerima permohonan secara langsung, PPID Kementerian BUMN juga melayani permohonan informasi yang disampaikan secara tidak langsung. Pada Februari 2021, PPID Kementerian BUMN resmi meluncurkan Aplikasi Mobile PPID sehingga memperkaya kanal informasi yang dapat dimanfaatkan oleh masyarakat untuk mendapatkan informasi publik Kementerian BUMN.</span></p>\r\n</body>\r\n</html>	adminAssets/profil/profil_singkat/banner.png	adminAssets/profil/profil_singkat/sideImage.jpg	2022-11-28 18:49:55	2022-12-30 11:52:48
+2	Tentang PPID Kementerian BUMN	<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p style="line-height: 1.4;"><span style="color: #474747; font-family: Lato, sans-serif; font-size: 11pt; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">Sejalan dengan semangat Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik, Pelayanan Informasi Publik di lingkungan Kementerian BUMN mengacu pada Peraturan Menteri BUMN Nomor: PER-09/MBU/08/2020 tentang Perubahan Kedua Atas Peraturan Menteri BUMN Nomor: PER-08/MBU/2014 tanggal 30Juni 2014 tentang Pedoman Pengelolaan Informasi dan Dokumentasi di lingkungan Kementerian BUMN, yang di dalamnya mencakup ruang lingkup kewenangan Pelayanan Informasi Publik Kementerian BUMN serta penunjukan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Kementerian BUMN. Pemenuhan Pelayanan Informasi Publik di Kementerian BUMN juga mengacu pada Keputusan Pejabat Pengelola Informasi dan Dokumentasi (PPID) Nomor KEP-01/PPID.KBUMN/09/2020 tanggal 8 September 2020 tentang Daftar Informasi Publik di Lingkungan Kementerian BUMN serta Keputusan PPID Nomor KEP-02/PPID.KBUMN/12/2018 Tanggal 21 Desember 2018 dan Daftar Informasi Dikecualikan di lingkungan Kementerian BUMN. Dalam rangka penilaian implementasi keterbukaan informasi Badan Publik tahun 2020, PPID Kementerian BUMN mendapat nilai skor 85.27 dengan kategori Keterbukaan Badan Publik &ldquo;Menuju Informatif&rdquo;. Tentunya hal ini semakin memacu PPID Kementerian BUMN untuk terus meningkatkan kualitas pelayanan informasi publik yang sejalan dengan Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik. Selain menerima permohonan secara langsung, PPID Kementerian BUMN juga melayani permohonan informasi yang disampaikan secara tidak langsung. Pada Februari 2021, PPID Kementerian BUMN resmi meluncurkan Aplikasi Mobile PPID sehingga memperkaya kanal informasi yang dapat dimanfaatkan oleh masyarakat untuk mendapatkan informasi publik Kementerian BUMN.</span></p>\r\n</body>\r\n</html>	adminAssets/profil/profil_singkat/banner.png	adminAssets/profil/profil_singkat/sideImage.png	2022-11-28 18:49:55	2023-01-02 04:08:20
 \.
 
 
@@ -5003,10 +5003,9 @@ COPY public.standarlayanans_prosedurlayanan (id, banner_path, permohonan_direkto
 COPY public.status (id, name) FROM stdin;
 1	Permohonan Masuk
 3	Diteruskan
-6	Selesai
 2	Dikonfirmasi
-4	Dijawab
 5	Ditolak
+4	Selesai
 \.
 
 
@@ -6980,7 +6979,7 @@ ALTER TABLE ONLY public.submenus
     ADD CONSTRAINT submenus_main_menu_id_foreign FOREIGN KEY (main_menu_id) REFERENCES public.mainmenus(id);
 
 
--- Completed on 2023-01-02 07:57:48
+-- Completed on 2023-01-02 11:36:55
 
 --
 -- PostgreSQL database dump complete
