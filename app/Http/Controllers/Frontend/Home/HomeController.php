@@ -22,10 +22,12 @@ class HomeController extends Controller
         //
         // dd('halo');
         $slider = new Slider();
-        $slider = $slider::all();
+        $slider = $slider->orderBy('urutan', 'asc')->get();
+
 
         $informasi = new Informasi();
-        $informasi = $informasi::all()->sortBy('urutan');
+        $informasi = $informasi->orderBy('urutan', 'asc')->get();
+
 
         $informasiImage = new InformasiImage();
         $informasiImage = $informasiImage->first();
@@ -35,13 +37,13 @@ class HomeController extends Controller
 
         $response = Http::get('https://bumn.go.id/api/pressconference');
         $siaranPers = $response->json();
-     
+
         if ($siaranPers['status'] == 1) {
             $siaranPers = $siaranPers['data'];
-        }else{
+        } else {
             $siaranPers = null;
         }
-        
+
 
         return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers'));
     }
