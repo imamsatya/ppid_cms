@@ -1,7 +1,12 @@
 <x-frontend.layout>
     @push('head-scripts')
-        <link href="{{ asset('ppid_fe/assets/css/page/profile/kontak/index.css') }}" rel="stylesheet" />
         <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
+        <link href="{{ asset('ppid_fe/assets/css/page/profile/kontak/index.css') }}" rel="stylesheet" />
+        <style>
+            p::first-letter {
+                text-transform: none;
+            }
+        </style>
     @endpush
     <!-- Informasi -->
     <section class="informasi_kontak">
