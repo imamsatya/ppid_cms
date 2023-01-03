@@ -8,71 +8,56 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
     <?php $__env->startPush('head-scripts'); ?>
-        <link href="<?php echo e(asset('ppid_fe/assets/css/page/standartLayanan/biaya/index.css')); ?>" rel="stylesheet" />
-        <style>
-            p::first-letter {
-                text-transform: none;
-            }
-
-            span {
-                text-transform: none;
-            }
-        </style>
+        <link href="<?php echo e(asset('ppid_fe/assets/css/page/profile/tentangPPID/index.css')); ?>" rel="stylesheet" />
     <?php $__env->stopPush(); ?>
-    <!-- content -->
-    <section class="content-biaya">
+    <section class="informasi_tentang_ppid">
         <div class="container">
-            <div class="title-label ml-5 mr-5 text-center">
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for=""><?php echo e($biayaLayanan->judul ?? ''); ?></label>
-                    </div>
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <label for="" class="title_tentang_ppid"><?php echo e($profilSingkat->judul ?? ''); ?></label>
                 </div>
             </div>
 
-            <div class="informasi ml-5 mr-5 text-center">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p style="text-transform: none;">
+            <div class="row">
+                <div class="col-md-8" id="konten">
 
-                            <?php echo $biayaLayanan->deskripsi ?? ''; ?>
 
-                        </p>
-                    </div>
+                    <?php echo $profilSingkat->konten ?? ''; ?>
+
+
+
+
                 </div>
-            </div>
-
-            <div class="images">
-                <div class="row">
-                    <?php if($biayaLayanan): ?>
-                        <div class="col-md-12">
-                            <img src="<?php echo e(asset('storage/' . $biayaLayanan->direktori_image)); ?>" alt="">
-                        </div>
-                    <?php endif; ?>
+                <div class="col-md-4">
+                    <div class="images">
+                        
+                        <img src="<?php echo e(asset('storage/'.$profilSingkat->side_image_path ?? '')); ?>" class="img-fluid"
+                            alt="" />
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- content -->
-
-
-
      <?php $__env->slot('bannerText1', null, []); ?> 
-        Standar Layanan / Biaya
+        Profil / Profil Singkat
          <?php $__env->endSlot(); ?>
          <?php $__env->slot('bannerText2', null, []); ?> 
-            Biaya Layanan
+            Profil Singkat
              <?php $__env->endSlot(); ?>
-             <?php $__env->slot('isActiveStandarLayanan', null, []); ?> 
+             <?php $__env->slot('isActiveProfil', null, []); ?> 
                 active
                  <?php $__env->endSlot(); ?>
                 <?php $__env->startPush('child-scripts'); ?>
+                    <script>
+                        // document.getElementById('konten').childNodes[1].className = 'informasi'
+                    </script>
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url(<?php echo e(asset('storage/' . $biayaLayanan->banner_path ?? '')); ?>);
+                            background-image: url(<?php echo e(asset('storage/'.$profilSingkat->banner_path ?? '')); ?>);
                             background-repeat: no-repeat;
+                            /*Prevent showing multiple background images*/
                             background-size: 100% 300px;
                             height: 300px;
                             padding: 100px 100px 100px 100px;
@@ -85,4 +70,4 @@
 <?php $component = $__componentOriginal0653dab4c090fb8906ed9fe87faf66f0cf84ed50; ?>
 <?php unset($__componentOriginal0653dab4c090fb8906ed9fe87faf66f0cf84ed50); ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/frontend/standarlayanan/standart-biaya-layanan.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/frontend/profil/profile-tentang-ppid.blade.php ENDPATH**/ ?>

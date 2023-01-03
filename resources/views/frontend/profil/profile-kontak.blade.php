@@ -6,6 +6,10 @@
             p::first-letter {
                 text-transform: none;
             }
+
+            span {
+                text-transform: none;
+            }
         </style>
     @endpush
     <!-- Informasi -->
