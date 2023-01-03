@@ -1,6 +1,11 @@
 <x-frontend.layout>
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/standartLayanan/biaya/index.css') }}" rel="stylesheet" />
+        <style>
+            p::first-letter {
+                text-transform: none;
+            }
+        </style>
     @endpush
     <!-- content -->
     <section class="content-biaya">

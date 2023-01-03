@@ -171,9 +171,7 @@ body {
 }
 
 
-p::first-letter {
- text-transform: uppercase;
- }
+
 
  p{
   text-align: center !important;
