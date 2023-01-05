@@ -233,7 +233,8 @@
         Route::current()->getName() != 'register' &&
         Route::current()->getName() != 'signup' &&
         Route::current()->getName() != 'userppid.lupa_password' &&
-        Route::current()->getName() != 'userppid.ganti_password'): ?>
+        Route::current()->getName() != 'userppid.ganti_password' &&
+        Route::current()->getName() != 'userppid.verifikasi'): ?>
         <!-- Banner -->
         <section class="banner blackw magnif">
             <div class="container">
@@ -291,7 +292,8 @@
         Route::current()->getName() != 'register' &&
         Route::current()->getName() != 'signup' &&
         Route::current()->getName() != 'userppid.lupa_password' &&
-        Route::current()->getName() != 'userppid.ganti_password'): ?>
+        Route::current()->getName() != 'userppid.ganti_password' &&
+        Route::current()->getName() != 'userppid.verifikasi'): ?>
         <!-- Button Back -->
         <div class="container mt-4 mb-4">
             <div class="row">

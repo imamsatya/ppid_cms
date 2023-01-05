@@ -114,7 +114,9 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 */
 // Frontend
 
-
+Route::get('/tesemail', function () {
+    return view('activation');
+});
 //User PPID
 
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
@@ -127,6 +129,10 @@ Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name
 Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
 Route::get('ganti_password', [UserPPIDLoginController::class, 'gantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password');
 Route::post('ganti_password', [UserPPIDLoginController::class, 'handleGantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password.store');
+
+Route::get('verifikasi', [UserPPIDLoginController::class, 'verifikasi'])->middleware('guest:usersppid')->name('userppid.verifikasi');
+Route::post('verifikasi', [UserPPIDLoginController::class, 'handleVerifikasi'])->middleware('guest:usersppid')->name('verifikasi.store');
+Route::post('resend_otp', [UserPPIDLoginController::class, 'handleResendOTP'])->middleware('guest:usersppid')->name('resend_otp.store');
 
 
 //User Admin

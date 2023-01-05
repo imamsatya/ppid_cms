@@ -49,9 +49,8 @@
                             <div class="circle-two"></div>
                         </div>
                         <p class="detail">
-                            Silahkan Login untuk mengajukan permohonan informasi, keberatan
-                            informasi, atau untuk mengetahui status permohonan informasi dan
-                            keberatan informasi yang sudah diajukan.
+                            Silahkan masukkan email anda yang terdaftar dengan aplikasi PPID Kementerian Badan Usaha
+                            Milik Negara.
                         </p>
                         <div class="row">
                             <div class="col-md-12">
@@ -69,7 +68,7 @@
                     <div class="form-login">
                         <div class="label-login d-flex align-items-center">
                             <img src="<?php echo e(asset('ppid_fe/assets/images/content/icon/ic_people.svg')); ?>" alt="" />
-                            <span class="ml-2">Login</span>
+                            <span class="ml-2">Reset Password</span>
                         </div>
                         <?php if($errors->any()): ?>
                             <div class="alert alert-danger">
@@ -90,30 +89,9 @@
                                 </button>
                             </div>
                         <?php endif; ?>
-                        <?php if(\Session::has('error-belum_verifikasi')): ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <?php echo e(Session::get('error-belum_verifikasi')); ?> <br><br>
-                                Silakan melakukan aktivasi di halaman <a
-                                    href="<?php echo e(route('userppid.verifikasi')); ?>">ini</a>
-                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <?php endif; ?>
                         <?php if(\Session::has('register-success')): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <?php echo e(Session::get('register-success')); ?>
-
-                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <?php endif; ?>
-                        <?php if(\Session::has('success')): ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <?php echo e(Session::get('success')); ?>
 
                                 <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
                                     aria-label="Close">
@@ -150,53 +128,12 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
-                                        <input
-                                            class="form-control  <?php $__errorArgs = ['password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?> input-password"
-                                            placeholder="Password" type="password" autocapitalize="none"
-                                            name="password" />
-                                        <div class="input-group-addon text-center">
-                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                        </div>
-                                        <?php $__errorArgs = ['password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <div class="invalid-feedback">
-                                                <?php echo e($message); ?>
-
-                                            </div>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="input-group d-flex align-items-center">
-                                        <?php echo htmlFormSnippet(); ?>
-
-
-                                    </div>
-                                </div>
+                                
                             </div>
-                            <div class="lupa-password d-flex">
-                                <a href="<?php echo e(route('userppid.lupa_password')); ?>" class="ml-auto">Lupa Password</a>
-                            </div>
-                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
+
+                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Kirim Email</button>
                             <div class="not-register text-center mt-3">
-                                <span>Belum terdaftar?</span><a href="<?php echo e(route('signup')); ?>"
-                                    class="font-weight-bold">
+                                <span>Belum terdaftar?</span><a href="<?php echo e(route('signup')); ?>" class="font-weight-bold">
                                     Daftar</a>
                             </div>
                         </form>
@@ -276,4 +213,4 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal0653dab4c090fb8906ed9fe87faf66f0cf84ed50; ?>
 <?php unset($__componentOriginal0653dab4c090fb8906ed9fe87faf66f0cf84ed50); ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/auth/lupa-password.blade.php ENDPATH**/ ?>
