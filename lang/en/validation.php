@@ -189,6 +189,9 @@ return [
         ],
         'password_confirmation' => [
             'required' => 'konfirmasi password harus terisi'
+        ],
+        'kode_otp' => [
+            'required' => 'Kode OTP harus terisi'
         ]
     ],
 

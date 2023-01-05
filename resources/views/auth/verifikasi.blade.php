@@ -67,9 +67,8 @@
                             <div class="circle-two"></div>
                         </div>
                         <p class="detail">
-                            Silahkan Login untuk mengajukan permohonan informasi, keberatan
-                            informasi, atau untuk mengetahui status permohonan informasi dan
-                            keberatan informasi yang sudah diajukan.
+                            Silahkan masukkan kode OTP yang telah dikirimkan ke email anda untuk melakukan aktivasi
+                            akun.
                         </p>
                         <div class="row">
                             <div class="col-md-12">
@@ -87,7 +86,7 @@
                     <div class="form-login">
                         <div class="label-login d-flex align-items-center">
                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_people.svg') }}" alt="" />
-                            <span class="ml-2">Login</span>
+                            <span class="ml-2">Verifikasi OTP</span>
                         </div>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -107,26 +106,6 @@
                                 </button>
                             </div>
                         @endif
-                        @if (\Session::has('error-belum_verifikasi'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ Session::get('error-belum_verifikasi') }} <br><br>
-                                Silakan melakukan aktivasi di halaman <a
-                                    href="{{ route('userppid.verifikasi') }}">ini</a>
-                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-                        @if (\Session::has('register-success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ Session::get('register-success') }}
-                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
                         @if (\Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ Session::get('success') }}
@@ -137,54 +116,72 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('userppid.handleLogin') }}" id="demo-form" method="POST">
+                        <form action="{{ route('verifikasi.store') }}" id="demo-form" method="POST">
                             @csrf
+                            <div class="form-data">
+                                <div class="form-group">
+                                    <input type="text" class="form-control @error('kode_otp') is-invalid @enderror"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp" autocapitalize="off"
+                                        placeholder="Kode OTP" name="kode_otp" value="{{ old('kode_otp') }}" />
+                                    @error('kode_otp')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Aktivasi</button>
+                            <div class="not-register text-center mt-3">
+                                <span>Belum mendapatkan kode ?</span><a href="javascript:void(0)" data-toggle="modal"
+                                    data-target="#exampleModal" class="font-weight-bold">
+                                    Kirim Ulang OTP</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal --}}
+        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Kirim Ulang Kode OTP</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="{{ route('resend_otp.store') }}" id="demo-form" method="POST">
+                        @csrf
+                        <div class="modal-body">
+
+
                             <div class="form-data">
                                 <div class="form-group">
                                     <input type="email" class="form-control @error('email') is-invalid @enderror"
                                         id="exampleInputEmail1" aria-describedby="emailHelp" autocapitalize="off"
-                                        placeholder="Alamat Email" name="email" value="{{ old('email') }}" />
+                                        placeholder="Email" name="email" value="{{ old('email') }}" />
                                     @error('email')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
-                                        <input
-                                            class="form-control  @error('password') is-invalid @enderror input-password"
-                                            placeholder="Password" type="password" autocapitalize="none"
-                                            name="password" />
-                                        <div class="input-group-addon text-center">
-                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                        </div>
-                                        @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="input-group d-flex align-items-center">
-                                        {!! htmlFormSnippet() !!}
+                            </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lupa-password d-flex">
-                                <a href="{{ route('userppid.lupa_password') }}" class="ml-auto">Lupa Password</a>
-                            </div>
-                            <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
-                            <div class="not-register text-center mt-3">
-                                <span>Belum terdaftar?</span><a href="{{ route('signup') }}"
-                                    class="font-weight-bold">
-                                    Daftar</a>
-                            </div>
-                        </form>
-                    </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary-ppid mt-3" type="submit">Kirim</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

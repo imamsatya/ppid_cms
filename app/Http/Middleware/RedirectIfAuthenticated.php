@@ -44,6 +44,9 @@ class RedirectIfAuthenticated
                 }
 
                 if ($guard === 'usersppid') {
+                    // dd('halo');
+                    // $user = Auth::user();
+                    // dd($user);
                     return redirect()->route('dashboard.index');
                 }
 
