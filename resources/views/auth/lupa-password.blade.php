@@ -116,7 +116,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('userppid.handleLogin') }}" id="demo-form" method="POST">
+                        <form action="{{ route('forget.password.post') }}" id="demo-form" method="POST">
                             @csrf
                             <div class="form-data">
                                 <div class="form-group">
