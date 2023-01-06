@@ -8,8 +8,17 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
     <?php $__env->startPush('head-scripts'); ?>
-        <link href="<?php echo e(asset('ppid_fe/assets/css/page/profile/kontak/index.css')); ?>" rel="stylesheet" />
         <link href="<?php echo e(asset('ppid_fe/assets/css/page/home/index.css')); ?>" rel="stylesheet" />
+        <link href="<?php echo e(asset('ppid_fe/assets/css/page/profile/kontak/index.css')); ?>" rel="stylesheet" />
+        <style>
+            p::first-letter {
+                text-transform: none;
+            }
+
+            span {
+                text-transform: none;
+            }
+        </style>
     <?php $__env->stopPush(); ?>
     <!-- Informasi -->
     <section class="informasi_kontak">
