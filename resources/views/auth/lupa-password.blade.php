@@ -106,9 +106,9 @@
                                 </button>
                             </div>
                         @endif
-                        @if (\Session::has('register-success'))
+                        @if (\Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ Session::get('register-success') }}
+                                {{ Session::get('success') }}
                                 <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -129,29 +129,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                {{-- <div class="form-group">
-                                    <div class="input-group d-flex align-items-center" id="show_hide_password">
-                                        <input
-                                            class="form-control  @error('password') is-invalid @enderror input-password"
-                                            placeholder="Password" type="password" autocapitalize="none"
-                                            name="password" />
-                                        <div class="input-group-addon text-center">
-                                            <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                        </div>
-                                        @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="input-group d-flex align-items-center">
-                                        {!! htmlFormSnippet() !!}
-
-                                    </div>
-                                </div> --}}
                             </div>
 
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Kirim Email</button>

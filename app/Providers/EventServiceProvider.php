@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\Auth\UserActivationEmail' => [
             'App\Listeners\Auth\SendActivationEmail'
+        ],
+        'App\Events\Auth\UserForgotPasswordEmail' => [
+            'App\Listeners\Auth\SendForgotPasswordEmail'
         ]
 
     ];
