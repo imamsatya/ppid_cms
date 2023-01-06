@@ -118,6 +118,10 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::get('/tesemail', function () {
     return view('activation');
 });
+
+Route::get('/lupa', function () {
+    return view('forgot');
+});
 //User PPID
 
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])

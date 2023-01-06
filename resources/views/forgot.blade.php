@@ -133,7 +133,7 @@
                                             </div>
                                             <!--end:Text-->
                                             <!--begin:Action-->
-                                            <a href="{{ route('reset.password.get', $token) }}" target="_blank"
+                                            <a href="" target="_blank"
                                                 style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">
                                                 Reset Password</a>
                                             <!--begin:Action-->

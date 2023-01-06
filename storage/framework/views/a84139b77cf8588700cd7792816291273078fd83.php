@@ -17,13 +17,13 @@
     <meta property="og:url" content="https://keenthemes.com/metronic">
     <meta property="og:site_name" content="Keenthemes | Metronic">
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8">
-    <link rel="shortcut icon" href="{{ asset('template/dist/assets/media/logos/favicon.ico') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('template/dist/assets/media/logos/favicon.ico')); ?>">
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700">
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    {{-- <link href="{{ asset('template/dist/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css"> --}}
-    <link href="{{ asset('template/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css">
+    
+    <link href="<?php echo e(asset('template/dist/assets/css/style.bundle.css')); ?>" rel="stylesheet" type="text/css">
     <!--end::Global Stylesheets Bundle-->
     <!--Begin::Google Tag Manager -->
     <script type="text/javascript" async=""
@@ -58,9 +58,6 @@
     <script type="text/javascript" async=""
         src="https://www.google.com/pagead/1p-conversion/984933920/?random=1672885476999&amp;cv=11&amp;fst=1672885476999&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=2wgbu0&amp;u_w=1408&amp;u_h=880&amp;label=Vt4WCOa_-r4CEKDM09UD&amp;hn=www.google.com&amp;frm=0&amp;url=https%3A%2F%2Fpreview.keenthemes.com%2Fmetronic8%2Fdemo1%2Fauthentication%2Femail%2Fwelcome-message.html&amp;ref=https%3A%2F%2Fpreview.keenthemes.com%2Fmetronic8%2Fdemo1%2Fauthentication%2Femail%2Fsubscription-confirmed.html&amp;tiba=Metronic%20-%20the%20world's%20%231%20selling%20Bootstrap%20Admin%20Theme%20Ecosystem%20for%20HTML%2C%20VueJS%2C%20React%2C%20Angular.%20Laravel%2C%20Asp.Net%20Core%2C%20Ruby%20on%20Rails%2C%20Spring%20Boot%2C%20Blazor%2C%20Django%2C%20Express.js%2C%20Node&amp;value=0&amp;bttype=purchase&amp;auid=1926162748.1670293958&amp;gcp=1&amp;sscte=1&amp;ct_cookie_present=1&amp;rfmt=3&amp;fmt=4">
     </script>
-    <style>
-
-    </style>
 
 </head>
 <!--end::Head-->
@@ -114,7 +111,7 @@
                                             <!--begin:Media-->
                                             <div style="margin-bottom: 15px">
                                                 <img alt="Logo"
-                                                    src="{{ asset('template/dist/assets/media/email/icon-positive-vote.svg') }}">
+                                                    src="<?php echo e(asset('template/dist/assets/media/email/icon-positive-vote.svg')); ?>">
                                             </div>
                                             <!--end:Media-->
                                             <!--begin:Text-->
@@ -122,20 +119,20 @@
                                                 style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
                                                 <p
                                                     style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">
-                                                    Halo {{ $nama_lengkap }}</p>
-                                                {{-- <p style="margin-bottom:9px; color:#7E8299">Kode OTP Anda Adalah <span
-                                                        style="color:#181C32; font-size: 18px; font-weight:700">123456</span>
-                                                </p> --}}
+                                                    Halo <?php echo e($user->nama_lengkap); ?>, Terimakasih Sudah Mendaftar</p>
+                                                <p style="margin-bottom:9px; color:#7E8299">Kode OTP Anda Adalah <span
+                                                        style="color:#181C32; font-size: 18px; font-weight:700"><?php echo e($user->token_activation); ?></span>
+                                                </p>
 
-                                                <p style="margin-bottom:2px; color:#7E8299">Silakan klik tombol di bawah
-                                                    ini untuk melakukan reset password
+                                                <p style="margin-bottom:2px; color:#7E8299">Silakan masukan kode OTP
+                                                    tersebut untuk verifikasi akun anda dengan klik tombol dibawah ini
                                                 </p>
                                             </div>
                                             <!--end:Text-->
                                             <!--begin:Action-->
-                                            <a href="{{ route('reset.password.get', $token) }}" target="_blank"
-                                                style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">
-                                                Reset Password</a>
+                                            <a href="<?php echo e(route('userppid.verifikasi')); ?>" target="_blank"
+                                                style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Aktivasi
+                                                Akun</a>
                                             <!--begin:Action-->
                                         </div>
                                         <!--end:Email content-->
@@ -170,3 +167,4 @@
 <!--end::Body-->
 
 </html>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/emails/auth/activation.blade.php ENDPATH**/ ?>
