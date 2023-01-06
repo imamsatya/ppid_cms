@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\auth;
 
+use App\Events\Auth\UserActivationEmail;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -61,19 +62,14 @@ class RegisterController extends BaseController
             'npwp' => $request['npwp'],
             'pekerjaan' => $request['pekerjaan'],
             'identitas_file_path' =>  $identitasPath.$identitasName,
+            'token_activation' => Str::random(6),
+            'isVerified' => false
         ]);
 
-        $credentials = request(['email', 'password']);
-
-        if (! $token = Auth::guard('api')->setTTL(99999999999)->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+        event(new UserActivationEmail($user));
 
         return response()->json([
-            'name' => $request['name'],
-            'token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+            'message' => 'Registration success! Please check e-mail for verification',
         ]);
     }
 
@@ -90,7 +86,77 @@ class RegisterController extends BaseController
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        $body = json_decode($request->getContent(), true);
+        $email = $body['email'];
+
+        $user = UserPPID::where('email',$email) -> first();
+
+        if (!$user->isVerified) {
+            return response()->json([
+                'error' => 'E-mail is not verified yet!'
+            ], 402);
+        }
+
+
         return $this->respondWithToken($token);
+    }
+
+    /**
+     * Verify e-mail api
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function verifyEmail(Request $request)
+    {
+        $body = json_decode($request->getContent(), true);
+
+        if (!$body) {
+            return response()->json([
+                'error' => 'Data is not complete!'
+            ], 404);
+        }
+
+        $email = $body['email'];
+        $token = $body['token_activation'];
+
+        if (!$email || !$token) {
+            return response()->json([
+                'error' => 'Data is not complete!'
+            ], 404);
+        }
+
+        $user = UserPPID::where('email',$email) -> first();
+
+        if (!$user) {
+            return response()->json([
+                'error' => 'User not found!'
+            ], 404);
+        }
+
+        if ($user->isVerified) {
+            return $this->sendResponse('',
+                'User verified successfully');
+        }
+
+        $real_token = $user->token_activation;
+
+        if ($token != $real_token) {
+            return response()->json([
+                'error' => 'Token not correct!'
+            ], 401);
+        }
+
+        $currentUserId = $user->id;
+
+        $now = \Carbon\Carbon::now();
+
+        DB::table('ppid_pendaftar')->where('id', $currentUserId)->update([
+            'isVerified' => true,
+            "updated_at" => $now
+        ]);
+
+        return $this->sendResponse('',
+            'User verified successfully');
     }
 
     /**

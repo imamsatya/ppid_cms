@@ -62,6 +62,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('me', 'me');
     Route::put('update_profile', 'updateProfile');
     Route::put('update_password', 'updatePassword');
+    Route::post('verify_email', 'verifyEmail');
 });
 
 // LayananPPID
