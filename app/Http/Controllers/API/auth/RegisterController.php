@@ -34,7 +34,6 @@ class RegisterController extends BaseController
             'noidentitas' => 'required',
             'alamat' => 'required',
             'nohp' => 'required',
-            'npwp' => 'required',
             'pekerjaan' => 'required',
         ]);
 
@@ -60,7 +59,6 @@ class RegisterController extends BaseController
             'nomor_identitas' => $request['noidentitas'],
             'alamat' => $request['alamat'],
             'no_hp' => $request['nohp'],
-            'npwp' => $request['npwp'],
             'pekerjaan' => $request['pekerjaan'],
             'identitas_file_path' =>  $identitasPath.$identitasName,
             'token_activation' => Str::random(6),
