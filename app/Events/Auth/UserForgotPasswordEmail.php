@@ -21,12 +21,14 @@ class UserForgotPasswordEmail
      */
     public $token;
     public $email;
-    public function __construct(String $token, String $email)
+    public $nama_lengkap;
+    public function __construct(String $token, String $email, String $nama_lengkap)
     {
         //
 
         $this->token = $token;
         $this->email = $email;
+        $this->nama_lengkap = $nama_lengkap;
     }
 
     /**

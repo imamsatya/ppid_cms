@@ -130,9 +130,9 @@
                                             </div>
                                             <!--end:Text-->
                                             <!--begin:Action-->
-                                            <a href="" target="_blank"
-                                                style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Activate
-                                                Account</a>
+                                            <a href="{{ route('userppid.verifikasi') }}" target="_blank"
+                                                style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">Aktivasi
+                                                Akun</a>
                                             <!--begin:Action-->
                                         </div>
                                         <!--end:Email content-->

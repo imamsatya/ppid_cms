@@ -17,13 +17,13 @@
     <meta property="og:url" content="https://keenthemes.com/metronic">
     <meta property="og:site_name" content="Keenthemes | Metronic">
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8">
-    <link rel="shortcut icon" href="{{ asset('template/dist/assets/media/logos/favicon.ico') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('template/dist/assets/media/logos/favicon.ico')); ?>">
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700">
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    {{-- <link href="{{ asset('template/dist/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css"> --}}
-    <link href="{{ asset('template/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css">
+    
+    <link href="<?php echo e(asset('template/dist/assets/css/style.bundle.css')); ?>" rel="stylesheet" type="text/css">
     <!--end::Global Stylesheets Bundle-->
     <!--Begin::Google Tag Manager -->
     <script type="text/javascript" async=""
@@ -114,7 +114,7 @@
                                             <!--begin:Media-->
                                             <div style="margin-bottom: 15px">
                                                 <img alt="Logo"
-                                                    src="{{ asset('template/dist/assets/media/email/icon-positive-vote.svg') }}">
+                                                    src="<?php echo e(asset('template/dist/assets/media/email/icon-positive-vote.svg')); ?>">
                                             </div>
                                             <!--end:Media-->
                                             <!--begin:Text-->
@@ -122,10 +122,8 @@
                                                 style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
                                                 <p
                                                     style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700">
-                                                    Halo {{ $nama_lengkap }}</p>
-                                                {{-- <p style="margin-bottom:9px; color:#7E8299">Kode OTP Anda Adalah <span
-                                                        style="color:#181C32; font-size: 18px; font-weight:700">123456</span>
-                                                </p> --}}
+                                                    Halo Mikumiku</p>
+                                                
 
                                                 <p style="margin-bottom:2px; color:#7E8299">Silakan klik tombol di bawah
                                                     ini untuk melakukan reset password
@@ -133,7 +131,7 @@
                                             </div>
                                             <!--end:Text-->
                                             <!--begin:Action-->
-                                            <a href="{{ route('reset.password.get', $token) }}" target="_blank"
+                                            <a href="" target="_blank"
                                                 style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">
                                                 Reset Password</a>
                                             <!--begin:Action-->
@@ -170,3 +168,4 @@
 <!--end::Body-->
 
 </html>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/forgot.blade.php ENDPATH**/ ?>

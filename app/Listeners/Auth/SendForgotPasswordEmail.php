@@ -30,6 +30,6 @@ class SendForgotPasswordEmail
     public function handle(UserForgotPasswordEmail $prop)
     {
         //
-        Mail::to($prop->email)->send(new ForgotPasswordEmail($prop->token, $prop->email));
+        Mail::to($prop->email)->send(new ForgotPasswordEmail($prop->token, $prop->email, $prop->nama_lengkap));
     }
 }
