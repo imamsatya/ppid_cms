@@ -204,9 +204,9 @@ class RegisterController extends BaseController
                     'token' => $token,
                     'created_at' => Carbon::now()
                 ]);
-            }
 
-            event(new UserForgotPasswordEmail($token, $email));
+                event(new UserForgotPasswordEmail($token, $email));
+            }
 
             return $this->sendResponse('',
                 'Forgot Password token sent successfully');
