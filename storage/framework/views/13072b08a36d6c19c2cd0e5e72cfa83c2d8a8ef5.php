@@ -100,7 +100,7 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?php echo e(route('userppid.handleLogin')); ?>" id="demo-form" method="POST">
+                        <form action="<?php echo e(route('forget.password.post')); ?>" id="demo-form" method="POST">
                             <?php echo csrf_field(); ?>
                             <div class="form-data">
                                 <div class="form-group">

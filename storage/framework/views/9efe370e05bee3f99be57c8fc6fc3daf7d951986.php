@@ -170,4 +170,4 @@
 <!--end::Body-->
 
 </html>
-<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/activation.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/ppid_cms/resources/views/activation.blade.php ENDPATH**/ ?>
