@@ -63,6 +63,9 @@ Route::controller(RegisterController::class)->group(function () {
     Route::put('update_profile', 'updateProfile');
     Route::put('update_password', 'updatePassword');
     Route::post('verify_email', 'verifyEmail');
+    Route::post('send_forgot_password_token', 'sendForgotPasswordToken');
+    Route::post('verify_forgot_password_token', 'verifyForgotPasswordToken');
+    Route::post('change_user_password_forgot', 'changeUserPasswordForgot');
 });
 
 // LayananPPID
