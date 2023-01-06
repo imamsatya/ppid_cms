@@ -18,9 +18,13 @@ class ForgotPasswordEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $token;
+    public $email;
+    public function __construct(String $token, String $email)
     {
         //
+        $this->token = $token;
+        $this->email = $email;
     }
 
     /**
@@ -28,12 +32,20 @@ class ForgotPasswordEmail extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Envelope
      */
+    public function build()
+
+    {
+
+        return $this->markdown('emails.auth.forgot_password');
+    }
     public function envelope()
     {
         return new Envelope(
-            subject: 'Forgot Password Email',
+            subject: 'Lupa Password Email',
         );
     }
+
+
 
     /**
      * Get the message content definition.

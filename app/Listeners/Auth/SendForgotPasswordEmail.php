@@ -2,9 +2,12 @@
 
 namespace App\Listeners\Auth;
 
-use App\Events\Auth\UserForgotPasswordEmail;
-use Illuminate\Contracts\Queue\ShouldQueue;
+
+use App\Mail\Auth\ForgotPasswordEmail;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Events\Auth\UserForgotPasswordEmail;
+use Mail;
 
 class SendForgotPasswordEmail
 {
@@ -24,8 +27,9 @@ class SendForgotPasswordEmail
      * @param  \App\Events\Auth\UserForgotPasswordEmail  $event
      * @return void
      */
-    public function handle(UserForgotPasswordEmail $event)
+    public function handle(UserForgotPasswordEmail $prop)
     {
         //
+        Mail::to($prop->email)->send(new ForgotPasswordEmail($prop->token, $prop->email));
     }
 }

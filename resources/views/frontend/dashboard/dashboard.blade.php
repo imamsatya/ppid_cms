@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -407,7 +407,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control tox-target" id="area-informasi-diminta" placeholder="Informasi yang diminta"></textarea>
+                                        <textarea class="form-control form-control-solid tox-target" rows="3" id="area-informasi-diminta"
+                                            placeholder="Informasi yang diminta"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" id="select-memperoleh-informasi"
@@ -424,7 +425,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="area-tujuan-penggunaan" placeholder="Tujuan penggunaan informasi"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" id="area-tujuan-penggunaan"
+                                            placeholder="Tujuan penggunaan informasi"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -491,7 +493,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <textarea class="form-control" id="perihal-keberatan-informasi" placeholder="Perihal Keberatan Informasi"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" id="perihal-keberatan-informasi"
+                                            placeholder="Perihal Keberatan Informasi"></textarea>
                                     </div>
                                 </div>
 
@@ -521,7 +524,7 @@
     @push('child-scripts')
         <script src="{{ asset('template/dist/assets/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('template/dist/assets/js/scripts.bundle.js') }}"></script>
-        <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+        {{-- <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script> --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{{ asset('template/dist/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
@@ -574,14 +577,14 @@
                     await ppidCaraMemberikan()
 
                     if (type == 'add-new') {
-                        tinymce.get("area-informasi-diminta").setContent('')
-                        tinymce.get("area-tujuan-penggunaan").setContent('')
+                        $("#area-informasi-diminta").val('')
+                        $("#area-tujuan-penggunaan").val('')
                         $("#id-permohonan-edited").val('')
                     } else {
                         const dataPermohonan = await ppidPermohonanUser(data)
                         $("#id-permohonan-edited").val(data)
-                        tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
-                        tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
+                        $("#area-informasi-diminta").val(dataPermohonan.result.informasi_diminta)
+                        $("#area-tujuan-penggunaan").val(dataPermohonan.result.tujuan_informasi)
                         $("#select-memberikan-informasi").val(dataPermohonan.result.id_cara)
                         $("#select-memperoleh-informasi").val(dataPermohonan.result.id_mendapatkan)
                     }
@@ -687,7 +690,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                alt="" /></a>` : '' }
+                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
@@ -841,8 +844,8 @@
                     selector: "#area-tujuan-penggunaan",
                     height: "300"
                 };
-                tinymce.init(configAreaInformasiDiminta);
-                tinymce.init(configAreaTujuanPenggunaan);
+                // tinymce.init(configAreaInformasiDiminta);
+                // tinymce.init(configAreaTujuanPenggunaan);
 
                 $("#save-permohonan").click(function() {
                     const user = {!! Auth::user()->toJson() !!}
@@ -852,8 +855,8 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_permohonan': '-',
                         'jenis_kanal': 'web',
-                        'informasi_diminta': tinymce.get("area-informasi-diminta").getContent(),
-                        'tujuan_informasi': tinymce.get("area-tujuan-penggunaan").getContent(),
+                        'informasi_diminta': $("#area-informasi-diminta").getContent(),
+                        'tujuan_informasi': $("#area-tujuan-penggunaan").getContent(),
                         'id_cara': $("#select-memberikan-informasi").val(),
                         'id_mendapatkan': $("#select-memperoleh-informasi").val(),
                         'file_identitas': user.identitas_file_path,
@@ -1001,12 +1004,12 @@
                     await ppidKategoriKeberatan()
 
                     if (type == 'add-new') {
-                        tinymce.get("perihal-keberatan-informasi").setContent('')
+                        $("#perihal-keberatan-informasi").val('')
                         $("#id-keberatan-edited").val('')
                     } else {
                         const dataKeberatan = await ppidKeberatanUser(data)
                         $("#id-keberatan-edited").val(data)
-                        tinymce.get("perihal-keberatan-informasi").setContent(dataKeberatan.result
+                        $("#perihal-keberatan-informasi").val(dataKeberatan.result
                             .perihal_keberatan)
 
                         $("#select-kategori-keberatan").val(dataKeberatan.result.id_kategori_keberatan)
@@ -1133,7 +1136,7 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_keberatan': '-',
                         'jenis_kanal': 'web',
-                        'perihal_keberatan': tinymce.get("perihal-keberatan-informasi")
+                        'perihal_keberatan': $("#perihal-keberatan-informasi")
                             .getContent(),
                         'id_kategori_keberatan': $("#select-kategori-keberatan")[0].value,
                         'id_permohonan': permohonanSebelumnya,
@@ -1328,7 +1331,7 @@
                     selector: "#perihal-keberatan-informasi",
                     height: "300"
                 }
-                tinymce.init(configPerihalKeberatanInformasi);
+                // tinymce.init(configPerihalKeberatanInformasi);
 
                 async function convertExpDate() {
 

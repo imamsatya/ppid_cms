@@ -89,9 +89,9 @@
                                 </button>
                             </div>
                         <?php endif; ?>
-                        <?php if(\Session::has('register-success')): ?>
+                        <?php if(\Session::has('success')): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <?php echo e(Session::get('register-success')); ?>
+                                <?php echo e(Session::get('success')); ?>
 
                                 <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
                                     aria-label="Close">
@@ -100,7 +100,7 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?php echo e(route('userppid.handleLogin')); ?>" id="demo-form" method="POST">
+                        <form action="<?php echo e(route('forget.password.post')); ?>" id="demo-form" method="POST">
                             <?php echo csrf_field(); ?>
                             <div class="form-data">
                                 <div class="form-group">
@@ -128,7 +128,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
-                                
+
                             </div>
 
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Kirim Email</button>

@@ -97,6 +97,7 @@ use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 //Users PPID Auth
 use App\Http\Controllers\Auth\UserPPIDLoginController;
 use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 
@@ -134,9 +135,9 @@ Route::post('verifikasi', [UserPPIDLoginController::class, 'handleVerifikasi'])-
 Route::post('resend_otp', [UserPPIDLoginController::class, 'handleResendOTP'])->middleware('guest:usersppid')->name('resend_otp.store');
 
 //forgot password
-Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
-Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->middleware('guest:usersppid')->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->middleware('guest:usersppid')->name('forget.password.post');
+// Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+Route::get('lupa-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+Route::post('lupa-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->middleware('guest:usersppid')->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.post');
 

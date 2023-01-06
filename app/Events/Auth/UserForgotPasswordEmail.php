@@ -19,9 +19,14 @@ class UserForgotPasswordEmail
      *
      * @return void
      */
-    public function __construct()
+    public $token;
+    public $email;
+    public function __construct(String $token, String $email)
     {
         //
+
+        $this->token = $token;
+        $this->email = $email;
     }
 
     /**
@@ -29,8 +34,8 @@ class UserForgotPasswordEmail
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
-    }
+    // public function broadcastOn()
+    // {
+    //     return new PrivateChannel('channel-name');
+    // }
 }

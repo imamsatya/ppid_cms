@@ -30,6 +30,8 @@ class SendActivationEmail
     public function handle(UserActivationEmail $event)
     {
         //
+
+
         if ($event->user->isVerified) {
             return;
         }
