@@ -100,7 +100,11 @@
                             </div>
                         <?php endif; ?>
 
+<<<<<<< HEAD:storage/framework/views/b82f7ad6b3505e761f4af14257f38aa29c4d4f28.php
+                        <form action="<?php echo e(route('forget.password.post')); ?>" id="demo-form" method="POST">
+=======
                         <form action="<?php echo e(route('verifikasi.store')); ?>" id="demo-form" method="POST">
+>>>>>>> 00e0e6d4f27c1ce9289ff496b0116173191de599:storage/framework/views/06e7f1e29fc76e52551e246133febcf839703ed6.php
                             <?php echo csrf_field(); ?>
                             <div class="form-data">
                                 <div class="form-group">
@@ -271,4 +275,4 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal0653dab4c090fb8906ed9fe87faf66f0cf84ed50; ?>
 <?php unset($__componentOriginal0653dab4c090fb8906ed9fe87faf66f0cf84ed50); ?>
 <?php endif; ?>
-<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/auth/verifikasi.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/ppid_cms/resources/views/auth/verifikasi.blade.php ENDPATH**/ ?>

@@ -4,8 +4,6 @@ namespace App\Listeners\Auth;
 
 use App\Events\Auth\UserActivationEmail;
 use App\Mail\Auth\ActivationEmail;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 
 
@@ -29,13 +27,14 @@ class SendActivationEmail
      */
     public function handle(UserActivationEmail $event)
     {
-        //
+        try {
+            if ($event->user->isVerified) {
+                return;
+            }
 
-
-        if ($event->user->isVerified) {
-            return;
+            Mail::to($event->user->email)->send(new ActivationEmail($event->user));
+        } catch (\Exception $ex) {
+            // skip if e-mail cannot be sent
         }
-
-        Mail::to($event->user->email)->send(new ActivationEmail($event->user));
     }
 }

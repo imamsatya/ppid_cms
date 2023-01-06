@@ -167,4 +167,4 @@
 <!--end::Body-->
 
 </html>
-<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/emails/auth/activation.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/ppid_cms/resources/views/emails/auth/activation.blade.php ENDPATH**/ ?>

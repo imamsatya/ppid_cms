@@ -9,6 +9,15 @@
 <?php $component->withAttributes([]); ?>
     <?php $__env->startPush('head-scripts'); ?>
         <link href="<?php echo e(asset('ppid_fe/assets/css/page/standartLayanan/biaya/index.css')); ?>" rel="stylesheet" />
+        <style>
+            p::first-letter {
+                text-transform: none;
+            }
+
+            span {
+                text-transform: none;
+            }
+        </style>
     <?php $__env->stopPush(); ?>
     <!-- content -->
     <section class="content-biaya">
