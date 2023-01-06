@@ -126,6 +126,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Pekerjaan</th>
+                        <th>Token Aktivasi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -136,6 +137,7 @@
                             <td>{{ $user->nama_lengkap }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->pekerjaan }}</td>
+                            <td>{{ $user->token_activation }}</td>
                             <td><a href="javascript:void(0)" class="btn btn-icon btn-primary me-2"
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_editAdmin"
                                     onclick="editDialog({{ $loop->index }})"><i class="bi bi-pencil fs-4 "></i></a>
