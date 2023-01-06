@@ -10,11 +10,9 @@ use Dompdf\Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Http\File;
 use App\Models\UserPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -155,6 +153,7 @@ class RegisterController extends BaseController
 
         DB::table('ppid_pendaftar')->where('id', $currentUserId)->update([
             'isVerified' => true,
+            'token_activation' => null,
             "updated_at" => $now
         ]);
 
