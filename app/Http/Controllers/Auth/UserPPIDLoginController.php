@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserActivationEmail;
 use App\Http\Controllers\Controller;
 use App\Models\UserPPID;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserPPIDLoginController extends Controller
 {
@@ -32,24 +34,34 @@ class UserPPIDLoginController extends Controller
     public function handleLogin(Request $request)
     {
 
-        $validated = $request->validate([
+        $request->validate([
 
             'email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
+
             ],
             'password' => ['required', 'min:6'],
             'g-recaptcha-response' =>  'recaptcha',
+
         ]);
+
         if (Auth::guard('usersppid')
             ->attempt($request->only(['email', 'password']))
         ) {
 
+            //isVerified true
+            if (Auth::guard('usersppid')->user()->isVerified) {
+                return redirect()
+                    ->route('dashboard.index');
+            }
 
+            Auth::guard('usersppid')
+                ->logout();
             return redirect()
-                ->route('dashboard.index');
+                ->route('userppid.login')->with('error-belum_verifikasi', 'Akun ' . $request->email . ' belum melakukan aktivasi');
         }
 
 
@@ -99,14 +111,18 @@ class UserPPIDLoginController extends Controller
                 // 'npwp' => $request['npwp'],
                 'pekerjaan' => $request['pekerjaan'],
                 'identitas_file_path' =>  'adminAssets/user/identitas/' . $fileName . '.' . $file->getClientOriginalExtension(),
+                'token_activation' => Str::random(6),
+                'isVerified' => false
             ]);
 
             $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
             $path = $file->storeAs('public/adminAssets/user/identitas', $fileName2);
             // $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
 
+            //send email
+            event(new UserActivationEmail($user));
             return redirect()
-                ->route('userppid.login')->with('register-success', 'Berhasil mendaftar');
+                ->route('userppid.verifikasi')->with('success', 'Berhasil mendaftar. Silakan cek email untuk melakukan aktivasi akun');
         }
     }
 
@@ -151,5 +167,46 @@ class UserPPIDLoginController extends Controller
 
         return redirect()
             ->route('userppid.login');
+    }
+
+    public function verifikasi()
+    {
+        return view('auth.verifikasi');
+    }
+
+    public function handleVerifikasi(Request $request)
+    {
+
+        $request->validate([
+            'kode_otp' => 'required',
+        ]);
+        $user = UserPPID::where('token_activation', $request->kode_otp)->first();
+        if ($user == null) {
+            return redirect()->back()->with("error", "OTP Salah. Silakan cek kembali");
+        } else {
+            $user->update([
+                'isVerified' => true,
+                'token_activation' => null
+            ]);
+            return redirect()->route('userppid.login')->with("success", "Aktivasi akun berhasil");;
+        }
+    }
+
+    public function handleResendOTP(Request $request)
+    {
+        $this->validate($request, ['email' => 'required|email|exists:ppid_pendaftar,email'], [
+            'email.exists' => 'Email tidak ditemukan, Silakan cek kembali'
+        ]);
+
+        $user = UserPPID::where('email', $request->email)->first();
+
+        if ($user == null) {
+            return redirect()->back()->with('error', 'Email Tidak Ditemukan');
+        } else {
+            $user->token_activation = Str::random(6);
+            $user->save();
+            event(new UserActivationEmail($user));
+            return redirect()->route('userppid.verifikasi')->with('success', 'Kode OTP Berhasil Dikirim. Silakan Cek Email Anda');
+        }
     }
 }

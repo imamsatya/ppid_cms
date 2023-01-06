@@ -107,9 +107,29 @@
                                 </button>
                             </div>
                         @endif
+                        @if (\Session::has('error-belum_verifikasi'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ Session::get('error-belum_verifikasi') }} <br><br>
+                                Silakan melakukan aktivasi di halaman <a
+                                    href="{{ route('userppid.verifikasi') }}">ini</a>
+                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         @if (\Session::has('register-success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ Session::get('register-success') }}
+                                <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        @if (\Session::has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ Session::get('success') }}
                                 <button type="button" class="close" style="line-height: 0.7;" data-dismiss="alert"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -159,7 +179,8 @@
                             </div>
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
                             <div class="not-register text-center mt-3">
-                                <span>Belum terdaftar?</span><a href="{{ route('signup') }}" class="font-weight-bold">
+                                <span>Belum terdaftar?</span><a href="{{ route('signup') }}"
+                                    class="font-weight-bold">
                                     Daftar</a>
                             </div>
                         </form>
