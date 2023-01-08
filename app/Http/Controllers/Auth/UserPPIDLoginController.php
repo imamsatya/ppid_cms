@@ -91,7 +91,7 @@ class UserPPIDLoginController extends Controller
             'nohp' => ['required'],
             // 'npwp' => ['required'],
             'pekerjaan' => ['required'],
-            'identitasfile' => ['required', 'mimes:png,jpg,jpeg', 'max:500'],
+            'identitasfile' => ['required'],
             'g-recaptcha-response' =>  'recaptcha',
 
         ]);

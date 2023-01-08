@@ -78,7 +78,6 @@ class ForgotPasswordController extends Controller
 
 
         if (!$updatePassword) {
-
             return back()->withInput()->with('error', 'Token tidak valid!');
         }
 

@@ -1,12 +1,19 @@
-<x-admin.layout>
+<?php if (isset($component)) { $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0 = $component; } ?>
+<?php $component = App\View\Components\Admin\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Admin\Layout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
 
 
 
     <h1>Daftar User Pemohon </h1>
-    @if ($errors->any())
+    <?php if($errors->any()): ?>
         <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-            {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-           </span> --}}
+            
             <!--begin::Icon-->
             <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -30,9 +37,9 @@
 
                 <!--begin::Content-->
                 <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
                 <!--end::Content-->
             </div>
@@ -55,12 +62,11 @@
             <!--end::Close-->
         </div>
 
-    @endif
-    @if (\Session::has('success'))
+    <?php endif; ?>
+    <?php if(\Session::has('success')): ?>
         <!--begin::Alert-->
         <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-            {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-            </span> --}}
+            
             <!--begin::Icon-->
             <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -83,7 +89,7 @@
                 <!--end::Title-->
 
                 <!--begin::Content-->
-                <span>{{ Session::get('success') }}</span>
+                <span><?php echo e(Session::get('success')); ?></span>
                 <!--end::Content-->
             </div>
             <!--end::Wrapper-->
@@ -105,10 +111,10 @@
             <!--end::Close-->
         </div>
         <!--end::Alert-->
-    @endif
+    <?php endif; ?>
 
     <br>
-    {{-- {{ $usersPPID }} --}}
+    
     <div class="card card-flush shadow-sm">
         <div class="card-header">
             <h3 class="card-title">Daftar User Pemohon </h3>
@@ -133,32 +139,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($usersPPID as $user)
+                    <?php $__currentLoopData = $usersPPID; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $user->nama_lengkap }}</td>
+                            <td><?php echo e($loop->index + 1); ?></td>
+                            <td><?php echo e($user->nama_lengkap); ?></td>
 
                             <td> <img width="100" height="100"
-                                    src="{{ asset('storage/' . $user->identitas_file_path) }}" />
+                                    src="<?php echo e(asset('storage/' . $user->identitas_file_path)); ?>" />
                             </td>
 
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->pekerjaan }}</td>
-                            @if ($user->isVerified)
+                            <td><?php echo e($user->email); ?></td>
+                            <td><?php echo e($user->pekerjaan); ?></td>
+                            <?php if($user->isVerified): ?>
                                 <td> <span class="badge py-3 px-4 fs-7 badge-light-success">Verified</span> </td>
-                            @else
-                                <td> {{ $user->token_activation }}</td>
-                            @endif
+                            <?php else: ?>
+                                <td> <?php echo e($user->token_activation); ?></td>
+                            <?php endif; ?>
 
                             <td><a href="javascript:void(0)" class="btn btn-icon btn-primary me-2"
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_editAdmin"
-                                    onclick="editDialog({{ $loop->index }})"><i class="bi bi-pencil fs-4 "></i></a>
-                                <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                    onclick="editDialog(<?php echo e($loop->index); ?>)"><i class="bi bi-pencil fs-4 "></i></a>
+                                <a href="javascript:void(0)" onclick="deleteDialog(<?php echo e($loop->index); ?>)"
                                     class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
 
                             </td>
                         </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                 </tbody>
@@ -197,10 +203,10 @@
                 <!--end::Modal header-->
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
-                    {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_pemohon.store') }}"
+                    
+                    <form id="kt_account_profile_details_form" action="<?php echo e(route('admin.user_pemohon.store')); ?>"
                         method="POST" class="form" enctype="multipart/form-data">
-                        @csrf
+                        <?php echo csrf_field(); ?>
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
 
@@ -214,7 +220,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="name"
                                         class="form-control form-control-lg form-control-solid" placeholder="Nama"
-                                        value="{{ old('name') }}" />
+                                        value="<?php echo e(old('name')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -235,9 +241,7 @@
                                         <option value="2">Kelompok</option>
                                         <option value="3">Badan Hukum</option>
                                     </select>
-                                    {{-- <input type="text" name="jenis_pemohon"
-                                        class="form-control form-control-lg form-control-solid"
-                                        placeholder="Jenis Pemohon" value="" /> --}}
+                                    
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -275,7 +279,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="noidentitas"
                                         class="form-control form-control-lg form-control-solid"
-                                        placeholder="No Identitas" value="{{ old('noidentitas') }}" />
+                                        placeholder="No Identitas" value="<?php echo e(old('noidentitas')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -290,7 +294,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="alamat"
                                         class="form-control form-control-lg form-control-solid" placeholder="Alamat"
-                                        value="{{ old('alamat') }}" />
+                                        value="<?php echo e(old('alamat')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -305,7 +309,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="nohp"
                                         class="form-control form-control-lg form-control-solid"
-                                        placeholder="No Handphone" value="{{ old('nohp') }}" />
+                                        placeholder="No Handphone" value="<?php echo e(old('nohp')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -322,7 +326,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="npwp"
                                         class="form-control form-control-lg form-control-solid" placeholder="NPWP"
-                                        value="{{ old('npwp') }}" />
+                                        value="<?php echo e(old('npwp')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -337,7 +341,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="pekerjaan"
                                         class="form-control form-control-lg form-control-solid"
-                                        placeholder="Pekerjaan" value="{{ old('pekerjaan') }}" />
+                                        placeholder="Pekerjaan" value="<?php echo e(old('pekerjaan')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -351,10 +355,10 @@
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                                        style="background-image: url(<?php echo e(asset('template/dist/assets/media/svg/avatars/blank.svg')); ?>)">
 
                                         <div class="image-input-wrapper w-250px  h-125px"
-                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                            style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                         </div>
 
 
@@ -405,7 +409,7 @@
                                 <div class="col-lg-8 fv-row">
                                     <input type="email" name="email"
                                         class="form-control form-control-lg form-control-solid" placeholder="Email"
-                                        value="{{ old('email') }}" />
+                                        value="<?php echo e(old('email')); ?>" />
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -445,7 +449,7 @@
                         <!--end::Card body-->
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                            
                             <button type="submit" class="btn btn-primary" id="addButton"
                                 onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                     Simpan
@@ -497,10 +501,10 @@
                 <!--end::Modal header-->
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
-                    {{-- Content Modal --}}
+                    
                     <form id="editForm" method="POST" class="form" enctype="multipart/form-data">
-                        @csrf
-                        @method('PATCH')
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('PATCH'); ?>
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
 
@@ -541,7 +545,7 @@
                             <!--end::Card body-->
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                
                                 <button type="submit" class="btn btn-primary" id="updateButton"
                                     onclick="activateLoadingButton('#updateButton')"><span class="indicator-label">
                                         Update
@@ -564,7 +568,7 @@
     <!--end::Modal - Edit User Pemohon-->
     <br>
 
-    @push('child-scripts')
+    <?php $__env->startPush('child-scripts'); ?>
         <script>
             $("#kt_datatable_dom_positioning_role").DataTable({
                 "language": {
@@ -579,7 +583,8 @@
             });
 
             function editDialog(index) {
-                let usersPPID = {{ Js::from($usersPPID) }}
+                let usersPPID = <?php echo e(Js::from($usersPPID)); ?>
+
                 let user = usersPPID[index]
 
                 document.getElementById('editForm').setAttribute('action', 'user_pemohon/' + user.id)
@@ -587,7 +592,8 @@
             };
 
             function deleteDialog(index) {
-                let usersPPID = {{ Js::from($usersPPID) }}
+                let usersPPID = <?php echo e(Js::from($usersPPID)); ?>
+
                 let user = usersPPID[index]
                 Swal.fire({
                     html: `Apakah yakin akan <strong>menghapus</strong> user <span class="badge badge-primary"> ${user.nama_lengkap}</span> ?`,
@@ -660,22 +666,28 @@
                     .value
             }
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
-    <x-slot:isShowAccordion_manajemenUser>
+     <?php $__env->slot('isShowAccordion_manajemenUser', null, []); ?> 
         show
-        </x-slot>
-        <x-slot:isActiveLink_manajemenUser>
+         <?php $__env->endSlot(); ?>
+         <?php $__env->slot('isActiveLink_manajemenUser', null, []); ?> 
             active
-            </x-slot>
-            <x-slot:isActiveLink_userPemohon>
+             <?php $__env->endSlot(); ?>
+             <?php $__env->slot('isActiveLink_userPemohon', null, []); ?> 
                 active
-                </x-slot>
-                <x-slot:subMenuTitle>
+                 <?php $__env->endSlot(); ?>
+                 <?php $__env->slot('subMenuTitle', null, []); ?> 
                     User Pemohon
-                    </x-slot>
+                     <?php $__env->endSlot(); ?>
 
-                    <x-slot:mainMenuTitle>
+                     <?php $__env->slot('mainMenuTitle', null, []); ?> 
                         Manajemen User
-                        </x-slot>
-</x-admin.layout>
+                         <?php $__env->endSlot(); ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0)): ?>
+<?php $component = $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0; ?>
+<?php unset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0); ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/admin/manajemen_user/user_pemohon.blade.php ENDPATH**/ ?>

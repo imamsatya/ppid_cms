@@ -139,7 +139,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -645,7 +645,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="<?php echo e(asset('storage/${data[i].file_jawaban}')); ?>"><img src="<?php echo e(asset('template/src/media/svg/files/dark/folder-document.svg')); ?>"
-                                                                                                                                                        alt="" /></a>` : '' }
+                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
@@ -811,8 +811,8 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_permohonan': '-',
                         'jenis_kanal': 'web',
-                        'informasi_diminta': $("#area-informasi-diminta").getContent(),
-                        'tujuan_informasi': $("#area-tujuan-penggunaan").getContent(),
+                        'informasi_diminta': $("#area-informasi-diminta").val(),
+                        'tujuan_informasi': $("#area-tujuan-penggunaan").val(),
                         'id_cara': $("#select-memberikan-informasi").val(),
                         'id_mendapatkan': $("#select-memperoleh-informasi").val(),
                         'file_identitas': user.identitas_file_path,
@@ -1096,7 +1096,7 @@
                         'ticket_keberatan': '-',
                         'jenis_kanal': 'web',
                         'perihal_keberatan': $("#perihal-keberatan-informasi")
-                            .getContent(),
+                            .val(),
                         'id_kategori_keberatan': $("#select-kategori-keberatan")[0].value,
                         'id_permohonan': permohonanSebelumnya,
 
