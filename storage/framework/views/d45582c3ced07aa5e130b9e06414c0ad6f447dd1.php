@@ -77,7 +77,7 @@
                             <div class="form-data">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="name" name="name"
-                                        aria-describedby="name" placeholder="Name" />
+                                        aria-describedby="name" placeholder="Nama Lengkap" />
                                     <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -426,8 +426,17 @@ unset($__errorArgs, $__bag); ?>
 
                 if (document.getElementById('jenispemohon').value == '1') {
                     document.getElementById('dokumenText').textContent = 'Upload KTP'
-                } else {
+                    document.getElementById('noidentitas').attributes.placeholder.value = 'No Identitas (KTP/NPWP'
+
+                }
+                if (document.getElementById('jenispemohon').value == '2') {
                     document.getElementById('dokumenText').textContent = 'Upload Dokumen'
+                    document.getElementById('noidentitas').attributes.placeholder.value = 'No Surat Kuasa'
+                }
+
+                if (document.getElementById('jenispemohon').value == '3') {
+                    document.getElementById('dokumenText').textContent = 'Upload Dokumen'
+                    document.getElementById('noidentitas').attributes.placeholder.value = 'No Anggaran Dasar'
                 }
             }
 

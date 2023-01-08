@@ -76,7 +76,7 @@
                             <div class="form-data">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="name" name="name"
-                                        aria-describedby="name" placeholder="Name" />
+                                        aria-describedby="name" placeholder="Nama Lengkap" />
                                     @error('name')
                                         <div class="" style="color: red">
                                             {{ $message }}
@@ -346,8 +346,17 @@
 
                 if (document.getElementById('jenispemohon').value == '1') {
                     document.getElementById('dokumenText').textContent = 'Upload KTP'
-                } else {
+                    document.getElementById('noidentitas').attributes.placeholder.value = 'No Identitas (KTP/NPWP'
+
+                }
+                if (document.getElementById('jenispemohon').value == '2') {
                     document.getElementById('dokumenText').textContent = 'Upload Dokumen'
+                    document.getElementById('noidentitas').attributes.placeholder.value = 'No Surat Kuasa'
+                }
+
+                if (document.getElementById('jenispemohon').value == '3') {
+                    document.getElementById('dokumenText').textContent = 'Upload Dokumen'
+                    document.getElementById('noidentitas').attributes.placeholder.value = 'No Anggaran Dasar'
                 }
             }
 
