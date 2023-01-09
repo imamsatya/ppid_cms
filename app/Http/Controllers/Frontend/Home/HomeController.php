@@ -9,6 +9,7 @@ use App\Models\ManajemenHome\Slider;
 use App\Models\ManajemenHome\Informasi;
 use App\Models\ManajemenHome\InformasiImage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -46,6 +47,41 @@ class HomeController extends Controller
 
 
         return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers'));
+    }
+
+    public function getDataStatistik()
+    {
+        $data = DB::select(DB::raw(
+            " 
+            select status_final, bulan, SUM(total) permohonan from
+(select status.id, status.name, bulan, total, (case
+        when status.id = 1 then 'masuk'
+        when status.id = 2 then 'proses'
+        when status.id = 3 then 'proses'
+        when status.id = 4 then 'selesai'
+        when status.id = 5 then 'selesai'
+    end
+    ) status_final from 
+    (
+        select 
+        DATE_PART(
+        'month', modified_date
+        ) bulan, id_status, count(*) total										
+        from status_permohonan
+        where aktif = TRUE and DATE_PART(
+            'year', modified_date
+            ) = '2022'
+        group by DATE_PART(
+            'month', modified_date
+            ), id_status
+    ) A
+	
+join status on status.id = A.id_status
+) B
+group by status_final, bulan
+        "
+        ));
+        echo json_encode(array('data' => $data));
     }
 
     /**

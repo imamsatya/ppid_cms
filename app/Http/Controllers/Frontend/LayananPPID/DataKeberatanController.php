@@ -106,6 +106,7 @@ class DataKeberatanController extends Controller
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
             // ->where('status_permohonan.aktif', 1)
             ->where('ppid_keberatan.id_ppid_pendaftar', $user->id)
+            ->orderByDesc('ppid_keberatan.created_at')
             ->get();
         echo json_encode(array('result' => $result, 'ses' => $user));
     }
