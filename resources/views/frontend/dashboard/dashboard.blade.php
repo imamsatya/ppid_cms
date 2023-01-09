@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -690,7 +690,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -762,23 +762,47 @@
                             confirmButton: "btn btn-primary",
                         },
                         showLoaderOnConfirm: true,
-                        preConfirm: async () => {
+                        // preConfirm: async () => {
+                        //     try {
+                        //         await deleteDataPermohonan(idPermohonan)
+                        //     } catch (error) {
+                        //         Swal.showValidationMessage(
+                        //             `Request failed: ${error}`
+                        //         )
+                        //     }
+                        // },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then(async (dt) => {
+                        if (dt.isConfirmed) {
+
                             try {
-                                await deleteDataPermohonan(idPermohonan)
+                                modalPermohonan.block();
+                                const result = await deleteDataPermohonan(idPermohonan)
+                                modalPermohonan.release();
+                                console.log('result Delete', result)
+
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menghapus data permohonan!'
+                                    })
+                                    $("#cancel-permohonan").click()
+                                    loadData()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        html: 'Permohonan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
                             } catch (error) {
                                 Swal.showValidationMessage(
                                     `Request failed: ${error}`
                                 )
                             }
-                        },
-                        allowOutsideClick: () => !Swal.isLoading()
-                    }).then((dt) => {
-                        if (dt.isConfirmed) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                html: 'Berhasil menghapus data permohonan!'
-                            })
+
+
                             loadData()
                         }
                     })

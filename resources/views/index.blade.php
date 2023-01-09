@@ -158,7 +158,7 @@
                             <div class="card-top">
                                 <div class="d-flex align-items-center">
                                     <div class="">
-                                        <span class="tahun">Tahun 2022</span>
+                                        <span class="tahun">Tahun {{ date('Y') }}</span>
                                     </div>
                                     <div class="ml-auto">
                                         <img class="img-fluid"
@@ -373,58 +373,101 @@
             }
         </script>
         <script>
-            const labels = ["Januari", "Februari", "Maret", "April", "Mei", "Juni"];
-            const labels2 = ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            $(document).ready(function() {
+                const labels = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 'Juli', 'Agustus', 'September',
+                    'Oktober',
+                    'November', 'Desember'
+                ];
 
-            // const dataStatistik = () => {
-            //     return $.ajax({
-            //         type: 'GET',
-            //         url: "data-statistik",
-            //         dataType: 'json'
-            //     })
-            // }
-            // console.log(dataStatistik())
-            const data = {
-                labels: labels,
-                datasets: [{
-                        label: "Masuk",
-                        backgroundColor: "#92E5E",
-                        borderColor: "#92E5EB",
-                        data: [0, 10, 5, 2, 20, 30, 45],
-                    },
-                    {
-                        label: "Proses",
-                        backgroundColor: "#104E70",
-                        borderColor: "#104E70",
-                        data: [0, 2, 40, 2, 20, 100, 20],
-                    },
-                    {
-                        label: "Selesai",
-                        backgroundColor: "#104E70",
-                        borderColor: "#104E70",
-                        data: [0, 4, 80, 4, 40, 200, 40],
-                    },
-                ],
-            };
 
-            const config = {
-                type: "bar",
-                data: data,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        htmlLegend: {
-                            // ID of the container to put the legend in
-                            containerID: "legend-container",
+                // const dataStatistik = () => {
+                //     return $.ajax({
+                //         type: 'GET',
+                //         url: "data-statistik",
+                //         dataType: 'json'
+                //     });
+                // }
+
+                const dataStatistik = {{ Js::from($dataStatistik) }};
+
+
+                console.log('dataS', dataStatistik)
+                let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
+                let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
+                let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
+                console.log('datamasuk', dataMasuk)
+                console.log('dataproses', dataProses)
+                console.log('dataselesai', dataSelesai)
+                let dataMasukFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ]
+
+                let dataProsesFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ]
+
+                let dataSelesaiFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ]
+
+                dataMasuk.forEach(element => {
+                    dataMasukFinal[element.bulan - 1] = element.permohonan
+                });
+
+                dataProses.forEach(element => {
+                    dataProsesFinal[element.bulan - 1] = element.permohonan
+                });
+
+                dataSelesai.forEach(element => {
+                    dataSelesaiFinal[element.bulan - 1] = element.permohonan
+                });
+
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                            label: "Permohonan Masuk",
+                            backgroundColor: "#7cb5ec",
+                            borderColor: "#7cb5ec",
+                            data: dataMasukFinal,
                         },
-                        legend: {
-                            position: "bottom",
+                        {
+                            label: "Permohonan Proses",
+                            backgroundColor: "#434348",
+                            borderColor: "#434348",
+                            data: dataProsesFinal,
+                        },
+                        {
+                            label: "Permohonan Selesai",
+                            backgroundColor: "#90ed7d",
+                            borderColor: "#90ed7d",
+                            data: dataSelesaiFinal,
+                        },
+                    ],
+                };
+
+                const config = {
+                    type: "bar",
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            htmlLegend: {
+                                // ID of the container to put the legend in
+                                containerID: "legend-container",
+                            },
+                            legend: {
+                                position: "bottom",
+                            },
                         },
                     },
-                },
-            };
+                };
 
-            const myChart = new Chart(document.getElementById("myChart"), config);
+                const myChart = new Chart(document.getElementById("myChart"), config);
+
+            })
         </script>
 
         <style>
