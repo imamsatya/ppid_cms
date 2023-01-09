@@ -177,7 +177,7 @@ class DataKeberatanController extends Controller
         // kalau keberatan diterima / diproses
         $this->prosesKeberatan($data, $keberatan, $dateCreated);
 
-        echo json_encode(array('result' => 'Berhasil mengkonfirmasi permohonan!', 'status' => 'success'));
+        echo json_encode(array('result' => 'Berhasil mengkonfirmasi keberatan!', 'status' => 'success'));
     }
 
     public function prosesKeberatan($data, $keberatan, $dateCreated)
