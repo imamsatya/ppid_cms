@@ -123,6 +123,7 @@ Route::get('/lupa', function () {
     return view('forgot');
 });
 //User PPID
+Route::get('data-statistik', [HomeController::class, 'getDataStatistik']);
 
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
 //     ->name('admin.home');

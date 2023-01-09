@@ -102,29 +102,44 @@ class DataPermohonanController extends Controller
     {
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
-
+        $result = true;
         if ($data['id'] == '') { // new data
             $this->addPermohonan($data, $dateCreated);
         } else { // update data
-            $this->editPermohonan($data, $dateCreated);
+            $result = $this->editPermohonan($data, $dateCreated);
         }
 
-        echo json_encode(array('result' => 'Berhasil menyimpan data!', 'status' => 'success'));
+        if ($result) {
+            echo json_encode(array('result' => 'Berhasil menyimpan data!', 'status' => 'success'));
+        } else {
+            echo json_encode(array('result' => 'Gagal menyimpan data, permohonan sudah dikonfirmasi admin!', 'status' => 'error'));
+        }
     }
 
     public function editPermohonan($data, $dateCreated)
     {
-        DB::table('ppid_permohonan')->where('id', $data['id'])->update([
-            'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
-            'ticket_permohonan' => $data['ticket_permohonan'],
-            'jenis_kanal' => $data['jenis_kanal'],
-            'informasi_diminta' => $data['informasi_diminta'],
-            'tujuan_informasi' => $data['tujuan_informasi'],
-            'id_cara' => $data['id_cara'],
-            'id_mendapatkan' => $data['id_mendapatkan'],
-            'file_identitas' => $data['file_identitas'],
-            "updated_at" => $dateCreated
-        ]);
+        $cekUser = DB::table('ppid_permohonan')->where('id', $data['id'])->first();
+        $statusPermohonan = DB::table('status_permohonan')->where('id_ppid_permohonan', $cekUser->id)->where('aktif', true)->first();
+
+
+        if ($statusPermohonan->id_status == 1) {
+            dd('true');
+            dd($statusPermohonan);
+            DB::table('ppid_permohonan')->where('id', $data['id'])->update([
+                'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
+                'ticket_permohonan' => $data['ticket_permohonan'],
+                'jenis_kanal' => $data['jenis_kanal'],
+                'informasi_diminta' => $data['informasi_diminta'],
+                'tujuan_informasi' => $data['tujuan_informasi'],
+                'id_cara' => $data['id_cara'],
+                'id_mendapatkan' => $data['id_mendapatkan'],
+                'file_identitas' => $data['file_identitas'],
+                "updated_at" => $dateCreated
+            ]);
+            return true;
+        }
+
+        return false;
     }
 
     public function addPermohonan($data, $dateCreated)

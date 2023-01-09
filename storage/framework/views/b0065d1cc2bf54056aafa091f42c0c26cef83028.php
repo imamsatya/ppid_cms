@@ -20,7 +20,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="<?php echo e(asset('ppid_fe/assets/float/float.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('ppid_fe/assets/float/fab.css')); ?>" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
     <style type="text/css">

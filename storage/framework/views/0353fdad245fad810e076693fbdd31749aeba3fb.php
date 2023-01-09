@@ -139,7 +139,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -645,7 +645,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="<?php echo e(asset('storage/${data[i].file_jawaban}')); ?>"><img src="<?php echo e(asset('template/src/media/svg/files/dark/folder-document.svg')); ?>"
-                                                                                                                                                                        alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
@@ -873,13 +873,23 @@
                                 modalPermohonan.block();
                                 const result = await submitDataPermohonan(data)
                                 modalPermohonan.release();
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Sukses',
-                                    html: 'Berhasil menyimpan data permohonan!'
-                                })
-                                $("#cancel-permohonan").click()
-                                loadData()
+                                console.log('result Submit', result)
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menyimpan data permohonan!'
+                                    })
+                                    $("#cancel-permohonan").click()
+                                    loadData()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        html: 'Gagal menyimpan data, permohonan sudah dikonfirmasi admin!'
+                                    });
+                                }
+
                             } catch (error) {
                                 Swal.fire({
                                     icon: 'error',
@@ -1271,7 +1281,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Sukses',
-                                html: 'Berhasil menghapus data keebratan!'
+                                html: 'Berhasil menghapus data keberatan!'
                             })
                             // loadData()
                             window.location.reload();
@@ -1292,7 +1302,7 @@
                     height: "300"
                 }
                 // tinymce.init(configPerihalKeberatanInformasi);
-
+                var jadwal = null
                 async function convertExpDate() {
 
                     tableKeberatanUI.block()
@@ -1303,8 +1313,10 @@
 
                     console.log('load ppidKeberatan', ppidKeberatan)
 
-                    jadwal = await jadwalKerja()
-                    jadwal = jadwal.result.data
+                    if (jadwal == null) {
+                        jadwal = await jadwalKerja()
+                        jadwal = jadwal.result.data
+                    }
 
                     ppidKeberatan.forEach(keberatan => {
                         console.log(`id keberatan ${keberatan.id}`)

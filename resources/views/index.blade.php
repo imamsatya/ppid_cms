@@ -5,11 +5,13 @@
         <link href="{{ asset('ppid_fe/assets/images/content/logo/favicon.ico') }}" rel="icon" />
         <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
 
-        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
-        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        {{-- <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
+        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" /> --}}
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> --}}
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> --}}
 
-        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+
+        {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" /> --}}
     @endpush
     <!-- Banner -->
     <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.1s">
@@ -225,8 +227,8 @@
                             @foreach ($video as $video_row)
                                 <div class="row {{ $loop->index < 1 ? 'outer_custom' : null }}">
                                     <div class="col-md-12">
-                                        <iframe class="w-100 video-galeri" height="315"
-                                            src="{{ $video_row->url }}" title="YouTube video player" frameborder="0"
+                                        <iframe class="w-100 video-galeri" height="315" src="{{ $video_row->url }}"
+                                            title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                     </div>
@@ -277,6 +279,7 @@
     @push('child-scripts')
         <script>
             $(".slider").owlCarousel({
+                navigation: true,
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -302,6 +305,7 @@
         </script>
         <script>
             $(".header-carousel").owlCarousel({
+                navigation: true,
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -328,6 +332,7 @@
         </script>
         <script>
             $(".slider_video").owlCarousel({
+                navigation: true,
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -368,27 +373,42 @@
             }
         </script>
         <script>
-            const labels = ["January", "February", "March", "April", "May", "June"];
+            const labels = ["Januari", "Februari", "Maret", "April", "Mei", "Juni"];
+            const labels2 = ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
 
+            // const dataStatistik = () => {
+            //     return $.ajax({
+            //         type: 'GET',
+            //         url: "data-statistik",
+            //         dataType: 'json'
+            //     })
+            // }
+            // console.log(dataStatistik())
             const data = {
                 labels: labels,
                 datasets: [{
-                        label: "My First dataset",
+                        label: "Masuk",
                         backgroundColor: "#92E5E",
                         borderColor: "#92E5EB",
                         data: [0, 10, 5, 2, 20, 30, 45],
                     },
                     {
-                        label: "My First dataset",
+                        label: "Proses",
                         backgroundColor: "#104E70",
                         borderColor: "#104E70",
                         data: [0, 2, 40, 2, 20, 100, 20],
+                    },
+                    {
+                        label: "Selesai",
+                        backgroundColor: "#104E70",
+                        borderColor: "#104E70",
+                        data: [0, 4, 80, 4, 40, 200, 40],
                     },
                 ],
             };
 
             const config = {
-                type: "line",
+                type: "bar",
                 data: data,
                 options: {
                     responsive: true,

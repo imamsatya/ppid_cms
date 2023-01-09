@@ -34,7 +34,7 @@ class DashboardController extends Controller
             ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             // ->where('status_permohonan.aktif', 1)
             ->where('ppid_keberatan.id_ppid_pendaftar', $user->id)
-            ->orderBy('created_at', 'asc')->get();
+            ->orderBy('created_at', 'desc')->get();
 
 
 
