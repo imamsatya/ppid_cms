@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -248,69 +248,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="bd-table-keberatan">
-                                        @if ($ppidKeberatan)
-                                            @foreach ($ppidKeberatan as $keberatan)
-                                                <tr>
-                                                    <td scope="row">
-                                                        {{ $keberatan->ticket_keberatan }}
-                                                    </td>
-                                                    <td>{!! $keberatan->perihal_keberatan !!}</td>
-                                                    <td>
-                                                        <div class="confirm d-flex align-items-start">
-                                                            {{-- <div class="circle-blue"></div> --}}
-                                                            <span class="ml-2">{{ $keberatan->nama_status }}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td id="expiredDate{{ $keberatan->id }}">
 
-                                                    </td>
-                                                    <td>
-                                                        @if ($keberatan->ket_jawaban_path)
-                                                            {{-- <a class="mb-4"
-                                                                href="{{ asset($keberatan->ket_jawaban_path) }}">File
-                                                                Jawaban</a> <br /> --}}
-                                                            <a rel='tooltip' data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-inverse"
-                                                                data-bs-placement="top" class="mb-4 jawban-file-st"
-                                                                title="File Jawaban"
-                                                                href="{{ asset('storage/' . $keberatan->ket_jawaban_path) }}"><img
-                                                                    src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
-                                                                    alt="" /></a>
-                                                        @endif
-                                                        @if ($keberatan->file_jawaban)
-                                                            {{-- <a href="{{ asset($keberatan->file_jawaban) }}">File
-                                                                
-                                                                Pendukung</a> --}}
-                                                            <a rel='tooltip' data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-inverse"
-                                                                data-bs-placement="top" class="jawban-file-st"
-                                                                title="File Pendukung"
-                                                                href="{{ asset('storage/' . $keberatan->file_jawaban) }}"><img
-                                                                    src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                    alt="" /></a>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($keberatan->nama_status == 'Belum Dikonfirmasi')
-                                                            <button class="btn btn-sm edit-keberatan"
-                                                                data-keberatan="{{ $keberatan->id }}">
-                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                                                                    alt="" />
-                                                            </button>
-                                                            <button class="btn btn-sm delete-keberatan"
-                                                                data-keberatan="{{ $keberatan->id }}">
-                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                                                                    alt="" />
-                                                            </button>
-                                                        @else
-                                                            -
-                                                        @endif
-
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        @endif
                                         {{-- <tr>
                                             <td scope="row">
                                                 <a href="#">10/Per-web/01/2022</a>
@@ -690,7 +628,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -791,8 +729,8 @@
                                     loadData()
                                 } else {
                                     Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error',
+                                        icon: 'warning',
+                                        title: 'Warning',
                                         html: 'Permohonan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
                                     });
                                 }
@@ -952,8 +890,8 @@
                                     loadData()
                                 } else {
                                     Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error',
+                                        icon: 'warning',
+                                        title: 'Warning',
                                         html: 'Permohonan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
                                     });
                                 }
@@ -1121,13 +1059,58 @@
                         const data = result.result
                         let rowData = []
                         for (let i = 0; i < data.length; i++) {
-                            rowData.push([
-                                data[i].ticket_keberatan,
-                                data[i].perihal_keberatan,
-                                data[i].nama_status,
-                                '-',
-                                '-',
-                                `<button class="btn btn-sm edit-keberatan" data-keberatan="${data[i].id}">
+
+                            //Expired Date
+                            let expiredDate = data[i].expired_date
+                            if (expiredDate && (data[i].id_status != 3)) {
+                                var start = moment().startOf('day');
+                                var end = moment(expiredDate, "YYYY-MM-DD");
+
+                                //Difference in number of days  
+                                // yovi
+                                let diff = moment.duration(end.diff(start)).asDays()
+                                const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
+                                            "YYYY-MM-DD") &&
+                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis ==
+                                    '1')
+                                expiredDate = diff >= 0 ?
+                                    `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
+                                    `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
+                            } else {
+                                expiredDate = '-- Selesai --'
+                            }
+
+                            if (data[i].id_status == 1) {
+                                expiredDate = '-'
+                            }
+
+
+
+                            //Jawaban Option
+                            let jawabanPath = ''
+                            if (data[i].ket_jawaban_path) {
+                                jawabanPath = `<a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="mb-4 jawban-file-st"
+                                                                title="File Jawaban"
+                                                                href="{{ asset('storage/${data[i] . ket_jawaban_path}') }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                                    alt="" /></a>`
+                            }
+
+                            let filePendukung = ''
+                            if (data[i].file_jawaban) {
+                                filePendukung = ` <a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="jawban-file-st"
+                                                                title="File Pendukung"
+                                                                href="{{ asset('storage/${data[i] . file_jawaban}') }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                    alt="" /></a>`
+                            }
+
+                            //buttonAction
+                            let buttonAction = `<button class="btn btn-sm edit-keberatan" data-keberatan="${data[i].id}">
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
                                     alt="" />
                             </button>
@@ -1135,6 +1118,15 @@
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
                                     alt="" />
                             </button>`
+                            rowData.push([
+                                data[i].ticket_keberatan,
+                                data[i].perihal_keberatan,
+                                data[i].nama_status,
+                                expiredDate,
+                                (jawabanPath == '' && filePendukung == '') ? '-' :
+                                `${jawabanPath} ${filePendukung}`,
+                                (data[i].id_status != 1) ? '-' : buttonAction
+
                             ])
                         }
 
@@ -1149,8 +1141,8 @@
 
                 const tableKeberatan = $("#table-keberatan").DataTable({
                     initComplete: function() {
-                        // loadDataKeberatan()
-                        convertExpDate()
+                        loadDataKeberatan()
+                        // convertExpDate()
 
                     }
                 });
@@ -1240,14 +1232,23 @@
                                 modalKeberatan.block();
                                 const result = await submitDataKeberatan(data)
                                 modalKeberatan.release();
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Sukses',
-                                    html: 'Berhasil menyimpan data Keberatan!'
-                                })
-                                $("#cancel-keberatan").click()
-                                // loadDataKeberatan()
-                                window.location.reload();
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menyimpan data keberatan!'
+                                    })
+                                    $("#cancel-keberatan").click()
+                                    loadDataKeberatan()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Warning',
+                                        html: 'Keberatan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
+
+                                // window.location.reload();
 
                             } catch (error) {
                                 Swal.fire({
@@ -1334,25 +1335,49 @@
                             confirmButton: "btn btn-primary",
                         },
                         showLoaderOnConfirm: true,
-                        preConfirm: async () => {
-                            try {
-                                await deleteDataKeberatan(idKeberatan)
-                            } catch (error) {
-                                Swal.showValidationMessage(
-                                    `Request failed: ${error}`
-                                )
-                            }
-                        },
+                        // preConfirm: async () => {
+                        //     try {
+                        //         await deleteDataKeberatan(idKeberatan)
+                        //     } catch (error) {
+                        //         Swal.showValidationMessage(
+                        //             `Request failed: ${error}`
+                        //         )
+                        //     }
+                        // },
                         allowOutsideClick: () => !Swal.isLoading()
-                    }).then((dt) => {
+                    }).then(async (dt) => {
                         if (dt.isConfirmed) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                html: 'Berhasil menghapus data keberatan!'
-                            })
-                            // loadData()
-                            window.location.reload();
+                            try {
+                                modalKeberatan.block();
+                                const result = await deleteDataKeberatan(idKeberatan)
+                                modalKeberatan.release();
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menghapus data keberatan!'
+                                    })
+                                    $("#cancel-keberatan").click()
+                                    loadDataKeberatan()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Warning',
+                                        html: 'Keberatan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
+
+                                // window.location.reload();
+
+                            } catch (error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    html: 'Terjadi kesalahan!'
+                                });
+                                console.log(error)
+                                modalKeberatan.release();
+                            }
                         }
                     })
                 })
@@ -1376,9 +1401,9 @@
 
                     tableKeberatanUI.block()
 
+                    const result = await getDataKeberatan()
 
-
-                    let ppidKeberatan = {{ Js::from($ppidKeberatan) }}
+                    let ppidKeberatan = result.result
                     console.log('load ppidKeberatan', ppidKeberatan)
 
                     if (jadwal == null) {

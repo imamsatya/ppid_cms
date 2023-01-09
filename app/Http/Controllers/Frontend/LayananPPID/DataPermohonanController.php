@@ -118,8 +118,8 @@ class DataPermohonanController extends Controller
 
     public function editPermohonan($data, $dateCreated)
     {
-        $cekUser = DB::table('ppid_permohonan')->where('id', $data['id'])->first();
-        $statusPermohonan = DB::table('status_permohonan')->where('id_ppid_permohonan', $cekUser->id)->where('aktif', true)->first();
+        $cekStatus = DB::table('ppid_permohonan')->where('id', $data['id'])->first();
+        $statusPermohonan = DB::table('status_permohonan')->where('id_ppid_permohonan', $cekStatus->id)->where('aktif', true)->first();
 
 
         if ($statusPermohonan->id_status == 1) {

@@ -20,14 +20,19 @@ class DataKeberatanController extends Controller
     {
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
-
+        $result = true;
         if ($data['id'] == '') { // new data
             $this->addKeberatan($data, $dateCreated);
         } else { // update data
-            $this->editKeberatan($data, $dateCreated);
+            $result =   $this->editKeberatan($data, $dateCreated);
         }
 
-        echo json_encode(array('result' => 'Berhasil menyimpan data!', 'status' => 'success'));
+        // echo json_encode(array('result' => 'Berhasil menyimpan data!', 'status' => 'success'));
+        if ($result) {
+            echo json_encode(array('result' => 'Berhasil menyimpan data!', 'status' => 'success'));
+        } else {
+            echo json_encode(array('result' => 'Gagal menyimpan data, keberatan sudah dikonfirmasi admin!', 'status' => 'error'));
+        }
     }
 
     public function addKeberatan($data, $dateCreated)
@@ -59,17 +64,21 @@ class DataKeberatanController extends Controller
 
     public function editKeberatan($data, $dateCreated)
     {
-
-
-        DB::table('ppid_keberatan')->where('id', $data['id'])->update([
-            'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
-            'ticket_keberatan' => $data['ticket_keberatan'],
-            'jenis_kanal' => 'web',
-            'perihal_keberatan' => $data['perihal_keberatan'],
-            'id_permohonan' => $data['id_permohonan'],
-            'id_kategori_keberatan' => $data['id_kategori_keberatan'],
-            "updated_at" => $dateCreated
-        ]);
+        $cekStatus = DB::table('ppid_keberatan')->where('id', $data['id'])->first();
+        $statusKeberatan = DB::table('status_keberatan')->where('id_ppid_keberatan', $cekStatus->id)->first();
+        if ($statusKeberatan->id_jenis_status_keberatan == 1) {
+            DB::table('ppid_keberatan')->where('id', $data['id'])->update([
+                'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
+                'ticket_keberatan' => $data['ticket_keberatan'],
+                'jenis_kanal' => 'web',
+                'perihal_keberatan' => $data['perihal_keberatan'],
+                'id_permohonan' => $data['id_permohonan'],
+                'id_kategori_keberatan' => $data['id_kategori_keberatan'],
+                "updated_at" => $dateCreated
+            ]);
+            return true;
+        }
+        return false;
     }
 
     public function ppidDataKeberatanSpec($id)
@@ -100,10 +109,20 @@ class DataKeberatanController extends Controller
         // status itu jenis_status_keberatan
         $user = Auth::guard('usersppid')->user();
         $result = DB::table('ppid_keberatan')
-            ->select('ppid_keberatan.*', 'jenis_status_keberatan.status as nama_status', 'jenis_status_keberatan.id as id_status', 'kategori_keberatan.jenis_keberatan as jenis_keberatan')
+            ->select(
+                'ppid_keberatan.*',
+                'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status',
+                'kategori_keberatan.jenis_keberatan as jenis_keberatan',
+                'proses_keberatan.ket_jawaban',
+                'proses_keberatan.ket_jawaban_path',
+                'proses_keberatan.file_jawaban',
+                'proses_keberatan.jawab_by'
+            )
             ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             // ->where('status_permohonan.aktif', 1)
             ->where('ppid_keberatan.id_ppid_pendaftar', $user->id)
             ->orderByDesc('ppid_keberatan.created_at')
@@ -121,8 +140,10 @@ class DataKeberatanController extends Controller
         if ($statusKeberatan && $statusKeberatan->id_jenis_status_keberatan == 1) { // belum dikonfirmasi
             DB::table('status_keberatan')->where('id_ppid_keberatan', $id)->delete();
             DB::table('ppid_keberatan')->where('id', $id)->delete();
+            echo json_encode(array('status' => 'success', 'result' => 'Berhasil menghapus data!'));
+        } else {
+            echo json_encode(array('status' => 'error', 'result' => 'Gagal menyimpan data, permohonan sudah dikonfirmasi admin!'));
         }
-        echo json_encode(array('status' => 'success', 'result' => 'Berhasil menghapus data!'));
     }
 
     public function ppidDataPermohonanSebelumnya(Request $request, $id)

@@ -38,7 +38,7 @@ class DataKeberatanController extends Controller
             ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
             ->whereIn('jenis_status_keberatan.id', [1, 2])
 
-            ->orderBy('created_at', 'asc')->get();
+            ->orderBy('created_at', 'desc')->get();
 
         $ppidKeberatanSelesai = DB::table('ppid_keberatan')
             ->select(
@@ -57,7 +57,7 @@ class DataKeberatanController extends Controller
             ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
             ->whereIn('jenis_status_keberatan.id', [3])
 
-            ->orderBy('created_at', 'asc')->get();
+            ->orderBy('created_at', 'desc')->get();
 
 
         return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan', 'ppidKeberatanSelesai'));
@@ -89,7 +89,7 @@ class DataKeberatanController extends Controller
             ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
 
 
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->where(function ($query) use ($status) {
                 if ($status != '-') {
                     $query->where('status_keberatan.id_jenis_status_keberatan', $status);
@@ -141,7 +141,7 @@ class DataKeberatanController extends Controller
 
 
 
-            ->orderBy('created_at', 'asc')
+            ->orderBy('created_at', 'desc')
             ->where(function ($query) use ($status) {
                 if ($status != '-') {
                     $query->where('status_keberatan.id_jenis_status_keberatan', $status);
