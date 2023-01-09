@@ -222,8 +222,10 @@ class DataPermohonanController extends Controller
             DB::table('status_permohonan')->where('id_ppid_permohonan', $id)->delete();
             DB::table('log_permohonan')->where('id_ppid_permohonan', $id)->delete();
             DB::table('ppid_permohonan')->where('id', $id)->delete();
+            echo json_encode(array('status' => 'success', 'result' => 'Berhasil menghapus data!'));
+        } else {
+            echo json_encode(array('status' => 'error', 'result' => 'Gagal menyimpan data, permohonan sudah dikonfirmasi admin!'));
         }
-        echo json_encode(array('status' => 'success', 'result' => 'Berhasil menghapus data!'));
     }
 
     public function ppidStatusPermohonan(Request $request)

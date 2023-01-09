@@ -10,6 +10,7 @@ use App\Models\ManajemenHome\Informasi;
 use App\Models\ManajemenHome\InformasiImage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,7 @@ class HomeController extends Controller
     {
         //
         // dd('halo');
+
         $slider = new Slider();
         $slider = $slider->orderBy('urutan', 'asc')->get();
 
@@ -45,12 +47,17 @@ class HomeController extends Controller
             $siaranPers = null;
         }
 
+        $dataStatistik = $this->getDataStatistik();
+        // dd($data[0]->status_final);
 
-        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers'));
+
+        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers', 'dataStatistik'));
     }
 
     public function getDataStatistik()
     {
+        $date = Carbon::now()->format('Y');
+
         $data = DB::select(DB::raw(
             " 
             select status_final, bulan, SUM(total) permohonan from
@@ -70,7 +77,7 @@ class HomeController extends Controller
         from status_permohonan
         where aktif = TRUE and DATE_PART(
             'year', modified_date
-            ) = '2022'
+            ) = '$date'
         group by DATE_PART(
             'month', modified_date
             ), id_status
@@ -81,7 +88,8 @@ join status on status.id = A.id_status
 group by status_final, bulan
         "
         ));
-        echo json_encode(array('data' => $data));
+        return $data;
+        // echo json_encode(array('data' => $data));
     }
 
     /**
