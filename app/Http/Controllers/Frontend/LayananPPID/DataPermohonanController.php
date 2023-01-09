@@ -123,8 +123,7 @@ class DataPermohonanController extends Controller
 
 
         if ($statusPermohonan->id_status == 1) {
-            dd('true');
-            dd($statusPermohonan);
+
             DB::table('ppid_permohonan')->where('id', $data['id'])->update([
                 'id_ppid_pendaftar' => $data['id_ppid_pendaftar'],
                 'ticket_permohonan' => $data['ticket_permohonan'],
