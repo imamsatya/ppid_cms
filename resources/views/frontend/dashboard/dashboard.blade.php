@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -690,7 +690,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -1085,10 +1085,14 @@
                     });
                 }
 
-
+                var jadwal = null
                 async function ppidDataKeberatan() {
 
                     try {
+                        if (jadwal == null) {
+                            jadwal = await jadwalKerja()
+                            jadwal = jadwal.result.data
+                        }
                         const result = await getDataKeberatan()
                         const data = result.result
                         let rowData = []
@@ -1328,6 +1332,7 @@
                         }
                     })
                 })
+
 
                 const submitDataKeberatan = (data) => {
                     return $.ajax({
