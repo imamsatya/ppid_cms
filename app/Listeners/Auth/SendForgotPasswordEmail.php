@@ -31,7 +31,7 @@ class SendForgotPasswordEmail
     {
         try {
             //
-            Mail::to($prop->email)->send(new ForgotPasswordEmail($prop->token, $prop->email));
+            Mail::to($prop->email)->send(new ForgotPasswordEmail($prop->token, $prop->email, $prop->nama_lengkap));
         } catch (\Exception $ex) {
             // skip if e-mail cannot be sent
         }
