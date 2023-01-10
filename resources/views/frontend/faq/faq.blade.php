@@ -1,6 +1,19 @@
 <x-frontend.layout>
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/faq/index.css') }}" rel="stylesheet" />
+        <style>
+            p::first-letter {
+                text-transform: none;
+            }
+
+            p {
+                text-transform: none;
+            }
+
+            span {
+                text-transform: none;
+            }
+        </style>
     @endpush
     <!-- Content -->
     <section class="content">
@@ -36,7 +49,7 @@
                                     <div id="{{ 'collapse' . $loop->index }}" class="collapse show"
                                         aria-labelledby="{{ 'heading' . $loop->index }}" data-parent="#accordion">
                                         <div class="card-body">
-                                            {{ $faq_row->jawaban }}
+                                            {!! $faq_row->jawaban !!}
                                         </div>
                                     </div>
                                 </div>

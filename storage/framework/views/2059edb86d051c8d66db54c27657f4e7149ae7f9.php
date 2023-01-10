@@ -380,10 +380,7 @@
 
 
                 for (let index = 0; index < dataMasukFinal.length; index++) {
-                    console.log(index, dataProsesFinal[index], 'proses');
-                    console.log(index, dataSelesaiFinal[index], 'selesai');
 
-                    console.log(dataProsesFinal[index] + dataSelesaiFinal[index])
                     dataMasukFinal[index] = parseInt(dataProsesFinal[index]) + parseInt(dataSelesaiFinal[index])
 
                 }

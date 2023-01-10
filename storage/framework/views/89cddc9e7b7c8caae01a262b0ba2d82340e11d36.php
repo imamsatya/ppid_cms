@@ -1,15 +1,22 @@
-<x-admin.layout>
-    <x-slot:subMenuTitle>
+<?php if (isset($component)) { $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0 = $component; } ?>
+<?php $component = App\View\Components\Admin\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Admin\Layout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('subMenuTitle', null, []); ?> 
         FAQ
-        </x-slot>
+         <?php $__env->endSlot(); ?>
 
-        <x-slot:mainMenuTitle>
+         <?php $__env->slot('mainMenuTitle', null, []); ?> 
             FAQ
-            </x-slot>
-            @if ($errors->any())
+             <?php $__env->endSlot(); ?>
+            <?php if($errors->any()): ?>
                 <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                 </span> --}}
+                    
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -34,9 +41,9 @@
 
                         <!--begin::Content-->
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                         <!--end::Content-->
                     </div>
@@ -59,12 +66,11 @@
                     <!--end::Close-->
                 </div>
 
-            @endif
-            @if (\Session::has('success'))
+            <?php endif; ?>
+            <?php if(\Session::has('success')): ?>
                 <!--begin::Alert-->
                 <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                    </span> --}}
+                    
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -87,7 +93,7 @@
                         <!--end::Title-->
 
                         <!--begin::Content-->
-                        <span>{{ Session::get('success') }}</span>
+                        <span><?php echo e(Session::get('success')); ?></span>
                         <!--end::Content-->
                     </div>
                     <!--end::Wrapper-->
@@ -109,11 +115,11 @@
                     <!--end::Close-->
                 </div>
                 <!--end::Alert-->
-            @endif
+            <?php endif; ?>
 
 
-            <form action="{{ route('admin.faq_banner.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+            <form action="<?php echo e(route('admin.faq_banner.store')); ?>" method="POST" enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
                 <div class="card card-flush shadow-sm">
 
                     <div class="card-body py-5">
@@ -122,27 +128,27 @@
                         <label for="" class="required form-label">Banner Image</label>
                         <br>
                         <div class="image-input image-input-outline" data-kt-image-input="true"
-                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                            style="background-image: url(<?php echo e(asset('template/dist/assets/media/svg/avatars/blank.svg')); ?>)">
                             <!--begin::Image preview wrapper-->
-                            @if ($faqBanner)
-                                @if ($faqBanner->banner_path)
+                            <?php if($faqBanner): ?>
+                                <?php if($faqBanner->banner_path): ?>
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('storage/' . $faqBanner->banner_path) }})">
+                                        style="background-image: url(<?php echo e(asset('storage/' . $faqBanner->banner_path)); ?>)">
                                     </div>
-                                @else
+                                <?php else: ?>
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                     </div>
-                                @endif
-                            @else
+                                <?php endif; ?>
+                            <?php else: ?>
                                 <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                 </div>
 
-                            @endif
+                            <?php endif; ?>
                             <!--end::Image preview wrapper-->
 
-                            @can('faq.edit')
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.edit')): ?>
                                 <!--begin::Edit button-->
                                 <label
                                     class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -174,10 +180,10 @@
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
                                 <!--end::Remove button-->
-                            @endcan
+                            <?php endif; ?>
                         </div>
                         <p>minimal dimensi 369x454 pixel</p>
-                        <br> @can('faq.create')
+                        <br> <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.create')): ?>
                             <button type="submit" class="btn btn-primary" id="addBannerButton"
                                 onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
                                     Simpan
@@ -187,7 +193,7 @@
                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
-                        @endcan
+                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -199,10 +205,10 @@
                 <div class="card-header">
                     <h3 class="card-title">FAQ</h3>
                     <div class="card-toolbar">
-                        @can('faq.create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.create')): ?>
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#kt_modal_tambahfaq">Tambah</a>
-                        @endcan
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="card-body py-5">
@@ -219,32 +225,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($faq)
-                                @foreach ($faq as $faq_row)
+                            <?php if($faq): ?>
+                                <?php $__currentLoopData = $faq; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq_row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $faq_row->pertanyaan }}</td>
+                                        <td><?php echo e($loop->index + 1); ?></td>
+                                        <td><?php echo e($faq_row->pertanyaan); ?></td>
 
-                                        <td>{{ $faq_row->jawaban }}</td>
-                                        @canany(['faq.edit', 'faq.delete'])
+                                        <td><?php echo e($faq_row->jawaban); ?></td>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['faq.edit', 'faq.delete'])): ?>
                                             <td>
-                                                @can('faq.edit')
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.edit')): ?>
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#kt_modal_editfaq"
-                                                        onclick="editDialog({{ $loop->index }})"
+                                                        onclick="editDialog(<?php echo e($loop->index); ?>)"
                                                         class="btn btn-icon btn-primary me-2"><i
                                                             class="bi bi-pencil fs-4 "></i></a>
-                                                @endcan
-                                                @can('faq.delete')
-                                                    <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                                <?php endif; ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.delete')): ?>
+                                                    <a href="javascript:void(0)" onclick="deleteDialog(<?php echo e($loop->index); ?>)"
                                                         class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
-                                                @endcan
+                                                <?php endif; ?>
 
                                             </td>
-                                        @endcan
+                                        <?php endif; ?>
                                     </tr>
-                                @endforeach
-                            @endif
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
 
                         </tbody>
                     </table>
@@ -285,10 +291,10 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
-                            {{-- Content Modal --}}
+                            
                             <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
                                 method="POST" class="form">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
 
@@ -322,9 +328,7 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            {{-- <input type="text" name="jawaban"
-                                                class="form-control form-control-lg form-control-solid"
-                                                placeholder="Jawaban" value="" /> --}}
+                                            
 
                                             <textarea name="jawaban" class="jawabanArea">
                                 
@@ -338,8 +342,8 @@
                                 <!--end::Card body-->
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('faq.create')
+                                    
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.create')): ?>
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Simpan
@@ -349,7 +353,7 @@
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                             </span>
                                         </button>
-                                    @endcan
+                                    <?php endif; ?>
                                 </div>
                                 <!--end::Actions-->
                             </form>
@@ -393,10 +397,10 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
-                            {{-- Content Modal --}}
+                            
                             <form id="editForm" method="POST" enctype="multipart/form-data" class="form">
-                                @method('PATCH')
-                                @csrf
+                                <?php echo method_field('PATCH'); ?>
+                                <?php echo csrf_field(); ?>
 
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -426,9 +430,7 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            {{-- <input type="text" id="editJawaban" name="jawaban"
-                                                class="form-control form-control-lg form-control-solid"
-                                                placeholder="Jawaban" value="" /> --}}
+                                            
 
                                             <textarea name="jawaban" class="jawabanArea" id="editJawaban">
                                 
@@ -450,8 +452,8 @@
                                 <!--end::Card body-->
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('faq.create')
+                                    
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.create')): ?>
                                         <button type="submit" class="btn btn-primary" id="updateButton"
                                             onclick="activateLoadingButton('#updateButton')"><span
                                                 class="indicator-label">
@@ -462,7 +464,7 @@
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                             </span>
                                         </button>
-                                    @endcan
+                                    <?php endif; ?>
                                 </div>
                                 <!--end::Actions-->
                             </form>
@@ -474,8 +476,8 @@
                 <!--end::Modal dialog-->
             </div>
             <!--end::Modal - Edit Bagan Kanan-->
-            @push('child-scripts')
-                <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+            <?php $__env->startPush('child-scripts'); ?>
+                <script src="<?php echo e(asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js')); ?>"></script>
                 <script>
                     let options = {
                         selector: ".jawabanArea",
@@ -598,7 +600,8 @@
 
                     function deleteDialog(index) {
 
-                        let faq = {{ Js::from($faq) }}
+                        let faq = <?php echo e(Js::from($faq)); ?>
+
 
                         faq = faq[index]
 
@@ -650,7 +653,8 @@
 
                     function editDialog(index) {
 
-                        let faq = {{ Js::from($faq) }}
+                        let faq = <?php echo e(Js::from($faq)); ?>
+
                         faq = faq[index]
                         document.getElementById('editPertanyaan').value = faq.pertanyaan
                         document.getElementById('editJawaban').value = faq.jawaban
@@ -661,6 +665,12 @@
                             faq.id)
                     };
                 </script>
-            @endpush
+            <?php $__env->stopPush(); ?>
 
-</x-admin.layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0)): ?>
+<?php $component = $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0; ?>
+<?php unset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0); ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/admin/faq/faq.blade.php ENDPATH**/ ?>
