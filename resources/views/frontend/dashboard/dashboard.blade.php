@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -628,7 +628,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -1070,9 +1070,10 @@
                                 // yovi
                                 let diff = moment.duration(end.diff(start)).asDays()
                                 const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
-                                            "YYYY-MM-DD") &&
-                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis ==
-                                    '1')
+                                        "YYYY-MM-DD") &&
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && (jd.jenis ==
+                                    '1' && jd.jenis ==
+                                    '2'))
                                 expiredDate = diff >= 0 ?
                                     `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                     `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
@@ -1423,9 +1424,10 @@
                             // yovi
                             let diff = moment.duration(end.diff(start)).asDays()
                             const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
-                                        "YYYY-MM-DD") &&
-                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis ==
-                                '1')
+                                    "YYYY-MM-DD") &&
+                                jd.tanggal <= end.format("YYYY-MM-DD")) && (jd.jenis ==
+                                '1' && jd.jenis ==
+                                '2'))
                             expiredDate = diff >= 0 ?
                                 `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                 `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
