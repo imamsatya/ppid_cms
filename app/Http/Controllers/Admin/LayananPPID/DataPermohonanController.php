@@ -255,7 +255,9 @@ class DataPermohonanController extends Controller
 
     public function jadwalKerja()
     {
-        $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
+
+        // $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
+        $response = Http::get('http://simanis.bumn.go.id/api/getjadwalkerja');
         echo json_encode(array('result' => $response->json()));
     }
 
