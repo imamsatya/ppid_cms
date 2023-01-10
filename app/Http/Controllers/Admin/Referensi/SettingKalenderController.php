@@ -20,7 +20,7 @@ class SettingKalenderController extends Controller
         $kalender = $response->json();
 
         $kalenderLibur = Arr::where($kalender['data'], function ($value, $key) {
-            return $value['keterangan'] !== null && ($value['jenis'] == 1);
+            return $value['keterangan'] !== null && $value['jenis'] == 1 && $value['jenis'] != 2;
         });
 
 
