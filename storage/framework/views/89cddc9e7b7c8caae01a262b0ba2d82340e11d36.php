@@ -231,7 +231,7 @@
                                         <td><?php echo e($loop->index + 1); ?></td>
                                         <td><?php echo e($faq_row->pertanyaan); ?></td>
 
-                                        <td><?php echo e($faq_row->jawaban); ?></td>
+                                        <td><?php echo $faq_row->jawaban; ?></td>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['faq.edit', 'faq.delete'])): ?>
                                             <td>
                                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.edit')): ?>

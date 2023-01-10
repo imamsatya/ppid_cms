@@ -225,7 +225,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $faq_row->pertanyaan }}</td>
 
-                                        <td>{{ $faq_row->jawaban }}</td>
+                                        <td>{!! $faq_row->jawaban !!}</td>
                                         @canany(['faq.edit', 'faq.delete'])
                                             <td>
                                                 @can('faq.edit')
