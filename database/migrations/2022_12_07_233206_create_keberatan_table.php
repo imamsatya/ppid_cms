@@ -23,7 +23,7 @@ return new class extends Migration
             $table->id();
             $table->string('ticket_keberatan');
             $table->string('jenis_kanal');
-            $table->string('perihal_keberatan');
+            $table->text('perihal_keberatan');
             $table->unsignedBigInteger('id_kategori_keberatan');
             $table->foreign('id_kategori_keberatan')->references('id')->on('kategori_keberatan');
             $table->unsignedBigInteger('id_permohonan')->nullable();

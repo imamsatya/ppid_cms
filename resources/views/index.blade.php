@@ -401,21 +401,19 @@
                 let dataMasukFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0
-                ]
+                ];
 
                 let dataProsesFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0
-                ]
+                ];
 
                 let dataSelesaiFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0
-                ]
+                ];
 
-                dataMasuk.forEach(element => {
-                    dataMasukFinal[element.bulan - 1] = element.permohonan
-                });
+
 
                 dataProses.forEach(element => {
                     dataProsesFinal[element.bulan - 1] = element.permohonan
@@ -424,6 +422,13 @@
                 dataSelesai.forEach(element => {
                     dataSelesaiFinal[element.bulan - 1] = element.permohonan
                 });
+
+
+                for (let index = 0; index < dataMasukFinal.length; index++) {
+
+                    dataMasukFinal[index] = parseInt(dataProsesFinal[index]) + parseInt(dataSelesaiFinal[index])
+
+                }
 
                 const data = {
                     labels: labels,
