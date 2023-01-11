@@ -5,11 +5,13 @@
         <link href="{{ asset('ppid_fe/assets/images/content/logo/favicon.ico') }}" rel="icon" />
         <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
 
-        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
-        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        {{-- <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
+        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" /> --}}
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> --}}
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> --}}
 
-        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+
+        {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" /> --}}
     @endpush
     <!-- Banner -->
     <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.1s">
@@ -156,7 +158,7 @@
                             <div class="card-top">
                                 <div class="d-flex align-items-center">
                                     <div class="">
-                                        <span class="tahun">Tahun 2022</span>
+                                        <span class="tahun">Tahun {{ date('Y') }}</span>
                                     </div>
                                     <div class="ml-auto">
                                         <img class="img-fluid"
@@ -191,7 +193,7 @@
                                             <div class="card">
                                                 <img class="card-img-top img-fluid"
                                                     src="{{ 'https://bumn.go.id/storage/' . $siaranPers[$i]['image_path'] }}"
-                                                    alt="Card image cap" />
+                                                    alt="Card image cap" style="width: 100%;height: auto;" />
                                                 <div class="card-body">
                                                     <span class="card-title">
                                                         {{ $siaranPers[$i]['tanggal_publish'] }}</span>
@@ -222,23 +224,28 @@
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
                         <div class="slider_video owl-carousel ">
-                            {{-- <div class="row outer_custom">
+                            @foreach ($video as $video_row)
+                                <div class="row {{ $loop->index < 1 ? 'outer_custom' : null }}">
+                                    <div class="col-md-12">
+                                        <iframe class="w-100 video-galeri" height="315" src="{{ $video_row->url }}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
+                            {{-- <div class="row">
                                 <div class="col-md-12">
-                                    <iframe class="w-100 video-galeri" height="315"
+                                    <iframe width="560" height="315"
                                         src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 </div>
-                            </div>
-                            
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
                             </div> --}}
-                            @foreach ($video as $video_row)
+                            {{-- @foreach ($video as $video_row)
                                 <div class="row ">
                                     <div class="col-md-12">
                                         <iframe width="560" height="315" src="{{ $video_row->url }}"
@@ -247,7 +254,7 @@
                                             allowfullscreen></iframe>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endforeach --}}
 
                         </div>
                     </div>
@@ -272,6 +279,7 @@
     @push('child-scripts')
         <script>
             $(".slider").owlCarousel({
+                navigation: true,
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -297,6 +305,7 @@
         </script>
         <script>
             $(".header-carousel").owlCarousel({
+                navigation: true,
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -323,6 +332,7 @@
         </script>
         <script>
             $(".slider_video").owlCarousel({
+                navigation: true,
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -363,43 +373,106 @@
             }
         </script>
         <script>
-            const labels = ["January", "February", "March", "April", "May", "June"];
+            $(document).ready(function() {
+                const labels = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 'Juli', 'Agustus', 'September',
+                    'Oktober',
+                    'November', 'Desember'
+                ];
 
-            const data = {
-                labels: labels,
-                datasets: [{
-                        label: "My First dataset",
-                        backgroundColor: "#92E5E",
-                        borderColor: "#92E5EB",
-                        data: [0, 10, 5, 2, 20, 30, 45],
-                    },
-                    {
-                        label: "My First dataset",
-                        backgroundColor: "#104E70",
-                        borderColor: "#104E70",
-                        data: [0, 2, 40, 2, 20, 100, 20],
-                    },
-                ],
-            };
 
-            const config = {
-                type: "line",
-                data: data,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        htmlLegend: {
-                            // ID of the container to put the legend in
-                            containerID: "legend-container",
+                // const dataStatistik = () => {
+                //     return $.ajax({
+                //         type: 'GET',
+                //         url: "data-statistik",
+                //         dataType: 'json'
+                //     });
+                // }
+
+                const dataStatistik = {{ Js::from($dataStatistik) }};
+
+
+                console.log('dataS', dataStatistik)
+                let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
+                let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
+                let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
+                console.log('datamasuk', dataMasuk)
+                console.log('dataproses', dataProses)
+                console.log('dataselesai', dataSelesai)
+                let dataMasukFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ];
+
+                let dataProsesFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ];
+
+                let dataSelesaiFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ];
+
+
+
+                dataProses.forEach(element => {
+                    dataProsesFinal[element.bulan - 1] = element.permohonan
+                });
+
+                dataSelesai.forEach(element => {
+                    dataSelesaiFinal[element.bulan - 1] = element.permohonan
+                });
+
+
+                for (let index = 0; index < dataMasukFinal.length; index++) {
+
+                    dataMasukFinal[index] = parseInt(dataProsesFinal[index]) + parseInt(dataSelesaiFinal[index])
+
+                }
+
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                            label: "Permohonan Masuk",
+                            backgroundColor: "#7cb5ec",
+                            borderColor: "#7cb5ec",
+                            data: dataMasukFinal,
                         },
-                        legend: {
-                            position: "bottom",
+                        {
+                            label: "Permohonan Proses",
+                            backgroundColor: "#434348",
+                            borderColor: "#434348",
+                            data: dataProsesFinal,
+                        },
+                        {
+                            label: "Permohonan Selesai",
+                            backgroundColor: "#90ed7d",
+                            borderColor: "#90ed7d",
+                            data: dataSelesaiFinal,
+                        },
+                    ],
+                };
+
+                const config = {
+                    type: "bar",
+                    data: data,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            htmlLegend: {
+                                // ID of the container to put the legend in
+                                containerID: "legend-container",
+                            },
+                            legend: {
+                                position: "bottom",
+                            },
                         },
                     },
-                },
-            };
+                };
 
-            const myChart = new Chart(document.getElementById("myChart"), config);
+                const myChart = new Chart(document.getElementById("myChart"), config);
+
+            })
         </script>
 
         <style>

@@ -34,11 +34,13 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('pekerjaan');
             $table->string('no_hp');
-            $table->string('npwp');
+            $table->string('npwp')->nullable();
             $table->string('email');
             $table->string('password');
             $table->string('status')->nullable();
             $table->string('identitas_file_path');
+            $table->string('token_activation')->nullable();
+            $table->boolean('isVerified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -500,7 +500,7 @@
                                                 style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
 
                                                 <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                                    id="editLaporanImage">
                                                 </div>
 
                                                 @can('laporan hasil survei.edit')
@@ -661,7 +661,8 @@
                         // document.getElementById('editFile').value = laporanHasilSurvei.file_path
                         // console.log(document.getElementById('editFile'))
                         // document.getElementById('editthumbnail').value = laporanHasilSurvei.thumbnail
-
+                        document.getElementById('editLaporanImage').style.cssText =
+                            `background-image: url({{ asset('storage/${laporanHasilSurvei.thumbnail_path}') }})`
 
                         document.getElementById('editForm').setAttribute('action', 'laporan_hasil_survei/' +
                             laporanHasilSurvei.id)

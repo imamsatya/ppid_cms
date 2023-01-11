@@ -22,19 +22,22 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="pills-triwulan-tab" data-toggle="pill" href="#pills-triwulan"
-                                role="tab" aria-controls="pills-triwulan" aria-selected="true">Laporan Pelayanan
+                            <a class="nav-link {{ count(app('request')->all()) < 1 ? 'active' : null }} {{ app('request')->input('laporan_triwulanan') ? 'active' : null }}"
+                                id="pills-triwulan-tab" data-toggle="pill" href="#pills-triwulan" role="tab"
+                                aria-controls="pills-triwulan" aria-selected="true">Laporan Pelayanan
                                 Informasi Triwulan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-tahunan-tab" data-toggle="pill" href="#pills-tahunan"
-                                role="tab" aria-controls="pills-tahunan" aria-selected="false">Laporan Pelayanan
+                            <a class="nav-link {{ app('request')->input('laporan_tahunan') ? 'active' : null }}"
+                                id="pills-tahunan-tab" data-toggle="pill" href="#pills-tahunan" role="tab"
+                                aria-controls="pills-tahunan" aria-selected="false">Laporan Pelayanan
                                 Informasi Tahunan</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-survey-tab" data-toggle="pill" href="#pills-survey"
-                                role="tab" aria-controls="pills-survey" aria-selected="false">Laporan Hasil
+                            <a class="nav-link {{ app('request')->input('laporan_hasil_survei') ? 'active' : null }}"
+                                id="pills-survey-tab" data-toggle="pill" href="#pills-survey" role="tab"
+                                aria-controls="pills-survey" aria-selected="false">Laporan Hasil
                                 Survei Pelayanan Informasi</a>
                         </li>
                     </ul>
@@ -42,8 +45,8 @@
                     <!--  -->
 
                     <div class="tab-content mt-4" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-triwulan" role="tabpanel"
-                            aria-labelledby="pills-triwulan-tab">
+                        <div class="tab-pane fade {{ count(app('request')->all()) < 1 ? 'show active' : null }} {{ app('request')->input('laporan_triwulanan') ? 'show active' : null }}"
+                            id="pills-triwulan" role="tabpanel" aria-labelledby="pills-triwulan-tab">
                             <div class="row">
                                 @if ($laporanTriwulanan)
                                     @foreach ($laporanTriwulanan as $laporanTriwulanan_row)
@@ -123,8 +126,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-tahunan" role="tabpanel"
-                            aria-labelledby="pills-tahunan-tab">
+                        <div class="tab-pane fade {{ app('request')->input('laporan_tahunan') ? 'show active' : null }}"
+                            id="pills-tahunan" role="tabpanel" aria-labelledby="pills-tahunan-tab">
                             <div class="row">
                                 @if ($laporanTahunan)
                                     @foreach ($laporanTahunan as $laporanTahunan_row)
@@ -203,8 +206,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-survey" role="tabpanel"
-                            aria-labelledby="pills-survey-tab">
+                        <div class="tab-pane fade {{ app('request')->input('laporan_hasil_survei') ? 'show active' : null }}"
+                            id="pills-survey" role="tabpanel" aria-labelledby="pills-survey-tab">
                             <div class="row">
                                 @if ($laporanHasilSurvei)
                                     @foreach ($laporanHasilSurvei as $laporanHasilSurvei_row)

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use PDF;
 
+
 class DataPermohonanController extends Controller
 {
     /**
@@ -91,10 +92,44 @@ class DataPermohonanController extends Controller
 
     public function ppidDataPermohonan(Request $request)
     {
+
+        $user = Auth::user();
         $asal = $request->input('asal');
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
+
+        if ($user->hasRole('user penghubung')) {
+            $result = DB::table('ppid_permohonan')
+                ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap')
+                ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+                ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+                ->join('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_permohonan.id_ppid_pendaftar')
+                ->join('forward_permohonan', 'forward_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+                ->where(function ($query) use ($status) {
+                    if ($status != '-') {
+                        $query->where('status_permohonan.id_status', $status);
+                    } else {
+                        $query->whereNotIn('status_permohonan.id_status', [4, 5, 6]); // kecuali yg selesai dan ditolak
+                    }
+                })
+                ->where(function ($query) use ($asal) {
+                    if ($asal != '-') {
+                        $query->where('ppid_pendaftar.jenis_pemohon', $asal);
+                    }
+                })
+                ->where(function ($query) use ($start, $end) {
+                    if ($start != '-') {
+                        $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                    }
+                })
+                ->where('status_permohonan.aktif', 1)
+                ->where('forward_permohonan.forward_to', $user->id)
+                ->orderByDesc('ppid_permohonan.created_at')
+                ->get();
+            echo json_encode(array('result' => $result));
+            return;
+        }
 
         $result = DB::table('ppid_permohonan')
             ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap')
@@ -119,17 +154,51 @@ class DataPermohonanController extends Controller
                 }
             })
             ->where('status_permohonan.aktif', 1)
+            ->orderByDesc('ppid_permohonan.created_at')
             ->get();
         echo json_encode(array('result' => $result));
     }
 
     public function ppidDataPermohonanSelesai(Request $request)
     {
+
+        $user = Auth::user();
         $asal = $request->input('asal');
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
 
+        if ($user->hasRole('user penghubung')) {
+            $result = DB::table('ppid_permohonan')
+                ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap', 'jawab_permohonan.file_jawaban', 'jawab_permohonan.ket_jawaban_path')
+                ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+                ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+                ->join('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_permohonan.id_ppid_pendaftar')
+                ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+                ->where(function ($query) use ($status) {
+                    if ($status != '-') {
+                        $query->where('status_permohonan.id_status', $status);
+                    } else {
+                        $query->whereIn('status_permohonan.id_status', [4, 5, 6]); // yg selesai dan ditolak
+                    }
+                })
+                ->where(function ($query) use ($asal) {
+                    if ($asal != '-') {
+                        $query->where('ppid_pendaftar.jenis_pemohon', $asal);
+                    }
+                })
+                ->where(function ($query) use ($start, $end) {
+                    if ($start != '-') {
+                        $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                    }
+                })
+                ->where('status_permohonan.aktif', 1)
+                ->where('jawab_permohonan.jawab_by', $user->id)
+                ->orderByDesc('ppid_permohonan.created_at')
+                ->get();
+            echo json_encode(array('result' => $result));
+            return;
+        }
         $result = DB::table('ppid_permohonan')
             ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap', 'jawab_permohonan.file_jawaban', 'jawab_permohonan.ket_jawaban_path')
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
@@ -154,6 +223,7 @@ class DataPermohonanController extends Controller
                 }
             })
             ->where('status_permohonan.aktif', 1)
+            ->orderByDesc('ppid_permohonan.created_at')
             ->get();
         echo json_encode(array('result' => $result));
     }
@@ -185,7 +255,9 @@ class DataPermohonanController extends Controller
 
     public function jadwalKerja()
     {
-        $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
+
+        // $response = Http::get('http://simanisdev.bumn.go.id/api/getjadwalkerja');
+        $response = Http::get('http://simanis.bumn.go.id/api/getjadwalkerja');
         echo json_encode(array('result' => $response->json()));
     }
 

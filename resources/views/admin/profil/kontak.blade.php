@@ -91,6 +91,18 @@
 
                     tinymce.init(options);
 
+                    function editDialog(index) {
+                        let dokumentasi = {{ Js::from($dokumentasi) }}
+                        dokumentasi = dokumentasi[index]
+                        document.getElementById('editUrutan').value = dokumentasi.urutan
+                        document.getElementById('editKeterangan').value = dokumentasi.keterangan
+                        document.getElementById('editImageKontak').style.cssText =
+                            `background-image: url({{ asset('storage/${dokumentasi.image_path}') }})`
+
+                        document.getElementById('editForm').setAttribute('action', 'kontak/dokumentasi_ruang/update/' +
+                            dokumentasi.id)
+                    };
+
                     function deleteDialog(index) {
                         let dokumentasi = {{ Js::from($dokumentasi) }}
                         dokumentasi = dokumentasi[index]
@@ -615,10 +627,22 @@
                                     </td>
                                     <td>{{ $dokumentasi->keterangan }}</td>
                                     <td>{{ $dokumentasi->urutan }}</td>
-                                    @can('kontak.delete')
-                                        <td><a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
-                                                class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a></td>
-                                    @endcan
+
+
+                                    <td>
+                                        @can('kontak.edit')
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal_editDokumentasi"
+                                                onclick="editDialog({{ $loop->index }})"
+                                                class="btn btn-icon btn-primary me-2"><i
+                                                    class="bi bi-pencil fs-4 "></i></a>
+                                        @endcan
+                                        @can('kontak.delete')
+                                            <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                                class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
+                                        @endcan
+                                    </td>
+
                                 </tr>
                             @endforeach
 
@@ -784,6 +808,171 @@
                 <!--end::Modal dialog-->
             </div>
             <!--end::Modal - Tambah User Admin-->
+
+            <!--begin::Modal - Edit Bagan Kanan-->
+            <div class="modal fade" id="kt_modal_editDokumentasi" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-900px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2>Edit Dokumentasi</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-1">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16"
+                                            height="2" rx="1" transform="rotate(-45 6 17.3137)"
+                                            fill="currentColor" />
+                                        <rect x="7.41422" y="6" width="16" height="2"
+                                            rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body py-lg-10 px-lg-10">
+                            {{-- Content Modal --}}
+                            <form id="editForm" method="POST" enctype="multipart/form-data" class="form">
+                                @method('PATCH')
+                                @csrf
+                                <!--begin::Card body-->
+                                <div class="card-body  p-9">
+
+
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Image</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+
+                                            <div class="image-input image-input-outline" data-kt-image-input="true"
+                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+
+
+                                                {{-- <div class="image-input-wrapper w-250px  h-125px"
+                                                    style="background-image: url({{ asset($informasi->banner_path) }})">
+                                                </div> --}}
+
+                                                <div class="image-input-wrapper w-250px  h-125px"
+                                                    id="editImageKontak">
+                                                </div>
+
+
+                                                @can('kontak.edit')
+                                                    <!--begin::Edit button-->
+                                                    <label
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Change Image">
+                                                        <i class="bi bi-pencil-fill fs-7"></i>
+
+                                                        <!--begin::Inputs-->
+                                                        <input type="file" name="dokumentasi" id="editdokumentasi"
+                                                            accept=".png, .jpg, .jpeg" />
+                                                        <input type="hidden" name="dokumentasi_remove" />
+                                                        <!--end::Inputs-->
+                                                    </label>
+                                                    <!--end::Edit button-->
+
+                                                    <!--begin::Cancel button-->
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Cancel Image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <!--end::Cancel button-->
+
+                                                    <!--begin::Remove button-->
+                                                    <span
+                                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                        data-bs-dismiss="click" title="Remove Image">
+                                                        <i class="bi bi-x fs-2"></i>
+                                                    </span>
+                                                    <!--end::Remove button-->
+                                                @endcan
+                                            </div>
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
+
+
+
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label
+                                            class="col-lg-4 col-form-label required fw-semibold fs-6">Keterangan</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" name="keterangan" id="editKeterangan"
+                                                class="form-control form-control-lg form-control-solid"
+                                                placeholder="Keterangan" value="" />
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
+
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Urutan</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="number" min=1 name="urutan" id="editUrutan"
+                                                class="form-control form-control-lg form-control-solid"
+                                                placeholder="Urutan" value="" />
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
+
+
+                                    <!--end::Input group-->
+
+                                </div>
+                                <!--end::Card body-->
+
+                                <!--begin::Actions-->
+                                <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                                    @can('kontak.create')
+                                        <button type="submit" class="btn btn-primary" id="addButton"
+                                            onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                                                Update
+                                            </span>
+                                            <span class="indicator-progress">
+                                                Mohon Menunggu... <span
+                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                            </span>
+                                        </button>
+                                    @endcan
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
+            <!--end::Modal - Edit Bagan Kanan-->
 
             <br>
 

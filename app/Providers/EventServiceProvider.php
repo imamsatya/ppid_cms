@@ -18,6 +18,13 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\Auth\UserActivationEmail' => [
+            'App\Listeners\Auth\SendActivationEmail'
+        ],
+        'App\Events\Auth\UserForgotPasswordEmail' => [
+            'App\Listeners\Auth\SendForgotPasswordEmail'
+        ]
+
     ];
 
     /**

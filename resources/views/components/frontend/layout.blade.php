@@ -20,7 +20,9 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
     <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> --}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -60,7 +62,23 @@
         }
 
         .custom-logo {
-            margin-right: 350px;
+            margin-right: 200px;
+        }
+
+        .btn_login-custom {
+            font-size: 28px;
+            margin: 10px 0px 18px 0px;
+            padding: 20px 20px 20px 20px;
+            color: #ffffff;
+            font-family: "Lato", sans-serif;
+            /* display: block; */
+            font-weight: 300;
+            height: 30px;
+            background: #104e70;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
         }
 
         @media only screen and (max-width: 600px) {
@@ -95,14 +113,16 @@
             {{-- <a href="{{ route('index') }}" class="logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid.png') }}" alt="" />
             </a> --}}
-            <a href="{{ route('index') }}" class="logo">
-                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" width="110"
-                    alt="" />
-            </a>
-            <a href="https://bumn.go.id/" class="logo custom-logo">
-                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" width="110"
-                    alt="" />
-            </a>
+            <div class="logo">
+                <a href="{{ route('index') }}">
+                    <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" height="54"
+                        width="151" alt="" />
+                </a>
+                <a href="https://bumn.go.id/">
+                    <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" height="54"
+                        width="151" alt="" />
+                </a>
+            </div>
 
             <input type="checkbox" id="menu-bar" />
             <label for="menu-bar">Menu</label>
@@ -145,75 +165,39 @@
                             </li>
                         @endforeach
                     @endif
-                    {{-- <li>
-                        <a href="#" id="titleNavProfile" class="{{ $isActiveProfil ?? '' }}">Profil </a>
-                        <ul>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('tentangppid.index') }}">Tentang PPID</a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('tugasdanfungsi.index') }}">Tugas dan
-                                    Fungsi</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('strukturppid.index') }}">Struktur PPID</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('visimisi.index') }}">Visi dan Misi</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('kontak.index') }}">Kontak</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{ route('regulasi.index') }}" class="{{ $isActiveRegulasi ?? '' }}"
-                            id="titleNavRegulasi">Regulasi </a>
-                    </li>
-                    <li>
-                        <a id="titleNavInformasiPublik" class="{{ $isActiveInformasiPublik ?? '' }}"
-                            href="{{ route('informasipublik.index') }}">Informasi
-                            Publik</a>
-                    </li>
-                    <li>
-                        <a id="titleNavStandarLayanan" class="{{ $isActiveStandarLayanan ?? '' }}"
-                            href="#">Standar Layanan </a>
-                        <ul>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('maklumat.index') }}">Maklumat</a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('prosedurlayanan.index') }}">Prosedur
-                                    Layanan</a>
-                            </li>
-                            <li>
-                                <a class="dropdown_menu" href="{{ route('standarlayananbiaya.index') }}">Biaya
-                                    Layanan</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a id="titleNavLaporan" class="{{ $isActiveLaporan ?? '' }}"
-                            href="{{ route('laporan.index') }}">Laporan </a>
-                    </li>
-                    <li>
-                        <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
-                    </li> --}}
 
 
 
                     @if (Auth::guard('usersppid')->check())
                         <li>
-                            <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
-                                @csrf
 
-                                <a href=""
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                    class="btn btn-sm btn_login"> Logout
-                                </a>
-                            </form>
+
+
+
+                            <button type="button" class="btn btn-sm btn_login-custom  text-white"><i
+                                    class="fa fa-user  " aria-hidden="true"></i></button>
+
+                            <ul>
+                                <li>
+                                    <a class="dropdown_menu" href="{{ route('dashboard.index') }}">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown_menu" href="{{ route('userppid.ganti_password') }}">Ganti
+                                        Password</a>
+                                </li>
+
+                                <li>
+                                    <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
+                                        @csrf
+
+                                        <a href=""
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown_menu"> Logout
+                                        </a>
+                                    </form>
+                                </li>
+
+                            </ul>
 
                             {{-- <form action="{{ route('userppid.logout') }}" method="post">
                                 @csrf
@@ -254,7 +238,11 @@
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register' &&
-        Route::current()->getName() != 'signup')
+        Route::current()->getName() != 'signup' &&
+        Route::current()->getName() != 'userppid.lupa_password' &&
+        Route::current()->getName() != 'userppid.ganti_password' &&
+        Route::current()->getName() != 'userppid.verifikasi' &&
+        Route::current()->getName() != 'reset.password.get')
         <!-- Banner -->
         <section class="banner blackw magnif">
             <div class="container">
@@ -309,7 +297,11 @@
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register' &&
-        Route::current()->getName() != 'signup')
+        Route::current()->getName() != 'signup' &&
+        Route::current()->getName() != 'userppid.lupa_password' &&
+        Route::current()->getName() != 'userppid.ganti_password' &&
+        Route::current()->getName() != 'userppid.verifikasi' &&
+        Route::current()->getName() != 'reset.password.get')
         <!-- Button Back -->
         <div class="container mt-4 mb-4">
             <div class="row">
@@ -352,8 +344,9 @@
                                     <li>
                                         @foreach ($sosialMedia as $sosialMedia_row)
                                             <a href="{{ $sosialMedia_row->url }}" target="_blank">
-                                                <img class="img-fluid" src="{{ 'storage/' . $sosialMedia_row->icon }}"
-                                                    alt="" style="width: 40px;height:40px">
+                                                <img class="img-fluid"
+                                                    src="{{ 'storage/' . $sosialMedia_row->icon }}" alt=""
+                                                    style="width: 40px;height:40px">
                                             </a>
                                         @endforeach
                                         {{-- <div class="d-flex align-items-center">

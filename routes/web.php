@@ -97,6 +97,7 @@ use App\Http\Controllers\Frontend\FAQ\FaqController as FaqControllerUser;
 //Users PPID Auth
 use App\Http\Controllers\Auth\UserPPIDLoginController;
 use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 
@@ -114,8 +115,15 @@ use App\Http\Controllers\Auth\UserAdminController as UserAdminAuthController;
 */
 // Frontend
 
+Route::get('/tesemail', function () {
+    return view('activation');
+});
 
+Route::get('/lupa', function () {
+    return view('forgot');
+});
 //User PPID
+Route::get('data-statistik', [HomeController::class, 'getDataStatistik']);
 
 // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
 //     ->name('admin.home');
@@ -124,6 +132,19 @@ Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->nam
 Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
 Route::get('signup',  [UserPPIDLoginController::class, 'register'])->middleware('guest:usersppid')->name('signup');
 Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
+Route::get('ganti_password', [UserPPIDLoginController::class, 'gantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password');
+Route::post('ganti_password', [UserPPIDLoginController::class, 'handleGantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password.store');
+
+Route::get('verifikasi', [UserPPIDLoginController::class, 'verifikasi'])->middleware('guest:usersppid')->name('userppid.verifikasi');
+Route::post('verifikasi', [UserPPIDLoginController::class, 'handleVerifikasi'])->middleware('guest:usersppid')->name('verifikasi.store');
+Route::post('resend_otp', [UserPPIDLoginController::class, 'handleResendOTP'])->middleware('guest:usersppid')->name('resend_otp.store');
+
+//forgot password
+// Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+Route::get('lupa-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+Route::post('lupa-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->middleware('guest:usersppid')->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.post');
 
 
 //User Admin
@@ -230,6 +251,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('kontak', KontakController::class);
     Route::post('/kontak/dokumentasi_ruang', [KontakController::class, 'dokumentasiStore'])->name('kontak.dokumentasi.store');
+    Route::patch('/kontak/dokumentasi_ruang/update/{id}', [KontakController::class, 'dokumentasiUpdate'])->name('kontak.dokumentasi.update');
     Route::delete('/kontak/dokumentasi_ruang/delete/{id}', [KontakController::class, 'dokumentasiDestroy'])->name('kontak.dokumentasi.delete');
 
     Route::resource('sosialmedia', SosialMediaController::class);

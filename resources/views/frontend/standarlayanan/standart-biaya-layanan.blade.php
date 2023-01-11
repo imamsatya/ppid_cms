@@ -1,6 +1,15 @@
 <x-frontend.layout>
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/standartLayanan/biaya/index.css') }}" rel="stylesheet" />
+        <style>
+            p::first-letter {
+                text-transform: none;
+            }
+
+            span {
+                text-transform: none;
+            }
+        </style>
     @endpush
     <!-- content -->
     <section class="content-biaya">
@@ -16,7 +25,7 @@
             <div class="informasi ml-5 mr-5 text-center">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>
+                        <p style="text-transform: none;">
 
                             {!! $biayaLayanan->deskripsi ?? '' !!}
                         </p>

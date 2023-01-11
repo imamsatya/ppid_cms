@@ -131,7 +131,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -248,69 +248,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="bd-table-keberatan">
-                                        @if ($ppidKeberatan)
-                                            @foreach ($ppidKeberatan as $keberatan)
-                                                <tr>
-                                                    <td scope="row">
-                                                        {{ $keberatan->ticket_keberatan }}
-                                                    </td>
-                                                    <td>{!! $keberatan->perihal_keberatan !!}</td>
-                                                    <td>
-                                                        <div class="confirm d-flex align-items-start">
-                                                            {{-- <div class="circle-blue"></div> --}}
-                                                            <span class="ml-2">{{ $keberatan->nama_status }}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td id="expiredDate{{ $keberatan->id }}">
 
-                                                    </td>
-                                                    <td>
-                                                        @if ($keberatan->ket_jawaban_path)
-                                                            {{-- <a class="mb-4"
-                                                                href="{{ asset($keberatan->ket_jawaban_path) }}">File
-                                                                Jawaban</a> <br /> --}}
-                                                            <a rel='tooltip' data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-inverse"
-                                                                data-bs-placement="top" class="mb-4 jawban-file-st"
-                                                                title="File Jawaban"
-                                                                href="{{ asset('storage/' . $keberatan->ket_jawaban_path) }}"><img
-                                                                    src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
-                                                                    alt="" /></a>
-                                                        @endif
-                                                        @if ($keberatan->file_jawaban)
-                                                            {{-- <a href="{{ asset($keberatan->file_jawaban) }}">File
-                                                                
-                                                                Pendukung</a> --}}
-                                                            <a rel='tooltip' data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-inverse"
-                                                                data-bs-placement="top" class="jawban-file-st"
-                                                                title="File Pendukung"
-                                                                href="{{ asset('storage/' . $keberatan->file_jawaban) }}"><img
-                                                                    src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                    alt="" /></a>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if ($keberatan->nama_status == 'Belum Dikonfirmasi')
-                                                            <button class="btn btn-sm edit-keberatan"
-                                                                data-keberatan="{{ $keberatan->id }}">
-                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
-                                                                    alt="" />
-                                                            </button>
-                                                            <button class="btn btn-sm delete-keberatan"
-                                                                data-keberatan="{{ $keberatan->id }}">
-                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
-                                                                    alt="" />
-                                                            </button>
-                                                        @else
-                                                            -
-                                                        @endif
-
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        @endif
                                         {{-- <tr>
                                             <td scope="row">
                                                 <a href="#">10/Per-web/01/2022</a>
@@ -407,7 +345,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control tox-target" id="area-informasi-diminta" placeholder="Informasi yang diminta"></textarea>
+                                        <textarea class="form-control form-control-solid tox-target" rows="3" id="area-informasi-diminta"
+                                            placeholder="Informasi yang diminta"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" id="select-memperoleh-informasi"
@@ -424,7 +363,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="area-tujuan-penggunaan" placeholder="Tujuan penggunaan informasi"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" id="area-tujuan-penggunaan"
+                                            placeholder="Tujuan penggunaan informasi"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -491,7 +431,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <textarea class="form-control" id="perihal-keberatan-informasi" placeholder="Perihal Keberatan Informasi"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" id="perihal-keberatan-informasi"
+                                            placeholder="Perihal Keberatan Informasi"></textarea>
                                     </div>
                                 </div>
 
@@ -521,7 +462,7 @@
     @push('child-scripts')
         <script src="{{ asset('template/dist/assets/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('template/dist/assets/js/scripts.bundle.js') }}"></script>
-        <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+        {{-- <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script> --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{{ asset('template/dist/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
@@ -574,14 +515,14 @@
                     await ppidCaraMemberikan()
 
                     if (type == 'add-new') {
-                        tinymce.get("area-informasi-diminta").setContent('')
-                        tinymce.get("area-tujuan-penggunaan").setContent('')
+                        $("#area-informasi-diminta").val('')
+                        $("#area-tujuan-penggunaan").val('')
                         $("#id-permohonan-edited").val('')
                     } else {
                         const dataPermohonan = await ppidPermohonanUser(data)
                         $("#id-permohonan-edited").val(data)
-                        tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
-                        tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
+                        $("#area-informasi-diminta").val(dataPermohonan.result.informasi_diminta)
+                        $("#area-tujuan-penggunaan").val(dataPermohonan.result.tujuan_informasi)
                         $("#select-memberikan-informasi").val(dataPermohonan.result.id_cara)
                         $("#select-memperoleh-informasi").val(dataPermohonan.result.id_mendapatkan)
                     }
@@ -687,7 +628,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
                             `
                             }
 
@@ -701,7 +642,7 @@
                                 // yovi
                                 let diff = moment.duration(end.diff(start)).asDays()
                                 const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
-                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0')
                                 expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                     `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
                             } else {
@@ -759,23 +700,47 @@
                             confirmButton: "btn btn-primary",
                         },
                         showLoaderOnConfirm: true,
-                        preConfirm: async () => {
+                        // preConfirm: async () => {
+                        //     try {
+                        //         await deleteDataPermohonan(idPermohonan)
+                        //     } catch (error) {
+                        //         Swal.showValidationMessage(
+                        //             `Request failed: ${error}`
+                        //         )
+                        //     }
+                        // },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then(async (dt) => {
+                        if (dt.isConfirmed) {
+
                             try {
-                                await deleteDataPermohonan(idPermohonan)
+                                modalPermohonan.block();
+                                const result = await deleteDataPermohonan(idPermohonan)
+                                modalPermohonan.release();
+                                console.log('result Delete', result)
+
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menghapus data permohonan!'
+                                    })
+                                    $("#cancel-permohonan").click()
+                                    loadData()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Warning',
+                                        html: 'Permohonan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
                             } catch (error) {
                                 Swal.showValidationMessage(
                                     `Request failed: ${error}`
                                 )
                             }
-                        },
-                        allowOutsideClick: () => !Swal.isLoading()
-                    }).then((dt) => {
-                        if (dt.isConfirmed) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                html: 'Berhasil menghapus data permohonan!'
-                            })
+
+
                             loadData()
                         }
                     })
@@ -841,8 +806,8 @@
                     selector: "#area-tujuan-penggunaan",
                     height: "300"
                 };
-                tinymce.init(configAreaInformasiDiminta);
-                tinymce.init(configAreaTujuanPenggunaan);
+                // tinymce.init(configAreaInformasiDiminta);
+                // tinymce.init(configAreaTujuanPenggunaan);
 
                 $("#save-permohonan").click(function() {
                     const user = {!! Auth::user()->toJson() !!}
@@ -852,8 +817,8 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_permohonan': '-',
                         'jenis_kanal': 'web',
-                        'informasi_diminta': tinymce.get("area-informasi-diminta").getContent(),
-                        'tujuan_informasi': tinymce.get("area-tujuan-penggunaan").getContent(),
+                        'informasi_diminta': $("#area-informasi-diminta").val(),
+                        'tujuan_informasi': $("#area-tujuan-penggunaan").val(),
                         'id_cara': $("#select-memberikan-informasi").val(),
                         'id_mendapatkan': $("#select-memperoleh-informasi").val(),
                         'file_identitas': user.identitas_file_path,
@@ -914,13 +879,23 @@
                                 modalPermohonan.block();
                                 const result = await submitDataPermohonan(data)
                                 modalPermohonan.release();
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Sukses',
-                                    html: 'Berhasil menyimpan data permohonan!'
-                                })
-                                $("#cancel-permohonan").click()
-                                loadData()
+                                console.log('result Submit', result)
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menyimpan data permohonan!'
+                                    })
+                                    $("#cancel-permohonan").click()
+                                    loadData()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Warning',
+                                        html: 'Permohonan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
+
                             } catch (error) {
                                 Swal.fire({
                                     icon: 'error',
@@ -1001,12 +976,12 @@
                     await ppidKategoriKeberatan()
 
                     if (type == 'add-new') {
-                        tinymce.get("perihal-keberatan-informasi").setContent('')
+                        $("#perihal-keberatan-informasi").val('')
                         $("#id-keberatan-edited").val('')
                     } else {
                         const dataKeberatan = await ppidKeberatanUser(data)
                         $("#id-keberatan-edited").val(data)
-                        tinymce.get("perihal-keberatan-informasi").setContent(dataKeberatan.result
+                        $("#perihal-keberatan-informasi").val(dataKeberatan.result
                             .perihal_keberatan)
 
                         $("#select-kategori-keberatan").val(dataKeberatan.result.id_kategori_keberatan)
@@ -1072,21 +1047,70 @@
                     });
                 }
 
-
+                var jadwal = null
                 async function ppidDataKeberatan() {
 
                     try {
+                        if (jadwal == null) {
+                            jadwal = await jadwalKerja()
+                            jadwal = jadwal.result.data
+                        }
                         const result = await getDataKeberatan()
                         const data = result.result
                         let rowData = []
                         for (let i = 0; i < data.length; i++) {
-                            rowData.push([
-                                data[i].ticket_keberatan,
-                                data[i].perihal_keberatan,
-                                data[i].nama_status,
-                                '-',
-                                '-',
-                                `<button class="btn btn-sm edit-keberatan" data-keberatan="${data[i].id}">
+
+                            //Expired Date
+                            let expiredDate = data[i].expired_date
+                            if (expiredDate && (data[i].id_status != 3)) {
+                                var start = moment().startOf('day');
+                                var end = moment(expiredDate, "YYYY-MM-DD");
+
+                                //Difference in number of days  
+                                // yovi
+                                let diff = moment.duration(end.diff(start)).asDays()
+                                const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
+                                        "YYYY-MM-DD") &&
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis !=
+                                    '0')
+                                expiredDate = diff >= 0 ?
+                                    `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
+                                    `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
+                            } else {
+                                expiredDate = '-- Selesai --'
+                            }
+
+                            if (data[i].id_status == 1) {
+                                expiredDate = '-'
+                            }
+
+
+
+                            //Jawaban Option
+                            let jawabanPath = ''
+                            if (data[i].ket_jawaban_path) {
+                                jawabanPath = `<a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="mb-4 jawban-file-st"
+                                                                title="File Jawaban"
+                                                                href="{{ asset('storage/${data[i] . ket_jawaban_path}') }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                                    alt="" /></a>`
+                            }
+
+                            let filePendukung = ''
+                            if (data[i].file_jawaban) {
+                                filePendukung = ` <a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="jawban-file-st"
+                                                                title="File Pendukung"
+                                                                href="{{ asset('storage/${data[i] . file_jawaban}') }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                    alt="" /></a>`
+                            }
+
+                            //buttonAction
+                            let buttonAction = `<button class="btn btn-sm edit-keberatan" data-keberatan="${data[i].id}">
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
                                     alt="" />
                             </button>
@@ -1094,6 +1118,15 @@
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
                                     alt="" />
                             </button>`
+                            rowData.push([
+                                data[i].ticket_keberatan,
+                                data[i].perihal_keberatan,
+                                data[i].nama_status,
+                                expiredDate,
+                                (jawabanPath == '' && filePendukung == '') ? '-' :
+                                `${jawabanPath} ${filePendukung}`,
+                                (data[i].id_status != 1) ? '-' : buttonAction
+
                             ])
                         }
 
@@ -1108,8 +1141,8 @@
 
                 const tableKeberatan = $("#table-keberatan").DataTable({
                     initComplete: function() {
-                        // loadDataKeberatan()
-                        convertExpDate()
+                        loadDataKeberatan()
+                        // convertExpDate()
 
                     }
                 });
@@ -1133,8 +1166,8 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_keberatan': '-',
                         'jenis_kanal': 'web',
-                        'perihal_keberatan': tinymce.get("perihal-keberatan-informasi")
-                            .getContent(),
+                        'perihal_keberatan': $("#perihal-keberatan-informasi")
+                            .val(),
                         'id_kategori_keberatan': $("#select-kategori-keberatan")[0].value,
                         'id_permohonan': permohonanSebelumnya,
 
@@ -1199,14 +1232,23 @@
                                 modalKeberatan.block();
                                 const result = await submitDataKeberatan(data)
                                 modalKeberatan.release();
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Sukses',
-                                    html: 'Berhasil menyimpan data Keberatan!'
-                                })
-                                $("#cancel-keberatan").click()
-                                // loadDataKeberatan()
-                                window.location.reload();
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menyimpan data keberatan!'
+                                    })
+                                    $("#cancel-keberatan").click()
+                                    loadDataKeberatan()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Warning',
+                                        html: 'Keberatan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
+
+                                // window.location.reload();
 
                             } catch (error) {
                                 Swal.fire({
@@ -1293,28 +1335,53 @@
                             confirmButton: "btn btn-primary",
                         },
                         showLoaderOnConfirm: true,
-                        preConfirm: async () => {
-                            try {
-                                await deleteDataKeberatan(idKeberatan)
-                            } catch (error) {
-                                Swal.showValidationMessage(
-                                    `Request failed: ${error}`
-                                )
-                            }
-                        },
+                        // preConfirm: async () => {
+                        //     try {
+                        //         await deleteDataKeberatan(idKeberatan)
+                        //     } catch (error) {
+                        //         Swal.showValidationMessage(
+                        //             `Request failed: ${error}`
+                        //         )
+                        //     }
+                        // },
                         allowOutsideClick: () => !Swal.isLoading()
-                    }).then((dt) => {
+                    }).then(async (dt) => {
                         if (dt.isConfirmed) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                html: 'Berhasil menghapus data keebratan!'
-                            })
-                            // loadData()
-                            window.location.reload();
+                            try {
+                                modalKeberatan.block();
+                                const result = await deleteDataKeberatan(idKeberatan)
+                                modalKeberatan.release();
+                                if (result.status == 'success') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        html: 'Berhasil menghapus data keberatan!'
+                                    })
+                                    $("#cancel-keberatan").click()
+                                    loadDataKeberatan()
+                                } else {
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Warning',
+                                        html: 'Keberatan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                    });
+                                }
+
+                                // window.location.reload();
+
+                            } catch (error) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    html: 'Terjadi kesalahan!'
+                                });
+                                console.log(error)
+                                modalKeberatan.release();
+                            }
                         }
                     })
                 })
+
 
                 const submitDataKeberatan = (data) => {
                     return $.ajax({
@@ -1328,19 +1395,21 @@
                     selector: "#perihal-keberatan-informasi",
                     height: "300"
                 }
-                tinymce.init(configPerihalKeberatanInformasi);
-
+                // tinymce.init(configPerihalKeberatanInformasi);
+                var jadwal = null
                 async function convertExpDate() {
 
                     tableKeberatanUI.block()
 
+                    const result = await getDataKeberatan()
 
-
-                    let ppidKeberatan = {{ Js::from($ppidKeberatan) }}
+                    let ppidKeberatan = result.result
                     console.log('load ppidKeberatan', ppidKeberatan)
 
-                    jadwal = await jadwalKerja()
-                    jadwal = jadwal.result.data
+                    if (jadwal == null) {
+                        jadwal = await jadwalKerja()
+                        jadwal = jadwal.result.data
+                    }
 
                     ppidKeberatan.forEach(keberatan => {
                         console.log(`id keberatan ${keberatan.id}`)
@@ -1354,9 +1423,9 @@
                             // yovi
                             let diff = moment.duration(end.diff(start)).asDays()
                             const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
-                                        "YYYY-MM-DD") &&
-                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis ==
-                                '1')
+                                    "YYYY-MM-DD") &&
+                                jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0'
+                                )
                             expiredDate = diff >= 0 ?
                                 `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                 `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;

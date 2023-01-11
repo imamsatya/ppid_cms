@@ -100,7 +100,9 @@
                                             <th>Batas Waktu</th>
                                             <th>Batas Waktu R</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            @can('data permohonan.create')
+                                                <th>Aksi</th>
+                                            @endcan
                                         </tr>
                                     </thead>
                                     <tbody id="bd-table-permohonan-masuk">
@@ -473,6 +475,11 @@
                                                         <input type="text" class="form-control" id="detail-status"
                                                             disabled>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label class="form-label">Tanggal Status</label>
+                                                        <input type="text" class="form-control"
+                                                            id="tanggal-status" disabled>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <h4 style="text-align: center">Data Permohonan</h4>
@@ -519,9 +526,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
@@ -686,7 +693,7 @@
                                                     jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                    alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                                                 }
 
@@ -1292,6 +1299,7 @@
                                         $("#detail-pekerjaan").val(dataPemohon.result.pekerjaan)
                                         $("#detail-email").val(dataPemohon.result.email)
                                         $("#detail-status").val(dataPermohonan.result.nama_status_permohonan)
+                                        $("#tanggal-status").val(dataPermohonan.result.tanggal_status)
                                         console.log(dataPermohonan.result)
                                         $("#file-identitas-detail").html(`
 <label class="form-label">File identitas</label>

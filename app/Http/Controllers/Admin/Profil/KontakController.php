@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Profil\KontakDokumentasiRuang;
 use Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class KontakController extends Controller
 {
@@ -145,6 +146,50 @@ class KontakController extends Controller
 
 
             return redirect()->back()->with('success', 'Berhasil menyimpan kontak');
+        } else {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+    }
+
+    public function dokumentasiUpdate(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'dokumentasi' => 'required',
+            'keterangan' => 'required',
+            'urutan' => 'required',
+            'dokumentasi' => 'max:5120|mimes:png,jpg,jpeg'
+        ]);
+
+        if ($validated) {
+
+
+            $dokumentasi = new KontakDokumentasiRuang();
+            $dokumentasi = $dokumentasi->where('id', $id)->first();
+            $currentImagePath = $dokumentasi->image_path;
+            Storage::delete('public/' . $dokumentasi->image_path);
+
+            // dd(substr($currentImagePath,  26));
+            if (substr($currentImagePath, -4, 1) == '.') {
+                $currentImagePath = substr($currentImagePath, 0, -4);
+            } else {
+                $currentImagePath = substr($currentImagePath, 0, -5);
+            }
+            $fileName = substr($currentImagePath,  26);
+
+            $dokumentasi->keterangan = $request->keterangan;
+            $dokumentasi->urutan = $request->urutan;
+            $file = $request->file('dokumentasi');
+            $upload_path = 'adminAssets/profil/kontak';
+            $dokumentasi->image_path = $currentImagePath . '.' . $file->getClientOriginalExtension();
+
+            $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
+
+            $dokumentasi->save();
+
+
+
+            return redirect()->back()->with('success', 'Berhasil mengubah kontak');
         } else {
             return redirect()->back()->withErrors($validated)->withInput();
         }

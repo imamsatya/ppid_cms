@@ -225,7 +225,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $faq_row->pertanyaan }}</td>
 
-                                        <td>{{ $faq_row->jawaban }}</td>
+                                        <td>{!! $faq_row->jawaban !!}</td>
                                         @canany(['faq.edit', 'faq.delete'])
                                             <td>
                                                 @can('faq.edit')
@@ -322,9 +322,13 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" name="jawaban"
+                                            {{-- <input type="text" name="jawaban"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Jawaban" value="" />
+                                                placeholder="Jawaban" value="" /> --}}
+
+                                            <textarea name="jawaban" class="jawabanArea">
+                                
+                                                </textarea>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -422,9 +426,13 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" id="editJawaban" name="jawaban"
+                                            {{-- <input type="text" id="editJawaban" name="jawaban"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Jawaban" value="" />
+                                                placeholder="Jawaban" value="" /> --}}
+
+                                            <textarea name="jawaban" class="jawabanArea" id="editJawaban">
+                                
+                                                </textarea>
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -467,6 +475,101 @@
             </div>
             <!--end::Modal - Edit Bagan Kanan-->
             @push('child-scripts')
+                <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+                <script>
+                    let options = {
+                        selector: ".jawabanArea",
+                        height: "280",
+                        fontsize_formats: "8pt 10pt 11pt 12pt 14pt 18pt 24pt ",
+                        image_title: true,
+                        /* enable automatic uploads of images represented by blob or data URIs*/
+                        automatic_uploads: true,
+                        /*
+                          URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
+                          images_upload_url: 'postAcceptor.php',
+                          here we add custom filepicker only to Image dialog
+                        */
+                        file_picker_types: 'image',
+                        /* and here's our custom image picker*/
+                        file_picker_callback: function(cb, value, meta) {
+                            var input = document.createElement('input');
+                            input.setAttribute('type', 'file');
+                            input.setAttribute('accept', 'image/*');
+
+                            /*
+                              Note: In modern browsers input[type="file"] is functional without
+                              even adding it to the DOM, but that might not be the case in some older
+                              or quirky browsers like IE, so you might want to add it to the DOM
+                              just in case, and visually hide it. And do not forget do remove it
+                              once you do not need it anymore.
+                            */
+
+                            input.onchange = function() {
+                                var file = this.files[0];
+
+                                var reader = new FileReader();
+                                reader.onload = function() {
+                                    /*
+                                      Note: Now we need to register the blob in TinyMCEs image blob
+                                      registry. In the next release this part hopefully won't be
+                                      necessary, as we are looking to handle it internally.
+                                    */
+                                    var id = 'blobid' + (new Date()).getTime();
+                                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                    var base64 = reader.result.split(',')[1];
+                                    var blobInfo = blobCache.create(id, file, base64);
+                                    blobCache.add(blobInfo);
+
+                                    /* call the callback and populate the Title field with the file name */
+                                    cb(blobInfo.blobUri(), {
+                                        title: file.name
+                                    });
+                                };
+                                reader.readAsDataURL(file);
+                            };
+
+                            input.click();
+                        },
+
+
+                        plugins: 'print preview fullpage searchreplace autolink directionality  visualblocks visualchars fullscreen image code link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools   contextmenu colorpicker textpattern help',
+                        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+                        image_advtab: true,
+                        templates: [{
+                                title: 'Test template 1',
+                                content: 'Test 1'
+                            },
+                            {
+                                title: 'Test template 2',
+                                content: 'Test 2'
+                            }
+                        ],
+                        font_formats: "Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago;Lato=lato, sans-serif; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
+                        content_style: [
+                            "@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); body { font-family: 'Lato', sans-serif;font-size: 11pt; }",
+                        ]
+
+                    };
+
+                    if (KTThemeMode.getMode() === "dark") {
+                        options["skin"] = "oxide-dark";
+                        options["content_css"] = "dark";
+                    }
+
+                    tinymce.init(options);
+
+                    function activateLoadingButton(idButton) {
+                        console.log('active')
+                        let button = document.querySelector(`${idButton}`);
+                        button.setAttribute("data-kt-indicator", "on");
+                        // Handle button click event
+
+                        // // Disable indicator after 3 seconds
+                        // setTimeout(function() {
+                        //     button.removeAttribute("data-kt-indicator");
+                        // }, 3000);
+                    }
+                </script>
                 <script>
                     $("#kt_datatable_dom_positioning_faq").DataTable({
                         "language": {

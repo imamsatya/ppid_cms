@@ -22,13 +22,15 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="pills-peraturan-tab" data-toggle="pill"
-                                href="#pills-peraturan" role="tab" aria-controls="pills-peraturan"
-                                aria-selected="true">Peraturan Keterbukaan Informasi</a>
+                            <a class="nav-link {{ count(app('request')->all()) < 1 ? 'active' : null }} {{ app('request')->input('peraturan_kip') ? 'active' : null }}"
+                                id="pills-peraturan-tab" data-toggle="pill" href="#pills-peraturan" role="tab"
+                                aria-controls="pills-peraturan" aria-selected="true">Peraturan
+                                Keterbukaan Informasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-rancangan-tab" data-toggle="pill" href="#pills-rancangan"
-                                role="tab" aria-controls="pills-rancangan" aria-selected="false">Rancangan
+                            <a class="nav-link {{ app('request')->input('rancangan_peraturan_kip') ? 'active' : null }}"
+                                id="pills-rancangan-tab" data-toggle="pill" href="#pills-rancangan" role="tab"
+                                aria-controls="pills-rancangan" aria-selected="false">Rancangan
                                 Peraturan Keterbukaan Informasi</a>
                         </li>
                     </ul>
@@ -36,16 +38,16 @@
                     <!--  -->
 
                     <div class="tab-content mt-4" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-peraturan" role="tabpanel"
-                            aria-labelledby="pills-peraturan-tab">
+                        <div class="tab-pane fade {{ app('request')->input('peraturan_kip') ? 'show active' : null }} {{ count(app('request')->all()) < 1 ? 'show active' : null }}""
+                            id="pills-peraturan" role="tabpanel" aria-labelledby="pills-peraturan-tab">
                             <div class="row">
                                 @if ($peraturanKIP)
                                     @foreach ($peraturanKIP as $peraturanKIP_row)
                                         <div class="col-md-4 mt-2">
                                             <div class="card card-informasi w-100">
-                                                @if ($peraturanKIP_row->thumbnail_path)
+                                                @if ($regulasiBanner->thumbnail_path)
                                                     <img class="card-img-top"
-                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+                                                        src="{{ asset('storage/' . $regulasiBanner->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -127,17 +129,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-rancangan" role="tabpanel"
-                            aria-labelledby="pills-rancangan-tab">
+                        <div class="tab-pane fade {{ app('request')->input('rancangan_peraturan_kip') ? 'show active' : null }}"
+                            id="pills-rancangan" role="tabpanel" aria-labelledby="pills-rancangan-tab">
                             <div class="row">
                                 @if ($rancanganPeraturanKIP)
                                     @foreach ($rancanganPeraturanKIP as $rancanganPeraturanKIP_row)
                                         <div class="col-md-4 mt-2">
 
                                             <div class="card card-informasi w-100">
-                                                @if ($peraturanKIP_row->thumbnail_path)
+                                                @if ($regulasiBanner->thumbnail_path)
                                                     <img class="card-img-top"
-                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+                                                        src="{{ asset('storage/' . $regulasiBanner->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
