@@ -642,7 +642,7 @@
                                 // yovi
                                 let diff = moment.duration(end.diff(start)).asDays()
                                 const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
-                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0')
                                 expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                     `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
                             } else {
@@ -1071,9 +1071,8 @@
                                 let diff = moment.duration(end.diff(start)).asDays()
                                 const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
                                         "YYYY-MM-DD") &&
-                                    jd.tanggal <= end.format("YYYY-MM-DD")) && (jd.jenis ==
-                                    '1' && jd.jenis ==
-                                    '2'))
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis !=
+                                    '0')
                                 expiredDate = diff >= 0 ?
                                     `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                     `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
@@ -1425,9 +1424,8 @@
                             let diff = moment.duration(end.diff(start)).asDays()
                             const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
                                     "YYYY-MM-DD") &&
-                                jd.tanggal <= end.format("YYYY-MM-DD")) && (jd.jenis ==
-                                '1' && jd.jenis ==
-                                '2'))
+                                jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0'
+                                )
                             expiredDate = diff >= 0 ?
                                 `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                 `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
