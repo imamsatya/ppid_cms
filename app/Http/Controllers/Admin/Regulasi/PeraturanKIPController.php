@@ -85,8 +85,9 @@ class PeraturanKIPController extends Controller
     {
 
         $validated = $request->validate([
-            'banner' => 'required_without_all:thumbnail|mimes:png,jpg,jpeg|max:5120',
-            'thumbnail' => 'required_without_all:banner|mimes:png,jpg,jpeg|max:5120'
+            'banner' => 'required_without_all:thumbnail,thumbnail_rancangan|mimes:png,jpg,jpeg|max:5120',
+            'thumbnail' => 'required_without_all:banner,thumbnail_rancangan|mimes:png,jpg,jpeg|max:5120',
+            'thumbnail_rancangan' => 'required_without_all:banner,thumbnail|mimes:png,jpg,jpeg|max:5120'
         ]);
 
 
@@ -111,6 +112,10 @@ class PeraturanKIPController extends Controller
                         if ($fileName == 'thumbnail') {
                             $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
                         }
+
+                        if ($fileName == 'thumbnail_rancangan') {
+                            $banner->thumbnail_rancangan_path = 'adminAssets/regulasi/banner/thumbnail_rancangan.' . $file->getClientOriginalExtension();
+                        }
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/regulasi/banner', $fileName2);
                     }
@@ -130,6 +135,10 @@ class PeraturanKIPController extends Controller
 
                         if ($fileName == 'thumbnail') {
                             $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
+                        }
+
+                        if ($fileName == 'thumbnail_rancangan') {
+                            $banner->thumbnail_rancangan_path = 'adminAssets/regulasi/banner/thumbnail_rancangan.' . $file->getClientOriginalExtension();
                         }
 
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();

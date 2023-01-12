@@ -1,4 +1,12 @@
-<x-admin.layout>
+<?php if (isset($component)) { $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0 = $component; } ?>
+<?php $component = App\View\Components\Admin\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Admin\Layout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
 
     <div id="roleVue">
         <template id="my-template">
@@ -19,10 +27,9 @@
             <swal-param name="customClass" value='{ "popup": "my-popup" }' />
             <swal-function-param name="didOpen" value="popup => console.log(popup)" />
         </template>
-        @if ($errors->any())
+        <?php if($errors->any()): ?>
             <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-                {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                </span> --}}
+                
                 <!--begin::Icon-->
                 <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -47,9 +54,9 @@
 
                     <!--begin::Content-->
                     <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                     <!--end::Content-->
                 </div>
@@ -72,12 +79,11 @@
                 <!--end::Close-->
             </div>
 
-        @endif
-        @if (\Session::has('success'))
+        <?php endif; ?>
+        <?php if(\Session::has('success')): ?>
             <!--begin::Alert-->
             <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                </span> --}}
+                
                 <!--begin::Icon-->
                 <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -100,7 +106,7 @@
                     <!--end::Title-->
 
                     <!--begin::Content-->
-                    <span>{{ Session::get('success') }}</span>
+                    <span><?php echo e(Session::get('success')); ?></span>
                     <!--end::Content-->
                 </div>
                 <!--end::Wrapper-->
@@ -122,7 +128,7 @@
                 <!--end::Close-->
             </div>
             <!--end::Alert-->
-        @endif
+        <?php endif; ?>
         <br>
         <h1>Daftar Role Permission </h1>
         <br>
@@ -130,7 +136,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5 g-xl-9">
 
 
-            @foreach ($roles as $role)
+            <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-md-6">
                     <!--begin::Card-->
                     <div class="card card-flush h-md-100">
@@ -138,7 +144,7 @@
                         <div class="card-header">
                             <!--begin::Card title-->
                             <div class="card-title">
-                                <h2> {{ $role['name'] }}</h2>
+                                <h2> <?php echo e($role['name']); ?></h2>
                             </div>
                             <!--end::Card title-->
                         </div>
@@ -147,8 +153,7 @@
                         <div class="card-body pt-1">
 
                             <!--begin::Users-->
-                            {{-- <div class="fw-bold text-gray-600 mb-5">Total users with
-                                this role: 5</div> --}}
+                            
                             <?php
                             $permissionGroup = [];
                             foreach ($role['permissions'] as $key => $permission) {
@@ -221,237 +226,237 @@
                             <!--begin::Permissions-->
                             <div class="d-flex flex-column text-gray-600">
                                 <div class="row ">
-                                    @if ($showDashboard || $showLayananPPID || $showProfil || $showRegulasi || $showInformasiPublik)
+                                    <?php if($showDashboard || $showLayananPPID || $showProfil || $showRegulasi || $showInformasiPublik): ?>
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <!--begin::Dashboard-->
 
-                                            @if ($showDashboard)
+                                            <?php if($showDashboard): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span class="bullet bg-primary me-3"></span>Dashboard
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
                                             <!--end::Dashboard-->
 
                                             <!--begin::Layanan PPID-->
-                                            @if ($showLayananPPID)
+                                            <?php if($showLayananPPID): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Layanan
                                                     PPID
                                                 </div>
-                                                @if ($showDataPermohonan)
+                                                <?php if($showDataPermohonan): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Data Permohonan
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if ($showDataKeberatan)
+                                                <?php if($showDataKeberatan): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Data Keberatan
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Layanan PPID-->
 
                                             <!--begin::Profil-->
-                                            @if ($showProfil)
+                                            <?php if($showProfil): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span class="bullet bullet-vertical bg-secondary me-3"></span>Profil
                                                 </div>
 
-                                                @if ($showProfilSingkat)
+                                                <?php if($showProfilSingkat): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Profil Singkat PPID
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if ($showTugasDanFungsi)
+                                                <?php if($showTugasDanFungsi): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Tugas dan Fungsi
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if ($showStrukturOrganisasi)
+                                                <?php if($showStrukturOrganisasi): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Struktur Organisasi
                                                     </div>
-                                                @endif
-                                                @if ($showVisiDanMisi)
+                                                <?php endif; ?>
+                                                <?php if($showVisiDanMisi): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Visi dan Misi
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if ($showKontak)
+                                                <?php if($showKontak): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Kontak
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Profil-->
 
                                             <!--begin::Regulasi-->
-                                            @if ($showRegulasi)
+                                            <?php if($showRegulasi): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Regulasi
                                                 </div>
-                                                @if ($showPeraturanKIP)
+                                                <?php if($showPeraturanKIP): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Peraturan KIP
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if ($showRancanganPeraturanKIP)
+                                                <?php if($showRancanganPeraturanKIP): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Rancangan Peraturan
                                                         KIP
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Regulasi-->
                                             <!--begin::Informasi Publik-->
-                                            @if ($showInformasiPublik)
+                                            <?php if($showInformasiPublik): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Informasi
                                                     Publik
                                                 </div>
-                                                @if ($showInformasiSecaraBerkala)
+                                                <?php if($showInformasiSecaraBerkala): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Informasi Secara
                                                         Berkala
                                                     </div>
-                                                @endif
-                                                @if ($showInformasiSertaMerta)
+                                                <?php endif; ?>
+                                                <?php if($showInformasiSertaMerta): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Informasi Serta
                                                         Merta
                                                     </div>
-                                                @endif
-                                                @if ($showInformasiSetiapSaat)
+                                                <?php endif; ?>
+                                                <?php if($showInformasiSetiapSaat): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Informasi Setiap
                                                         Saat
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Informasi Publik-->
                                         </div>
-                                    @endif
-                                    @if ($showLaporan || $showStandarLayanan || $showFAQ || $showManajemenUser || $showManajemenHome)
+                                    <?php endif; ?>
+                                    <?php if($showLaporan || $showStandarLayanan || $showFAQ || $showManajemenUser || $showManajemenHome): ?>
                                         <div class="col-lg-6 col-md-6 col-sm-6">
                                             <!--begin::Laporan-->
 
-                                            @if ($showLaporan)
+                                            <?php if($showLaporan): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Laporan
                                                 </div>
-                                                @if ($showLaporanTriwulanan)
+                                                <?php if($showLaporanTriwulanan): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Laporan Triwulanan
                                                         PIP
                                                     </div>
-                                                @endif
+                                                <?php endif; ?>
 
-                                                @if ($showLaporanTahunan)
+                                                <?php if($showLaporanTahunan): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Laporan Tahunan PIP
                                                     </div>
-                                                @endif
-                                                @if ($showLaporanHasilSurvei)
+                                                <?php endif; ?>
+                                                <?php if($showLaporanHasilSurvei): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Laporan Hasil
                                                         Survei
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Laporan-->
 
                                             <!--begin::Standar Layanan-->
-                                            @if ($showStandarLayanan)
+                                            <?php if($showStandarLayanan): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Standar
                                                     Layanan
                                                 </div>
-                                                @if ($showMaklumatPelayanan)
+                                                <?php if($showMaklumatPelayanan): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Maklumat Pelayanan
                                                     </div>
-                                                @endif
-                                                @if ($showProsedurPelayanan)
+                                                <?php endif; ?>
+                                                <?php if($showProsedurPelayanan): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Prosedur Pelayanan
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Standar Layanan-->
 
                                             <!--begin::FAQ-->
-                                            @if ($showFAQ)
+                                            <?php if($showFAQ): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span class="bullet bg-primary me-3"></span>FAQ
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
                                             <!--begin::FAQ-->
 
                                             <!--begin::Manajmen User-->
 
-                                            @if ($showManajemenUser)
+                                            <?php if($showManajemenUser): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Manajemen
                                                     User
                                                 </div>
-                                                @if ($showUserPemohon)
+                                                <?php if($showUserPemohon): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>User Pemohon
                                                     </div>
-                                                @endif
-                                                @if ($showUserAdmin)
+                                                <?php endif; ?>
+                                                <?php if($showUserAdmin): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>User Admin
                                                     </div>
-                                                @endif
-                                                @if ($showRolePermission)
+                                                <?php endif; ?>
+                                                <?php if($showRolePermission): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Role Permission
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Manajmen User-->
 
                                             <!--begin::Manajmen Home-->
 
-                                            @if ($showManajemenHome)
+                                            <?php if($showManajemenHome): ?>
                                                 <div class="d-flex align-items-center py-2">
                                                     <span
                                                         class="bullet bullet-vertical bg-secondary me-3"></span>Manajemen
                                                     Home
                                                 </div>
-                                                @if ($showSlider)
+                                                <?php if($showSlider): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Slider
                                                     </div>
-                                                @endif
-                                                @if ($showInformasi)
+                                                <?php endif; ?>
+                                                <?php if($showInformasi): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Informasi
                                                     </div>
-                                                @endif
-                                                @if ($showVideo)
+                                                <?php endif; ?>
+                                                <?php if($showVideo): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Video
                                                     </div>
-                                                @endif
-                                                @if ($showFooter)
+                                                <?php endif; ?>
+                                                <?php if($showFooter): ?>
                                                     <div class="d-flex align-items-center py-2 px-4">
                                                         <span class="bullet bg-primary me-3"></span>Footer
                                                     </div>
-                                                @endif
-                                            @endif
+                                                <?php endif; ?>
+                                            <?php endif; ?>
                                             <!--end::Manajmen Home-->
 
 
@@ -467,14 +472,12 @@
                                             <!--end::Setting Kalender-->
 
                                             <!--begin::Setting Frontend-->
-                                            {{-- <div class="d-flex align-items-center py-2">
-                                                <span class="bullet bg-primary me-3"></span>Setting Frontend
-                                            </div> --}}
+                                            
                                             <!--begin::Setting Frontend-->
 
 
                                         </div>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <!--end::Permissions-->
@@ -483,60 +486,42 @@
                         <!--begin::Card footer-->
                         <div class="card-footer flex-wrap pt-0">
 
-                            {{-- <button type="button" class="btn btn-light btn-active-light-primary my-1 me-2"
-                                data-bs-toggle="modal" data-bs-target="#kt_modal_update_role"
-                                onclick="editDialog({{ $loop->index }})">Edit
-                                Role</button> --}}
-                            {{-- Versi Modal --}}
-                            {{-- <a href="javascript:void(0)" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_update_role" onclick="editDialog({{ $loop->index }})"
-                                class="btn btn-light btn-active-primary my-1 me-2 "> Edit
-                                Role</a> --}}
-                                @can('role permission.edit')
-                            <a href="{{ route('admin.role_permission.edit', $role) }}"
+                            
+                            
+                            
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role permission.edit')): ?>
+                            <a href="<?php echo e(route('admin.role_permission.edit', $role)); ?>"
                                 class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                 Role</a>
-                                @endcan
-                                @can('role permission.delete')
-                            <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                <?php endif; ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role permission.delete')): ?>
+                            <a href="javascript:void(0)" onclick="deleteDialog(<?php echo e($loop->index); ?>)"
                                 class="btn btn-light btn-active-danger my-1 ">Delete
                                 Role</a>
-                                @endcan
+                                <?php endif; ?>
                         </div>
                         <!--end::Card footer-->
                     </div>
                     <!--end::Card-->
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             <!--begin::Add new card-->
-             @can('role permission.create')
+             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role permission.create')): ?>
             <div class="col-md-6">
                 <!--begin::Card-->
                 <div class="card h-md-100">
                     <!--begin::Card body-->
                     <div class="card-body d-flex flex-center">
-                        {{-- Versi Modal --}}
-                        {{-- <!--begin::Button-->
-                        <button type="button" class="btn btn-clear d-flex flex-column flex-center"
-                            data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
-                            <!--begin::Illustration-->
-                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
-                                alt="" class="mw-100 mh-150px mb-7" />
-                            <!--end::Illustration-->
-                            <!--begin::Label-->
-                            <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
-                                Add New Role</div>
-                            <!--end::Label-->
-                        </button>
-                        <!--begin::Button--> --}}
+                        
+                        
 
-                        {{-- Versi Create --}}
+                        
                          
-                        <a href="{{ route('admin.role_permission.create') }}"
+                        <a href="<?php echo e(route('admin.role_permission.create')); ?>"
                             class="btn btn-clear d-flex flex-column flex-center">
                             <!--begin::Illustration-->
-                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
+                            <img src="<?php echo e(asset('template/dist/assets/media/illustrations/sketchy-1/4.png')); ?>"
                                 alt="" class="mw-100 mh-150px mb-7" />
                             <!--end::Illustration-->
                             <!--begin::Label-->
@@ -550,7 +535,7 @@
                 </div>
                 <!--begin::Card-->
             </div>
-            @endcan
+            <?php endif; ?>
             <!--begin::Add new card-->
         </div>
         <!--end::Row-->
@@ -589,9 +574,9 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
-                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+                        <form id="kt_modal_add_role_form" action="<?php echo e(route('admin.role_permission.store')); ?>"
                             class="form" method="POST">
-                            @csrf
+                            <?php echo csrf_field(); ?>
                             <!--begin::Scroll-->
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll"
                                 data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
@@ -2021,8 +2006,8 @@
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
                         <form id="editForm" class="form" method="POST">
-                            @csrf
-                            @method('PATCH')
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PATCH'); ?>
                             <!--begin::Scroll-->
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll"
                                 data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
@@ -3391,27 +3376,27 @@
         <!--end::Modals-->
 
 
-        <x-slot:isShowAccordion_manajemenUser>
+         <?php $__env->slot('isShowAccordion_manajemenUser', null, []); ?> 
             show
-            </x-slot>
-            <x-slot:isActiveLink_manajemenUser>
+             <?php $__env->endSlot(); ?>
+             <?php $__env->slot('isActiveLink_manajemenUser', null, []); ?> 
                 active
-                </x-slot>
-                <x-slot:isActiveLink_rolePermission>
+                 <?php $__env->endSlot(); ?>
+                 <?php $__env->slot('isActiveLink_rolePermission', null, []); ?> 
                     active
-                    </x-slot>
-                    <x-slot:subMenuTitle>
+                     <?php $__env->endSlot(); ?>
+                     <?php $__env->slot('subMenuTitle', null, []); ?> 
                         Role Permission
-                        </x-slot>
+                         <?php $__env->endSlot(); ?>
 
-                        <x-slot:mainMenuTitle>
+                         <?php $__env->slot('mainMenuTitle', null, []); ?> 
                             Manajemen User
-                            </x-slot>
-                            @push('head-scripts')
+                             <?php $__env->endSlot(); ?>
+                            <?php $__env->startPush('head-scripts'); ?>
                                 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-                            @endpush
+                            <?php $__env->stopPush(); ?>
 
-                            @push('child-scripts')
+                            <?php $__env->startPush('child-scripts'); ?>
                                 <script>
                                     $("#kt_datatable_dom_positioning_role").DataTable({
                                         "language": {
@@ -3438,7 +3423,8 @@
 
                                     function editDialog(index) {
 
-                                        let app = {{ Js::from($roles) }}
+                                        let app = <?php echo e(Js::from($roles)); ?>
+
                                         let role = app[index]
                                         document.getElementById('editName').value = role.name
                                         console.log('role', role.permissions)
@@ -3478,7 +3464,8 @@
                                     };
 
                                     function deleteDialog(index) {
-                                        let app = {{ Js::from($roles) }}
+                                        let app = <?php echo e(Js::from($roles)); ?>
+
                                         let role = app[index]
 
                                         Swal.fire({
@@ -3549,6 +3536,12 @@
                                         // }, 3000);
                                     }
                                 </script>
-                            @endpush
+                            <?php $__env->stopPush(); ?>
 
-</x-admin.layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0)): ?>
+<?php $component = $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0; ?>
+<?php unset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0); ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/admin/manajemen_user/role_permission2.blade.php ENDPATH**/ ?>
