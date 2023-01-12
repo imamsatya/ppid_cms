@@ -1,15 +1,22 @@
-<x-admin.layout>
-    <x-slot:subMenuTitle>
-        Rancangan Peraturan KIP
-        </x-slot>
+<?php if (isset($component)) { $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0 = $component; } ?>
+<?php $component = App\View\Components\Admin\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Admin\Layout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('subMenuTitle', null, []); ?> 
+        Informasi Setiap Saat
+         <?php $__env->endSlot(); ?>
 
-        <x-slot:mainMenuTitle>
-            Regulasi
-            </x-slot>
-            @if ($errors->any())
+         <?php $__env->slot('mainMenuTitle', null, []); ?> 
+            Informasi Publik
+             <?php $__env->endSlot(); ?>
+            <?php if($errors->any()): ?>
                 <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                 </span> --}}
+                    
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -28,46 +35,42 @@
 
                     <!--begin::Wrapper-->
                     <div class="d-flex flex-column text-white pe-0 pe-sm-10">
-                        <div class="d-flex flex-column text-white pe-0 pe-sm-10">
-                            <!--begin::Title-->
-                            <h4 class="mb-2 text-white">Error !</h4>
-                            <h4 class="mb-2 text-white">Error !</h4>
-                            <!--end::Title-->
+                        <!--begin::Title-->
+                        <h4 class="mb-2 text-white">Error !</h4>
+                        <!--end::Title-->
 
-                            <!--begin::Content-->
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Wrapper-->
-
-                        <!--begin::Close-->
-                        <button type="button"
-                            class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
-                            data-bs-dismiss="alert">
-                            <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path opacity="0.3"
-                                        d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
-                                        fill="currentColor" />
-                                    <path
-                                        d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
-                                        fill="currentColor" />
-                                </svg></span>
-                        </button>
-                        <!--end::Close-->
+                        <!--begin::Content-->
+                        <ul>
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                        <!--end::Content-->
                     </div>
+                    <!--end::Wrapper-->
 
-            @endif
-            @if (\Session::has('success'))
+                    <!--begin::Close-->
+                    <button type="button"
+                        class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                        data-bs-dismiss="alert">
+                        <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3"
+                                    d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
+                                    fill="currentColor" />
+                            </svg></span>
+                    </button>
+                    <!--end::Close-->
+                </div>
+
+            <?php endif; ?>
+            <?php if(\Session::has('success')): ?>
                 <!--begin::Alert-->
                 <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                 </span> --}}
-                    </span> --}}
+                    
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -90,7 +93,7 @@
                         <!--end::Title-->
 
                         <!--begin::Content-->
-                        <span>{{ Session::get('success') }}</span>
+                        <span><?php echo e(Session::get('success')); ?></span>
                         <!--end::Content-->
                     </div>
                     <!--end::Wrapper-->
@@ -112,11 +115,12 @@
                     <!--end::Close-->
                 </div>
                 <!--end::Alert-->
-            @endif
+            <?php endif; ?>
 
-
-            <form action="{{ route('admin.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+            <h1>Pengelolaan Informasi Publik</h1>
+            <form action="<?php echo e(route('admin.informasi_secara_berkala.banner.store')); ?>" method="POST"
+                enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
                 <div class="card card-flush shadow-sm">
 
                     <div class="card-body py-5">
@@ -125,27 +129,27 @@
                         <label for="" class="required form-label">Banner Image</label>
                         <br>
                         <div class="image-input image-input-outline" data-kt-image-input="true"
-                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                            style="background-image: url(<?php echo e(asset('template/dist/assets/media/svg/avatars/blank.svg')); ?>)">
                             <!--begin::Image preview wrapper-->
-                            @if ($regulasiBanner)
-                                @if ($regulasiBanner->banner_path)
+                            <?php if($informasiPublikBanner): ?>
+                                <?php if($informasiPublikBanner->banner_path): ?>
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('storage/' . $regulasiBanner->banner_path) }})">
+                                        style="background-image: url(<?php echo e(asset('storage/' . $informasiPublikBanner->banner_path)); ?>)">
                                     </div>
-                                @else
+                                <?php else: ?>
                                     <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                        style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                     </div>
-                                @endif
-                            @else
+                                <?php endif; ?>
+                            <?php else: ?>
                                 <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                    style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                 </div>
 
-                            @endif
+                            <?php endif; ?>
                             <!--end::Image preview wrapper-->
 
-                            @can('rancangan peraturan kip.edit')
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.edit')): ?>
                                 <!--begin::Edit button-->
                                 <label
                                     class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -177,74 +181,12 @@
                                     <i class="bi bi-x fs-2"></i>
                                 </span>
                                 <!--end::Remove button-->
-                            @endcan
+                            <?php endif; ?>
                         </div>
                         <p>minimal dimensi 369x454 pixel</p>
-                        <br>
-                        <div>
-                            <label for="" class="required form-label">Card Background Image</label>
-                            <br>
-                            <div class="image-input image-input-outline" data-kt-image-input="true"
-                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                                <!--begin::Image preview wrapper-->
-                                @if ($regulasiBanner)
-                                    @if ($regulasiBanner->thumbnail_rancangan_path)
-                                        <div class="image-input-wrapper w-250px  h-125px"
-                                            style="background-image: url({{ asset('storage/' . $regulasiBanner->thumbnail_rancangan_path) }})">
-                                        </div>
-                                    @else
-                                        <div class="image-input-wrapper w-250px  h-125px"
-                                            style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                        </div>
-                                    @endif
-                                @else
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                    </div>
-
-                                @endif
-                                <!--end::Image preview wrapper-->
-
-                                @can('rancangan peraturan kip.edit')
-                                    <!--begin::Edit button-->
-                                    <label
-                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                        data-bs-dismiss="click" title="Change Banner">
-                                        <i class="bi bi-pencil-fill fs-7"></i>
-
-                                        <!--begin::Inputs-->
-                                        <input type="file" name="thumbnail_rancangan" accept=".png, .jpg, .jpeg" />
-                                        <input type="hidden" name="thumbnail_rancangan_remove" />
-                                        <!--end::Inputs-->
-                                    </label>
-                                    <!--end::Edit button-->
-
-                                    <!--begin::Cancel button-->
-                                    <span
-                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                        data-bs-dismiss="click" title="Cancel Banner">
-                                        <i class="bi bi-x fs-2"></i>
-                                    </span>
-                                    <!--end::Cancel button-->
-
-                                    <!--begin::Remove button-->
-                                    <span
-                                        class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                        data-bs-dismiss="click" title="Remove Banner">
-                                        <i class="bi bi-x fs-2"></i>
-                                    </span>
-                                    <!--end::Remove button-->
-                                @endcan
-                            </div>
-                            <p>minimal dimensi 369x454 pixel</p>
-                        </div>
-
-                        @can('rancangan peraturan kip.create')
-                            <button type="submit" class="btn btn-primary" id="addBannerButton"
-                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
+                        <br> <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.create')): ?>
+                            <button type="submit" class="btn btn-primary" id="addButton"
+                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                     Simpan
                                 </span>
                                 <span class="indicator-progress">
@@ -252,143 +194,81 @@
                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                 </span>
                             </button>
-                        @endcan
+                        <?php endif; ?>
                     </div>
 
                 </div>
             </form>
-            <br>
-            <h1>Pengelolaan Regulasi</h1>
+
+
             <br>
             <div class="card card-flush shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">Rancangan Peraturan KIP</h3>
+                    <h3 class="card-title">Informasi Setiap Saat</h3>
                     <div class="card-toolbar">
-                        @can('rancangan peraturan kip.create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.create')): ?>
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_tambahRancanganPeraturanKIP">Tambah</a>
-                        @endcan
+                                data-bs-target="#kt_modal_addinformasiSetiapSaat">Tambah</a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="card-body py-5">
 
 
-                    <table id="kt_datatable_dom_positioning_RancanganPeraturanKIP"
+                    <table id="kt_datatable_dom_positioning_informasiSetiapSaat"
                         class="table table-striped table-row-bordered gy-5 gs-7">
                         <thead>
                             <tr class="fw-semibold fs-6 text-gray-800">
                                 <th>No</th>
-                                <th>Judul Peraturan</th>
-                                <th>File PDF</th>
-                                <th>Urutan</th>
-                                <th style="min-width: 15%">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if ($rancanganPeraturanKIP)
-                                @foreach ($rancanganPeraturanKIP as $rancanganPeraturanKIP_row)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $rancanganPeraturanKIP_row->judul_peraturan }}</td>
-                                        <td><a
-                                                href="{{ asset('storage/' . $rancanganPeraturanKIP_row->file_path) }}">{{ $rancanganPeraturanKIP_row->judul_peraturan . '.pdf' }}</a>
-                                        </td>
-                                        <td>{{ $rancanganPeraturanKIP_row->urutan }}</td>
-                                        @canany(['rancangan peraturan kip.edit', 'rancangan peraturan kip.delete'])
-                                            <td>
-                                                @can('rancangan peraturan kip.edit')
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#kt_modal_editPeraturanKIP"
-                                                        onclick="editDialog({{ $loop->index }})"
-                                                        class="btn btn-icon btn-primary me-2"><i
-                                                            class="bi bi-pencil fs-4 "></i></a>
-                                                @endcan
-                                                @can('rancangan peraturan kip.delete')
-                                                    <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
-                                                        class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
-                                                @endcan
-
-                                            </td>
-                                        @endcan
-                                    </tr>
-                                @endforeach
-                            @endif
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <br>
-            {{-- Rancangan Peraturan KIP --}}
-            {{-- <div class="card card-flush shadow-sm">
-                <div class="card-header">
-                    <h3 class="card-title">Rancangan Peraturan KIP</h3>
-                    <div class="card-toolbar">
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Tambah
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body py-5">
-
-
-                    <table id="kt_datatable_dom_positioning_peraturanKIP"
-                        class="table table-striped table-row-bordered gy-5 gs-7">
-                        <thead>
-                            <tr class="fw-semibold fs-6 text-gray-800">
-                                <th>No</th>
-                                <th>Judul Peraturan</th>
-                                <th>File PDF</th>
-                                <th>Urutan</th>
+                                <th>Judul Informasi</th>
+                                <th>URL</th>
+                                <th>File</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Peraturan no 1</td>
-                                <td>peraturan1.pdf</td>
-                                <td>1</td>
-                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                            class="bi bi-pencil fs-4 "></i></a>
-                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                            class="bi bi-x-lg fs-4 "></i></a>
+                            <?php if($informasiSetiapSaat): ?>
+                                <?php $__currentLoopData = $informasiSetiapSaat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $informasiSetiapSaat_row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td><?php echo e($loop->index + 1); ?></td>
+                                        <td><?php echo e($informasiSetiapSaat_row->judul_informasi); ?></td>
+                                        <td><?php echo e($informasiSetiapSaat_row->url); ?></td>
+                                        <td>
+                                            <?php if($informasiSetiapSaat_row->file_path): ?>
+                                                <a
+                                                    href="<?php echo e(asset('storage/' . $informasiSetiapSaat_row->file_path)); ?>">file</a>
+                                            <?php endif; ?>
+                                        </td>
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['informasi setiap saat.edit', 'informasi setiap saat.delete'])): ?>
+                                            <td>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.edit')): ?>
+                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                        data-bs-target="#kt_modal_editinformasiSetiapSaat"
+                                                        onclick="editDialog(<?php echo e($loop->index); ?>)"
+                                                        class="btn btn-icon btn-primary me-2"><i
+                                                            class="bi bi-pencil fs-4 "></i></a>
+                                                <?php endif; ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.delete')): ?>
+                                                    <a href="javascript:void(0)" onclick="deleteDialog(<?php echo e($loop->index); ?>)"
+                                                        class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
+                                                <?php endif; ?>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Peraturan no 2</td>
-                                <td>peraturan2.pdf</td>
-                                <td>2</td>
-                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                            class="bi bi-pencil fs-4 "></i></a>
-                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                            class="bi bi-x-lg fs-4 "></i></a>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Peraturan no 3</td>
-                                <td>peraturan3.pdf</td>
-                                <td>3</td>
-                                <td><a href="#" class="btn btn-icon btn-primary me-2"><i
-                                            class="bi bi-pencil fs-4 "></i></a>
-                                    <a href="#" class="btn btn-icon btn-danger"><i
-                                            class="bi bi-x-lg fs-4 "></i></a>
 
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
 
             </div>
-            <br> --}}
+            <br>
 
-            <!--begin::Modal - Tambah Bagan Kanan-->
-            <div class="modal fade" id="kt_modal_tambahRancanganPeraturanKIP" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - add Informasi Secara Berkala App-->
+            <div class="modal fade" id="kt_modal_addinformasiSetiapSaat" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -396,7 +276,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Tambah Rancangan Peraturan KIP</h2>
+                            <h2>Tambah Informasi</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -418,10 +298,10 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
-                            {{-- Content Modal --}}
-                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+                            
+                            <form id="kt_account_profile_details_form"action="" enctype="multipart/form-data"
                                 method="POST" class="form">
-                                @csrf
+                                <?php echo csrf_field(); ?>
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
 
@@ -430,13 +310,13 @@
                                     <div class="row mb-6">
                                         <!--begin::Label-->
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul
-                                            Peraturan</label>
+                                            Informasi</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" name="judulPeraturan"
+                                            <input type="text" name="judulInformasi"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Judul Peraturan" value="" />
+                                                placeholder="Judul Informasi" value="" />
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -445,13 +325,13 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">File</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">URL</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="file" name="file"
+                                            <input type="text" name="url"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="File PDF" value="" />
+                                                placeholder="URL" value="" />
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -460,29 +340,30 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Urutan</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">File
+                                            Pendukung</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="number" min=1 name="urutan"
+                                            <input type="file" name="file_pendukung"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Urutan" value="" />
+                                                placeholder="File Pendukung" value="" />
+
+                                            <p>jika ada dan tidak mandatory</p>
                                         </div>
                                         <!--end::Col-->
                                     </div>
-                                    <!--end::Input group-->
-
-
                                     <!--end::Input group-->
 
                                 </div>
                                 <!--end::Card body-->
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('rancangan peraturan kip.create')
-                                        <button type="submit" class="btn btn-primary" id="addButton"
-                                            onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                                    
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.create')): ?>
+                                        <button type="submit" class="btn btn-primary" id="addInformasiBerkala"
+                                            onclick="activateLoadingButton('#addInformasiBerkala')"><span
+                                                class="indicator-label">
                                                 Simpan
                                             </span>
                                             <span class="indicator-progress">
@@ -490,7 +371,7 @@
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                             </span>
                                         </button>
-                                    @endcan
+                                    <?php endif; ?>
                                 </div>
                                 <!--end::Actions-->
                             </form>
@@ -499,14 +380,12 @@
                     </div>
                     <!--end::Modal content-->
                 </div>
-                <!--end::Modal content-->
+                <!--end::Modal dialog-->
             </div>
-            <!--end::Modal dialog-->
-            </div>
-            <!--end::Modal - Tambah Bagan Kanan-->
+            <!--end::Modal - add Informasi Secara Berkala App-->
 
-            <!--begin::Modal - Edit Bagan Kanan-->
-            <div class="modal fade" id="kt_modal_editPeraturanKIP" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - Edit Informasi Secara Berkala-->
+            <div class="modal fade" id="kt_modal_editinformasiSetiapSaat" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -514,7 +393,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Edit Peraturan KIP</h2>
+                            <h2>Edit Informasi Secara Berkala</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -536,10 +415,10 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
-                            {{-- Content Modal --}}
+                            
                             <form id="editForm" method="POST" enctype="multipart/form-data" class="form">
-                                @method('PATCH')
-                                @csrf
+                                <?php echo method_field('PATCH'); ?>
+                                <?php echo csrf_field(); ?>
 
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -549,13 +428,13 @@
                                     <div class="row mb-6">
                                         <!--begin::Label-->
                                         <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul
-                                            Peraturan</label>
+                                            Informasi</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" id="editJudulPeraturan" name="judulPeraturan"
+                                            <input type="text" id="editJudulInformasi" name="judulInformasi"
                                                 class="form-control form-control-lg form-control-solid"
-                                                placeholder="Judul Peraturan" value="" />
+                                                placeholder="Judul Informasi" value="" />
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -564,8 +443,23 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">File
-                                            PDF</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">URL</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" id="editUrl" name="url"
+                                                class="form-control form-control-lg form-control-solid"
+                                                placeholder="URL" value="" />
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
+
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">File Pendukung
+                                        </label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
@@ -577,20 +471,7 @@
                                     </div>
                                     <!--end::Input group-->
 
-                                    <!--begin::Input group-->
-                                    <div class="row mb-6">
-                                        <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Urutan</label>
-                                        <!--end::Label-->
-                                        <!--begin::Col-->
-                                        <div class="col-lg-8 fv-row">
-                                            <input type="number" id="editUrutan" min=1 name="urutan"
-                                                class="form-control form-control-lg form-control-solid"
-                                                placeholder="Urutan" value="" />
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Input group-->
+
 
 
                                     <!--end::Input group-->
@@ -599,9 +480,9 @@
                                 <!--end::Card body-->
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('struktur organisasi.create')
-                                        <button type="submit" class="btn btn-primary" id="addButton"
+                                    
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('informasi setiap saat.create')): ?>
+                                        <button type="submit" class="btn btn-primary" id="updateButton"
                                             onclick="activateLoadingButton('#updateButton')"><span
                                                 class="indicator-label">
                                                 Update
@@ -611,7 +492,7 @@
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                             </span>
                                         </button>
-                                    @endcan
+                                    <?php endif; ?>
                                 </div>
                                 <!--end::Actions-->
                             </form>
@@ -622,10 +503,10 @@
                 </div>
                 <!--end::Modal dialog-->
             </div>
-            <!--end::Modal - Edit Bagan Kanan-->
-            @push('child-scripts')
+            <!--end::Modal - Edit Informasi Secara Berkala-->
+            <?php $__env->startPush('child-scripts'); ?>
                 <script>
-                    $("#kt_datatable_dom_positioning_RancanganPeraturanKIP").DataTable({
+                    $("#kt_datatable_dom_positioning_informasiSetiapSaat").DataTable({
                         "language": {
                             "lengthMenu": "Show _MENU_",
                         },
@@ -652,12 +533,13 @@
 
                     function deleteDialog(index) {
 
-                        let rancanganPeraturanKIP = {{ Js::from($rancanganPeraturanKIP) }}
+                        let informasiSetiapSaat = <?php echo e(Js::from($informasiSetiapSaat)); ?>
 
-                        rancanganPeraturanKIP = rancanganPeraturanKIP[index]
+
+                        informasiSetiapSaat = informasiSetiapSaat[index]
 
                         Swal.fire({
-                            html: `Apakah yakin akan <strong>menghapus</strong> peraturan KIP <span class="badge badge-primary"> ${rancanganPeraturanKIP.judul_peraturan}</span> ?`,
+                            html: `Apakah yakin akan <strong>menghapus</strong> peraturan KIP <span class="badge badge-primary"> ${informasiSetiapSaat.judul_informasi}</span> ?`,
                             icon: "error",
                             buttonsStyling: false,
                             showCancelButton: true,
@@ -674,13 +556,13 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/rancangan_peraturan_kip/" + rancanganPeraturanKIP.id,
+                                    url: "/admin/informasi_setiap_saat/" + informasiSetiapSaat.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
 
                                             icon: 'success',
-                                            title: 'Berhasil menghapus Peraturan KIP',
+                                            title: 'Berhasil menghapus Infomrasi Secara Berkala',
                                             showConfirmButton: false,
                                             timer: 500
                                         }).then(() => {
@@ -704,18 +586,25 @@
 
                     function editDialog(index) {
 
-                        let rancanganPeraturanKIP = {{ Js::from($rancanganPeraturanKIP) }}
-                        rancanganPeraturanKIP = rancanganPeraturanKIP[index]
-                        document.getElementById('editJudulPeraturan').value = rancanganPeraturanKIP.judul_peraturan
-                        // document.getElementById('editFile').value = rancanganPeraturanKIP.file_path
-                        console.log(document.getElementById('editFile'))
-                        document.getElementById('editUrutan').value = rancanganPeraturanKIP.urutan
+                        let informasiSetiapSaat = <?php echo e(Js::from($informasiSetiapSaat)); ?>
+
+                        informasiSetiapSaat = informasiSetiapSaat[index]
+                        document.getElementById('editJudulInformasi').value = informasiSetiapSaat.judul_informasi
+                        // document.getElementById('editFile').value = informasiSetiapSaat.file_path
+
+                        document.getElementById('editUrl').value = informasiSetiapSaat.url
 
 
-                        document.getElementById('editForm').setAttribute('action', 'rancangan_peraturan_kip/' +
-                            rancanganPeraturanKIP.id)
+                        document.getElementById('editForm').setAttribute('action', 'informasi_setiap_saat/' +
+                            informasiSetiapSaat.id)
                     };
                 </script>
-            @endpush
+            <?php $__env->stopPush(); ?>
 
-</x-admin.layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0)): ?>
+<?php $component = $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0; ?>
+<?php unset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0); ?>
+<?php endif; ?>
+<?php /**PATH /Users/anggadwiarifandi/Documents/projects.nosync/ppid_cms/resources/views/admin/informasi_publik/informasi_setiap_saat.blade.php ENDPATH**/ ?>
