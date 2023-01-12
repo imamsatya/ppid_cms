@@ -14,7 +14,7 @@
         {{-- <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" /> --}}
     @endpush
     <!-- Banner -->
-    <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.1s">
+    <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.3s" data-wow-duration="5s">
         <div class="owl-carousel header-carousel position-relative">
 
             @if ($slider)
@@ -72,7 +72,6 @@
       </div>
     </section> -->
     <!-- Banner -->
-
     <!-- Informasi Publik -->
     <section class="publik blackw magnif">
         <div class="container">
@@ -110,7 +109,7 @@
                             <div class="informasi_content">
                                 <label for="">Informasi Berkala</label>
                                 <p>
-                                    Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala
+                                    Informasi yang wajib disediakan dan diumumkan Secara Berkala
                                 </p>
                             </div>
                         </div>
@@ -123,8 +122,8 @@
                             <div class="informasi_content">
                                 <label for="">Informasi Serta Merta</label>
                                 <p>
-                                    Informasi yang dapat mengancam Hajat Hidup Orang Banyak dan
-                                    Ketertiban Umum
+                                    Informasi yang dapat mengancam hajat hidup orang banyak dan
+                                    ketertiban umum
                                 </p>
                             </div>
                         </div>
@@ -136,7 +135,7 @@
                                 alt="" />
                             <div class="informasi_content">
                                 <label for="">Informasi Setiap Saat</label>
-                                <p>Informasi yang Wajib Tersedia Setiap Saat</p>
+                                <p>Informasi yang wajib tersedia Setiap Saat</p>
                             </div>
                         </div>
                     </div> --}}
@@ -148,7 +147,7 @@
 
     <!-- Statistik dan Siaran Pers -->
     <section class="statistik_pers mt-5 blackw magnif">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
             <div class="row">
                 <div class="col-md-5">
                     <div class="statistik">
@@ -219,7 +218,8 @@
     <!-- Galeri -->
     <section class="galeri_video blackw magnif">
         <div class="container">
-            <div class="box_galeri">
+            <div class="box_galeri bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
+            <!-- <div class="box_galeri"> -->
                 <div class="row">
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
@@ -300,6 +300,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+                smartSpeed : 1500,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -327,6 +328,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+                smartSpeed : 1000,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -354,6 +356,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+                smartSpeed : 1000,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
