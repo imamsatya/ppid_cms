@@ -346,6 +346,7 @@
                 const dataStatistik = <?php echo e(Js::from($dataStatistik)); ?>;
 
 
+<<<<<<< HEAD
                 // console.log('dataS', dataStatistik)
                 let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
                 let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
@@ -353,6 +354,15 @@
                 // console.log('datamasuk', dataMasuk)
                 // console.log('dataproses', dataProses)
                 // console.log('dataselesai', dataSelesai)
+=======
+                console.log('dataS', dataStatistik)
+                let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
+                let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
+                let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
+                console.log('datamasuk', dataMasuk)
+                console.log('dataproses', dataProses)
+                console.log('dataselesai', dataSelesai)
+>>>>>>> 0147299dea40b963654e1917c7c7be5760fb34cc
                 let dataMasukFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0
