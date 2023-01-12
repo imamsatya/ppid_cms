@@ -43,6 +43,14 @@ class RegisterController extends BaseController
 
         $input = $request->all();
 
+        $user = UserPPID::where('email', $request['email'])->first();
+
+        if ($user) {
+            return response()->json([
+                'error' => 'User already exists'
+            ], 401);
+        }
+
         $identitas = str_replace('data:image/png;base64,', '', $request['identitasfile']);
         $identitas = str_replace(' ', '+', $identitas);
         $identitasName = Str::random(10).'.'.'png';
