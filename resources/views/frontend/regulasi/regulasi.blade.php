@@ -137,9 +137,9 @@
                                         <div class="col-md-4 mt-2">
 
                                             <div class="card card-informasi w-100">
-                                                @if ($regulasiBanner->thumbnail_path)
+                                                @if ($regulasiBanner->thumbnail_rancangan_path)
                                                     <img class="card-img-top"
-                                                        src="{{ asset('storage/' . $regulasiBanner->thumbnail_path) }}"
+                                                        src="{{ asset('storage/' . $regulasiBanner->thumbnail_rancangan_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
