@@ -53,7 +53,108 @@
                      <?php $__env->slot('mainMenuTitle', null, []); ?> 
                         Layanan PPID
                          <?php $__env->endSlot(); ?>
+                        <?php if($errors->any()): ?>
+                            <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                
+                                <!--begin::Icon-->
+                                <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3"
+                                            d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                                            fill="currentColor" />
+                                        <rect x="9" y="13.0283" width="7.3536" height="1.2256"
+                                            rx="0.6128" transform="rotate(-45 9 13.0283)" fill="currentColor" />
+                                        <rect x="9.86664" y="7.93359" width="7.3536" height="1.2256"
+                                            rx="0.6128" transform="rotate(45 9.86664 7.93359)" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Icon-->
+
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-column text-white pe-0 pe-sm-10">
+                                    <!--begin::Title-->
+                                    <h4 class="mb-2 text-white">Error !</h4>
+                                    <!--end::Title-->
+
+                                    <!--begin::Content-->
+                                    <ul>
+                                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li><?php echo e($error); ?></li>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </ul>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+
+                                <!--begin::Close-->
+                                <button type="button"
+                                    class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                                    data-bs-dismiss="alert">
+                                    <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
+                                                fill="currentColor" />
+                                            <path
+                                                d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
+                                                fill="currentColor" />
+                                        </svg></span>
+                                </button>
+                                <!--end::Close-->
+                            </div>
+
+                        <?php endif; ?>
+                        <?php if(\Session::has('success')): ?>
+                            <!--begin::Alert-->
+                            <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
+                                
+                                <!--begin::Icon-->
+                                <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
+
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3"
+                                            d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Icon-->
+
+                                <!--begin::Wrapper-->
+                                <div class="d-flex flex-column text-white pe-0 pe-sm-10">
+                                    <!--begin::Title-->
+                                    <h4 class="mb-2 text-white">Sukses !</h4>
+                                    <!--end::Title-->
+
+                                    <!--begin::Content-->
+                                    <span><?php echo e(Session::get('success')); ?></span>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Wrapper-->
+
+                                <!--begin::Close-->
+                                <button type="button"
+                                    class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                                    data-bs-dismiss="alert">
+                                    <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3"
+                                                d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
+                                                fill="currentColor" />
+                                            <path
+                                                d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
+                                                fill="currentColor" />
+                                        </svg></span>
+                                </button>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Alert-->
+                        <?php endif; ?>
                         <h1>Daftar Keberatan </h1>
                         <br>
                         <div class="card card-flush shadow-sm">
@@ -169,9 +270,20 @@
                                             <th>Tanggal Masuk</th>
                                             <th>No Registrasi</th>
                                             <th>Nama Pemohon</th>
-                                            <th>Sumber</th>
+                                            <th>
+                                                <div>Status</div>
+                                                <div>Keberatan</div>
+                                            </th>
                                             <th>Jawaban</th>
-                                            <th>Status</th>
+                                            <th>
+                                                <div>Status</div>
+                                                <div>Sengketa</div>
+                                            </th>
+                                            <th>
+                                                <div>File</div>
+                                                <div>Putusan</div>
+                                            </th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     
@@ -444,6 +556,107 @@
                             </div>
                         </div>
 
+                        <!-- modal konfirmasi Sengketa -->
+                        <div class="modal fade" id="modalKonfirmasiSengketa" role="dialog" aria-hidden="true">
+
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+                                <div class="modal-content" id="content-modal-keberatan">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Sengketa
+                                        </h5>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form id="sengketaKonfirmasi" action="" enctype="multipart/form-data"
+                                            enctype="multipart/form-data" method="POST" class="form">
+                                            <?php echo csrf_field(); ?>
+                                            <div class="form-data">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label">File Putusan</label>
+                                                            <input type="file" name="file"
+                                                                class="form-control form-control-lg form-control-solid"
+                                                                placeholder="File PDF" value="" />
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Konfirmasi
+                                                    Sengketa</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <!-- modal upload Putusan -->
+                        <div class="modal fade" id="modalUploadPutusan" role="dialog" aria-hidden="true">
+
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+
+                                <div class="modal-content" id="content-modal-keberatan">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Upload File Putusan
+                                        </h5>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form id="uploadFilePutusan" action="" enctype="multipart/form-data"
+                                            enctype="multipart/form-data" method="POST" class="form">
+                                            <?php echo csrf_field(); ?>
+                                            <div class="form-data">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-label required">File Putusan </label>
+                                                            <input type="file" name="file"
+                                                                class="form-control form-control-lg form-control-solid"
+                                                                placeholder="File PDF" value="" />
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    id="uploadPutusanButton"
+                                                    onclick="activateLoadingButton('#uploadPutusanButton')"><span
+                                                        class="indicator-label">
+                                                        Upload Putusan
+                                                    </span>
+                                                    <span class="indicator-progress">
+                                                        Mohon Menunggu... <span
+                                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+
                         <input type="hidden" id="id-keberatan-edited">
 
 
@@ -452,9 +665,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="<?php echo e(asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js')); ?>"></script>
                             <script>
                                 $(document).ready(function() {
@@ -479,6 +692,18 @@
                                     var modalDetail = new KTBlockUI(document.getElementById('content-modal-detail'), {
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
+
+                                    function activateLoadingButton(idButton) {
+                                        console.log('active')
+                                        let button = document.querySelector(`${idButton}`);
+                                        button.setAttribute("data-kt-indicator", "on");
+                                        // Handle button click event
+
+                                        // // Disable indicator after 3 seconds
+                                        // setTimeout(function() {
+                                        //     button.removeAttribute("data-kt-indicator");
+                                        // }, 3000);
+                                    }
 
                                     async function loadDataPermintaanMasuk() {
                                         tableKeberatanUI.block()
@@ -606,20 +831,41 @@
                                                 let jawaban = '-'
                                                 if (data[i].id_status == 3) {
                                                     jawaban = `
-                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top"  class="mb-4 jawban-file-st" title="File Jawaban" href="<?php echo e(asset('storage/${data[i].ket_jawaban_path}')); ?>" target="_blank" rel="noopener noreferrer"><img src="<?php echo e(asset('template/src/media/svg/files/pdf.svg')); ?>"
-                                                        alt="" /></a> 
+                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top"  class="mb-4 jawban-file-st" title="File Jawaban" href="<?php echo e(asset('storage/${data[i].ket_jawaban_path}')); ?>" target="_blank" rel="noopener noreferrer"><img src="<?php echo e(asset('template/src/media/svg/files/pdf.svg')); ?>" alt="" /></a> 
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="<?php echo e(asset('storage/${data[i].file_jawaban}')); ?>" target="_blank" rel="noopener noreferrer"><img src="<?php echo e(asset('template/src/media/svg/files/dark/folder-document.svg')); ?>" alt="" /></a>` : '' }
                             `
                                                 }
 
+                                                //file putusan
+                                                let file_putusan = '-'
+                                                if (data[i].file_putusan) {
+                                                    file_putusan =
+                                                        `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top"  class="mb-4 jawban-file-st" title="File Putusan" href="<?php echo e(asset('storage/${data[i].file_putusan}')); ?>" target="_blank" rel="noopener noreferrer"><img src="<?php echo e(asset('template/src/media/svg/files/pdf.svg')); ?>" alt="" /></a>`
+                                                }
+                                                //aksi
+                                                let aksi =
+                                                    `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Sengketa" href="javascript:void(0)" class="btn btn-icon btn-primary me-2 sengketa-keberatan mb-2" data-sengketa="${data[i].id}"><i class="fa-solid fa-scale-balanced fs-4"></i></a>`
+
+
+                                                //sengeketa
+                                                let sengketa =
+                                                    `<span class="badge py-3 px-4 fs-7 badge-light-success">Tidak Sengketa</span>`
+                                                if (data[i].isSengketa) {
+                                                    sengketa =
+                                                        `<span class="badge py-3 px-4 fs-7 badge-light-primary">Sengketa</span>`
+                                                    aksi =
+                                                        `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Upload File Putusan" href="javascript:void(0)" class="btn btn-icon btn-success me-2 putusan-keberatan mb-2" data-putusan="${data[i].id}"><i class="fa-solid fa fa-upload fs-4"></i></a>`
+                                                }
                                                 rowData.push([
                                                     i + 1,
                                                     data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
                                                     data[i].nama_lengkap,
-                                                    data[i].jenis_kanal,
-                                                    jawaban,
                                                     data[i].nama_status,
+                                                    jawaban,
+                                                    sengketa,
+                                                    file_putusan,
+                                                    aksi,
                                                 ])
                                             }
 
@@ -759,7 +1005,7 @@
                                             for (let i = 0; i < result.result.length; i++) {
                                                 option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
                                             }
-                                            $("#asal_keberatan").html(option)
+                                            $("#asal_permohonan").html(option)
                                             $("#asal-selesai").html(option)
                                             // console.log(result)
                                         } catch (error) {
@@ -868,6 +1114,30 @@
                                         modalKeberatan.release()
                                     }
 
+                                    async function loadModalSengketa(data) {
+                                        modalKeberatan.block()
+
+                                        document.getElementById('sengketaKonfirmasi').setAttribute('action',
+                                            'konfirmasi-sengketa/' +
+                                            data)
+
+
+
+                                        modalKeberatan.release()
+                                    }
+
+                                    async function loadModalPutusan(data) {
+                                        modalKeberatan.block()
+
+                                        document.getElementById('uploadFilePutusan').setAttribute('action',
+                                            'upload-putusan/' +
+                                            data)
+
+
+
+                                        modalKeberatan.release()
+                                    }
+
                                     const templateReject = () => {
                                         return $.ajax({
                                             type: 'GET',
@@ -947,8 +1217,9 @@
                                                     jadwal = jadwal.result.data
                                                 }
                                                 console.log(jadwal)
-                                                const hariKerja = jadwal.filter(jd => jd.tanggal > new Date().toJSON().slice(0,
-                                                    10).replace(/-/g, '-') && jd.jenis == '0')
+                                                const hariKerja = jadwal.filter(jd => jd.tanggal > new Date().toJSON()
+                                                    .slice(0,
+                                                        10).replace(/-/g, '-') && jd.jenis == '0')
 
                                                 data['expired'] = hariKerja[28];
                                                 console.log('hariKerja', hariKerja)
@@ -975,6 +1246,20 @@
                                             })
                                             console.log(error)
                                         }
+                                    })
+
+
+
+                                    $(document).on('click', '.sengketa-keberatan', function() {
+                                        const idKeberatan = $(this).data('sengketa');
+                                        $("#modalKonfirmasiSengketa").modal('show')
+                                        loadModalSengketa(idKeberatan)
+                                    })
+
+                                    $(document).on('click', '.putusan-keberatan', function() {
+                                        const idKeberatan = $(this).data('putusan');
+                                        $("#modalUploadPutusan").modal('show')
+                                        loadModalPutusan(idKeberatan)
                                     })
 
 
@@ -1124,9 +1409,9 @@
                                         $("#detail-status").val(dataKeberatan.result.nama_status_keberatan)
                                         console.log(dataKeberatan.result)
                                         $("#file-identitas-detail").html(`
-                    <label class="form-label">File identitas</label>
-                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="<?php echo e(asset('storage/${dataKeberatan.result.identitas_file_path}')); ?>" alt="" srcset="">
-                `)
+                                                <label class="form-label">File identitas</label>
+                                                <img style="max-width:100%;max-height:100%;" id="file-identitas" src="<?php echo e(asset('storage/${dataKeberatan.result.identitas_file_path}')); ?>" alt="" srcset="">
+                                            `)
 
                                         modalDetail.release()
                                     }
