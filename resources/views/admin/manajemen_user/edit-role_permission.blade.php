@@ -1668,6 +1668,57 @@
                                             <!--end::Sub Manajemen User row-->
                                             <!--end::Manajemen User row-->
 
+                                            <!--begin::Manajemen Menu row-->
+                                            <tr>
+                                                <!--begin::Label-->
+                                                <td class="text-gray-800">
+                                                    Manajemen Menu</td>
+                                                <!--end::Label-->
+                                                <!--begin::Options-->
+                                                <td>
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex">
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="manajemen menu.create" name="permissions[]" />
+                                                            <span class="form-check-label">Create</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="manajemen menu.view" name="permissions[]" />
+                                                            <span class="form-check-label">View</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="manajemen menu.edit" name="permissions[]" />
+                                                            <span class="form-check-label">Edit</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+
+                                                        <!--begin::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid">
+                                                            <input class="form-check-input editCheck" type="checkbox"
+                                                                value="manajemen menu.delete" name="permissions[]" />
+                                                            <span class="form-check-label">Delete</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </td>
+                                                <!--end::Options-->
+                                            </tr>
+
+
+                                            <!--end::Manajemen Menu row-->
 
                                             <!--begin::Table row-->
 

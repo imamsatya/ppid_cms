@@ -1,22 +1,29 @@
-<x-admin.layout>
-    <x-slot:subMenuTitle>
+<?php if (isset($component)) { $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0 = $component; } ?>
+<?php $component = App\View\Components\Admin\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Admin\Layout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('subMenuTitle', null, []); ?> 
         Manajemen Menu
-        </x-slot>
+         <?php $__env->endSlot(); ?>
 
-        <x-slot:mainMenuTitle>
+         <?php $__env->slot('mainMenuTitle', null, []); ?> 
             Manajemen Menu
-            </x-slot>
+             <?php $__env->endSlot(); ?>
 
-            <x-slot:isActiveLink_manajemenMenu>
+             <?php $__env->slot('isActiveLink_manajemenMenu', null, []); ?> 
                 active
-                </x-slot>
+                 <?php $__env->endSlot(); ?>
 
 
 
-                @if ($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-                        {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                              </span> --}}
+                        
                         <!--begin::Icon-->
                         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -41,9 +48,9 @@
 
                             <!--begin::Content-->
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                             <!--end::Content-->
                         </div>
@@ -66,12 +73,11 @@
                         <!--end::Close-->
                     </div>
 
-                @endif
-                @if (\Session::has('success'))
+                <?php endif; ?>
+                <?php if(\Session::has('success')): ?>
                     <!--begin::Alert-->
                     <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                        {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                          </span> --}}
+                        
                         <!--begin::Icon-->
                         <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -94,7 +100,7 @@
                             <!--end::Title-->
 
                             <!--begin::Content-->
-                            <span>{{ Session::get('success') }}</span>
+                            <span><?php echo e(Session::get('success')); ?></span>
                             <!--end::Content-->
                         </div>
                         <!--end::Wrapper-->
@@ -116,7 +122,7 @@
                         <!--end::Close-->
                     </div>
                     <!--end::Alert-->
-                @endif
+                <?php endif; ?>
                 <div id="tes1">
                     <h1>Pengelolaan Menu</h1>
 
@@ -125,7 +131,7 @@
                     <br><br>
 
                     <div class="text-end mb-4">
-                        @can('manajemen menu.create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.create')): ?>
                             <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal"
                                 data-bs-target="#kt_modal_tambahMainMenu">
                                 <span class="indicator-label">Tambah Main Menu</span>
@@ -138,30 +144,30 @@
                                 <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
-                        @endcan
+                        <?php endif; ?>
 
                     </div>
 
                     <div class="row row-cols-lg-1 g-10 min-h-200px draggable-zone">
 
-                        @if ($menus)
-                            @foreach ($menus as $menu)
-                                <div class="col draggable" namamenu="{{ $menu->nama_menu }}"
-                                    idmenu="{{ $menu->id }}" routing="{{ $menu->routing ?? '-' }}">
+                        <?php if($menus): ?>
+                            <?php $__currentLoopData = $menus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="col draggable" namamenu="<?php echo e($menu->nama_menu); ?>"
+                                    idmenu="<?php echo e($menu->id); ?>" routing="<?php echo e($menu->routing ?? '-'); ?>">
                                     <!--begin::Card-->
                                     <div class="card ">
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h4 class="card-label">{{ $menu->nama_menu }}</h4>
+                                                <h4 class="card-label"><?php echo e($menu->nama_menu); ?></h4>
 
                                                 <span
-                                                    class="badge badge-primary me-2">{{ $menu->routing ?? '-' }}</span>
+                                                    class="badge badge-primary me-2"><?php echo e($menu->routing ?? '-'); ?></span>
 
-                                                @if ($menu->is_active)
+                                                <?php if($menu->is_active): ?>
                                                     <span class="badge badge-success me-2">active</span>
-                                                @else
+                                                <?php else: ?>
                                                     <span class="badge badge-danger me-2">inactive</span>
-                                                @endif
+                                                <?php endif; ?>
 
 
 
@@ -170,20 +176,20 @@
 
                                             </div>
                                             <div class="card-toolbar">
-                                                @can('manajemen menu.edit')
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.edit')): ?>
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#kt_modal_editMainMenu"
-                                                        onclick="editMenuDialog({{ $menu->id }})"
+                                                        onclick="editMenuDialog(<?php echo e($menu->id); ?>)"
                                                         class="btn btn-icon btn-primary btn-sm me-2"><i
                                                             class="fas fa-pen fs-3"></i></a>
-                                                @endcan
-                                                @can('manajemen menu.delete')
+                                                <?php endif; ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.delete')): ?>
                                                     <a href="javascript:void(0)"
-                                                        onclick="deleteMenuDialog({{ $menu->id }})"
+                                                        onclick="deleteMenuDialog(<?php echo e($menu->id); ?>)"
                                                         class="btn btn-icon btn-danger btn-sm"><i
                                                             class="bi bi-x-lg fs-4 "></i></a>
-                                                @endcan
-                                                @can('manajemen menu.edit')
+                                                <?php endif; ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.edit')): ?>
                                                     <a href="#"
                                                         class="btn btn-icon btn-sm btn-hover-light-primary draggable-handle">
                                                         <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
@@ -200,7 +206,7 @@
                                                         </span>
                                                         <!--end::Svg Icon-->
                                                     </a>
-                                                @endcan
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -208,15 +214,15 @@
 
                                             <div class="row row-cols-lg-1 g-10 min-h-20px mt-1 draggable2-zone">
 
-                                                @if ($menu->submenus)
-                                                    @foreach ($menu->submenus as $submenu)
+                                                <?php if($menu->submenus): ?>
+                                                    <?php $__currentLoopData = $menu->submenus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $submenu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <div class="row mx-auto mb-2 text-middle  draggable2  "
-                                                            idmainmenu="{{ $menu->id }}"
-                                                            namaSubmenu="{{ $submenu->nama_menu }}"
-                                                            idsubmenu="{{ $submenu->id }}"
-                                                            routing="{{ $submenu->routing ?? '-' }}">
+                                                            idmainmenu="<?php echo e($menu->id); ?>"
+                                                            namaSubmenu="<?php echo e($submenu->nama_menu); ?>"
+                                                            idsubmenu="<?php echo e($submenu->id); ?>"
+                                                            routing="<?php echo e($submenu->routing ?? '-'); ?>">
                                                             <div class="col-1   ">
-                                                                @can('manajemen menu.edit')
+                                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.edit')): ?>
                                                                     <a href="#"
                                                                         class="btn btn-icon btn-sm btn-hover-light-primary draggable2-handle">
                                                                         <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
@@ -234,49 +240,51 @@
                                                                         </span>
                                                                         <!--end::Svg Icon-->
                                                                     </a>
-                                                                @endcan
+                                                                <?php endif; ?>
                                                             </div>
                                                             <div class="col-2 m-grid-col-middle ">
-                                                                {{ $submenu->nama_menu ?? '-' }}
+                                                                <?php echo e($submenu->nama_menu ?? '-'); ?>
+
                                                             </div>
                                                             <div class="col-2 m-grid-col-middle ">
-                                                                {{ $submenu->routing ?? '-' }}
+                                                                <?php echo e($submenu->routing ?? '-'); ?>
+
                                                             </div>
 
                                                             <div class="col-2 m-grid-col-middle ">
-                                                                @if ($submenu->is_active)
+                                                                <?php if($submenu->is_active): ?>
                                                                     <span
                                                                         class="badge badge-success me-2">active</span>
-                                                                @else
+                                                                <?php else: ?>
                                                                     <span
                                                                         class="badge badge-danger me-2">inactive</span>
-                                                                @endif
+                                                                <?php endif; ?>
                                                             </div>
                                                             <div class="col-2">
-                                                                @can('manajemen menu.edit')
+                                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.edit')): ?>
                                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                                         data-bs-target="#kt_modal_editSubMenu"
-                                                                        onclick="editSubMenuDialog({{ $menu->id }}, {{ $submenu->id }})"
+                                                                        onclick="editSubMenuDialog(<?php echo e($menu->id); ?>, <?php echo e($submenu->id); ?>)"
                                                                         class="btn btn-icon btn-primary btn-sm me-2"><i
                                                                             class="fas fa-pen fs-3"></i></a>
-                                                                @endcan
-                                                                @can('manajemen menu.delete')
+                                                                <?php endif; ?>
+                                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.delete')): ?>
                                                                     <a href="javascript:void(0)"
-                                                                        onclick="deleteSubMenuDialog({{ $menu->id }}, {{ $submenu->id }})"
+                                                                        onclick="deleteSubMenuDialog(<?php echo e($menu->id); ?>, <?php echo e($submenu->id); ?>)"
                                                                         class="btn btn-icon btn-danger btn-sm"><i
                                                                             class="bi bi-x-lg fs-4 "></i></a>
-                                                                @endcan
+                                                                <?php endif; ?>
                                                             </div>
                                                             <hr class="mt-2">
                                                         </div>
-                                                    @endforeach
-                                                @endif
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
-                                        @can('manajemen menu.create')
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.create')): ?>
                                             <div class="card-footer">
 
-                                                <a href="javascript:void(0)" onclick="addMainMenuId({{ $menu->id }})"
+                                                <a href="javascript:void(0)" onclick="addMainMenuId(<?php echo e($menu->id); ?>)"
                                                     data-bs-toggle="modal" data-bs-target="#kt_modal_tambahSubMenu"
                                                     class="btn  btn-primary btn-sm me-2"><i
                                                         class="fas fa-plus fs-3"></i>Tambah Sub Menu</a>
@@ -285,20 +293,14 @@
                                                     class="btn  btn-primary btn-sm me-2">Simpan
                                                 </a>
 
-                                                {{-- <button type="submit" class="btn btn-primary"
-                                                data-kt-roles-modal-action="submit" onclick="saveMenu()">
-                                                <span class="indicator-label">Simpan</span>
-                                                <span class="indicator-progress">Please wait...
-                                                    <span
-                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                            </button> --}}
+                                                
                                             </div>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                     <!--end::Card-->
                                 </div>
-                            @endforeach
-                        @endif
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                     </div>
 
 
@@ -335,11 +337,11 @@
                             <!--end::Modal header-->
                             <!--begin::Modal body-->
                             <div class="modal-body py-lg-10 px-lg-10">
-                                {{-- Content Modal --}}
+                                
                                 <form id="kt_account_profile_details_form"
-                                    action="{{ route('admin.manajemen_menu.addMainMenu') }}"
+                                    action="<?php echo e(route('admin.manajemen_menu.addMainMenu')); ?>"
                                     enctype="multipart/form-data" method="POST" class="form">
-                                    @csrf
+                                    <?php echo csrf_field(); ?>
                                     <!--begin::Card body-->
                                     <div class="card-body  p-9">
 
@@ -409,8 +411,8 @@
                                     <!--end::Card body-->
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                        @can('peraturan kip.create')
+                                        
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('peraturan kip.create')): ?>
                                             <button type="submit" class="btn btn-primary" id="addButton"
                                                 onclick="activateLoadingButton('#addButton')"><span
                                                     class="indicator-label">
@@ -421,7 +423,7 @@
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                                 </span>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                     <!--end::Actions-->
                                 </form>
@@ -466,11 +468,11 @@
                             <!--end::Modal header-->
                             <!--begin::Modal body-->
                             <div class="modal-body py-lg-10 px-lg-10">
-                                {{-- Content Modal --}}
+                                
                                 <form id="editMainMenuForm" enctype="multipart/form-data" method="POST"
                                     class="form">
-                                    @method('PATCH')
-                                    @csrf
+                                    <?php echo method_field('PATCH'); ?>
+                                    <?php echo csrf_field(); ?>
                                     <!--begin::Card body-->
                                     <div class="card-body  p-9">
 
@@ -540,8 +542,8 @@
                                     <!--end::Card body-->
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                        @can('peraturan kip.create')
+                                        
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('peraturan kip.create')): ?>
                                             <button type="submit" class="btn btn-primary" id="updateMenuButton"
                                                 onclick="activateLoadingButton('#updateMenuButton')"><span
                                                     class="indicator-label">
@@ -552,7 +554,7 @@
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                                 </span>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                     <!--end::Actions-->
                                 </form>
@@ -597,10 +599,10 @@
                             <!--end::Modal header-->
                             <!--begin::Modal body-->
                             <div class="modal-body py-lg-10 px-lg-10">
-                                {{-- Content Modal --}}
+                                
                                 <form id="addSubMenuForm" enctype="multipart/form-data" method="POST"
                                     class="form">
-                                    @csrf
+                                    <?php echo csrf_field(); ?>
                                     <!--begin::Card body-->
                                     <div class="card-body  p-9">
 
@@ -670,8 +672,8 @@
                                     <!--end::Card body-->
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                        @can('peraturan kip.create')
+                                        
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('peraturan kip.create')): ?>
                                             <button type="submit" class="btn btn-primary" id="addSubMenuButton"
                                                 onclick="activateLoadingButton('#addSubMenuButton')"><span
                                                     class="indicator-label">
@@ -682,7 +684,7 @@
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                                 </span>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                     <!--end::Actions-->
                                 </form>
@@ -727,11 +729,11 @@
                             <!--end::Modal header-->
                             <!--begin::Modal body-->
                             <div class="modal-body py-lg-10 px-lg-10">
-                                {{-- Content Modal --}}
+                                
                                 <form id="editSubMenuForm" enctype="multipart/form-data" method="POST"
                                     class="form">
-                                    @method('PATCH')
-                                    @csrf
+                                    <?php echo method_field('PATCH'); ?>
+                                    <?php echo csrf_field(); ?>
                                     <!--begin::Card body-->
                                     <div class="card-body  p-9">
 
@@ -801,8 +803,8 @@
                                     <!--end::Card body-->
                                     <!--begin::Actions-->
                                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                        {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                        @can('peraturan kip.create')
+                                        
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('peraturan kip.create')): ?>
                                             <button type="submit" class="btn btn-primary" id="updateSubMenuButton"
                                                 onclick="activateLoadingButton('#updateSubMenuButton')"><span
                                                     class="indicator-label">
@@ -813,7 +815,7 @@
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                                 </span>
                                             </button>
-                                        @endcan
+                                        <?php endif; ?>
                                     </div>
                                     <!--end::Actions-->
                                 </form>
@@ -826,8 +828,8 @@
                 </div>
                 <!--end::Modal - Edit SubMenu-->
                 <!--end::Row-->
-                @push('child-scripts')
-                    <script src="{{ asset('template/dist/assets/plugins/custom/draggable/draggable.bundle.js') }}"></script>
+                <?php $__env->startPush('child-scripts'); ?>
+                    <script src="<?php echo e(asset('template/dist/assets/plugins/custom/draggable/draggable.bundle.js')); ?>"></script>
 
 
                     <script>
@@ -995,7 +997,8 @@
                         }
 
                         function deleteMenuDialog(id) {
-                            let menus = {{ Js::from($menus) }}
+                            let menus = <?php echo e(Js::from($menus)); ?>
+
                             menu = menus.filter(menu => menu.id == id)
                             console.log('menus', menus)
                             console.log('selectedmenu', menu[0].id)
@@ -1047,7 +1050,8 @@
                         };
 
                         function editMenuDialog(id) {
-                            let menus = {{ Js::from($menus) }}
+                            let menus = <?php echo e(Js::from($menus)); ?>
+
                             menu = menus.filter(menu => menu.id == id)
                             console.log(menu)
                             document.getElementById('editNamaMenu').value = menu[0].nama_menu
@@ -1071,7 +1075,8 @@
                         }
 
                         function editSubMenuDialog(mainMenuId, subMenuId) {
-                            let menus = {{ Js::from($menus) }}
+                            let menus = <?php echo e(Js::from($menus)); ?>
+
                             menu = menus.filter(menu => menu.id == mainMenuId)
                             submenu = menu[0].submenus.filter(submenu => submenu.id == subMenuId)
                             console.log(menu)
@@ -1090,7 +1095,8 @@
                         }
 
                         function deleteSubMenuDialog(mainMenuId, subMenuId) {
-                            let menus = {{ Js::from($menus) }}
+                            let menus = <?php echo e(Js::from($menus)); ?>
+
                             menu = menus.filter(menu => menu.id == mainMenuId)
                             console.log('menus', menus)
                             console.log('selectedmenu', menu)
@@ -1143,6 +1149,12 @@
                             // })
                         };
                     </script>
-                @endpush
+                <?php $__env->stopPush(); ?>
 
-</x-admin.layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0)): ?>
+<?php $component = $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0; ?>
+<?php unset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0); ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/admin/manajemen_menu/manajemen_menu.blade.php ENDPATH**/ ?>

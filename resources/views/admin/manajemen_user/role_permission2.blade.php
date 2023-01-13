@@ -215,6 +215,9 @@
                             $showInformasi = in_array('informasi', $permissionGroup);
                             $showVideo = in_array('video', $permissionGroup);
                             $showFooter = in_array('footer', $permissionGroup);
+                            
+                            //Manajemen Menu
+                            $showManajemenMenu = in_array('manajemen menu', $permissionGroup);
                             ?>
 
                             <!--end::Users-->
@@ -454,6 +457,13 @@
                                             @endif
                                             <!--end::Manajmen Home-->
 
+                                            <!--begin::Manajmen Menu-->
+                                            @if ($showFAQ)
+                                                <div class="d-flex align-items-center py-2">
+                                                    <span class="bullet bg-primary me-3"></span>Manajemen Menu
+                                                </div>
+                                            @endif
+
 
                                             <!--begin::Setting Kalender-->
 
@@ -492,16 +502,16 @@
                                 data-bs-target="#kt_modal_update_role" onclick="editDialog({{ $loop->index }})"
                                 class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                 Role</a> --}}
-                                @can('role permission.edit')
-                            <a href="{{ route('admin.role_permission.edit', $role) }}"
-                                class="btn btn-light btn-active-primary my-1 me-2 "> Edit
-                                Role</a>
-                                @endcan
-                                @can('role permission.delete')
-                            <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
-                                class="btn btn-light btn-active-danger my-1 ">Delete
-                                Role</a>
-                                @endcan
+                            @can('role permission.edit')
+                                <a href="{{ route('admin.role_permission.edit', $role) }}"
+                                    class="btn btn-light btn-active-primary my-1 me-2 "> Edit
+                                    Role</a>
+                            @endcan
+                            @can('role permission.delete')
+                                <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                    class="btn btn-light btn-active-danger my-1 ">Delete
+                                    Role</a>
+                            @endcan
                         </div>
                         <!--end::Card footer-->
                     </div>
@@ -510,14 +520,14 @@
             @endforeach
 
             <!--begin::Add new card-->
-             @can('role permission.create')
-            <div class="col-md-6">
-                <!--begin::Card-->
-                <div class="card h-md-100">
-                    <!--begin::Card body-->
-                    <div class="card-body d-flex flex-center">
-                        {{-- Versi Modal --}}
-                        {{-- <!--begin::Button-->
+            @can('role permission.create')
+                <div class="col-md-6">
+                    <!--begin::Card-->
+                    <div class="card h-md-100">
+                        <!--begin::Card body-->
+                        <div class="card-body d-flex flex-center">
+                            {{-- Versi Modal --}}
+                            {{-- <!--begin::Button-->
                         <button type="button" class="btn btn-clear d-flex flex-column flex-center"
                             data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
                             <!--begin::Illustration-->
@@ -531,25 +541,25 @@
                         </button>
                         <!--begin::Button--> --}}
 
-                        {{-- Versi Create --}}
-                         
-                        <a href="{{ route('admin.role_permission.create') }}"
-                            class="btn btn-clear d-flex flex-column flex-center">
-                            <!--begin::Illustration-->
-                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
-                                alt="" class="mw-100 mh-150px mb-7" />
-                            <!--end::Illustration-->
-                            <!--begin::Label-->
-                            <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
-                                Add New Role</div>
-                            <!--end::Label-->
-                        </a>
-                        
+                            {{-- Versi Create --}}
+
+                            <a href="{{ route('admin.role_permission.create') }}"
+                                class="btn btn-clear d-flex flex-column flex-center">
+                                <!--begin::Illustration-->
+                                <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
+                                    alt="" class="mw-100 mh-150px mb-7" />
+                                <!--end::Illustration-->
+                                <!--begin::Label-->
+                                <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
+                                    Add New Role</div>
+                                <!--end::Label-->
+                            </a>
+
+                        </div>
+                        <!--begin::Card body-->
                     </div>
-                    <!--begin::Card body-->
+                    <!--begin::Card-->
                 </div>
-                <!--begin::Card-->
-            </div>
             @endcan
             <!--begin::Add new card-->
         </div>
@@ -1949,6 +1959,62 @@
                                                 <!--end::Sub Standar Layanan row-->
                                                 <!--end::Standar Layanan row-->
 
+
+                                                <!--begin::Manajemen Menu row-->
+                                                <tr>
+                                                    <!--begin::Label-->
+                                                    <td class="text-gray-800">
+                                                        Manajemen Menu</td>
+                                                    <!--end::Label-->
+                                                    <!--begin::Options-->
+                                                    <td>
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex">
+                                                            <!--begin::Checkbox-->
+                                                            <label
+                                                                class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input addCheck"
+                                                                    type="checkbox" value="manajemen menu.create"
+                                                                    name="permissions[]" />
+                                                                <span class="form-check-label">Create</span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+                                                            <!--begin::Checkbox-->
+                                                            <label
+                                                                class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input addCheck"
+                                                                    type="checkbox" value="manajemen menu.view"
+                                                                    name="permissions[]" />
+                                                                <span class="form-check-label">View</span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+                                                            <!--begin::Checkbox-->
+                                                            <label
+                                                                class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                <input class="form-check-input addCheck"
+                                                                    type="checkbox" value="manajemen menu.edit"
+                                                                    name="permissions[]" />
+                                                                <span class="form-check-label">Edit</span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+
+                                                            <!--begin::Checkbox-->
+                                                            <label
+                                                                class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                <input class="form-check-input addCheck"
+                                                                    type="checkbox" value="manajemen menu.delete"
+                                                                    name="permissions[]" />
+                                                                <span class="form-check-label">Delete</span>
+                                                            </label>
+                                                            <!--end::Checkbox-->
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </td>
+                                                    <!--end::Options-->
+                                                </tr>
+
+
+                                                <!--end::Manajemen Menu row-->
 
                                                 <!--begin::Table row-->
 
