@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -15,7 +17,46 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('admin.dashboard.dashboard');
+        $dataStatistik = $this->getDataStatistik();
+        return view('admin.dashboard.dashboard', compact('dataStatistik'));
+    }
+
+    public function getDataStatistik()
+    {
+        $date = Carbon::now()->format('Y');
+
+        $data = DB::select(DB::raw(
+            " 
+            select status_final, bulan, SUM(total) permohonan from
+(select status.id, status.name, bulan, total, (case
+        when status.id = 1 then 'masuk'
+        when status.id = 2 then 'proses'
+        when status.id = 3 then 'proses'
+        when status.id = 4 then 'selesai'
+        when status.id = 5 then 'selesai'
+    end
+    ) status_final from 
+    (
+        select 
+        DATE_PART(
+        'month', modified_date
+        ) bulan, id_status, count(*) total										
+        from status_permohonan
+        where aktif = TRUE and DATE_PART(
+            'year', modified_date
+            ) = '$date'
+        group by DATE_PART(
+            'month', modified_date
+            ), id_status
+    ) A
+	
+join status on status.id = A.id_status
+) B
+group by status_final, bulan
+        "
+        ));
+        return $data;
+        // echo json_encode(array('data' => $data));
     }
 
     /**
