@@ -7,7 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <input type="text" placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+                    <input type="text" onkeyup="myFunction()" id="myInput"
+                        placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
                     <button class="btn btn-filter">Filter</button>
                 </div>
             </div>
@@ -304,6 +305,28 @@
                 active
                 </x-slot>
                 @push('child-scripts')
+                    <script type="text/javascript">
+                        function myFunction() {
+                            var input, filter, ul, li, a, i, txtValue;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            ul = document.getElementsByClassName("show active");
+                            console.log('ul', ul)
+                            li = ul[0].children[0].children[0].children[0].children[1].children[0].innerText;
+                            // li2 = ul[0].children[0].children[1].children[0].children[1].children[0].innerText;
+                            console.log('li', li)
+                            // console.log('li2', li2)
+                            for (i = 0; i < ul[0].children[0].children.length; i++) {
+                                a = ul[0].children[0].children[i].children[0].children[1].children[0];
+                                txtValue = a.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    ul[0].children[0].children[i].style.display = "";
+                                } else {
+                                    ul[0].children[0].children[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;

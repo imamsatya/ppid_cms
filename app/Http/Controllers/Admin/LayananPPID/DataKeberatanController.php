@@ -119,6 +119,14 @@ class DataKeberatanController extends Controller
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
+        if ($status == 'true') {
+            $status = 1;
+        }
+
+        if ($status == 'false') {
+            $status = 0;
+        }
+
 
         $result = DB::table('ppid_keberatan')
             ->select(
@@ -144,8 +152,12 @@ class DataKeberatanController extends Controller
 
             ->orderBy('created_at', 'desc')
             ->where(function ($query) use ($status) {
-                if ($status != '-') {
-                    $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+                // if ($status != '-') {
+                //     $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+                // } 
+
+                if ($status == 1 || $status == 0) {
+                    $query->where('ppid_keberatan.isSengketa', $status);
                 } else {
                     $query->whereNotIn('status_keberatan.id_jenis_status_keberatan', [1, 2]); // kecuali yg selesai dan ditolak
                 }
