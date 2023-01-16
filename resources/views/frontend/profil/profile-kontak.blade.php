@@ -47,7 +47,7 @@
 
     <!-- Map -->
     <section class="mapping">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row d-flex align-items-center">
                 <div class="col-md-6">
                     <label for="">Waktu Pelayanan Informasi Publik</label>

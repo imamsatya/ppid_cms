@@ -18,3 +18,5 @@ _ide_helper_models.php
 .ics
 /public/*.ics
 .vscode
+/storage
+

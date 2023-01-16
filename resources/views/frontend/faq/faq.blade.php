@@ -20,12 +20,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center pl-5 pr-5">
-                    <p class="informasi_title">
+                    <!-- <p class="informasi_title">
                         Dibawah ini adalah beberapa pertanyaan umum dan beberapa prosedur
                         dalam pengajuan permohonan informasi publik atau pengajuan
                         keberatan atas informasi publik di lingkup Kementerian Badan Usaha
                         Milik Negara.
-                    </p>
+                    </p> -->
                 </div>
             </div>
             <div class="row mt-4">
