@@ -346,13 +346,13 @@
                 const dataStatistik = <?php echo e(Js::from($dataStatistik)); ?>;
 
 
-                console.log('dataS', dataStatistik)
+                // console.log('dataS', dataStatistik)
                 let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
                 let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
                 let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
-                console.log('datamasuk', dataMasuk)
-                console.log('dataproses', dataProses)
-                console.log('dataselesai', dataSelesai)
+                // console.log('datamasuk', dataMasuk)
+                // console.log('dataproses', dataProses)
+                // console.log('dataselesai', dataSelesai)
                 let dataMasukFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0

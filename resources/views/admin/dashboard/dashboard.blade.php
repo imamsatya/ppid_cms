@@ -41,6 +41,7 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+
                         <!--end::Content-->
                     </div>
                     <!--end::Wrapper-->
@@ -115,6 +116,128 @@
             @endif
             <h1>Dashboard</h1>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="statistik">
+                        <br>
+                        <h3 for="">Statistik Permohonan Informasi Publik Tahun {{ date('Y') }}</h3>
+
+                        <div class="card">
+                            <div class="card-top">
+
+                            </div>
+                            <div class="card-body">
+                                <canvas height="180vh" id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @push('child-scripts')
+                <script>
+                    $(document).ready(function() {
+                        const labels = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 'Juli', 'Agustus', 'September',
+                            'Oktober',
+                            'November', 'Desember'
+                        ];
+
+
+                        // const dataStatistik = () => {
+                        //     return $.ajax({
+                        //         type: 'GET',
+                        //         url: "data-statistik",
+                        //         dataType: 'json'
+                        //     });
+                        // }
+
+                        const dataStatistik = {{ Js::from($dataStatistik) }};
+
+
+                        // console.log('dataS', dataStatistik)
+                        let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
+                        let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
+                        let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
+                        // console.log('datamasuk', dataMasuk)
+                        // console.log('dataproses', dataProses)
+                        // console.log('dataselesai', dataSelesai)
+                        let dataMasukFinal = [0, 0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0, 0, 0
+                        ];
+
+                        let dataProsesFinal = [0, 0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0, 0, 0
+                        ];
+
+                        let dataSelesaiFinal = [0, 0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0, 0, 0
+                        ];
+
+
+
+                        dataProses.forEach(element => {
+                            dataProsesFinal[element.bulan - 1] = element.permohonan
+                        });
+
+                        dataSelesai.forEach(element => {
+                            dataSelesaiFinal[element.bulan - 1] = element.permohonan
+                        });
+
+
+                        for (let index = 0; index < dataMasukFinal.length; index++) {
+
+                            dataMasukFinal[index] = parseInt(dataProsesFinal[index]) + parseInt(dataSelesaiFinal[index])
+
+                        }
+
+                        const data = {
+                            labels: labels,
+                            datasets: [{
+                                    label: "Permohonan Masuk",
+                                    backgroundColor: "#7cb5ec",
+                                    borderColor: "#7cb5ec",
+                                    data: dataMasukFinal,
+                                },
+                                {
+                                    label: "Permohonan Proses",
+                                    backgroundColor: "#434348",
+                                    borderColor: "#434348",
+                                    data: dataProsesFinal,
+                                },
+                                {
+                                    label: "Permohonan Selesai",
+                                    backgroundColor: "#90ed7d",
+                                    borderColor: "#90ed7d",
+                                    data: dataSelesaiFinal,
+                                },
+                            ],
+                        };
+
+                        const config = {
+                            type: "bar",
+                            data: data,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    htmlLegend: {
+                                        // ID of the container to put the legend in
+                                        containerID: "legend-container",
+                                    },
+                                    legend: {
+                                        position: "bottom",
+                                    },
+                                },
+                            },
+                        };
+
+                        const myChart = new Chart(document.getElementById("myChart"), config);
+
+                    })
+                </script>
+            @endpush
 
 
 </x-admin.layout>

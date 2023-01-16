@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\LayananPPID;
 
 use App\Http\Controllers\Controller;
+use App\Models\LayananPPID\Keberatan\KeberatanPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -118,6 +119,14 @@ class DataKeberatanController extends Controller
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
+        if ($status == 'true') {
+            $status = 1;
+        }
+
+        if ($status == 'false') {
+            $status = 0;
+        }
+
 
         $result = DB::table('ppid_keberatan')
             ->select(
@@ -143,8 +152,12 @@ class DataKeberatanController extends Controller
 
             ->orderBy('created_at', 'desc')
             ->where(function ($query) use ($status) {
-                if ($status != '-') {
-                    $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+                // if ($status != '-') {
+                //     $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+                // } 
+
+                if ($status == 1 || $status == 0) {
+                    $query->where('ppid_keberatan.isSengketa', $status);
                 } else {
                     $query->whereNotIn('status_keberatan.id_jenis_status_keberatan', [1, 2]); // kecuali yg selesai dan ditolak
                 }
@@ -285,6 +298,76 @@ class DataKeberatanController extends Controller
 
 
         echo json_encode(array('result' => 'Berhasil menyimpan respon!', 'status' => 'success'));
+    }
+
+    public function submitKonfirmasiSengketa(Request $request, $id)
+    {
+        if ($request->all == null) {
+            $validated = true;
+        } else {
+            $validated = $request->validate([
+                'file' => 'mimes:pdf|max:5120'
+            ]);
+        }
+
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        if ($validated) {
+            $keberatan = new KeberatanPPID();
+            $keberatan = $keberatan->where('id', $id)->first();
+            $keberatan->isSengketa = true;
+
+
+            if (count($request->files) > 0) {
+                $files = $request->files;
+                $upload_path = 'keberatan/sengketa';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        $keberatan->file_putusan = 'keberatan/sengketa/' . $keberatan->ticket_keberatan . '-sengketa' . '.' . $request->file($fileName)->getClientOriginalExtension();
+                    }
+                    $fileName2 = $keberatan->ticket_keberatan . '-sengketa' . '.' . $request->file($fileName)->getClientOriginalExtension();
+                    $path = $file->storeAs('public/keberatan/sengketa', $fileName2);
+                }
+            }
+            $keberatan->save();
+            return redirect()->back()->with('success', 'Berhasil menyimpan status sengketa');
+        }
+    }
+
+    public function submitPutusan(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'file' => 'required|mimes:pdf|max:5120'
+        ]);
+
+
+        if (!$validated) {
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+        if ($validated) {
+            $keberatan = new KeberatanPPID();
+            $keberatan = $keberatan->where('id', $id)->first();
+            // $keberatan->isSengketa = true;
+
+
+            if (count($request->files) > 0) {
+                $files = $request->files;
+                $upload_path = 'keberatan/sengketa';
+                foreach ($files as $fileName => $name) {
+                    $file = $request->file($fileName);
+                    if ($fileName == 'file') {
+                        $keberatan->file_putusan = 'keberatan/sengketa/' . $keberatan->ticket_keberatan . '-sengketa' . '.' . $request->file($fileName)->getClientOriginalExtension();
+                    }
+                    $fileName2 = $keberatan->ticket_keberatan . '-sengketa' . '.' . $request->file($fileName)->getClientOriginalExtension();
+                    $path = $file->storeAs('public/keberatan/sengketa', $fileName2);
+                }
+            }
+            $keberatan->save();
+            return redirect()->back()->with('success', 'Berhasil menyimpan File Putusan');
+        }
     }
 
     /**

@@ -153,9 +153,9 @@
                                     <td>{{ $slider_row->judul }}</td>
                                     <td>{{ $slider_row->deskripsi }}</td>
                                     <td>{{ $slider_row->urutan }}</td>
-                                    @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                                    @canany(['slider.edit', 'slider.delete'])
                                         <td>
-                                            @can('peraturan kip.edit')
+                                            @can('slider.edit')
                                                 <a href="javascript:void(0)" data-bs-toggle="modal"
                                                     data-bs-target="#kt_modal_editSlider"
                                                     onclick="editDialog({{ $loop->index }})"

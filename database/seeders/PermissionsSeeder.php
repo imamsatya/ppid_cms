@@ -218,5 +218,11 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'footer.view']);
         Permission::create(['name' => 'footer.edit']);
         Permission::create(['name' => 'footer.delete']);
+
+        //Manajemen Menu
+        Permission::create(['name' => 'manajemen menu.create']);
+        Permission::create(['name' => 'manajemen menu.view']);
+        Permission::create(['name' => 'manajemen menu.edit']);
+        Permission::create(['name' => 'manajemen menu.delete']);
     }
 }

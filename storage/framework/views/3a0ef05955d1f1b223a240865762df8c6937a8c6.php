@@ -15,7 +15,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <input type="text" placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+                    <input type="text" id="myInput" onkeyup="myFunction()"
+                        placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
                     <button class="btn btn-filter">Filter</button>
                 </div>
             </div>
@@ -87,7 +88,7 @@
                                         <ul class="pagination">
                                             <?php if($informasiSecaraBerkala->currentPage() - 1 != 0): ?>
                                                 <li class="page-item ">
-                                                    <a class="page-link" href="javascript:void(0)"
+                                                    <a class="page-link"
                                                         href="<?php echo e($informasiSecaraBerkala->previousPageUrl()); ?>"
                                                         tabindex="-1">
                                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -130,32 +131,30 @@
 
                             "
                             id="v-pills-setiapsaat" role="tabpanel" aria-labelledby="v-pills-setiapsaat-tab">
+
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <?php if($informasiSetiapSaat): ?>
-                                                <?php $__currentLoopData = $informasiSetiapSaat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $informasiSetiapSaat_row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <div class="data_list">
+                                    <?php if($informasiSetiapSaat): ?>
+                                        <?php $__currentLoopData = $informasiSetiapSaat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $informasiSetiapSaat_row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <div class="data_list">
 
-                                                        <?php if($informasiSetiapSaat_row->url): ?>
-                                                            <span><a style="color:#104e70; font-size: 1rem;"
-                                                                    href="<?php echo e($informasiSetiapSaat_row->url); ?>"><?php echo e($informasiSetiapSaat_row->judul_informasi); ?></a></span>
-                                                        <?php else: ?>
-                                                            <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
-                                                                    href="javascript:void(0)"><?php echo e($informasiSetiapSaat_row->judul_informasi); ?></a></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            <?php endif; ?>
+                                                <?php if($informasiSetiapSaat_row->url): ?>
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
+                                                            href="<?php echo e($informasiSetiapSaat_row->url); ?>"><?php echo e($informasiSetiapSaat_row->judul_informasi); ?></a></span>
+                                                <?php else: ?>
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
+                                                            href="javascript:void(0)"><?php echo e($informasiSetiapSaat_row->judul_informasi); ?></a></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
 
 
-
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
+
+
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
@@ -285,6 +284,29 @@
                 active
                  <?php $__env->endSlot(); ?>
                 <?php $__env->startPush('child-scripts'); ?>
+                    <script type="text/javascript">
+                        function myFunction() {
+                            var input, filter, ul, li, a, i, txtValue;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            ul = document.getElementsByClassName("show active");
+                            console.log('ul', ul)
+                            //children 3
+                            li = ul[0].children[0].children[0].children[0].children[0].innerText;
+                            // li2 = ul[0].children[0].children[0].children[1].children[0].innerText
+                            // console.log('li', li)
+                            // console.log('li2', li2)
+                            for (i = 0; i < ul[0].children[0].children[0].children.length; i++) {
+                                a = ul[0].children[0].children[0].children[i].children[0];
+                                txtValue = a.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    ul[0].children[0].children[0].children[i].style.display = "";
+                                } else {
+                                    ul[0].children[0].children[0].children[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;
