@@ -908,8 +908,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon--
-                                                                                                                                </span>
-                                                                                                                                <!--end::Svg Icon-->
+                                                                                                                                    </span>
+                                                                                                                                    <!--end::Svg Icon-->
                                             </span>
                                             <span class="menu-title">Standar Layanan</span>
                                             <span class="menu-arrow"></span>
@@ -1174,7 +1174,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                 <!--begin:Manajemen Menu-->
 
-                                @can('faq.view')
+                                @can('manajemen menu.view')
                                     <div class="menu-item ">
                                         <!--begin:Menu link-->
                                         <a class="menu-link  {{ $isActiveLink_manajemenMenu ?? '' }}"

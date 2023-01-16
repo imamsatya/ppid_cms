@@ -337,6 +337,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/ppid-data-keberatan-selesai', [DataKeberatanController::class, 'ppidDataKeberatanSelesai']);
     Route::post('/konfirmasi-data-keberatan', [DataKeberatanController::class, 'submitKonfirmasiKeberatan']);
     Route::post('/submit-answer-keberatan', [DataKeberatanController::class, 'submitAnswerKeberatan']);
+    Route::post('/konfirmasi-sengketa/{id}', [DataKeberatanController::class, 'submitKonfirmasiSengketa']);
+    Route::post('/upload-putusan/{id}', [DataKeberatanController::class, 'submitPutusan']);
 });
 
 

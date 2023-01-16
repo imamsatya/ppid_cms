@@ -910,8 +910,8 @@ License: For each use you must have a valid license purchased only from above li
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon--
-                                                                                                                                </span>
-                                                                                                                                <!--end::Svg Icon-->
+                                                                                                                                    </span>
+                                                                                                                                    <!--end::Svg Icon-->
                                             </span>
                                             <span class="menu-title">Standar Layanan</span>
                                             <span class="menu-arrow"></span>
@@ -1176,7 +1176,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                 <!--begin:Manajemen Menu-->
 
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq.view')): ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manajemen menu.view')): ?>
                                     <div class="menu-item ">
                                         <!--begin:Menu link-->
                                         <a class="menu-link  <?php echo e($isActiveLink_manajemenMenu ?? ''); ?>"

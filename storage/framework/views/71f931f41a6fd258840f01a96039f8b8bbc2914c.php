@@ -1,17 +1,24 @@
-<x-admin.layout>
-    <x-slot:subMenuTitle>
-        informasi
-        </x-slot>
+<?php if (isset($component)) { $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0 = $component; } ?>
+<?php $component = App\View\Components\Admin\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Admin\Layout::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('subMenuTitle', null, []); ?> 
+        Slider
+         <?php $__env->endSlot(); ?>
 
-        <x-slot:mainMenuTitle>
+         <?php $__env->slot('mainMenuTitle', null, []); ?> 
             Manajemen Home
-            </x-slot>
+             <?php $__env->endSlot(); ?>
 
 
-            @if ($errors->any())
+            <?php if($errors->any()): ?>
                 <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                     </span> --}}
+                    
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -36,9 +43,9 @@
 
                         <!--begin::Content-->
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                         <!--end::Content-->
                     </div>
@@ -61,12 +68,11 @@
                     <!--end::Close-->
                 </div>
 
-            @endif
-            @if (\Session::has('success'))
+            <?php endif; ?>
+            <?php if(\Session::has('success')): ?>
                 <!--begin::Alert-->
                 <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
-                    {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                      </span> --}}
+                    
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -89,7 +95,7 @@
                         <!--end::Title-->
 
                         <!--begin::Content-->
-                        <span>{{ Session::get('success') }}</span>
+                        <span><?php echo e(Session::get('success')); ?></span>
                         <!--end::Content-->
                     </div>
                     <!--end::Wrapper-->
@@ -111,20 +117,20 @@
                     <!--end::Close-->
                 </div>
                 <!--end::Alert-->
-            @endif
+            <?php endif; ?>
 
-            <h1>Pengelolaan informasi</h1>
+            <h1>Pengelolaan Slider</h1>
             <br>
 
 
             <div class="card card-flush shadow-sm">
                 <div class="card-header">
-                    <h3 class="card-title">Informasi PPID</h3>
+                    <h3 class="card-title">Home Slider PPID</h3>
                     <div class="card-toolbar">
-                        @can('informasi.create')
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.create')): ?>
                             <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#kt_modal_tambahinformasi">Tambah</a>
-                        @endcan
+                                data-bs-target="#kt_modal_tambahSlider">Tambah</a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="card-body py-5">
@@ -136,41 +142,40 @@
                                 <th>Judul</th>
                                 <th>Deskripsi</th>
                                 <th>Urutan</th>
-                                @canany(['informasi.delete', 'informasi.edit'])
+
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['slider.edit', 'slider.delete'])): ?>
                                     <th>Aksi</th>
-                                @endcan
+                                <?php endif; ?>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($informasi)
-                                @foreach ($informasi as $informasi_row)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td> <img width="100" height="100"
-                                                src="{{ asset('storage/' . $informasi_row->image_path) }}" />
-                                        </td>
-                                        <td>{{ $informasi_row->judul }}</td>
-                                        <td>{{ $informasi_row->deskripsi }}</td>
-                                        <td>{{ $informasi_row->urutan }}</td>
-                                        @canany(['informasi.edit', 'informasi.delete'])
-                                            <td>
-                                                @can('informasi.edit')
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#kt_modal_editinformasi"
-                                                        onclick="editDialog({{ $loop->index }})"
-                                                        class="btn btn-icon btn-primary me-2"><i
-                                                            class="bi bi-pencil fs-4 "></i></a>
-                                                @endcan
-                                                @can('informasi.delete')
-                                                    <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
-                                                        class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
-                                                @endcan
-                                            </td>
-                                        @endcan
 
-                                    </tr>
-                                @endforeach
-                            @endif
+                            <?php $__currentLoopData = $slider; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slider_row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td><?php echo e($loop->index + 1); ?></td>
+                                    <td> <img width="100" height="100"
+                                            src="<?php echo e(asset('storage/' . $slider_row->image_path)); ?>" />
+                                    </td>
+                                    <td><?php echo e($slider_row->judul); ?></td>
+                                    <td><?php echo e($slider_row->deskripsi); ?></td>
+                                    <td><?php echo e($slider_row->urutan); ?></td>
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['slider.edit', 'slider.delete'])): ?>
+                                        <td>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.edit')): ?>
+                                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                    data-bs-target="#kt_modal_editSlider"
+                                                    onclick="editDialog(<?php echo e($loop->index); ?>)"
+                                                    class="btn btn-icon btn-primary me-2"><i class="bi bi-pencil fs-4 "></i></a>
+                                            <?php endif; ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.delete')): ?>
+                                                <a href="javascript:void(0)" onclick="deleteDialog(<?php echo e($loop->index); ?>)"
+                                                    class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a>
+                                            <?php endif; ?>
+                                        </td>
+                                    <?php endif; ?>
+
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </tbody>
                     </table>
@@ -178,209 +183,8 @@
 
             </div>
 
-            <br>
-            <form action="{{ route('admin.informasi.image.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="card card-flush shadow-sm">
-
-                    <div class="card-body py-5">
-
-
-                        <label for="" class=" form-label">Side Image</label>
-                        <br>
-                        <div class="image-input image-input-outline" data-kt-image-input="true"
-                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                            <!--begin::Image preview wrapper-->
-                            @if ($informasiImage)
-                                @if ($informasiImage->sideimage_path)
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('storage/' . $informasiImage->sideimage_path) }})">
-                                    </div>
-                                @else
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                    </div>
-                                @endif
-                            @else
-                                <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                </div>
-
-                            @endif
-                            <!--end::Image preview wrapper-->
-
-                            @can('informasi secara berkala.edit')
-                                <!--begin::Edit button-->
-                                <label
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Change Banner">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="sideimage" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="sideimage_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit button-->
-
-                                <!--begin::Cancel button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Cancel Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel button-->
-
-                                <!--begin::Remove button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Remove Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove button-->
-                            @endcan
-                        </div>
-                        {{-- <p>minimal dimensi 369x454 pixel</p> --}}
-                        <br><br>
-
-                        <label for="" class=" form-label">Background Card Image</label>
-                        <br>
-                        <div class="image-input image-input-outline" data-kt-image-input="true"
-                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                            <!--begin::Image preview wrapper-->
-                            @if ($informasiImage)
-                                @if ($informasiImage->backgroundimage_path)
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('storage/' . $informasiImage->backgroundimage_path) }})">
-                                    </div>
-                                @else
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                    </div>
-                                @endif
-                            @else
-                                <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                </div>
-
-                            @endif
-                            <!--end::Image preview wrapper-->
-
-                            @can('informasi secara berkala.edit')
-                                <!--begin::Edit button-->
-                                <label
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Change Banner">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="backgroundimage" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="backgroundimage_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit button-->
-
-                                <!--begin::Cancel button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Cancel Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel button-->
-
-                                <!--begin::Remove button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Remove Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove button-->
-                            @endcan
-                        </div>
-                        {{-- <br><br>
-                        <label for="" class=" form-label">PPID Logo Image</label>
-                        <br>
-                        <div class="image-input image-input-outline" data-kt-image-input="true"
-                            style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
-                            <!--begin::Image preview wrapper-->
-                            @if ($informasiImage)
-                                @if ($informasiImage->ppidlogo_path)
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('storage/' . $informasiImage->ppidlogo_path) }})">
-                                    </div>
-                                @else
-                                    <div class="image-input-wrapper w-250px  h-125px"
-                                        style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                    </div>
-                                @endif
-                            @else
-                                <div class="image-input-wrapper w-250px  h-125px"
-                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
-                                </div>
-
-                            @endif
-                            <!--end::Image preview wrapper-->
-
-                            @can('informasi secara berkala.edit')
-                                <!--begin::Edit button-->
-                                <label
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Change Banner">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="ppidlogo" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="ppidlogo_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit button-->
-
-                                <!--begin::Cancel button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Cancel Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel button-->
-
-                                <!--begin::Remove button-->
-                                <span
-                                    class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                                    title="Remove Banner">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove button-->
-                            @endcan
-                        </div> --}}
-
-                        <br> <br>
-                        @can('informasi secara berkala.create')
-                            <button type="submit" class="btn btn-primary" id="addButton"
-                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                    Simpan
-                                </span>
-                                <span class="indicator-progress">
-                                    Mohon Menunggu... <span
-                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        @endcan
-                    </div>
-
-                </div>
-            </form>
-
-            <!--begin::Modal - Tambah informasi-->
-            <div class="modal fade" id="kt_modal_tambahinformasi" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - Tambah Slider-->
+            <div class="modal fade" id="kt_modal_tambahSlider" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -388,7 +192,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Tambah Konten Informasi</h2>
+                            <h2>Tambah Konten Slider</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -410,10 +214,10 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
-                            {{-- Content Modal --}}
+                            
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                                action="{{ route('admin.informasi.store') }}" method="POST" class="form">
-                                @csrf
+                                action="<?php echo e(route('admin.slider.store')); ?>" method="POST" class="form">
+                                <?php echo csrf_field(); ?>
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
 
@@ -427,13 +231,13 @@
                                         <div class="col-lg-8 fv-row">
 
                                             <div class="image-input image-input-outline" data-kt-image-input="true"
-                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                                                style="background-image: url(<?php echo e(asset('template/dist/assets/media/svg/avatars/blank.svg')); ?>)">
 
                                                 <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+                                                    style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                                 </div>
 
-                                                @can('informasi.edit')
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.edit')): ?>
                                                     <!--begin::Edit button-->
                                                     <label
                                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -442,9 +246,9 @@
                                                         <i class="bi bi-pencil-fill fs-7"></i>
 
                                                         <!--begin::Inputs-->
-                                                        <input type="file" name="informasi"
+                                                        <input type="file" name="slider"
                                                             accept=".png, .jpg, .jpeg" />
-                                                        <input type="hidden" name="informasi_remove" />
+                                                        <input type="hidden" name="slider_remove" />
                                                         <!--end::Inputs-->
                                                     </label>
                                                     <!--end::Edit button-->
@@ -466,7 +270,7 @@
                                                         <i class="bi bi-x fs-2"></i>
                                                     </span>
                                                     <!--end::Remove button-->
-                                                @endcan
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <!--end::Col-->
@@ -477,7 +281,7 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Judul</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
@@ -491,8 +295,7 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label
-                                            class="col-lg-4 col-form-label required fw-semibold fs-6">Deskripsi</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Deskripsi</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
@@ -526,8 +329,8 @@
                                 <!--end::Card body-->
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('informasi.create')
+                                    
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.create')): ?>
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Simpan
@@ -537,7 +340,7 @@
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                             </span>
                                         </button>
-                                    @endcan
+                                    <?php endif; ?>
                                 </div>
                                 <!--end::Actions-->
                             </form>
@@ -548,10 +351,10 @@
                 </div>
                 <!--end::Modal dialog-->
             </div>
-            <!--end::Modal - Tambah informasi-->
+            <!--end::Modal - Tambah Slider-->
 
-            <!--begin::Modal - Edit informasi-->
-            <div class="modal fade" id="kt_modal_editinformasi" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - Edit Slider-->
+            <div class="modal fade" id="kt_modal_editSlider" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-900px">
                     <!--begin::Modal content-->
@@ -559,7 +362,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2>Edit Konten informasi</h2>
+                            <h2>Edit Konten Slider</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -581,10 +384,10 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
-                            {{-- Content Modal --}}
+                            
                             <form id="editForm" method="POST" enctype="multipart/form-data" class="form">
-                                @method('PATCH')
-                                @csrf
+                                <?php echo method_field('PATCH'); ?>
+                                <?php echo csrf_field(); ?>
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
 
@@ -598,19 +401,17 @@
                                         <div class="col-lg-8 fv-row">
 
                                             <div class="image-input image-input-outline" data-kt-image-input="true"
-                                                style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+                                                style="background-image: url(<?php echo e(asset('template/dist/assets/media/svg/avatars/blank.svg')); ?>)">
 
 
-                                                {{-- <div class="image-input-wrapper w-250px  h-125px"
-                                                    style="background-image: url({{ asset($informasi->banner_path) }})">
-                                                </div> --}}
+                                                
 
                                                 <div class="image-input-wrapper w-250px  h-125px"
-                                                    id="editInformasiImage">
+                                                    style="background-image: url(<?php echo e(asset('template/dist/assets/media/patterns/pattern-1.jpg')); ?>)">
                                                 </div>
 
 
-                                                @can('informasi.edit')
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.edit')): ?>
                                                     <!--begin::Edit button-->
                                                     <label
                                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -619,9 +420,9 @@
                                                         <i class="bi bi-pencil-fill fs-7"></i>
 
                                                         <!--begin::Inputs-->
-                                                        <input type="file" name="informasi" id="editinformasi"
+                                                        <input type="file" name="slider" id="editSlider"
                                                             accept=".png, .jpg, .jpeg" />
-                                                        <input type="hidden" name="informasi_remove" />
+                                                        <input type="hidden" name="slider_remove" />
                                                         <!--end::Inputs-->
                                                     </label>
                                                     <!--end::Edit button-->
@@ -643,7 +444,7 @@
                                                         <i class="bi bi-x fs-2"></i>
                                                     </span>
                                                     <!--end::Remove button-->
-                                                @endcan
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <!--end::Col-->
@@ -654,7 +455,7 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label class="col-lg-4 col-form-label required fw-semibold fs-6">Judul</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Judul</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
@@ -668,8 +469,7 @@
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
-                                        <label
-                                            class="col-lg-4 col-form-label required fw-semibold fs-6">Deskripsi</label>
+                                        <label class="col-lg-4 col-form-label  fw-semibold fs-6">Deskripsi</label>
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
@@ -701,11 +501,10 @@
 
                                 </div>
                                 <!--end::Card body-->
-
                                 <!--begin::Actions-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
-                                    @can('informasi.create')
+                                    
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider.create')): ?>
                                         <button type="submit" class="btn btn-primary" id="addButton"
                                             onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
                                                 Update
@@ -715,7 +514,7 @@
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span>
                                             </span>
                                         </button>
-                                    @endcan
+                                    <?php endif; ?>
                                 </div>
                                 <!--end::Actions-->
                             </form>
@@ -726,38 +525,27 @@
                 </div>
                 <!--end::Modal dialog-->
             </div>
-            <!--end::Modal - Edit informasi-->
+            <!--end::Modal - Edit Slider-->
 
             <br>
-            <x-slot:isShowAccordion_manajemenHome>
+             <?php $__env->slot('isShowAccordion_manajemenHome', null, []); ?> 
                 show
-                </x-slot>
-                <x-slot:isActiveLink_manajemenHome>
+                 <?php $__env->endSlot(); ?>
+                 <?php $__env->slot('isActiveLink_manajemenHome', null, []); ?> 
                     active
-                    </x-slot>
-                    <x-slot:isActiveLink_informasi>
+                     <?php $__env->endSlot(); ?>
+                     <?php $__env->slot('isActiveLink_slider', null, []); ?> 
                         active
-                        </x-slot>
-                        <x-slot:subMenuTitle>
-                            Informasi
-                            </x-slot>
+                         <?php $__env->endSlot(); ?>
+                         <?php $__env->slot('subMenuTitle', null, []); ?> 
+                            Slider
+                             <?php $__env->endSlot(); ?>
 
-                            <x-slot:mainMenuTitle>
+                             <?php $__env->slot('mainMenuTitle', null, []); ?> 
                                 Manajemen Home
-                                </x-slot>
-                                @push('child-scripts')
+                                 <?php $__env->endSlot(); ?>
+                                <?php $__env->startPush('child-scripts'); ?>
                                     <script>
-                                        function activateLoadingButton(idButton) {
-                                            console.log('active')
-                                            let button = document.querySelector(`${idButton}`);
-                                            button.setAttribute("data-kt-indicator", "on");
-                                            // Handle button click event
-
-                                            // // Disable indicator after 3 seconds
-                                            // setTimeout(function() {
-                                            //     button.removeAttribute("data-kt-indicator");
-                                            // }, 3000);
-                                        }
                                         $("#kt_datatable_column_rendering").DataTable({
                                             "language": {
                                                 "lengthMenu": "Show _MENU_",
@@ -770,14 +558,27 @@
                                                 ">"
                                         });
 
+                                        function activateLoadingButton(idButton) {
+                                            console.log('active')
+                                            let button = document.querySelector(`${idButton}`);
+                                            button.setAttribute("data-kt-indicator", "on");
+                                            // Handle button click event
+
+                                            // // Disable indicator after 3 seconds
+                                            // setTimeout(function() {
+                                            //     button.removeAttribute("data-kt-indicator");
+                                            // }, 3000);
+                                        }
+
                                         function deleteDialog(index) {
 
-                                            let informasi = {{ Js::from($informasi) }}
+                                            let slider = <?php echo e(Js::from($slider)); ?>
 
-                                            informasi = informasi[index]
+
+                                            slider = slider[index]
 
                                             Swal.fire({
-                                                html: `Apakah yakin akan <strong>menghapus</strong> informasi <span class="badge badge-primary"> ${informasi.judul}</span> ?`,
+                                                html: `Apakah yakin akan <strong>menghapus</strong> slider <span class="badge badge-primary"> ${slider.judul}</span> ?`,
                                                 icon: "error",
                                                 buttonsStyling: false,
                                                 showCancelButton: true,
@@ -794,13 +595,13 @@
                                                     console.log('delete confirmed')
                                                     $.ajax({
                                                         type: "DELETE",
-                                                        url: "/admin/informasi/" + informasi.id,
+                                                        url: "/admin/slider/" + slider.id,
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
 
                                                                 icon: 'success',
-                                                                title: 'Berhasil menghapus informasi',
+                                                                title: 'Berhasil menghapus Slider',
                                                                 showConfirmButton: false,
                                                                 timer: 500
                                                             }).then(() => {
@@ -824,20 +625,26 @@
 
                                         function editDialog(index) {
 
-                                            let informasiRow = {{ Js::from($informasi) }}
-                                            informasiRow = informasiRow[index]
-                                            console.log(document.getElementById('editImage'))
-                                            document.getElementById('editJudul').value = informasiRow.judul
-                                            // document.getElementById('editFile').value = informasiRow.file_path
-                                            document.getElementById('editDeskripsi').value = informasiRow.deskripsi
-                                            document.getElementById('editUrutan').value = informasiRow.urutan
-                                            document.getElementById('editInformasiImage').style.cssText =
-                                                `background-image: url({{ asset('storage/${informasiRow.image_path}') }})`
+                                            let sliderRow = <?php echo e(Js::from($slider)); ?>
 
-                                            document.getElementById('editForm').setAttribute('action', 'informasi/' +
-                                                informasiRow.id)
+                                            sliderRow = sliderRow[index]
+                                            console.log(document.getElementById('editImage'))
+                                            document.getElementById('editJudul').value = sliderRow.judul
+                                            // document.getElementById('editFile').value = sliderRow.file_path
+                                            document.getElementById('editDeskripsi').value = sliderRow.deskripsi
+                                            document.getElementById('editUrutan').value = sliderRow.urutan
+
+
+                                            document.getElementById('editForm').setAttribute('action', 'slider/' +
+                                                sliderRow.id)
                                         };
                                     </script>
-                                @endpush
+                                <?php $__env->stopPush(); ?>
 
-</x-admin.layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0)): ?>
+<?php $component = $__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0; ?>
+<?php unset($__componentOriginal1c021f9bb77bfcc579f4ef1f7437466a580c4bc0); ?>
+<?php endif; ?>
+<?php /**PATH C:\xampp\htdocs\project0\laravelBase\resources\views/admin/manajemen_home/slider.blade.php ENDPATH**/ ?>

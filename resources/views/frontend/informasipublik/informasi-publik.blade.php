@@ -7,7 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <input type="text" placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+                    <input type="text" id="myInput" onkeyup="myFunction()"
+                        placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
                     <button class="btn btn-filter">Filter</button>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                                         <ul class="pagination">
                                             @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
                                                 <li class="page-item ">
-                                                    <a class="page-link" href="javascript:void(0)"
+                                                    <a class="page-link"
                                                         href="{{ $informasiSecaraBerkala->previousPageUrl() }}"
                                                         tabindex="-1">
                                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -119,32 +120,30 @@
                         <div class="tab-pane fade {{ app('request')->input('informasi_setiap_saat') ? 'show active' : null }}
                             "
                             id="v-pills-setiapsaat" role="tabpanel" aria-labelledby="v-pills-setiapsaat-tab">
+
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            @if ($informasiSetiapSaat)
-                                                @foreach ($informasiSetiapSaat as $informasiSetiapSaat_row)
-                                                    <div class="data_list">
+                                    @if ($informasiSetiapSaat)
+                                        @foreach ($informasiSetiapSaat as $informasiSetiapSaat_row)
+                                            <div class="data_list">
 
-                                                        @if ($informasiSetiapSaat_row->url)
-                                                            <span><a style="color:#104e70; font-size: 1rem;"
-                                                                    href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
-                                                        @else
-                                                            <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
-                                                                    href="javascript:void(0)">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
-                                                        @endif
-                                                    </div>
-                                                @endforeach
-                                            @endif
+                                                @if ($informasiSetiapSaat_row->url)
+                                                    <span><a style="color:#104e70; font-size: 1rem;"
+                                                            href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+                                                @else
+                                                    <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
+                                                            href="javascript:void(0)">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @endif
 
 
-
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
+
+
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
@@ -272,6 +271,29 @@
                 active
                 </x-slot>
                 @push('child-scripts')
+                    <script type="text/javascript">
+                        function myFunction() {
+                            var input, filter, ul, li, a, i, txtValue;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            ul = document.getElementsByClassName("show active");
+                            console.log('ul', ul)
+                            //children 3
+                            li = ul[0].children[0].children[0].children[0].children[0].innerText;
+                            // li2 = ul[0].children[0].children[0].children[1].children[0].innerText
+                            // console.log('li', li)
+                            // console.log('li2', li2)
+                            for (i = 0; i < ul[0].children[0].children[0].children.length; i++) {
+                                a = ul[0].children[0].children[0].children[i].children[0];
+                                txtValue = a.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    ul[0].children[0].children[0].children[i].style.display = "";
+                                } else {
+                                    ul[0].children[0].children[0].children[i].style.display = "none";
+                                }
+                            }
+                        }
+                    </script>
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;
