@@ -4,11 +4,11 @@
     @endpush
     <!-- Informasi -->
     <section class="informasi_struktur">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label for="" class="title_struktur">{{ $strukturOrganisasi->judul ?? '' }}</label>
-                    <a href="#" download class="unduh_materi">Unduh Struktur</a>
+                    <!-- <a href="#" download class="unduh_materi">Unduh Struktur</a> -->
                 </div>
             </div>
             <div class="row">

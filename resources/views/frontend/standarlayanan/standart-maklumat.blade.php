@@ -14,11 +14,11 @@
                 </div>
             </div>
 
-            <div class="">
+            <div class="bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
                 {{-- images-maklumat --}}
                 <div class="row">
                     @if ($maklumat)
-                        <div class="col-md-12">
+                        <div class="col-md-12" align="center">
                             <img class="img-fluid" src="{{ asset('storage/' . $maklumat->direktori_image) }}"
                                 alt="">
                         </div>
