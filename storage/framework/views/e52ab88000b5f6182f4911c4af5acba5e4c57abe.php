@@ -242,7 +242,7 @@
                                                             <div class="form-check form-check-custom">
                                                                 <input class="form-check-input proses-konfirmasi"
                                                                     type="radio" value="tolak"
-                                                                    id="tolak-permohonan" name="konfirmasi-radio">
+                                                                    id="tolak-permohonan" onChange="setTemplateTolak()" name="konfirmasi-radio">
                                                                 <label class="form-check-label"
                                                                     for="tolak-permohonan">Ditolak</label>
                                                             </div>
@@ -327,6 +327,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-4">
+                                                    <select class="form-select" id="pilihTemplate"  aria-label="Pilih Template">
+                                                        <option selected>Pilih Template Jawaban</option>
+                                                        <option value="1">Permohonan Informasi Bukan Kewenangan</option>
+                                                        <option value="2">Permohonan Informasi CSR BUMN</option>
+                                                        <option value="3">Permohonan Informasi Lowongan Pekerjaan</option>
+                                                        <option value="4">Permohonan Informasi Magang/PKL</option>
+                                                        <option value="5">Informasi Palsu (Hoax)</option>
+                                                        <option value="6">Permohonan Informasi Lowongan Rekrutmen Bersama/FHCI</option>
+                                                    </select>
+                                                    <br>
                                                     <textarea class="form-control tox-target" id="area-answer"></textarea>
                                                 </div>
                                                 <div class="col-12 mt-4">
@@ -539,6 +549,23 @@
                                                                                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="<?php echo e(asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js')); ?>"></script>
                             <script>
+                             function setTemplateTolak(){
+                                      
+                                        //  tinymce.get("area-alasan-tolak").setContent(`Yth. … <br><br>
+
+                                        // Terima kasih atas permohonan yang disampaikan. Sehubungan dengan hal tersebut, dapat kami sampaikan bahwa permohonan Saudara tidak dapat kami proses dikarenakan file identitas tidak sesuai.
+                                        // <br><br>
+                                        // Sesuai dengan ketentuan dalam Undang-Undang Keterbukaan Informasi Publik Nomor 14 Tahun 2008 serta Peraturan Komisi Informasi Nomor 1 Tahun 2013, pemohon informasi publik wajib  melampirkan identitas diri berupa fotokopi KTP (untuk permohonan perorangan dan/atau Akta pendirian perusahaan/surat kuasa beserta legalisasi Badan Hukum dari Kementerian Hukum dan HAM (untuk permohonan dari Badan Hukum) dalam format .jpg atau .pdf untuk dapat kami proses lebih lanjut.
+                                        // <br><br>
+                                        // Demikian kami sampaikan, atas perhatian dan kerjasamanya diucapkan terima kasih.
+                                        // <br><br><br>
+ 
+
+                                        // Salam,
+                                        // PPID Kementerian BUMN`)
+                                    }
+                            </script>
+                            <script>
                                 $(document).ready(function() {
                                     $("body").tooltip({
                                         selector: '[rel="tooltip"]'
@@ -601,6 +628,8 @@
                                             dataType: 'json'
                                         })
                                     }
+
+                                   
 
                                     async function ppidDataPermohonanMasuk(asal = '-', status = '-', date = null) {
                                         try {
@@ -951,6 +980,7 @@
                                         modalPermohonan.block()
 
                                         const dataPermohonan = await ppidPermohonanUser(data)
+                                          const dataPemohon = await ppidPendaftar(dataPermohonan.result.id_ppid_pendaftar)
                                         $("#id-permohonan-edited").val(data)
                                         $("#area-informasi-diminta").html(dataPermohonan.result.informasi_diminta)
                                         // tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
@@ -959,7 +989,20 @@
                                         // tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
                                         // tinymce.get("area-tujuan-penggunaan").getBody().setAttribute('contenteditable', false)
 
-                                        tinymce.get("area-alasan-tolak").setContent('')
+                                        // tinymce.get("area-alasan-tolak").setContent('')
+                                        console.log('dataPemohon', dataPemohon)
+                                             tinymce.get("area-alasan-tolak").setContent(`Yth. ${dataPemohon.result.nama_lengkap} <br><br>
+
+                                        Terima kasih atas permohonan yang disampaikan. Sehubungan dengan hal tersebut, dapat kami sampaikan bahwa permohonan Saudara tidak dapat kami proses dikarenakan file identitas tidak sesuai.
+                                        <br><br>
+                                        Sesuai dengan ketentuan dalam Undang-Undang Keterbukaan Informasi Publik Nomor 14 Tahun 2008 serta Peraturan Komisi Informasi Nomor 1 Tahun 2013, pemohon informasi publik wajib  melampirkan identitas diri berupa fotokopi KTP (untuk permohonan perorangan dan/atau Akta pendirian perusahaan/surat kuasa beserta legalisasi Badan Hukum dari Kementerian Hukum dan HAM (untuk permohonan dari Badan Hukum) dalam format .jpg atau .pdf untuk dapat kami proses lebih lanjut.
+                                        <br><br>
+                                        Demikian kami sampaikan, atas perhatian dan kerjasamanya diucapkan terima kasih.
+                                        <br><br><br>
+ 
+
+                                        Salam,
+                                        PPID Kementerian BUMN`)
 
                                         $("#file-identitas-modalkonfirmasi").prop('href',
                                             `<?php echo e(asset('storage/${dataPermohonan.result.file_identitas}')); ?>`)
@@ -1104,10 +1147,109 @@
                                         $("#modalAnswer").modal('show')
                                         loadModalAnswer(idPermohonan)
                                     })
+                                    var namaPemohon
+                                   $(document).on('change', '#pilihTemplate', function() {
+                                        let selectedTemplate =  document.getElementById('pilihTemplate').value
+                                        let template = ''
+                                        if (selectedTemplate ==  1) {
+                                            template = `Yth. Sdr. ${namaPemohon} <br>
+                                                        di tempat <br><br>
+
+                                            Sehubungan dengan permohonan informasi Saudara, bersama ini kami sampaikan bahwa sebagaimana Pasal 5 Peraturan Menteri BUMN Nomor PER-04/MBU/03/2021 tentang Organisasi dan Tata Kerja Kementerian BUMN, bahwa Kementerian BUMN menyelenggarakan fungsi perumusan dan pelaksanaan kebijakan bidang penyusunan inisiatif bisnis strategis, penguatan daya saing dan sinergi, penguatan kinerja, penciptaan pertumbuhan berkelanjutan, restrukturisasi, pengembangan usaha, serta peningkatan kapasitas infrastruktur bisnis BUMN. 
+                                            <br><br> 
+                                            Dengan demikian, permohonan informasi Saudara bukan merupakan kewenangan Kementerian BUMN. Untuk itu, kiranya permohonan informasi Saudara dapat disampaikan kepada …….. (instansi rujukan).
+                                            <br><br>
+                                            Demikian disampaikan, atas perhatiannya diucapkan terima kasih.
+                                            <br><br>
+                                            Salam,<br>
+                                            PPID Kementerian BUMN`
+                                        }
+
+                                         if (selectedTemplate ==  2) {
+                                            template = `Yth. Sdr. ….. <br>
+                                                        di tempat <br><br>
+
+                                            Sehubungan dengan permohonan informasi Saudara, bersama ini kami sampaikan bahwa sebagaimana Pasal 5 Peraturan Menteri BUMN Nomor PER-04/MBU/03/2021 tentang Organisasi dan Tata Kerja Kementerian BUMN, bahwa Kementerian BUMN menyelenggarakan fungsi perumusan dan pelaksanaan kebijakan bidang penyusunan inisiatif bisnis strategis, penguatan daya saing dan sinergi, penguatan kinerja, penciptaan pertumbuhan berkelanjutan, restrukturisasi, pengembangan usaha, serta peningkatan kapasitas infrastruktur bisnis BUMN. 
+                                            <br><br> 
+                                            Dengan demikian ketentuan detail tentang CSR bukan merupakan informasi dibawah penguasaan Kementerian BUMN. Untuk informasi lebih lanjut, Saudara dapat menghubungi unit program PKBL pada BUMN yang berada di daerah domisili Saudara.
+                                            <br><br>
+                                            Demikian disampaikan, atas perhatiannya diucapkan terima kasih.
+                                            <br><br>
+                                            Salam,<br>
+                                            PPID Kementerian BUMN`
+                                        }
+
+                                        if (selectedTemplate ==  3) {
+                                            template = `Yth. Sdr. ….. <br>
+                                                        di tempat <br><br>
+
+                                            Sehubungan permohonan informasi Saudara, bersama ini kami sampaikan bahwa saat ini Kementerian BUMN belum membuka kembali lowongan untuk Pegawai Pemerintah Non Pegawai Negeri (PPNPN). Lebih lanjut, informasi tentang lowongan Kementerian BUMN dapat diakses melalui laman resmi website https://bumn.go.id/career dan media sosial Kementerian BUMN.
+                                            <br><br> 
+                                            Instagram @kementerianbumn <br>
+                                            Twitter @KemenBUMN <br>
+                                            Facebook @kementerianBUMN <br>
+                                            <br><br>
+                                            Demikian disampaikan, atas perhatiannya diucapkan terima kasih.
+                                            <br><br>
+                                            Salam,<br>
+                                            PPID Kementerian BUMN`
+                                        }
+
+                                          if (selectedTemplate ==  4) {
+                                            template = `Yth. Sdr. ….. <br>
+                                                        di tempat <br><br>
+
+                                            Sehubungan dengan permohonan informasi Saudara, dapat kami sampaikan bahwa kiranya Saudara dapat menyampaikan surat permohonan secara resmi yang ditujukan kepada <b> Kepala Biro Perencanaan, Organisasi dan Kepegawaian Kementerian BUMN </b> melalui alamat surel :<b> pendok.kbumn@bumn.go.id. </b>
+                                           
+                                            <br><br>
+                                            Demikian kami sampaikan, atas perhatiannya kami ucapkan terima kasih.
+                                            <br><br>
+                                            Salam,<br>
+                                            PPID Kementerian BUMN`
+                                        }
+
+                                        if (selectedTemplate ==  5) {
+                                            template = `Dengan hormat, <br><br>
+                                                        
+
+                                            Terima kasih atas email yang disampaikan. Berkenaan dengan informasi dimaksud dapat kami sampaikan bahwa hal tersebut merupakan informasi palsu (hoax). Kementerian BUMN tidak bertanggung jawab atas penyebaran informasi dimaksud dan menghimbau agar masyarakat dapat berhati-hati terhadap segala bentuk penipuan yang mengatasnamakan Kementerian BUMN. Informasi resmi Kementerian BUMN hanya dapat diakses melalui laman :
+                                            <br><br>
+                                            Website : http://www.bumn.go.id <br>
+                                            Twitter @KemenBUMN <br>
+                                            Facebook @kementerianBUMN <br>
+                                            <br>
+                                            Demikian disampaikan, atas perhatiannya diucapkan terima kasih
+                                            <br><br>
+                                            Salam,<br>
+                                            PPID Kementerian BUMN`
+                                        }
+
+                                        if (selectedTemplate ==  6) {
+                                            template = `Yth. Sdr. ….. <br>
+                                                        di tempat <br><br>
+                                                        
+
+                                           Sehubungan permohonan informasi Saudara berkaitan dengan lowongan pekerjaan, dengan ini kami sampaikan bahwa Saudara dapat mengakses informasi tentang proses Rekrutmen Bersama BUMN Tahun (…) batch (…) melalui laman resmi https://rekrutmenbersama.fhcibumn.id/home atau melalui media sosial Instagram @fhci.bumn. Selain itu, lowongan pekerjaan di BUMN dapat diakses di kanal resmi website dan media sosial Kementerian BUMN atau BUMN terkait
+                                            <br><br>
+                                            Website : http://www.bumn.go.id <br>
+                                            Twitter @KemenBUMN <br>
+                                            Facebook @kementerianBUMN <br>
+                                            <br>
+                                            Demikian disampaikan, atas perhatiannya diucapkan terima kasih
+                                            <br><br>
+                                            Salam, <br>
+                                            PPID Kementerian BUMN`
+                                        }
+
+                                        
+                                        tinymce.get("area-answer").setContent(template)
+                                    })
 
                                     async function loadModalAnswer(data) {
                                         modalAnswer.block()
                                         const dataPermohonan = await ppidPermohonanUser(data)
+                                        const dataPemohon = await ppidPendaftar(dataPermohonan.result.id_ppid_pendaftar)
+                                        namaPemohon = dataPemohon.result.nama_lengkap
                                         $("#id-permohonan-edited").val(data)
                                         $("#file-identitas-modalanswer").prop('href',
                                             `<?php echo e(asset('storage/${dataPermohonan.result.file_identitas}')); ?>`)
