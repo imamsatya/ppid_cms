@@ -139,7 +139,7 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
             }
 
             .page-link {
@@ -535,7 +535,35 @@
                     tablePermohonanUI.release()
                 }
 
+                const updateClickSurveiPermohonan = (id) => {
+                    return $.ajax({
+                        type: 'POST',
+                        url: "/update-click-survei/permohonan",
+                        data: {
+                            "_token": "<?php echo e(csrf_token()); ?>",
+                            'id': id
+                        },
+                        dataType: 'json'
+                    });
+                }
 
+
+
+
+
+                $(document).on('click', '.clicksurvei-permohonan', async function() {
+                    const idPermohonan = $(this).data('id')
+                    const result = await updateClickSurveiPermohonan(idPermohonan)
+                    console.log('result', result);
+                    if (result.result) {
+                        let linkSurvei = <?php echo e(Js::from($linkSurvei)); ?>
+
+                        window.open(linkSurvei.link)
+                    }
+
+                    console.log(idPermohonan)
+
+                })
 
                 var jadwal = null
                 async function ppidDataPermohonan() {
@@ -545,6 +573,8 @@
                             jadwal = await jadwalKerja()
                             jadwal = jadwal.result.data
                         }
+                        let linkSurvei = <?php echo e(Js::from($linkSurvei)); ?>
+
 
                         const result = await getDataPermohonan()
                         const data = result.result
@@ -576,6 +606,18 @@
                                     status = data[i].nama_status
                                     break
                             }
+
+                            if (data[i].id_status == 4) {
+                                if (data[i].isSurveiClicked == false) {
+                                    btnAction =
+                                        `<button data-id="${data[i].id}" type="button" class=" clicksurvei-permohonan btn btn-outline-primary">Isi Survei</button>`
+                                } else {
+                                    btnAction =
+                                        `<button data-id="${data[i].id}" disabled type="button" class=" clicksurvei-permohonan btn btn-outline-secondary">Isi Survei</button>`
+                                }
+
+
+                            }
                             let jawaban = '-'
                             if (data[i].id_status == 4 || data[i].id_status == 5) {
                                 let fileJawaban = ''
@@ -586,7 +628,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="<?php echo e(asset('storage/${data[i].file_jawaban}')); ?>"><img src="<?php echo e(asset('template/src/media/svg/files/dark/folder-document.svg')); ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
@@ -913,6 +955,33 @@
                     }
                 }
 
+                const updateClickSurveiKeberatan = (id) => {
+                    return $.ajax({
+                        type: 'POST',
+                        url: "/update-click-survei/keberatan",
+                        data: {
+                            "_token": "<?php echo e(csrf_token()); ?>",
+                            'id': id
+                        },
+                        dataType: 'json'
+                    });
+                }
+
+
+                $(document).on('click', '.clicksurvei-keberatan', async function() {
+                    const idKeberatan = $(this).data('id')
+                    const result = await updateClickSurveiKeberatan(idKeberatan)
+                    console.log('result', result);
+                    if (result.result) {
+                        let linkSurvei = <?php echo e(Js::from($linkSurvei)); ?>
+
+                        window.open(linkSurvei.link)
+                    }
+
+                    console.log(idKeberatan)
+
+                })
+
 
                 async function loadModalKeberatan(type = 'add-new', data = null) {
                     document.getElementById('select-permohonan-sebelumnya').hidden = true
@@ -1018,6 +1087,8 @@
                         }
                         const result = await getDataKeberatan()
                         const data = result.result
+                        let linkSurvei = <?php echo e(Js::from($linkSurvei)); ?>
+
                         let rowData = []
                         for (let i = 0; i < data.length; i++) {
 
@@ -1031,8 +1102,8 @@
                                 // yovi
                                 let diff = moment.duration(end.diff(start)).asDays()
                                 const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
-                                        "YYYY-MM-DD") &&
-                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis !=
+                                            "YYYY-MM-DD") &&
+                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis !=
                                     '0')
                                 expiredDate = diff >= 0 ?
                                     `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
@@ -1079,6 +1150,17 @@
                                 <img src="<?php echo e(asset('ppid_fe/assets/images/content/icon/ic_trash.svg')); ?>"
                                     alt="" />
                             </button>`
+                            if (data[i].id_status == 3) {
+                                if (data[i].isSurveiClicked == false) {
+                                    buttonAction =
+                                        `<button data-id="${data[i].id}" type="button" class=" clicksurvei-keberatan btn btn-outline-primary">Isi Survei</button>`
+                                } else {
+                                    buttonAction =
+                                        `<button data-id="${data[i].id}" disabled type="button" class=" clicksurvei-keberatan btn btn-outline-secondary">Isi Survei</button>`
+                                }
+                            }
+
+                            if (data[i].id_status == 2) buttonAction = '-'
                             rowData.push([
                                 data[i].ticket_keberatan,
                                 data[i].perihal_keberatan,
@@ -1086,7 +1168,7 @@
                                 expiredDate,
                                 (jawabanPath == '' && filePendukung == '') ? '-' :
                                 `${jawabanPath} ${filePendukung}`,
-                                (data[i].id_status != 1) ? '-' : buttonAction
+                                buttonAction
 
                             ])
                         }
@@ -1387,8 +1469,7 @@
                             let diff = moment.duration(end.diff(start)).asDays()
                             const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
                                     "YYYY-MM-DD") &&
-                                jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0'
-                                )
+                                jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0')
                             expiredDate = diff >= 0 ?
                                 `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                 `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;

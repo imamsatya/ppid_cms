@@ -7,6 +7,7 @@ use App\Models\LayananPPID\Keberatan\KeberatanPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\LayananPPID\LinkSurvei;
 
 class DashboardController extends Controller
 {
@@ -40,9 +41,10 @@ class DashboardController extends Controller
 
 
 
+        $linkSurvei = new LinkSurvei();
+        $linkSurvei = $linkSurvei->first();
 
-
-        return view('frontend.dashboard.dashboard');
+        return view('frontend.dashboard.dashboard', compact('linkSurvei'));
     }
 
     /**
@@ -109,5 +111,23 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateClickSurveiPermohonan(Request $request)
+    {
+        DB::table('ppid_permohonan')->where('id', $request->id)->update([
+            'isSurveiClicked' => true
+        ]);
+
+        echo json_encode(array('result' => true));
+    }
+
+    public function updateClickSurveiKeberatan(Request $request)
+    {
+        DB::table('ppid_keberatan')->where('id', $request->id)->update([
+            'isSurveiClicked' => true
+        ]);
+
+        echo json_encode(array('result' => true));
     }
 }

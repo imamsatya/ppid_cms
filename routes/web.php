@@ -158,7 +158,9 @@ Route::post('/admin/logout', [UserAdminAuthController::class, 'logout'])
     ->name('admin.logout');
 // User
 
-Route::resource('dashboard', DashboardControllerUser::class)->middleware('auth:usersppid');;
+Route::resource('dashboard', DashboardControllerUser::class)->middleware('auth:usersppid');
+Route::post('update-click-survei/permohonan', [DashboardControllerUser::class, 'updateClickSurveiPermohonan'])->middleware('auth:usersppid');
+Route::post('update-click-survei/keberatan', [DashboardControllerUser::class, 'updateClickSurveiKeberatan'])->middleware('auth:usersppid');
 //Home
 Route::resource('/', HomeController::class);
 Route::get('siaranpers/{id}', [SiaranPersController::class, 'show'])->name('siaranpers.show');
@@ -239,6 +241,7 @@ Route::get('/admin/login', function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     //Dashboard
     Route::resource('dashboard', DashboardController::class);
+
     //Profil
     Route::resource('profilsingkat', ProfilSingkatController::class);
     Route::resource('tugasdanfungsi', TugasDanFungsiController::class);
@@ -332,6 +335,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/ppid-pendaftar/{id}', [DataPermohonanController::class, 'dataPpidPendaftarById']);
     Route::get('/users-penghubung', [DataPermohonanController::class, 'getDaftarUserPenghubung']);
 
+    //linksurvei
+    Route::post('/linksurvei', [DataPermohonanController::class, 'submitLinkSurvei'])->name('linksurvei.store');
     //keberatan
     Route::get('/ppid-data-keberatan', [DataKeberatanController::class, 'ppidDataKeberatan']);
     Route::get('/ppid-data-keberatan-selesai', [DataKeberatanController::class, 'ppidDataKeberatanSelesai']);
