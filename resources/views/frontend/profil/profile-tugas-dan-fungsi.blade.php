@@ -4,7 +4,7 @@
     @endpush
     <!-- Informasi -->
     <section class="informasi_tugas_fungsi ">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label for="" class="title_tugas_fungsi">{{ $tugasDanFungsi->judul ?? '' }}</label>

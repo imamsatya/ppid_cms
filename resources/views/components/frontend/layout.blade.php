@@ -409,7 +409,7 @@
                     <div class="col-md-12">
                         <div class="mb-3 text-center">
                             <div class="company_name">
-                                @2022 - PPID Kementerian Badan Usaha Milik Negara
+                                @2023 - PPID Kementerian Badan Usaha Milik Negara
                             </div>
                         </div>
                     </div>

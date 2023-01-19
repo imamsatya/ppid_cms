@@ -3,7 +3,7 @@
         <link href="{{ asset('ppid_fe/assets/css/page/profile/tentangPPID/index.css') }}" rel="stylesheet" />
     @endpush
     <section class="informasi_tentang_ppid">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label for="" class="title_tentang_ppid">{{ $profilSingkat->judul ?? '' }}</label>

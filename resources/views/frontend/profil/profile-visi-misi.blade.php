@@ -4,7 +4,7 @@
     @endpush
     <section class="informasi_visi_misi">
 
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="title_visi_misi"> Visi PPID </label>
