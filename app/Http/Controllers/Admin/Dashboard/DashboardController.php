@@ -19,7 +19,16 @@ class DashboardController extends Controller
     {
 
         $dataStatistik = $this->getDataStatistik();
+        CarbonInterval::macro('forHumansWithoutWeeks', function ($syntax = null, $short = false, $parts = -1, $options = null) {
+            $factors = CarbonInterval::getCascadeFactors();
+            CarbonInterval::setCascadeFactors([
+                'week' => [99999999999, 'days'],
+            ]);
+            $diff = $this->forHumans($syntax, $short, $parts, $options);
+            CarbonInterval::setCascadeFactors($factors);
 
+            return $diff;
+        });
         //Rata2 Konfirmasi
         $log_konfirmasi = DB::table('log_permohonan')->where('status', [2])->get();
         $deltaData = [];
@@ -36,13 +45,17 @@ class DashboardController extends Controller
             array_push($deltaData, $delta);
         }
         $rata2konfirmasi = collect($deltaData)->avg();
-        $rata2konfirmasiDisplay = CarbonInterval::seconds($rata2konfirmasi)->cascade()->forHumans();
-        $rata2konfirmasiDisplay = str_replace('weeks', 'pekan', $rata2konfirmasiDisplay);
-        $rata2konfirmasiDisplay = str_replace('days', 'hari', $rata2konfirmasiDisplay);
-        $rata2konfirmasiDisplay = str_replace('hours', 'jam', $rata2konfirmasiDisplay);
-        $rata2konfirmasiDisplay = str_replace('minutes', 'menit', $rata2konfirmasiDisplay);
-        $rata2konfirmasiDisplay = str_replace('seconds', 'detik', $rata2konfirmasiDisplay);
+        // $rata2konfirmasiDisplay = CarbonInterval::seconds($rata2konfirmasi)->cascade()->forHumansWithoutWeeks();
+        // $rata2konfirmasiDisplay = str_replace('weeks', 'pekan', $rata2konfirmasiDisplay);
+        // $rata2konfirmasiDisplay = str_replace('days', 'hari', $rata2konfirmasiDisplay);
+        // $rata2konfirmasiDisplay = str_replace('hours', 'jam', $rata2konfirmasiDisplay);
+        // $rata2konfirmasiDisplay = str_replace('minutes', 'menit', $rata2konfirmasiDisplay);
+        // $rata2konfirmasiDisplay = str_replace('seconds', 'detik', $rata2konfirmasiDisplay);
 
+        $day = floor($rata2konfirmasi / 86400);
+        $hours = floor(($rata2konfirmasi - ($day * 86400)) / 3600);
+        $minutes = floor(($rata2konfirmasi / 60) % 60);
+        $rata2konfirmasiDisplay = $day . ' hari ' . $hours . ' jam ' . $minutes . ' menit';
 
         //Rata2 Selesai
         $log_selesai = DB::table('log_permohonan')->where('status', [4, 5])->get();
@@ -60,12 +73,19 @@ class DashboardController extends Controller
             array_push($deltaDataSelesai, $deltaSelesai);
         }
         $rata2Selesai = collect($deltaDataSelesai)->avg();
-        $rata2SelesaiDisplay = CarbonInterval::seconds($rata2Selesai)->cascade()->forHumans();
-        $rata2SelesaiDisplay = str_replace('weeks', 'pekan', $rata2SelesaiDisplay);
-        $rata2SelesaiDisplay = str_replace('days', 'hari', $rata2SelesaiDisplay);
-        $rata2SelesaiDisplay = str_replace('hours', 'jam', $rata2SelesaiDisplay);
-        $rata2SelesaiDisplay = str_replace('minutes', 'menit', $rata2SelesaiDisplay);
-        $rata2SelesaiDisplay = str_replace('seconds', 'detik', $rata2SelesaiDisplay);
+
+
+        // $rata2SelesaiDisplay = CarbonInterval::seconds($rata2Selesai)->cascade()->forHumansWithoutWeeks();
+        // $rata2SelesaiDisplay = str_replace('weeks', 'pekan', $rata2SelesaiDisplay);
+        // $rata2SelesaiDisplay = str_replace('days', 'hari', $rata2SelesaiDisplay);
+        // $rata2SelesaiDisplay = str_replace('hours', 'jam', $rata2SelesaiDisplay);
+        // $rata2SelesaiDisplay = str_replace('minutes', 'menit', $rata2SelesaiDisplay);
+        // $rata2SelesaiDisplay = str_replace('seconds', 'detik', $rata2SelesaiDisplay);
+
+        $day = floor($rata2Selesai / 86400);
+        $hours = floor(($rata2Selesai - ($day * 86400)) / 3600);
+        $minutes = floor(($rata2Selesai / 60) % 60);
+        $rata2SelesaiDisplay = $day . ' hari ' . $hours . ' jam ' . $minutes . ' menit';
 
         return view('admin.dashboard.dashboard', compact('dataStatistik', 'rata2konfirmasiDisplay', 'rata2SelesaiDisplay'));
     }
