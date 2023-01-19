@@ -21,7 +21,7 @@
         
     <?php $__env->stopPush(); ?>
     <!-- Banner -->
-    <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.1s">
+    <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.3s" data-wow-duration="5s">
         <div class="owl-carousel header-carousel position-relative">
 
             <?php if($slider): ?>
@@ -79,7 +79,6 @@
       </div>
     </section> -->
     <!-- Banner -->
-
     <!-- Informasi Publik -->
     <section class="publik blackw magnif">
         <div class="container">
@@ -119,7 +118,7 @@
 
     <!-- Statistik dan Siaran Pers -->
     <section class="statistik_pers mt-5 blackw magnif">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
             <div class="row">
                 <div class="col-md-5">
                     <div class="statistik">
@@ -191,7 +190,8 @@
     <!-- Galeri -->
     <section class="galeri_video blackw magnif">
         <div class="container">
-            <div class="box_galeri">
+            <div class="box_galeri bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
+            <!-- <div class="box_galeri"> -->
                 <div class="row">
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
@@ -255,6 +255,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+                smartSpeed : 1500,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -282,6 +283,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+                smartSpeed : 1000,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -309,6 +311,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+                smartSpeed : 1000,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>

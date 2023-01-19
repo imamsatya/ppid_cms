@@ -11,7 +11,7 @@
         <link href="<?php echo e(asset('ppid_fe/assets/css/page/laporan/index.css')); ?>" rel="stylesheet" />
     <?php $__env->stopPush(); ?>
     <!-- Filter -->
-    <section class="filter-data">
+    <!-- <section class="filter-data">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -21,12 +21,12 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Filter -->
-
+    <br><br><br>
     <!-- content -->
     <section class="content">
-        <div class="container">
+        <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
