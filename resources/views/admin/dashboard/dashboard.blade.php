@@ -137,9 +137,9 @@
 
 
             </div>
-            <br>
+
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6 mt-4">
                     <div class="card shadow-sm">
                         <div class="card-header">
                             <h3 class="card-title">Rata - rata waktu untuk Konfirmasi Permohonan</h3>
@@ -147,6 +147,21 @@
                         </div>
                         <div class="card-body">
                             <h1> {{ $rata2konfirmasiDisplay }} </h1>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6 mt-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h3 class="card-title">Rata - rata waktu untuk Konfirmasi Permohonan</h3>
+
+                        </div>
+                        <div class="card-body">
+                            <h1> {{ $rata2SelesaiDisplay }} </h1>
                         </div>
 
                     </div>

@@ -17,8 +17,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+
         $dataStatistik = $this->getDataStatistik();
+
+        //Rata2 Konfirmasi
         $log_konfirmasi = DB::table('log_permohonan')->where('status', [2])->get();
         $deltaData = [];
         foreach ($log_konfirmasi as $key => $log) {
@@ -33,15 +35,39 @@ class DashboardController extends Controller
             $delta = $formatted_log->diffInSeconds($formatted_log_masuk);
             array_push($deltaData, $delta);
         }
-
         $rata2konfirmasi = collect($deltaData)->avg();
         $rata2konfirmasiDisplay = CarbonInterval::seconds($rata2konfirmasi)->cascade()->forHumans();
+        $rata2konfirmasiDisplay = str_replace('weeks', 'pekan', $rata2konfirmasiDisplay);
         $rata2konfirmasiDisplay = str_replace('days', 'hari', $rata2konfirmasiDisplay);
         $rata2konfirmasiDisplay = str_replace('hours', 'jam', $rata2konfirmasiDisplay);
         $rata2konfirmasiDisplay = str_replace('minutes', 'menit', $rata2konfirmasiDisplay);
         $rata2konfirmasiDisplay = str_replace('seconds', 'detik', $rata2konfirmasiDisplay);
 
-        return view('admin.dashboard.dashboard', compact('dataStatistik', 'rata2konfirmasiDisplay'));
+
+        //Rata2 Selesai
+        $log_selesai = DB::table('log_permohonan')->where('status', [4, 5])->get();
+        $deltaDataSelesai = [];
+        foreach ($log_selesai as $key => $log) {
+
+            $log_konfirmasi = DB::table('log_permohonan')
+                ->where('id_ppid_permohonan', $log->id_ppid_permohonan)
+                ->where('status', [2])->first();
+            // dd($log);
+
+            $formatted_log = Carbon::parse($log->created_at);
+            $formatted_log_konfirmasi = Carbon::parse($log_konfirmasi->created_at);
+            $deltaSelesai = $formatted_log->diffInSeconds($formatted_log_masuk);
+            array_push($deltaDataSelesai, $deltaSelesai);
+        }
+        $rata2Selesai = collect($deltaDataSelesai)->avg();
+        $rata2SelesaiDisplay = CarbonInterval::seconds($rata2Selesai)->cascade()->forHumans();
+        $rata2SelesaiDisplay = str_replace('weeks', 'pekan', $rata2SelesaiDisplay);
+        $rata2SelesaiDisplay = str_replace('days', 'hari', $rata2SelesaiDisplay);
+        $rata2SelesaiDisplay = str_replace('hours', 'jam', $rata2SelesaiDisplay);
+        $rata2SelesaiDisplay = str_replace('minutes', 'menit', $rata2SelesaiDisplay);
+        $rata2SelesaiDisplay = str_replace('seconds', 'detik', $rata2SelesaiDisplay);
+
+        return view('admin.dashboard.dashboard', compact('dataStatistik', 'rata2konfirmasiDisplay', 'rata2SelesaiDisplay'));
     }
 
     public function getDataStatistik()

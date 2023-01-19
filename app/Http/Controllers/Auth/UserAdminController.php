@@ -21,19 +21,6 @@ class UserAdminController extends Controller
 
     public function handleLogin(Request $req)
     {
-        $req->validate([
-
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-
-            ],
-            // 'password' => ['required', 'min:6'],
-            'g-recaptcha-response' =>  'recaptcha',
-
-        ]);
         $credentials = request(['email', 'password']);
         if (Auth::guard('web')->attempt(
             $req->only(['email', 'password'])
