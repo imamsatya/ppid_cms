@@ -192,6 +192,9 @@ return [
         ],
         'kode_otp' => [
             'required' => 'Kode OTP harus terisi'
+        ],
+        'linkSurvei' => [
+            'required' => 'Link Survei harus terisi'
         ]
     ],
 

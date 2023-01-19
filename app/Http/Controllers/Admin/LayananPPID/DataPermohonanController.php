@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use App\Models\LayananPPID\LinkSurvei;
 use PDF;
 
 
@@ -21,7 +22,9 @@ class DataPermohonanController extends Controller
     public function index()
     {
         //
-        return view('admin.layanan_ppid.data_permohonan');
+        $linkSurvei = new LinkSurvei();
+        $linkSurvei = $linkSurvei->first();
+        return view('admin.layanan_ppid.data_permohonan', compact('linkSurvei'));
     }
 
     /**
@@ -512,5 +515,26 @@ class DataPermohonanController extends Controller
                 ->get();
         }
         echo json_encode(array('result' => $userPenghubung, 'status' => 'success'));
+    }
+
+    public function submitLinkSurvei(Request $request){
+
+
+        $validated = $request->validate([
+            'linkSurvei' => 'required'
+        ]);
+        if ($validated) {
+            $link = new LinkSurvei();
+            $link = $link->first();
+           if($link){
+            $link->link = $request->linkSurvei;
+           }else{
+            $link = new LinkSurvei();
+            $link->link = $request->linkSurvei;
+           }
+           $link->save();
+           return redirect()->back()->with('success', 'Berhasil menyimpan Link Survei');
+    }
+    
     }
 }

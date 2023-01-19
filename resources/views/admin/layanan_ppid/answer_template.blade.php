@@ -10,7 +10,7 @@
 
 <body>
 
-    <h1>Jawaban</h1>
+    
 
     <p>{!! $jawaban !!}</p>
 

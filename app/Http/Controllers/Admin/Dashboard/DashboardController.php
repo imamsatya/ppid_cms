@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -18,7 +19,29 @@ class DashboardController extends Controller
     {
         //
         $dataStatistik = $this->getDataStatistik();
-        return view('admin.dashboard.dashboard', compact('dataStatistik'));
+        $log_konfirmasi = DB::table('log_permohonan')->where('status', [2])->get();
+        $deltaData = [];
+        foreach ($log_konfirmasi as $key => $log) {
+
+            $log_masuk = DB::table('log_permohonan')
+                ->where('id_ppid_permohonan', $log->id_ppid_permohonan)
+                ->where('status', [1])->first();
+            // dd($log);
+
+            $formatted_log = Carbon::parse($log->created_at);
+            $formatted_log_masuk = Carbon::parse($log_masuk->created_at);
+            $delta = $formatted_log->diffInSeconds($formatted_log_masuk);
+            array_push($deltaData, $delta);
+        }
+
+        $rata2konfirmasi = collect($deltaData)->avg();
+        $rata2konfirmasiDisplay = CarbonInterval::seconds($rata2konfirmasi)->cascade()->forHumans();
+        $rata2konfirmasiDisplay = str_replace('days', 'hari', $rata2konfirmasiDisplay);
+        $rata2konfirmasiDisplay = str_replace('hours', 'jam', $rata2konfirmasiDisplay);
+        $rata2konfirmasiDisplay = str_replace('minutes', 'menit', $rata2konfirmasiDisplay);
+        $rata2konfirmasiDisplay = str_replace('seconds', 'detik', $rata2konfirmasiDisplay);
+
+        return view('admin.dashboard.dashboard', compact('dataStatistik', 'rata2konfirmasiDisplay'));
     }
 
     public function getDataStatistik()

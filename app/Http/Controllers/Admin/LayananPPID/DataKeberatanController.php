@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use PDF;
 use Illuminate\Support\Facades\Storage;
+use App\Models\LayananPPID\LinkSurvei;
 
 class DataKeberatanController extends Controller
 {
@@ -60,8 +61,11 @@ class DataKeberatanController extends Controller
 
             ->orderBy('created_at', 'desc')->get();
 
+            $linkSurvei = new LinkSurvei();
+        $linkSurvei = $linkSurvei->first();
 
-        return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan', 'ppidKeberatanSelesai'));
+
+        return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan', 'ppidKeberatanSelesai', 'linkSurvei'));
     }
 
     public function ppidDataKeberatan(Request $request)
