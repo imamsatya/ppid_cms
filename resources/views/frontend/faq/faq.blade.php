@@ -14,18 +14,7 @@
                 text-transform: none;
             }
         </style>
-    @endpush
-    <section class="filter-data">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="text" id="myInput" onkeyup="myFunction()"
-                        placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
-                    <button class="btn btn-filter">Filter</button>
-                </div>
-            </div>
-        </div>
-    </section>
+    @endpush  
     <!-- Content -->
     <section class="content">
         <div class="container">
