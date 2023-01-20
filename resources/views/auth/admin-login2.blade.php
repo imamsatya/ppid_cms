@@ -38,6 +38,7 @@ License: For each use you must have a valid license purchased only from above li
         type="text/css" />
     <link href="{{ asset('template/dist/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @vite([])
 </head>
 <!--end::Head-->
@@ -68,7 +69,7 @@ License: For each use you must have a valid license purchased only from above li
         <style>
             body {
 
-                background-image: url('template/dist/assets/media/auth/bg10.jpeg');
+                background-image: url('template/dist/assets/media/auth/bg11.jpg');
 
             }
 
@@ -85,21 +86,21 @@ License: For each use you must have a valid license purchased only from above li
                 <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
                     <!--begin::Image-->
                     <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                        src="{{ asset('template/dist/assets/media/auth/agency.png') }}" alt="" />
+                        src="{{ asset('template/dist/assets/media/auth/agency-dark2.png') }}" alt="" />
                     <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                        src="{{ asset('template/dist/assets/media/auth/agency-dark.png') }}" alt="" />
+                        src="{{ asset('template/dist/assets/media/auth/agency-dark2.png') }}" alt="" />
                     <!--end::Image-->
                     <!--begin::Title-->
-                    <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
+                    <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Content Management System<br>PPID KBUMN</h1>
                     <!--end::Title-->
                     <!--begin::Text-->
-                    <div class="text-gray-600 fs-base text-center fw-semibold">In this kind of post,
+                    <!-- <div class="text-gray-600 fs-base text-center fw-semibold">In this kind of post,
                         <a href="#" class="opacity-75-hover text-primary me-1">the blogger</a>introduces a person
                         they’ve interviewed
                         <br />and provides some background information about
                         <a href="#" class="opacity-75-hover text-primary me-1">the interviewee</a>and their
                         <br />work following this is a transcript of the interview.
-                    </div>
+                    </div> -->
                     <!--end::Text-->
                 </div>
                 <!--end::Content-->
@@ -108,7 +109,7 @@ License: For each use you must have a valid license purchased only from above li
             <!--begin::Body-->
             <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
                 <!--begin::Wrapper-->
-                <div class="bg-body d-flex flex-center rounded-4 w-md-600px p-10">
+                <div class="bg-body d-flex flex-center rounded-4 w-md-600px p-10 bg-tranparent">
                     <!--begin::Content-->
 
 
@@ -174,11 +175,15 @@ License: For each use you must have a valid license purchased only from above li
                             @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-11">
+                                <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
+                                src="{{ asset('adminAssets/home/informasi/ppidlogo.png') }}" alt="" />
+                                <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
+                                src="{{ asset('adminAssets/home/informasi/ppidlogo2.png') }}" alt="" />
                                 <!--begin::Title-->
-                                <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
+                                <!-- <h1 class="text-dark fw-bolder mb-3">Sign In</h1> -->
                                 <!--end::Title-->
                                 <!--begin::Subtitle-->
-                                <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
+                                <!-- <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div> -->
                                 <!--end::Subtitle=-->
                             </div>
                             <!--begin::Heading-->
@@ -187,34 +192,34 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Col-->
                                 <div class="col-md-6">
                                     <!--begin::Google link=-->
-                                    <a href="#"
+                                    <!-- <a href="#"
                                         class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                                         <img alt="Logo"
                                             src="{{ asset('template/dist/assets/media/svg/brand-logos/google-icon.svg') }}"
-                                            class="h-15px me-3" />Sign in with Google</a>
+                                            class="h-15px me-3" />Sign in with Google</a> -->
                                     <!--end::Google link=-->
                                 </div>
                                 <!--end::Col-->
                                 <!--begin::Col-->
                                 <div class="col-md-6">
                                     <!--begin::Google link=-->
-                                    <a href="#"
+                                    <!-- <a href="#"
                                         class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
                                         <img alt="Logo"
                                             src="{{ asset('template/dist/assets/media/svg/brand-logos/apple-black.svg') }}"
                                             class="theme-light-show h-15px me-3" />
                                         <img alt="Logo"
                                             src="{{ asset('template/dist/assets/media/svg/brand-logos/apple-black-dark.svg') }}"
-                                            class="theme-dark-show h-15px me-3" />Sign in with Apple</a>
+                                            class="theme-dark-show h-15px me-3" />Sign in with Apple</a> -->
                                     <!--end::Google link=-->
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Login options-->
                             <!--begin::Separator-->
-                            <div class="separator separator-content my-14">
+                            <!-- <div class="separator separator-content my-14">
                                 <span class="w-125px text-gray-500 fw-semibold fs-7">Or with email</span>
-                            </div>
+                            </div> -->
                             <!--end::Separator-->
                             <!--begin::Input group=-->
                             <div class="fv-row mb-8">
@@ -250,6 +255,13 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end::Link-->
                             </div>
                             <!--end::Wrapper-->
+                                <div class="form-group">
+                                    <div class="input-group d-flex align-items-center">
+                                        {!! htmlFormSnippet() !!}
+
+                                    </div>
+                                </div>
+                                <br>
                             <!--begin::Submit button-->
                             <div class="d-grid mb-10">
                                 <button type="submit" class="btn btn-primary">
