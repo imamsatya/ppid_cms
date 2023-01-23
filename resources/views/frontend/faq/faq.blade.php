@@ -14,7 +14,7 @@
                 text-transform: none;
             }
         </style>
-    @endpush
+    @endpush  
     <!-- Content -->
     <section class="content">
         <div class="container">
