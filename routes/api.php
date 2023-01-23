@@ -25,6 +25,7 @@ use App\Http\Controllers\API\Permohonan\MendapatkanController;
 use App\Http\Controllers\API\Permohonan\PermohonanController;
 use App\Http\Controllers\API\Permohonan\StatusController;
 use App\Http\Controllers\API\Permohonan\StatusKeberatanController;
+use App\Http\Controllers\API\Permohonan\SurveiPostController;
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
 use App\Http\Controllers\API\Profil\LinkAppController;
@@ -67,6 +68,11 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('send_forgot_password_token', 'sendForgotPasswordToken');
     Route::post('verify_forgot_password_token', 'verifyForgotPasswordToken');
     Route::post('change_user_password_forgot', 'changeUserPasswordForgot');
+});
+
+Route::controller(SurveiPostController::class)->group(function () {
+    Route::post('survei_permohonan/{id}', 'surveiPermohonan');
+    Route::post('survei_keberatan/{id}', 'surveiKeberatan');
 });
 
 // LayananPPID
