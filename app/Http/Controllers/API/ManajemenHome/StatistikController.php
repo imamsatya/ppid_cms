@@ -1,59 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Home;
+namespace App\Http\Controllers\API\ManajemenHome;
 
-use Illuminate\Http\Request;
-use App\Models\ManajemenHome\Video;
-use App\Http\Controllers\Controller;
-use App\Models\ManajemenHome\Slider;
-use App\Models\ManajemenHome\Informasi;
-use App\Models\ManajemenHome\InformasiImage;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\DB;
+use App\Models\Profil\Kontak;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class StatistikController extends BaseController
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get statistik data for home showing
      */
-    public function index()
-    {
-        //
-        // dd('halo');
-
-        $slider = new Slider();
-        $slider = $slider->orderBy('urutan', 'asc')->get();
-
-
-        $informasi = new Informasi();
-        $informasi = $informasi->orderBy('urutan', 'asc')->get();
-
-
-        $informasiImage = new InformasiImage();
-        $informasiImage = $informasiImage->first();
-
-        $video = new Video();
-        $video = $video::all();
-
-        $response = Http::get('https://bumn.go.id/api/pressconference');
-        $siaranPers = $response->json();
-
-        if ($siaranPers['status'] == 1) {
-            $siaranPers = $siaranPers['data'];
-        } else {
-            $siaranPers = null;
-        }
-
-        $dataStatistik = $this->getDataStatistik();
-        // dd($data[0]->status_final);
-
-
-        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers', 'dataStatistik'));
-    }
-
     public function getDataStatistik()
     {
         $date = Carbon::now()->format('Y');
@@ -89,19 +48,18 @@ class HomeController extends Controller
         "
         ));
         return $data;
-        // echo json_encode(array('data' => $data));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function index()
     {
-        //
+        $dataStatistik = $this->getDataStatistik();
+        return $this->sendResponse($dataStatistik, 'Statistik retrieved succssfully.');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -117,20 +75,9 @@ class HomeController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
@@ -140,9 +87,9 @@ class HomeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kontak $product)
     {
         //
     }
@@ -151,9 +98,9 @@ class HomeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Kontak $product)
     {
         //
     }
