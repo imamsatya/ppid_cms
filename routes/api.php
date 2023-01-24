@@ -14,6 +14,7 @@ use App\Http\Controllers\API\InformasiPublik\InformasiSertaMertaController;
 use App\Http\Controllers\API\InformasiPublik\InformasiSetiapSaatController;
 use App\Http\Controllers\API\ManajemenHome\InformasiImageController;
 use App\Http\Controllers\API\ManajemenHome\SliderController;
+use App\Http\Controllers\API\ManajemenHome\StatistikController;
 use App\Http\Controllers\API\ManajemenHome\VideoController;
 use App\Http\Controllers\API\Permohonan\JenisIdentitasController;
 use App\Http\Controllers\API\Permohonan\JenisPemohonController;
@@ -102,6 +103,7 @@ Route::resource('informasi', InformasiController::class);
 Route::resource('informasi_image', InformasiImageController::class);
 Route::resource('slider', SliderController::class);
 Route::resource('video', VideoController::class);
+Route::resource('statistik', StatistikController::class);
 
 // StandarLayanan
 Route::resource('biaya', BiayaLayananController::class);

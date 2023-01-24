@@ -197,6 +197,7 @@ return [
         // App\Providers\FortifyServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 
