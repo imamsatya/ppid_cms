@@ -255,6 +255,11 @@
                             type: "bar",
                             data: data,
                             options: {
+                                scale: {
+                                    ticks: {
+                                    precision: 0
+                                    }
+                                },
                                 responsive: true,
                                 plugins: {
                                     htmlLegend: {
