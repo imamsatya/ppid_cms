@@ -819,7 +819,7 @@
                                                     const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
                                                         jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
                                                     expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
-                                                        `Perpangjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
+                                                        `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
                                                 } else {
                                                     expiredDate = '-- Selesai --'
                                                 }

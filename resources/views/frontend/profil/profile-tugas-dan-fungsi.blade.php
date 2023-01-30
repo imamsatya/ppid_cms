@@ -90,7 +90,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset('storage/' . $tugasDanFungsi->banner_path ?? '') }});
+                            background-image: url({{ asset('storage/' . $tugasDanFungsi?->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

@@ -192,6 +192,7 @@
                         // console.log('dataS', dataStatistik)
                         let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
                         let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
+                        let dataDitolak = dataStatistik.filter(item => item.status_final == 'ditolak')
                         let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
                         // console.log('datamasuk', dataMasuk)
                         // console.log('dataproses', dataProses)
@@ -206,13 +207,20 @@
                             0, 0, 0, 0
                         ];
 
+                        let dataDitolakFinal = [0, 0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0, 0, 0
+                        ];
+
                         let dataSelesaiFinal = [0, 0, 0, 0,
                             0, 0, 0, 0,
                             0, 0, 0, 0
                         ];
 
 
-
+                        dataDitolak.forEach(element => {
+                            dataDitolakFinal[element.bulan - 1] = element.permohonan
+                        });
                         dataProses.forEach(element => {
                             dataProsesFinal[element.bulan - 1] = element.permohonan
                         });
@@ -224,7 +232,7 @@
 
                         for (let index = 0; index < dataMasukFinal.length; index++) {
 
-                            dataMasukFinal[index] = parseInt(dataProsesFinal[index]) + parseInt(dataSelesaiFinal[index])
+                            dataMasukFinal[index] = parseInt(dataProsesFinal[index]) +parseInt(dataDitolakFinal[index]) + parseInt(dataSelesaiFinal[index])
 
                         }
 
@@ -241,6 +249,12 @@
                                     backgroundColor: "#434348",
                                     borderColor: "#434348",
                                     data: dataProsesFinal,
+                                },
+                                {
+                                    label: "Permohonan Ditolak",
+                                    backgroundColor: "#da6d85",
+                                    borderColor: "#da6d85",
+                                    data: dataDitolakFinal,
                                 },
                                 {
                                     label: "Permohonan Selesai",

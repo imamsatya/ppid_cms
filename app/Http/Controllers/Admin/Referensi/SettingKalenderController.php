@@ -16,7 +16,7 @@ class SettingKalenderController extends Controller
      */
     public function index()
     {
-        $response = Http::get('http://simanis.bumn.go.id/api/getjadwalkerja');
+        $response = Http::get('https://simanis.bumn.go.id/api/getjadwalkerja');
         $kalender = $response->json();
 
         $kalenderLibur = Arr::where($kalender['data'], function ($value, $key) {

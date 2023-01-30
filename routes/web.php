@@ -234,6 +234,9 @@ Route::delete('ppid-data-keberatan/{id}', [DataKeberatanControllerUser::class, '
 Route::get('ppid-permohonan-sebelumnya/{id}', [DataKeberatanControllerUser::class, 'ppidDataPermohonanSebelumnya']);
 Route::get('ppid-status-keberatan', [DataKeberatanControllerUser::class, 'ppidStatusKeberatan']);
 
+//survey
+Route::post('submit-data-survey', [DataPermohonanControllerUser::class, 'submitSurveyUser']);
+
 //Admin
 Route::get('/admin/login', function () {
     return view('auth.admin-login2');
