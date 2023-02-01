@@ -74,6 +74,7 @@ Route::controller(RegisterController::class)->group(function () {
 Route::controller(SurveiPostController::class)->group(function () {
     Route::post('survei_permohonan/{id}', 'surveiPermohonan');
     Route::post('survei_keberatan/{id}', 'surveiKeberatan');
+    Route::post('submit_survei', 'submitSurveiData');
 });
 
 // LayananPPID
