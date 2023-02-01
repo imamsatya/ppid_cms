@@ -57,10 +57,10 @@ class RolesSeeder extends Seeder
         $user = Role::create(['name' => 'user']);
         //Profil 
         //Profil Singkat PPID
-        // $user->givePermissionTo('profil singkat ppid.create');
-        // $user->givePermissionTo('profil singkat ppid.view');
-        // $user->givePermissionTo('profil singkat ppid.edit');
-        // $user->givePermissionTo('profil singkat ppid.delete');
+        $user->givePermissionTo('profil singkat ppid.create');
+        $user->givePermissionTo('profil singkat ppid.view');
+        $user->givePermissionTo('profil singkat ppid.edit');
+        $user->givePermissionTo('profil singkat ppid.delete');
 
         //Tugas dan Fungsi
         $user->givePermissionTo('tugas dan fungsi ppid.create');

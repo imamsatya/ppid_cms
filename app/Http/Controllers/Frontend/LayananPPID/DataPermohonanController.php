@@ -233,4 +233,57 @@ class DataPermohonanController extends Controller
         $result = DB::table('status')->get();
         echo json_encode(array('result' => $result, 'status' => 'success'));
     }
+
+    public function submitSurveyUser(Request $request)
+    {
+        
+        DB::table('surveys')->insert([            
+            //Step 1
+             'jenisKelamin'  =>$request->jenisKelamin ,
+             'usia' =>$request->usia ,
+             'pendidikan' =>$request->pendidikan ,
+             'pekerjaan' =>$request->pekerjaan ,
+             'tujuan' =>$request->tujuan ,
+             'mediapengajuan' =>$request->mediapengajuan ,
+             //Step 2
+             'prosedurpelayanan' =>$request->prosedurpelayanan ,
+             'kualitaspelayanan' =>$request->kualitaspelayanan ,
+             'kelengkapandata' =>$request->kelengkapandata ,
+             'tingkatresponsif' =>$request->tingkatresponsif ,
+             'fasilitaspelayanan' =>$request->fasilitaspelayanan ,
+             'pelayananinformasi' =>$request->pelayananinformasi ,
+             'kecakapanpetugas' =>$request->kecakapanpetugas ,
+             'kompetensipetugas' =>$request->kompetensipetugas ,
+             //Step 3
+             'informasidisajikan' =>$request->informasidisajikan ,
+             'informasiuptodate' =>$request->informasiuptodate ,
+             'aksesibilitasinformasi' =>$request->aksesibilitasinformasi ,
+             //Step 4
+             'keseluruhanproses'  =>$request->keseluruhanproses ,
+             'skorpelaksanaan' =>$request->skorpelaksanaan ,
+             'saranmasukan' =>$request->saranmasukan ,
+            //identitas
+            'id_surat' =>$request->id_surat ,
+            'no_tiket' =>$request->no_tiket ,
+            'id_ppid_pendaftar' =>$request->id_ppid_pendaftar ,
+        ]);
+
+
+        if(str_contains($request->no_tiket, 'Per'))
+        {
+            DB::table('ppid_permohonan')->where('id', $request->id_surat)->update([
+                'isSurveiClicked' => true
+            ]);
+        }
+
+        if(str_contains($request->no_tiket, 'Keb'))
+        {
+            DB::table('ppid_keberatan')->where('id', $request->id_surat)->update([
+                'isSurveiClicked' => true
+            ]);
+        }
+        
+
+        echo json_encode(array('result' => true));
+    }
 }

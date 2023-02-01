@@ -128,7 +128,7 @@ class PermohonanTableSeeder extends Seeder
 
     public function seederTemplateReject()
     {
-        DB::table('status')->insert([
+        DB::table('template_reject')->insert([
             [
                 'id' => 1,
                 'name' => 'Data tidak lengkap'

@@ -66,7 +66,7 @@ class HomeController extends Controller
                     when status.id = 2 then 'proses'
                     when status.id = 3 then 'proses'
                     when status.id = 4 then 'selesai'
-                    when status.id = 5 then 'selesai'
+                    when status.id = 5 then 'ditolak'
                 end
                 ) status_final from
                 (

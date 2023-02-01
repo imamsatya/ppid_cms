@@ -397,6 +397,7 @@
                 // console.log('dataS', dataStatistik)
                 let dataMasuk = dataStatistik.filter(item => item.status_final == 'masuk')
                 let dataProses = dataStatistik.filter(item => item.status_final == 'proses')
+                let dataDitolak = dataStatistik.filter(item => item.status_final == 'ditolak')
                 let dataSelesai = dataStatistik.filter(item => item.status_final == 'selesai')
                 // console.log('datamasuk', dataMasuk)
                 // console.log('dataproses', dataProses)
@@ -411,12 +412,20 @@
                     0, 0, 0, 0
                 ];
 
+                  let dataDitolakFinal = [0, 0, 0, 0,
+                            0, 0, 0, 0,
+                            0, 0, 0, 0
+                        ];
+
                 let dataSelesaiFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0
                 ];
 
 
+                dataDitolak.forEach(element => {
+                            dataDitolakFinal[element.bulan - 1] = element.permohonan
+                        });
 
                 dataProses.forEach(element => {
                     dataProsesFinal[element.bulan - 1] = element.permohonan
@@ -429,7 +438,7 @@
 
                 for (let index = 0; index < dataMasukFinal.length; index++) {
 
-                    dataMasukFinal[index] = parseInt(dataProsesFinal[index]) + parseInt(dataSelesaiFinal[index])
+                    dataMasukFinal[index] = parseInt(dataProsesFinal[index]) +parseInt(dataDitolakFinal[index]) + parseInt(dataSelesaiFinal[index])
 
                 }
 
@@ -447,6 +456,12 @@
                             borderColor: "#434348",
                             data: dataProsesFinal,
                         },
+                         {
+                                    label: "Permohonan Ditolak",
+                                    backgroundColor: "#da6d85",
+                                    borderColor: "#da6d85",
+                                    data: dataDitolakFinal,
+                                },
                         {
                             label: "Permohonan Selesai",
                             backgroundColor: "#90ed7d",
@@ -484,7 +499,7 @@
                 height: 400px;
                 background-size: 340px 400px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset('storage/' . $informasiImage->sideimage_path ?? '') }});
+                background-image: url({{ asset('storage/' . $informasiImage?->sideimage_path ?? '') }});
             }
 
             .publik .informasi_publik .box_publik {
@@ -492,7 +507,7 @@
                 height: 351px;
                 background-size: 256px 351px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset('storage/' . $informasiImage->backgroundimage_path ?? '') }});
+                background-image: url({{ asset('storage/' . $informasiImage?->backgroundimage_path ?? '') }});
                 z-index: 1;
                 filter: drop-shadow(11px 14px 10px #EFEFEF);
                 transition: all .8s ease-in-out;
