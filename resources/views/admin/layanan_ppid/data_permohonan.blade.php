@@ -46,6 +46,39 @@
                         Layanan PPID
                         </x-slot>
 
+                        <x-slot:notifikasi>
+                        <div class="app-navbar-item ms-1 ms-lg-3">
+                            <div rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="bottom" title="Permohonan Masuk" class="position-relative btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px">
+                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen043.svg-->
+                                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
+                                    <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"/>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <span id="notifikasi-masuk" hidden class="position-absolute top-0 start-100 translate-middle  badge badge-square badge-sm badge-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="app-navbar-item ms-1 ms-lg-3">
+                            <div rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="bottom" title="Perpanjangan Waktu" class="position-relative btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px">
+                                            
+                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen044.svg-->
+                                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"/>
+                                        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor"/>
+                                        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"/>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <span id="notifikasi-perpanjangan" hidden class="position-absolute top-0 start-100 translate-middle  badge badge-square badge-sm badge-danger"></span>
+                                            <!--end::Svg Icon-->
+                            </div>
+                        </div>
+                        </x-slot>
+
                         <h1>Daftar Permohonan </h1>
                         <br>
                         @if ($errors->any())
@@ -151,7 +184,7 @@
                             </div>
                             <!--end::Alert-->
                         @endif
-                            <div class="card card-flush shadow-sm">
+                            <!-- <div class="card card-flush shadow-sm">
                                 <form action="{{ route('admin.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body py-5">
@@ -201,7 +234,7 @@
                                     </div>
                                 </form>
                             </div>
-                        <br>
+                        <br> -->
                         <div class="card card-flush shadow-sm">
                             <div class="card-header">
                                 <h3 class="card-title">Daftar Permohonan Masuk </h3>
@@ -212,7 +245,7 @@
                             <div class="card-body py-5">
                                 <div class="col-lg-3 col-sm-12">
                                     <div class="mb-0">
-                                        <label class="form-label">Periode Tanggal Masuk</label>
+                                        <label class="form-label">Periode Tanggal Status</label>
                                         <input class="form-control form-control-solid" placeholder="Pick date rage"
                                             id="kt_daterangepicker_tanggalMasuk_permohonanMasuk" value="" />
                                     </div>
@@ -275,7 +308,7 @@
                             <div class="card-body py-5">
                                 <div class="col-lg-3 col-sm-12">
                                     <div class="mb-0">
-                                        <label class="form-label">Periode Tanggal Masuk</label>
+                                        <label class="form-label">Periode Tanggal Status</label>
                                         <input class="form-control form-control-solid" placeholder="Pick date rage"
                                             id="kt_daterangepicker_tanggalMasuk_permohonanSelesai" value="" />
                                     </div>
@@ -390,7 +423,7 @@
                                                                     type="radio" value="tolak"
                                                                     id="tolak-permohonan" onChange="setTemplateTolak()" name="konfirmasi-radio">
                                                                 <label class="form-check-label"
-                                                                    for="tolak-permohonan">Ditolak</label>
+                                                                    for="tolak-permohonan">Tidak Diterima</label>
                                                             </div>
 
                                                         </div>
@@ -473,7 +506,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 mt-4">
-                                                    <select class="form-select" id="pilihTemplate"  aria-label="Pilih Template">
+                                                    <select class="form-select" name="selectedTemplate" id="pilihTemplate"  aria-label="Pilih Template">
                                                         <option selected>Pilih Template Jawaban</option>
                                                         <option value="1">Permohonan Informasi Bukan Kewenangan</option>
                                                         <option value="2">Permohonan Informasi CSR BUMN</option>
@@ -775,8 +808,9 @@
                                         })
                                     }
 
-                                   
-
+                                    let firstLoad = 0
+                                    let countNotifikasiPermohonanMasuk = 0
+                                    let countNotifikasiPerpanjanganWaktu = 0
                                     async function ppidDataPermohonanMasuk(asal = '-', status = '-', date = null) {
                                         try {
 
@@ -796,6 +830,10 @@
                                                     btnAction =
                                                         `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Konfirmasi" href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-permohonan" data-permohonan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
                                                     ticketAction = data[i].ticket_permohonan
+                                                    if (firstLoad == 0){
+                                                    countNotifikasiPermohonanMasuk++
+                                                    }
+                                                    
                                                 } else {
                                                     btnAction = `
                             <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Jawab" href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-permohonan mb-2" data-permohonan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
@@ -817,9 +855,13 @@
                                                     //Difference in number of days  
                                                     let diff = moment.duration(end.diff(start)).asDays()
                                                     const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
-                                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+                                                        jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0')
                                                     expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                                         `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
+
+                                                        if (firstLoad == 0 && diff < 0 ){
+                                                            countNotifikasiPerpanjanganWaktu++
+                                                    }
                                                 } else {
                                                     expiredDate = '-- Selesai --'
                                                 }
@@ -837,7 +879,21 @@
                                                     btnAction
                                                 ])
                                             }
+                                            if (countNotifikasiPermohonanMasuk != 0)  {
+                                                let notifikasiMasuk = document.getElementById('notifikasi-masuk')
+                                            notifikasiMasuk.hidden = false
+                                            notifikasiMasuk.textContent = countNotifikasiPermohonanMasuk
+                                            }
 
+                                            if (countNotifikasiPerpanjanganWaktu != 0)  {
+                                                let notifikasiPerpanjangan = document.getElementById('notifikasi-perpanjangan')
+                                                notifikasiPerpanjangan.hidden = false
+                                                notifikasiPerpanjangan.textContent = countNotifikasiPerpanjanganWaktu
+                                            }
+                                            
+                                            
+                                           
+                                            firstLoad++
                                             tablePermohonanMasuk.clear().rows.add(rowData).draw()
                                         } catch (error) {
                                             console.log(error)
@@ -867,7 +923,7 @@
                                                 }
 
                                                 let jawaban = '-'
-                                                if (data[i].id_status == 4 || data[i].id_status == 5) {
+                                                if (data[i].id_status == 4 || data[i].id_status == 5 || data[i].id_status == 6) {
                                                     let fileJawaban = ''
                                                     if (data[i].ket_jawaban_path) {
                                                         fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
@@ -1290,6 +1346,8 @@
 
                                     $(document).on('click', '.answer-permohonan', function() {
                                         const idPermohonan = $(this).data('permohonan');
+                                        // console.log('template',document.getElementById('pilihTemplate').value )
+                                        document.getElementById('pilihTemplate').value = "Pilih Template Jawaban"
                                         $("#modalAnswer").modal('show')
                                         loadModalAnswer(idPermohonan)
                                     })
@@ -1433,6 +1491,7 @@
                                         fd.append('_token', "{{ csrf_token() }}")
                                         fd.append('id', $("#id-permohonan-edited").val())
                                         fd.append('answer', tinymce.get("area-answer").getContent())
+                                        fd.append('selectedTemplate', $('#pilihTemplate').val())
 
 
                                         if (fd.get('answer') == '') {
@@ -1585,7 +1644,7 @@
                                         $("#detail-cara-memberi-info").val(dataPermohonan.result.cara_memberikan)
                                         $("#detail-cara-dapat-info").val(dataPermohonan.result.cara_mendapatkan)
 
-                                        $("#detail-tanggal-masuk").val(dataPemohon.result.created_at)
+                                        $("#detail-tanggal-masuk").val(dataPermohonan.result.created_at)
                                         $("#detail-noregistrasi").val(dataPermohonan.result.ticket_permohonan)
                                         $("#detail-nama-pemohon").val(dataPemohon.result.nama_lengkap)
                                         $("#detail-jenis-pemohon").val(dataPemohon.result.nama_jenis_pemohon)

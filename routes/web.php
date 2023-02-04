@@ -114,7 +114,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 // Frontend
-
+Route::get('/testemplate', function () {
+    return view('admin.layanan_ppid.pdf');
+});
 Route::get('/tesemail', function () {
     return view('activation');
 });

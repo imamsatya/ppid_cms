@@ -151,7 +151,7 @@
                             </div>
                             <!--end::Alert-->
                         @endif
-                            <div class="card card-flush shadow-sm">
+                            <!-- <div class="card card-flush shadow-sm">
                                 <form action="{{ route('admin.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body py-5">
@@ -201,7 +201,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <br>
+                            <br> -->
                         <div class="card card-flush shadow-sm">
                             <div class="card-header">
                                 <h3 class="card-title">Daftar Keberatan Masuk </h3>
@@ -1484,7 +1484,7 @@
                                             document.getElementById('detail-permohonan-sebelumnya-form').hidden = true
                                         }
 
-                                        $("#detail-tanggal-masuk").val(dataPemohon.result.created_at)
+                                        $("#detail-tanggal-masuk").val(dataKeberatan.result.created_at)
                                         $("#detail-noregistrasi").val(dataKeberatan.result.ticket_keberatan)
                                         $("#detail-nama-pemohon").val(dataPemohon.result.nama_lengkap)
                                         $("#detail-jenis-pemohon").val(dataPemohon.result.nama_jenis_pemohon)

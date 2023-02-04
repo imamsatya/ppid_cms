@@ -17,7 +17,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
+        $tahun = Carbon::now()->format('Y');
+        $dataPermohonanMasuk = DB::table('log_permohonan')->where('status', 1)->whereYear('created_at', $tahun)->get()->groupBy(function($val) {
+            return Carbon::parse($val->created_at)->format('M');
+      });
+   
+     
         $dataStatistik = $this->getDataStatistik();
         CarbonInterval::macro('forHumansWithoutWeeks', function ($syntax = null, $short = false, $parts = -1, $options = null) {
             $factors = CarbonInterval::getCascadeFactors();
@@ -87,7 +92,7 @@ class DashboardController extends Controller
         $minutes = floor(($rata2Selesai / 60) % 60);
         $rata2SelesaiDisplay = $day . ' hari ' . $hours . ' jam ' . $minutes . ' menit';
 
-        return view('admin.dashboard.dashboard', compact('dataStatistik', 'rata2konfirmasiDisplay', 'rata2SelesaiDisplay'));
+        return view('admin.dashboard.dashboard', compact('dataStatistik', 'dataPermohonanMasuk', 'rata2konfirmasiDisplay', 'rata2SelesaiDisplay'));
     }
 
     public function getDataStatistik()

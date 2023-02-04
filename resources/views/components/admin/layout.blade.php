@@ -138,10 +138,17 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Menu wrapper-->
                         <!--begin::Navbar-->
                         <div class="app-navbar flex-shrink-0">
-
+                        
+                            {{$notifikasi ?? ''}}
+                        
+                            
+                                
                             <!--begin::Theme mode-->
                             <div class="app-navbar-item ms-1 ms-lg-3">
                                 <!--begin::Menu toggle-->
+                               
+                                <!-- <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="bottom" title="Permohonan Masuk" href="javascript:void(0)" class="btn btn-icon btn-primary me-5 position-relative  " ><i class="bi bi-check-lg"></i><span class="position-absolute top-0 start-100 translate-middle  badge badge-circle badge-danger">5</span></a> -->
+                                
                                 <a href="#"
                                     class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
                                     data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"

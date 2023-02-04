@@ -46,12 +46,15 @@ class HomeController extends Controller
         } else {
             $siaranPers = null;
         }
-
+        $tahun = Carbon::now()->format('Y');
+        $dataPermohonanMasuk = DB::table('log_permohonan')->where('status', 1)->whereYear('created_at', $tahun)->get()->groupBy(function($val) {
+            return Carbon::parse($val->created_at)->format('M');
+      });
         $dataStatistik = $this->getDataStatistik();
         // dd($data[0]->status_final);
 
 
-        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers', 'dataStatistik'));
+        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers', 'dataStatistik', 'dataPermohonanMasuk'));
     }
 
     public function getDataStatistik()

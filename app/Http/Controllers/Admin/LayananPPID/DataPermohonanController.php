@@ -101,7 +101,7 @@ class DataPermohonanController extends Controller
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
-
+        // 'status_permohonan.created_at as status_permohonan_created_at'
         if ($user->hasRole('user penghubung')) {
             $result = DB::table('ppid_permohonan')
                 ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap')
@@ -123,7 +123,7 @@ class DataPermohonanController extends Controller
                 })
                 ->where(function ($query) use ($start, $end) {
                     if ($start != '-') {
-                        $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                        $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                     }
                 })
                 ->where('status_permohonan.aktif', 1)
@@ -153,7 +153,7 @@ class DataPermohonanController extends Controller
             })
             ->where(function ($query) use ($start, $end) {
                 if ($start != '-') {
-                    $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                    $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                 }
             })
             ->where('status_permohonan.aktif', 1)
@@ -192,7 +192,7 @@ class DataPermohonanController extends Controller
                 })
                 ->where(function ($query) use ($start, $end) {
                     if ($start != '-') {
-                        $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                        $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                     }
                 })
                 ->where('status_permohonan.aktif', 1)
@@ -222,7 +222,7 @@ class DataPermohonanController extends Controller
             })
             ->where(function ($query) use ($start, $end) {
                 if ($start != '-') {
-                    $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                    $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                 }
             })
             ->where('status_permohonan.aktif', 1)
@@ -316,7 +316,7 @@ class DataPermohonanController extends Controller
 
     public function rejectPermohonan($data, $permohonan, $dateCreated)
     {
-
+        //tidak diterima
         $ticketNumber = $this->generateTicket($permohonan);
         DB::table('ppid_permohonan')->where('id', $data['id'])->update([
             'ticket_permohonan' => $ticketNumber,
@@ -359,7 +359,7 @@ class DataPermohonanController extends Controller
         // status permohonan
         $dataStatusPermohonan = [
             'id_ppid_permohonan' => $data['id'],
-            'id_status' => 5, // ditolak
+            'id_status' => 6, // tidak diterima
             'modified_by' => Auth::user()->id,
             'modified_date' => $dateCreated,
             "created_at" =>  $dateCreated,
@@ -372,7 +372,7 @@ class DataPermohonanController extends Controller
         // log permohonan
         DB::table('log_permohonan')->insert([
             'id_ppid_permohonan' => $data['id'],
-            'status' => 5, // ditolak
+            'status' => 6, // tidak diterima
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
         ]);
@@ -380,6 +380,8 @@ class DataPermohonanController extends Controller
 
     public function submitAnswerPermohonan(Request $request)
     {
+        
+        //kalau value nya 1, maka ditolak 
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
         $file_dukung = '';
@@ -427,7 +429,7 @@ class DataPermohonanController extends Controller
         // status permohonan
         $dataStatusPermohonan = [
             'id_ppid_permohonan' => $data['id'],
-            'id_status' => 4, // dijawab oleh
+            'id_status' => $request->selectedTemplate == '1' ? 5 : 4, //kalau opsi 1 tolak, jika tidak dijawab oleh
             'modified_by' => Auth::user()->id,
             'modified_date' => $dateCreated,
             "created_at" =>  $dateCreated,
@@ -441,7 +443,7 @@ class DataPermohonanController extends Controller
         // log permohonan
         DB::table('log_permohonan')->insert([
             'id_ppid_permohonan' => $data['id'],
-            'status' => 4, // ditolak
+            'status' => $request->selectedTemplate == '1' ? 5 : 4, // kalau opsi 1 tolak, jika tidak dijawab
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
         ]);
