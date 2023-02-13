@@ -316,15 +316,16 @@ class DataPermohonanController extends Controller
 
     public function rejectPermohonan($data, $permohonan, $dateCreated)
     {
+        // dd($permohonan->id);
         //tidak diterima
-        $ticketNumber = $this->generateTicket($permohonan);
-        DB::table('ppid_permohonan')->where('id', $data['id'])->update([
-            'ticket_permohonan' => $ticketNumber,
-        ]);
+        // $ticketNumber = $this->generateTicket($permohonan);
+        // DB::table('ppid_permohonan')->where('id', $data['id'])->update([
+        //     'ticket_permohonan' => $ticketNumber,
+        // ]);
 
         // jawaban reject permohonan
         $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']]);
-        $ticketPermohonan = str_replace('/', '-', $ticketNumber);
+        $ticketPermohonan = str_replace('/', '-', 'tidak-diterima-'.$permohonan->id);
         $nmfile = $ticketPermohonan . '.pdf';
 
         $content = $pdf->download()->getOriginalContent();
@@ -406,6 +407,8 @@ class DataPermohonanController extends Controller
             // File path
             $file_dukung = 'permohonan/jawaban/' . $filename;
         }
+
+       
 
         $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
         // $nmfile = time().'_answer.pdf';
