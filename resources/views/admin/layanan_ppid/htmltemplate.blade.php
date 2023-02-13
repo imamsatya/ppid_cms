@@ -38,7 +38,7 @@
 	<center>
 		<table>
 			<tr>
-				<td><img src="https://bumn.go.id/storage/homepage/logo.png"  height="30"></td>
+				<td><img src="logo_only.png"  height="90"></td>
 				<td>
 				<center>
 					
