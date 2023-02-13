@@ -239,7 +239,7 @@ class DataPermohonanController extends Controller
         $dateCreated = \Carbon\Carbon::now();
         DB::table('surveys')->insert([            
             //Step 1
-            'jenisKelamin'  =>$request->jenisKelamin ,
+             'jenisKelamin'  =>$request->jenisKelamin ,
              'usia' =>$request->usia ,
              'pendidikan' =>$request->pendidikan ,
              'pekerjaan' =>$request->pekerjaan ,

@@ -654,8 +654,10 @@
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <label class="form-label">Alamat</label>
-                                                        <input type="text" class="form-control" id="detail-alamat"
-                                                            disabled>
+                                                        <div id="detail-alamat"
+                                                            class="form-detail-ctm">-</div>
+                                                        <!-- <input type="text" class="form-control" id="detail-alamat"
+                                                            disabled> -->
                                                     </div>
                                                     <div class="form-group mb-4">
                                                         <label class="form-label">Pekerjaan</label>
@@ -1650,7 +1652,7 @@
                                         $("#detail-jenis-pemohon").val(dataPemohon.result.nama_jenis_pemohon)
                                         $("#detail-identitas").val(dataPemohon.result.nama_jenis_identitas)
                                         $("#detail-nomor-identitas").val(dataPemohon.result.nomor_identitas)
-                                        $("#detail-alamat").val(dataPemohon.result.alamat)
+                                        $("#detail-alamat").html(dataPemohon.result.alamat)
                                         $("#detail-pekerjaan").val(dataPemohon.result.pekerjaan)
                                         $("#detail-email").val(dataPemohon.result.email)
                                         $("#detail-status").val(dataPermohonan.result.nama_status_permohonan)
