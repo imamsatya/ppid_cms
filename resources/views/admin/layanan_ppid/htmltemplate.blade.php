@@ -3,13 +3,33 @@
 <head>
 	<title>contoh surat pengunguman</title>
 	<style type="text/css">
-       body {
+		@page {
+                margin: 0cm 0cm;
+            }
+	body {
         height: 842px;
         width: 595px;
         /* to centre page on screen*/
         margin-left: auto;
         margin-right: auto;
+		margin-top: 100px;
+		
     }
+
+	header {
+                position: fixed;
+                /* top: 0.75cm;                 */
+                top: -2px;        
+                margin-top: 10px;        
+                text-align: center
+            }
+
+	footer {
+                position: fixed;                 
+                bottom: 15px;                 
+                text-align: center;
+                margin-bottom: 10px;
+            }
 		 hr{
             margin:8px 0px;
             color: #333;
@@ -35,40 +55,54 @@
 	</style>
 </head>
 <body>
+<header>
 	<center>
 		<table>
 			<tr>
-				<td><img src="logo_only.png"  height="90"></td>
+				<td><img src="logo_only.png"  height="80"></td>
 				<td>
 				<center>
 					
-					<h2 style="height:14px;">KEMENTERIAN BADAN USAHA MILIK NEGARA <br/>REPUBLIK INDONESIA</h2><br>
+					<h2 style="height:14px;">KEMENTERIAN BADAN USAHA MILIK NEGARA <br/>REPUBLIK INDONESIA</h2><br> 
 					<font size="1">GEDUNG KEMENTERIAN BUMN, JALAN MEDAN MERDEKA SELATAN NO. 13 JAKARTA 10110<br/>TELEPHONE (021) 2311949, SITUS www.bumn.go.id</font><br>
 					
 				</center>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><hr></td>
+				<td colspan="2"><hr style="width: 585px"></td>
 			</tr>
 		
 		</table>
+	</center>
+		</header>
+		<main>
+	<center>
+		
 		
 		<br>
-		<table width="625">
+		<table >
 			<tr>
 		       <td>
                <p>Yth. Imam Satya Wedhatama <br /><br />Terima kasih atas permohonan yang disampaikan. Sehubungan dengan hal tersebut, dapat kami sampaikan bahwa permohonan Saudara tidak dapat kami proses dikarenakan file identitas tidak sesuai. <br /><br />Sesuai dengan ketentuan dalam Undang-Undang Keterbukaan Informasi Publik Nomor 14 Tahun 2008 serta Peraturan Komisi Informasi Nomor 1 Tahun 2013, pemohon informasi publik wajib melampirkan identitas diri berupa fotokopi KTP (untuk permohonan perorangan dan/atau Akta pendirian perusahaan/surat kuasa beserta legalisasi Badan Hukum dari Kementerian Hukum dan HAM (untuk permohonan dari Badan Hukum) dalam format .jpg atau .pdf untuk dapat kami proses lebih lanjut. <br /><br />Demikian kami sampaikan, atas perhatian dan kerjasamanya diucapkan terima kasih. <br /><br /><br />Salam, PPID Kementerian BUMN</p>
-              
+               
 		       </td>
 		    </tr>
 		</table>
 		<br>
 		</table>
+	</center>
+	<br>
 		
 		<br>
+	</main>
 		
-		<br>
+		<footer>
+			<center>
+        <hr style="width: 585px">
+        <div style="text-align: left;">AKHLAK - Amanah, Kompeten, Harmonis, Loyal, Adaptif, Kolaboratif</div>
+	</center>
+    </footer>	
 	
 
 		 <!-- <htmlpagefooter name="myfooter">

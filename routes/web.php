@@ -114,22 +114,26 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 // Frontend
-Route::get('/htmltemplate', function () {
-    return view('admin.layanan_ppid.htmltemplate');
-});
-Route::get('/tesjawaban', function () {
-    return view('admin.layanan_ppid.answer_template');
-});
-Route::get('/testemplate', function () {
-    return view('admin.layanan_ppid.pdf');
-});
-Route::get('/tesemail', function () {
-    return view('activation');
-});
 
-Route::get('/lupa', function () {
-    return view('forgot');
-});
+// Route::get('/htmltemplate2', function () {
+//     return view('admin.layanan_ppid.template2');
+// });
+// Route::get('/htmltemplate', function () {
+//     return view('admin.layanan_ppid.htmltemplate');
+// });
+// Route::get('/tesjawaban', function () {
+//     return view('admin.layanan_ppid.answer_template');
+// });
+// Route::get('/testemplate', function () {
+//     return view('admin.layanan_ppid.pdf');
+// });
+// Route::get('/tesemail', function () {
+//     return view('activation');
+// });
+
+// Route::get('/lupa', function () {
+//     return view('forgot');
+// });
 //User PPID
 Route::get('data-statistik', [HomeController::class, 'getDataStatistik']);
 

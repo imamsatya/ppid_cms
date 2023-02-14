@@ -324,7 +324,7 @@ class DataPermohonanController extends Controller
         // ]);
 
         // jawaban reject permohonan
-        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']]);
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']])->setPaper('a4', 'portrait');
         $ticketPermohonan = str_replace('/', '-', 'tidak-diterima-'.$permohonan->id);
         $nmfile = $ticketPermohonan . '.pdf';
 
@@ -410,7 +410,7 @@ class DataPermohonanController extends Controller
 
        
 
-        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']])->setPaper('a4', 'portrait');
         // $nmfile = time().'_answer.pdf';
         $nmfile = $ticketPermohonan . '.pdf';
         $content = $pdf->download()->getOriginalContent();
