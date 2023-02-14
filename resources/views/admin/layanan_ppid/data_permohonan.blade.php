@@ -718,7 +718,10 @@
                         </div>
 
                         <input type="hidden" id="id-permohonan-edited">
-
+                        <!-- template detail -->
+                        <div>
+                            
+                        </div>
 
                         @push('child-scripts')
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
@@ -1761,7 +1764,8 @@
                                                 unit: 'in',
                                                 format: 'a4',
                                                 orientation: 'portrait'
-                                            }
+                                            },
+                                            mode: 'avoid-all'
                                         };
                                         var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
 
