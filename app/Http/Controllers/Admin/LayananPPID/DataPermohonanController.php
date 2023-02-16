@@ -542,4 +542,36 @@ class DataPermohonanController extends Controller
     }
     
     }
+
+    public function cetakData(Request $request){
+        
+       
+        // return PDF::loadView('admin.layanan_ppid.detailtemplate')->setPaper('a4', 'portrait')->stream('detailtemplate.pdf');
+        $pdf = PDF::loadView('admin.layanan_ppid.detailtemplate', compact('request'))->setPaper('a4', 'portrait');
+        return  $pdf->download('detailtemplate.pdf');
+       
+        
+       
+    }
+
+    public function cetakDataById( $id) {
+        $dataPermohonan = DB::table('ppid_permohonan')
+        ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan', 'status_permohonan.id_status as id_status_permohonan', 'status.name as nama_status_permohonan', 'status_permohonan.created_at as tanggal_status')
+        ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+        ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+        ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+        ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+        ->where('status_permohonan.aktif', 1)
+        ->where('ppid_permohonan.id', $id)->first();
+        // dd($dataPermohonan->id);
+        $dataPemohon = $user = DB::table('ppid_pendaftar')
+        ->select('ppid_pendaftar.*', 'jenis_identitas.name as nama_jenis_identitas', 'jenis_pemohon.name as nama_jenis_pemohon')
+        ->join('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
+        ->join('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
+        ->where('ppid_pendaftar.id', $dataPermohonan->id_ppid_pendaftar)
+        ->first();
+       
+        $pdf = PDF::loadView('admin.layanan_ppid.detailtemplate', ['dataPermohonan' => $dataPermohonan, 'dataPemohon' => $dataPemohon])->setPaper('a4', 'portrait');
+        return  $pdf->download($dataPermohonan->ticket_permohonan.'-detail.pdf');
+    }
 }

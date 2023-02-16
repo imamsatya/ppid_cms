@@ -805,6 +805,16 @@
                                         });
                                     }
 
+                                    const getCetakData = (data) => {
+                                        return $.ajax({
+                                            type: 'GET',
+                                            // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
+                                            url: `/admin/cetak-data`,
+                                            data: data,
+                                            dataType: 'json'
+                                        });
+                                    }
+
                                     const jadwalKerja = () => {
                                         return $.ajax({
                                             type: 'GET',
@@ -1637,6 +1647,7 @@
                                         })
                                     }
 
+                                    var dataDetail = null
                                     async function loadModalDetail(data) {
                                         modalDetail.block()
                                         const dataPermohonan = await ppidPermohonanUser(data)
@@ -1666,6 +1677,26 @@
 <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('storage/${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
 `)
 
+
+                                        dataDetail = {
+                                            idPermohonan: $("#id-permohonan-edited").val(),
+                                            tujuanPenggunaan: $("#area-tujuan-penggunaan-detail-notiny").html(),
+                                            informasiDiminta: $("#area-informasi-diminta-detail-notiny").html(),
+                                            caraMemberi: $("#detail-cara-memberi-info").val(),
+                                            caraDapat: $("#detail-cara-dapat-info").val(),
+                                            tanggalMasuk: $("#detail-tanggal-masuk").val(),
+                                            noRegistrasi: $("#detail-noregistrasi").val(),
+                                            namaPemohon: $("#detail-nama-pemohon").val(),
+                                            jenisPemohon: $("#detail-jenis-pemohon").val(),
+                                            identitas:  $("#detail-identitas").val(),
+                                            nomorIdentitas :  $("#detail-nomor-identitas").val(),
+                                            alamat : $("#detail-alamat").html(),
+                                            pekerjaan:  $("#detail-pekerjaan").val(),
+                                            email: $("#detail-email").val(),
+                                            status: $("#detail-status").val(),
+                                            tanggalStatus:  $("#tanggal-status").val(),
+                                            file: dataPermohonan.result.file_identitas
+                                        }
                                         modalDetail.release()
                                     }
 
@@ -1747,27 +1778,32 @@
                                         loadDataPermintaanSelesaiByFilter(asalPermohonan, statusPermohonan, filterDate)
                                     })
 
-                                    $(document).on('click', '#cetak-permohonan', function() {
+                                    $(document).on('click', '#cetak-permohonan', async function() {
                                         modalDetail.block()
-                                        const filename = $("#detail-noregistrasi").val() + '.pdf'
-                                        var opt = {
-                                            margin: 0.5,
-                                            filename: filename,
-                                            image: {
-                                                type: 'jpeg',
-                                                quality: 0.98
-                                            },
-                                            html2canvas: {
-                                                scale: 2
-                                            },
-                                            jsPDF: {
-                                                unit: 'in',
-                                                format: 'a4',
-                                                orientation: 'portrait'
-                                            },
-                                            mode: 'avoid-all'
-                                        };
-                                        var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
+                                        // const filename = $("#detail-noregistrasi").val() + '.pdf'
+                                        // var opt = {
+                                        //     margin: 0.5,
+                                        //     filename: filename,
+                                        //     image: {
+                                        //         type: 'jpeg',
+                                        //         quality: 0.98
+                                        //     },
+                                        //     html2canvas: {
+                                        //         scale: 2
+                                        //     },
+                                        //     jsPDF: {
+                                        //         unit: 'in',
+                                        //         format: 'a4',
+                                        //         orientation: 'portrait'
+                                        //     },
+                                        //     mode: 'avoid-all'
+                                        // };
+                                        // var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
+                                        
+
+                                       window.location.href= `/admin/cetak-data/${dataDetail.idPermohonan}`
+                                                        
+                                                        // await getCetakData(dataDetail)
 
                                         modalDetail.release()
 

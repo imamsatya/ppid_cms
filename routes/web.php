@@ -114,7 +114,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 // Frontend
-
+Route::get('/detailtemplate', function () {
+    return view('admin.layanan_ppid.detailtemplate');
+});
 // Route::get('/htmltemplate2', function () {
 //     return view('admin.layanan_ppid.template2');
 // });
@@ -349,6 +351,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/submit-forward-permohonan', [DataPermohonanController::class, 'submitForwardPermohonan']);
     Route::get('/ppid-pendaftar/{id}', [DataPermohonanController::class, 'dataPpidPendaftarById']);
     Route::get('/users-penghubung', [DataPermohonanController::class, 'getDaftarUserPenghubung']);
+
+    //cetak data
+    Route::get('/cetak-data', [DataPermohonanController::class, 'cetakData']);
+    Route::get('/cetak-data/{id}', [DataPermohonanController::class, 'cetakDataById']);
 
     //linksurvei
     Route::post('/linksurvei', [DataPermohonanController::class, 'submitLinkSurvei'])->name('linksurvei.store');
