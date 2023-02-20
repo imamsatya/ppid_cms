@@ -1650,7 +1650,7 @@
 
                             }
                             let jawaban = '-'
-                            if ( data[i].id_status == 5) {
+                            if ( data[i].id_status == 5 || data[i].id_status == 6) {
                                 let fileJawaban = ''
                                 if (data[i].ket_jawaban_path) {
                                     fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"

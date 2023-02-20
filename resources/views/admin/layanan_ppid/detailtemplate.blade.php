@@ -91,17 +91,13 @@
 
 	<main>
   
-		<h4>Data Pemohon</h4>
+		<h4>Data Permohonan</h4>
 		<table style="width:100%">
 			<tr>
 				<th style="width:30%"></th>
 				<th style="width:2%"></th>
 				<th style="width:68%"></th>
 			</tr>
-            <tr>
-                <td>Tanggal Masuk</td>
-                <td>:</td><td>{{$dataPermohonan->created_at}}</td>
-            </tr>
             <tr>
                 <td>Nomor Registrasi</td>
                 <td>:</td><td>{{$dataPermohonan->ticket_permohonan}}</td>
@@ -114,43 +110,7 @@
                 <td>Jenis Pemohon</td>
                 <td>:</td><td>{{$dataPemohon->nama_jenis_pemohon}}</td>
             </tr>
-            <tr>
-                <td>Identitas</td>
-                <td>:</td><td>{{$dataPemohon->nama_jenis_identitas}}</td>
-            </tr>
-            <tr>
-                <td>Nomor Identitas</td>
-                <td>:</td><td>{{$dataPemohon->nomor_identitas}}</td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td>:</td><td>{{$dataPemohon->alamat}}</td>
-            </tr>
-            <tr>
-                <td>Pekerjaan</td>
-                <td>:</td><td>{{$dataPemohon->pekerjaan}}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>:</td><td>{{$dataPemohon->email}}</td>
-            </tr>
-            <tr>
-                <td>Status</td>
-                <td>:</td><td>{{$dataPermohonan->nama_status_permohonan}}</td>
-            </tr>
-            <tr>
-                <td>Tanggal Status</td>
-                <td>:</td><td>{{$dataPermohonan->tanggal_status}}</td>
-            </tr>
-        </table>
-        <h4 style="page-break-before: always">Data Permohonan</h4>
-		<table style="width:100%">
 			<tr>
-				<th style="width:30%"></th>
-				<th style="width:2%"></th>
-				<th style="width:68%"></th>
-			</tr>
-            <tr>
                 <td>Informasi diminta</td>
                 <td>:</td><td>{{$dataPermohonan->informasi_diminta}}</td>
             </tr>
@@ -159,24 +119,27 @@
                 <td>:</td><td>{{$dataPermohonan->tujuan_informasi}}</td>
             </tr>
             <tr>
-                <td>Cara mendapat informasi</td>
+                <td>Cara mendapatkan informasi</td>
                 <td>:</td><td>{{$dataPermohonan->cara_mendapatkan}}</td>
             </tr>
             <tr>
-                <td>Cara memberi informasi</td>
+                <td>Cara memberikan informasi</td>
                 <td>:</td><td>{{$dataPermohonan->cara_memberikan}}</td>
             </tr>
-            <tr>
-                <td>File Identitas </td>
-				<td>:</td>
-                <td>
-					<img width="300" src="{{public_path('storage/'.$dataPermohonan->file_identitas)}}" alt="">
-			
-				
-				</td>
-            </tr>
-
+            
+            
         </table>
+        <!-- <h4 style="page-break-before: always">Data Permohonan</h4>
+		<table style="width:100%">
+			<tr>
+				<th style="width:30%"></th>
+				<th style="width:2%"></th>
+				<th style="width:68%"></th>
+			</tr>
+            
+            
+
+        </table> -->
 	</main>
 </body>
 
