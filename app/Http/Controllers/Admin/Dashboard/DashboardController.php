@@ -18,12 +18,32 @@ class DashboardController extends Controller
     public function index()
     {
         $tahun = Carbon::now()->format('Y');
-        $dataPermohonanMasuk = DB::table('log_permohonan')->where('status', 1)->whereYear('created_at', $tahun)->get()->groupBy(function($val) {
+        // $allDataMasuk = DB::table('log_permohonan')->get();
+        
+
+        // $tes = DB::table('log_permohonan')->where('status', 6)->get();
+        // //remove id yg memiliki status 6 (tidak diterima)
+        // foreach ($tes as $key => $value) {
+        //     $unsetItems = $allDataMasuk->where('id_ppid_permohonan', $value->id_ppid_permohonan);
+        //     foreach ($unsetItems as $key2 => $value2) {
+                
+        //         unset($allDataMasuk[$key2]);
+        //     }
+        // }
+        
+        $dataPermohonanMasuk = DB::table('log_permohonan')->where('status', 1)->whereNotIn('id_ppid_permohonan', function($query) {
+            $query->select('id_ppid_permohonan')
+                  ->from('log_permohonan')
+                  ->where('status', '=', 6);
+        })->whereYear('created_at', $tahun)->get()->groupBy(function($val) {
             return Carbon::parse($val->created_at)->format('M');
       });
+      
+      
    
      
         $dataStatistik = $this->getDataStatistik();
+        // dd($dataStatistik);
         CarbonInterval::macro('forHumansWithoutWeeks', function ($syntax = null, $short = false, $parts = -1, $options = null) {
             $factors = CarbonInterval::getCascadeFactors();
             CarbonInterval::setCascadeFactors([
