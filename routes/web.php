@@ -137,29 +137,111 @@ Route::get('/detailtemplate', function () {
 //     return view('forgot');
 // });
 //User PPID
-Route::get('data-statistik', [HomeController::class, 'getDataStatistik']);
+Route::middleware(['frame.headers.middleware'])->group(function () {
+    Route::get('data-statistik', [HomeController::class, 'getDataStatistik']);
 
-// Route::get('admin/', [UserPPIDLoginController::class, 'index'])
-//     ->name('admin.home');
-Route::get('login', [UserPPIDLoginController::class, 'login'])->middleware('guest:usersppid')->name('userppid.login');
-Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->name('userppid.handleLogin');
-Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
-Route::get('signup',  [UserPPIDLoginController::class, 'register'])->middleware('guest:usersppid')->name('signup');
-Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
-Route::get('ganti_password', [UserPPIDLoginController::class, 'gantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password');
-Route::post('ganti_password', [UserPPIDLoginController::class, 'handleGantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password.store');
+    // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
+    //     ->name('admin.home');
+    Route::get('login', [UserPPIDLoginController::class, 'login'])->middleware('guest:usersppid')->name('userppid.login');
+    Route::post('/user/login', [UserPPIDLoginController::class, 'handleLogin'])->name('userppid.handleLogin');
+    Route::post('logout', [UserPPIDLoginController::class, 'logout'])->name('userppid.logout');
+    Route::get('signup',  [UserPPIDLoginController::class, 'register'])->middleware('guest:usersppid')->name('signup');
+    Route::post('signup',  [UserPPIDLoginController::class, 'handleRegister'])->name('signup.store');
+    Route::get('ganti_password', [UserPPIDLoginController::class, 'gantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password');
+    Route::post('ganti_password', [UserPPIDLoginController::class, 'handleGantiPassword'])->middleware('auth:usersppid')->name('userppid.ganti_password.store');
 
-Route::get('verifikasi', [UserPPIDLoginController::class, 'verifikasi'])->middleware('guest:usersppid')->name('userppid.verifikasi');
-Route::post('verifikasi', [UserPPIDLoginController::class, 'handleVerifikasi'])->middleware('guest:usersppid')->name('verifikasi.store');
-Route::post('resend_otp', [UserPPIDLoginController::class, 'handleResendOTP'])->middleware('guest:usersppid')->name('resend_otp.store');
+    Route::get('verifikasi', [UserPPIDLoginController::class, 'verifikasi'])->middleware('guest:usersppid')->name('userppid.verifikasi');
+    Route::post('verifikasi', [UserPPIDLoginController::class, 'handleVerifikasi'])->middleware('guest:usersppid')->name('verifikasi.store');
+    Route::post('resend_otp', [UserPPIDLoginController::class, 'handleResendOTP'])->middleware('guest:usersppid')->name('resend_otp.store');
 
-//forgot password
-// Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
-Route::get('lupa-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->middleware('guest:usersppid')->name('userppid.lupa_password');
-Route::post('lupa-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->middleware('guest:usersppid')->name('forget.password.post');
-Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.get');
-Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.post');
+    //forgot password
+    // Route::get('lupa_password', [UserPPIDLoginController::class, 'lupaPassword'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+    Route::get('lupa-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->middleware('guest:usersppid')->name('userppid.lupa_password');
+    Route::post('lupa-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->middleware('guest:usersppid')->name('forget.password.post');
+    Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.get');
+    Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->middleware('guest:usersppid')->name('reset.password.post');
 
+    // User
+
+    Route::resource('dashboard', DashboardControllerUser::class)->middleware('auth:usersppid');
+    Route::post('update-click-survei/permohonan', [DashboardControllerUser::class, 'updateClickSurveiPermohonan'])->middleware('auth:usersppid');
+    Route::post('update-click-survei/keberatan', [DashboardControllerUser::class, 'updateClickSurveiKeberatan'])->middleware('auth:usersppid');
+    //Home
+    Route::resource('/', HomeController::class);
+    Route::get('siaranpers/{id}', [SiaranPersController::class, 'show'])->name('siaranpers.show');
+    //Profil
+    Route::resource('tentangppid', ProfilSingkatControllerUser::class);
+    Route::resource('tugasdanfungsi', TugasDanFungsiControllerUser::class);
+    Route::resource('strukturppid', StrukturOrganisasiControllerUser::class);
+    Route::resource('visimisi', VisiMisiControllerUser::class);
+    Route::resource('kontak', KontakControllerUser::class);
+    Route::resource('sosialmedia', SosialMediaControllerUser::class);
+
+    //Regulasi
+    // Route::get('/regulasi', function () {
+    //     return view('frontend.regulasi.regulasi');
+    // })->name('regulasi.index');
+    Route::resource('regulasi', RegulasiControllerUser::class);
+    // Route::resource('peraturan_kip', PeraturanKIPControllerUser::class);
+    // Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPControllerUser::class);
+
+    //Informasi Publik, kurang  2 route
+    // Route::get('/informasipublik', function () {
+    //     return view('frontend.informasipublik.informasi-publik');
+    // })->name('informasipublik.index');
+    Route::resource('informasipublik', InformasiPublikControllerUser::class);
+    Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaControllerUser::class);
+
+
+    //Standar Layanan
+    Route::resource('maklumat', MaklumatControllerUser::class);
+
+    // Route::get('/standarlayananprosedur', function () {
+    //     return view('frontend.standarlayanan.standart-prosedur-layanan');
+    // })->name('standarlayananprosedur.index');
+    Route::resource('prosedurlayanan', ProsedurLayananControllerUser::class);
+
+
+    // Route::get('/standarlayananbiaya', function () {
+    //     return view('frontend.standarlayanan.standart-biaya-layanan');
+    // })->name('standarlayananbiaya.index');
+    Route::resource('standarlayananbiaya', BiayaLayananControllerUser::class);
+
+    //Laporan
+    // Route::get('/laporan', function () {
+    //     return view('frontend.laporan.laporan');
+    // })->name('laporan.index');
+    Route::resource('laporan', LaporanControllerUser::class);
+
+
+    // Route::get('/faq', function () {
+    //     return view('frontend.faq.faq');
+    // })->name('faq.index');
+    Route::resource('faq', FaqControllerUser::class);
+
+
+
+    // yovi
+    Route::get('ppid-cara-mendapatkan', [DataPermohonanControllerUser::class, 'ppidCaraMendapatkan']);
+    Route::get('ppid-cara-memberikan', [DataPermohonanControllerUser::class, 'ppidCaraMemberikan']);
+    Route::post('submit-data-permohonan', [DataPermohonanControllerUser::class, 'submitPermintaanUser']);
+    Route::get('ppid-data-permohonan', [DataPermohonanControllerUser::class, 'ppidDataPermohonan']);
+    Route::get('ppid-data-permohonan-spec/{id}', [DataPermohonanControllerUser::class, 'ppidDataPermohonanSpec']);
+    Route::get('ppid-jenis-pemohon', [DataPermohonanControllerUser::class, 'ppidJenisPemohon']);
+    Route::delete('ppid-data-permohonan/{id}', [DataPermohonanControllerUser::class, 'ppidHapusDataPermohonan']);
+    Route::get('ppid-status-permohonan', [DataPermohonanControllerUser::class, 'ppidStatusPermohonan']);
+    //keberatan
+    Route::get('ppid-kategori-keberatan', [DataKeberatanControllerUser::class, 'ppidKategoriKeberatan']);
+    Route::post('submit-data-keberatan', [DataKeberatanControllerUser::class, 'submitKeberatanUser']);
+    Route::get('ppid-data-keberatan', [DataKeberatanControllerUser::class, 'ppidDataKeberatan']);
+    Route::get('ppid-data-keberatan-spec/{id}', [DataKeberatanControllerUser::class, 'ppidDataKeberatanSpec']);
+    Route::delete('ppid-data-keberatan/{id}', [DataKeberatanControllerUser::class, 'ppidHapusDataKeberatan']);
+    Route::get('ppid-permohonan-sebelumnya/{id}', [DataKeberatanControllerUser::class, 'ppidDataPermohonanSebelumnya']);
+    Route::get('ppid-status-keberatan', [DataKeberatanControllerUser::class, 'ppidStatusKeberatan']);
+
+    //survey
+    Route::post('submit-data-survey', [DataPermohonanControllerUser::class, 'submitSurveyUser']);
+});
 
 //User Admin
 // Route::get('/', [UserSAminController::class, 'index'])
@@ -170,86 +252,7 @@ Route::post('/admin/login', [UserAdminAuthController::class, 'handleLogin'])
     ->name('admin.handleLogin');
 Route::post('/admin/logout', [UserAdminAuthController::class, 'logout'])
     ->name('admin.logout');
-// User
 
-Route::resource('dashboard', DashboardControllerUser::class)->middleware('auth:usersppid');
-Route::post('update-click-survei/permohonan', [DashboardControllerUser::class, 'updateClickSurveiPermohonan'])->middleware('auth:usersppid');
-Route::post('update-click-survei/keberatan', [DashboardControllerUser::class, 'updateClickSurveiKeberatan'])->middleware('auth:usersppid');
-//Home
-Route::resource('/', HomeController::class);
-Route::get('siaranpers/{id}', [SiaranPersController::class, 'show'])->name('siaranpers.show');
-//Profil
-Route::resource('tentangppid', ProfilSingkatControllerUser::class);
-Route::resource('tugasdanfungsi', TugasDanFungsiControllerUser::class);
-Route::resource('strukturppid', StrukturOrganisasiControllerUser::class);
-Route::resource('visimisi', VisiMisiControllerUser::class);
-Route::resource('kontak', KontakControllerUser::class);
-Route::resource('sosialmedia', SosialMediaControllerUser::class);
-
-//Regulasi
-// Route::get('/regulasi', function () {
-//     return view('frontend.regulasi.regulasi');
-// })->name('regulasi.index');
-Route::resource('regulasi', RegulasiControllerUser::class);
-// Route::resource('peraturan_kip', PeraturanKIPControllerUser::class);
-// Route::resource('rancangan_peraturan_kip', RancanganPeraturanKIPControllerUser::class);
-
-//Informasi Publik, kurang  2 route
-// Route::get('/informasipublik', function () {
-//     return view('frontend.informasipublik.informasi-publik');
-// })->name('informasipublik.index');
-Route::resource('informasipublik', InformasiPublikControllerUser::class);
-Route::resource('informasi_secara_berkala', InformasiSecaraBerkalaControllerUser::class);
-
-
-//Standar Layanan
-Route::resource('maklumat', MaklumatControllerUser::class);
-
-// Route::get('/standarlayananprosedur', function () {
-//     return view('frontend.standarlayanan.standart-prosedur-layanan');
-// })->name('standarlayananprosedur.index');
-Route::resource('prosedurlayanan', ProsedurLayananControllerUser::class);
-
-
-// Route::get('/standarlayananbiaya', function () {
-//     return view('frontend.standarlayanan.standart-biaya-layanan');
-// })->name('standarlayananbiaya.index');
-Route::resource('standarlayananbiaya', BiayaLayananControllerUser::class);
-
-//Laporan
-// Route::get('/laporan', function () {
-//     return view('frontend.laporan.laporan');
-// })->name('laporan.index');
-Route::resource('laporan', LaporanControllerUser::class);
-
-
-// Route::get('/faq', function () {
-//     return view('frontend.faq.faq');
-// })->name('faq.index');
-Route::resource('faq', FaqControllerUser::class);
-
-
-
-// yovi
-Route::get('ppid-cara-mendapatkan', [DataPermohonanControllerUser::class, 'ppidCaraMendapatkan']);
-Route::get('ppid-cara-memberikan', [DataPermohonanControllerUser::class, 'ppidCaraMemberikan']);
-Route::post('submit-data-permohonan', [DataPermohonanControllerUser::class, 'submitPermintaanUser']);
-Route::get('ppid-data-permohonan', [DataPermohonanControllerUser::class, 'ppidDataPermohonan']);
-Route::get('ppid-data-permohonan-spec/{id}', [DataPermohonanControllerUser::class, 'ppidDataPermohonanSpec']);
-Route::get('ppid-jenis-pemohon', [DataPermohonanControllerUser::class, 'ppidJenisPemohon']);
-Route::delete('ppid-data-permohonan/{id}', [DataPermohonanControllerUser::class, 'ppidHapusDataPermohonan']);
-Route::get('ppid-status-permohonan', [DataPermohonanControllerUser::class, 'ppidStatusPermohonan']);
-//keberatan
-Route::get('ppid-kategori-keberatan', [DataKeberatanControllerUser::class, 'ppidKategoriKeberatan']);
-Route::post('submit-data-keberatan', [DataKeberatanControllerUser::class, 'submitKeberatanUser']);
-Route::get('ppid-data-keberatan', [DataKeberatanControllerUser::class, 'ppidDataKeberatan']);
-Route::get('ppid-data-keberatan-spec/{id}', [DataKeberatanControllerUser::class, 'ppidDataKeberatanSpec']);
-Route::delete('ppid-data-keberatan/{id}', [DataKeberatanControllerUser::class, 'ppidHapusDataKeberatan']);
-Route::get('ppid-permohonan-sebelumnya/{id}', [DataKeberatanControllerUser::class, 'ppidDataPermohonanSebelumnya']);
-Route::get('ppid-status-keberatan', [DataKeberatanControllerUser::class, 'ppidStatusKeberatan']);
-
-//survey
-Route::post('submit-data-survey', [DataPermohonanControllerUser::class, 'submitSurveyUser']);
 
 //Admin
 Route::get('/admin/login', function () {

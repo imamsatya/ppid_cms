@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @if ($prosedurLayanan)
-                                        <img src="{{ asset('storage/' . $prosedurLayanan->permohonan_direktori_image) }}"
+                                        <img src="{{ Storage::url($prosedurLayanan->permohonan_direktori_image) }}"
                                             class="w-100 img-fluid" alt="">
                                     @endif
                                 </div>
@@ -53,7 +53,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @if ($prosedurLayanan)
-                                        <img src="{{ asset('storage/' . $prosedurLayanan->keberatan_direktori_image) }}"
+                                        <img src="{{ Storage::url($prosedurLayanan->keberatan_direktori_image) }}"
                                             class="w-100 img-fluid" alt="">
                                     @endif
                                 </div>
@@ -82,7 +82,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset('storage/' . $prosedurLayanan?->banner_path ?? '') }});
+                            background-image: url({{ Storage::url($prosedurLayanan?->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

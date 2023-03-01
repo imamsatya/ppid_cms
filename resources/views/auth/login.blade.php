@@ -93,7 +93,7 @@
                             <div class="alert alert-danger">
 
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li>{{ htmlspecialchars($error) }}</li>
                                 @endforeach
 
                             </div>

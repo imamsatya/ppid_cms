@@ -20,7 +20,7 @@
             @if ($slider)
                 @foreach ($slider as $slider_row)
                     <div class="owl-carousel-item position-relative"
-                        style="background-image: url({{ asset('storage/' . $slider_row->image_path) }}">
+                        style="background-image: url({{ Storage::url($slider_row->image_path) }}">
                         <!-- <img
                         class="img-fluid"
                         src="./assets/images/content/content-image/carousel-2.jpg"
@@ -89,7 +89,7 @@
                                 <div class="content_publik">
                                     <a href="{{ route('informasipublik.index') }}">
                                         <img class="img-fluid img_center"
-                                            src="{{ asset('storage/' . $informasi_row->image_path) }}" alt="" />
+                                            src="{{ Storage::url($informasi_row->image_path) }}" alt="" />
                                         <div class="informasi_content">
                                             <label for="">{{ $informasi_row->judul }}</label>
                                             <p>
@@ -219,7 +219,7 @@
     <section class="galeri_video blackw magnif">
         <div class="container">
             <div class="box_galeri bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
-            <!-- <div class="box_galeri"> -->
+                <!-- <div class="box_galeri"> -->
                 <div class="row">
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
@@ -227,8 +227,8 @@
                             @foreach ($video as $video_row)
                                 <div class="row {{ $loop->index < 1 ? 'outer_custom' : null }}">
                                     <div class="col-md-12">
-                                        <iframe class="w-100 video-galeri" height="315" src="{{ $video_row->url }}"
-                                            title="YouTube video player" frameborder="0"
+                                        <iframe class="w-100 video-galeri" height="315"
+                                            src="{{ $video_row->url }}" title="YouTube video player" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                     </div>
@@ -300,7 +300,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
-                smartSpeed : 1500,
+                smartSpeed: 1500,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -328,7 +328,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
-                smartSpeed : 1000,
+                smartSpeed: 1000,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -356,7 +356,7 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
-                smartSpeed : 1000,
+                smartSpeed: 1000,
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -412,10 +412,10 @@
                     0, 0, 0, 0
                 ];
 
-                  let dataDitolakFinal = [0, 0, 0, 0,
-                            0, 0, 0, 0,
-                            0, 0, 0, 0
-                        ];
+                let dataDitolakFinal = [0, 0, 0, 0,
+                    0, 0, 0, 0,
+                    0, 0, 0, 0
+                ];
 
                 let dataSelesaiFinal = [0, 0, 0, 0,
                     0, 0, 0, 0,
@@ -424,8 +424,8 @@
 
 
                 dataDitolak.forEach(element => {
-                            dataDitolakFinal[element.bulan - 1] = element.permohonan
-                        });
+                    dataDitolakFinal[element.bulan - 1] = element.permohonan
+                });
 
                 dataProses.forEach(element => {
                     dataProsesFinal[element.bulan - 1] = element.permohonan
@@ -435,12 +435,12 @@
                     dataSelesaiFinal[element.bulan - 1] = element.permohonan
                 });
 
-                dataMasukFinal[0] = dataPermohonanMasuk['Jan'] ? dataPermohonanMasuk['Jan'].length : 0 
-                dataMasukFinal[1] = dataPermohonanMasuk['Feb'] ? dataPermohonanMasuk['Feb'].length : 0 
-                dataMasukFinal[2] = dataPermohonanMasuk['Mar'] ? dataPermohonanMasuk['Mar'].length : 0 
-                dataMasukFinal[3] = dataPermohonanMasuk['Apr'] ? dataPermohonanMasuk['Apr'].length : 0 
+                dataMasukFinal[0] = dataPermohonanMasuk['Jan'] ? dataPermohonanMasuk['Jan'].length : 0
+                dataMasukFinal[1] = dataPermohonanMasuk['Feb'] ? dataPermohonanMasuk['Feb'].length : 0
+                dataMasukFinal[2] = dataPermohonanMasuk['Mar'] ? dataPermohonanMasuk['Mar'].length : 0
+                dataMasukFinal[3] = dataPermohonanMasuk['Apr'] ? dataPermohonanMasuk['Apr'].length : 0
                 dataMasukFinal[4] = dataPermohonanMasuk['May'] ? dataPermohonanMasuk['May'].length : 0
-                dataMasukFinal[5] = dataPermohonanMasuk['Jun'] ? dataPermohonanMasuk['Jun'].length : 0 
+                dataMasukFinal[5] = dataPermohonanMasuk['Jun'] ? dataPermohonanMasuk['Jun'].length : 0
                 dataMasukFinal[6] = dataPermohonanMasuk['Jul'] ? dataPermohonanMasuk['Jul'].length : 0
                 dataMasukFinal[7] = dataPermohonanMasuk['Aug'] ? dataPermohonanMasuk['Aug'].length : 0
                 dataMasukFinal[8] = dataPermohonanMasuk['Sep'] ? dataPermohonanMasuk['Sep'].length : 0
@@ -469,12 +469,12 @@
                             borderColor: "#434348",
                             data: dataProsesFinal,
                         },
-                         {
-                                    label: "Permohonan Ditolak",
-                                    backgroundColor: "#da6d85",
-                                    borderColor: "#da6d85",
-                                    data: dataDitolakFinal,
-                                },
+                        {
+                            label: "Permohonan Ditolak",
+                            backgroundColor: "#da6d85",
+                            borderColor: "#da6d85",
+                            data: dataDitolakFinal,
+                        },
                         {
                             label: "Permohonan Selesai",
                             backgroundColor: "#90ed7d",
@@ -512,7 +512,7 @@
                 height: 400px;
                 background-size: 340px 400px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset('storage/' . $informasiImage?->sideimage_path ?? '') }});
+                background-image: url({{ Storage::url($informasiImage?->sideimage_path ?? '') }});
             }
 
             .publik .informasi_publik .box_publik {
@@ -520,7 +520,7 @@
                 height: 351px;
                 background-size: 256px 351px;
                 background-repeat: no-repeat;
-                background-image: url({{ asset('storage/' . $informasiImage?->backgroundimage_path ?? '') }});
+                background-image: url({{ Storage::url($informasiImage?->backgroundimage_path ?? '') }});
                 z-index: 1;
                 filter: drop-shadow(11px 14px 10px #EFEFEF);
                 transition: all .8s ease-in-out;

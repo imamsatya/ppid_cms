@@ -48,7 +48,7 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($regulasiBanner->thumbnail_path)
                                                     <img class="card-img-top"
-                                                        src="{{ asset('storage/' . $regulasiBanner->thumbnail_path) }}"
+                                                        src="{{ Storage::url($regulasiBanner->thumbnail_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -72,7 +72,7 @@
                                                         Lihat Judul Lengkap
                                                     </a>
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset('storage/' . $peraturanKIP_row->file_path) }}"
+                                                        <a href="{{ Storage::url($peraturanKIP_row->file_path) }}"
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -140,7 +140,7 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($regulasiBanner->thumbnail_rancangan_path)
                                                     <img class="card-img-top"
-                                                        src="{{ asset('storage/' . $regulasiBanner->thumbnail_rancangan_path) }}"
+                                                        src="{{ Storage::url($regulasiBanner->thumbnail_rancangan_path) }}"
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -163,7 +163,7 @@
                                                         Lihat Judul Lengkap
                                                     </a>
                                                     <div class="d-flex align-items-center">
-                                                        <a href="{{ asset('storage/' . $rancanganPeraturanKIP_row->file_path) }}"
+                                                        <a href="{{ Storage::url($rancanganPeraturanKIP_row->file_path) }}"
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -317,7 +317,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset('storage/' . $regulasiBanner?->banner_path ?? '') }});
+                            background-image: url({{ Storage::url($regulasiBanner?->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

@@ -19,8 +19,7 @@
                 <div class="row">
                     @if ($maklumat)
                         <div class="col-md-12" align="center">
-                            <img class="img-fluid" src="{{ asset('storage/' . $maklumat->direktori_image) }}"
-                                alt="">
+                            <img class="img-fluid" src="{{ Storage::url($maklumat->direktori_image) }}" alt="">
                         </div>
                     @endif
                 </div>
@@ -44,7 +43,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset('storage/' . $maklumat?->banner_path ?? '') }});
+                            background-image: url({{ Storage::url($maklumat?->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;
