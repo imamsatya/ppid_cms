@@ -45,12 +45,12 @@
                     <x-slot:mainMenuTitle>
                         Layanan PPID
                         </x-slot>
-                       
+
                         <h1>Daftar Keberatan </h1>
                         <br>
-                           @if ($errors->any())
+                        @if ($errors->any())
                             <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
-                               
+
                                 <!--begin::Icon-->
                                 <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -59,10 +59,10 @@
                                         <path opacity="0.3"
                                             d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z"
                                             fill="currentColor" />
-                                        <rect x="9" y="13.0283" width="7.3536" height="1.2256" rx="0.6128"
-                                            transform="rotate(-45 9 13.0283)" fill="currentColor" />
-                                        <rect x="9.86664" y="7.93359" width="7.3536" height="1.2256" rx="0.6128"
-                                            transform="rotate(45 9.86664 7.93359)" fill="currentColor" />
+                                        <rect x="9" y="13.0283" width="7.3536" height="1.2256"
+                                            rx="0.6128" transform="rotate(-45 9 13.0283)" fill="currentColor" />
+                                        <rect x="9.86664" y="7.93359" width="7.3536" height="1.2256"
+                                            rx="0.6128" transform="rotate(45 9.86664 7.93359)" fill="currentColor" />
                                     </svg>
                                 </span>
                                 <!--end::Icon-->
@@ -151,7 +151,7 @@
                             </div>
                             <!--end::Alert-->
                         @endif
-                            <!-- <div class="card card-flush shadow-sm">
+                        <!-- <div class="card card-flush shadow-sm">
                                 <form action="{{ route('admin.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body py-5">
@@ -161,39 +161,39 @@
                                         <div class="mb-10">
                                             <label for="" class="required form-label">Link Survei</label>
                                             @if ($linkSurvei)
-                                                @if (auth()->user()->can('data permohonan.edit'))
-                                                    <input type="text" name="linkSurvei" class="form-control form-control-solid"
+@if (auth()->user()->can('data permohonan.edit'))
+<input type="text" name="linkSurvei" class="form-control form-control-solid"
                                                         placeholder="Link Survei" value="{{ $linkSurvei->link }}" />
-                                                @else
-                                                    <input type="text" readonly name="linkSurvei"
+@else
+<input type="text" readonly name="linkSurvei"
                                                         class="form-control form-control-solid"
                                                         placeholder="Link Survei" value="{{ $linkSurvei->link }}" />
-                                                @endif
-                                            @else
-                                                @if (auth()->user()->can('data permohonan.edit'))
-                                                    <input type="text" name="linkSurvei" class="form-control form-control-solid"
+@endif
+@else
+@if (auth()->user()->can('data permohonan.edit'))
+<input type="text" name="linkSurvei" class="form-control form-control-solid"
                                                         placeholder="Link Survei" value="" />
-                                                @else
-                                                    <input type="text" readonly name="linkSurvei"
+@else
+<input type="text" readonly name="linkSurvei"
                                                         class="form-control form-control-solid"
                                                         placeholder="Link Survei" value="" />
-                                                @endif
-                                            @endif <br>
+@endif
+@endif <br>
 
                                         
                                         </div>
 
                                         @can('data permohonan.create')
-                                            <button type="submit" class="btn btn-primary" id="addBannerButton"
-                                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
-                                                    Simpan
-                                                </span>
-                                                <span class="indicator-progress">
-                                                    Mohon Menunggu... <span
-                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                                </span>
-                                            </button>
-                                        @endcan
+    <button type="submit" class="btn btn-primary" id="addBannerButton"
+                                                                onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
+                                                                    Simpan
+                                                                </span>
+                                                                <span class="indicator-progress">
+                                                                    Mohon Menunggu... <span
+                                                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                                </span>
+                                                            </button>
+@endcan
 
 
                                     
@@ -752,9 +752,9 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
                             <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                             <script>
                                 $(document).ready(function() {
@@ -779,6 +779,20 @@
                                     var modalDetail = new KTBlockUI(document.getElementById('content-modal-detail'), {
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
+
+                                    function escapeHTML(text) {
+                                        const replacements = {
+                                            "<": "&lt;",
+                                            ">": "&gt;",
+                                            "&": "&amp;",
+                                            "\"": "&quot;",
+                                            "'": "&#x27;",
+                                            "/": "&#x2F;"
+                                        };
+                                        return text.replace(/[<>&"'\/]/g, function(match) {
+                                            return replacements[match];
+                                        });
+                                    }
 
                                     function activateLoadingButton(idButton) {
                                         console.log('active')
@@ -878,7 +892,7 @@
                                                     i + 1,
                                                     data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
-                                                    data[i].nama_lengkap,
+                                                    escapeHTML(data[i].nama_lengkap),
                                                     data[i].jenis_kanal,
                                                     data[i].id_status == '1' ? '-' : expiredDate,
                                                     data[i].nama_status,
@@ -947,7 +961,7 @@
                                                     i + 1,
                                                     data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
-                                                    data[i].nama_lengkap,
+                                                    escapeHTML(data[i].nama_lengkap),
                                                     data[i].nama_status,
                                                     jawaban,
                                                     sengketa,
@@ -1476,7 +1490,7 @@
                                         console.log('detail', dataKeberatan)
                                         $("#id-keberatan-edited").val(data)
 
-                                        $("#perihal-keberatan-detail-notiny").html(dataKeberatan.result.perihal_keberatan)
+                                        $("#perihal-keberatan-detail-notiny").text(dataKeberatan.result.perihal_keberatan)
 
                                         $("#detail-kategori-keberatan-info").val(dataKeberatan.result.jenis_keberatan)
                                         $("#detail-permohonan-sebelumnya-info").val(dataKeberatan.result.ticket_permohonan)
