@@ -137,7 +137,7 @@ Route::get('/detailtemplate', function () {
 //     return view('forgot');
 // });
 //User PPID
-Route::middleware(['frame.headers.middleware'])->group(function () {
+Route::middleware(['frame.headers.middleware','xsssanitizer'])->group(function () {
     Route::get('data-statistik', [HomeController::class, 'getDataStatistik']);
 
     // Route::get('admin/', [UserPPIDLoginController::class, 'index'])
