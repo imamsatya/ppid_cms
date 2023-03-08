@@ -3,6 +3,18 @@
 
     @push('child-scripts')
         <script>
+    var urlcheckuser = "{{route('user_admin.checkuser')}}";
+    $(document).ready(function(){
+        $('.modal').on('shown.bs.modal', function () {
+            // setFormValidate();
+        });  
+
+        $("#username").keyup(delay(function (e) {
+            checkUser();
+        }, 500));
+    });
+
+    
             $("#kt_datatable_dom_positioning_role").DataTable({
                 "language": {
                     "lengthMenu": "Show _MENU_",
@@ -19,8 +31,10 @@
                 let users = {{ Js::from($users) }}
                 let user = users[index]
                 console.log('user', user)
-                document.getElementById('editName').value = user.name
+                document.getElementById('editUsername').value = user.username
                 document.getElementById('editEmail').value = user.email
+                document.getElementById('editName').value = user.name
+                document.getElementById('editHandphone').value = user.handphone
 
                 let roles = {{ Js::from($roles) }}
                 console.log('roles', roles);
@@ -68,7 +82,7 @@
                         console.log('delete confirmed')
                         $.ajax({
                             type: "DELETE",
-                            url: "/admin/user_admin/" + user.id,
+                            url: "/manajemen-ppid/user_admin/" + user.id,
                             cache: false,
                             success: function(html) {
                                 Swal.fire({
@@ -107,6 +121,79 @@
                 //     button.removeAttribute("data-kt-indicator");
                 // }, 3000);
             }
+            
+            function onlyNumberKey(e) {
+                var ASCIICode = (e.which) ? e.which : e.keyCode
+                    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                        return false;
+                    return true;
+            }
+
+            function delay(callback, ms) {
+                var timer = 0;
+                return function() {
+                    var context = this, args = arguments;
+                    clearTimeout(timer);
+                    timer = setTimeout(function () {
+                    callback.apply(context, args);
+                    }, ms || 0);
+                };
+            }
+
+    function checkUser(){
+        $.ajax({
+            type: 'post',
+            url: urlcheckuser,
+            data: {
+                'username' : $("#username").val()
+            },
+            dataType : 'json',
+            // beforeSend: function(){
+            //     $.blockUI({
+            //         theme: true,
+            //         baseZ: 2000
+            //     })   
+            // },
+            success: function(data){
+                // $.unblockUI();
+                if(data.status){
+                    $("#name").val(data.data.name);
+                    $("#email").val(data.data.email);
+                    $("#handphone").val(data.data.handphone);
+                    $("#email").val(data.data.email);
+                    $("#id_bumn").val(data.data.id_bumn).change();
+                }
+            },
+            error: function(jqXHR, exception){
+                // $.unblockUI();
+                var msgerror = '';
+                if (jqXHR.status === 0) {
+                    msgerror = 'jaringan tidak terkoneksi.';
+                } else if (jqXHR.status == 404) {
+                    msgerror = 'Halaman tidak ditemukan. [404]';
+                } else if (jqXHR.status == 500) {
+                    msgerror = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msgerror = 'Requested JSON parse gagal.';
+                } else if (exception === 'timeout') {
+                    msgerror = 'RTO.';
+                } else if (exception === 'abort') {
+                    msgerror = 'Gagal request ajax.';
+                } else {
+                    msgerror = 'Error.\n' + jqXHR.responseText;
+                }
+                swal.fire({
+                        title: "Error System",
+                        html: msgerror+', coba ulangi kembali !!!',
+                        icon: 'error',
+
+                        buttonsStyling: true,
+
+                        confirmButtonText: "<i class='flaticon2-checkmark'></i> OK"
+                });	                               
+            }
+        });
+    }
         </script>
     @endpush
     <h1>Daftar User Admin </h1>
@@ -325,7 +412,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_admin.store') }}"
+                    <form id="kt_account_profile_details_form" action="{{ route('user_admin.store') }}"
                         method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
@@ -335,13 +422,13 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text" name="name"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
-                                        value="" />
+                                <div class="col-lg-6">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" name="username" id="username" value="" required/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Nama</label>
+                                    <input type="text" class="form-control" name="name" id="name" value="" required/>
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -349,51 +436,29 @@
 
                             <!--begin::Input group-->
                             <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="email" name="email"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Email"
-                                        value="" />
+                                <div class="col-lg-6">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" name="email" id="email" value="" required/>
                                 </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Password</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="password" name="password"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Password"
-                                        value="" />
+                                <div class="col-lg-6">
+                                    <label>No HP</label>
+                                    <input type="text" class="form-control" name="handphone" id="handphone" onkeypress="return onlyNumberKey(event)" value="" required/>
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
                             <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <select class="form-select form-select-sm form-select-solid" id="addP"
-                                        data-control="select2" data-close-on-select="false"
-                                        data-placeholder="Pilih Role" name="roles[]">
-                                        <option></option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->name }}">
-                                                {{ $role->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <div class="col-lg-6">
+                                <label>Roles</label>           
+                                <select class="form-select form-select-sm form-select-solid" id="addP" data-control="select2" data-close-on-select="false" data-placeholder="Pilih Role" name="roles[]">
+                                    <option></option>
+                                    @foreach($roles as $value)  
+                                        <option value="{{$value->id}}">{{$value->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                                
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
@@ -465,13 +530,13 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="text"name="edit_name" id="editName"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
-                                        value="" />
+                                <div class="col-lg-6">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" name="username" id="editUsername" value="" required/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Nama</label>
+                                    <input type="text" class="form-control" name="name" id="editName" value="" required/>
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -479,47 +544,29 @@
 
                             <!--begin::Input group-->
                             <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="email" name="edit_email" id="editEmail"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Email"
-                                        value="" />
+                                <div class="col-lg-6">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" name="email" id="editEmail" value="" required/>
                                 </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group-->
-
-                            <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Password</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <input type="password" name="edit_password" id="editPassword"
-                                        class="form-control form-control-lg form-control-solid" placeholder="Password"
-                                        value="" />
+                                <div class="col-lg-6">
+                                    <label>No HP</label>
+                                    <input type="text" class="form-control" name="handphone" id="editHandphone" onkeypress="return onlyNumberKey(event)" value="" required/>
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
                             <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <select class="form-select form-select-sm form-select-solid"
+                                <div class="col-lg-6">
+                                <label>Roles</label>           
+                                <select class="form-select form-select-sm form-select-solid"
                                         data-control="select2" data-close-on-select="false"
                                         data-placeholder="Pilih Role" name="edit_roles[]" id="editRoles">
                                         <option></option>
 
                                     </select>
-                                </div>
+                            </div>
+                                
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
@@ -569,3 +616,6 @@
                         Manajemen User
                         </x-slot>
 </x-admin.layout>
+
+
+

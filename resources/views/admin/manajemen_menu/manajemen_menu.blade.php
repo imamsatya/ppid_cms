@@ -337,7 +337,7 @@
                             <div class="modal-body py-lg-10 px-lg-10">
                                 {{-- Content Modal --}}
                                 <form id="kt_account_profile_details_form"
-                                    action="{{ route('admin.manajemen_menu.addMainMenu') }}"
+                                    action="{{ route('manajemen-ppid.manajemen_menu.addMainMenu') }}"
                                     enctype="multipart/form-data" method="POST" class="form">
                                     @csrf
                                     <!--begin::Card body-->

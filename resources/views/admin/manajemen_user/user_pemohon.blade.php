@@ -198,7 +198,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_pemohon.store') }}"
+                    <form id="kt_account_profile_details_form" action="{{ route('user_pemohon.store') }}"
                         method="POST" class="form" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Card body-->

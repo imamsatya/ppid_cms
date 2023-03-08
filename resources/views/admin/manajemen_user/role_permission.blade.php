@@ -455,7 +455,7 @@
                                         <div class="modal-body py-lg-10 px-lg-10">
                                             {{-- Content Modal --}}
                                             <form id="kt_account_profile_details_form" class="form"
-                                                action="{{ route('admin.role_permission.store') }}" method="POST">
+                                                action="{{ route('manajemen-ppid.role_permission.store') }}" method="POST">
                                                 @csrf
                                                 <!--begin::Card body-->
                                                 <div class="card-body  p-9">

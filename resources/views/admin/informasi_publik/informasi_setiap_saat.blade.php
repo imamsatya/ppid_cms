@@ -112,7 +112,7 @@
             @endif
 
             <h1>Pengelolaan Informasi Publik</h1>
-            <form action="{{ route('admin.informasi_secara_berkala.banner.store') }}" method="POST"
+            <form action="{{ route('manajemen-ppid.informasi_secara_berkala.banner.store') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
