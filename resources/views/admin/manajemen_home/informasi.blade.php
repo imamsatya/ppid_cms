@@ -179,7 +179,7 @@
             </div>
 
             <br>
-            <form action="{{ route('admin.informasi.image.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.informasi.image.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -412,7 +412,7 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                                action="{{ route('admin.informasi.store') }}" method="POST" class="form">
+                                action="{{ route('manajemen-ppid.informasi.store') }}" method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">

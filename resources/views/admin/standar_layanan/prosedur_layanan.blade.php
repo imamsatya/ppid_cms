@@ -118,7 +118,7 @@
             <br>
 
 
-            <form action="{{ route('admin.prosedurlayanan.banner.store') }}" method="POST"
+            <form action="{{ route('manajemen-ppid.prosedurlayanan.banner.store') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
@@ -203,7 +203,7 @@
             </form>
 
 
-            <form action="{{ route('admin.prosedurlayanan.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.prosedurlayanan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <br>
                 <div class="card card-flush shadow-sm">

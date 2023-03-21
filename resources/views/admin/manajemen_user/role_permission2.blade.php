@@ -503,7 +503,7 @@
                                 class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                 Role</a> --}}
                             @can('role permission.edit')
-                                <a href="{{ route('admin.role_permission.edit', $role) }}"
+                                <a href="{{ route('manajemen-ppid.role_permission.edit', $role) }}"
                                     class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                     Role</a>
                             @endcan
@@ -543,7 +543,7 @@
 
                             {{-- Versi Create --}}
 
-                            <a href="{{ route('admin.role_permission.create') }}"
+                            <a href="{{ route('manajemen-ppid.role_permission.create') }}"
                                 class="btn btn-clear d-flex flex-column flex-center">
                                 <!--begin::Illustration-->
                                 <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
@@ -599,7 +599,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
-                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+                        <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->

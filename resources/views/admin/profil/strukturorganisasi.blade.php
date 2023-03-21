@@ -471,7 +471,7 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form"
-                                action="{{ route('admin.strukturorganisasi.bagankanan.store') }}" method="POST"
+                                action="{{ route('manajemen-ppid.strukturorganisasi.bagankanan.store') }}" method="POST"
                                 class="form">
                                 @csrf
                                 <!--begin::Card body-->

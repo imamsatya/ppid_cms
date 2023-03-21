@@ -258,7 +258,7 @@
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
                     <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                        action="{{ route('admin.footer.sosialmedia.store') }}" method="POST" class="form">
+                        action="{{ route('manajemen-ppid.footer.sosialmedia.store') }}" method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
@@ -574,7 +574,7 @@
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
                     <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                        action="{{ route('admin.footer.linkapp.store') }}" method="POST" class="form">
+                        action="{{ route('manajemen-ppid.footer.linkapp.store') }}" method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">

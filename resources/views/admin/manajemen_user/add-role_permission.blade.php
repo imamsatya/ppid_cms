@@ -140,7 +140,7 @@
 
                 <div class="modal-body  mx-lg-5 my-0">
                     <!--begin::Form-->
-                    <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}" class="form"
+                    <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}" class="form"
                         method="POST">
                         @csrf
                         <!--begin::Scroll-->
@@ -1806,7 +1806,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
-                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+                        <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->
@@ -3309,7 +3309,7 @@
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
                         <!--begin::Form-->
-                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+                        <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->

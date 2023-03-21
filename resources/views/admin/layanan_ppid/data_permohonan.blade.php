@@ -203,7 +203,7 @@
                                 <!--end::Alert-->
                             @endif
                             <!-- <div class="card card-flush shadow-sm">
-                                <form action="{{ route('admin.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('manajemen-ppid.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body py-5">
 

@@ -112,7 +112,7 @@
             @endif
 
 
-            <form action="{{ route('admin.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card card-flush shadow-sm">
