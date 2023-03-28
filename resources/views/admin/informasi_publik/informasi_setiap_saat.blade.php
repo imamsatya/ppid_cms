@@ -549,7 +549,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/informasi_setiap_saat/" + informasiSetiapSaat.id,
+                                    url: "/manajemen-ppid/informasi_setiap_saat/" + informasiSetiapSaat.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

@@ -383,13 +383,13 @@ Route::middleware(['cas', 'user'])->group(function () {
         });
 
         Route::prefix('prosedurlayanan')->group(function(){
-            Route::get('index', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@index')->name('manajemen-ppid.prosedurlayanan.index');
-            Route::post('create', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@create')->name('manajemen-ppid.prosedurlayanan.create');
-            Route::post('edit', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@edit')->name('manajemen-ppid.prosedurlayanan.edit');
-            Route::post('store', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@store')->name('manajemen-ppid.prosedurlayanan.store');
-            Route::post('delete', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@delete')->name('manajemen-ppid.prosedurlayanan.delete');
-            Route::get('show/{id?}', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@show')->name('manajemen-ppid.prosedurlayanan.show');
-            Route::post('/prosedurlayanan/banner', 'App\Http\Controllers\Admin\StandarLayanan\MaklumatController@bannerStore')->name('manajemen-ppid.prosedurlayanan.banner.store');
+            Route::get('index', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@index')->name('manajemen-ppid.prosedurlayanan.index');
+            Route::post('create', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@create')->name('manajemen-ppid.prosedurlayanan.create');
+            Route::post('edit', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@edit')->name('manajemen-ppid.prosedurlayanan.edit');
+            Route::post('store', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@store')->name('manajemen-ppid.prosedurlayanan.store');
+            Route::post('delete', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@delete')->name('manajemen-ppid.prosedurlayanan.delete');
+            Route::get('show/{id?}', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@show')->name('manajemen-ppid.prosedurlayanan.show');
+            Route::post('/prosedurlayanan/banner', 'App\Http\Controllers\Admin\StandarLayanan\ProsedurLayananController@bannerStore')->name('manajemen-ppid.prosedurlayanan.banner.store');
         });
 
         Route::prefix('biayalayanan')->group(function(){

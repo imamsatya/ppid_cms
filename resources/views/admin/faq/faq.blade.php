@@ -620,7 +620,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/faq/" + faq.id,
+                                    url: "/manajemen-ppid/faq/" + faq.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

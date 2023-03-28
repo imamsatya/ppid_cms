@@ -152,7 +152,7 @@
                             <!--end::Alert-->
                         @endif
                         <!-- <div class="card card-flush shadow-sm">
-                                <form action="{{ route('admin.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('linksurvei.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body py-5">
 
@@ -822,7 +822,7 @@
                                     const getDataKeberatanMasuk = (asal, status, date) => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: `/admin/ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            url: `/manajemen-ppid/ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
                                     }
@@ -831,7 +831,7 @@
                                         return $.ajax({
                                             type: 'GET',
                                             // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
-                                            url: `/admin/ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            url: `/manajemen-ppid/ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
                                     }
@@ -1242,7 +1242,7 @@
                                     const templateReject = () => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: "/admin/ppid-template-reject",
+                                            url: "/manajemen-ppid/ppid-template-reject",
                                             dataType: 'json'
                                         })
                                     }
@@ -1279,7 +1279,7 @@
                                     const submitKonfirmasiKeberatan = (data) => {
                                         return $.ajax({
                                             type: 'POST',
-                                            url: "/admin/konfirmasi-data-keberatan",
+                                            url: "/manajemen-ppid/konfirmasi-data-keberatan",
                                             data: data,
                                             dataType: 'json'
                                         })
@@ -1397,7 +1397,7 @@
                                     const submitAnswer = (data) => {
                                         return $.ajax({
                                             type: 'POST',
-                                            url: "/admin/submit-answer-keberatan",
+                                            url: "/manajemen-ppid/submit-answer-keberatan",
                                             data: data,
                                             contentType: false,
                                             processData: false,
@@ -1458,7 +1458,7 @@
                                     const getUserPenghubung = (data) => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: "/admin/users-penghubung",
+                                            url: "/manajemen-ppid/users-penghubung",
                                             dataType: 'json'
                                         })
                                     }
@@ -1478,7 +1478,7 @@
                                     const ppidPendaftar = (data) => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: "/admin/ppid-pendaftar/" + data,
+                                            url: "/manajemen-ppid/ppid-pendaftar/" + data,
                                             dataType: 'json'
                                         })
                                     }

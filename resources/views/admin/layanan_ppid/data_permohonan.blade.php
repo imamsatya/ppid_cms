@@ -203,7 +203,7 @@
                                 <!--end::Alert-->
                             @endif
                             <!-- <div class="card card-flush shadow-sm">
-                                <form action="{{ route('manajemen-ppid.linksurvei.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('linksurvei.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body py-5">
 
@@ -841,7 +841,7 @@
                                         const getDataPermohonanMasuk = (asal, status, date) => {
                                             return $.ajax({
                                                 type: 'GET',
-                                                url: `/admin/ppid-data-permohonan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                                url: `/manajemen-ppid/ppid-data-permohonan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                                 dataType: 'json'
                                             });
                                         }
@@ -850,7 +850,7 @@
                                             return $.ajax({
                                                 type: 'GET',
                                                 // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
-                                                url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                                url: `/manajemen-ppid/ppid-data-permohonan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                                 dataType: 'json'
                                             });
                                         }
@@ -859,7 +859,7 @@
                                             return $.ajax({
                                                 type: 'GET',
                                                 // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
-                                                url: `/admin/cetak-data`,
+                                                url: `/manajemen-ppid/cetak-data`,
                                                 data: data,
                                                 dataType: 'json'
                                             });
@@ -1289,7 +1289,7 @@
                                         const templateReject = () => {
                                             return $.ajax({
                                                 type: 'GET',
-                                                url: "/admin/ppid-template-reject",
+                                                url: "/manajemen-ppid/ppid-template-reject",
                                                 dataType: 'json'
                                             })
                                         }
@@ -1330,7 +1330,7 @@
                                         const submitKonfirmasiPermohonan = (data) => {
                                             return $.ajax({
                                                 type: 'POST',
-                                                url: "/admin/konfirmasi-data-permohonan",
+                                                url: "/manajemen-ppid/konfirmasi-data-permohonan",
                                                 data: data,
                                                 dataType: 'json'
                                             })
@@ -1537,7 +1537,7 @@
                                         const submitAnswer = (data) => {
                                             return $.ajax({
                                                 type: 'POST',
-                                                url: "/admin/submit-answer-permohonan",
+                                                url: "/manajemen-ppid/submit-answer-permohonan",
                                                 data: data,
                                                 contentType: false,
                                                 processData: false,
@@ -1602,7 +1602,7 @@
                                         const getUserPenghubung = (data) => {
                                             return $.ajax({
                                                 type: 'GET',
-                                                url: "/admin/users-penghubung",
+                                                url: "/manajemen-ppid/users-penghubung",
                                                 dataType: 'json'
                                             })
                                         }
@@ -1637,7 +1637,7 @@
                                         const submitForward = (data) => {
                                             return $.ajax({
                                                 type: 'POST',
-                                                url: "/admin/submit-forward-permohonan",
+                                                url: "/manajemen-ppid/submit-forward-permohonan",
                                                 data: data,
                                                 dataType: 'json'
                                             })
@@ -1851,7 +1851,7 @@
                                             // var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
 
 
-                                            window.location.href = `/admin/cetak-data/${dataDetail.idPermohonan}`
+                                            window.location.href = `/manajemen-ppid/cetak-data/${dataDetail.idPermohonan}`
 
                                             // await getCetakData(dataDetail)
 
