@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-    <title>PPID BUMN - Kementerian BUMN</title>
+    <title>PPID - Kementerian BUMN</title>
     <style>
       .content {
         max-width: 80%;

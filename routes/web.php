@@ -440,7 +440,16 @@ Route::middleware(['cas', 'user'])->group(function () {
         });
 
         //Manajemen User
-        Route::resource('role_permission', RolePermissionController::class);
+        
+        Route::prefix('role_permission')->group(function(){
+            Route::get('index', 'App\Http\Controllers\Admin\ManajemenUser\RolePermissionController@index')->name('manajemen-ppid.role_permission.index');
+            Route::post('create', 'App\Http\Controllers\Admin\ManajemenUser\RolePermissionController@create')->name('manajemen-ppid.role_permission.create');
+            Route::post('edit', 'App\Http\Controllers\Admin\ManajemenUser\RolePermissionController@edit')->name('manajemen-ppid.role_permission.edit');
+            Route::post('store', 'App\Http\Controllers\Admin\ManajemenUser\RolePermissionController@store')->name('manajemen-ppid.role_permission.store');
+            Route::post('delete', 'App\Http\Controllers\Admin\ManajemenUser\RolePermissionController@delete')->name('manajemen-ppid.role_permission.delete');
+            Route::get('show/{id?}', 'App\Http\Controllers\Admin\ManajemenUser\RolePermissionController@show')->name('manajemen-ppid.role_permission.show');
+        });
+
         Route::resource('user_admin', UserAdminController::class);
         Route::resource('user_pemohon', UserPemohonController::class);
         Route::post('checkuser', [UserAdminController::class,'checkuser'])->name('user_admin.checkuser');
