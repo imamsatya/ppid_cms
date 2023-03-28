@@ -891,7 +891,7 @@
                                             console.log('delete confirmed')
                                             $.ajax({
                                                 type: "DELETE",
-                                                url: "/admin/footer/sosialmedia/delete/" + sosialMedia.id,
+                                                url: "/manajemen-ppid/footer/sosialmedia/delete/" + sosialMedia.id,
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({
@@ -958,7 +958,7 @@
                                             console.log('delete confirmed')
                                             $.ajax({
                                                 type: "DELETE",
-                                                url: "/admin/footer/linkapp/delete/" + linkApp.id,
+                                                url: "/manajemen-ppid/footer/linkapp/delete/" + linkApp.id,
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({

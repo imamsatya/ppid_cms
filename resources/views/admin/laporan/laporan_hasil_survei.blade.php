@@ -625,7 +625,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/laporan_hasil_survei/" + laporanHasilSurvei.id,
+                                    url: "/manajemen-ppid/laporan_hasil_survei/" + laporanHasilSurvei.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

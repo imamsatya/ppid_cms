@@ -549,7 +549,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/informasi_secara_berkala/" + informasiSecaraBerkala.id,
+                                    url: "/manajemen-ppid/informasi_secara_berkala/" + informasiSecaraBerkala.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

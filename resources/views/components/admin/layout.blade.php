@@ -1185,7 +1185,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item ">
                                         <!--begin:Menu link-->
                                         <a class="menu-link  {{ $isActiveLink_manajemenMenu ?? '' }}"
-                                            href="{{ route('manajemen-ppid.manajemen_menu.index') }}">
+                                            href="{{ route('manajemen_menu.index') }}">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                                 <span class="svg-icon svg-icon-2">

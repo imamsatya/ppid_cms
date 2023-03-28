@@ -549,7 +549,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/informasi_serta_merta/" + informasiSertaMerta.id,
+                                    url: "/manajemen-ppid/informasi_serta_merta/" + informasiSertaMerta.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

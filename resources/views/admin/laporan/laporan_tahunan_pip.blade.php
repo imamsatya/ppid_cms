@@ -625,7 +625,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/laporan_tahunan/" + laporanTahunan.id,
+                                    url: "/manajemen-ppid/laporan_tahunan/" + laporanTahunan.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

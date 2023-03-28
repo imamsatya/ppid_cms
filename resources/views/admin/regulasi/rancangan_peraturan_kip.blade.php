@@ -674,7 +674,7 @@
                                 console.log('delete confirmed')
                                 $.ajax({
                                     type: "DELETE",
-                                    url: "/admin/rancangan_peraturan_kip/" + rancanganPeraturanKIP.id,
+                                    url: "/manajemen-ppid/rancangan_peraturan_kip/" + rancanganPeraturanKIP.id,
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
