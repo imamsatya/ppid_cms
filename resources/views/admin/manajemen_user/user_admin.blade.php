@@ -3,7 +3,7 @@
 
     @push('child-scripts')
         <script>
-    var urlcheckuser = "{{route('user_admin.checkuser')}}";
+    var urlcheckuser = "{{route('manajemen-ppid.user_admin.checkuser')}}";
     $(document).ready(function(){
         $('.modal').on('shown.bs.modal', function () {
             // setFormValidate();
@@ -58,7 +58,7 @@
                     node.appendChild(textnode);
                     document.getElementById("editRoles").appendChild(node);
                 })
-                document.getElementById('editForm').setAttribute('action', 'user_admin/' + user.id)
+                document.getElementById('editForm').setAttribute('action', 'update/' + user.id)
             };
 
             function deleteDialog(index) {
@@ -78,15 +78,15 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-
-                        console.log('delete confirmed')
                         $.ajax({
-                            type: "DELETE",
-                            url: "/manajemen-ppid/user_admin/" + user.id,
+                            type: "post",
+                            url: "{{route('manajemen-ppid.user_admin.delete')}}",
+                            data:{
+                                    "id": user.id
+                                },
                             cache: false,
                             success: function(html) {
                                 Swal.fire({
-
                                     icon: 'success',
                                     title: 'Berhasil menghapus User',
                                     showConfirmButton: false,
@@ -94,12 +94,8 @@
                                 }).then(() => {
                                     window.location.reload();
                                 })
-
-
                             }
                         });
-
-                        // window.location = '/visimisi'
                     } else {
                         console.log('delete canceled')
                     }
@@ -412,7 +408,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('user_admin.store') }}"
+                    <form id="kt_account_profile_details_form" action="{{ route('manajemen-ppid.user_admin.store') }}"
                         method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->

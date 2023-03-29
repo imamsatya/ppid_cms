@@ -235,13 +235,11 @@ class KontakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function dokumentasiDestroy($id)
+    public function dokumentasiDestroy(Request $request)
     {
-        //
-        // dd($id);
         $dokumentasi = new KontakDokumentasiRuang();
-        File::delete($dokumentasi->where('id', $id)->first()->image_path);
-        $dokumentasi = $dokumentasi->where('id', $id)->delete();
+        File::delete($dokumentasi->where('id', $request->id)->first()->image_path);
+        $dokumentasi = $dokumentasi->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus dokumentasi");
     }

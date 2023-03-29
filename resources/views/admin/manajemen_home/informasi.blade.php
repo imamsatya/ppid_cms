@@ -790,15 +790,15 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-
-                                                    console.log('delete confirmed')
                                                     $.ajax({
-                                                        type: "DELETE",
-                                                        url: "/admin/informasi/" + informasi.id,
+                                                        type: "post",
+                                                        url: "{{route('manajemen-ppid.informasi.delete')}}",
+                                                        data:{
+                                                                "id": informasi.id
+                                                            },
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
-
                                                                 icon: 'success',
                                                                 title: 'Berhasil menghapus informasi',
                                                                 showConfirmButton: false,
@@ -806,12 +806,8 @@
                                                             }).then(() => {
                                                                 window.location.reload();
                                                             })
-
-
                                                         }
                                                     });
-
-                                                    // window.location = '/visimisi'
                                                 } else {
                                                     console.log('delete canceled')
                                                 }
@@ -834,7 +830,7 @@
                                             document.getElementById('editInformasiImage').style.cssText =
                                                 `background-image: url({{ asset('storage/${informasiRow.image_path}') }})`
 
-                                            document.getElementById('editForm').setAttribute('action', 'informasi/' +
+                                            document.getElementById('editForm').setAttribute('action', 'update/' +
                                                 informasiRow.id)
                                         };
                                     </script>

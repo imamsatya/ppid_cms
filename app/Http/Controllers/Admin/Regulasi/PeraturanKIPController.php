@@ -46,8 +46,6 @@ class PeraturanKIPController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
         $validated = $request->validate([
             'judulPeraturan' => 'required',
             'urutan' => 'required',
@@ -232,13 +230,11 @@ class PeraturanKIPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
-
         $peraturanKIP = new PeraturanKIP();
-        File::delete($peraturanKIP->where('id', $id)->first()->file_path);
-        $peraturanKIP = $peraturanKIP->where('id', $id)->delete();
+        File::delete($peraturanKIP->where('id', $request->id)->first()->file_path);
+        $peraturanKIP = $peraturanKIP->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus peraturan KIP");
     }

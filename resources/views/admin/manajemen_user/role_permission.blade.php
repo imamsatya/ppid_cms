@@ -134,19 +134,17 @@
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             activateLoadingButton('.swal2-confirm')
-                                            console.log('delete confirmed')
                                             $.ajax({
-                                                type: "DELETE",
-                                                url: "/admin/role_permission/" + role.id,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.role_permission.delete')}}",
+                                                data:{
+                                                        "id": user.id
+                                                    },
                                                 cache: false,
                                                 success: function(html) {
-
                                                     window.location.reload();
-
                                                 }
                                             });
-
-                                            // window.location = '/visimisi'
                                         } else {
                                             console.log('delete canceled')
                                         }

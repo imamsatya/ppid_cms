@@ -160,16 +160,14 @@ class InformasiSertaMertaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $informasiSertaMerta = new InformasiSertaMerta();
-
-        if ($informasiSertaMerta->where('id', $id)->first()->file_path) {
-            File::delete($informasiSertaMerta->where('id', $id)->first()->file_path);
+        if ($informasiSertaMerta->where('id', $request->id)->first()->file_path) {
+            File::delete($informasiSertaMerta->where('id', $request->id)->first()->file_path);
         }
 
-        $informasiSertaMerta = $informasiSertaMerta->where('id', $id)->delete();
+        $informasiSertaMerta = $informasiSertaMerta->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Informasi Publik Serta Merta");
     }

@@ -291,7 +291,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
-                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+                            <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.laporan_triwulanan.store')}}" enctype="multipart/form-data"
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -621,11 +621,12 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
-
-                                console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/manajemen-ppid/laporan_triwulanan/" + laporanTriwulanan.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.laporan_triwulanan.delete')}}",
+                                    data:{
+                                            "id": laporanTriwulanan.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -637,12 +638,8 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
-
-
                                     }
                                 });
-
-                                // window.location = '/visimisi'
                             } else {
                                 console.log('delete canceled')
                             }
@@ -664,7 +661,7 @@
                         document.getElementById('editLaporanImage').style.cssText =
                             `background-image: url({{ asset('storage/${laporanTriwulanan.thumbnail_path}') }})`
 
-                        document.getElementById('editForm').setAttribute('action', 'laporan_triwulanan/' +
+                        document.getElementById('editForm').setAttribute('action', 'update/' +
                             laporanTriwulanan.id)
                     };
                 </script>

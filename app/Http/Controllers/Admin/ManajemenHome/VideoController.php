@@ -126,11 +126,10 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $video = new Video();
-        $video = $video->where('id', $id)->delete();
+        $video = $video->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus video");
     }

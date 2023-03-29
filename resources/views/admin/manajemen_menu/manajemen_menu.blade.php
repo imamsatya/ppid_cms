@@ -1017,8 +1017,11 @@
 
                                     console.log('delete confirmed')
                                     $.ajax({
-                                        type: "DELETE",
-                                        url: "/admin/manajemen_menu/delete-mainmenu/" + menu[0].id,
+                                        type: "post",
+                                        url: "{{route('manajemen-ppid.manajemen_menu.deleteMainMenu')}}",
+                                        data:{
+                                                "id": menu[0].id
+                                            },
                                         cache: false,
                                         success: function(html) {
                                             Swal.fire({
@@ -1111,11 +1114,12 @@
                                 }
                             }).then((result) => {
                                 if (result.isConfirmed) {
-
-                                    console.log('delete confirmed')
                                     $.ajax({
-                                        type: "DELETE",
-                                        url: "/admin/manajemen_menu/delete-submenu/" + subMenuId,
+                                        type: "post",
+                                        url: "{{route('manajemen-ppid.deleteSubMenu')}}",
+                                        data:{
+                                                "id": subMenuId
+                                            },
                                         cache: false,
                                         success: function(html) {
                                             Swal.fire({

@@ -887,15 +887,15 @@
                                         }
                                     }).then((result) => {
                                         if (result.isConfirmed) {
-
-                                            console.log('delete confirmed')
                                             $.ajax({
-                                                type: "DELETE",
-                                                url: "/manajemen-ppid/footer/sosialmedia/delete/" + sosialMedia.id,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.footer.sosialmedia.delete')}}",
+                                                data:{
+                                                        "id": sosialMedia.id
+                                                    },
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({
-
                                                         icon: 'success',
                                                         title: 'Berhasil menghapus sosialMedia',
                                                         showConfirmButton: false,
@@ -903,12 +903,8 @@
                                                     }).then(() => {
                                                         window.location.reload();
                                                     })
-
-
                                                 }
                                             });
-
-                                            // window.location = '/visimisi'
                                         } else {
                                             console.log('delete canceled')
                                         }
@@ -954,11 +950,12 @@
                                         }
                                     }).then((result) => {
                                         if (result.isConfirmed) {
-
-                                            console.log('delete confirmed')
                                             $.ajax({
-                                                type: "DELETE",
-                                                url: "/manajemen-ppid/footer/linkapp/delete/" + linkApp.id,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.footer.linkapp.delete')}}",
+                                                data:{
+                                                        "id": linkApp.id
+                                                    },
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({

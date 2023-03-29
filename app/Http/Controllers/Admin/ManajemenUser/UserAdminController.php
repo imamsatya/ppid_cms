@@ -124,10 +124,10 @@ class UserAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
-        $user = User::find($id);
+        $user = User::find($request->id);
         $response = MiddlewareClient::deleteUser($user->username);
         $user->roles()->detach();
         $user->delete();

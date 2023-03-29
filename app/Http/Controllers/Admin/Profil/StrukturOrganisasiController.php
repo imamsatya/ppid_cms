@@ -219,12 +219,10 @@ class StrukturOrganisasiController extends Controller
         //
     }
 
-    public function baganKananDestroy($id)
+    public function baganKananDestroy(Request $request)
     {
-        //
-        // dd($id);
         $baganKanan = new StrukturOrganisasiBaganKanan();
-        $baganKanan = $baganKanan->where('id', $id)->delete();
+        $baganKanan = $baganKanan->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus dokumentasi");
     }

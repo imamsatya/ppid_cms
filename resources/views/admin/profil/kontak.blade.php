@@ -123,8 +123,11 @@
 
                                 console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/manajemen-ppid/kontak/dokumentasi_ruang/delete/" + dokumentasi.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.kontak.dokumentasi.delete')}}",
+                                    data:{
+                                            "id": dokumentasi.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
