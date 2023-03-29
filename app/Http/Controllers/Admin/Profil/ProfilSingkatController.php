@@ -57,8 +57,6 @@ class ProfilSingkatController extends Controller
 
 
         if ($validated) {
-
-
             $profilSingkat = new ProfilSingkat();
             $profilSingkat = $profilSingkat->first();
 
