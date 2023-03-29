@@ -113,7 +113,7 @@
 
             <h1>Pengelolaan Struktur Organisasi</h1>
             <br>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('manajemen-ppid.strukturorganisasi.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 

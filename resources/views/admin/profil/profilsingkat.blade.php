@@ -211,7 +211,7 @@
             @endif
             <h1>Pengelolaan Profil</h1>
             <br>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('manajemen-ppid.profilsingkat.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 

@@ -858,8 +858,7 @@
                                         const getCetakData = (data) => {
                                             return $.ajax({
                                                 type: 'GET',
-                                                // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
-                                                url: `/manajemen-ppid/cetak-data`,
+                                                url: "{{route('manajemen-ppid.data_permohonan.cetak-data')}}",
                                                 data: data,
                                                 dataType: 'json'
                                             });
@@ -1289,7 +1288,7 @@
                                         const templateReject = () => {
                                             return $.ajax({
                                                 type: 'GET',
-                                                url: "/manajemen-ppid/ppid-template-reject",
+                                                url: "{{route('manajemen-ppid.data_permohonan.ppid-template-reject')}}",
                                                 dataType: 'json'
                                             })
                                         }
@@ -1330,7 +1329,7 @@
                                         const submitKonfirmasiPermohonan = (data) => {
                                             return $.ajax({
                                                 type: 'POST',
-                                                url: "/manajemen-ppid/konfirmasi-data-permohonan",
+                                                url:  "{{route('manajemen-ppid.data_permohonan.konfirmasi-data-permohonan')}}",
                                                 data: data,
                                                 dataType: 'json'
                                             })
@@ -1537,7 +1536,7 @@
                                         const submitAnswer = (data) => {
                                             return $.ajax({
                                                 type: 'POST',
-                                                url: "/manajemen-ppid/submit-answer-permohonan",
+                                                url: "{{route('manajemen-ppid.data_permohonan.submit-answer-permohonan')}}",
                                                 data: data,
                                                 contentType: false,
                                                 processData: false,
@@ -1602,7 +1601,7 @@
                                         const getUserPenghubung = (data) => {
                                             return $.ajax({
                                                 type: 'GET',
-                                                url: "/manajemen-ppid/users-penghubung",
+                                                url: "{{route('manajemen-ppid.data_permohonan.users-penghubung')}}",
                                                 dataType: 'json'
                                             })
                                         }
@@ -1637,7 +1636,7 @@
                                         const submitForward = (data) => {
                                             return $.ajax({
                                                 type: 'POST',
-                                                url: "/manajemen-ppid/submit-forward-permohonan",
+                                                url: "{{route('manajemen-ppid.data_permohonan.submit-forward-permohonan')}}",
                                                 data: data,
                                                 dataType: 'json'
                                             })
@@ -1691,8 +1690,11 @@
 
                                         const ppidPendaftar = (data) => {
                                             return $.ajax({
-                                                type: 'GET',
-                                                url: "/admin/ppid-pendaftar/" + data,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.data_permohonan.ppid-pendaftar')}}",
+                                                data:{
+                                                        "id": data
+                                                    },
                                                 dataType: 'json'
                                             })
                                         }
@@ -1851,7 +1853,7 @@
                                             // var worker = html2pdf().set(opt).from($("#data-cetak-field")[0]).save();
 
 
-                                            window.location.href = `/manajemen-ppid/cetak-data/${dataDetail.idPermohonan}`
+                                            window.location.href = "cetak-data-id/"+dataDetail.idPermohonan,
 
                                             // await getCetakData(dataDetail)
 

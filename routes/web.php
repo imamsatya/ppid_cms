@@ -428,6 +428,16 @@ Route::middleware(['cas', 'user'])->group(function () {
             Route::post('store', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@store')->name('manajemen-ppid.data_permohonan.store');
             Route::post('delete', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@delete')->name('manajemen-ppid.data_permohonan.delete');
             Route::get('show/{id?}', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@show')->name('manajemen-ppid.data_permohonan.show');
+            Route::get('ppid-data-permohonan', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@ppidDataPermohonan')->name('manajemen-ppid.data_permohonan.ppid-data-permohonan');
+            Route::get('ppid-data-permohonan-selesai', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@ppidDataPermohonanSelesai')->name('manajemen-ppid.data_permohonan.ppid-data-permohonan-selesai');
+            Route::get('ppid-template-reject', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@ppidTemplateReject')->name('manajemen-ppid.data_permohonan.ppid-template-reject');
+            Route::post('konfirmasi-data-permohonan', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@submitKonfirmasiPermohonan')->name('manajemen-ppid.data_permohonan.konfirmasi-data-permohonan');
+            Route::post('submit-answer-permohonan', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@submitAnswerPermohonan')->name('manajemen-ppid.data_permohonan.submit-answer-permohonan');
+            Route::post('submit-forward-permohonan', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@submitForwardPermohonan')->name('manajemen-ppid.data_permohonan.submit-forward-permohonan');
+            Route::post('ppid-pendaftar', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@dataPpidPendaftarById')->name('manajemen-ppid.data_permohonan.ppid-pendaftar');
+            Route::get('users-penghubung', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@getDaftarUserPenghubung')->name('manajemen-ppid.data_permohonan.users-penghubung');
+            Route::get('cetak-data', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@cetakData')->name('manajemen-ppid.data_permohonan.cetak-data');
+            Route::get('cetak-data/{id?}', 'App\Http\Controllers\Admin\LayananPPID\DataPermohonanController@cetakDataById')->name('manajemen-ppid.data_permohonan.cetak-data-id');
         });
 
         Route::prefix('data_keberatan')->group(function(){
@@ -437,6 +447,19 @@ Route::middleware(['cas', 'user'])->group(function () {
             Route::post('store', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@store')->name('manajemen-ppid.data_keberatan.store');
             Route::post('delete', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@delete')->name('manajemen-ppid.data_keberatan.delete');
             Route::get('show/{id?}', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@show')->name('manajemen-ppid.data_keberatan.show');
+            Route::get('ppid-data-keberatan', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@ppidDataKeberatan')->name('manajemen-ppid.data_keberatan.ppid-data-keberatan');
+            Route::get('ppid-data-keberatan-selesai', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@ppidDataKeberatanSelesai')->name('manajemen-ppid.data_keberatan.ppid-data-keberatan-selesai');
+            Route::post('konfirmasi-data-keberatan', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@submitKonfirmasiKeberatan')->name('manajemen-ppid.data_keberatan.konfirmasi-data-keberatan');
+            Route::post('submit-answer-keberatan', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@submitAnswerKeberatan')->name('manajemen-ppid.data_keberatan.submit-answer-keberatan');
+            Route::post('konfirmasi-sengketa/{id?}', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@submitKonfirmasiSengketa')->name('manajemen-ppid.data_keberatan.konfirmasi-sengketa');
+            Route::post('upload-putusan/{id?}', 'App\Http\Controllers\Admin\LayananPPID\DataKeberatanController@submitPutusan')->name('manajemen-ppid.data_keberatan.upload-putusan');
+
+            // Route::get('/ppid-data-keberatan', [DataKeberatanController::class, 'ppidDataKeberatan']);
+            // Route::get('/ppid-data-keberatan-selesai', [DataKeberatanController::class, 'ppidDataKeberatanSelesai']);
+            // Route::post('/konfirmasi-data-keberatan', [DataKeberatanController::class, 'submitKonfirmasiKeberatan']);
+            // Route::post('/submit-answer-keberatan', [DataKeberatanController::class, 'submitAnswerKeberatan']);
+            // Route::post('/konfirmasi-sengketa/{id}', [DataKeberatanController::class, 'submitKonfirmasiSengketa']);
+            // Route::post('/upload-putusan/{id}', [DataKeberatanController::class, 'submitPutusan']);
         });
 
         //Manajemen User
@@ -534,16 +557,7 @@ Route::middleware(['cas', 'user'])->group(function () {
 
         Route::resource('manajemen_menu', MenuController::class);
 
-        //Layanan PPID
-        // permohonan
-        Route::get('/ppid-data-permohonan', [DataPermohonanController::class, 'ppidDataPermohonan']);
-        Route::get('/ppid-data-permohonan-selesai', [DataPermohonanController::class, 'ppidDataPermohonanSelesai']);
-        Route::get('/ppid-template-reject', [DataPermohonanController::class, 'ppidTemplateReject']);
-        Route::post('/konfirmasi-data-permohonan', [DataPermohonanController::class, 'submitKonfirmasiPermohonan']);
-        Route::post('/submit-answer-permohonan', [DataPermohonanController::class, 'submitAnswerPermohonan']);
-        Route::post('/submit-forward-permohonan', [DataPermohonanController::class, 'submitForwardPermohonan']);
-        Route::get('/ppid-pendaftar/{id}', [DataPermohonanController::class, 'dataPpidPendaftarById']);
-        Route::get('/users-penghubung', [DataPermohonanController::class, 'getDaftarUserPenghubung']);
+        
 
         //cetak data
         Route::get('/cetak-data', [DataPermohonanController::class, 'cetakData']);
@@ -552,12 +566,7 @@ Route::middleware(['cas', 'user'])->group(function () {
         //linksurvei
         Route::post('/linksurvei', [DataPermohonanController::class, 'submitLinkSurvei'])->name('linksurvei.store');
         //keberatan
-        Route::get('/ppid-data-keberatan', [DataKeberatanController::class, 'ppidDataKeberatan']);
-        Route::get('/ppid-data-keberatan-selesai', [DataKeberatanController::class, 'ppidDataKeberatanSelesai']);
-        Route::post('/konfirmasi-data-keberatan', [DataKeberatanController::class, 'submitKonfirmasiKeberatan']);
-        Route::post('/submit-answer-keberatan', [DataKeberatanController::class, 'submitAnswerKeberatan']);
-        Route::post('/konfirmasi-sengketa/{id}', [DataKeberatanController::class, 'submitKonfirmasiSengketa']);
-        Route::post('/upload-putusan/{id}', [DataKeberatanController::class, 'submitPutusan']);
+        
     });
 });
 
