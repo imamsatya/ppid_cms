@@ -822,7 +822,7 @@
                                     const getDataKeberatanMasuk = (asal, status, date) => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: `/manajemen-ppid/ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            url: `ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
                                     }
@@ -831,7 +831,7 @@
                                         return $.ajax({
                                             type: 'GET',
                                             // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
-                                            url: `/manajemen-ppid/ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            url: `ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
                                     }
