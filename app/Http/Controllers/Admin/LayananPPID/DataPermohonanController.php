@@ -497,13 +497,13 @@ class DataPermohonanController extends Controller
         echo json_encode(array('result' => 'Berhasil meneruskan permohonan!', 'status' => 'success'));
     }
 
-    public function dataPpidPendaftarById(Request $request, $id)
+    public function dataPpidPendaftarById(Request $request)
     {
         $user = DB::table('ppid_pendaftar')
             ->select('ppid_pendaftar.*', 'jenis_identitas.name as nama_jenis_identitas', 'jenis_pemohon.name as nama_jenis_pemohon')
             ->join('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
             ->join('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
-            ->where('ppid_pendaftar.id', $id)
+            ->where('ppid_pendaftar.id', $request->id)
             ->first();
         echo json_encode(array('result' => $user, 'status' => 'success'));
     }

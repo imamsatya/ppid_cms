@@ -1242,7 +1242,7 @@
                                     const templateReject = () => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: "/manajemen-ppid/ppid-template-reject",
+                                            url:  "{{route('manajemen-ppid.data_permohonan.ppid-template-reject')}}",
                                             dataType: 'json'
                                         })
                                     }
@@ -1279,7 +1279,7 @@
                                     const submitKonfirmasiKeberatan = (data) => {
                                         return $.ajax({
                                             type: 'POST',
-                                            url: "/manajemen-ppid/konfirmasi-data-keberatan",
+                                            url: "{{route('manajemen-ppid.data_keberatan.konfirmasi-data-keberatan')}}",
                                             data: data,
                                             dataType: 'json'
                                         })
@@ -1397,7 +1397,7 @@
                                     const submitAnswer = (data) => {
                                         return $.ajax({
                                             type: 'POST',
-                                            url: "/manajemen-ppid/submit-answer-keberatan",
+                                            url: "{{route('manajemen-ppid.data_keberatan.submit-answer-keberatan')}}",
                                             data: data,
                                             contentType: false,
                                             processData: false,
@@ -1458,7 +1458,7 @@
                                     const getUserPenghubung = (data) => {
                                         return $.ajax({
                                             type: 'GET',
-                                            url: "/manajemen-ppid/users-penghubung",
+                                            url: "{{route('manajemen-ppid.data_permohonan.users-penghubung')}}",
                                             dataType: 'json'
                                         })
                                     }
@@ -1477,8 +1477,11 @@
 
                                     const ppidPendaftar = (data) => {
                                         return $.ajax({
-                                            type: 'GET',
-                                            url: "/manajemen-ppid/ppid-pendaftar/" + data,
+                                            type: "post",
+                                            url: "{{route('manajemen-ppid.data_permohonan.ppid-pendaftar')}}",
+                                            data:{
+                                                    "id": data
+                                                },
                                             dataType: 'json'
                                         })
                                     }
