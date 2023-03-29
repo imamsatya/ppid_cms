@@ -168,13 +168,12 @@ class LaporanHasilSurveiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $laporanHasilSurvei = new LaporanHasilSurvei();
-        File::delete($laporanHasilSurvei->where('id', $id)->first()->file_path);
-        File::delete($laporanHasilSurvei->where('id', $id)->first()->thumbnail_path);
-        $laporanHasilSurvei = $laporanHasilSurvei->where('id', $id)->delete();
+        File::delete($laporanHasilSurvei->where('id', $request->id)->first()->file_path);
+        File::delete($laporanHasilSurvei->where('id', $request->id)->first()->thumbnail_path);
+        $laporanHasilSurvei = $laporanHasilSurvei->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Laporan Hasil Survei");
     }

@@ -586,11 +586,12 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-
-                                                    console.log('delete confirmed')
                                                     $.ajax({
-                                                        type: "DELETE",
-                                                        url: "/admin/slider/" + slider.id,
+                                                        type: "post",
+                                                        url: "{{route('manajemen-ppid.slider.delete')}}",
+                                                        data:{
+                                                                "id": slider.id
+                                                            },
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
@@ -602,12 +603,8 @@
                                                             }).then(() => {
                                                                 window.location.reload();
                                                             })
-
-
                                                         }
                                                     });
-
-                                                    // window.location = '/visimisi'
                                                 } else {
                                                     console.log('delete canceled')
                                                 }
@@ -629,7 +626,7 @@
                                             document.getElementById('editUrutan').value = sliderRow.urutan
 
 
-                                            document.getElementById('editForm').setAttribute('action', 'slider/' +
+                                            document.getElementById('editForm').setAttribute('action', 'update/' +
                                                 sliderRow.id)
                                         };
                                     </script>

@@ -225,13 +225,11 @@ class InformasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
-
         $informasi = new Informasi();
-        File::delete($informasi->where('id', $id)->first()->image_path);
-        $informasi = $informasi->where('id', $id)->delete();
+        File::delete($informasi->where('id', $request->id)->first()->image_path);
+        $informasi = $informasi->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Informasi");
     }

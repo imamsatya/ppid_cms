@@ -545,14 +545,10 @@
 
                             <a href="{{ route('manajemen-ppid.role_permission.create') }}"
                                 class="btn btn-clear d-flex flex-column flex-center">
-                                <!--begin::Illustration-->
                                 <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
                                     alt="" class="mw-100 mh-150px mb-7" />
-                                <!--end::Illustration-->
-                                <!--begin::Label-->
                                 <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
                                     Add New Role</div>
-                                <!--end::Label-->
                             </a>
 
                         </div>
@@ -3523,7 +3519,7 @@
                                             }
                                         });
 
-                                        document.getElementById('editForm').setAttribute('action', 'role_permission/' + role.id)
+                                        document.getElementById('editForm').setAttribute('action', 'update/' + role.id)
                                     };
 
                                     function selectAllPermissions(className, classId) {
@@ -3564,17 +3560,16 @@
                                                 activateLoadingButton('.swal2-confirm')
                                                 console.log('delete confirmed')
                                                 $.ajax({
-                                                    type: "DELETE",
-                                                    url: "/admin/role_permission/" + role.id,
+                                                    type: "post",
+                                                    url: "{{route('manajemen-ppid.role_permission.delete')}}",
+                                                    data:{
+                                                            "id": role.id
+                                                        },
                                                     cache: false,
                                                     success: function(html) {
-
                                                         window.location.reload();
-
                                                     }
                                                 });
-
-                                                // window.location = '/visimisi'
                                             } else {
                                                 console.log('delete canceled')
                                             }

@@ -461,11 +461,12 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-
-                                                    console.log('delete confirmed')
                                                     $.ajax({
-                                                        type: "DELETE",
-                                                        url: "/admin/video/" + video.id,
+                                                        type: "post",
+                                                        url: "{{route('manajemen-ppid.video.delete')}}",
+                                                        data:{
+                                                                "id": video.id
+                                                            },
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
@@ -504,7 +505,7 @@
                                             document.getElementById('editUrutan').value = videoRow.urutan
 
 
-                                            document.getElementById('editForm').setAttribute('action', 'video/' +
+                                            document.getElementById('editForm').setAttribute('action', 'update/' +
                                                 videoRow.id)
                                         };
 

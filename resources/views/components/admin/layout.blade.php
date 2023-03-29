@@ -1040,7 +1040,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link {{ $isActiveLink_userPemohon ?? '' }}"
-                                                        href="{{ route('user_pemohon.index') }}">
+                                                        href="{{ route('manajemen-ppid.user_pemohon.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1056,7 +1056,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link {{ $isActiveLink_userAdmin ?? '' }}"
-                                                        href="{{ route('user_admin.index') }}">
+                                                        href="{{ route('manajemen-ppid.user_admin.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>

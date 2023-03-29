@@ -143,12 +143,11 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $slider = new Slider();
-        File::delete($slider->where('id', $id)->first()->image_path);
-        $slider = $slider->where('id', $id)->delete();
+        File::delete($slider->where('id', $request->id)->first()->image_path);
+        $slider = $slider->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Slider");
     }

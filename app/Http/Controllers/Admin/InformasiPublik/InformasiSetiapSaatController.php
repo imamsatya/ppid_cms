@@ -158,16 +158,13 @@ class InformasiSetiapSaatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $informasiSetiapSaat = new informasiSetiapSaat();
-
-        if ($informasiSetiapSaat->where('id', $id)->first()->file_path) {
-            File::delete($informasiSetiapSaat->where('id', $id)->first()->file_path);
+        if ($informasiSetiapSaat->where('id', $request->id)->first()->file_path) {
+            File::delete($informasiSetiapSaat->where('id', $request->id)->first()->file_path);
         }
-
-        $informasiSetiapSaat = $informasiSetiapSaat->where('id', $id)->delete();
+        $informasiSetiapSaat = $informasiSetiapSaat->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Informasi Publik Setiap Saat");
     }

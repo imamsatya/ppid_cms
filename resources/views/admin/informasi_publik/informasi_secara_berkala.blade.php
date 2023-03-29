@@ -293,7 +293,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
-                            <form id="kt_account_profile_details_form"action="" enctype="multipart/form-data"
+                            <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.informasi_secara_berkala.store')}}" enctype="multipart/form-data"
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -545,11 +545,12 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
-
-                                console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/manajemen-ppid/informasi_secara_berkala/" + informasiSecaraBerkala.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.informasi_secara_berkala.delete')}}",
+                                    data:{
+                                            "id": informasiSecaraBerkala.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -561,8 +562,6 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
-
-
                                     }
                                 });
 
@@ -587,7 +586,7 @@
                         document.getElementById('editUrl').value = informasiSecaraBerkala.url
 
 
-                        document.getElementById('editForm').setAttribute('action', 'informasi_secara_berkala/' +
+                        document.getElementById('editForm').setAttribute('action', 'update/' +
                             informasiSecaraBerkala.id)
                     };
                 </script>

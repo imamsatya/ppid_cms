@@ -168,13 +168,12 @@ class LaporanTriwulananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $laporanTriwulanan = new LaporanTriwulanan();
-        File::delete($laporanTriwulanan->where('id', $id)->first()->file_path);
-        File::delete($laporanTriwulanan->where('id', $id)->first()->thumbnail_path);
-        $laporanTriwulanan = $laporanTriwulanan->where('id', $id)->delete();
+        File::delete($laporanTriwulanan->where('id', $request->id)->first()->file_path);
+        File::delete($laporanTriwulanan->where('id', $request->id)->first()->thumbnail_path);
+        $laporanTriwulanan = $laporanTriwulanan->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus peraturan KIP");
     }

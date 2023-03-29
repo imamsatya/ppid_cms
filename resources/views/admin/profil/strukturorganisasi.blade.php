@@ -740,8 +740,11 @@
 
                                 console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/strukturorganisasi/bagan_kanan/delete/" + baganKanan.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.strukturorganisasi.bagankanan.delete')}}",
+                                    data:{
+                                            "id": baganKanan.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
