@@ -112,7 +112,7 @@
             @endif
 
 
-            <form action="{{ route('admin.faq_banner.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.faq_banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -286,7 +286,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
-                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+                            <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.faq.store')}}" enctype="multipart/form-data"
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -616,15 +616,15 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
-
-                                console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/faq/" + faq.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.faq.delete')}}",
+                                    data:{
+                                            "id": faq.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
-
                                             icon: 'success',
                                             title: 'Berhasil menghapus FAQ',
                                             showConfirmButton: false,
@@ -632,12 +632,8 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
-
-
                                     }
                                 });
-
-                                // window.location = '/visimisi'
                             } else {
                                 console.log('delete canceled')
                             }
@@ -654,10 +650,7 @@
                         faq = faq[index]
                         document.getElementById('editPertanyaan').value = faq.pertanyaan
                         document.getElementById('editJawaban').value = faq.jawaban
-
-
-
-                        document.getElementById('editForm').setAttribute('action', 'faq/' +
+                        document.getElementById('editForm').setAttribute('action', 'update/' +
                             faq.id)
                     };
                 </script>

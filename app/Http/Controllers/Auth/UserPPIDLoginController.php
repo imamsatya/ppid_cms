@@ -43,7 +43,7 @@ class UserPPIDLoginController extends Controller
                 'max:255',
 
             ],
-            'password' => ['required', 'min:6'],
+            'password' => ['required', 'min:8'],
             'g-recaptcha-response' =>  'recaptcha',
 
         ]);
@@ -82,7 +82,7 @@ class UserPPIDLoginController extends Controller
                 'max:255',
                 Rule::unique(UserPPID::class),
             ],
-            'password' => ['required', 'min:6'],
+            'password' => ['required', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', 'max:64'],
             'password_confirmation' => ['required', 'same:password'],
             'jenispemohon' => ['required'],
             'jenisidentitas' => ['required'],
@@ -141,7 +141,7 @@ class UserPPIDLoginController extends Controller
 
         # Validation
         $request->validate([
-            'old_password' => 'required',
+            'old_password' => ['required', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', 'max:64'],
             'new_password' => 'required|confirmed',
         ]);
 

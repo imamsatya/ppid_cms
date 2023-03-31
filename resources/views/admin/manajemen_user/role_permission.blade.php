@@ -134,19 +134,17 @@
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             activateLoadingButton('.swal2-confirm')
-                                            console.log('delete confirmed')
                                             $.ajax({
-                                                type: "DELETE",
-                                                url: "/admin/role_permission/" + role.id,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.role_permission.delete')}}",
+                                                data:{
+                                                        "id": user.id
+                                                    },
                                                 cache: false,
                                                 success: function(html) {
-
                                                     window.location.reload();
-
                                                 }
                                             });
-
-                                            // window.location = '/visimisi'
                                         } else {
                                             console.log('delete canceled')
                                         }
@@ -455,7 +453,7 @@
                                         <div class="modal-body py-lg-10 px-lg-10">
                                             {{-- Content Modal --}}
                                             <form id="kt_account_profile_details_form" class="form"
-                                                action="{{ route('admin.role_permission.store') }}" method="POST">
+                                                action="{{ route('manajemen-ppid.role_permission.store') }}" method="POST">
                                                 @csrf
                                                 <!--begin::Card body-->
                                                 <div class="card-body  p-9">

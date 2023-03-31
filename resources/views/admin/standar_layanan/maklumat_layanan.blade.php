@@ -118,7 +118,7 @@
             <br>
 
 
-            <form action="{{ route('admin.maklumat.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.maklumat.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 

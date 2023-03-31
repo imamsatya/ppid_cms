@@ -101,7 +101,7 @@ class DataPermohonanController extends Controller
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
-
+        // 'status_permohonan.created_at as status_permohonan_created_at'
         if ($user->hasRole('user penghubung')) {
             $result = DB::table('ppid_permohonan')
                 ->select('ppid_permohonan.*', 'status.name as nama_status', 'status.id as id_status', 'ppid_pendaftar.nama_lengkap')
@@ -123,7 +123,7 @@ class DataPermohonanController extends Controller
                 })
                 ->where(function ($query) use ($start, $end) {
                     if ($start != '-') {
-                        $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                        $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                     }
                 })
                 ->where('status_permohonan.aktif', 1)
@@ -153,7 +153,7 @@ class DataPermohonanController extends Controller
             })
             ->where(function ($query) use ($start, $end) {
                 if ($start != '-') {
-                    $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                    $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                 }
             })
             ->where('status_permohonan.aktif', 1)
@@ -192,7 +192,7 @@ class DataPermohonanController extends Controller
                 })
                 ->where(function ($query) use ($start, $end) {
                     if ($start != '-') {
-                        $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                        $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                     }
                 })
                 ->where('status_permohonan.aktif', 1)
@@ -222,7 +222,7 @@ class DataPermohonanController extends Controller
             })
             ->where(function ($query) use ($start, $end) {
                 if ($start != '-') {
-                    $query->whereBetween(DB::raw('date(ppid_permohonan.created_at)'), [$start, $end]);
+                    $query->whereBetween(DB::raw('date(status_permohonan.created_at)'), [$start, $end]);
                 }
             })
             ->where('status_permohonan.aktif', 1)
@@ -316,15 +316,16 @@ class DataPermohonanController extends Controller
 
     public function rejectPermohonan($data, $permohonan, $dateCreated)
     {
-
-        $ticketNumber = $this->generateTicket($permohonan);
-        DB::table('ppid_permohonan')->where('id', $data['id'])->update([
-            'ticket_permohonan' => $ticketNumber,
-        ]);
+        // dd($permohonan->id);
+        //tidak diterima
+        // $ticketNumber = $this->generateTicket($permohonan);
+        // DB::table('ppid_permohonan')->where('id', $data['id'])->update([
+        //     'ticket_permohonan' => $ticketNumber,
+        // ]);
 
         // jawaban reject permohonan
-        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']]);
-        $ticketPermohonan = str_replace('/', '-', $ticketNumber);
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['areaAlasanPenolakan']])->setPaper('a4', 'portrait');
+        $ticketPermohonan = str_replace('/', '-', 'tidak-diterima-'.$permohonan->id);
         $nmfile = $ticketPermohonan . '.pdf';
 
         $content = $pdf->download()->getOriginalContent();
@@ -359,7 +360,7 @@ class DataPermohonanController extends Controller
         // status permohonan
         $dataStatusPermohonan = [
             'id_ppid_permohonan' => $data['id'],
-            'id_status' => 5, // ditolak
+            'id_status' => 6, // tidak diterima
             'modified_by' => Auth::user()->id,
             'modified_date' => $dateCreated,
             "created_at" =>  $dateCreated,
@@ -372,7 +373,7 @@ class DataPermohonanController extends Controller
         // log permohonan
         DB::table('log_permohonan')->insert([
             'id_ppid_permohonan' => $data['id'],
-            'status' => 5, // ditolak
+            'status' => 6, // tidak diterima
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
         ]);
@@ -380,6 +381,8 @@ class DataPermohonanController extends Controller
 
     public function submitAnswerPermohonan(Request $request)
     {
+        
+        //kalau value nya 1, maka ditolak 
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
         $file_dukung = '';
@@ -405,7 +408,9 @@ class DataPermohonanController extends Controller
             $file_dukung = 'permohonan/jawaban/' . $filename;
         }
 
-        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
+       
+
+        $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']])->setPaper('a4', 'portrait');
         // $nmfile = time().'_answer.pdf';
         $nmfile = $ticketPermohonan . '.pdf';
         $content = $pdf->download()->getOriginalContent();
@@ -427,7 +432,7 @@ class DataPermohonanController extends Controller
         // status permohonan
         $dataStatusPermohonan = [
             'id_ppid_permohonan' => $data['id'],
-            'id_status' => 4, // dijawab oleh
+            'id_status' => $request->selectedTemplate == '1' ? 5 : 4, //kalau opsi 1 tolak, jika tidak dijawab oleh
             'modified_by' => Auth::user()->id,
             'modified_date' => $dateCreated,
             "created_at" =>  $dateCreated,
@@ -441,7 +446,7 @@ class DataPermohonanController extends Controller
         // log permohonan
         DB::table('log_permohonan')->insert([
             'id_ppid_permohonan' => $data['id'],
-            'status' => 4, // ditolak
+            'status' => $request->selectedTemplate == '1' ? 5 : 4, // kalau opsi 1 tolak, jika tidak dijawab
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated,
         ]);
@@ -492,13 +497,13 @@ class DataPermohonanController extends Controller
         echo json_encode(array('result' => 'Berhasil meneruskan permohonan!', 'status' => 'success'));
     }
 
-    public function dataPpidPendaftarById(Request $request, $id)
+    public function dataPpidPendaftarById(Request $request)
     {
         $user = DB::table('ppid_pendaftar')
             ->select('ppid_pendaftar.*', 'jenis_identitas.name as nama_jenis_identitas', 'jenis_pemohon.name as nama_jenis_pemohon')
             ->join('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
             ->join('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
-            ->where('ppid_pendaftar.id', $id)
+            ->where('ppid_pendaftar.id', $request->id)
             ->first();
         echo json_encode(array('result' => $user, 'status' => 'success'));
     }
@@ -536,5 +541,37 @@ class DataPermohonanController extends Controller
            return redirect()->back()->with('success', 'Berhasil menyimpan Link Survei');
     }
     
+    }
+
+    public function cetakData(Request $request){
+        
+       
+        // return PDF::loadView('admin.layanan_ppid.detailtemplate')->setPaper('a4', 'portrait')->stream('detailtemplate.pdf');
+        $pdf = PDF::loadView('admin.layanan_ppid.detailtemplate', compact('request'))->setPaper('a4', 'portrait');
+        return  $pdf->download('detailtemplate.pdf');
+       
+        
+       
+    }
+
+    public function cetakDataById( $id) {
+        $dataPermohonan = DB::table('ppid_permohonan')
+        ->select('ppid_permohonan.*', 'ppid_mendapatkan.name as cara_mendapatkan', 'ppid_memberikan.name as cara_memberikan', 'status_permohonan.id_status as id_status_permohonan', 'status.name as nama_status_permohonan', 'status_permohonan.created_at as tanggal_status')
+        ->join('ppid_mendapatkan', 'ppid_mendapatkan.id', '=', 'ppid_permohonan.id_mendapatkan')
+        ->join('ppid_memberikan', 'ppid_memberikan.id', '=', 'ppid_permohonan.id_cara')
+        ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
+        ->join('status', 'status.id', '=', 'status_permohonan.id_status')
+        ->where('status_permohonan.aktif', 1)
+        ->where('ppid_permohonan.id', $id)->first();
+        // dd($dataPermohonan->id);
+        $dataPemohon = $user = DB::table('ppid_pendaftar')
+        ->select('ppid_pendaftar.*', 'jenis_identitas.name as nama_jenis_identitas', 'jenis_pemohon.name as nama_jenis_pemohon')
+        ->join('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
+        ->join('jenis_pemohon', 'jenis_pemohon.id', '=', 'ppid_pendaftar.jenis_pemohon')
+        ->where('ppid_pendaftar.id', $dataPermohonan->id_ppid_pendaftar)
+        ->first();
+       
+        $pdf = PDF::loadView('admin.layanan_ppid.detailtemplate', ['dataPermohonan' => $dataPermohonan, 'dataPemohon' => $dataPemohon])->setPaper('a4', 'portrait');
+        return  $pdf->download($dataPermohonan->ticket_permohonan.'-detail.pdf');
     }
 }

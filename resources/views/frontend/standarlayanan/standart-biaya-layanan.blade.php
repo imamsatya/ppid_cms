@@ -37,7 +37,7 @@
                 <div class="row">
                     @if ($biayaLayanan)
                         <div class="col-md-12">
-                            <img src="{{ asset('storage/' . $biayaLayanan->direktori_image) }}" alt="">
+                            <img src="{{ Storage::url($biayaLayanan->direktori_image) }}" alt="">
                         </div>
                     @endif
                 </div>
@@ -62,7 +62,7 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
-                            background-image: url({{ asset('storage/' . $biayaLayanan?->banner_path ?? '') }});
+                            background-image: url({{ Storage::url($biayaLayanan?->banner_path ?? '') }});
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

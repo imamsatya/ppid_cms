@@ -138,10 +138,17 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Menu wrapper-->
                         <!--begin::Navbar-->
                         <div class="app-navbar flex-shrink-0">
-
+                        
+                            {{$notifikasi ?? ''}}
+                        
+                            
+                                
                             <!--begin::Theme mode-->
                             <div class="app-navbar-item ms-1 ms-lg-3">
                                 <!--begin::Menu toggle-->
+                               
+                                <!-- <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="bottom" title="Permohonan Masuk" href="javascript:void(0)" class="btn btn-icon btn-primary me-5 position-relative  " ><i class="bi bi-check-lg"></i><span class="position-absolute top-0 start-100 translate-middle  badge badge-circle badge-danger">5</span></a> -->
+                                
                                 <a href="#"
                                     class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
                                     data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent"
@@ -349,8 +356,8 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item px-5">
 
                                         {{-- <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a> --}}
-                                        <form action="{{ route('admin.logout') }}" method="post">
-                                            @csrf
+                                        <form action="{{ route('manajemen-ppid.logout') }}" method="get">
+                                            {{-- @csrf --}}
                                             <button type="submit" class="btn btn-primary">
                                                 Sign Out
                                             </button>
@@ -429,7 +436,7 @@ License: For each use you must have a valid license purchased only from above li
                                 @can('dashboard.view')
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link " href="{{ route('admin.dashboard.index') }}">
+                                        <a class="menu-link " href="{{ route('manajemen-ppid.dashboard.index') }}">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                                 <span class="svg-icon svg-icon-2">
@@ -500,7 +507,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <!--begin:Menu link-->
 
                                                     <a class="menu-link {{ $isActiveLink_dataPermohonan ?? '' }}"
-                                                        href="{{ route('admin.data_permohonan.index') }}">
+                                                        href="{{ route('manajemen-ppid.data_permohonan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -515,7 +522,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link {{ $isActiveLink_dataKeberatan ?? '' }}"
-                                                        href="{{ route('admin.data_keberatan.index') }}">
+                                                        href="{{ route('manajemen-ppid.data_keberatan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -569,7 +576,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.profilsingkat.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.profilsingkat.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -584,7 +591,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.tugasdanfungsi.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.tugasdanfungsi.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -600,7 +607,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.strukturorganisasi.index') }}">
+                                                        href="{{ route('manajemen-ppid.strukturorganisasi.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -615,7 +622,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.visimisi.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.visimisi.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -630,7 +637,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.kontak.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.kontak.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -685,7 +692,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.peraturan_kip.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.peraturan_kip.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -701,7 +708,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.rancangan_peraturan_kip.index') }}">
+                                                        href="{{ route('manajemen-ppid.rancangan_peraturan_kip.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -758,7 +765,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.informasi_secara_berkala.index') }}">
+                                                        href="{{ route('manajemen-ppid.informasi_secara_berkala.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -774,7 +781,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.informasi_serta_merta.index') }}">
+                                                        href="{{ route('manajemen-ppid.informasi_serta_merta.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -791,7 +798,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.informasi_setiap_saat.index') }}">
+                                                        href="{{ route('manajemen-ppid.informasi_setiap_saat.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -842,7 +849,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.laporan_triwulanan.index') }}">
+                                                        href="{{ route('manajemen-ppid.laporan_triwulanan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -857,7 +864,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.laporan_tahunan.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.laporan_tahunan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -873,7 +880,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link"
-                                                        href="{{ route('admin.laporan_hasil_survei.index') }}">
+                                                        href="{{ route('manajemen-ppid.laporan_hasil_survei.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -921,7 +928,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.maklumat.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.maklumat.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -936,7 +943,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link" href="{{ route('admin.prosedurlayanan.index') }}">
+                                                    <a class="menu-link" href="{{ route('manajemen-ppid.prosedurlayanan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -951,7 +958,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link " href="{{ route('admin.biayalayanan.index') }}">
+                                                    <a class="menu-link " href="{{ route('manajemen-ppid.biayalayanan.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -972,7 +979,7 @@ License: For each use you must have a valid license purchased only from above li
                                 @can('faq.view')
                                     <div class="menu-item">
                                         <!--begin:Menu link-->
-                                        <a class="menu-link " href="{{ route('admin.faq.index') }}">
+                                        <a class="menu-link " href="{{ route('manajemen-ppid.faq.index') }}">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                                 <span class="svg-icon svg-icon-2">
@@ -1033,7 +1040,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link {{ $isActiveLink_userPemohon ?? '' }}"
-                                                        href="{{ route('admin.user_pemohon.index') }}">
+                                                        href="{{ route('manajemen-ppid.user_pemohon.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1049,7 +1056,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link {{ $isActiveLink_userAdmin ?? '' }}"
-                                                        href="{{ route('admin.user_admin.index') }}">
+                                                        href="{{ route('manajemen-ppid.user_admin.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1065,7 +1072,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
                                                     <a class="menu-link {{ $isActiveLink_rolePermission ?? '' }}"
-                                                        href="{{ route('admin.role_permission.index') }}">
+                                                        href="{{ route('manajemen-ppid.role_permission.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1109,7 +1116,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link " href="{{ route('admin.slider.index') }}">
+                                                    <a class="menu-link " href="{{ route('manajemen-ppid.slider.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1124,7 +1131,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link " href="{{ route('admin.informasi.index') }}">
+                                                    <a class="menu-link " href="{{ route('manajemen-ppid.informasi.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1139,7 +1146,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link " href="{{ route('admin.video.index') }}">
+                                                    <a class="menu-link " href="{{ route('manajemen-ppid.video.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1154,7 +1161,7 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin:Menu item-->
                                                 <div class="menu-item">
                                                     <!--begin:Menu link-->
-                                                    <a class="menu-link " href="{{ route('admin.footer.index') }}">
+                                                    <a class="menu-link " href="{{ route('manajemen-ppid.footer.index') }}">
                                                         <span class="menu-bullet">
                                                             <span class="bullet bullet-dot"></span>
                                                         </span>
@@ -1178,7 +1185,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="menu-item ">
                                         <!--begin:Menu link-->
                                         <a class="menu-link  {{ $isActiveLink_manajemenMenu ?? '' }}"
-                                            href="{{ route('admin.manajemen_menu.index') }}">
+                                            href="{{ route('manajemen_menu.index') }}">
                                             <span class="menu-icon">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                                                 <span class="svg-icon svg-icon-2">
@@ -1229,7 +1236,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link" href="{{ route('admin.setting_kalender.index') }}">
+                                            <a class="menu-link" href="{{ route('setting_kalender.index') }}">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>

@@ -218,21 +218,19 @@ class FooterController extends Controller
         //
     }
 
-    public function sosialmediaDestroy($id)
+    public function sosialmediaDestroy(Request $request)
     {
-        //
         $sosialMedia = new SosialMedia();
-        $sosialMedia = $sosialMedia->where('id', $id)->delete();
+        $sosialMedia = $sosialMedia->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Sosial Media");
     }
 
-    public function linkAppDestroy($id)
+    public function linkAppDestroy(Request $request)
     {
-        //
         $linkApp = new LinkApp();
-        File::delete($linkApp->where('id', $id)->first()->icon);
-        $linkApp = $linkApp->where('id', $id)->delete();
+        File::delete($linkApp->where('id', $request->id)->first()->icon);
+        $linkApp = $linkApp->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Link App");
     }

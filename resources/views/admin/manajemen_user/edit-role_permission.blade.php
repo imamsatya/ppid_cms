@@ -124,7 +124,7 @@
 
                 <div class="modal-body  mx-lg-5 my-0">
                     <!--begin::Form-->
-                    <form id="editForm" class="form" action="{{ route('admin.role_permission.update', $role) }}"
+                    <form id="editForm" class="form" action="{{ route('manajemen-ppid.role_permission.update', $role) }}"
                         method="POST">
                         @csrf
                         @method('PATCH')
@@ -1790,7 +1790,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
-                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+                        <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->

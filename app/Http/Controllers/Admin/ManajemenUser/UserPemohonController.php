@@ -140,21 +140,15 @@ class UserPemohonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         $validated = $request->validate([
             'password' => ['required', 'min:6'],
             'password_confirmation' => ['required', 'same:password'],
         ]);
         if ($validated) {
-
             $user = UserPPID::where('id', $id)->first();
-
-
             if ($request['password']) {
                 $user->password = bcrypt($request['password']);
             }
-
             $user->save();
 
             return redirect()
@@ -170,14 +164,13 @@ class UserPemohonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
-        $user = UserPPID::where('id', $id)->first();
+        $user = UserPPID::where('id', $request->id)->first();
         Storage::delete('public/' . $user->identitas_file_path);
 
         $user = new UserPPID;
-        $user = $user->where('id', $id)->delete();
+        $user = $user->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus user");
     }

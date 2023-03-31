@@ -112,7 +112,7 @@
             @endif
 
 
-            <form action="{{ route('admin.laporan_banner.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.laporan_banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -291,7 +291,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
-                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+                            <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.laporan_tahunan.store')}}" enctype="multipart/form-data"
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -621,11 +621,12 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
-
-                                console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/laporan_tahunan/" + laporanTahunan.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.laporan_tahunan.delete')}}",
+                                    data:{
+                                            "id": laporanTahunan.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -637,12 +638,8 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
-
-
                                     }
                                 });
-
-                                // window.location = '/visimisi'
                             } else {
                                 console.log('delete canceled')
                             }
@@ -664,7 +661,7 @@
                         document.getElementById('editLaporanImage').style.cssText =
                             `background-image: url({{ asset('storage/${laporanTahunan.thumbnail_path}') }})`
 
-                        document.getElementById('editForm').setAttribute('action', 'laporan_tahunan/' +
+                        document.getElementById('editForm').setAttribute('action', 'update/' +
                             laporanTahunan.id)
                     };
                 </script>

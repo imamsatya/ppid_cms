@@ -210,7 +210,7 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                                action="{{ route('admin.slider.store') }}" method="POST" class="form">
+                                action="{{ route('manajemen-ppid.slider.store') }}" method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -586,11 +586,12 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-
-                                                    console.log('delete confirmed')
                                                     $.ajax({
-                                                        type: "DELETE",
-                                                        url: "/admin/slider/" + slider.id,
+                                                        type: "post",
+                                                        url: "{{route('manajemen-ppid.slider.delete')}}",
+                                                        data:{
+                                                                "id": slider.id
+                                                            },
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
@@ -602,12 +603,8 @@
                                                             }).then(() => {
                                                                 window.location.reload();
                                                             })
-
-
                                                         }
                                                     });
-
-                                                    // window.location = '/visimisi'
                                                 } else {
                                                     console.log('delete canceled')
                                                 }
@@ -629,7 +626,7 @@
                                             document.getElementById('editUrutan').value = sliderRow.urutan
 
 
-                                            document.getElementById('editForm').setAttribute('action', 'slider/' +
+                                            document.getElementById('editForm').setAttribute('action', 'update/' +
                                                 sliderRow.id)
                                         };
                                     </script>

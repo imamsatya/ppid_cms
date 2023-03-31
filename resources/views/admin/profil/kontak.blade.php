@@ -123,8 +123,11 @@
 
                                 console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/kontak/dokumentasi_ruang/delete/" + dokumentasi.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.kontak.dokumentasi.delete')}}",
+                                    data:{
+                                            "id": dokumentasi.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -272,7 +275,7 @@
 
             <h1>Pengelolaan Kontak</h1>
             <br>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('manajemen-ppid.kontak.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -685,7 +688,7 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                                action="{{ route('admin.kontak.dokumentasi.store') }}" method="POST"
+                                action="{{ route('manajemen-ppid.kontak.dokumentasi.store') }}" method="POST"
                                 class="form">
                                 @csrf
                                 <!--begin::Card body-->

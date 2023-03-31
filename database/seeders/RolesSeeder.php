@@ -32,8 +32,7 @@ class RolesSeeder extends Seeder
         // }
 
         //Admin
-        $admin = Role::create(['name' => 'admin']);
-
+        $admin = Role::updateOrcreate(['name' => 'admin'],['name' => 'admin']);
         //Manajemen Users
         //User Pemohon
         $admin->givePermissionTo('user pemohon.create');
@@ -54,7 +53,7 @@ class RolesSeeder extends Seeder
         $admin->givePermissionTo('role permission.delete');
 
         //User
-        $user = Role::create(['name' => 'user']);
+        $user = Role::updateOrcreate(['name' => 'user'],['name' => 'user']);
         //Profil 
         //Profil Singkat PPID
         $user->givePermissionTo('profil singkat ppid.create');
@@ -92,7 +91,7 @@ class RolesSeeder extends Seeder
         $user->givePermissionTo('sosial media.edit');
         $user->givePermissionTo('sosial media.delete');
 
-        $super = Role::create(['name' => 'super']);
+        $super = Role::updateOrcreate(['name' => 'super'],['name' => 'super']);
         $super->givePermissionTo('dashboard.create');
         $super->givePermissionTo('dashboard.view');
         $super->givePermissionTo('dashboard.edit');

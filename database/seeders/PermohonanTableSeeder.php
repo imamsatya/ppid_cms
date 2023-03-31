@@ -15,8 +15,8 @@ class PermohonanTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->seederPPIDMENDAPATKAN();
-        $this->seederPPIDMEMBERIKAN();
+        // $this->seederPPIDMENDAPATKAN();
+        // $this->seederPPIDMEMBERIKAN();
         $this->seederJenisIdentitas();
         $this->seederJenisPemohon();
         $this->seederStatus();

@@ -165,13 +165,12 @@ class LaporanTahunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $laporanTahunan = new LaporanTahunan();
-        File::delete($laporanTahunan->where('id', $id)->first()->file_path);
-        File::delete($laporanTahunan->where('id', $id)->first()->thumbnail_path);
-        $laporanTahunan = $laporanTahunan->where('id', $id)->delete();
+        File::delete($laporanTahunan->where('id', $request->id)->first()->file_path);
+        File::delete($laporanTahunan->where('id', $request->id)->first()->thumbnail_path);
+        $laporanTahunan = $laporanTahunan->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Laporan Tahunan");
     }

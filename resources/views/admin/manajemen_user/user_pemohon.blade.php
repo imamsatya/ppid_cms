@@ -198,7 +198,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
-                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_pemohon.store') }}"
+                    <form id="kt_account_profile_details_form" action="{{ route('manajemen-ppid.user_pemohon.store') }}"
                         method="POST" class="form" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Card body-->
@@ -581,9 +581,7 @@
             function editDialog(index) {
                 let usersPPID = {{ Js::from($usersPPID) }}
                 let user = usersPPID[index]
-
-                document.getElementById('editForm').setAttribute('action', 'user_pemohon/' + user.id)
-
+                document.getElementById('editForm').setAttribute('action', 'update/' + user.id)
             };
 
             function deleteDialog(index) {
@@ -603,15 +601,15 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
-
-                        console.log('delete confirmed')
                         $.ajax({
-                            type: "DELETE",
-                            url: "/admin/user_pemohon/" + user.id,
+                            type: "post",
+                            url: "{{route('manajemen-ppid.user_pemohon.delete')}}",
+                            data:{
+                                    "id": user.id
+                                },
                             cache: false,
                             success: function(html) {
                                 Swal.fire({
-
                                     icon: 'success',
                                     title: 'Berhasil menghapus User',
                                     showConfirmButton: false,
@@ -619,12 +617,8 @@
                                 }).then(() => {
                                     window.location.reload();
                                 })
-
-
                             }
                         });
-
-                        // window.location = '/visimisi'
                     } else {
                         console.log('delete canceled')
                     }

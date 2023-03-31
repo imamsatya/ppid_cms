@@ -38,7 +38,7 @@
                         <!--begin::Content-->
                         <ul>
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li>{{ htmlspecialchars($error) }}</li>
                             @endforeach
                         </ul>
 
@@ -185,7 +185,7 @@
                         //         dataType: 'json'
                         //     });
                         // }
-
+                        const dataPermohonanMasuk = {{ Js::from($dataPermohonanMasuk) }}
                         const dataStatistik = {{ Js::from($dataStatistik) }};
 
 
@@ -216,6 +216,18 @@
                             0, 0, 0, 0,
                             0, 0, 0, 0
                         ];
+                        dataMasukFinal[0] = dataPermohonanMasuk['Jan'] ? dataPermohonanMasuk['Jan'].length : 0
+                        dataMasukFinal[1] = dataPermohonanMasuk['Feb'] ? dataPermohonanMasuk['Feb'].length : 0
+                        dataMasukFinal[2] = dataPermohonanMasuk['Mar'] ? dataPermohonanMasuk['Mar'].length : 0
+                        dataMasukFinal[3] = dataPermohonanMasuk['Apr'] ? dataPermohonanMasuk['Apr'].length : 0
+                        dataMasukFinal[4] = dataPermohonanMasuk['May'] ? dataPermohonanMasuk['May'].length : 0
+                        dataMasukFinal[5] = dataPermohonanMasuk['Jun'] ? dataPermohonanMasuk['Jun'].length : 0
+                        dataMasukFinal[6] = dataPermohonanMasuk['Jul'] ? dataPermohonanMasuk['Jul'].length : 0
+                        dataMasukFinal[7] = dataPermohonanMasuk['Aug'] ? dataPermohonanMasuk['Aug'].length : 0
+                        dataMasukFinal[8] = dataPermohonanMasuk['Sep'] ? dataPermohonanMasuk['Sep'].length : 0
+                        dataMasukFinal[9] = dataPermohonanMasuk['Oct'] ? dataPermohonanMasuk['Oct'].length : 0
+                        dataMasukFinal[10] = dataPermohonanMasuk['Nov'] ? dataPermohonanMasuk['Nov'].length : 0
+                        dataMasukFinal[11] = dataPermohonanMasuk['Dec'] ? dataPermohonanMasuk['Dec'].length : 0
 
 
                         dataDitolak.forEach(element => {
@@ -230,11 +242,11 @@
                         });
 
 
-                        for (let index = 0; index < dataMasukFinal.length; index++) {
+                        // for (let index = 0; index < dataMasukFinal.length; index++) {
 
-                            dataMasukFinal[index] = parseInt(dataProsesFinal[index]) +parseInt(dataDitolakFinal[index]) + parseInt(dataSelesaiFinal[index])
+                        //     dataMasukFinal[index] = parseInt(dataProsesFinal[index]) +parseInt(dataDitolakFinal[index]) + parseInt(dataSelesaiFinal[index])
 
-                        }
+                        // }
 
                         const data = {
                             labels: labels,
@@ -271,7 +283,7 @@
                             options: {
                                 scale: {
                                     ticks: {
-                                    precision: 0
+                                        precision: 0
                                     }
                                 },
                                 responsive: true,

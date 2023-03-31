@@ -213,16 +213,14 @@ class InformasiSecaraBerkalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
         $informasiSecaraBerkala = new InformasiSecaraBerkala();
-
-        if ($informasiSecaraBerkala->where('id', $id)->first()->file_path) {
-            File::delete($informasiSecaraBerkala->where('id', $id)->first()->file_path);
+        if ($informasiSecaraBerkala->where('id', $request->id)->first()->file_path) {
+            File::delete($informasiSecaraBerkala->where('id', $request->id)->first()->file_path);
         }
 
-        $informasiSecaraBerkala = $informasiSecaraBerkala->where('id', $id)->delete();
+        $informasiSecaraBerkala = $informasiSecaraBerkala->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Informasi Publik Secara Berkala");
     }

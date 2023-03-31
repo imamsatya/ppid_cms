@@ -236,7 +236,7 @@ class DataPermohonanController extends Controller
 
     public function submitSurveyUser(Request $request)
     {
-        
+        $dateCreated = \Carbon\Carbon::now();
         DB::table('surveys')->insert([            
             //Step 1
              'jenisKelamin'  =>$request->jenisKelamin ,
@@ -266,6 +266,11 @@ class DataPermohonanController extends Controller
             'id_surat' =>$request->id_surat ,
             'no_tiket' =>$request->no_tiket ,
             'id_ppid_pendaftar' =>$request->id_ppid_pendaftar ,
+
+            //tahun
+            'tahun' => \Carbon\Carbon::now()->format('Y'),
+            "created_at" =>  $dateCreated,
+            "updated_at" => $dateCreated
         ]);
 
 

@@ -185,7 +185,22 @@ return [
             'required' => 'email harus terisi',
         ],
         'password' => [
-            'required' => 'password harus terisi'
+            'required' => 'password harus terisi',
+            'min' => 'password minimal terdiri dari :min karakter',
+            'regex' => 'password harus kombinasi huruf kapital, huruf kecil dan angka',
+            'max' => 'password tidak boleh lebih dari :max karakter'
+        ],
+        'old_password' => [
+            'required' => 'password harus terisi',
+            'min' => 'password minimal terdiri dari :min karakter',
+            'regex' => 'password harus kombinasi huruf kapital, huruf kecil dan angka',
+            'max' => 'password tidak boleh lebih dari :max karakter'
+        ],
+        'new_password' => [
+            'required' => 'password harus terisi',
+            'min' => 'password minimal terdiri dari :min karakter',
+            'regex' => 'password harus kombinasi huruf kapital, huruf kecil dan angka',
+            'max' => 'password tidak boleh lebih dari :max karakter'
         ],
         'password_confirmation' => [
             'required' => 'konfirmasi password harus terisi'

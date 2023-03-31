@@ -113,7 +113,7 @@
 
             <h1>Pengelolaan Struktur Organisasi</h1>
             <br>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('manajemen-ppid.strukturorganisasi.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -471,7 +471,7 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form"
-                                action="{{ route('admin.strukturorganisasi.bagankanan.store') }}" method="POST"
+                                action="{{ route('manajemen-ppid.strukturorganisasi.bagankanan.store') }}" method="POST"
                                 class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -740,8 +740,11 @@
 
                                 console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/strukturorganisasi/bagan_kanan/delete/" + baganKanan.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.strukturorganisasi.bagankanan.delete')}}",
+                                    data:{
+                                            "id": baganKanan.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

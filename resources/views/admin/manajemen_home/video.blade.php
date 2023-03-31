@@ -207,7 +207,7 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                                action="{{ route('admin.video.store') }}" method="POST" class="form">
+                                action="{{ route('manajemen-ppid.video.store') }}" method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -461,11 +461,12 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
-
-                                                    console.log('delete confirmed')
                                                     $.ajax({
-                                                        type: "DELETE",
-                                                        url: "/admin/video/" + video.id,
+                                                        type: "post",
+                                                        url: "{{route('manajemen-ppid.video.delete')}}",
+                                                        data:{
+                                                                "id": video.id
+                                                            },
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
@@ -504,7 +505,7 @@
                                             document.getElementById('editUrutan').value = videoRow.urutan
 
 
-                                            document.getElementById('editForm').setAttribute('action', 'video/' +
+                                            document.getElementById('editForm').setAttribute('action', 'update/' +
                                                 videoRow.id)
                                         };
 

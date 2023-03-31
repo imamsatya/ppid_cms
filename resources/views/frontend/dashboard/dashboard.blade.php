@@ -3,7 +3,7 @@
         <link href="{{ asset('ppid_fe/assets/css/page/dashboard/index.css') }}" rel="stylesheet" />
         <link href="{{ asset('template/dist/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
             type="text/css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
         <style>
             .blockui {
                 position: relative
@@ -132,10 +132,10 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      border-color: var(--bs-pagination-disabled-border-color); */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border-color: var(--bs-pagination-disabled-border-color); */
             }
 
-           
+
 
             .page-link {
                 position: relative;
@@ -180,8 +180,6 @@
                 aspect-ratio: 3/2;
                 object-fit: contain;
             }
-
-            
         </style>
     @endpush
     <!-- Content -->
@@ -463,370 +461,525 @@
                 <div class="modal-content" id="content-modal-permohonan">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">
-                        Survey Kepuasan Pelayanan Informasi Publik Kementerian BUMN
+                            Survey Kepuasan Pelayanan Informasi Publik Kementerian BUMN
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+
 
                         <div class="bs-stepper">
                             <div class="bs-stepper-header" role="tablist">
                                 <!-- your steps here -->
                                 <div class="step" data-target="#responden-part">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="responden-part" id="responden-part-trigger">
-                                    <span class="bs-stepper-circle">1</span>
-                                    <span class="bs-stepper-label">Data Responden</span>
-                                </button>
+                                    <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="responden-part" id="responden-part-trigger">
+                                        <span class="bs-stepper-circle">1</span>
+                                        <span class="bs-stepper-label">Data Responden</span>
+                                    </button>
                                 </div>
                                 <div class="line"></div>
                                 <div class="step" data-target="#information-part">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
-                                    <span class="bs-stepper-circle">2</span>
-                                    <span class="bs-stepper-label">Indikator Survey Kepuasan Pelayanan Informasi Publik</span>
-                                </button>
+                                    <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="information-part" id="information-part-trigger">
+                                        <span class="bs-stepper-circle">2</span>
+                                        <span class="bs-stepper-label">Indikator Survey Kepuasan Pelayanan Informasi
+                                            Publik</span>
+                                    </button>
                                 </div>
                                 <div class="line"></div>
                                 <div class="step" data-target="#information2-part">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="information2-part" id="information2-part-trigger">
-                                    <span class="bs-stepper-circle">3</span>
-                                    <span class="bs-stepper-label">Kelengkapan dan Keterbaruan Informasi Publik</span>
-                                </button>
+                                    <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="information2-part" id="information2-part-trigger">
+                                        <span class="bs-stepper-circle">3</span>
+                                        <span class="bs-stepper-label">Kelengkapan dan Keterbaruan Informasi
+                                            Publik</span>
+                                    </button>
                                 </div>
                                 <div class="line"></div>
                                 <div class="step" data-target="#information3-part">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="information3-part" id="information3-part-trigger">
-                                    <span class="bs-stepper-circle">4</span>
-                                    <span class="bs-stepper-label">Keseluruhan Pelayanan</span>
-                                </button>
+                                    <button type="button" class="step-trigger" role="tab"
+                                        aria-controls="information3-part" id="information3-part-trigger">
+                                        <span class="bs-stepper-circle">4</span>
+                                        <span class="bs-stepper-label">Keseluruhan Pelayanan</span>
+                                    </button>
                                 </div>
                             </div>
                             <div class="bs-stepper-content">
                                 <!-- your steps content here -->
                                 <!-- Step 1 -->
-                                <div id="responden-part" class="content" role="tabpanel" aria-labelledby="responden-part-trigger">
-                                <form class="border border-light p-2 m-0" action="#!">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Jenis Kelamin <span style="color:red">*</span> <br>
-                                            <small>Pilihlah berdasarkan jenis kelamin anda</small></p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Laki-laki" id="jenisKelamin-lakilaki" name="jenisKelamin">
-                                                <label class="custom-control-label" for="jenisKelamin-lakilaki">Laki-laki</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Perempuan" id="jenisKelamin-perempuan" name="jenisKelamin">
-                                                <label class="custom-control-label" for="jenisKelamin-perempuan">Perempuan</label>
-                                            </div><br>
-                                            
+                                <div id="responden-part" class="content" role="tabpanel"
+                                    aria-labelledby="responden-part-trigger">
+                                    <form class="border border-light p-2 m-0" action="#!">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="h5 mt-2 mb-4">Jenis Kelamin <span style="color:red">*</span>
+                                                    <br>
+                                                    <small>Pilihlah berdasarkan jenis kelamin anda</small>
+                                                </p>
+
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="Laki-laki" id="jenisKelamin-lakilaki"
+                                                        name="jenisKelamin">
+                                                    <label class="custom-control-label"
+                                                        for="jenisKelamin-lakilaki">Laki-laki</label>
+                                                </div> <br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="Perempuan" id="jenisKelamin-perempuan"
+                                                        name="jenisKelamin">
+                                                    <label class="custom-control-label"
+                                                        for="jenisKelamin-perempuan">Perempuan</label>
+                                                </div><br>
+
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="h5 mt-2 mb-4">Usia <span style="color:red">*</span> <br>
+                                                    <small>Pilihlah berdasarkan usia anda saat ini</small>
+                                                </p>
+
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="> 35 tahun" id="usia-35up" name="usia">
+                                                    <label class="custom-control-label" for="usia-35up"> >35
+                                                        tahun</label>
+                                                </div> <br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="30 - 35 tahun" id="usia-30-35" name="usia">
+                                                    <label class="custom-control-label" for="usia-30-35">30 - 35
+                                                        tahun</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="25 - 30 tahun" id="usia-25-30" name="usia">
+                                                    <label class="custom-control-label" for="usia-25-30">25 - 30
+                                                        tahun</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="20 - 25 tahun" id="usia-20-25" name="usia">
+                                                    <label class="custom-control-label" for="usia-20-25">20 - 25
+                                                        tahun</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="< 20 tahun" id="usia-20down" name="usia">
+                                                    <label class="custom-control-label" for="usia-20down">
+                                                        < 20 tahun</label>
+                                                </div><br>
+
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="h5 mt-2 mb-4">Pendidikan <span style="color:red">*</span>
+                                                    <br>
+                                                    <small>Pilihlah berdasarkan pendidikan terakhir anda</small>
+                                                </p>
+
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input" value="S2"
+                                                        id="pendidikan-s2" name="pendidikan">
+                                                    <label class="custom-control-label" for="pendidikan-s2">
+                                                        S2</label>
+                                                </div> <br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input" value="S1"
+                                                        id="pendidikan-s1" name="pendidikan">
+                                                    <label class="custom-control-label" for="pendidikan-s1">S1</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input" value="D3"
+                                                        id="pendidikan-d3" name="pendidikan">
+                                                    <label class="custom-control-label" for="pendidikan-d3">D3</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input" value="SMA"
+                                                        id="pendidikan-sma" name="pendidikan">
+                                                    <label class="custom-control-label"
+                                                        for="pendidikan-sma">SMA</label>
+                                                </div><br>
+
+
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="h5 mt-2 mb-4">Pekerjaan <span style="color:red">*</span>
+                                                    <br>
+                                                    <small>Pilihlah berdasarkan pekerjaan anda saat ini</small>
+                                                </p>
+
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input pekerjaan-radio"
+                                                        value="Mahasiswa" id="pekerjaan-mahasiswa" name="pekerjaan">
+                                                    <label class="custom-control-label" for="pekerjaan-mahasiswa">
+                                                        Mahasiswa</label>
+                                                </div> <br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input pekerjaan-radio"
+                                                        value="Pegawai BUMN" id="pekerjaan-pegawaibumn"
+                                                        name="pekerjaan">
+                                                    <label class="custom-control-label"
+                                                        for="pekerjaan-pegawaibumn">Pegawai BUMN</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input pekerjaan-radio"
+                                                        value="Pegawai Swasta" id="pekerjaan-pegawaiswasta"
+                                                        name="pekerjaan">
+                                                    <label class="custom-control-label"
+                                                        for="pekerjaan-pegawaiswasta">Pegawai Swasta</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input pekerjaan-radio"
+                                                        value="Wiraswasta" id="pekerjaan-wiraswasta"
+                                                        name="pekerjaan">
+                                                    <label class="custom-control-label"
+                                                        for="pekerjaan-wiraswasta">Wiraswasta</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input pekerjaan-radio"
+                                                        value="Reporter" id="pekerjaan-reporter" name="pekerjaan">
+                                                    <label class="custom-control-label"
+                                                        for="pekerjaan-reporter">Reporter</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="pekerjaan-lainnya" name="pekerjaan">
+                                                    <label class="custom-control-label" for="pekerjaan-lainnya"><input
+                                                            type="text" disabled
+                                                            class="form-control custom-control-label"
+                                                            id="input-pekerjaan" name="pekerjaan"
+                                                            placeholder="Lainnya"></label>
+                                                </div><br>
+
+
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="h5 mt-2 mb-4">Tujuan Pengajuan Permohonan Informasi <span
+                                                        style="color:red">*</span> <br>
+                                                    <small>Pilihlah berdasarkan tujuan saat anda mengajukan permohonan
+                                                        informasi</small>
+                                                </p>
+
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input tujuan-radio"
+                                                        value="Penelitian" id="tujuan-penelitian" name="tujuan">
+                                                    <label class="custom-control-label " for="tujuan-penelitian">
+                                                        Penelitian</label>
+                                                </div> <br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input tujuan-radio"
+                                                        value="Publikasi" id="tujuan-publikasi" name="tujuan">
+                                                    <label class="custom-control-label"
+                                                        for="tujuan-publikasi">Publikasi</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="tujuan-lainnya" name="tujuan">
+                                                    <label class="custom-control-label" for="tujuan-lainnya"><input
+                                                            type="text" disabled
+                                                            class="form-control custom-control-label"
+                                                            id="input-tujuan" name="tujuan"
+                                                            placeholder="Lainnya"></label>
+                                                </div><br>
+
+
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="h5 mt-2 mb-4">Media Pengajuan Permohonan Informasi <span
+                                                        style="color:red">*</span> <br>
+                                                    <small>Pilihlah sesuai dengan media saat anda melakukan pengajuan
+                                                        informasi</small>
+                                                </p>
+
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="Email/Telepon" id="mediapengajuan-emailtelepon"
+                                                        name="mediapengajuan">
+                                                    <label class="custom-control-label"
+                                                        for="mediapengajuan-emailtelepon"> Email / Telepon</label>
+                                                </div> <br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="Portal Website" id="mediapengajuan-portalwebsite"
+                                                        name="mediapengajuan">
+                                                    <label class="custom-control-label"
+                                                        for="mediapengajuan-portalwebsite">Portal Website</label>
+                                                </div><br>
+                                                <div class="custom-control custom-radio col-md-10">
+                                                    <input type="radio" class="custom-control-input"
+                                                        value="Datang Langsung ke Kementrian BUMN"
+                                                        id="mediapengajuan-datanglangsung" name="mediapengajuan">
+                                                    <label class="custom-control-label"
+                                                        for="mediapengajuan-datanglangsung">Datang Langsung ke
+                                                        Kementrian BUMN</label>
+                                                </div><br>
+
+
+
+                                            </div>
                                         </div>
-
-                                        <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Usia <span style="color:red">*</span> <br>
-                                            <small>Pilihlah berdasarkan usia anda saat ini</small></p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="> 35 tahun" id="usia-35up" name="usia">
-                                                <label class="custom-control-label" for="usia-35up"> >35 tahun</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="30 - 35 tahun"  id="usia-30-35" name="usia">
-                                                <label class="custom-control-label" for="usia-30-35">30 - 35 tahun</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="25 - 30 tahun" id="usia-25-30" name="usia">
-                                                <label class="custom-control-label" for="usia-25-30">25 - 30 tahun</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="20 - 25 tahun" id="usia-20-25" name="usia">
-                                                <label class="custom-control-label" for="usia-20-25">20 - 25 tahun</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="< 20 tahun" id="usia-20down" name="usia">
-                                                <label class="custom-control-label" for="usia-20down">< 20 tahun</label>
-                                            </div><br>
-                                            
-                                        </div>  
-
-                                        <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Pendidikan <span style="color:red">*</span> <br>
-                                            <small>Pilihlah berdasarkan pendidikan terakhir anda</small></p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="S2" id="pendidikan-s2" name="pendidikan">
-                                                <label class="custom-control-label" for="pendidikan-s2"> S2</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="S1" id="pendidikan-s1" name="pendidikan">
-                                                <label class="custom-control-label" for="pendidikan-s1">S1</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="D3" id="pendidikan-d3" name="pendidikan">
-                                                <label class="custom-control-label" for="pendidikan-d3">D3</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="SMA" id="pendidikan-sma" name="pendidikan">
-                                                <label class="custom-control-label" for="pendidikan-sma">SMA</label>
-                                            </div><br>
-                                            
-                                            
-                                        </div> 
-                                        
-                                        <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Pekerjaan <span style="color:red">*</span> <br>
-                                            <small>Pilihlah berdasarkan pekerjaan anda saat ini</small></p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input pekerjaan-radio" value="Mahasiswa" id="pekerjaan-mahasiswa" name="pekerjaan">
-                                                <label class="custom-control-label" for="pekerjaan-mahasiswa"> Mahasiswa</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input pekerjaan-radio" value="Pegawai BUMN" id="pekerjaan-pegawaibumn" name="pekerjaan">
-                                                <label class="custom-control-label" for="pekerjaan-pegawaibumn">Pegawai BUMN</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input pekerjaan-radio" value="Pegawai Swasta" id="pekerjaan-pegawaiswasta" name="pekerjaan">
-                                                <label class="custom-control-label" for="pekerjaan-pegawaiswasta">Pegawai Swasta</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input pekerjaan-radio" value="Wiraswasta" id="pekerjaan-wiraswasta" name="pekerjaan">
-                                                <label class="custom-control-label" for="pekerjaan-wiraswasta">Wiraswasta</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input pekerjaan-radio" value="Reporter" id="pekerjaan-reporter" name="pekerjaan">
-                                                <label class="custom-control-label" for="pekerjaan-reporter">Reporter</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" id="pekerjaan-lainnya" name="pekerjaan">
-                                                <label class="custom-control-label" for="pekerjaan-lainnya"><input type="text" disabled class="form-control custom-control-label" id="input-pekerjaan"  name="pekerjaan" placeholder="Lainnya"></label>
-                                            </div><br>
-                                            
-                                            
-                                        </div> 
-
-                                        <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Tujuan Pengajuan Permohonan Informasi <span style="color:red">*</span> <br>
-                                            <small>Pilihlah berdasarkan tujuan saat anda mengajukan permohonan informasi</small></p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input tujuan-radio" value="Penelitian" id="tujuan-penelitian" name="tujuan">
-                                                <label class="custom-control-label " for="tujuan-penelitian"> Penelitian</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input tujuan-radio" value="Publikasi" id="tujuan-publikasi" name="tujuan">
-                                                <label class="custom-control-label" for="tujuan-publikasi">Publikasi</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" id="tujuan-lainnya" name="tujuan">
-                                                <label class="custom-control-label" for="tujuan-lainnya"><input type="text" disabled class="form-control custom-control-label" id="input-tujuan"  name="tujuan" placeholder="Lainnya"></label>
-                                            </div><br>
-                                            
-                                            
-                                        </div> 
-
-                                        <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Media Pengajuan Permohonan Informasi <span style="color:red">*</span> <br>
-                                            <small>Pilihlah sesuai dengan media saat anda melakukan pengajuan informasi</small></p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Email/Telepon" id="mediapengajuan-emailtelepon" name="mediapengajuan">
-                                                <label class="custom-control-label" for="mediapengajuan-emailtelepon"> Email / Telepon</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Portal Website" id="mediapengajuan-portalwebsite" name="mediapengajuan">
-                                                <label class="custom-control-label" for="mediapengajuan-portalwebsite">Portal Website</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Datang Langsung ke Kementrian BUMN" id="mediapengajuan-datanglangsung" name="mediapengajuan">
-                                                <label class="custom-control-label" for="mediapengajuan-datanglangsung">Datang Langsung ke Kementrian BUMN</label>
-                                            </div><br>
-                                            
-                                            
-                                            
-                                        </div> 
-                                    </div>
                                     </form>
-  
 
-                                    <button type="button" id="next-step1" class="btn btn-outline-primary-ppid  mt-2">
+
+                                    <button type="button" id="next-step1"
+                                        class="btn btn-outline-primary-ppid  mt-2">
                                         Next
                                     </button>
                                 </div>
                                 <!-- Step 2 -->
-                                <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+                                <div id="information-part" class="content" role="tabpanel"
+                                    aria-labelledby="information-part-trigger">
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Prosedur pelayanan / tata cara pengajuan permohonan informasi publik Kementerian BUMN <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Jelas" id="prosedurpelayanan-kurang" name="prosedurpelayanan">
-                                                <label class="custom-control-label" for="prosedurpelayanan-kurang"> Kurang Jelas</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Jelas" id="prosedurpelayanan-cukup" name="prosedurpelayanan">
-                                                <label class="custom-control-label" for="prosedurpelayanan-cukup">Cukup Jelas</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Jelas" id="prosedurpelayanan-jelas" name="prosedurpelayanan">
-                                                <label class="custom-control-label" for="prosedurpelayanan-jelas">Jelas</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Jelas" id="prosedurpelayanan-sangat" name="prosedurpelayanan">
-                                                <label class="custom-control-label" for="prosedurpelayanan-sangat">Sangat Jelas</label>
-                                            </div><br>       
-                                    </div> 
-                                    <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kualitas pelayanan informasi yang diberikan oleh Kementerian BUMN? <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Baik" id="kualitaspelayanan-kurang" name="kualitaspelayanan">
-                                                <label class="custom-control-label" for="kualitaspelayanan-kurang"> Kurang Baik</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Baik" id="kualitaspelayanan-cukup" name="kualitaspelayanan">
-                                                <label class="custom-control-label" for="kualitaspelayanan-cukup">Cukup Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Baik" id="kualitaspelayanan-baik" name="kualitaspelayanan">
-                                                <label class="custom-control-label" for="kualitaspelayanan-baik">Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Baik" id="kualitaspelayanan-sangat" name="kualitaspelayanan">
-                                                <label class="custom-control-label" for="kualitaspelayanan-sangat">Sangat Baik</label>
-                                            </div><br>       
-                                    </div> 
-                                    <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kelengkapan data yang diberikan oleh Kementerian BUMN? <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Lengkap" id="kelengkapandata-kurang" name="kelengkapandata">
-                                                <label class="custom-control-label" for="kelengkapandata-kurang"> Kurang Lengkap</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Lengkap" id="kelengkapandata-cukup" name="kelengkapandata">
-                                                <label class="custom-control-label" for="kelengkapandata-cukup">Cukup Lengkap</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Lengkap" id="kelengkapandata-lengkap" name="kelengkapandata">
-                                                <label class="custom-control-label" for="kelengkapandata-lengkap">Lengkap</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Lengkap" id="kelengkapandata-sangat" name="kelengkapandata">
-                                                <label class="custom-control-label" for="kelengkapandata-sangat">Sangat Lengkap</label>
-                                            </div><br>       
-                                    </div> 
-                                    <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana tingkat responsif/kecepatan pelayanan yang diberikan saat mengajukan permohonan informasi? <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Baik" id="tingkatresponsif-kurang" name="tingkatresponsif">
-                                                <label class="custom-control-label" for="tingkatresponsif-kurang"> Kurang Baik</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Baik" id="tingkatresponsif-cukup" name="tingkatresponsif">
-                                                <label class="custom-control-label" for="tingkatresponsif-cukup">Cukup Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Baik" id="tingkatresponsif-baik" name="tingkatresponsif">
-                                                <label class="custom-control-label" for="tingkatresponsif-baik">Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Baik" id="tingkatresponsif-sangat" name="tingkatresponsif">
-                                                <label class="custom-control-label" for="tingkatresponsif-sangat">Sangat Baik</label>
-                                            </div><br>       
-                                    </div> 
-                                    <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana fasilitas/kelengkapan pelayanan informasi publik Kementerian BUMN?<span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Baik" id="fasilitaspelayanan-kurang" name="fasilitaspelayanan">
-                                                <label class="custom-control-label" for="fasilitaspelayanan-kurang"> Kurang Baik</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Baik" id="fasilitaspelayanan-cukup" name="fasilitaspelayanan">
-                                                <label class="custom-control-label" for="fasilitaspelayanan-cukup">Cukup Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Baik" id="fasilitaspelayanan-baik" name="fasilitaspelayanan">
-                                                <label class="custom-control-label" for="fasilitaspelayanan-baik">Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Baik" id="fasilitaspelayanan-sangat" name="fasilitaspelayanan">
-                                                <label class="custom-control-label" for="fasilitaspelayanan-sangat">Sangat Baik</label>
-                                            </div><br>       
-                                    </div> 
-                                    <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, apakah pelayanan informasi sudah sesuai dengan prosedur yaitu 10+7 hari kerja?<span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Sesuai" id="pelayananinformasi-kurang" name="pelayananinformasi">
-                                                <label class="custom-control-label" for="pelayananinformasi-kurang"> Kurang Sesuai</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Sesuai" id="pelayananinformasi-cukup" name="pelayananinformasi">
-                                                <label class="custom-control-label" for="pelayananinformasi-cukup">Cukup Sesuai</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sesuai" id="pelayananinformasi-baik" name="pelayananinformasi">
-                                                <label class="custom-control-label" for="pelayananinformasi-baik">Sesuai</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Sesuai" id="pelayananinformasi-sangat" name="pelayananinformasi">
-                                                <label class="custom-control-label" for="pelayananinformasi-sangat">Sangat Sesuai</label>
-                                            </div><br>       
-                                    </div> 
-                                    <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kecakapan petugas dalam memberikan pelayanan informasi?<span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Baik" id="kecakapanpetugas-kurang" name="kecakapanpetugas">
-                                                <label class="custom-control-label" for="kecakapanpetugas-kurang"> Kurang Baik</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Baik" id="kecakapanpetugas-cukup" name="kecakapanpetugas">
-                                                <label class="custom-control-label" for="kecakapanpetugas-cukup">Cukup Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Baik" id="kecakapanpetugas-baik" name="kecakapanpetugas">
-                                                <label class="custom-control-label" for="kecakapanpetugas-baik">Baik</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Baik" id="kecakapanpetugas-sangat" name="kecakapanpetugas">
-                                                <label class="custom-control-label" for="kecakapanpetugas-sangat">Sangat Baik</label>
-                                            </div><br>       
+                                        <p class="h5 mt-2 mb-4">Prosedur pelayanan / tata cara pengajuan permohonan
+                                            informasi publik Kementerian BUMN <span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Jelas"
+                                                id="prosedurpelayanan-kurang" name="prosedurpelayanan">
+                                            <label class="custom-control-label" for="prosedurpelayanan-kurang"> Kurang
+                                                Jelas</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Jelas"
+                                                id="prosedurpelayanan-cukup" name="prosedurpelayanan">
+                                            <label class="custom-control-label" for="prosedurpelayanan-cukup">Cukup
+                                                Jelas</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Jelas"
+                                                id="prosedurpelayanan-jelas" name="prosedurpelayanan">
+                                            <label class="custom-control-label"
+                                                for="prosedurpelayanan-jelas">Jelas</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Jelas"
+                                                id="prosedurpelayanan-sangat" name="prosedurpelayanan">
+                                            <label class="custom-control-label" for="prosedurpelayanan-sangat">Sangat
+                                                Jelas</label>
+                                        </div><br>
                                     </div>
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kompetensi (pengetahuan, keahlian, ketrampilan, dan pengalaman) petugas pelayanan pelayanan informasi dalam memberikan pelayanan?<span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Baik" id="kompetensipetugas-kurang" name="kompetensipetugas">
-                                                <label class="custom-control-label" for="kompetensipetugas-kurang"> Kurang Ahli</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Ahli" id="kompetensipetugas-cukup" name="kompetensipetugas">
-                                                <label class="custom-control-label" for="kompetensipetugas-cukup">Cukup Ahli</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Ahli" id="kompetensipetugas-ahli" name="kompetensipetugas">
-                                                <label class="custom-control-label" for="kompetensipetugas-ahli">Ahli</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Ahli" id="kompetensipetugas-sangat" name="kompetensipetugas">
-                                                <label class="custom-control-label" for="kompetensipetugas-sangat">Sangat Ahli</label>
-                                            </div><br>       
-                                    </div> 
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kualitas pelayanan informasi
+                                            yang diberikan oleh Kementerian BUMN? <span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Baik"
+                                                id="kualitaspelayanan-kurang" name="kualitaspelayanan">
+                                            <label class="custom-control-label" for="kualitaspelayanan-kurang"> Kurang
+                                                Baik</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Baik"
+                                                id="kualitaspelayanan-cukup" name="kualitaspelayanan">
+                                            <label class="custom-control-label" for="kualitaspelayanan-cukup">Cukup
+                                                Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Baik"
+                                                id="kualitaspelayanan-baik" name="kualitaspelayanan">
+                                            <label class="custom-control-label"
+                                                for="kualitaspelayanan-baik">Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Baik"
+                                                id="kualitaspelayanan-sangat" name="kualitaspelayanan">
+                                            <label class="custom-control-label" for="kualitaspelayanan-sangat">Sangat
+                                                Baik</label>
+                                        </div><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kelengkapan data yang diberikan
+                                            oleh Kementerian BUMN? <span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Lengkap"
+                                                id="kelengkapandata-kurang" name="kelengkapandata">
+                                            <label class="custom-control-label" for="kelengkapandata-kurang"> Kurang
+                                                Lengkap</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Lengkap"
+                                                id="kelengkapandata-cukup" name="kelengkapandata">
+                                            <label class="custom-control-label" for="kelengkapandata-cukup">Cukup
+                                                Lengkap</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Lengkap"
+                                                id="kelengkapandata-lengkap" name="kelengkapandata">
+                                            <label class="custom-control-label"
+                                                for="kelengkapandata-lengkap">Lengkap</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Lengkap"
+                                                id="kelengkapandata-sangat" name="kelengkapandata">
+                                            <label class="custom-control-label" for="kelengkapandata-sangat">Sangat
+                                                Lengkap</label>
+                                        </div><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana tingkat responsif/kecepatan
+                                            pelayanan yang diberikan saat mengajukan permohonan informasi? <span
+                                                style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Baik"
+                                                id="tingkatresponsif-kurang" name="tingkatresponsif">
+                                            <label class="custom-control-label" for="tingkatresponsif-kurang"> Kurang
+                                                Baik</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Baik"
+                                                id="tingkatresponsif-cukup" name="tingkatresponsif">
+                                            <label class="custom-control-label" for="tingkatresponsif-cukup">Cukup
+                                                Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Baik"
+                                                id="tingkatresponsif-baik" name="tingkatresponsif">
+                                            <label class="custom-control-label"
+                                                for="tingkatresponsif-baik">Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Baik"
+                                                id="tingkatresponsif-sangat" name="tingkatresponsif">
+                                            <label class="custom-control-label" for="tingkatresponsif-sangat">Sangat
+                                                Baik</label>
+                                        </div><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana fasilitas/kelengkapan pelayanan
+                                            informasi publik Kementerian BUMN?<span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Baik"
+                                                id="fasilitaspelayanan-kurang" name="fasilitaspelayanan">
+                                            <label class="custom-control-label" for="fasilitaspelayanan-kurang">
+                                                Kurang Baik</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Baik"
+                                                id="fasilitaspelayanan-cukup" name="fasilitaspelayanan">
+                                            <label class="custom-control-label" for="fasilitaspelayanan-cukup">Cukup
+                                                Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Baik"
+                                                id="fasilitaspelayanan-baik" name="fasilitaspelayanan">
+                                            <label class="custom-control-label"
+                                                for="fasilitaspelayanan-baik">Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Baik"
+                                                id="fasilitaspelayanan-sangat" name="fasilitaspelayanan">
+                                            <label class="custom-control-label" for="fasilitaspelayanan-sangat">Sangat
+                                                Baik</label>
+                                        </div><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="h5 mt-2 mb-4">Menurut anda, apakah pelayanan informasi sudah sesuai
+                                            dengan prosedur yaitu 10+7 hari kerja?<span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Sesuai"
+                                                id="pelayananinformasi-kurang" name="pelayananinformasi">
+                                            <label class="custom-control-label" for="pelayananinformasi-kurang">
+                                                Kurang Sesuai</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Sesuai"
+                                                id="pelayananinformasi-cukup" name="pelayananinformasi">
+                                            <label class="custom-control-label" for="pelayananinformasi-cukup">Cukup
+                                                Sesuai</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sesuai"
+                                                id="pelayananinformasi-baik" name="pelayananinformasi">
+                                            <label class="custom-control-label"
+                                                for="pelayananinformasi-baik">Sesuai</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Sesuai"
+                                                id="pelayananinformasi-sangat" name="pelayananinformasi">
+                                            <label class="custom-control-label" for="pelayananinformasi-sangat">Sangat
+                                                Sesuai</label>
+                                        </div><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kecakapan petugas dalam
+                                            memberikan pelayanan informasi?<span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Baik"
+                                                id="kecakapanpetugas-kurang" name="kecakapanpetugas">
+                                            <label class="custom-control-label" for="kecakapanpetugas-kurang"> Kurang
+                                                Baik</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Baik"
+                                                id="kecakapanpetugas-cukup" name="kecakapanpetugas">
+                                            <label class="custom-control-label" for="kecakapanpetugas-cukup">Cukup
+                                                Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Baik"
+                                                id="kecakapanpetugas-baik" name="kecakapanpetugas">
+                                            <label class="custom-control-label"
+                                                for="kecakapanpetugas-baik">Baik</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Baik"
+                                                id="kecakapanpetugas-sangat" name="kecakapanpetugas">
+                                            <label class="custom-control-label" for="kecakapanpetugas-sangat">Sangat
+                                                Baik</label>
+                                        </div><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana kompetensi (pengetahuan,
+                                            keahlian, ketrampilan, dan pengalaman) petugas pelayanan pelayanan informasi
+                                            dalam memberikan pelayanan?<span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Baik"
+                                                id="kompetensipetugas-kurang" name="kompetensipetugas">
+                                            <label class="custom-control-label" for="kompetensipetugas-kurang"> Kurang
+                                                Ahli</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Ahli"
+                                                id="kompetensipetugas-cukup" name="kompetensipetugas">
+                                            <label class="custom-control-label" for="kompetensipetugas-cukup">Cukup
+                                                Ahli</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Ahli"
+                                                id="kompetensipetugas-ahli" name="kompetensipetugas">
+                                            <label class="custom-control-label"
+                                                for="kompetensipetugas-ahli">Ahli</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Ahli"
+                                                id="kompetensipetugas-sangat" name="kompetensipetugas">
+                                            <label class="custom-control-label" for="kompetensipetugas-sangat">Sangat
+                                                Ahli</label>
+                                        </div><br>
+                                    </div>
                                     <br>
-                                    <button type="button"  class="btn btn-outline-primary-ppid prev-step">
+                                    <button type="button" class="btn btn-outline-primary-ppid prev-step">
                                         Prev
                                     </button>
                                     <button type="button" class="btn btn-outline-primary-ppid" id="next-step2">
@@ -834,70 +987,97 @@
                                     </button>
                                 </div>
                                 <!-- Step 3 -->
-                                <div id="information2-part" class="content" role="tabpanel" aria-labelledby="information2-part-trigger">
+                                <div id="information2-part" class="content" role="tabpanel"
+                                    aria-labelledby="information2-part-trigger">
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Informasi yang disajikan di portal PPID Kementerian BUMN * <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Lengkap" id="informasidisajikan-kurang" name="informasidisajikan">
-                                                <label class="custom-control-label" for="informasidisajikan-kurang"> Kurang Lengkap</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Lengkap" id="informasidisajikan-cukup" name="informasidisajikan">
-                                                <label class="custom-control-label" for="informasidisajikan-cukup">Cukup Lengkap</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Lengkap" id="informasidisajikan-lengkap" name="informasidisajikan">
-                                                <label class="custom-control-label" for="informasidisajikan-lengkap">Lengkap</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Lengkap" id="informasidisajikan-sangat" name="informasidisajikan">
-                                                <label class="custom-control-label" for="informasidisajikan-sangat">Sangat Lengkap</label>
-                                            </div><br>       
-                                    </div> 
+                                        <p class="h5 mt-2 mb-4">Informasi yang disajikan di portal PPID Kementerian
+                                            BUMN * <span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Lengkap"
+                                                id="informasidisajikan-kurang" name="informasidisajikan">
+                                            <label class="custom-control-label" for="informasidisajikan-kurang">
+                                                Kurang Lengkap</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Lengkap"
+                                                id="informasidisajikan-cukup" name="informasidisajikan">
+                                            <label class="custom-control-label" for="informasidisajikan-cukup">Cukup
+                                                Lengkap</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Lengkap"
+                                                id="informasidisajikan-lengkap" name="informasidisajikan">
+                                            <label class="custom-control-label"
+                                                for="informasidisajikan-lengkap">Lengkap</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Lengkap"
+                                                id="informasidisajikan-sangat" name="informasidisajikan">
+                                            <label class="custom-control-label" for="informasidisajikan-sangat">Sangat
+                                                Lengkap</label>
+                                        </div><br>
+                                    </div>
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Data dan informasi yang disajikan di website sudah up to date * <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang" id="informasiuptodate-kurang" name="informasiuptodate">
-                                                <label class="custom-control-label" for="informasiuptodate-kurang">Kurang</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup" id="informasiuptodate-cukup" name="informasiuptodate">
-                                                <label class="custom-control-label" for="informasiuptodate-cukup">Cukup</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Baik" id="informasiuptodate-baik" name="informasiuptodate">
-                                                <label class="custom-control-label" for="informasiuptodate-baik">Baik</label>
-                                            </div><br>
-                                            
-                                    </div> 
+                                        <p class="h5 mt-2 mb-4">Data dan informasi yang disajikan di website sudah up
+                                            to date * <span style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang"
+                                                id="informasiuptodate-kurang" name="informasiuptodate">
+                                            <label class="custom-control-label"
+                                                for="informasiuptodate-kurang">Kurang</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup"
+                                                id="informasiuptodate-cukup" name="informasiuptodate">
+                                            <label class="custom-control-label"
+                                                for="informasiuptodate-cukup">Cukup</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Baik"
+                                                id="informasiuptodate-baik" name="informasiuptodate">
+                                            <label class="custom-control-label"
+                                                for="informasiuptodate-baik">Baik</label>
+                                        </div><br>
+
+                                    </div>
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana aksesbilitas/kemudahan dalam mendapatkan informasi dari Kementerian BUMN? <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sulit" id="aksesibilitasinformasi-kurang" name="aksesibilitasinformasi">
-                                                <label class="custom-control-label" for="aksesibilitasinformasi-kurang"> Sulit</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Mudah" id="aksesibilitasinformasi-cukup" name="aksesibilitasinformasi">
-                                                <label class="custom-control-label" for="aksesibilitasinformasi-cukup">Cukup Mudah</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Mudah" id="aksesibilitasinformasi-mudah" name="aksesibilitasinformasi">
-                                                <label class="custom-control-label" for="aksesibilitasinformasi-mudah">Mudah</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Mudah" id="aksesibilitasinformasi-sangat" name="aksesibilitasinformasi">
-                                                <label class="custom-control-label" for="aksesibilitasinformasi-sangat">Sangat Mudah</label>
-                                            </div><br>       
-                                    </div> 
-                                   
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana aksesbilitas/kemudahan dalam
+                                            mendapatkan informasi dari Kementerian BUMN? <span
+                                                style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sulit"
+                                                id="aksesibilitasinformasi-kurang" name="aksesibilitasinformasi">
+                                            <label class="custom-control-label" for="aksesibilitasinformasi-kurang">
+                                                Sulit</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Mudah"
+                                                id="aksesibilitasinformasi-cukup" name="aksesibilitasinformasi">
+                                            <label class="custom-control-label"
+                                                for="aksesibilitasinformasi-cukup">Cukup Mudah</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Mudah"
+                                                id="aksesibilitasinformasi-mudah" name="aksesibilitasinformasi">
+                                            <label class="custom-control-label"
+                                                for="aksesibilitasinformasi-mudah">Mudah</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Mudah"
+                                                id="aksesibilitasinformasi-sangat" name="aksesibilitasinformasi">
+                                            <label class="custom-control-label"
+                                                for="aksesibilitasinformasi-sangat">Sangat Mudah</label>
+                                        </div><br>
+                                    </div>
+
                                     <br>
-                                    <button type="button"  class="btn btn-outline-primary-ppid prev-step">
+                                    <button type="button" class="btn btn-outline-primary-ppid prev-step">
                                         Prev
                                     </button>
                                     <button type="button" class="btn btn-outline-primary-ppid" id="next-step3">
@@ -905,87 +1085,122 @@
                                     </button>
                                 </div>
                                 <!-- Step 4 -->
-                                <div id="information3-part" class="content" role="tabpanel" aria-labelledby="information3-part-trigger">
+                                <div id="information3-part" class="content" role="tabpanel"
+                                    aria-labelledby="information3-part-trigger">
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-4">Menurut anda, bagaimana pelaksanaan keseluruhan proses pelayanan permohonan informasi Kementerian BUMN? * <span style="color:red">*</span> 
-                                            </p>
-                                            
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Kurang Puas" id="keseluruhanproses-kurang" name="keseluruhanproses">
-                                                <label class="custom-control-label" for="keseluruhanproses-kurang"> Kurang Puas</label>
-                                            </div> <br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Cukup Puas" id="keseluruhanproses-cukup" name="keseluruhanproses">
-                                                <label class="custom-control-label" for="keseluruhanproses-cukup">Cukup Puas</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Puas" id="keseluruhanproses-puas" name="keseluruhanproses">
-                                                <label class="custom-control-label" for="keseluruhanproses-puas">Puas</label>
-                                            </div><br>
-                                            <div class="custom-control custom-radio col-md-10">
-                                                <input type="radio" class="custom-control-input" value="Sangat Puas" id="keseluruhanproses-sangat" name="keseluruhanproses">
-                                                <label class="custom-control-label" for="keseluruhanproses-sangat">Sangat Puas</label>
-                                            </div><br>       
-                                    </div> 
+                                        <p class="h5 mt-2 mb-4">Menurut anda, bagaimana pelaksanaan keseluruhan proses
+                                            pelayanan permohonan informasi Kementerian BUMN? * <span
+                                                style="color:red">*</span>
+                                        </p>
+
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Kurang Puas"
+                                                id="keseluruhanproses-kurang" name="keseluruhanproses">
+                                            <label class="custom-control-label" for="keseluruhanproses-kurang"> Kurang
+                                                Puas</label>
+                                        </div> <br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Cukup Puas"
+                                                id="keseluruhanproses-cukup" name="keseluruhanproses">
+                                            <label class="custom-control-label" for="keseluruhanproses-cukup">Cukup
+                                                Puas</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Puas"
+                                                id="keseluruhanproses-puas" name="keseluruhanproses">
+                                            <label class="custom-control-label"
+                                                for="keseluruhanproses-puas">Puas</label>
+                                        </div><br>
+                                        <div class="custom-control custom-radio col-md-10">
+                                            <input type="radio" class="custom-control-input" value="Sangat Puas"
+                                                id="keseluruhanproses-sangat" name="keseluruhanproses">
+                                            <label class="custom-control-label" for="keseluruhanproses-sangat">Sangat
+                                                Puas</label>
+                                        </div><br>
+                                    </div>
                                     <div class="col-md-12">
-                                            <p class="h5 mt-2 mb-1">Skor pelaksanaan keseluruhan proses pelayanan permohonan informasi Kementerian BUMN * <span style="color:red">*</span> 
-                                            </p>
-                                            <span>Tidak Puas &nbsp;</span>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio1" value="1">
+                                        <p class="h5 mt-2 mb-1">Skor pelaksanaan keseluruhan proses pelayanan
+                                            permohonan informasi Kementerian BUMN * <span style="color:red">*</span>
+                                        </p>
+                                        <span>Tidak Puas &nbsp;</span>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio1"
+                                                value="1">
                                             <label class="form-check-label" for="inlineRadio1">1</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio2" value="2">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio2"
+                                                value="2">
                                             <label class="form-check-label" for="inlineRadio2">2</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio3" value="3" >
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio3"
+                                                value="3">
                                             <label class="form-check-label" for="inlineRadio3">3 </label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio4" value="4">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio4"
+                                                value="4">
                                             <label class="form-check-label" for="inlineRadio4">4</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio5" value="5">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio5"
+                                                value="5">
                                             <label class="form-check-label" for="inlineRadio5">5</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio6" value="6" >
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio6"
+                                                value="6">
                                             <label class="form-check-label" for="inlineRadio6">6</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio7" value="7">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio7"
+                                                value="7">
                                             <label class="form-check-label" for="inlineRadio7">7</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio8" value="8">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio8"
+                                                value="8">
                                             <label class="form-check-label" for="inlineRadio8">8</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio9" value="9" >
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio9"
+                                                value="9">
                                             <label class="form-check-label" for="inlineRadio9">9</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;" type="radio" name="skorpelaksanaan" id="inlineRadio10" value="10" >
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" style="width: 1rem; height:1.25rem;"
+                                                type="radio" name="skorpelaksanaan" id="inlineRadio10"
+                                                value="10">
                                             <label class="form-check-label" for="inlineRadio10">10</label>
-                                            </div>
-                                            <span>Puas</span>
-                                            
-                                           
-                                            
-                                    </div> 
+                                        </div>
+                                        <span>Puas</span>
+
+
+
+                                    </div>
                                     <div class="col-md-12">
-                                            <p class="h5 mt-4 mb-4">Saran dan masukan bagi pelayanan informasi Kementerian BUMN  <span style="color:red">*</span> 
-                                            </p> 
-                                            <input type="text"  class="form-control custom-control-label" id="input-saranmasukan"  name="saranmasukan" placeholder="Saran dan Masukan">
-                                            
-                                           <br>       
-                                    </div> 
-                                   
+                                        <p class="h5 mt-4 mb-4">Saran dan masukan bagi pelayanan informasi Kementerian
+                                            BUMN <span style="color:red">*</span>
+                                        </p>
+                                        <input type="text" class="form-control custom-control-label"
+                                            id="input-saranmasukan" name="saranmasukan"
+                                            placeholder="Saran dan Masukan">
+
+                                        <br>
+                                    </div>
+
                                     <br>
-                                    <button type="button"  class="btn btn-outline-primary-ppid prev-step">
+                                    <button type="button" class="btn btn-outline-primary-ppid prev-step">
                                         Prev
                                     </button>
                                     <button type="button" class="btn btn-outline-primary-ppid" id="next-step4">
@@ -995,7 +1210,7 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
                     <!-- <div class="modal-footer">
                         <button type="button" id="cancel-permohonan" class="btn btn-outline-primary-ppid"
@@ -1030,47 +1245,46 @@
         {{-- <script src="{{ asset('frontend/dashboard/keberatan.js') }}"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
         <script>
-            const dataSurvei = 
-                {
-                    //Step 1
-                    'jenisKelamin' : null,
-                    'usia':null,
-                    'pendidikan':null,
-                    'pekerjaan':null,
-                    'tujuan':null,
-                    'mediapengajuan':null,
-                    //Step 2
-                    'prosedurpelayanan':null,
-                    'kualitaspelayanan':null,
-                    'kelengkapandata':null,
-                    'tingkatresponsif':null,
-                    'fasilitaspelayanan':null,
-                    'pelayananinformasi':null,
-                    'kecakapanpetugas':null,
-                    'kompetensipetugas':null,
-                    //Step 3
-                    'informasidisajikan':null,
-                    'informasiuptodate':null,
-                    'aksesibilitasinformasi':null,
-                    //Step 4
-                    'keseluruhanproses' :null,
-                    'skorpelaksanaan':null,
-                    'saranmasukan':null
-                }
-            document.addEventListener('DOMContentLoaded', function () {
+            const dataSurvei = {
+                //Step 1
+                'jenisKelamin': null,
+                'usia': null,
+                'pendidikan': null,
+                'pekerjaan': null,
+                'tujuan': null,
+                'mediapengajuan': null,
+                //Step 2
+                'prosedurpelayanan': null,
+                'kualitaspelayanan': null,
+                'kelengkapandata': null,
+                'tingkatresponsif': null,
+                'fasilitaspelayanan': null,
+                'pelayananinformasi': null,
+                'kecakapanpetugas': null,
+                'kompetensipetugas': null,
+                //Step 3
+                'informasidisajikan': null,
+                'informasiuptodate': null,
+                'aksesibilitasinformasi': null,
+                //Step 4
+                'keseluruhanproses': null,
+                'skorpelaksanaan': null,
+                'saranmasukan': null
+            }
+            document.addEventListener('DOMContentLoaded', function() {
                 var stepper = new Stepper(document.querySelector('.bs-stepper'))
-                
+
                 $(".pekerjaan-radio").on('click', function() {
                     $("#input-pekerjaan").attr("disabled", true);
                 })
                 $(".tujuan-radio").on('click', function() {
                     $("#input-tujuan").attr("disabled", true);
                 })
-                $("#pekerjaan-lainnya").on('click', function() {    
-                    $("#input-pekerjaan").attr("disabled", false); 
+                $("#pekerjaan-lainnya").on('click', function() {
+                    $("#input-pekerjaan").attr("disabled", false);
                 })
-                $("#tujuan-lainnya").on('click', function() {    
-                    $("#input-tujuan").attr("disabled", false); 
+                $("#tujuan-lainnya").on('click', function() {
+                    $("#input-tujuan").attr("disabled", false);
                 })
 
                 const submitSurvey = (data) => {
@@ -1082,7 +1296,7 @@
                     });
                 }
 
-              
+
                 $("#next-step1").on('click', function() {
                     let error = []
                     const jenisKelaminAll = document.querySelectorAll('input[name="jenisKelamin"]');
@@ -1111,26 +1325,26 @@
                         }
                     }
 
-                   if ($("#pekerjaan-lainnya").prop("checked")) {
+                    if ($("#pekerjaan-lainnya").prop("checked")) {
                         dataSurvei.pekerjaan = null
-                        if($("#input-pekerjaan").val() != ""){
+                        if ($("#input-pekerjaan").val() != "") {
                             dataSurvei.pekerjaan = $("#input-pekerjaan").val()
                         }
-                   } else {
-                    for (const pekerjaan of pekerjaanAll) {
-                        if (pekerjaan.checked) {
-                            dataSurvei.pekerjaan = pekerjaan.value;
-                            break;
+                    } else {
+                        for (const pekerjaan of pekerjaanAll) {
+                            if (pekerjaan.checked) {
+                                dataSurvei.pekerjaan = pekerjaan.value;
+                                break;
+                            }
                         }
                     }
-                   }
 
-                   if ($("#tujuan-lainnya").prop("checked")) {
+                    if ($("#tujuan-lainnya").prop("checked")) {
                         dataSurvei.tujuan = null
-                        if($("#input-tujuan").val() != ""){
+                        if ($("#input-tujuan").val() != "") {
                             dataSurvei.tujuan = $("#input-tujuan").val()
                         }
-                   } else {
+                    } else {
                         for (const tujuan of tujuanAll) {
                             if (tujuan.checked) {
                                 dataSurvei.tujuan = tujuan.value;
@@ -1146,13 +1360,25 @@
                     }
                     console.log('dataSurvei', dataSurvei)
                     console.log('error', error)
-                    
-                    if (dataSurvei.jenisKelamin == null){ error.push('Jenis Kelamin harus diisi') } 
-                    if (dataSurvei.usia == null){ error.push('Usia harus diisi') } 
-                    if (dataSurvei.pendidikan == null){ error.push('Pendidikan harus diisi') } 
-                    if (dataSurvei.pekerjaan == null){ error.push('Pekerjaan harus diisi') } 
-                    if (dataSurvei.tujuan == null){ error.push('Tujuan harus diisi') } 
-                    if (dataSurvei.mediapengajuan == null){ error.push('Media Pengajuan harus diisi') } 
+
+                    if (dataSurvei.jenisKelamin == null) {
+                        error.push('Jenis Kelamin harus diisi')
+                    }
+                    if (dataSurvei.usia == null) {
+                        error.push('Usia harus diisi')
+                    }
+                    if (dataSurvei.pendidikan == null) {
+                        error.push('Pendidikan harus diisi')
+                    }
+                    if (dataSurvei.pekerjaan == null) {
+                        error.push('Pekerjaan harus diisi')
+                    }
+                    if (dataSurvei.tujuan == null) {
+                        error.push('Tujuan harus diisi')
+                    }
+                    if (dataSurvei.mediapengajuan == null) {
+                        error.push('Media Pengajuan harus diisi')
+                    }
 
                     if (error.length > 0) {
                         // list = document.createElement("div")
@@ -1171,14 +1397,14 @@
                             html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
                         })
                         return
-                    }else{
-                        stepper.next()  
+                    } else {
+                        stepper.next()
                     }
-                  
+
                 })
 
                 $("#next-step2").on('click', function() {
-                   
+
                     let error = []
                     const prosedurpelayananAll = document.querySelectorAll('input[name="prosedurpelayanan"]');
                     const kualitaspelayananAll = document.querySelectorAll('input[name="kualitaspelayanan"]');
@@ -1244,7 +1470,7 @@
                     }
                     console.log('dataSurvei', dataSurvei)
                     console.log('error', error)
-                     // 'prosedurpelayanan':null,
+                    // 'prosedurpelayanan':null,
                     //     'kualitaspelayanan':null,
                     //     'kelengkapandata':null,
                     //     'tingkatresponsif':null,
@@ -1252,20 +1478,36 @@
                     //     'pelayananinformasi':null,
                     //     'kecakapanpetugas':null,
                     //     'kompetensipetugas':null,
-                    if (dataSurvei.prosedurpelayanan == null){ error.push('Indikator Prosedur Pelayanan harus diisi') } 
-                    if (dataSurvei.kualitaspelayanan == null){ error.push('Indikator Kualitas Pelayanan harus diisi') } 
-                    if (dataSurvei.kelengkapandata == null){ error.push('Indikator Kelengkapan Data harus diisi') } 
-                    if (dataSurvei.tingkatresponsif == null){ error.push('Indikator Tingkat Responsif harus diisi') } 
-                    if (dataSurvei.fasilitaspelayanan == null){ error.push('Indikator Fasilitas Pelayanan harus diisi') } 
-                    if (dataSurvei.pelayananinformasi == null){ error.push('Indikator Pelayanan Informasi harus diisi') } 
-                    if (dataSurvei.kecakapanpetugas == null){ error.push('Indikator Kecakapan Petugas harus diisi') } 
-                    if (dataSurvei.kompetensipetugas == null){ error.push('Indikator Kompetensi Petugas harus diisi') } 
+                    if (dataSurvei.prosedurpelayanan == null) {
+                        error.push('Indikator Prosedur Pelayanan harus diisi')
+                    }
+                    if (dataSurvei.kualitaspelayanan == null) {
+                        error.push('Indikator Kualitas Pelayanan harus diisi')
+                    }
+                    if (dataSurvei.kelengkapandata == null) {
+                        error.push('Indikator Kelengkapan Data harus diisi')
+                    }
+                    if (dataSurvei.tingkatresponsif == null) {
+                        error.push('Indikator Tingkat Responsif harus diisi')
+                    }
+                    if (dataSurvei.fasilitaspelayanan == null) {
+                        error.push('Indikator Fasilitas Pelayanan harus diisi')
+                    }
+                    if (dataSurvei.pelayananinformasi == null) {
+                        error.push('Indikator Pelayanan Informasi harus diisi')
+                    }
+                    if (dataSurvei.kecakapanpetugas == null) {
+                        error.push('Indikator Kecakapan Petugas harus diisi')
+                    }
+                    if (dataSurvei.kompetensipetugas == null) {
+                        error.push('Indikator Kompetensi Petugas harus diisi')
+                    }
 
                     if (error.length > 0) {
-                        
+
                         let errtxt = '<ul style="text-align: left; color: red">'
                         error.forEach((item) => {
-                           
+
                             errtxt += '<li>- ' + item + '!</li>'
                         })
 
@@ -1275,179 +1517,192 @@
                             html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
                         })
                         return
-                    }else{
-                        stepper.next()  
+                    } else {
+                        stepper.next()
                     }
-                  
+
                 })
 
                 $("#next-step3").on('click', function() {
-                   
-                   let error = []
-                   const informasidisajikanAll = document.querySelectorAll('input[name="informasidisajikan"]');
-                   const informasiuptodateAll = document.querySelectorAll('input[name="informasiuptodate"]');
-                   const aksesibilitasinformasiAll = document.querySelectorAll('input[name="aksesibilitasinformasi"]');
-                  
-                   for (const informasidisajikan of informasidisajikanAll) {
-                       if (informasidisajikan.checked) {
-                           dataSurvei.informasidisajikan = informasidisajikan.value;
-                           break;
-                       }
-                   }
-                   for (const informasiuptodate of informasiuptodateAll) {
-                       if (informasiuptodate.checked) {
-                           dataSurvei.informasiuptodate = informasiuptodate.value;
-                           break;
-                       }
-                   }
-                   for (const aksesibilitasinformasi of aksesibilitasinformasiAll) {
-                       if (aksesibilitasinformasi.checked) {
-                           dataSurvei.aksesibilitasinformasi = aksesibilitasinformasi.value;
-                           break;
-                       }
-                   }
 
-                   
-                   console.log('dataSurvei', dataSurvei)
-                   console.log('error', error)
-                   
-                   if (dataSurvei.informasidisajikan == null){ error.push('Indikator Informasi Yang Disajikan harus diisi') } 
-                   if (dataSurvei.informasiuptodate == null){ error.push('Indikator Informasi Yang Up to Date harus diisi') } 
-                   if (dataSurvei.aksesibilitasinformasi == null){ error.push('Indikator Aksesibilitas Informasi harus diisi') } 
-                   
+                    let error = []
+                    const informasidisajikanAll = document.querySelectorAll('input[name="informasidisajikan"]');
+                    const informasiuptodateAll = document.querySelectorAll('input[name="informasiuptodate"]');
+                    const aksesibilitasinformasiAll = document.querySelectorAll(
+                        'input[name="aksesibilitasinformasi"]');
 
-                   if (error.length > 0) {
-                       
-                       let errtxt = '<ul style="text-align: left; color: red">'
-                       error.forEach((item) => {
-                          
-                           errtxt += '<li>- ' + item + '!</li>'
-                       })
+                    for (const informasidisajikan of informasidisajikanAll) {
+                        if (informasidisajikan.checked) {
+                            dataSurvei.informasidisajikan = informasidisajikan.value;
+                            break;
+                        }
+                    }
+                    for (const informasiuptodate of informasiuptodateAll) {
+                        if (informasiuptodate.checked) {
+                            dataSurvei.informasiuptodate = informasiuptodate.value;
+                            break;
+                        }
+                    }
+                    for (const aksesibilitasinformasi of aksesibilitasinformasiAll) {
+                        if (aksesibilitasinformasi.checked) {
+                            dataSurvei.aksesibilitasinformasi = aksesibilitasinformasi.value;
+                            break;
+                        }
+                    }
 
-                       Swal.fire({
-                           icon: 'warning',
-                           title: 'Warning',
-                           html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
-                       })
-                       return
-                   }else{
-                       stepper.next()  
-                   }
-                 
-               })
+
+                    console.log('dataSurvei', dataSurvei)
+                    console.log('error', error)
+
+                    if (dataSurvei.informasidisajikan == null) {
+                        error.push('Indikator Informasi Yang Disajikan harus diisi')
+                    }
+                    if (dataSurvei.informasiuptodate == null) {
+                        error.push('Indikator Informasi Yang Up to Date harus diisi')
+                    }
+                    if (dataSurvei.aksesibilitasinformasi == null) {
+                        error.push('Indikator Aksesibilitas Informasi harus diisi')
+                    }
+
+
+                    if (error.length > 0) {
+
+                        let errtxt = '<ul style="text-align: left; color: red">'
+                        error.forEach((item) => {
+
+                            errtxt += '<li>- ' + item + '!</li>'
+                        })
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
+                        })
+                        return
+                    } else {
+                        stepper.next()
+                    }
+
+                })
                 $("#next-step4").on('click', function() {
                     const user = {!! Auth::user()->toJson() !!}
-                   let error = []
-                   const keseluruhanprosesAll = document.querySelectorAll('input[name="keseluruhanproses"]');
-                   const skorpelaksanaanAll = document.querySelectorAll('input[name="skorpelaksanaan"]');
-                   const saranmasukanAll = document.querySelectorAll('input[name="saranmasukan"]');
-                  
-                   for (const keseluruhanproses of keseluruhanprosesAll) {
-                       if (keseluruhanproses.checked) {
-                           dataSurvei.keseluruhanproses = keseluruhanproses.value;
-                           break;
-                       }
-                   }
-                   for (const skorpelaksanaan of skorpelaksanaanAll) {
-                       if (skorpelaksanaan.checked) {
-                           dataSurvei.skorpelaksanaan = skorpelaksanaan.value;
-                           break;
-                       }
-                   }
+                    let error = []
+                    const keseluruhanprosesAll = document.querySelectorAll('input[name="keseluruhanproses"]');
+                    const skorpelaksanaanAll = document.querySelectorAll('input[name="skorpelaksanaan"]');
+                    const saranmasukanAll = document.querySelectorAll('input[name="saranmasukan"]');
 
-                
-                        if($("#input-saranmasukan").val() != ""){
-                            dataSurvei.saranmasukan = $("#input-saranmasukan").val()
+                    for (const keseluruhanproses of keseluruhanprosesAll) {
+                        if (keseluruhanproses.checked) {
+                            dataSurvei.keseluruhanproses = keseluruhanproses.value;
+                            break;
                         }
-                  
-                   
-
-                   
-                   console.log('dataSurvei', dataSurvei)
-                   console.log('error', error)
-                   
-                   if (dataSurvei.keseluruhanproses == null){ error.push('Indikator Keseluruhan Proses harus diisi') } 
-                   if (dataSurvei.skorpelaksanaan == null){ error.push('Indikator Skor Pelaksanaan harus diisi') } 
-                   if (dataSurvei.saranmasukan == null){ error.push('Saran dan Masukan harus diisi') } 
-                   
-
-                   if (error.length > 0) {
-                       
-                       let errtxt = '<ul style="text-align: left; color: red">'
-                       error.forEach((item) => {
-                          
-                           errtxt += '<li>- ' + item + '!</li>'
-                       })
-
-                       Swal.fire({
-                           icon: 'warning',
-                           title: 'Warning',
-                           html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
-                       })
-                       return
-                   }else{
-                    //submit
-                       stepper.next()  
-                       Swal.fire({
-                        icon: 'question',
-                        html: `Kirim Jawaban Survei ?`,
-                        cancelButtonText: 'Cancel',
-                        showCancelButton: true,
-                        confirmButtonText: "Ya, Kirim",
-                        customClass: {
-                            cancelButton: 'btn btn-danger',
-                            confirmButton: "btn btn-primary",
+                    }
+                    for (const skorpelaksanaan of skorpelaksanaanAll) {
+                        if (skorpelaksanaan.checked) {
+                            dataSurvei.skorpelaksanaan = skorpelaksanaan.value;
+                            break;
                         }
-                    }).then(async (dt) => {
-                        if (dt.isConfirmed) {
-
-                            try {
-                                // modalKeberatan.block();
-                                dataSurvei.id_surat = $("#id-surat-survey").val()
-                                dataSurvei.no_tiket = $("#no-tiket-survey").val()
-                                dataSurvei._token = "{{ csrf_token() }}"
-                                dataSurvei.id_ppid_pendaftar =  user.id
-                                const result = await submitSurvey(dataSurvei)
-                                
-                                
+                    }
 
 
-                                // modalKeberatan.release();
-                                if (result.result) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Sukses',
-                                        html: 'Berhasil mengirim survei!'
-                                    })
-                                    window.location.reload();
-                                    $("#surveiModal").modal('hide')
-                                 
-                                } else {
-                                    Swal.fire({
-                                        icon: 'warning',
-                                        title: 'Warning',
-                                        html: 'Keberatan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
-                                    });
-                                }
+                    if ($("#input-saranmasukan").val() != "") {
+                        dataSurvei.saranmasukan = $("#input-saranmasukan").val()
+                    }
 
-                                // window.location.reload();
 
-                            } catch (error) {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    html: 'Terjadi kesalahan!'
-                                });
-                                console.log(error)
-                                modalKeberatan.release();
+
+
+                    console.log('dataSurvei', dataSurvei)
+                    console.log('error', error)
+
+                    if (dataSurvei.keseluruhanproses == null) {
+                        error.push('Indikator Keseluruhan Proses harus diisi')
+                    }
+                    if (dataSurvei.skorpelaksanaan == null) {
+                        error.push('Indikator Skor Pelaksanaan harus diisi')
+                    }
+                    if (dataSurvei.saranmasukan == null) {
+                        error.push('Saran dan Masukan harus diisi')
+                    }
+
+
+                    if (error.length > 0) {
+
+                        let errtxt = '<ul style="text-align: left; color: red">'
+                        error.forEach((item) => {
+
+                            errtxt += '<li>- ' + item + '!</li>'
+                        })
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
+                        })
+                        return
+                    } else {
+                        //submit
+                        stepper.next()
+                        Swal.fire({
+                            icon: 'question',
+                            html: `Kirim Jawaban Survei ?`,
+                            cancelButtonText: 'Cancel',
+                            showCancelButton: true,
+                            confirmButtonText: "Ya, Kirim",
+                            customClass: {
+                                cancelButton: 'btn btn-danger',
+                                confirmButton: "btn btn-primary",
                             }
-                        }
-                    })
-                   }
-                 
-               })
+                        }).then(async (dt) => {
+                            if (dt.isConfirmed) {
 
-                
+                                try {
+                                    // modalKeberatan.block();
+                                    dataSurvei.id_surat = $("#id-surat-survey").val()
+                                    dataSurvei.no_tiket = $("#no-tiket-survey").val()
+                                    dataSurvei._token = "{{ csrf_token() }}"
+                                    dataSurvei.id_ppid_pendaftar = user.id
+                                    const result = await submitSurvey(dataSurvei)
+
+
+
+
+                                    // modalKeberatan.release();
+                                    if (result.result) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Sukses',
+                                            html: 'Berhasil mengirim survei!'
+                                        })
+                                        window.location.reload();
+                                        $("#surveiModal").modal('hide')
+
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Warning',
+                                            html: 'Keberatan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
+                                        });
+                                    }
+
+                                    // window.location.reload();
+
+                                } catch (error) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        html: 'Terjadi kesalahan!'
+                                    });
+                                    console.log(error)
+                                    modalKeberatan.release();
+                                }
+                            }
+                        })
+                    }
+
+                })
+
+
 
                 $(".prev-step").on('click', function() {
                     stepper.previous()
@@ -1487,15 +1742,15 @@
                     modalPermohonan.block()
                     const user = {!! Auth::user()->toJson() !!}
 
-                    $("#name-user-modal").html(user.nama_lengkap)
-                    $("#nomor-user-modal").html(user.nomor_identitas)
+                    $("#name-user-modal").text(user.nama_lengkap)
+                    $("#nomor-user-modal").text(user.nomor_identitas)
 
                     const ppidJenisPemohon = await getPpidJenisPemohon()
                     const jenisPemohon = ppidJenisPemohon.result.find(el => el.id == user.jenis_pemohon)
                     if (jenisPemohon != undefined) {
-                        $("#jpemohon-user-modal").html(jenisPemohon.name)
+                        $("#jpemohon-user-modal").text(jenisPemohon.name)
                     } else {
-                        $("#jpemohon-user-modal").html('-')
+                        $("#jpemohon-user-modal").text('-')
                     }
 
                     await ppidCaraMendapatkan()
@@ -1650,33 +1905,33 @@
 
                             }
                             let jawaban = '-'
-                            if ( data[i].id_status == 5) {
+                            if (data[i].id_status == 5 || data[i].id_status == 6) {
                                 let fileJawaban = ''
                                 if (data[i].ket_jawaban_path) {
-                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ Storage::url('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
                                                         alt="" /></a>`
                                 }
                                 jawaban = `
                                 ${fileJawaban}
-                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ Storage::url('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
-                            if (data[i].id_status == 4 &&  data[i].isSurveiClicked) {
+                            if (data[i].id_status == 4 && data[i].isSurveiClicked) {
                                 let fileJawaban = ''
                                 if (data[i].ket_jawaban_path) {
-                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                    fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ Storage::url('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
                                                         alt="" /></a>`
                                 }
                                 jawaban = `
                                 ${fileJawaban}
-                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ Storage::url('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
-                            if (data[i].id_status == 4 &&  data[i].isSurveiClicked == false) {
+                            if (data[i].id_status == 4 && data[i].isSurveiClicked == false) {
                                 let fileJawaban = ''
                                 if (data[i].ket_jawaban_path) {
                                     fileJawaban += `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="Isi Survei untuk melihat File Jawaban"  target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
@@ -1685,7 +1940,7 @@
                                 jawaban = `
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="Isi Survei untuk melihat File Pendukung" ><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt="" /></a>` : '' }
                             `
                             }
 
@@ -1816,7 +2071,8 @@
                         const result = await getDataPpidCaraMendapatkan()
                         let option = '<option selected value="-">-- Cara memperoleh informasi --</option>'
                         for (let i = 0; i < result.result.length; i++) {
-                            option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+                            option +=
+                                `<option value="${result.result[i].id}">${escapeHTML(result.result[i].name)}</option>`
                         }
                         $("#select-memperoleh-informasi").html(option)
                     } catch (err) {
@@ -1837,7 +2093,8 @@
                         const result = await getDataPpidCaraMemberikan()
                         let option = '<option selected value="-">-- Cara memberikan informasi --</option>'
                         for (let i = 0; i < result.result.length; i++) {
-                            option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+                            option +=
+                                `<option value="${result.result[i].id}">${escapeHTML(result.result[i].name)}</option>`
                         }
                         $("#select-memberikan-informasi").html(option)
                     } catch (err) {
@@ -1866,6 +2123,21 @@
                 // tinymce.init(configAreaInformasiDiminta);
                 // tinymce.init(configAreaTujuanPenggunaan);
 
+                function escapeHTML(text) {
+                    const replacements = {
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        "&": "&amp;",
+                        "\"": "&quot;",
+                        "'": "&#x27;",
+                        "/": "&#x2F;"
+                    };
+                    return text.replace(/[<>&"'\/]/g, function(match) {
+                        return replacements[match];
+                    });
+                }
+
+
                 $("#save-permohonan").click(function() {
                     const user = {!! Auth::user()->toJson() !!}
                     const data = {
@@ -1874,8 +2146,8 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_permohonan': '-',
                         'jenis_kanal': 'web',
-                        'informasi_diminta': $("#area-informasi-diminta").val(),
-                        'tujuan_informasi': $("#area-tujuan-penggunaan").val(),
+                        'informasi_diminta': escapeHTML($("#area-informasi-diminta").val()),
+                        'tujuan_informasi': escapeHTML($("#area-tujuan-penggunaan").val()),
                         'id_cara': $("#select-memberikan-informasi").val(),
                         'id_mendapatkan': $("#select-memperoleh-informasi").val(),
                         'file_identitas': user.identitas_file_path,
@@ -2039,15 +2311,15 @@
                     modalKeberatan.block()
                     const user = {!! Auth::user()->toJson() !!}
 
-                    $("#name-user-modal-keb").html(user.nama_lengkap)
-                    $("#nomor-user-modal-keb").html(user.nomor_identitas)
+                    $("#name-user-modal-keb").text(user.nama_lengkap)
+                    $("#nomor-user-modal-keb").text(user.nomor_identitas)
 
                     const ppidJenisPemohon = await getPpidJenisPemohon()
                     const jenisPemohon = ppidJenisPemohon.result.find(el => el.id == user.jenis_pemohon)
                     if (jenisPemohon != undefined) {
-                        $("#jpemohon-user-modal-keb").html(jenisPemohon.name)
+                        $("#jpemohon-user-modal-keb").text(jenisPemohon.name)
                     } else {
-                        $("#jpemohon-user-modal-keb").html('-')
+                        $("#jpemohon-user-modal-keb").text('-')
                     }
 
                     // await ppidCaraMendapatkan()
@@ -2071,7 +2343,7 @@
                                 let option = '<option selected value="-">-- No Tiket Permohonan --</option>'
                                 for (let i = 0; i < result.result.length; i++) {
                                     option +=
-                                        `<option value="${result.result[i].id}">${result.result[i].ticket_permohonan}</option>`
+                                        `<option value="${result.result[i].id}">${escapeHTML(result.result[i].ticket_permohonan)}</option>`
                                 }
                                 console.log(option)
                                 $("#select-permohonan-sebelumnya").html(option)
@@ -2109,7 +2381,7 @@
                         let option = '<option selected value="-">-- Kategori Keberatan --</option>'
                         for (let i = 0; i < result.result.length; i++) {
                             option +=
-                                `<option value="${result.result[i].id}">${result.result[i].jenis_keberatan}</option>`
+                                `<option value="${result.result[i].id}">${escapeHTML(result.result[i].jenis_keberatan)}</option>`
                         }
                         console.log('result kategori keb', result)
                         $("#select-kategori-keberatan").html(option)
@@ -2173,7 +2445,7 @@
                                                                 data-bs-custom-class="tooltip-inverse"
                                                                 data-bs-placement="top" class="mb-4 jawban-file-st"
                                                                 title="File Jawaban"
-                                                                href="{{ asset('storage/${data[i] . ket_jawaban_path}') }}"><img
+                                                                href="{{ Storage::url('${data[i] . ket_jawaban_path}') }}"><img
                                                                     src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
                                                                     alt="" /></a>`
                             }
@@ -2194,7 +2466,7 @@
                                                                 data-bs-custom-class="tooltip-inverse"
                                                                 data-bs-placement="top" class="jawban-file-st"
                                                                 title="File Pendukung"
-                                                                href="{{ asset('storage/${data[i] . file_jawaban}') }}"><img
+                                                                href="{{ Storage::url('${data[i] . file_jawaban}') }}"><img
                                                                     src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
                                                                     alt="" /></a>`
                             }
@@ -2262,6 +2534,20 @@
                     tableKeberatanUI.release()
                 }
 
+                function escapeHTML(text) {
+                    const replacements = {
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        "&": "&amp;",
+                        "\"": "&quot;",
+                        "'": "&#x27;",
+                        "/": "&#x2F;"
+                    };
+                    return text.replace(/[<>&"'\/]/g, function(match) {
+                        return replacements[match];
+                    });
+                }
+
                 $("#save-keberatan").click(function() {
                     let permohonanSebelumnya = null
                     if ($("#select-permohonan-sebelumnya")[0].value == '-') {
@@ -2276,8 +2562,8 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_keberatan': '-',
                         'jenis_kanal': 'web',
-                        'perihal_keberatan': $("#perihal-keberatan-informasi")
-                            .val(),
+                        'perihal_keberatan': escapeHTML($("#perihal-keberatan-informasi")
+                            .val()),
                         'id_kategori_keberatan': $("#select-kategori-keberatan")[0].value,
                         'id_permohonan': permohonanSebelumnya,
 
@@ -2388,7 +2674,7 @@
                         let option = '<option selected value="-">-- No Tiket Permohonan --</option>'
                         for (let i = 0; i < result.result.length; i++) {
                             option +=
-                                `<option value="${result.result[i].id}">${result.result[i].ticket_permohonan}</option>`
+                                `<option value="${result.result[i].id}">${escapeHTML(result.result[i].ticket_permohonan)}</option>`
                         }
                         console.log(option)
                         $("#select-permohonan-sebelumnya").html(option)

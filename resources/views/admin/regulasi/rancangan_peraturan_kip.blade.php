@@ -115,7 +115,7 @@
             @endif
 
 
-            <form action="{{ route('admin.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('manajemen-ppid.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -419,7 +419,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
-                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+                            <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.rancangan_peraturan_kip.store')}}" enctype="multipart/form-data"
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -670,11 +670,12 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
-
-                                console.log('delete confirmed')
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: "/admin/rancangan_peraturan_kip/" + rancanganPeraturanKIP.id,
+                                    type: "post",
+                                    url: "{{route('manajemen-ppid.rancangan_peraturan_kip.delete')}}",
+                                    data:{
+                                            "id": rancanganPeraturanKIP.id
+                                        },
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -712,7 +713,7 @@
                         document.getElementById('editUrutan').value = rancanganPeraturanKIP.urutan
 
 
-                        document.getElementById('editForm').setAttribute('action', 'rancangan_peraturan_kip/' +
+                        document.getElementById('editForm').setAttribute('action', 'update/' +
                             rancanganPeraturanKIP.id)
                     };
                 </script>

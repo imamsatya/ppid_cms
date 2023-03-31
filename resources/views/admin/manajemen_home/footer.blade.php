@@ -258,7 +258,7 @@
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
                     <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                        action="{{ route('admin.footer.sosialmedia.store') }}" method="POST" class="form">
+                        action="{{ route('manajemen-ppid.footer.sosialmedia.store') }}" method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
@@ -574,7 +574,7 @@
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
                     <form id="kt_account_profile_details_form" enctype="multipart/form-data"
-                        action="{{ route('admin.footer.linkapp.store') }}" method="POST" class="form">
+                        action="{{ route('manajemen-ppid.footer.linkapp.store') }}" method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
@@ -887,15 +887,15 @@
                                         }
                                     }).then((result) => {
                                         if (result.isConfirmed) {
-
-                                            console.log('delete confirmed')
                                             $.ajax({
-                                                type: "DELETE",
-                                                url: "/admin/footer/sosialmedia/delete/" + sosialMedia.id,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.footer.sosialmedia.delete')}}",
+                                                data:{
+                                                        "id": sosialMedia.id
+                                                    },
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({
-
                                                         icon: 'success',
                                                         title: 'Berhasil menghapus sosialMedia',
                                                         showConfirmButton: false,
@@ -903,12 +903,8 @@
                                                     }).then(() => {
                                                         window.location.reload();
                                                     })
-
-
                                                 }
                                             });
-
-                                            // window.location = '/visimisi'
                                         } else {
                                             console.log('delete canceled')
                                         }
@@ -954,11 +950,12 @@
                                         }
                                     }).then((result) => {
                                         if (result.isConfirmed) {
-
-                                            console.log('delete confirmed')
                                             $.ajax({
-                                                type: "DELETE",
-                                                url: "/admin/footer/linkapp/delete/" + linkApp.id,
+                                                type: "post",
+                                                url: "{{route('manajemen-ppid.footer.linkapp.delete')}}",
+                                                data:{
+                                                        "id": linkApp.id
+                                                    },
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({

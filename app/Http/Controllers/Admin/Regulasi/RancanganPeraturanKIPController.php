@@ -156,12 +156,12 @@ class RancanganPeraturanKIPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
         $rancanganPeraturanKIP = new RancanganPeraturanKIP();
-        File::delete($rancanganPeraturanKIP->where('id', $id)->first()->file_path);
-        $rancanganPeraturanKIP = $rancanganPeraturanKIP->where('id', $id)->delete();
+        File::delete($rancanganPeraturanKIP->where('id', $request->id)->first()->file_path);
+        $rancanganPeraturanKIP = $rancanganPeraturanKIP->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus Rancangan Peraturan KIP");
     }

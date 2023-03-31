@@ -503,7 +503,7 @@
                                 class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                 Role</a> --}}
                             @can('role permission.edit')
-                                <a href="{{ route('admin.role_permission.edit', $role) }}"
+                                <a href="{{ route('manajemen-ppid.role_permission.edit', $role) }}"
                                     class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                     Role</a>
                             @endcan
@@ -543,16 +543,12 @@
 
                             {{-- Versi Create --}}
 
-                            <a href="{{ route('admin.role_permission.create') }}"
+                            <a href="{{ route('manajemen-ppid.role_permission.create') }}"
                                 class="btn btn-clear d-flex flex-column flex-center">
-                                <!--begin::Illustration-->
                                 <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
                                     alt="" class="mw-100 mh-150px mb-7" />
-                                <!--end::Illustration-->
-                                <!--begin::Label-->
                                 <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
                                     Add New Role</div>
-                                <!--end::Label-->
                             </a>
 
                         </div>
@@ -599,7 +595,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
-                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+                        <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->
@@ -3523,7 +3519,7 @@
                                             }
                                         });
 
-                                        document.getElementById('editForm').setAttribute('action', 'role_permission/' + role.id)
+                                        document.getElementById('editForm').setAttribute('action', 'update/' + role.id)
                                     };
 
                                     function selectAllPermissions(className, classId) {
@@ -3564,17 +3560,16 @@
                                                 activateLoadingButton('.swal2-confirm')
                                                 console.log('delete confirmed')
                                                 $.ajax({
-                                                    type: "DELETE",
-                                                    url: "/admin/role_permission/" + role.id,
+                                                    type: "post",
+                                                    url: "{{route('manajemen-ppid.role_permission.delete')}}",
+                                                    data:{
+                                                            "id": role.id
+                                                        },
                                                     cache: false,
                                                     success: function(html) {
-
                                                         window.location.reload();
-
                                                     }
                                                 });
-
-                                                // window.location = '/visimisi'
                                             } else {
                                                 console.log('delete canceled')
                                             }
