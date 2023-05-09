@@ -18,6 +18,10 @@
             .posfix {
                 position: fixed;
             }
+            .modal-backdrop {
+                width: 113vw !important;
+                height: 112vh !important;
+            }
         </style>
         <title>Home</title>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -98,6 +102,9 @@
 
                             </div>
                         @endif
+                        {{-- @php
+                            dd($errors->any());
+                        @endphp --}}
                         @if (\Session::has('error'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ Session::get('error') }}
@@ -188,6 +195,65 @@
                 </div>
             </div>
         </div>
+       <!-- Modal -->
+      <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+      data-backdrop="static">
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered"
+        role="document">
+        <div class="modal-content" id="modalContent">
+          <div class="modal-header">
+            <h5 class="modal-title text-center" id="exampleModalLongTitle">
+              Pengumuman
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class=WordSection1>
+
+                <p class=MsoNormal>Selamat Datang di Web PPID Kementerian BUMN<o:p></o:p></p>
+                
+                <p class=MsoNormal><o:p>&nbsp;</o:p></p>
+                
+                <p class=MsoNormal>Melalui media ini, kami informasikan bahwa untuk Pemohon
+                PPID Kementerian BUMN yang sebelumnya sudah melakukan registrasi atau sudah
+                terdaftar silahkan klik pada tombol Lupa Password.<o:p></o:p></p>
+                
+                <p class=MsoNormal>Selanjutnya masukkan email yang sudah didaftarkan, jika
+                memang alamat email benar dan sesuai maka akan dikirimkan link ke email
+                tersebut.<o:p></o:p></p>
+                
+                <p class=MsoNormal><o:p>&nbsp;</o:p></p>
+                
+                <p class=MsoNormal>Terima Kasih</p>
+                
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-primary-ppid"
+              data-dismiss="modal">
+              Tutup
+            </button>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
     </section>
     <!-- content -->
     @push('child-scripts')
@@ -236,6 +302,14 @@
 
         <script>
             $(document).ready(function() {
+                let status = "{{ $errors->any() }}";
+                let pengumuman = "{{env('PENGUMUMAN') }}";
+                console.log(status);
+                if (!status) {
+                    if (pengumuman) {
+                        $('#exampleModalCenter').modal('show');                        
+                    }
+                }
                 $("#show_hide_password a").on("click", function(event) {
                     event.preventDefault();
                     if ($("#show_hide_password input").attr("type") == "text") {
@@ -253,5 +327,5 @@
             });
         </script>
     @endpush
-
+    
 </x-frontend.layout>
