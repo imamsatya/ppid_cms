@@ -223,23 +223,26 @@
           <div class="modal-body">
             <div class=WordSection1>
 
-                <p class=MsoNormal>Selamat Datang di Web PPID Kementerian BUMN<o:p></o:p></p>
+                <p class=MsoNormal>Selamat datang di portal PPID Kementerian BUMN<o:p></o:p></p>
                 
                 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
                 
-                <p class=MsoNormal>Melalui media ini, kami informasikan bahwa untuk Pemohon
-                PPID Kementerian BUMN yang sebelumnya sudah melakukan registrasi atau sudah
-                terdaftar silahkan klik pada tombol Lupa Password.<o:p></o:p></p>
+                <p class=MsoNormal>Sehubungan dengan proses migrasi data, bagi Sobat BUMN yang
+                telah melakukan registrasi atau </p>
                 
-                <p class=MsoNormal>Selanjutnya masukkan email yang sudah didaftarkan, jika
-                memang alamat email benar dan sesuai maka akan dikirimkan link ke email
-                tersebut.<o:p></o:p></p>
+                <p class=MsoNormal>sudah terdaftar diharapkan untuk melakukan reset password
+                melalui tombol “Lupa Password” pada menu Login. </p>
+                
+                <p class=MsoNormal>Selanjutnya tautan reset password akan dikirim melalui email
+                yang didaftarkan.<o:p></o:p></p>
                 
                 <p class=MsoNormal><o:p>&nbsp;</o:p></p>
                 
-                <p class=MsoNormal>Terima Kasih</p>
+                <p class=MsoNormal><o:p>&nbsp;</o:p></p>
                 
-            </div>
+                <p class=MsoNormal>Terima&nbsp;kasih!</p>
+                
+                </div>
           </div>
           <div class="modal-footer">
             <button
