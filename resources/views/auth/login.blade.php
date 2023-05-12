@@ -305,10 +305,11 @@
 
         <script>
             $(document).ready(function() {
-                let status = "{{ $errors->any() }}";
+                let error = "{{ $errors->any() }}";
+                let success = "{{ \Session::has('success') }}";
                 let pengumuman = "{{env('PENGUMUMAN') }}";
                 console.log(status);
-                if (!status) {
+                if (!status || !success) {
                     if (pengumuman) {
                         $('#exampleModalCenter').modal('show');                        
                     }
