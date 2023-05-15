@@ -306,10 +306,10 @@
         <script>
             $(document).ready(function() {
                 let error = "{{ $errors->any() }}";
-                let success = "{{ \Session::has('success') }}";
+                let success = "{{ Session::has('success') }}";
                 let pengumuman = "{{env('PENGUMUMAN') }}";
                 console.log(status);
-                if (!status || !success) {
+                if (!error || !success) {
                     if (pengumuman) {
                         $('#exampleModalCenter').modal('show');                        
                     }
