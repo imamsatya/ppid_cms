@@ -20,12 +20,15 @@
                 border-color: var(--kt-input-disabled-border-color);
                 background-color: var(--kt-input-disabled-bg);
             }
+<<<<<<< HEAD
 
             .jawban-file-st img {
                 width: 30%;
                 aspect-ratio: 3/2;
                 object-fit: contain;
             }
+=======
+>>>>>>> origin/main
         </style>
     @endpush
 
@@ -48,6 +51,7 @@
 
                         <h1>Daftar Keberatan </h1>
                         <br>
+<<<<<<< HEAD
                         @if ($errors->any())
                             <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
 
@@ -202,6 +206,8 @@
                                 </form>
                             </div>
                             <br> -->
+=======
+>>>>>>> origin/main
                         <div class="card card-flush shadow-sm">
                             <div class="card-header">
                                 <h3 class="card-title">Daftar Keberatan Masuk </h3>
@@ -253,9 +259,13 @@
                                             <th>Sumber</th>
                                             <th>Batas Waktu</th>
                                             <th>Status</th>
+<<<<<<< HEAD
                                             @can('data keberatan.create')
                                                 <th>Aksi</th>
                                             @endcan
+=======
+                                            <th>Aksi</th>
+>>>>>>> origin/main
                                         </tr>
                                     </thead>
                                     {{-- id="bd-table-keberatan-masuk" --}}
@@ -313,18 +323,30 @@
                                             aria-label="Select Asal Keberatan">
                                             <option value="-">-- Asal Keberatan --</option>
                                             <!-- <option value="1">One</option>
+<<<<<<< HEAD
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option> -->
+=======
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option> -->
+>>>>>>> origin/main
                                         </select>
                                     </div>
 
                                     <div class="col-lg-4 col-sm-12">
                                         <select id="status-selesai" class="form-select"
                                             aria-label="Select Asal Keberatan">
+<<<<<<< HEAD
                                             <option value="-">-- Status Sengketa --</option>
                                             <option value="true">Sengketa</option>
                                             <option value="false">Tidak Sengketa</option>
 
+=======
+                                            <option value="-">-- Status Keberatan --</option>
+                                            <!-- <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option> -->
+>>>>>>> origin/main
                                         </select>
                                     </div>
                                 </div>
@@ -339,6 +361,7 @@
                                             <th>Tanggal Masuk</th>
                                             <th>No Registrasi</th>
                                             <th>Nama Pemohon</th>
+<<<<<<< HEAD
                                             <th>
                                                 <div>Status</div>
                                                 <div>Keberatan</div>
@@ -353,6 +376,11 @@
                                                 <div>Putusan</div>
                                             </th>
                                             <th>Aksi</th>
+=======
+                                            <th>Sumber</th>
+                                            <th>Jawaban</th>
+                                            <th>Status</th>
+>>>>>>> origin/main
                                         </tr>
                                     </thead>
                                     {{-- id="bd-table-keberatan-selesai" --}}
@@ -405,7 +433,11 @@
                                                         <label class="form-label">File Identitas</label>
                                                         <p><a href="javascript:void(0)"
                                                                 id="file-identitas-modalkonfirmasi" target="_blank"
+<<<<<<< HEAD
                                                                 rel="noopener noreferrer">Klik untuk melihat!</a></p>
+=======
+                                                                rel="noopener noreferrer">Click to open!</a></p>
+>>>>>>> origin/main
                                                     </div>
                                                     <div class="form-group mt-8">
                                                         <div class="d-flex">
@@ -445,7 +477,11 @@
                                                             class="form-control" disabled />
                                                     </div>
                                                     <!-- <div class="form-group mt-4" id="modal-file-identitas">
+<<<<<<< HEAD
                                                              </div> -->
+=======
+                                                     </div> -->
+>>>>>>> origin/main
 
 
                                                     <div class="form-group mt-4">
@@ -550,7 +586,11 @@
                                 <div class="modal-content" id="content-modal-detail">
                                     <div class="modal-header">
                                         <h5 class="modal-title">
+<<<<<<< HEAD
                                             Data Keberatan
+=======
+                                            Data Permohonan
+>>>>>>> origin/main
                                         </h5>
                                     </div>
                                     <div class="modal-body" id="data-cetak-field">
@@ -610,6 +650,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
+<<<<<<< HEAD
                                                     <h4 style="text-align: center">Data Keberatan</h4>
                                                     <div class="form-group mt-4 mb-4">
                                                         <label class="form-label">Perihal Keberatan</label>
@@ -627,6 +668,28 @@
                                                         <label class="form-label">Permohonan Sebelumnya</label>
                                                         <input type="text" class="form-control"
                                                             id="detail-permohonan-sebelumnya-info" disabled>
+=======
+                                                    <h4 style="text-align: center">Data Permohonan</h4>
+                                                    <div class="form-group mt-4 mb-4">
+                                                        <label class="form-label">Informasi diminta</label>
+                                                        <div id="area-informasi-diminta-detail-notiny"
+                                                            class="form-detail-ctm">-</div>
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <label class="form-label">Tujuan Informasi</label>
+                                                        <div id="area-tujuan-penggunaan-detail-notiny"
+                                                            class="form-detail-ctm">-</div>
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <label class="form-label">Cara mendapat informasi</label>
+                                                        <input type="text" class="form-control"
+                                                            id="detail-cara-dapat-info" disabled>
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <label class="form-label">Cara memberi informasi</label>
+                                                        <input type="text" class="form-control"
+                                                            id="detail-cara-memberi-info" disabled>
+>>>>>>> origin/main
                                                     </div>
                                                     <div class="form-group" id="file-identitas-detail"></div>
                                                 </div>
@@ -636,13 +699,19 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light"
                                             data-bs-dismiss="modal">Close</button>
+<<<<<<< HEAD
                                         {{-- <button type="button" class="btn btn-primary"
                                             id="cetak-permohonan">CETAK</button> --}}
+=======
+                                        <button type="button" class="btn btn-primary"
+                                            id="cetak-permohonan">CETAK</button>
+>>>>>>> origin/main
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <!-- modal konfirmasi Sengketa -->
                         <div class="modal fade" id="modalKonfirmasiSengketa" role="dialog" aria-hidden="true">
 
@@ -744,6 +813,8 @@
 
                         </div>
 
+=======
+>>>>>>> origin/main
                         <input type="hidden" id="id-keberatan-edited">
 
 
@@ -752,6 +823,7 @@
                                 integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
                                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
@@ -761,6 +833,14 @@
                                     $("body").tooltip({
                                         selector: '[rel="tooltip"]'
                                     });
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+                            <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+                            <script>
+                                $(document).ready(function() {
+>>>>>>> origin/main
                                     var tableKeberatanUI = new KTBlockUI(document.getElementById('bd-table-keberatan-masuk'), {
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
@@ -780,6 +860,7 @@
                                         message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                                     });
 
+<<<<<<< HEAD
                                     function escapeHTML(text) {
                                         const replacements = {
                                             "<": "&lt;",
@@ -806,6 +887,8 @@
                                         // }, 3000);
                                     }
 
+=======
+>>>>>>> origin/main
                                     async function loadDataPermintaanMasuk() {
                                         tableKeberatanUI.block()
                                         await ppidDataKeberatanMasuk()
@@ -822,7 +905,11 @@
                                     const getDataKeberatanMasuk = (asal, status, date) => {
                                         return $.ajax({
                                             type: 'GET',
+<<<<<<< HEAD
                                             url: `ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+=======
+                                            url: `/admin/ppid-data-keberatan?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+>>>>>>> origin/main
                                             dataType: 'json'
                                         });
                                     }
@@ -831,6 +918,7 @@
                                         return $.ajax({
                                             type: 'GET',
                                             // url: `/admin/ppid-data-permohonan-selesai?asal=${asal}&status=${status}`,
+<<<<<<< HEAD
                                             url: `ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
                                             dataType: 'json'
                                         });
@@ -853,6 +941,18 @@
                                             const result = await getDataKeberatanMasuk(asal, status, date)
                                             const data = result.result
 
+=======
+                                            url: `/admin/ppid-data-keberatan-selesai?asal=${asal}&status=${status}&datestart=${date != null ? `${date.start}` : '-'}&dateend=${date != null ? `${date.end}` : '-'}`,
+                                            dataType: 'json'
+                                        });
+                                    }
+
+                                    async function ppidDataKeberatanMasuk(asal = '-', status = '-', date = null) {
+                                        try {
+                                            const result = await getDataKeberatanMasuk(asal, status, date)
+                                            const data = result.result
+                                            const now = new Date().toJSON().slice(0, 10).replace(/-/g, '-').toString()
+>>>>>>> origin/main
                                             let rowData = []
                                             for (let i = 0; i < data.length; i++) {
                                                 let btnAction = ''
@@ -860,16 +960,25 @@
 
                                                 if (data[i].id_status == 1) {
                                                     btnAction =
+<<<<<<< HEAD
                                                         `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Konfirmasi" href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
                                                     ticketAction = data[i].ticket_keberatan
                                                 } else {
                                                     btnAction = `
                             <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" title="Jawab" href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+=======
+                                                        `<a href="javascript:void(0)" class="btn btn-icon btn-primary me-2 confirm-keberatan" data-keberatan="${data[i].id}"><i class="bi bi-check-lg"></i></a>`
+                                                    ticketAction = data[i].ticket_keberatan
+                                                } else {
+                                                    btnAction = `
+                            <a href="javascript:void(0)" class="btn btn-icon btn-success me-2 answer-keberatan mb-2" data-keberatan="${data[i].id}"><i class="bi bi-chat-left-quote fs-4"></i></a>
+>>>>>>> origin/main
                             
                             `
                                                     ticketAction =
                                                         `<a href="javascript:void(0)" class="detail-keberatan" data-keberatan="${data[i].id}">${data[i].ticket_keberatan}</a>`
                                                 }
+<<<<<<< HEAD
                                                 let expiredDate = data[i].expired_date
                                                 if (expiredDate && (data[i].id_status == 2 || data[i].id_status == 3)) {
                                                     var start = moment().startOf('day');
@@ -886,15 +995,25 @@
                                                 } else {
                                                     expiredDate = '-- Selesai --'
                                                 }
+=======
+>>>>>>> origin/main
 
 
                                                 rowData.push([
                                                     i + 1,
+<<<<<<< HEAD
                                                     data[i].created_at.split(' ')[0].split('-').reverse().join('-'),
                                                     ticketAction,
                                                     escapeHTML(data[i].nama_lengkap),
                                                     data[i].jenis_kanal,
                                                     data[i].id_status == '1' ? '-' : expiredDate,
+=======
+                                                    data[i].created_at.split(' ')[0],
+                                                    ticketAction,
+                                                    data[i].nama_lengkap,
+                                                    data[i].jenis_kanal,
+                                                    data[i].id_status == '1' ? '-' : data[i].expired_date,
+>>>>>>> origin/main
                                                     data[i].nama_status,
                                                     btnAction
                                                 ])
@@ -932,6 +1051,7 @@
                                                 let jawaban = '-'
                                                 if (data[i].id_status == 3) {
                                                     jawaban = `
+<<<<<<< HEAD
                                 <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top"  class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('storage/${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}" alt="" /></a> 
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('storage/${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}" alt="" /></a>` : '' }
                             `
@@ -967,6 +1087,21 @@
                                                     sengketa,
                                                     file_putusan,
                                                     aksi,
+=======
+                                <a class="mb-4" href="{{ asset('${data[i].ket_jawaban_path}') }}" target="_blank" rel="noopener noreferrer">File Jawaban</a> <br/>
+                                ${data[i].file_jawaban ? `<a href="{{ asset('${data[i].file_jawaban}') }}" target="_blank" rel="noopener noreferrer">File Pendukung</a>` : '' }
+                            `
+                                                }
+
+                                                rowData.push([
+                                                    i + 1,
+                                                    data[i].created_at,
+                                                    ticketAction,
+                                                    data[i].nama_lengkap,
+                                                    data[i].jenis_kanal,
+                                                    jawaban,
+                                                    data[i].nama_status,
+>>>>>>> origin/main
                                                 ])
                                             }
 
@@ -1106,7 +1241,11 @@
                                             for (let i = 0; i < result.result.length; i++) {
                                                 option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
                                             }
+<<<<<<< HEAD
                                             $("#asal_permohonan").html(option)
+=======
+                                            $("#asal_keberatan").html(option)
+>>>>>>> origin/main
                                             $("#asal-selesai").html(option)
                                             // console.log(result)
                                         } catch (error) {
@@ -1135,6 +1274,7 @@
                                             }
                                             $("#status_keberatan").html(option)
 
+<<<<<<< HEAD
                                             // let dataOptionSelesai = result.result.filter(data => [3].includes(data.id))
                                             // let optionSelesai = '<option value="-">-- Status Keberatan --</option>'
                                             // for (let i = 0; i < dataOptionSelesai.length; i++) {
@@ -1142,6 +1282,15 @@
                                             //         `<option value="${dataOptionSelesai[i].id}">${dataOptionSelesai[i].status}</option>`
                                             // }
                                             // $("#status-selesai").html(optionSelesai)
+=======
+                                            let dataOptionSelesai = result.result.filter(data => [3].includes(data.id))
+                                            let optionSelesai = '<option value="-">-- Status Keberatan --</option>'
+                                            for (let i = 0; i < dataOptionSelesai.length; i++) {
+                                                optionSelesai +=
+                                                    `<option value="${dataOptionSelesai[i].id}">${dataOptionSelesai[i].status}</option>`
+                                            }
+                                            $("#status-selesai").html(optionSelesai)
+>>>>>>> origin/main
                                         } catch (error) {
                                             console.log(error)
                                         }
@@ -1196,7 +1345,11 @@
 
 
                                         $("#file-identitas-modalkonfirmasi").prop('href',
+<<<<<<< HEAD
                                             `{{ asset('storage/${dataKeberatan.result.identitas_file_path}') }}`)
+=======
+                                            `{{ asset('${dataKeberatan.result.identitas_file_path}') }}`)
+>>>>>>> origin/main
                                         $("#kategori-keberatan").val(dataKeberatan.result.jenis_keberatan)
                                         console.log('dataKeberatan', dataKeberatan.result.id_kategori_keberatan)
                                         if (dataKeberatan.result.id_kategori_keberatan == 3 || dataKeberatan.result
@@ -1215,6 +1368,7 @@
                                         modalKeberatan.release()
                                     }
 
+<<<<<<< HEAD
                                     async function loadModalSengketa(data) {
                                         modalKeberatan.block()
 
@@ -1243,6 +1397,12 @@
                                         return $.ajax({
                                             type: 'GET',
                                             url:  "{{route('manajemen-ppid.data_permohonan.ppid-template-reject')}}",
+=======
+                                    const templateReject = () => {
+                                        return $.ajax({
+                                            type: 'GET',
+                                            url: "/admin/ppid-template-reject",
+>>>>>>> origin/main
                                             dataType: 'json'
                                         })
                                     }
@@ -1279,15 +1439,31 @@
                                     const submitKonfirmasiKeberatan = (data) => {
                                         return $.ajax({
                                             type: 'POST',
+<<<<<<< HEAD
                                             url: "{{route('manajemen-ppid.data_keberatan.konfirmasi-data-keberatan')}}",
+=======
+                                            url: "/admin/konfirmasi-data-keberatan",
+>>>>>>> origin/main
                                             data: data,
                                             dataType: 'json'
                                         })
                                     }
 
+<<<<<<< HEAD
 
 
                                     var jadwal = null
+=======
+                                    const jadwalKerja = () => {
+                                        return $.ajax({
+                                            type: 'GET',
+                                            url: "/admin/jadwal-kerja",
+                                            dataType: 'json'
+                                        })
+                                    }
+
+                                    let jadwal = null
+>>>>>>> origin/main
                                     $(document).on('click', '#save-konfirmasi-keberatan', async function() {
                                         const statusKonfirmasi = $('input[name="konfirmasi-radio"]:checked').val()
                                         if (statusKonfirmasi == undefined) {
@@ -1299,7 +1475,11 @@
                                             return
                                         }
 
+<<<<<<< HEAD
                                         console.log(`status konfirmasi ${statusKonfirmasi}`)
+=======
+
+>>>>>>> origin/main
 
                                         try {
                                             const data = {
@@ -1318,6 +1498,7 @@
                                                     jadwal = jadwal.result.data
                                                 }
                                                 console.log(jadwal)
+<<<<<<< HEAD
                                                 const hariKerja = jadwal.filter(jd => jd.tanggal > new Date().toJSON()
                                                     .slice(0,
                                                         10).replace(/-/g, '-') && jd.jenis == '0')
@@ -1327,6 +1508,15 @@
                                             }
 
                                             console.log(`data ${data['expired']}`)
+=======
+                                                const hariKerja = jadwal.filter(jd => jd.tanggal > new Date().toJSON().slice(0,
+                                                    10).replace(/-/g, '-') && jd.jenis == '0')
+
+                                                data['expired'] = hariKerja[28];
+
+                                            }
+
+>>>>>>> origin/main
                                             const result = await submitKonfirmasiKeberatan(data)
                                             modalKeberatan.release()
                                             $("#exampleModalCenter").modal('hide')
@@ -1350,6 +1540,7 @@
                                     })
 
 
+<<<<<<< HEAD
 
                                     $(document).on('click', '.sengketa-keberatan', function() {
                                         const idKeberatan = $(this).data('sengketa');
@@ -1364,6 +1555,8 @@
                                     })
 
 
+=======
+>>>>>>> origin/main
                                     $(document).on('click', '.answer-keberatan', function() {
                                         const idKeberatan = $(this).data('keberatan');
                                         $("#modalAnswer").modal('show')
@@ -1375,7 +1568,11 @@
                                         const dataKeberatan = await ppidKeberatanUser(data)
                                         $("#id-keberatan-edited").val(data)
                                         $("#file-identitas-modalanswer").prop('href',
+<<<<<<< HEAD
                                             `{{ asset('storage/${dataKeberatan.result.identitas_file_path}') }}`)
+=======
+                                            `{{ asset('${dataKeberatan.result.identitas_file_path}') }}`)
+>>>>>>> origin/main
                                         // tinymce.get("area-informasi-diminta-answer").setContent(dataKeberatan.result.informasi_diminta)
                                         // tinymce.get("area-informasi-diminta-answer").getBody().setAttribute('contenteditable', false)
                                         $("#perihal-keberatan-answer").html(dataKeberatan.result.perihal_keberatan)
@@ -1397,7 +1594,11 @@
                                     const submitAnswer = (data) => {
                                         return $.ajax({
                                             type: 'POST',
+<<<<<<< HEAD
                                             url: "{{route('manajemen-ppid.data_keberatan.submit-answer-keberatan')}}",
+=======
+                                            url: "/admin/submit-answer-keberatan",
+>>>>>>> origin/main
                                             data: data,
                                             contentType: false,
                                             processData: false,
@@ -1458,7 +1659,11 @@
                                     const getUserPenghubung = (data) => {
                                         return $.ajax({
                                             type: 'GET',
+<<<<<<< HEAD
                                             url: "{{route('manajemen-ppid.data_permohonan.users-penghubung')}}",
+=======
+                                            url: "/admin/users-penghubung",
+>>>>>>> origin/main
                                             dataType: 'json'
                                         })
                                     }
@@ -1469,25 +1674,38 @@
 
 
 
+<<<<<<< HEAD
                                     $(document).on('click', '.detail-keberatan', function() {
                                         const idKeberatan = $(this).data('keberatan');
                                         $("#modalDetail").modal('show')
                                         loadModalDetail(idKeberatan)
+=======
+                                    $(document).on('click', '.detail-permohonan', function() {
+                                        const idPermohonan = $(this).data('permohonan');
+                                        $("#modalDetail").modal('show')
+                                        loadModalDetail(idPermohonan)
+>>>>>>> origin/main
                                     })
 
                                     const ppidPendaftar = (data) => {
                                         return $.ajax({
+<<<<<<< HEAD
                                             type: "post",
                                             url: "{{route('manajemen-ppid.data_permohonan.ppid-pendaftar')}}",
                                             data:{
                                                     "id": data
                                                 },
+=======
+                                            type: 'GET',
+                                            url: "/admin/ppid-pendaftar/" + data,
+>>>>>>> origin/main
                                             dataType: 'json'
                                         })
                                     }
 
                                     async function loadModalDetail(data) {
                                         modalDetail.block()
+<<<<<<< HEAD
                                         const dataKeberatan = await ppidKeberatanUser(data)
                                         const dataPemohon = await ppidPendaftar(dataKeberatan.result.id_ppid_pendaftar)
                                         console.log('detail', dataKeberatan)
@@ -1503,6 +1721,20 @@
 
                                         $("#detail-tanggal-masuk").val(dataKeberatan.result.created_at)
                                         $("#detail-noregistrasi").val(dataKeberatan.result.ticket_keberatan)
+=======
+                                        const dataPermohonan = await ppidPermohonanUser(data)
+                                        const dataPemohon = await ppidPendaftar(dataPermohonan.result.id_ppid_pendaftar)
+
+                                        $("#id-keberatan-edited").val(data)
+
+                                        $("#area-tujuan-penggunaan-detail-notiny").html(dataPermohonan.result.tujuan_informasi)
+                                        $("#area-informasi-diminta-detail-notiny").html(dataPermohonan.result.informasi_diminta)
+                                        $("#detail-cara-memberi-info").val(dataPermohonan.result.cara_memberikan)
+                                        $("#detail-cara-dapat-info").val(dataPermohonan.result.cara_mendapatkan)
+
+                                        $("#detail-tanggal-masuk").val(dataPemohon.result.created_at)
+                                        $("#detail-noregistrasi").val(dataPermohonan.result.ticket_permohonan)
+>>>>>>> origin/main
                                         $("#detail-nama-pemohon").val(dataPemohon.result.nama_lengkap)
                                         $("#detail-jenis-pemohon").val(dataPemohon.result.nama_jenis_pemohon)
                                         $("#detail-identitas").val(dataPemohon.result.nama_jenis_identitas)
@@ -1510,12 +1742,21 @@
                                         $("#detail-alamat").val(dataPemohon.result.alamat)
                                         $("#detail-pekerjaan").val(dataPemohon.result.pekerjaan)
                                         $("#detail-email").val(dataPemohon.result.email)
+<<<<<<< HEAD
                                         $("#detail-status").val(dataKeberatan.result.nama_status_keberatan)
                                         console.log(dataKeberatan.result)
                                         $("#file-identitas-detail").html(`
                                                 <label class="form-label">File identitas</label>
                                                 <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('storage/${dataKeberatan.result.identitas_file_path}') }}" alt="" srcset="">
                                             `)
+=======
+                                        $("#detail-status").val(dataPermohonan.result.nama_status_keberatan)
+                                        console.log(dataPermohonan.result)
+                                        $("#file-identitas-detail").html(`
+                    <label class="form-label">File identitas</label>
+                    <img style="max-width:100%;max-height:100%;" id="file-identitas" src="{{ asset('${dataPermohonan.result.file_identitas}') }}" alt="" srcset="">
+                `)
+>>>>>>> origin/main
 
                                         modalDetail.release()
                                     }

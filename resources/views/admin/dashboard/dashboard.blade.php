@@ -38,10 +38,16 @@
                         <!--begin::Content-->
                         <ul>
                             @foreach ($errors->all() as $error)
+<<<<<<< HEAD
                                 <li>{{ htmlspecialchars($error) }}</li>
                             @endforeach
                         </ul>
 
+=======
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+>>>>>>> origin/main
                         <!--end::Content-->
                     </div>
                     <!--end::Wrapper-->
@@ -116,6 +122,7 @@
             @endif
             <h1>Dashboard</h1>
 
+<<<<<<< HEAD
             <div class="row">
                 <div class="col-md-12">
                     <div class="statistik">
@@ -304,6 +311,8 @@
                     })
                 </script>
             @endpush
+=======
+>>>>>>> origin/main
 
 
 </x-admin.layout>

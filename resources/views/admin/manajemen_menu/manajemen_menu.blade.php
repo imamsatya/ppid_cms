@@ -125,6 +125,7 @@
                     <br><br>
 
                     <div class="text-end mb-4">
+<<<<<<< HEAD
                         @can('manajemen menu.create')
                             <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal"
                                 data-bs-target="#kt_modal_tambahMainMenu">
@@ -139,6 +140,20 @@
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
                         @endcan
+=======
+                        <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal"
+                            data-bs-target="#kt_modal_tambahMainMenu">
+                            <span class="indicator-label">Tambah Main Menu</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit"
+                            onclick="saveMenu()">
+                            <span class="indicator-label">Simpan</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+>>>>>>> origin/main
 
                     </div>
 
@@ -170,6 +185,7 @@
 
                                             </div>
                                             <div class="card-toolbar">
+<<<<<<< HEAD
                                                 @can('manajemen menu.edit')
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#kt_modal_editMainMenu"
@@ -201,6 +217,33 @@
                                                         <!--end::Svg Icon-->
                                                     </a>
                                                 @endcan
+=======
+                                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                    data-bs-target="#kt_modal_editMainMenu"
+                                                    onclick="editMenuDialog({{ $menu->id }})"
+                                                    class="btn btn-icon btn-primary btn-sm me-2"><i
+                                                        class="fas fa-pen fs-3"></i></a>
+                                                <a href="javascript:void(0)"
+                                                    onclick="deleteMenuDialog({{ $menu->id }})"
+                                                    class="btn btn-icon btn-danger btn-sm"><i
+                                                        class="bi bi-x-lg fs-4 "></i></a>
+                                                <a href="#"
+                                                    class="btn btn-icon btn-sm btn-hover-light-primary draggable-handle">
+                                                    <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
+                                                    <span class="svg-icon svg-icon-2x svg-icon-primary">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                                                fill="currentColor"></path>
+                                                            <path opacity="0.3"
+                                                                d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                                                fill="currentColor"></path>
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </a>
+>>>>>>> origin/main
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -216,6 +259,7 @@
                                                             idsubmenu="{{ $submenu->id }}"
                                                             routing="{{ $submenu->routing ?? '-' }}">
                                                             <div class="col-1   ">
+<<<<<<< HEAD
                                                                 @can('manajemen menu.edit')
                                                                     <a href="#"
                                                                         class="btn btn-icon btn-sm btn-hover-light-primary draggable2-handle">
@@ -235,6 +279,25 @@
                                                                         <!--end::Svg Icon-->
                                                                     </a>
                                                                 @endcan
+=======
+                                                                <a href="#"
+                                                                    class="btn btn-icon btn-sm btn-hover-light-primary draggable2-handle">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
+                                                                    <span class="svg-icon svg-icon-2x svg-icon-info">
+                                                                        <svg width="24" height="24"
+                                                                            viewBox="0 0 24 24" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                                                                                fill="currentColor"></path>
+                                                                            <path opacity="0.3"
+                                                                                d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                                                                                fill="currentColor"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->
+                                                                </a>
+>>>>>>> origin/main
                                                             </div>
                                                             <div class="col-2 m-grid-col-middle ">
                                                                 {{ $submenu->nama_menu ?? '-' }}
@@ -253,6 +316,7 @@
                                                                 @endif
                                                             </div>
                                                             <div class="col-2">
+<<<<<<< HEAD
                                                                 @can('manajemen menu.edit')
                                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                                         data-bs-target="#kt_modal_editSubMenu"
@@ -266,6 +330,17 @@
                                                                         class="btn btn-icon btn-danger btn-sm"><i
                                                                             class="bi bi-x-lg fs-4 "></i></a>
                                                                 @endcan
+=======
+                                                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                    data-bs-target="#kt_modal_editSubMenu"
+                                                                    onclick="editSubMenuDialog({{ $menu->id }}, {{ $submenu->id }})"
+                                                                    class="btn btn-icon btn-primary btn-sm me-2"><i
+                                                                        class="fas fa-pen fs-3"></i></a>
+                                                                <a href="javascript:void(0)"
+                                                                    onclick="deleteSubMenuDialog({{ $menu->id }}, {{ $submenu->id }})"
+                                                                    class="btn btn-icon btn-danger btn-sm"><i
+                                                                        class="bi bi-x-lg fs-4 "></i></a>
+>>>>>>> origin/main
                                                             </div>
                                                             <hr class="mt-2">
                                                         </div>
@@ -273,6 +348,7 @@
                                                 @endif
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                         @can('manajemen menu.create')
                                             <div class="card-footer">
 
@@ -286,14 +362,31 @@
                                                 </a>
 
                                                 {{-- <button type="submit" class="btn btn-primary"
+=======
+                                        <div class="card-footer"><a href="javascript:void(0)"
+                                                onclick="addMainMenuId({{ $menu->id }})" data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal_tambahSubMenu"
+                                                class="btn  btn-primary btn-sm me-2"><i
+                                                    class="fas fa-plus fs-3"></i>Tambah Sub Menu</a>
+
+                                            <a href="javascript:void(0)" onclick="saveMenu()"
+                                                class="btn  btn-primary btn-sm me-2">Simpan
+                                            </a>
+
+                                            {{-- <button type="submit" class="btn btn-primary"
+>>>>>>> origin/main
                                                 data-kt-roles-modal-action="submit" onclick="saveMenu()">
                                                 <span class="indicator-label">Simpan</span>
                                                 <span class="indicator-progress">Please wait...
                                                     <span
                                                         class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                             </button> --}}
+<<<<<<< HEAD
                                             </div>
                                         @endcan
+=======
+                                        </div>
+>>>>>>> origin/main
                                     </div>
                                     <!--end::Card-->
                                 </div>
@@ -337,7 +430,11 @@
                             <div class="modal-body py-lg-10 px-lg-10">
                                 {{-- Content Modal --}}
                                 <form id="kt_account_profile_details_form"
+<<<<<<< HEAD
                                     action="{{ route('manajemen-ppid.manajemen_menu.addMainMenu') }}"
+=======
+                                    action="{{ route('admin.manajemen_menu.addMainMenu') }}"
+>>>>>>> origin/main
                                     enctype="multipart/form-data" method="POST" class="form">
                                     @csrf
                                     <!--begin::Card body-->
@@ -1017,11 +1114,16 @@
 
                                     console.log('delete confirmed')
                                     $.ajax({
+<<<<<<< HEAD
                                         type: "post",
                                         url: "{{route('manajemen-ppid.manajemen_menu.deleteMainMenu')}}",
                                         data:{
                                                 "id": menu[0].id
                                             },
+=======
+                                        type: "DELETE",
+                                        url: "/admin/manajemen_menu/delete-mainmenu/" + menu[0].id,
+>>>>>>> origin/main
                                         cache: false,
                                         success: function(html) {
                                             Swal.fire({
@@ -1114,12 +1216,20 @@
                                 }
                             }).then((result) => {
                                 if (result.isConfirmed) {
+<<<<<<< HEAD
                                     $.ajax({
                                         type: "post",
                                         url: "{{route('manajemen-ppid.deleteSubMenu')}}",
                                         data:{
                                                 "id": subMenuId
                                             },
+=======
+
+                                    console.log('delete confirmed')
+                                    $.ajax({
+                                        type: "DELETE",
+                                        url: "/admin/manajemen_menu/delete-submenu/" + subMenuId,
+>>>>>>> origin/main
                                         cache: false,
                                         success: function(html) {
                                             Swal.fire({

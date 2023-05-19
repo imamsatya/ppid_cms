@@ -70,8 +70,14 @@ class LaporanTahunanController extends Controller
                     if ($fileName == 'laporanImage') {
                         $laporanTahunan->thumbnail_path = 'adminAssets/laporan/laporan_tahunan/' . $request->file($fileName)->getClientOriginalName();
                     }
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/laporan/laporan_tahunan', $fileName2);
+=======
+
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -145,8 +151,12 @@ class LaporanTahunanController extends Controller
                         $laporanTahunan->thumbnail_path = 'adminAssets/laporan/laporan_tahunan/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/laporan/laporan_tahunan', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -165,12 +175,22 @@ class LaporanTahunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $laporanTahunan = new LaporanTahunan();
         File::delete($laporanTahunan->where('id', $request->id)->first()->file_path);
         File::delete($laporanTahunan->where('id', $request->id)->first()->thumbnail_path);
         $laporanTahunan = $laporanTahunan->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $laporanTahunan = new LaporanTahunan();
+        File::delete($laporanTahunan->where('id', $id)->first()->file_path);
+        File::delete($laporanTahunan->where('id', $id)->first()->thumbnail_path);
+        $laporanTahunan = $laporanTahunan->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Laporan Tahunan");
     }

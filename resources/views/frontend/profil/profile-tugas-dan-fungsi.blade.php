@@ -4,7 +4,11 @@
     @endpush
     <!-- Informasi -->
     <section class="informasi_tugas_fungsi ">
+<<<<<<< HEAD
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+        <div class="container">
+>>>>>>> origin/main
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label for="" class="title_tugas_fungsi">{{ $tugasDanFungsi->judul ?? '' }}</label>
@@ -63,7 +67,11 @@
                 </div>
                 <div class="col-md-4">
                     <div class="images">
+<<<<<<< HEAD
                         <img src="{{ Storage::url($tugasDanFungsi->side_image_path ?? '') }}" class="img-fluid"
+=======
+                        <img src="{{ asset($tugasDanFungsi->side_image_path ?? '') }}" class="img-fluid"
+>>>>>>> origin/main
                             alt="" />
                     </div>
                 </div>
@@ -90,7 +98,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($tugasDanFungsi?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($tugasDanFungsi->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

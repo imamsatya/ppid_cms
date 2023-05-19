@@ -2,6 +2,7 @@
     @push('head-scripts')
         <title>PPID KBUMN</title>
         <!-- Favicon -->
+<<<<<<< HEAD
         <link href="{{ asset('/ppid_fe/assets/images/content/logo/favicon.ico') }}" rel="icon" />
         <link href="{{ asset('/ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
 
@@ -15,12 +16,29 @@
     @endpush
     <!-- Banner -->
     <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.3s" data-wow-duration="5s">
+=======
+        <link href="{{ asset('ppid_fe/assets/images/content/logo/favicon.ico') }}" rel="icon" />
+        <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
+
+        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
+        <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
+    @endpush
+    <!-- Banner -->
+    <div class="container-fluid p-0 pb-5 wow fadeIn blackw magnif" data-wow-delay="0.1s">
+>>>>>>> origin/main
         <div class="owl-carousel header-carousel position-relative">
 
             @if ($slider)
                 @foreach ($slider as $slider_row)
                     <div class="owl-carousel-item position-relative"
+<<<<<<< HEAD
                         style="background-image: url({{ Storage::url($slider_row->image_path) }}">
+=======
+                        style="background-image: url({{ asset($slider_row->image_path) }}">
+>>>>>>> origin/main
                         <!-- <img
                         class="img-fluid"
                         src="./assets/images/content/content-image/carousel-2.jpg"
@@ -72,6 +90,10 @@
       </div>
     </section> -->
     <!-- Banner -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
     <!-- Informasi Publik -->
     <section class="publik blackw magnif">
         <div class="container">
@@ -88,8 +110,13 @@
                             <div class="col-md-3 box_publik">
                                 <div class="content_publik">
                                     <a href="{{ route('informasipublik.index') }}">
+<<<<<<< HEAD
                                         <img class="img-fluid img_center"
                                             src="{{ Storage::url($informasi_row->image_path) }}" alt="" />
+=======
+                                        <img class="img-fluid img_center" src="{{ asset($informasi_row->image_path) }}"
+                                            alt="" />
+>>>>>>> origin/main
                                         <div class="informasi_content">
                                             <label for="">{{ $informasi_row->judul }}</label>
                                             <p>
@@ -109,7 +136,11 @@
                             <div class="informasi_content">
                                 <label for="">Informasi Berkala</label>
                                 <p>
+<<<<<<< HEAD
                                     Informasi yang wajib disediakan dan diumumkan Secara Berkala
+=======
+                                    Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala
+>>>>>>> origin/main
                                 </p>
                             </div>
                         </div>
@@ -122,8 +153,13 @@
                             <div class="informasi_content">
                                 <label for="">Informasi Serta Merta</label>
                                 <p>
+<<<<<<< HEAD
                                     Informasi yang dapat mengancam hajat hidup orang banyak dan
                                     ketertiban umum
+=======
+                                    Informasi yang dapat mengancam Hajat Hidup Orang Banyak dan
+                                    Ketertiban Umum
+>>>>>>> origin/main
                                 </p>
                             </div>
                         </div>
@@ -135,7 +171,11 @@
                                 alt="" />
                             <div class="informasi_content">
                                 <label for="">Informasi Setiap Saat</label>
+<<<<<<< HEAD
                                 <p>Informasi yang wajib tersedia Setiap Saat</p>
+=======
+                                <p>Informasi yang Wajib Tersedia Setiap Saat</p>
+>>>>>>> origin/main
                             </div>
                         </div>
                     </div> --}}
@@ -147,7 +187,11 @@
 
     <!-- Statistik dan Siaran Pers -->
     <section class="statistik_pers mt-5 blackw magnif">
+<<<<<<< HEAD
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
+=======
+        <div class="container">
+>>>>>>> origin/main
             <div class="row">
                 <div class="col-md-5">
                     <div class="statistik">
@@ -157,7 +201,11 @@
                             <div class="card-top">
                                 <div class="d-flex align-items-center">
                                     <div class="">
+<<<<<<< HEAD
                                         <span class="tahun">Tahun {{ date('Y') }}</span>
+=======
+                                        <span class="tahun">Tahun 2022</span>
+>>>>>>> origin/main
                                     </div>
                                     <div class="ml-auto">
                                         <img class="img-fluid"
@@ -192,7 +240,11 @@
                                             <div class="card">
                                                 <img class="card-img-top img-fluid"
                                                     src="{{ 'https://bumn.go.id/storage/' . $siaranPers[$i]['image_path'] }}"
+<<<<<<< HEAD
                                                     alt="Card image cap" style="width: 100%;height: auto;" />
+=======
+                                                    alt="Card image cap" />
+>>>>>>> origin/main
                                                 <div class="card-body">
                                                     <span class="card-title">
                                                         {{ $siaranPers[$i]['tanggal_publish'] }}</span>
@@ -218,12 +270,17 @@
     <!-- Galeri -->
     <section class="galeri_video blackw magnif">
         <div class="container">
+<<<<<<< HEAD
             <div class="box_galeri bg-transparent" style="background-image: url('./storage/bg_bumn9.png');">
                 <!-- <div class="box_galeri"> -->
+=======
+            <div class="box_galeri">
+>>>>>>> origin/main
                 <div class="row">
                     <div class="col-md-6">
                         <label class="title">Galeri Video</label>
                         <div class="slider_video owl-carousel ">
+<<<<<<< HEAD
                             @foreach ($video as $video_row)
                                 <div class="row {{ $loop->index < 1 ? 'outer_custom' : null }}">
                                     <div class="col-md-12">
@@ -239,13 +296,30 @@
                             {{-- <div class="row">
                                 <div class="col-md-12">
                                     <iframe width="560" height="315"
+=======
+                            {{-- <div class="row outer_custom">
+                                <div class="col-md-12">
+                                    <iframe class="w-100 video-galeri" height="315"
+>>>>>>> origin/main
                                         src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player"
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 </div>
+<<<<<<< HEAD
                             </div> --}}
                             {{-- @foreach ($video as $video_row)
+=======
+                            </div>
+                            
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1mTtJLE2y1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div> --}}
+                            @foreach ($video as $video_row)
+>>>>>>> origin/main
                                 <div class="row ">
                                     <div class="col-md-12">
                                         <iframe width="560" height="315" src="{{ $video_row->url }}"
@@ -254,7 +328,11 @@
                                             allowfullscreen></iframe>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                             @endforeach --}}
+=======
+                            @endforeach
+>>>>>>> origin/main
 
                         </div>
                     </div>
@@ -262,12 +340,21 @@
                         <h2 style="font-weight: bold;">
                             Pengajuan Permohonan, Keberatan Informasi Publik dan/atau cek
                             status
+<<<<<<< HEAD
                         </h2>
                         {{-- <a href="{{ route('userppid.login') }}">
                             <button class="mt-4 btn btn-lg btn-outline-primary-ppid">
                                 Klik Disini
                             </button>
                         </a> --}}
+=======
+                        </h2>   
+                        <a href="{{ route('userppid.login') }}">
+                        <button class="mt-4 btn btn-lg btn-outline-primary-ppid">
+                            Klik Disini
+                        </button>
+                        </a>
+>>>>>>> origin/main
                     </div>
                 </div>
             </div>
@@ -279,7 +366,10 @@
     @push('child-scripts')
         <script>
             $(".slider").owlCarousel({
+<<<<<<< HEAD
                 navigation: true,
+=======
+>>>>>>> origin/main
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -300,13 +390,19 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+<<<<<<< HEAD
                 smartSpeed: 1500,
+=======
+>>>>>>> origin/main
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
         <script>
             $(".header-carousel").owlCarousel({
+<<<<<<< HEAD
                 navigation: true,
+=======
+>>>>>>> origin/main
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -328,13 +424,19 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+<<<<<<< HEAD
                 smartSpeed: 1000,
+=======
+>>>>>>> origin/main
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
         <script>
             $(".slider_video").owlCarousel({
+<<<<<<< HEAD
                 navigation: true,
+=======
+>>>>>>> origin/main
                 loop: true,
                 autoplay: true,
                 responsive: {
@@ -356,7 +458,10 @@
                 ],
                 autoplayTimeout: 5000, //2000ms = 2s;
                 autoplayHoverPause: true,
+<<<<<<< HEAD
                 smartSpeed: 1000,
+=======
+>>>>>>> origin/main
                 // <i class="fa fa-arrow-left" aria-hidden="true"></i>
             });
         </script>
@@ -376,6 +481,7 @@
             }
         </script>
         <script>
+<<<<<<< HEAD
             $(document).ready(function() {
                 const labels = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 'Juli', 'Agustus', 'September',
                     'Oktober',
@@ -509,6 +615,45 @@
                 const myChart = new Chart(document.getElementById("myChart"), config);
 
             })
+=======
+            const labels = ["January", "February", "March", "April", "May", "June"];
+
+            const data = {
+                labels: labels,
+                datasets: [{
+                        label: "My First dataset",
+                        backgroundColor: "#92E5E",
+                        borderColor: "#92E5EB",
+                        data: [0, 10, 5, 2, 20, 30, 45],
+                    },
+                    {
+                        label: "My First dataset",
+                        backgroundColor: "#104E70",
+                        borderColor: "#104E70",
+                        data: [0, 2, 40, 2, 20, 100, 20],
+                    },
+                ],
+            };
+
+            const config = {
+                type: "line",
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        htmlLegend: {
+                            // ID of the container to put the legend in
+                            containerID: "legend-container",
+                        },
+                        legend: {
+                            position: "bottom",
+                        },
+                    },
+                },
+            };
+
+            const myChart = new Chart(document.getElementById("myChart"), config);
+>>>>>>> origin/main
         </script>
 
         <style>
@@ -517,7 +662,11 @@
                 height: 400px;
                 background-size: 340px 400px;
                 background-repeat: no-repeat;
+<<<<<<< HEAD
                 background-image: url({{ Storage::url($informasiImage?->sideimage_path ?? '') }});
+=======
+                background-image: url({{ asset($informasiImage->sideimage_path ?? '') }});
+>>>>>>> origin/main
             }
 
             .publik .informasi_publik .box_publik {
@@ -525,7 +674,11 @@
                 height: 351px;
                 background-size: 256px 351px;
                 background-repeat: no-repeat;
+<<<<<<< HEAD
                 background-image: url({{ Storage::url($informasiImage?->backgroundimage_path ?? '') }});
+=======
+                background-image: url({{ asset($informasiImage->backgroundimage_path ?? '') }});
+>>>>>>> origin/main
                 z-index: 1;
                 filter: drop-shadow(11px 14px 10px #EFEFEF);
                 transition: all .8s ease-in-out;

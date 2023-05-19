@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
+<<<<<<< HEAD
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+=======
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+>>>>>>> origin/main
 
 class DashboardController extends Controller
 {
@@ -17,6 +22,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $tahun = Carbon::now()->format('Y');
         // $allDataMasuk = DB::table('log_permohonan')->get();
         
@@ -151,6 +157,10 @@ group by status_final, bulan
         ));
         return $data;
         // echo json_encode(array('data' => $data));
+=======
+        //
+        return view('admin.dashboard.dashboard');
+>>>>>>> origin/main
     }
 
     /**

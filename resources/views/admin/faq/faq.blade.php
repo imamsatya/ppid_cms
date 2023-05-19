@@ -112,7 +112,11 @@
             @endif
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.faq_banner.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.faq_banner.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -127,7 +131,11 @@
                             @if ($faqBanner)
                                 @if ($faqBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $faqBanner->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($faqBanner->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -225,7 +233,11 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $faq_row->pertanyaan }}</td>
 
+<<<<<<< HEAD
                                         <td>{!! $faq_row->jawaban !!}</td>
+=======
+                                        <td>{{ $faq_row->jawaban }}</td>
+>>>>>>> origin/main
                                         @canany(['faq.edit', 'faq.delete'])
                                             <td>
                                                 @can('faq.edit')
@@ -286,7 +298,11 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
+<<<<<<< HEAD
                             <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.faq.store')}}" enctype="multipart/form-data"
+=======
+                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+>>>>>>> origin/main
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -322,6 +338,7 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
+<<<<<<< HEAD
                                             {{-- <input type="text" name="jawaban"
                                                 class="form-control form-control-lg form-control-solid"
                                                 placeholder="Jawaban" value="" /> --}}
@@ -329,6 +346,11 @@
                                             <textarea name="jawaban" class="jawabanArea">
                                 
                                                 </textarea>
+=======
+                                            <input type="text" name="jawaban"
+                                                class="form-control form-control-lg form-control-solid"
+                                                placeholder="Jawaban" value="" />
+>>>>>>> origin/main
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -426,6 +448,7 @@
                                         <!--end::Label-->
                                         <!--begin::Col-->
                                         <div class="col-lg-8 fv-row">
+<<<<<<< HEAD
                                             {{-- <input type="text" id="editJawaban" name="jawaban"
                                                 class="form-control form-control-lg form-control-solid"
                                                 placeholder="Jawaban" value="" /> --}}
@@ -433,6 +456,11 @@
                                             <textarea name="jawaban" class="jawabanArea" id="editJawaban">
                                 
                                                 </textarea>
+=======
+                                            <input type="text" id="editJawaban" name="jawaban"
+                                                class="form-control form-control-lg form-control-solid"
+                                                placeholder="Jawaban" value="" />
+>>>>>>> origin/main
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -475,6 +503,7 @@
             </div>
             <!--end::Modal - Edit Bagan Kanan-->
             @push('child-scripts')
+<<<<<<< HEAD
                 <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
                 <script>
                     let options = {
@@ -570,6 +599,8 @@
                         // }, 3000);
                     }
                 </script>
+=======
+>>>>>>> origin/main
                 <script>
                     $("#kt_datatable_dom_positioning_faq").DataTable({
                         "language": {
@@ -616,6 +647,7 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
+<<<<<<< HEAD
                                 $.ajax({
                                     type: "post",
                                     url: "{{route('manajemen-ppid.faq.delete')}}",
@@ -625,6 +657,17 @@
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
+=======
+
+                                console.log('delete confirmed')
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: "/admin/faq/" + faq.id,
+                                    cache: false,
+                                    success: function(html) {
+                                        Swal.fire({
+
+>>>>>>> origin/main
                                             icon: 'success',
                                             title: 'Berhasil menghapus FAQ',
                                             showConfirmButton: false,
@@ -632,8 +675,17 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
+<<<<<<< HEAD
                                     }
                                 });
+=======
+
+
+                                    }
+                                });
+
+                                // window.location = '/visimisi'
+>>>>>>> origin/main
                             } else {
                                 console.log('delete canceled')
                             }
@@ -650,7 +702,14 @@
                         faq = faq[index]
                         document.getElementById('editPertanyaan').value = faq.pertanyaan
                         document.getElementById('editJawaban').value = faq.jawaban
+<<<<<<< HEAD
                         document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+
+
+
+                        document.getElementById('editForm').setAttribute('action', 'faq/' +
+>>>>>>> origin/main
                             faq.id)
                     };
                 </script>

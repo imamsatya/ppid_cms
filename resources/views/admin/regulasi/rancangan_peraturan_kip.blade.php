@@ -28,6 +28,7 @@
 
                     <!--begin::Wrapper-->
                     <div class="d-flex flex-column text-white pe-0 pe-sm-10">
+<<<<<<< HEAD
                         <div class="d-flex flex-column text-white pe-0 pe-sm-10">
                             <!--begin::Title-->
                             <h4 class="mb-2 text-white">Error !</h4>
@@ -60,6 +61,38 @@
                         </button>
                         <!--end::Close-->
                     </div>
+=======
+                        <!--begin::Title-->
+                        <h4 class="mb-2 text-white">Error !</h4>
+                        <!--end::Title-->
+
+                        <!--begin::Content-->
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <!--end::Content-->
+                    </div>
+                    <!--end::Wrapper-->
+
+                    <!--begin::Close-->
+                    <button type="button"
+                        class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+                        data-bs-dismiss="alert">
+                        <span class="svg-icon svg-icon-2x svg-icon-light"><svg width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3"
+                                    d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z"
+                                    fill="currentColor" />
+                            </svg></span>
+                    </button>
+                    <!--end::Close-->
+                </div>
+>>>>>>> origin/main
 
             @endif
             @if (\Session::has('success'))
@@ -67,7 +100,10 @@
                 <div class="alert alert-dismissible bg-success d-flex flex-column flex-sm-row p-5 mb-10">
                     {{-- <span class="svg-icon svg-icon-muted svg-icon-2hx">
                  </span> --}}
+<<<<<<< HEAD
                     </span> --}}
+=======
+>>>>>>> origin/main
                     <!--begin::Icon-->
                     <span class="svg-icon svg-icon-2hx svg-icon-light me-4 mb-5 mb-sm-0">
 
@@ -115,7 +151,11 @@
             @endif
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.peraturan_kip.banner.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -130,7 +170,11 @@
                             @if ($regulasiBanner)
                                 @if ($regulasiBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $regulasiBanner->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($regulasiBanner->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -145,7 +189,11 @@
                             @endif
                             <!--end::Image preview wrapper-->
 
+<<<<<<< HEAD
                             @can('rancangan peraturan kip.edit')
+=======
+                            @can('peraturan kip.edit')
+>>>>>>> origin/main
                                 <!--begin::Edit button-->
                                 <label
                                     class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -188,9 +236,15 @@
                                 style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
                                 <!--begin::Image preview wrapper-->
                                 @if ($regulasiBanner)
+<<<<<<< HEAD
                                     @if ($regulasiBanner->thumbnail_rancangan_path)
                                         <div class="image-input-wrapper w-250px  h-125px"
                                             style="background-image: url({{ asset('storage/' . $regulasiBanner->thumbnail_rancangan_path) }})">
+=======
+                                    @if ($regulasiBanner->thumbnail_path)
+                                        <div class="image-input-wrapper w-250px  h-125px"
+                                            style="background-image: url({{ asset($regulasiBanner->thumbnail_path) }})">
+>>>>>>> origin/main
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-250px  h-125px"
@@ -205,7 +259,11 @@
                                 @endif
                                 <!--end::Image preview wrapper-->
 
+<<<<<<< HEAD
                                 @can('rancangan peraturan kip.edit')
+=======
+                                @can('peraturan kip.edit')
+>>>>>>> origin/main
                                     <!--begin::Edit button-->
                                     <label
                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -214,8 +272,13 @@
                                         <i class="bi bi-pencil-fill fs-7"></i>
 
                                         <!--begin::Inputs-->
+<<<<<<< HEAD
                                         <input type="file" name="thumbnail_rancangan" accept=".png, .jpg, .jpeg" />
                                         <input type="hidden" name="thumbnail_rancangan_remove" />
+=======
+                                        <input type="file" name="thumbnail" accept=".png, .jpg, .jpeg" />
+                                        <input type="hidden" name="thumbnail_remove" />
+>>>>>>> origin/main
                                         <!--end::Inputs-->
                                     </label>
                                     <!--end::Edit button-->
@@ -242,7 +305,11 @@
                             <p>minimal dimensi 369x454 pixel</p>
                         </div>
 
+<<<<<<< HEAD
                         @can('rancangan peraturan kip.create')
+=======
+                        @can('peraturan kip.create')
+>>>>>>> origin/main
                             <button type="submit" class="btn btn-primary" id="addBannerButton"
                                 onclick="activateLoadingButton('#addBannerButton')"><span class="indicator-label">
                                     Simpan
@@ -291,7 +358,11 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $rancanganPeraturanKIP_row->judul_peraturan }}</td>
                                         <td><a
+<<<<<<< HEAD
                                                 href="{{ asset('storage/' . $rancanganPeraturanKIP_row->file_path) }}">{{ $rancanganPeraturanKIP_row->judul_peraturan . '.pdf' }}</a>
+=======
+                                                href="{{ asset($rancanganPeraturanKIP_row->file_path) }}">{{ $rancanganPeraturanKIP_row->judul_peraturan . '.pdf' }}</a>
+>>>>>>> origin/main
                                         </td>
                                         <td>{{ $rancanganPeraturanKIP_row->urutan }}</td>
                                         @canany(['rancangan peraturan kip.edit', 'rancangan peraturan kip.delete'])
@@ -419,7 +490,11 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
+<<<<<<< HEAD
                             <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.rancangan_peraturan_kip.store')}}" enctype="multipart/form-data"
+=======
+                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+>>>>>>> origin/main
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -499,9 +574,13 @@
                     </div>
                     <!--end::Modal content-->
                 </div>
+<<<<<<< HEAD
                 <!--end::Modal content-->
             </div>
             <!--end::Modal dialog-->
+=======
+                <!--end::Modal dialog-->
+>>>>>>> origin/main
             </div>
             <!--end::Modal - Tambah Bagan Kanan-->
 
@@ -670,12 +749,20 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
+<<<<<<< HEAD
                                 $.ajax({
                                     type: "post",
                                     url: "{{route('manajemen-ppid.rancangan_peraturan_kip.delete')}}",
                                     data:{
                                             "id": rancanganPeraturanKIP.id
                                         },
+=======
+
+                                console.log('delete confirmed')
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: "/admin/rancangan_peraturan_kip/" + rancanganPeraturanKIP.id,
+>>>>>>> origin/main
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -713,7 +800,11 @@
                         document.getElementById('editUrutan').value = rancanganPeraturanKIP.urutan
 
 
+<<<<<<< HEAD
                         document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+                        document.getElementById('editForm').setAttribute('action', 'rancangan_peraturan_kip/' +
+>>>>>>> origin/main
                             rancanganPeraturanKIP.id)
                     };
                 </script>

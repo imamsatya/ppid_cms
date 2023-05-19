@@ -112,7 +112,11 @@
             @endif
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.laporan_banner.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.laporan_banner.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -127,7 +131,11 @@
                             @if ($laporanBanner)
                                 @if ($laporanBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $laporanBanner->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($laporanBanner->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -226,11 +234,18 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $laporanTriwulanan_row->judul_laporan }}</td>
                                         <td><a
+<<<<<<< HEAD
                                                 href="{{ asset('storage/' . $laporanTriwulanan_row->file_path) }}">{{ $laporanTriwulanan_row->judul_laporan . '.pdf' }}</a>
                                         </td>
                                         <td><img width="100" height="100"
                                                 src="{{ asset('storage/' . $laporanTriwulanan_row->thumbnail_path) }}" />
                                         </td>
+=======
+                                                href="{{ asset($laporanTriwulanan_row->file_path) }}">{{ $laporanTriwulanan_row->judul_laporan . '.pdf' }}</a>
+                                        </td>
+                                        <td><img width="100" height="100"
+                                                src="{{ asset($laporanTriwulanan_row->thumbnail_path) }}" /></td>
+>>>>>>> origin/main
                                         @canany(['laporan triwulanan pip.edit', 'laporan triwulanan pip.delete'])
                                             <td>
                                                 @can('laporan triwulanan pip.edit')
@@ -291,7 +306,11 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
+<<<<<<< HEAD
                             <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.laporan_triwulanan.store')}}" enctype="multipart/form-data"
+=======
+                            <form id="kt_account_profile_details_form" action="" enctype="multipart/form-data"
+>>>>>>> origin/main
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -500,7 +519,11 @@
                                                 style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
 
                                                 <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                                     id="editLaporanImage">
+=======
+                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+>>>>>>> origin/main
                                                 </div>
 
                                                 @can('laporan triwulanan pip.edit')
@@ -621,12 +644,20 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
+<<<<<<< HEAD
                                 $.ajax({
                                     type: "post",
                                     url: "{{route('manajemen-ppid.laporan_triwulanan.delete')}}",
                                     data:{
                                             "id": laporanTriwulanan.id
                                         },
+=======
+
+                                console.log('delete confirmed')
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: "/admin/laporan_triwulanan/" + laporanTriwulanan.id,
+>>>>>>> origin/main
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -638,8 +669,17 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
+<<<<<<< HEAD
                                     }
                                 });
+=======
+
+
+                                    }
+                                });
+
+                                // window.location = '/visimisi'
+>>>>>>> origin/main
                             } else {
                                 console.log('delete canceled')
                             }
@@ -658,10 +698,16 @@
                         // document.getElementById('editFile').value = laporanTriwulanan.file_path
                         // console.log(document.getElementById('editFile'))
                         // document.getElementById('editthumbnail').value = laporanTriwulanan.thumbnail
+<<<<<<< HEAD
                         document.getElementById('editLaporanImage').style.cssText =
                             `background-image: url({{ asset('storage/${laporanTriwulanan.thumbnail_path}') }})`
 
                         document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+
+
+                        document.getElementById('editForm').setAttribute('action', 'laporan_triwulanan/' +
+>>>>>>> origin/main
                             laporanTriwulanan.id)
                     };
                 </script>

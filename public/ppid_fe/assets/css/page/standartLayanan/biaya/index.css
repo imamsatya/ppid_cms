@@ -6,7 +6,11 @@
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
   text-decoration: none !important;
+<<<<<<< HEAD
   /* text-transform: capitalize; */
+=======
+  text-transform: capitalize;
+>>>>>>> origin/main
 }
 
 .pagination .page-item.active .page-link {
@@ -135,6 +139,7 @@ body {
 }
 
 .content-biaya .images img {
+<<<<<<< HEAD
     max-width: 459px;
     max-height: 232px;
     height: auto;
@@ -146,6 +151,18 @@ body {
 }
 
 
+=======
+  max-width: 200px;
+  max-height: 200px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  width: 100%;
+}
+
+
+
+>>>>>>> origin/main
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .banner .data_banner {
@@ -198,7 +215,10 @@ body {
   .content-biaya .images img{
     margin-left: 50px;
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

@@ -148,14 +148,24 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td> <img width="100" height="100"
+<<<<<<< HEAD
                                             src="{{ asset('storage/' . $slider_row->image_path) }}" />
+=======
+                                            src="{{ asset($slider_row->image_path) }}" />
+>>>>>>> origin/main
                                     </td>
                                     <td>{{ $slider_row->judul }}</td>
                                     <td>{{ $slider_row->deskripsi }}</td>
                                     <td>{{ $slider_row->urutan }}</td>
+<<<<<<< HEAD
                                     @canany(['slider.edit', 'slider.delete'])
                                         <td>
                                             @can('slider.edit')
+=======
+                                    @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                                        <td>
+                                            @can('peraturan kip.edit')
+>>>>>>> origin/main
                                                 <a href="javascript:void(0)" data-bs-toggle="modal"
                                                     data-bs-target="#kt_modal_editSlider"
                                                     onclick="editDialog({{ $loop->index }})"
@@ -210,7 +220,11 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
+<<<<<<< HEAD
                                 action="{{ route('manajemen-ppid.slider.store') }}" method="POST" class="form">
+=======
+                                action="{{ route('admin.slider.store') }}" method="POST" class="form">
+>>>>>>> origin/main
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -586,12 +600,20 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
+<<<<<<< HEAD
                                                     $.ajax({
                                                         type: "post",
                                                         url: "{{route('manajemen-ppid.slider.delete')}}",
                                                         data:{
                                                                 "id": slider.id
                                                             },
+=======
+
+                                                    console.log('delete confirmed')
+                                                    $.ajax({
+                                                        type: "DELETE",
+                                                        url: "/admin/slider/" + slider.id,
+>>>>>>> origin/main
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
@@ -603,8 +625,17 @@
                                                             }).then(() => {
                                                                 window.location.reload();
                                                             })
+<<<<<<< HEAD
                                                         }
                                                     });
+=======
+
+
+                                                        }
+                                                    });
+
+                                                    // window.location = '/visimisi'
+>>>>>>> origin/main
                                                 } else {
                                                     console.log('delete canceled')
                                                 }
@@ -626,7 +657,11 @@
                                             document.getElementById('editUrutan').value = sliderRow.urutan
 
 
+<<<<<<< HEAD
                                             document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+                                            document.getElementById('editForm').setAttribute('action', 'slider/' +
+>>>>>>> origin/main
                                                 sliderRow.id)
                                         };
                                     </script>

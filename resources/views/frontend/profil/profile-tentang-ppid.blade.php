@@ -3,7 +3,11 @@
         <link href="{{ asset('ppid_fe/assets/css/page/profile/tentangPPID/index.css') }}" rel="stylesheet" />
     @endpush
     <section class="informasi_tentang_ppid">
+<<<<<<< HEAD
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+        <div class="container">
+>>>>>>> origin/main
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label for="" class="title_tentang_ppid">{{ $profilSingkat->judul ?? '' }}</label>
@@ -23,7 +27,11 @@
                     <div class="images">
                         {{-- <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_tentang_ppid.png') }}"
                             class="img-fluid" alt="" /> --}}
+<<<<<<< HEAD
                         <img src="{{ Storage::url($profilSingkat->side_image_path ?? '') }}" class="img-fluid"
+=======
+                        <img src="{{ asset('storage/'.$profilSingkat->side_image_path ?? '') }}" class="img-fluid"
+>>>>>>> origin/main
                             alt="" />
                     </div>
                 </div>
@@ -47,7 +55,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($profilSingkat?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset('storage/'.$profilSingkat->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

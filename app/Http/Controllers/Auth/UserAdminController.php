@@ -21,6 +21,7 @@ class UserAdminController extends Controller
 
     public function handleLogin(Request $req)
     {
+<<<<<<< HEAD
         $req->validate([
 
             'email' => [
@@ -34,6 +35,8 @@ class UserAdminController extends Controller
             'g-recaptcha-response' =>  'recaptcha',
 
         ]);
+=======
+>>>>>>> origin/main
         $credentials = request(['email', 'password']);
         if (Auth::guard('web')->attempt(
             $req->only(['email', 'password'])

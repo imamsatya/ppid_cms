@@ -67,9 +67,12 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+<<<<<<< HEAD
         'frame.headers.middleware' => \App\Http\Middleware\FrameHeadersMiddleware::class,
         'xsssanitizer' => \App\Http\Middleware\XssSanitizer::class,
         'cas' => \App\Http\Middleware\CasAuth::class,
         'user' => \App\Http\Middleware\DMUser::class,
+=======
+>>>>>>> origin/main
     ];
 }

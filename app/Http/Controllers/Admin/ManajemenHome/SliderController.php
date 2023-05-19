@@ -62,9 +62,13 @@ class SliderController extends Controller
 
             $upload_path = 'adminAssets/home/slider';
             $slider->image_path = 'adminAssets/home/slider/' . $request->file('slider')->getClientOriginalName();
+<<<<<<< HEAD
 
             $fileName2 = $request->file('slider')->getClientOriginalName();
             $path = $file->storeAs('public/adminAssets/home/slider', $fileName2);
+=======
+            $file->move($upload_path, $request->file('slider')->getClientOriginalName());
+>>>>>>> origin/main
             $slider->save();
 
 
@@ -127,8 +131,12 @@ class SliderController extends Controller
                 $file = $request->file('slider');
                 $upload_path = 'adminAssets/home/slider';
                 $slider->image_path = 'adminAssets/home/slider/' . $request->file('slider')->getClientOriginalName();
+<<<<<<< HEAD
                 $fileName2 = $request->file('slider')->getClientOriginalName();
                 $path = $file->storeAs('public/adminAssets/home/slider', $fileName2);
+=======
+                $file->move($upload_path, $request->file('slider')->getClientOriginalName());
+>>>>>>> origin/main
             }
             $slider->save();
             return redirect()->back()->with('success', 'Berhasil mengubah Slider');
@@ -143,11 +151,20 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $slider = new Slider();
         File::delete($slider->where('id', $request->id)->first()->image_path);
         $slider = $slider->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $slider = new Slider();
+        File::delete($slider->where('id', $id)->first()->image_path);
+        $slider = $slider->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Slider");
     }

@@ -43,7 +43,11 @@
                     .banner .data_banner {
                         padding-bottom: 80px;
                         margin-top: 80px;
+<<<<<<< HEAD
                         background-image: url({{ asset($regulasiBanner?->banner_path ?? '') }});
+=======
+                        background-image: url({{ asset($regulasiBanner->banner_path) }});
+>>>>>>> origin/main
                         background-repeat: no-repeat;
                         /*Prevent showing multiple background images*/
                         background-size: 100% 300px;

@@ -172,7 +172,11 @@ body {
 
 
 p::first-letter {
+<<<<<<< HEAD
  /* text-transform: uppercase; */
+=======
+ text-transform: uppercase;
+>>>>>>> origin/main
  }
 
  p{

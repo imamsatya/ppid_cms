@@ -9,8 +9,11 @@ use App\Models\ManajemenHome\Slider;
 use App\Models\ManajemenHome\Informasi;
 use App\Models\ManajemenHome\InformasiImage;
 use Illuminate\Support\Facades\Http;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+=======
+>>>>>>> origin/main
 
 class HomeController extends Controller
 {
@@ -23,6 +26,7 @@ class HomeController extends Controller
     {
         //
         // dd('halo');
+<<<<<<< HEAD
 
         $slider = new Slider();
         $slider = $slider->orderBy('urutan', 'asc')->get();
@@ -31,6 +35,13 @@ class HomeController extends Controller
         $informasi = new Informasi();
         $informasi = $informasi->orderBy('urutan', 'asc')->get();
 
+=======
+        $slider = new Slider();
+        $slider = $slider::all();
+
+        $informasi = new Informasi();
+        $informasi = $informasi::all()->sortBy('urutan');
+>>>>>>> origin/main
 
         $informasiImage = new InformasiImage();
         $informasiImage = $informasiImage->first();
@@ -40,6 +51,7 @@ class HomeController extends Controller
 
         $response = Http::get('https://bumn.go.id/api/pressconference');
         $siaranPers = $response->json();
+<<<<<<< HEAD
 
         if ($siaranPers['status'] == 1) {
             $siaranPers = $siaranPers['data'];
@@ -97,6 +109,17 @@ class HomeController extends Controller
         ));
         return $data;
         // echo json_encode(array('data' => $data));
+=======
+     
+        if ($siaranPers['status'] == 1) {
+            $siaranPers = $siaranPers['data'];
+        }else{
+            $siaranPers = null;
+        }
+        
+
+        return view('index', compact('slider', 'informasi', 'informasiImage', 'video', 'siaranPers'));
+>>>>>>> origin/main
     }
 
     /**

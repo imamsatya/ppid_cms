@@ -46,6 +46,11 @@ class PeraturanKIPController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
+        //
+
+>>>>>>> origin/main
         $validated = $request->validate([
             'judulPeraturan' => 'required',
             'urutan' => 'required',
@@ -66,8 +71,13 @@ class PeraturanKIPController extends Controller
                     if ($fileName == 'file') {
                         $peraturanKIP->file_path = 'adminAssets/regulasi/peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/regulasi/peraturan_kip', $fileName2);
+=======
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -83,9 +93,14 @@ class PeraturanKIPController extends Controller
     {
 
         $validated = $request->validate([
+<<<<<<< HEAD
             'banner' => 'required_without_all:thumbnail,thumbnail_rancangan|mimes:png,jpg,jpeg|max:5120',
             'thumbnail' => 'required_without_all:banner,thumbnail_rancangan|mimes:png,jpg,jpeg|max:5120',
             'thumbnail_rancangan' => 'required_without_all:banner,thumbnail|mimes:png,jpg,jpeg|max:5120'
+=======
+            'banner' => 'required_without_all:thumbnail|mimes:png,jpg,jpeg|max:5120',
+            'thumbnail' => 'required_without_all:banner|mimes:png,jpg,jpeg|max:5120'
+>>>>>>> origin/main
         ]);
 
 
@@ -111,11 +126,15 @@ class PeraturanKIPController extends Controller
                             $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         if ($fileName == 'thumbnail_rancangan') {
                             $banner->thumbnail_rancangan_path = 'adminAssets/regulasi/banner/thumbnail_rancangan.' . $file->getClientOriginalExtension();
                         }
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/regulasi/banner', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -135,12 +154,16 @@ class PeraturanKIPController extends Controller
                             $banner->thumbnail_path = 'adminAssets/regulasi/banner/thumbnail.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         if ($fileName == 'thumbnail_rancangan') {
                             $banner->thumbnail_rancangan_path = 'adminAssets/regulasi/banner/thumbnail_rancangan.' . $file->getClientOriginalExtension();
                         }
 
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/regulasi/banner', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -210,8 +233,13 @@ class PeraturanKIPController extends Controller
                     if ($fileName == 'file') {
                         $peraturanKIP->file_path = 'adminAssets/regulasi/peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/regulasi/peraturan_kip', $fileName2);
+=======
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -230,11 +258,21 @@ class PeraturanKIPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $peraturanKIP = new PeraturanKIP();
         File::delete($peraturanKIP->where('id', $request->id)->first()->file_path);
         $peraturanKIP = $peraturanKIP->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+
+        $peraturanKIP = new PeraturanKIP();
+        File::delete($peraturanKIP->where('id', $id)->first()->file_path);
+        $peraturanKIP = $peraturanKIP->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus peraturan KIP");
     }

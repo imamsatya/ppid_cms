@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin\ManajemenUser;
 use App\Models\UserPPID;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Session;
+=======
+>>>>>>> origin/main
 
 class UserPemohonController extends Controller
 {
@@ -21,6 +24,7 @@ class UserPemohonController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
         // $usersPPID = UserPPID::all();
         $usersPPID = DB::table('ppid_pendaftar')->select(
             'ppid_pendaftar.*',
@@ -32,6 +36,9 @@ class UserPemohonController extends Controller
             ->leftjoin('jenis_identitas', 'jenis_identitas.id', '=', 'ppid_pendaftar.jenis_identitas')
 
             ->get();
+=======
+        $usersPPID = UserPPID::all();
+>>>>>>> origin/main
         return view('admin.manajemen_user.user_pemohon', compact('usersPPID'));
     }
 
@@ -55,6 +62,7 @@ class UserPemohonController extends Controller
     public function store(Request $request)
     {
         //
+<<<<<<< HEAD
 
 
         $validated = $request->validate([
@@ -105,6 +113,8 @@ class UserPemohonController extends Controller
         } else {
             return redirect()->back()->withErrors($validated)->withInput();
         }
+=======
+>>>>>>> origin/main
     }
 
     /**
@@ -127,8 +137,11 @@ class UserPemohonController extends Controller
     public function edit($id)
     {
         //
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/main
     }
 
     /**
@@ -140,6 +153,7 @@ class UserPemohonController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
         $validated = $request->validate([
             'password' => ['required', 'min:6'],
             'password_confirmation' => ['required', 'same:password'],
@@ -156,6 +170,9 @@ class UserPemohonController extends Controller
         } else {
             return redirect()->back()->withErrors($validated)->withInput();
         }
+=======
+        //
+>>>>>>> origin/main
     }
 
     /**
@@ -164,6 +181,7 @@ class UserPemohonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $user = UserPPID::where('id', $request->id)->first();
@@ -173,5 +191,10 @@ class UserPemohonController extends Controller
         $user = $user->where('id', $request->id)->delete();
 
         Session::flash('success', "Berhasil menghapus user");
+=======
+    public function destroy($id)
+    {
+        //
+>>>>>>> origin/main
     }
 }

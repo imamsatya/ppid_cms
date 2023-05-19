@@ -306,7 +306,11 @@
             @endif
             <h1>Pengelolaan Visi dan Misi</h1>
             <br>
+<<<<<<< HEAD
             <form action="{{route('manajemen-ppid.visimisi.store')}}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 

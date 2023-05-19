@@ -7,8 +7,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+<<<<<<< HEAD
                     <input type="text" id="myInput" onkeyup="myFunction()"
                         placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+=======
+                    <input type="text" placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+>>>>>>> origin/main
                     <button class="btn btn-filter">Filter</button>
                 </div>
             </div>
@@ -17,9 +21,15 @@
     <!-- Filter -->
 
     <!-- content -->
+<<<<<<< HEAD
     {{-- {{ count(app('request')->all()) }} --}}
     <section class="content">
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+    {{ count(app('request')->all()) }}
+    <section class="content">
+        <div class="container">
+>>>>>>> origin/main
             <div class="row">
                 <div class="col-md-3">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -79,7 +89,11 @@
                                         <ul class="pagination">
                                             @if ($informasiSecaraBerkala->currentPage() - 1 != 0)
                                                 <li class="page-item ">
+<<<<<<< HEAD
                                                     <a class="page-link"
+=======
+                                                    <a class="page-link" href="javascript:void(0)"
+>>>>>>> origin/main
                                                         href="{{ $informasiSecaraBerkala->previousPageUrl() }}"
                                                         tabindex="-1">
                                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -120,6 +134,7 @@
                         <div class="tab-pane fade {{ app('request')->input('informasi_setiap_saat') ? 'show active' : null }}
                             "
                             id="v-pills-setiapsaat" role="tabpanel" aria-labelledby="v-pills-setiapsaat-tab">
+<<<<<<< HEAD
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -144,6 +159,34 @@
                             </div>
 
 
+=======
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @if ($informasiSetiapSaat)
+                                                @foreach ($informasiSetiapSaat as $informasiSetiapSaat_row)
+                                                    <div class="data_list">
+
+                                                        @if ($informasiSetiapSaat_row->url)
+                                                            <span><a style="color:#104e70; font-size: 1rem;"
+                                                                    href="{{ $informasiSetiapSaat_row->url }}">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+                                                        @else
+                                                            <span><a style="color:#104e70; cursor: default; font-size: 1rem;"
+                                                                    href="javascript:void(0)">{{ $informasiSetiapSaat_row->judul_informasi }}</a></span>
+                                                        @endif
+                                                    </div>
+                                                @endforeach
+                                            @endif
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+>>>>>>> origin/main
                             <div class="row mt-5">
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <nav aria-label="...">
@@ -271,6 +314,7 @@
                 active
                 </x-slot>
                 @push('child-scripts')
+<<<<<<< HEAD
                     <script type="text/javascript">
                         function myFunction() {
                             var input, filter, ul, li, a, i, txtValue;
@@ -294,11 +338,17 @@
                             }
                         }
                     </script>
+=======
+>>>>>>> origin/main
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($informasiPublikBanner?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($informasiPublikBanner->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

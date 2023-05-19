@@ -139,8 +139,13 @@
                             <td>{{ $loop->index + 1 }}</td>
 
                             <td><a href="{{ $sosialMedia_row->url }}" target="_blank">
+<<<<<<< HEAD
                                     <img class="img-fluid" src="{{ asset('storage/' . $sosialMedia_row->icon) }}"
                                         alt="" style="width: 40px;height:40px">
+=======
+                                    <img class="img-fluid" src="{{ asset($sosialMedia_row->icon) }}" alt=""
+                                        style="width: 40px;height:40px">
+>>>>>>> origin/main
                                 </a></i></td>
                             <td>{{ $sosialMedia_row->url }}</td>
                             <td>{{ $sosialMedia_row->urutan }}</td>
@@ -198,7 +203,11 @@
                             <td>{{ $loop->index + 1 }}</td>
 
                             <td><a href="{{ $linkApp_row->url }}" title="Image from freepnglogos.com"><img
+<<<<<<< HEAD
                                         src="{{ asset('storage/' . $linkApp_row->icon) }}" width="200"
+=======
+                                        src="{{ asset($linkApp_row->icon) }}" width="200"
+>>>>>>> origin/main
                                         alt="play store logo black background hd picture" /></a></td>
                             <td>{{ $linkApp_row->url }}</td>
 
@@ -258,7 +267,11 @@
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
                     <form id="kt_account_profile_details_form" enctype="multipart/form-data"
+<<<<<<< HEAD
                         action="{{ route('manajemen-ppid.footer.sosialmedia.store') }}" method="POST" class="form">
+=======
+                        action="{{ route('admin.footer.sosialmedia.store') }}" method="POST" class="form">
+>>>>>>> origin/main
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
@@ -574,7 +587,11 @@
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
                     <form id="kt_account_profile_details_form" enctype="multipart/form-data"
+<<<<<<< HEAD
                         action="{{ route('manajemen-ppid.footer.linkapp.store') }}" method="POST" class="form">
+=======
+                        action="{{ route('admin.footer.linkapp.store') }}" method="POST" class="form">
+>>>>>>> origin/main
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
@@ -887,6 +904,7 @@
                                         }
                                     }).then((result) => {
                                         if (result.isConfirmed) {
+<<<<<<< HEAD
                                             $.ajax({
                                                 type: "post",
                                                 url: "{{route('manajemen-ppid.footer.sosialmedia.delete')}}",
@@ -896,6 +914,17 @@
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({
+=======
+
+                                            console.log('delete confirmed')
+                                            $.ajax({
+                                                type: "DELETE",
+                                                url: "/admin/footer/sosialmedia/delete/" + sosialMedia.id,
+                                                cache: false,
+                                                success: function(html) {
+                                                    Swal.fire({
+
+>>>>>>> origin/main
                                                         icon: 'success',
                                                         title: 'Berhasil menghapus sosialMedia',
                                                         showConfirmButton: false,
@@ -903,8 +932,17 @@
                                                     }).then(() => {
                                                         window.location.reload();
                                                     })
+<<<<<<< HEAD
                                                 }
                                             });
+=======
+
+
+                                                }
+                                            });
+
+                                            // window.location = '/visimisi'
+>>>>>>> origin/main
                                         } else {
                                             console.log('delete canceled')
                                         }
@@ -950,12 +988,20 @@
                                         }
                                     }).then((result) => {
                                         if (result.isConfirmed) {
+<<<<<<< HEAD
                                             $.ajax({
                                                 type: "post",
                                                 url: "{{route('manajemen-ppid.footer.linkapp.delete')}}",
                                                 data:{
                                                         "id": linkApp.id
                                                     },
+=======
+
+                                            console.log('delete confirmed')
+                                            $.ajax({
+                                                type: "DELETE",
+                                                url: "/admin/footer/linkapp/delete/" + linkApp.id,
+>>>>>>> origin/main
                                                 cache: false,
                                                 success: function(html) {
                                                     Swal.fire({

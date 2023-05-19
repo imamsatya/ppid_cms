@@ -24,9 +24,13 @@ class UserPPID extends Authenticatable implements JWTSubject
         'no_hp',
         'npwp',
         'pekerjaan',
+<<<<<<< HEAD
         'identitas_file_path',
         'token_activation',
         'isVerified'
+=======
+        'identitas_file_path'
+>>>>>>> origin/main
     ];
 
     protected $hidden = ['password',  'remember_token'];

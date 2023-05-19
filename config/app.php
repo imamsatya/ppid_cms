@@ -197,7 +197,10 @@ return [
         // App\Providers\FortifyServiceProvider::class,
 
         Barryvdh\DomPDF\ServiceProvider::class,
+<<<<<<< HEAD
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+=======
+>>>>>>> origin/main
 
     ],
 

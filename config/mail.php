@@ -43,8 +43,11 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+<<<<<<< HEAD
             // 'auth_mode'  => null,
             // 'verify_peer'       => false,   // <------ IT HAS TO BE HERE
+=======
+>>>>>>> origin/main
         ],
 
         'ses' => [

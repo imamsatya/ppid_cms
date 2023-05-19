@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\Admin\LayananPPID;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use App\Models\LayananPPID\Keberatan\KeberatanPPID;
+=======
+>>>>>>> origin/main
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use PDF;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
 use App\Models\LayananPPID\LinkSurvei;
+=======
+>>>>>>> origin/main
 
 class DataKeberatanController extends Controller
 {
@@ -40,7 +46,11 @@ class DataKeberatanController extends Controller
             ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
             ->whereIn('jenis_status_keberatan.id', [1, 2])
 
+<<<<<<< HEAD
             ->orderBy('created_at', 'desc')->get();
+=======
+            ->orderBy('created_at', 'asc')->get();
+>>>>>>> origin/main
 
         $ppidKeberatanSelesai = DB::table('ppid_keberatan')
             ->select(
@@ -59,6 +69,7 @@ class DataKeberatanController extends Controller
             ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
             ->whereIn('jenis_status_keberatan.id', [3])
 
+<<<<<<< HEAD
             ->orderBy('created_at', 'desc')->get();
 
             $linkSurvei = new LinkSurvei();
@@ -66,6 +77,12 @@ class DataKeberatanController extends Controller
 
 
         return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan', 'ppidKeberatanSelesai', 'linkSurvei'));
+=======
+            ->orderBy('created_at', 'asc')->get();
+
+
+        return view('admin.layanan_ppid.data_keberatan', compact('ppidKeberatan', 'ppidKeberatanSelesai'));
+>>>>>>> origin/main
     }
 
     public function ppidDataKeberatan(Request $request)
@@ -94,7 +111,11 @@ class DataKeberatanController extends Controller
             ->leftJoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')
 
 
+<<<<<<< HEAD
             ->orderBy('created_at', 'desc')
+=======
+            ->orderBy('created_at', 'asc')
+>>>>>>> origin/main
             ->where(function ($query) use ($status) {
                 if ($status != '-') {
                     $query->where('status_keberatan.id_jenis_status_keberatan', $status);
@@ -123,6 +144,7 @@ class DataKeberatanController extends Controller
         $status = $request->input('status');
         $start = $request->input('datestart');
         $end = $request->input('dateend');
+<<<<<<< HEAD
         if ($status == 'true') {
             $status = 1;
         }
@@ -131,6 +153,8 @@ class DataKeberatanController extends Controller
             $status = 0;
         }
 
+=======
+>>>>>>> origin/main
 
         $result = DB::table('ppid_keberatan')
             ->select(
@@ -154,6 +178,7 @@ class DataKeberatanController extends Controller
 
 
 
+<<<<<<< HEAD
             ->orderBy('created_at', 'desc')
             ->where(function ($query) use ($status) {
                 // if ($status != '-') {
@@ -162,6 +187,12 @@ class DataKeberatanController extends Controller
 
                 if ($status == 1 || $status == 0) {
                     $query->where('ppid_keberatan.isSengketa', $status);
+=======
+            ->orderBy('created_at', 'asc')
+            ->where(function ($query) use ($status) {
+                if ($status != '-') {
+                    $query->where('status_keberatan.id_jenis_status_keberatan', $status);
+>>>>>>> origin/main
                 } else {
                     $query->whereNotIn('status_keberatan.id_jenis_status_keberatan', [1, 2]); // kecuali yg selesai dan ditolak
                 }
@@ -183,7 +214,10 @@ class DataKeberatanController extends Controller
 
     public function submitKonfirmasiKeberatan(Request $request)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
         $data = $request->all();
         $dateCreated = \Carbon\Carbon::now();
         $keberatan = DB::table('ppid_keberatan')->where('id', $data['id'])->first();
@@ -193,8 +227,12 @@ class DataKeberatanController extends Controller
 
         // kalau keberatan diterima / diproses
         $this->prosesKeberatan($data, $keberatan, $dateCreated);
+<<<<<<< HEAD
 
         echo json_encode(array('result' => 'Berhasil mengkonfirmasi keberatan!', 'status' => 'success'));
+=======
+        echo json_encode(array('result' => 'Berhasil mengkonfirmasi permohonan!', 'status' => 'success'));
+>>>>>>> origin/main
     }
 
     public function prosesKeberatan($data, $keberatan, $dateCreated)
@@ -259,8 +297,12 @@ class DataKeberatanController extends Controller
             $location = public_path('keberatan/jawaban');
 
             // Upload file
+<<<<<<< HEAD
             // $file->move($location, $filename);
             $path = $file->storeAs('public/keberatan/jawaban', $filename);
+=======
+            $file->move($location, $filename);
+>>>>>>> origin/main
 
             // File path
             $file_dukung = 'keberatan/jawaban/' . $filename;
@@ -269,9 +311,13 @@ class DataKeberatanController extends Controller
         $pdf = PDF::loadView('admin.layanan_ppid.answer_template', ['jawaban' => $data['answer']]);
         // $nmfile = time().'_answer.pdf';
         $nmfile = $ticketKeberatan . '.pdf';
+<<<<<<< HEAD
         $content = $pdf->download()->getOriginalContent();
         Storage::put('public/keberatan/jawaban/' . $nmfile, $content);
         // $pdf->save(public_path('keberatan/jawaban/') . '' . $nmfile);
+=======
+        $pdf->save(public_path('keberatan/jawaban/') . '' . $nmfile);
+>>>>>>> origin/main
 
 
         $dataAnswer = [
@@ -304,6 +350,7 @@ class DataKeberatanController extends Controller
         echo json_encode(array('result' => 'Berhasil menyimpan respon!', 'status' => 'success'));
     }
 
+<<<<<<< HEAD
     public function submitKonfirmasiSengketa(Request $request, $id)
     {
         if ($request->all == null) {
@@ -374,6 +421,8 @@ class DataKeberatanController extends Controller
         }
     }
 
+=======
+>>>>>>> origin/main
     /**
      * Show the form for creating a new resource.
      *

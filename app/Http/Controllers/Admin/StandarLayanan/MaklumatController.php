@@ -68,8 +68,12 @@ class MaklumatController extends Controller
                             $maklumat->banner_path = 'adminAssets/standarlayanan/maklumat/banner.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/standarlayanan/maklumat', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
                 $maklumat->judul = $request->judul;
@@ -89,8 +93,12 @@ class MaklumatController extends Controller
                             $maklumat->banner_path = 'adminAssets/standarlayanan/maklumat/banner.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/standarlayanan/maklumat', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
                 $maklumat->judul = $request->judul;

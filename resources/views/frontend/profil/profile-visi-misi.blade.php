@@ -3,13 +3,22 @@
         <link href="{{ asset('ppid_fe/assets/css/page/profile/visiMisi/index.css') }}" rel="stylesheet" />
     @endpush
     <section class="informasi_visi_misi">
+<<<<<<< HEAD
 
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+ 
+        <div class="container">
+>>>>>>> origin/main
             <div class="row">
                 <div class="col-md-6">
                     <label for="" class="title_visi_misi"> Visi PPID </label>
                     <div class="visi_misi_box">
+<<<<<<< HEAD
                         <div class="">
+=======
+                        <div class="informasi">
+>>>>>>> origin/main
                             {{-- <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                                 consequat placerat odio eget congue. Vestibulum pellentesque
@@ -95,7 +104,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($visiMisi?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset('storage/'.$visiMisi->banner_path ?? '')  }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

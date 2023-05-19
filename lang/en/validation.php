@@ -179,12 +179,16 @@ return [
         ],
         'identitasfile' => [
             'required' => 'identitas file harus terisi',
+<<<<<<< HEAD
             'mimes' => ':attribute harus berformat: :values.',
+=======
+>>>>>>> origin/main
         ],
         'email' => [
             'required' => 'email harus terisi',
         ],
         'password' => [
+<<<<<<< HEAD
             'required' => 'password harus terisi',
             'min' => 'password minimal terdiri dari :min karakter',
             'regex' => 'password harus kombinasi huruf kapital, huruf kecil dan angka',
@@ -210,6 +214,9 @@ return [
         ],
         'linkSurvei' => [
             'required' => 'Link Survei harus terisi'
+=======
+            'required' => 'password harus terisi'
+>>>>>>> origin/main
         ]
     ],
 

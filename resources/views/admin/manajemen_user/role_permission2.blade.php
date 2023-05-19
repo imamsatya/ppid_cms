@@ -215,9 +215,12 @@
                             $showInformasi = in_array('informasi', $permissionGroup);
                             $showVideo = in_array('video', $permissionGroup);
                             $showFooter = in_array('footer', $permissionGroup);
+<<<<<<< HEAD
                             
                             //Manajemen Menu
                             $showManajemenMenu = in_array('manajemen menu', $permissionGroup);
+=======
+>>>>>>> origin/main
                             ?>
 
                             <!--end::Users-->
@@ -457,6 +460,7 @@
                                             @endif
                                             <!--end::Manajmen Home-->
 
+<<<<<<< HEAD
                                             <!--begin::Manajmen Menu-->
                                             @if ($showFAQ)
                                                 <div class="d-flex align-items-center py-2">
@@ -464,6 +468,8 @@
                                                 </div>
                                             @endif
 
+=======
+>>>>>>> origin/main
 
                                             <!--begin::Setting Kalender-->
 
@@ -502,6 +508,7 @@
                                 data-bs-target="#kt_modal_update_role" onclick="editDialog({{ $loop->index }})"
                                 class="btn btn-light btn-active-primary my-1 me-2 "> Edit
                                 Role</a> --}}
+<<<<<<< HEAD
                             @can('role permission.edit')
                                 <a href="{{ route('manajemen-ppid.role_permission.edit', $role) }}"
                                     class="btn btn-light btn-active-primary my-1 me-2 "> Edit
@@ -512,6 +519,14 @@
                                     class="btn btn-light btn-active-danger my-1 ">Delete
                                     Role</a>
                             @endcan
+=======
+                            <a href="{{ route('admin.role_permission.edit', $role) }}"
+                                class="btn btn-light btn-active-primary my-1 me-2 "> Edit
+                                Role</a>
+                            <a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                class="btn btn-light btn-active-danger my-1 ">Delete
+                                Role</a>
+>>>>>>> origin/main
                         </div>
                         <!--end::Card footer-->
                     </div>
@@ -520,6 +535,7 @@
             @endforeach
 
             <!--begin::Add new card-->
+<<<<<<< HEAD
             @can('role permission.create')
                 <div class="col-md-6">
                     <!--begin::Card-->
@@ -528,6 +544,15 @@
                         <div class="card-body d-flex flex-center">
                             {{-- Versi Modal --}}
                             {{-- <!--begin::Button-->
+=======
+            <div class="col-md-6">
+                <!--begin::Card-->
+                <div class="card h-md-100">
+                    <!--begin::Card body-->
+                    <div class="card-body d-flex flex-center">
+                        {{-- Versi Modal --}}
+                        {{-- <!--begin::Button-->
+>>>>>>> origin/main
                         <button type="button" class="btn btn-clear d-flex flex-column flex-center"
                             data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
                             <!--begin::Illustration-->
@@ -541,6 +566,7 @@
                         </button>
                         <!--begin::Button--> --}}
 
+<<<<<<< HEAD
                             {{-- Versi Create --}}
 
                             <a href="{{ route('manajemen-ppid.role_permission.create') }}"
@@ -557,6 +583,26 @@
                     <!--begin::Card-->
                 </div>
             @endcan
+=======
+                        {{-- Versi Create --}}
+
+                        <a href="{{ route('admin.role_permission.create') }}"
+                            class="btn btn-clear d-flex flex-column flex-center">
+                            <!--begin::Illustration-->
+                            <img src="{{ asset('template/dist/assets/media/illustrations/sketchy-1/4.png') }}"
+                                alt="" class="mw-100 mh-150px mb-7" />
+                            <!--end::Illustration-->
+                            <!--begin::Label-->
+                            <div class="fw-bold fs-3 text-gray-600 text-hover-primary">
+                                Add New Role</div>
+                            <!--end::Label-->
+                        </a>
+                    </div>
+                    <!--begin::Card body-->
+                </div>
+                <!--begin::Card-->
+            </div>
+>>>>>>> origin/main
             <!--begin::Add new card-->
         </div>
         <!--end::Row-->
@@ -595,7 +641,11 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
+<<<<<<< HEAD
                         <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
+=======
+                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+>>>>>>> origin/main
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->
@@ -1956,6 +2006,7 @@
                                                 <!--end::Standar Layanan row-->
 
 
+<<<<<<< HEAD
                                                 <!--begin::Manajemen Menu row-->
                                                 <tr>
                                                     <!--begin::Label-->
@@ -2012,6 +2063,8 @@
 
                                                 <!--end::Manajemen Menu row-->
 
+=======
+>>>>>>> origin/main
                                                 <!--begin::Table row-->
 
 
@@ -3519,7 +3572,11 @@
                                             }
                                         });
 
+<<<<<<< HEAD
                                         document.getElementById('editForm').setAttribute('action', 'update/' + role.id)
+=======
+                                        document.getElementById('editForm').setAttribute('action', 'role_permission/' + role.id)
+>>>>>>> origin/main
                                     };
 
                                     function selectAllPermissions(className, classId) {
@@ -3560,6 +3617,7 @@
                                                 activateLoadingButton('.swal2-confirm')
                                                 console.log('delete confirmed')
                                                 $.ajax({
+<<<<<<< HEAD
                                                     type: "post",
                                                     url: "{{route('manajemen-ppid.role_permission.delete')}}",
                                                     data:{
@@ -3570,6 +3628,19 @@
                                                         window.location.reload();
                                                     }
                                                 });
+=======
+                                                    type: "DELETE",
+                                                    url: "/admin/role_permission/" + role.id,
+                                                    cache: false,
+                                                    success: function(html) {
+
+                                                        window.location.reload();
+
+                                                    }
+                                                });
+
+                                                // window.location = '/visimisi'
+>>>>>>> origin/main
                                             } else {
                                                 console.log('delete canceled')
                                             }

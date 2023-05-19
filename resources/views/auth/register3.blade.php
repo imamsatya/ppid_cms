@@ -20,7 +20,10 @@
             }
         </style>
         <title>Home</title>
+<<<<<<< HEAD
         {!! htmlScriptTagJsApi() !!}
+=======
+>>>>>>> origin/main
     @endpush
 
     <!-- content -->
@@ -76,7 +79,11 @@
                             <div class="form-data">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="name" name="name"
+<<<<<<< HEAD
                                         aria-describedby="name" placeholder="Nama Lengkap" />
+=======
+                                        aria-describedby="name" placeholder="Name" />
+>>>>>>> origin/main
                                     @error('name')
                                         <div class="" style="color: red">
                                             {{ $message }}
@@ -128,8 +135,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+<<<<<<< HEAD
                                     <input type="text" class="form-control" id="noidentitas" name="noidentitas"
                                         aria-describedby="noidentitas" placeholder="No Identitas (KTP/NPWP)" />
+=======
+                                    <input type="text" maxlength="16" minlength="16" size="16"
+                                        class="form-control" id="noidentitas" name="noidentitas"
+                                        aria-describedby="noidentitas" placeholder="No Identitas (KTP)" />
+>>>>>>> origin/main
                                     @error('noidentitas')
                                         <div class="" style="color: red">
                                             {{ $message }}
@@ -156,11 +169,19 @@
                                         </div>
                                     @enderror
                                 </div>
+<<<<<<< HEAD
                                 <div class="form-group" hidden>
                                     <input type="text" hidden class="form-control" id="npwp" id="npwp"
                                         name="npwp" aria-describedby="npwp" placeholder="NPWP" />
                                     @error('npwp')
                                         <div class="" hidden style="color: red">
+=======
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="npwp" id="npwp"
+                                        name="npwp" aria-describedby="npwp" placeholder="NPWP" />
+                                    @error('npwp')
+                                        <div class="" style="color: red">
+>>>>>>> origin/main
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -186,7 +207,11 @@
                                         <button class="btn">
                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_file.svg') }}"
                                                 alt="" />
+<<<<<<< HEAD
                                             <span id="dokumenText"> Upload KTP </span>
+=======
+                                            Upload KTP
+>>>>>>> origin/main
                                         </button>
                                         <input type="file" name="identitasfile" onchange="PreviewImage();"
                                             id="uploadImage" />
@@ -241,6 +266,7 @@
                                         </div>
                                     @enderror
                                 </div>
+<<<<<<< HEAD
 
                                 <div class="form-group">
                                     <div class="input-group d-flex align-items-center" id="show_hide_password">
@@ -248,6 +274,8 @@
                                     </div>
 
                                 </div>
+=======
+>>>>>>> origin/main
                             </div>
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Daftar</button>
                             {{-- <a href="./dashboard-pemohon.html" class="btn btn-lg btn-primary-ppid mt-3">Daftar</a> --}}
@@ -303,6 +331,7 @@
         </script>
 
         <script>
+<<<<<<< HEAD
             const $input = document.querySelector("#noidentitas");
             const IDENTITASNUMBER_ALLOWED_CHARS_REGEXP = /[0-9.-]+/;
             $input.addEventListener("keypress", event => {
@@ -310,6 +339,8 @@
                     event.preventDefault();
                 }
             });
+=======
+>>>>>>> origin/main
             $(document).ready(function() {
                 $("#show_hide_password a").on("click", function(event) {
                     event.preventDefault();
@@ -343,6 +374,7 @@
                 console.log(document.getElementById('inputJenisIdentitas'))
                 document.getElementById('jenisidentitas').value = document.getElementById('jenispemohon').value
                 document.getElementById('inputJenisIdentitas').value = document.getElementById('jenisidentitas').value
+<<<<<<< HEAD
 
                 if (document.getElementById('jenispemohon').value == '1') {
                     document.getElementById('dokumenText').textContent = 'Upload KTP'
@@ -365,6 +397,15 @@
             //         this.setCustomValidity("KTP harus 16 digit");
             //     };
             // });
+=======
+            }
+
+            $(function() {
+                $("input[name=noidentitas]")[0].oninvalid = function() {
+                    this.setCustomValidity("KTP harus 16 digit");
+                };
+            });
+>>>>>>> origin/main
         </script>
     @endpush
 

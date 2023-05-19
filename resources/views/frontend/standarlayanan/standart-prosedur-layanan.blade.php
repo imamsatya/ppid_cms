@@ -3,7 +3,11 @@
         <link href="{{ asset('ppid_fe/assets/css/page/regulasi/index.css') }}" rel="stylesheet" />
     @endpush
     <!-- Filter -->
+<<<<<<< HEAD
     <!-- <section class="filter-data">
+=======
+    <section class="filter-data">
+>>>>>>> origin/main
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -12,12 +16,21 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </section> -->
     <!-- Filter -->
     <br><br><br>
     <!-- content -->
     <section class="content">
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+    </section>
+    <!-- Filter -->
+
+    <!-- content -->
+    <section class="content">
+        <div class="container">
+>>>>>>> origin/main
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -41,7 +54,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @if ($prosedurLayanan)
+<<<<<<< HEAD
                                         <img src="{{ Storage::url($prosedurLayanan->permohonan_direktori_image) }}"
+=======
+                                        <img src="{{ asset($prosedurLayanan->permohonan_direktori_image) }}"
+>>>>>>> origin/main
                                             class="w-100 img-fluid" alt="">
                                     @endif
                                 </div>
@@ -53,7 +70,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @if ($prosedurLayanan)
+<<<<<<< HEAD
                                         <img src="{{ Storage::url($prosedurLayanan->keberatan_direktori_image) }}"
+=======
+                                        <img src="{{ asset($prosedurLayanan->keberatan_direktori_image) }}"
+>>>>>>> origin/main
                                             class="w-100 img-fluid" alt="">
                                     @endif
                                 </div>
@@ -82,7 +103,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($prosedurLayanan?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($prosedurLayanan->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

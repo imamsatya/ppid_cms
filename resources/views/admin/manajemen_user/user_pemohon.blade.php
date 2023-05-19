@@ -1,7 +1,97 @@
 <x-admin.layout>
 
 
+<<<<<<< HEAD
 
+=======
+    @push('child-scripts')
+        <script>
+            $("#kt_datatable_dom_positioning_role").DataTable({
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom": "<'row'" + "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" + ">" + "<'table-responsive'tr>" +
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+            });
+
+            function editDialog(index) {
+                let usersPPID = {{ Js::from($usersPPID) }}
+                let user = usersPPID[index]
+                console.log('user', user)
+                document.getElementById('editName').value = user.nama_lengkap
+                document.getElementById('editEmail').value = user.email
+
+
+                document.getElementById('editForm').setAttribute('action', 'user_admin/' + user.id)
+            };
+
+            function deleteDialog(index) {
+                let usersPPID = {{ Js::from($usersPPID) }}
+                let user = usersPPID[index]
+                Swal.fire({
+                    html: `Apakah yakin akan <strong>menghapus</strong> user <span class="badge badge-primary"> ${user.name}</span> ?`,
+                    icon: "error",
+                    buttonsStyling: false,
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    cancelButtonText: 'Batal',
+                    confirmButtonText: "Iya",
+                    customClass: {
+                        cancelButton: 'btn btn-danger',
+                        confirmButton: "btn btn-primary",
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        console.log('delete confirmed')
+                        $.ajax({
+                            type: "DELETE",
+                            url: "/admin/user_admin/" + user.id,
+                            cache: false,
+                            success: function(html) {
+                                Swal.fire({
+
+                                    icon: 'success',
+                                    title: 'Berhasil menghapus User',
+                                    showConfirmButton: false,
+                                    timer: 500
+                                }).then(() => {
+                                    window.location.reload();
+                                })
+
+
+                            }
+                        });
+
+                        // window.location = '/visimisi'
+                    } else {
+                        console.log('delete canceled')
+                    }
+                });
+
+                // Swal.fire({
+                //     template: '#my-template'
+                // })
+            };
+
+            function activateLoadingButton(idButton) {
+                console.log('active')
+                let button = document.querySelector(`${idButton}`);
+                button.setAttribute("data-kt-indicator", "on");
+                // Handle button click event
+
+                // // Disable indicator after 3 seconds
+                // setTimeout(function() {
+                //     button.removeAttribute("data-kt-indicator");
+                // }, 3000);
+            }
+        </script>
+    @endpush
+>>>>>>> origin/main
     <h1>Daftar User Pemohon </h1>
     @if ($errors->any())
         <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10">
@@ -108,7 +198,10 @@
     @endif
 
     <br>
+<<<<<<< HEAD
     {{-- {{ $usersPPID }} --}}
+=======
+>>>>>>> origin/main
     <div class="card card-flush shadow-sm">
         <div class="card-header">
             <h3 class="card-title">Daftar User Pemohon </h3>
@@ -124,11 +217,16 @@
                     <tr class="fw-semibold fs-6 text-gray-800">
                         <th>No</th>
                         <th>Name</th>
+<<<<<<< HEAD
                         <th>Identitas</th>
                         <th>Email</th>
                         <th>Pekerjaan</th>
                         <th>Token Aktivasi</th>
 
+=======
+                        <th>Email</th>
+                        <th>Pekerjaan</th>
+>>>>>>> origin/main
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -137,6 +235,7 @@
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $user->nama_lengkap }}</td>
+<<<<<<< HEAD
 
                             <td> <img width="100" height="100"
                                     src="{{ asset('storage/' . $user->identitas_file_path) }}" />
@@ -150,6 +249,10 @@
                                 <td> {{ $user->token_activation }}</td>
                             @endif
 
+=======
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->pekerjaan }}</td>
+>>>>>>> origin/main
                             <td><a href="javascript:void(0)" class="btn btn-icon btn-primary me-2"
                                     data-bs-toggle="modal" data-bs-target="#kt_modal_editAdmin"
                                     onclick="editDialog({{ $loop->index }})"><i class="bi bi-pencil fs-4 "></i></a>
@@ -176,7 +279,11 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
+<<<<<<< HEAD
                     <h2>Tambah User Pemohon</h2>
+=======
+                    <h2>Tambah User Admin</h2>
+>>>>>>> origin/main
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -198,8 +305,13 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
+<<<<<<< HEAD
                     <form id="kt_account_profile_details_form" action="{{ route('manajemen-ppid.user_pemohon.store') }}"
                         method="POST" class="form" enctype="multipart/form-data">
+=======
+                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_admin.store') }}"
+                        method="POST" class="form">
+>>>>>>> origin/main
                         @csrf
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
@@ -208,11 +320,16 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
+<<<<<<< HEAD
                                 <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nama</label>
+=======
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+>>>>>>> origin/main
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="name"
+<<<<<<< HEAD
                                         class="form-control form-control-lg form-control-solid" placeholder="Nama"
                                         value="{{ old('name') }}" />
                                 </div>
@@ -260,6 +377,9 @@
                                         <option value="3">Anggaran Dasar</option>
                                     </select>
                                     <input type="text" hidden name="jenisidentitas" id="inputJenisIdentitas"
+=======
+                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+>>>>>>> origin/main
                                         value="" />
                                 </div>
                                 <!--end::Col-->
@@ -269,6 +389,7 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
+<<<<<<< HEAD
                                 <label class="col-lg-4 col-form-label required fw-semibold fs-6">No Identitas</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
@@ -399,13 +520,19 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
+=======
+>>>>>>> origin/main
                                 <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <input type="email" name="email"
                                         class="form-control form-control-lg form-control-solid" placeholder="Email"
+<<<<<<< HEAD
                                         value="{{ old('email') }}" />
+=======
+                                        value="" />
+>>>>>>> origin/main
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -426,6 +553,7 @@
                             </div>
                             <!--end::Input group-->
 
+<<<<<<< HEAD
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
@@ -441,6 +569,11 @@
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
+=======
+
+                            <!--end::Input group-->
+
+>>>>>>> origin/main
                         </div>
                         <!--end::Card body-->
                         <!--begin::Actions-->
@@ -467,7 +600,11 @@
     </div>
     <!--end::Modal - Tambah User Admin-->
 
+<<<<<<< HEAD
     <!--begin::Modal - Edit User Pemohon-->
+=======
+    <!--begin::Modal - Edit User Admin-->
+>>>>>>> origin/main
     <div class="modal fade" id="kt_modal_editAdmin" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-900px">
@@ -476,7 +613,11 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
+<<<<<<< HEAD
                     <h2>Edit User Pemohon</h2>
+=======
+                    <h2>Edit User Admin</h2>
+>>>>>>> origin/main
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -498,14 +639,50 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
+<<<<<<< HEAD
                     <form id="editForm" method="POST" class="form" enctype="multipart/form-data">
+=======
+                    <form id="editForm" method="POST" class="form">
+>>>>>>> origin/main
                         @csrf
                         @method('PATCH')
                         <!--begin::Card body-->
                         <div class="card-body  p-9">
 
 
+<<<<<<< HEAD
 
+=======
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_name" id="editName"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="email" name="edit_email" id="editEmail"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Email"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+>>>>>>> origin/main
 
                             <!--begin::Input group-->
                             <div class="row mb-6">
@@ -514,7 +691,11 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
+<<<<<<< HEAD
                                     <input type="password" name="password" id="editPassword"
+=======
+                                    <input type="password" name="edit_password" id="editPassword"
+>>>>>>> origin/main
                                         class="form-control form-control-lg form-control-solid" placeholder="Password"
                                         value="" />
                                 </div>
@@ -522,6 +703,7 @@
                             </div>
                             <!--end::Input group-->
 
+<<<<<<< HEAD
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
@@ -533,11 +715,26 @@
                                     <input type="password" name="password_confirmation" id="editPasswordConfirmation"
                                         class="form-control form-control-lg form-control-solid" placeholder="Password"
                                         value="" />
+=======
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <select class="form-select form-select-sm form-select-solid"
+                                        data-control="select2" data-close-on-select="false"
+                                        data-placeholder="Pilih Role" name="edit_roles[]" id="editRoles">
+                                        <option></option>
+
+                                    </select>
+>>>>>>> origin/main
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
+<<<<<<< HEAD
                             <!--end::Card body-->
                             <!--begin::Actions-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
@@ -553,6 +750,24 @@
                                 </button>
                             </div>
                             <!--end::Actions-->
+=======
+                        </div>
+                        <!--end::Card body-->
+                        <!--begin::Actions-->
+                        <div class="card-footer d-flex justify-content-end py-6 px-9">
+                            {{-- <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button> --}}
+                            <button type="submit" class="btn btn-primary" id="updateButton"
+                                onclick="activateLoadingButton('#updateButton')"><span class="indicator-label">
+                                    Update
+                                </span>
+                                <span class="indicator-progress">
+                                    Mohon Menunggu... <span
+                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end::Actions-->
+>>>>>>> origin/main
                     </form>
                 </div>
                 <!--end::Modal body-->
@@ -561,6 +776,7 @@
         </div>
         <!--end::Modal dialog-->
     </div>
+<<<<<<< HEAD
     <!--end::Modal - Edit User Pemohon-->
     <br>
 
@@ -655,6 +871,11 @@
             }
         </script>
     @endpush
+=======
+    <!--end::Modal - Edit User Admin-->
+    <br>
+
+>>>>>>> origin/main
 
     <x-slot:isShowAccordion_manajemenUser>
         show
@@ -662,7 +883,11 @@
         <x-slot:isActiveLink_manajemenUser>
             active
             </x-slot>
+<<<<<<< HEAD
             <x-slot:isActiveLink_userPemohon>
+=======
+            <x-slot:isActiveLink_userAdmin>
+>>>>>>> origin/main
                 active
                 </x-slot>
                 <x-slot:subMenuTitle>

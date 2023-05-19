@@ -69,8 +69,12 @@ class InformasiSertaMertaController extends Controller
                         $informasiSertaMerta->file_path = 'adminAssets/informasiPublik/informasi_serta_merta/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_serta_merta', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -140,8 +144,12 @@ class InformasiSertaMertaController extends Controller
                         $informasiSertaMerta->file_path = 'adminAssets/informasiPublik/informasi_serta_merta/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_serta_merta', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -160,6 +168,7 @@ class InformasiSertaMertaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $informasiSertaMerta = new InformasiSertaMerta();
@@ -168,6 +177,18 @@ class InformasiSertaMertaController extends Controller
         }
 
         $informasiSertaMerta = $informasiSertaMerta->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $informasiSertaMerta = new InformasiSertaMerta();
+
+        if ($informasiSertaMerta->where('id', $id)->first()->file_path) {
+            File::delete($informasiSertaMerta->where('id', $id)->first()->file_path);
+        }
+
+        $informasiSertaMerta = $informasiSertaMerta->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Informasi Publik Serta Merta");
     }

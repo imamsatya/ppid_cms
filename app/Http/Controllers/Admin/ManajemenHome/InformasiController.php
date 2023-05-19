@@ -66,10 +66,14 @@ class InformasiController extends Controller
 
             $upload_path = 'adminAssets/home/informasi';
             $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
+<<<<<<< HEAD
 
             $fileName2 =  $request->file('informasi')->getClientOriginalName();
             $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
 
+=======
+            $file->move($upload_path, $request->file('informasi')->getClientOriginalName());
+>>>>>>> origin/main
             $informasi->save();
 
 
@@ -115,8 +119,13 @@ class InformasiController extends Controller
                         if ($fileName == 'ppidlogo') {
                             $informasiImage->ppidlogo_path = 'adminAssets/home/informasi/ppidlogo.' . $file->getClientOriginalExtension();
                         }
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
+=======
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -141,8 +150,12 @@ class InformasiController extends Controller
                             $informasiImage->ppidlogo_path = 'adminAssets/home/informasi/ppidlogo.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -206,10 +219,13 @@ class InformasiController extends Controller
                 $file = $request->file('informasi');
                 $upload_path = 'adminAssets/home/informasi';
                 $informasi->image_path = 'adminAssets/home/informasi/' . $request->file('informasi')->getClientOriginalName();
+<<<<<<< HEAD
 
                 $fileName2 = $request->file('informasi')->getClientOriginalName();
                 $path = $file->storeAs('public/adminAssets/home/informasi', $fileName2);
 
+=======
+>>>>>>> origin/main
                 $file->move($upload_path, $request->file('informasi')->getClientOriginalName());
             }
             $informasi->save();
@@ -225,11 +241,21 @@ class InformasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $informasi = new Informasi();
         File::delete($informasi->where('id', $request->id)->first()->image_path);
         $informasi = $informasi->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+
+        $informasi = new Informasi();
+        File::delete($informasi->where('id', $id)->first()->image_path);
+        $informasi = $informasi->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Informasi");
     }

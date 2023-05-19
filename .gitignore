@@ -7,6 +7,7 @@
 .env
 .env.backup
 .phpunit.result.cache
+<<<<<<< HEAD
 docker-compose.override.yml
 Homestead.json
 Homestead.yaml
@@ -25,3 +26,12 @@ _ide_helper_models.php
 /public/storage/*
 
 
+=======
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+>>>>>>> origin/main

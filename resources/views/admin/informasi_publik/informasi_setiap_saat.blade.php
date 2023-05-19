@@ -112,7 +112,11 @@
             @endif
 
             <h1>Pengelolaan Informasi Publik</h1>
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.informasi_secara_berkala.banner.store') }}" method="POST"
+=======
+            <form action="{{ route('admin.informasi_secara_berkala.banner.store') }}" method="POST"
+>>>>>>> origin/main
                 enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
@@ -128,7 +132,11 @@
                             @if ($informasiPublikBanner)
                                 @if ($informasiPublikBanner->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $informasiPublikBanner->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($informasiPublikBanner->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -229,8 +237,12 @@
                                         <td>{{ $informasiSetiapSaat_row->url }}</td>
                                         <td>
                                             @if ($informasiSetiapSaat_row->file_path)
+<<<<<<< HEAD
                                                 <a
                                                     href="{{ asset('storage/' . $informasiSetiapSaat_row->file_path) }}">file</a>
+=======
+                                                <a href="{{ asset($informasiSetiapSaat_row->file_path) }}">file</a>
+>>>>>>> origin/main
                                             @endif
                                         </td>
                                         @canany(['informasi setiap saat.edit', 'informasi setiap saat.delete'])
@@ -293,7 +305,11 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
+<<<<<<< HEAD
                             <form id="kt_account_profile_details_form" action="{{route('manajemen-ppid.informasi_setiap_saat.store')}}" enctype="multipart/form-data"
+=======
+                            <form id="kt_account_profile_details_form"action="" enctype="multipart/form-data"
+>>>>>>> origin/main
                                 method="POST" class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -545,12 +561,20 @@
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
+<<<<<<< HEAD
                                 $.ajax({
                                     type: "post",
                                     url: "{{route('manajemen-ppid.informasi_setiap_saat.delete')}}",
                                     data:{
                                             "id": informasiSetiapSaat.id
                                         },
+=======
+
+                                console.log('delete confirmed')
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: "/admin/informasi_setiap_saat/" + informasiSetiapSaat.id,
+>>>>>>> origin/main
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -562,8 +586,17 @@
                                         }).then(() => {
                                             window.location.reload();
                                         })
+<<<<<<< HEAD
                                     }
                                 });
+=======
+
+
+                                    }
+                                });
+
+                                // window.location = '/visimisi'
+>>>>>>> origin/main
                             } else {
                                 console.log('delete canceled')
                             }
@@ -584,7 +617,11 @@
                         document.getElementById('editUrl').value = informasiSetiapSaat.url
 
 
+<<<<<<< HEAD
                         document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+                        document.getElementById('editForm').setAttribute('action', 'informasi_setiap_saat/' +
+>>>>>>> origin/main
                             informasiSetiapSaat.id)
                     };
                 </script>

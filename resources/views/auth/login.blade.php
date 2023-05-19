@@ -1,6 +1,9 @@
 <x-frontend.layout>
     @push('head-scripts')
+<<<<<<< HEAD
         <meta name="csrf-token">
+=======
+>>>>>>> origin/main
         <link href="{{ asset('ppid_fe/assets/css/page/login/index.css') }}" rel="stylesheet" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -18,6 +21,7 @@
             .posfix {
                 position: fixed;
             }
+<<<<<<< HEAD
             .modal-backdrop {
                 width: 113vw !important;
                 height: 112vh !important;
@@ -57,6 +61,10 @@
             'callback_catch' => 'callbackCatch',
         ]) !!} --}}
         {!! htmlScriptTagJsApi() !!}
+=======
+        </style>
+        <title>Home</title>
+>>>>>>> origin/main
     @endpush
     <!-- content -->
     <section class="content-login">
@@ -94,6 +102,7 @@
                             <span class="ml-2">Login</span>
                         </div>
                         @if ($errors->any())
+<<<<<<< HEAD
                             <div class="alert alert-danger">
 
                                 @foreach ($errors->all() as $error)
@@ -145,6 +154,19 @@
                         @endif
 
                         <form action="{{ route('userppid.handleLogin') }}" id="demo-form" method="POST">
+=======
+
+                            <div class="alert alert-danger">
+                                <ul>
+
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('userppid.handleLogin') }}" method="POST">
+>>>>>>> origin/main
                             @csrf
                             <div class="form-data">
                                 <div class="form-group">
@@ -173,6 +195,7 @@
                                         @enderror
                                     </div>
                                 </div>
+<<<<<<< HEAD
 
                                 <div class="form-group">
                                     <div class="input-group d-flex align-items-center">
@@ -183,18 +206,28 @@
                             </div>
                             <div class="lupa-password d-flex">
                                 <a href="{{ route('userppid.lupa_password') }}" class="ml-auto">Lupa Password</a>
+=======
+                            </div>
+                            <div class="lupa-password d-flex">
+                                <a href="#" class="ml-auto">Lupa Password</a>
+>>>>>>> origin/main
                             </div>
                             <button class="btn btn-lg btn-primary-ppid mt-3" type="submit">Login</button>
                             <div class="not-register text-center mt-3">
                                 <span>Belum terdaftar?</span><a href="{{ route('signup') }}"
+<<<<<<< HEAD
                                     class="font-weight-bold">
                                     Daftar</a>
+=======
+                                    class="font-weight-bold">Daftar</a>
+>>>>>>> origin/main
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
        <!-- Modal -->
       <div
       class="modal fade"
@@ -257,6 +290,8 @@
     </div>
   </div>
   <!-- content -->
+=======
+>>>>>>> origin/main
     </section>
     <!-- content -->
     @push('child-scripts')
@@ -305,6 +340,7 @@
 
         <script>
             $(document).ready(function() {
+<<<<<<< HEAD
                 let error = "{{ $errors->any() }}";
                 let success = "{{ Session::has('success') }}";
                 let pengumuman = "{{env('PENGUMUMAN') }}";
@@ -314,6 +350,8 @@
                         $('#exampleModalCenter').modal('show');                        
                     }
                 }
+=======
+>>>>>>> origin/main
                 $("#show_hide_password a").on("click", function(event) {
                     event.preventDefault();
                     if ($("#show_hide_password input").attr("type") == "text") {
@@ -331,5 +369,9 @@
             });
         </script>
     @endpush
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/main
 </x-frontend.layout>

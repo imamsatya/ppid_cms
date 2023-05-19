@@ -118,7 +118,11 @@
             <br>
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.maklumat.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.maklumat.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -133,7 +137,11 @@
                             @if ($maklumat)
                                 @if ($maklumat->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $maklumat->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($maklumat->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -222,7 +230,11 @@
                                 @if ($maklumat)
                                     @if ($maklumat->direktori_image)
                                         <div class="image-input-wrapper w-500px  h-350px"
+<<<<<<< HEAD
                                             style="background-image: url({{ asset('storage/' . $maklumat->direktori_image) }})">
+=======
+                                            style="background-image: url({{ asset($maklumat->direktori_image) }})">
+>>>>>>> origin/main
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-500px  h-350px"

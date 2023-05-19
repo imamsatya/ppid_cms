@@ -68,8 +68,12 @@ class InformasiSetiapSaatController extends Controller
                         $informasiSetiapSaat->file_path = 'adminAssets/informasiPublik/informasi_setiap_saat/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_setiap_saat', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -138,8 +142,12 @@ class InformasiSetiapSaatController extends Controller
                         $informasiSetiapSaat->file_path = 'adminAssets/informasiPublik/informasi_setiap_saat/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_setiap_saat', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -158,6 +166,7 @@ class InformasiSetiapSaatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $informasiSetiapSaat = new informasiSetiapSaat();
@@ -165,6 +174,18 @@ class InformasiSetiapSaatController extends Controller
             File::delete($informasiSetiapSaat->where('id', $request->id)->first()->file_path);
         }
         $informasiSetiapSaat = $informasiSetiapSaat->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $informasiSetiapSaat = new informasiSetiapSaat();
+
+        if ($informasiSetiapSaat->where('id', $id)->first()->file_path) {
+            File::delete($informasiSetiapSaat->where('id', $id)->first()->file_path);
+        }
+
+        $informasiSetiapSaat = $informasiSetiapSaat->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Informasi Publik Setiap Saat");
     }

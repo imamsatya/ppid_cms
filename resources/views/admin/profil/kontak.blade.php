@@ -91,6 +91,7 @@
 
                     tinymce.init(options);
 
+<<<<<<< HEAD
                     function editDialog(index) {
                         let dokumentasi = {{ Js::from($dokumentasi) }}
                         dokumentasi = dokumentasi[index]
@@ -103,6 +104,8 @@
                             dokumentasi.id)
                     };
 
+=======
+>>>>>>> origin/main
                     function deleteDialog(index) {
                         let dokumentasi = {{ Js::from($dokumentasi) }}
                         dokumentasi = dokumentasi[index]
@@ -123,11 +126,16 @@
 
                                 console.log('delete confirmed')
                                 $.ajax({
+<<<<<<< HEAD
                                     type: "post",
                                     url: "{{route('manajemen-ppid.kontak.dokumentasi.delete')}}",
                                     data:{
                                             "id": dokumentasi.id
                                         },
+=======
+                                    type: "DELETE",
+                                    url: "/admin/kontak/dokumentasi_ruang/delete/" + dokumentasi.id,
+>>>>>>> origin/main
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({
@@ -275,7 +283,11 @@
 
             <h1>Pengelolaan Kontak</h1>
             <br>
+<<<<<<< HEAD
             <form action="{{route('manajemen-ppid.kontak.store')}}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -290,7 +302,11 @@
                             @if ($kontak)
                                 @if ($kontak->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $kontak->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($kontak->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -626,6 +642,7 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td> <img width="100" height="100"
+<<<<<<< HEAD
                                             src="{{ asset('storage/' . $dokumentasi->image_path) }}" />
                                     </td>
                                     <td>{{ $dokumentasi->keterangan }}</td>
@@ -646,6 +663,16 @@
                                         @endcan
                                     </td>
 
+=======
+                                            src="{{ asset($dokumentasi->image_path) }}" />
+                                    </td>
+                                    <td>{{ $dokumentasi->keterangan }}</td>
+                                    <td>{{ $dokumentasi->urutan }}</td>
+                                    @can('kontak.delete')
+                                        <td><a href="javascript:void(0)" onclick="deleteDialog({{ $loop->index }})"
+                                                class="btn btn-icon btn-danger"><i class="bi bi-x-lg fs-4 "></i></a></td>
+                                    @endcan
+>>>>>>> origin/main
                                 </tr>
                             @endforeach
 
@@ -688,11 +715,20 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
+<<<<<<< HEAD
                                 action="{{ route('manajemen-ppid.kontak.dokumentasi.store') }}" method="POST"
+=======
+                                action="{{ route('admin.kontak.dokumentasi.store') }}" method="POST"
+>>>>>>> origin/main
                                 class="form">
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main
                                     <!--begin::Input group-->
                                     <div class="row mb-6">
                                         <!--begin::Label-->
@@ -810,6 +846,7 @@
             </div>
             <!--end::Modal - Tambah User Admin-->
 
+<<<<<<< HEAD
             <!--begin::Modal - Edit Bagan Kanan-->
             <div class="modal fade" id="kt_modal_editDokumentasi" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
@@ -975,6 +1012,8 @@
             </div>
             <!--end::Modal - Edit Bagan Kanan-->
 
+=======
+>>>>>>> origin/main
             <br>
 
 </x-admin.layout>

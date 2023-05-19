@@ -7,7 +7,10 @@ use App\Models\LayananPPID\Keberatan\KeberatanPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use App\Models\LayananPPID\LinkSurvei;
+=======
+>>>>>>> origin/main
 
 class DashboardController extends Controller
 {
@@ -19,6 +22,7 @@ class DashboardController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
         // $user = Auth::guard('usersppid')->user();
         // $ppidKeberatan = DB::table('ppid_keberatan')
         //     ->select(
@@ -36,15 +40,40 @@ class DashboardController extends Controller
         //     // ->where('status_permohonan.aktif', 1)
         //     ->where('ppid_keberatan.id_ppid_pendaftar', $user->id)
         //     ->orderBy('created_at', 'desc')->get();
+=======
+        $user = Auth::guard('usersppid')->user();
+        $ppidKeberatan = DB::table('ppid_keberatan')
+            ->select(
+                'ppid_keberatan.*',
+                'jenis_status_keberatan.status as nama_status',
+                'jenis_status_keberatan.id as id_status',
+                'proses_keberatan.ket_jawaban',
+                'proses_keberatan.ket_jawaban_path',
+                'proses_keberatan.file_jawaban',
+                'proses_keberatan.jawab_by'
+            )
+            ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
+            ->leftjoin('proses_keberatan', 'proses_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
+            // ->where('status_permohonan.aktif', 1)
+            ->where('ppid_keberatan.id_ppid_pendaftar', $user->id)
+            ->orderBy('created_at', 'asc')->get();
+>>>>>>> origin/main
 
 
 
 
 
+<<<<<<< HEAD
         $linkSurvei = new LinkSurvei();
         $linkSurvei = $linkSurvei->first();
 
         return view('frontend.dashboard.dashboard', compact('linkSurvei'));
+=======
+
+
+        return view('frontend.dashboard.dashboard', compact('ppidKeberatan'));
+>>>>>>> origin/main
     }
 
     /**
@@ -112,6 +141,7 @@ class DashboardController extends Controller
     {
         //
     }
+<<<<<<< HEAD
 
     public function updateClickSurveiPermohonan(Request $request)
     {
@@ -130,4 +160,6 @@ class DashboardController extends Controller
 
         echo json_encode(array('result' => true));
     }
+=======
+>>>>>>> origin/main
 }

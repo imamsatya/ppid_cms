@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\auth;
 
+<<<<<<< HEAD
 use App\Events\Auth\UserActivationEmail;
 use App\Events\Auth\UserForgotPasswordEmail;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -13,6 +14,17 @@ use Illuminate\Support\Str;
 use App\Models\UserPPID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+=======
+use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Http\File;
+use App\Models\UserPPID;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+>>>>>>> origin/main
 use Illuminate\Support\Facades\Validator;
 
 
@@ -34,6 +46,10 @@ class RegisterController extends BaseController
             'noidentitas' => 'required',
             'alamat' => 'required',
             'nohp' => 'required',
+<<<<<<< HEAD
+=======
+            'npwp' => 'required',
+>>>>>>> origin/main
             'pekerjaan' => 'required',
         ]);
 
@@ -43,6 +59,7 @@ class RegisterController extends BaseController
 
         $input = $request->all();
 
+<<<<<<< HEAD
         $user = UserPPID::where('email', $request['email'])->first();
 
         if ($user) {
@@ -51,6 +68,8 @@ class RegisterController extends BaseController
             ], 401);
         }
 
+=======
+>>>>>>> origin/main
         $identitas = str_replace('data:image/png;base64,', '', $request['identitasfile']);
         $identitas = str_replace(' ', '+', $identitas);
         $identitasName = Str::random(10).'.'.'png';
@@ -67,6 +86,7 @@ class RegisterController extends BaseController
             'nomor_identitas' => $request['noidentitas'],
             'alamat' => $request['alamat'],
             'no_hp' => $request['nohp'],
+<<<<<<< HEAD
             'pekerjaan' => $request['pekerjaan'],
             'identitas_file_path' =>  $identitasPath.$identitasName,
             'token_activation' => Str::random(6),
@@ -77,6 +97,24 @@ class RegisterController extends BaseController
 
         return response()->json([
             'message' => 'Registration success! Please check e-mail for verification',
+=======
+            'npwp' => $request['npwp'],
+            'pekerjaan' => $request['pekerjaan'],
+            'identitas_file_path' =>  $identitasPath.$identitasName,
+        ]);
+
+        $credentials = request(['email', 'password']);
+
+        if (! $token = Auth::guard('api')->setTTL(99999999999)->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return response()->json([
+            'name' => $request['name'],
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::guard('api')->factory()->getTTL() * 60
+>>>>>>> origin/main
         ]);
     }
 
@@ -93,6 +131,7 @@ class RegisterController extends BaseController
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+<<<<<<< HEAD
         $body = json_decode($request->getContent(), true);
         $email = $body['email'];
 
@@ -105,10 +144,13 @@ class RegisterController extends BaseController
         }
 
 
+=======
+>>>>>>> origin/main
         return $this->respondWithToken($token);
     }
 
     /**
+<<<<<<< HEAD
      * Verify e-mail api
      *
      * @return \Illuminate\Http\JsonResponse
@@ -332,6 +374,8 @@ class RegisterController extends BaseController
     }
 
     /**
+=======
+>>>>>>> origin/main
      * Update profile api
      *
      * @return \Illuminate\Http\JsonResponse

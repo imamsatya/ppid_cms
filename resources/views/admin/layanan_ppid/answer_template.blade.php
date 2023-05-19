@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
 
 <head>
@@ -94,6 +95,23 @@
 		<p>{!! $jawaban !!}</p>
 		
 	</main>
+=======
+
+<html>
+
+<head>
+
+    <title>Answer</title>
+
+</head>
+
+<body>
+
+    <h1>Jawaban</h1>
+
+    <p>{!! $jawaban !!}</p>
+
+>>>>>>> origin/main
 </body>
 
 </html>

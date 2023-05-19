@@ -31,7 +31,11 @@ class KeberatanController extends BaseController
         $result = DB::table('ppid_keberatan')
             ->select('ppid_keberatan.*', 'jenis_status_keberatan.status as nama_status',
                 'jenis_status_keberatan.id as id_status', 'kategori_keberatan.jenis_keberatan as jenis_keberatan',
+<<<<<<< HEAD
                 'proses_keberatan.ket_jawaban_path as jawaban')
+=======
+                'proses_keberatan.file_jawaban as jawaban')
+>>>>>>> origin/main
             ->leftjoin('status_keberatan', 'status_keberatan.id_ppid_keberatan', '=', 'ppid_keberatan.id')
             ->leftjoin('jenis_status_keberatan', 'jenis_status_keberatan.id', '=', 'status_keberatan.id_jenis_status_keberatan')
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
@@ -128,7 +132,11 @@ class KeberatanController extends BaseController
             ->select('ppid_keberatan.*',
                 'kategori_keberatan.jenis_keberatan as jenis_keberatan', 'ppid_permohonan.ticket_permohonan',
                 'ppid_permohonan.informasi_diminta', 'ppid_pendaftar.identitas_file_path',
+<<<<<<< HEAD
                 'proses_keberatan.ket_jawaban_path as jawaban')
+=======
+                'proses_keberatan.file_jawaban as jawaban')
+>>>>>>> origin/main
             ->leftjoin('kategori_keberatan', 'kategori_keberatan.id', '=', 'ppid_keberatan.id_kategori_keberatan')
             ->leftjoin('ppid_permohonan', 'ppid_permohonan.id', '=', 'ppid_keberatan.id_permohonan')
             ->leftjoin('ppid_pendaftar', 'ppid_pendaftar.id', '=', 'ppid_keberatan.id_ppid_pendaftar')

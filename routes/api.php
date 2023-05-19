@@ -14,19 +14,28 @@ use App\Http\Controllers\API\InformasiPublik\InformasiSertaMertaController;
 use App\Http\Controllers\API\InformasiPublik\InformasiSetiapSaatController;
 use App\Http\Controllers\API\ManajemenHome\InformasiImageController;
 use App\Http\Controllers\API\ManajemenHome\SliderController;
+<<<<<<< HEAD
 use App\Http\Controllers\API\ManajemenHome\StatistikController;
+=======
+>>>>>>> origin/main
 use App\Http\Controllers\API\ManajemenHome\VideoController;
 use App\Http\Controllers\API\Permohonan\JenisIdentitasController;
 use App\Http\Controllers\API\Permohonan\JenisPemohonController;
 use App\Http\Controllers\API\Permohonan\KategoriKeberatanController;
 use App\Http\Controllers\API\Permohonan\KeberatanController;
+<<<<<<< HEAD
 use App\Http\Controllers\API\Permohonan\LinkSurveiController;
+=======
+>>>>>>> origin/main
 use App\Http\Controllers\API\Permohonan\MemberikanController;
 use App\Http\Controllers\API\Permohonan\MendapatkanController;
 use App\Http\Controllers\API\Permohonan\PermohonanController;
 use App\Http\Controllers\API\Permohonan\StatusController;
 use App\Http\Controllers\API\Permohonan\StatusKeberatanController;
+<<<<<<< HEAD
 use App\Http\Controllers\API\Permohonan\SurveiPostController;
+=======
+>>>>>>> origin/main
 use App\Http\Controllers\API\Profil\KontakController;
 use App\Http\Controllers\API\Profil\KontakDokumentasiController;
 use App\Http\Controllers\API\Profil\LinkAppController;
@@ -65,6 +74,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('me', 'me');
     Route::put('update_profile', 'updateProfile');
     Route::put('update_password', 'updatePassword');
+<<<<<<< HEAD
     Route::post('verify_email', 'verifyEmail');
     Route::post('send_forgot_password_token', 'sendForgotPasswordToken');
     Route::post('verify_forgot_password_token', 'verifyForgotPasswordToken');
@@ -75,6 +85,8 @@ Route::controller(SurveiPostController::class)->group(function () {
     Route::post('survei_permohonan/{id}', 'surveiPermohonan');
     Route::post('survei_keberatan/{id}', 'surveiKeberatan');
     Route::post('submit_survei', 'submitSurveiData');
+=======
+>>>>>>> origin/main
 });
 
 // LayananPPID
@@ -82,7 +94,10 @@ Route::resource('permohonan', PermohonanController::class);
 Route::resource('status', StatusController::class);
 Route::resource('cara_memberikan', MemberikanController::class);
 Route::resource('jenis_identitas', JenisIdentitasController::class);
+<<<<<<< HEAD
 Route::resource('survei', LinkSurveiController::class);
+=======
+>>>>>>> origin/main
 Route::resource('jenis_pemohon', JenisPemohonController::class);
 Route::resource('mendapatkan', MendapatkanController::class);
 Route::resource('kategori_keberatan', KategoriKeberatanController::class);
@@ -104,7 +119,10 @@ Route::resource('informasi', InformasiController::class);
 Route::resource('informasi_image', InformasiImageController::class);
 Route::resource('slider', SliderController::class);
 Route::resource('video', VideoController::class);
+<<<<<<< HEAD
 Route::resource('statistik', StatistikController::class);
+=======
+>>>>>>> origin/main
 
 // StandarLayanan
 Route::resource('biaya', BiayaLayananController::class);

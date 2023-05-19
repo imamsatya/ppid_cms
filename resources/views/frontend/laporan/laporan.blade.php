@@ -3,26 +3,44 @@
         <link href="{{ asset('ppid_fe/assets/css/page/laporan/index.css') }}" rel="stylesheet" />
     @endpush
     <!-- Filter -->
+<<<<<<< HEAD
     <!-- <section class="filter-data">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <input type="text" onkeyup="myFunction()" id="myInput"
                         placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+=======
+    <section class="filter-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" placeholder="Masukkan Kata Kunci Pencarian..." class="pl-3 filter-input" />
+>>>>>>> origin/main
                     <button class="btn btn-filter">Filter</button>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </section> -->
     <!-- Filter -->
     <br><br><br>
     <!-- content -->
     <section class="content">
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+    </section>
+    <!-- Filter -->
+
+    <!-- content -->
+    <section class="content">
+        <div class="container">
+>>>>>>> origin/main
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link {{ count(app('request')->all()) < 1 ? 'active' : null }} {{ app('request')->input('laporan_triwulanan') ? 'active' : null }}"
                                 id="pills-triwulan-tab" data-toggle="pill" href="#pills-triwulan" role="tab"
                                 aria-controls="pills-triwulan" aria-selected="true">Laporan Pelayanan
@@ -32,13 +50,27 @@
                             <a class="nav-link {{ app('request')->input('laporan_tahunan') ? 'active' : null }}"
                                 id="pills-tahunan-tab" data-toggle="pill" href="#pills-tahunan" role="tab"
                                 aria-controls="pills-tahunan" aria-selected="false">Laporan Pelayanan
+=======
+                            <a class="nav-link active" id="pills-triwulan-tab" data-toggle="pill" href="#pills-triwulan"
+                                role="tab" aria-controls="pills-triwulan" aria-selected="true">Laporan Pelayanan
+                                Informasi Triwulan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-tahunan-tab" data-toggle="pill" href="#pills-tahunan"
+                                role="tab" aria-controls="pills-tahunan" aria-selected="false">Laporan Pelayanan
+>>>>>>> origin/main
                                 Informasi Tahunan</a>
                         </li>
 
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link {{ app('request')->input('laporan_hasil_survei') ? 'active' : null }}"
                                 id="pills-survey-tab" data-toggle="pill" href="#pills-survey" role="tab"
                                 aria-controls="pills-survey" aria-selected="false">Laporan Hasil
+=======
+                            <a class="nav-link" id="pills-survey-tab" data-toggle="pill" href="#pills-survey"
+                                role="tab" aria-controls="pills-survey" aria-selected="false">Laporan Hasil
+>>>>>>> origin/main
                                 Survei Pelayanan Informasi</a>
                         </li>
                     </ul>
@@ -46,8 +78,13 @@
                     <!--  -->
 
                     <div class="tab-content mt-4" id="pills-tabContent">
+<<<<<<< HEAD
                         <div class="tab-pane fade {{ count(app('request')->all()) < 1 ? 'show active' : null }} {{ app('request')->input('laporan_triwulanan') ? 'show active' : null }}"
                             id="pills-triwulan" role="tabpanel" aria-labelledby="pills-triwulan-tab">
+=======
+                        <div class="tab-pane fade show active" id="pills-triwulan" role="tabpanel"
+                            aria-labelledby="pills-triwulan-tab">
+>>>>>>> origin/main
                             <div class="row">
                                 @if ($laporanTriwulanan)
                                     @foreach ($laporanTriwulanan as $laporanTriwulanan_row)
@@ -55,7 +92,11 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanTriwulanan_row->thumbnail_path)
                                                     <img class="card-img-top isw-cardImage"
+<<<<<<< HEAD
                                                         src="{{ Storage::url($laporanTriwulanan_row->thumbnail_path) }}"
+=======
+                                                        src="{{ asset($laporanTriwulanan_row->thumbnail_path) }}"
+>>>>>>> origin/main
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -68,7 +109,11 @@
                                                     </p>
 
                                                     <div class="d-flex align-items-center">
+<<<<<<< HEAD
                                                         <a href="{{ Storage::url($laporanTriwulanan_row->file_path) }}"
+=======
+                                                        <a href="{{ asset($laporanTriwulanan_row->file_path) }}"
+>>>>>>> origin/main
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -127,8 +172,13 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="tab-pane fade {{ app('request')->input('laporan_tahunan') ? 'show active' : null }}"
                             id="pills-tahunan" role="tabpanel" aria-labelledby="pills-tahunan-tab">
+=======
+                        <div class="tab-pane fade" id="pills-tahunan" role="tabpanel"
+                            aria-labelledby="pills-tahunan-tab">
+>>>>>>> origin/main
                             <div class="row">
                                 @if ($laporanTahunan)
                                     @foreach ($laporanTahunan as $laporanTahunan_row)
@@ -136,7 +186,11 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanTahunan_row->thumbnail_path)
                                                     <img class="card-img-top isw-cardImage"
+<<<<<<< HEAD
                                                         src="{{ Storage::url($laporanTahunan_row->thumbnail_path) }}"
+=======
+                                                        src="{{ asset($laporanTahunan_row->thumbnail_path) }}"
+>>>>>>> origin/main
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -149,8 +203,13 @@
                                                     </p>
 
                                                     <div class="d-flex align-items-center">
+<<<<<<< HEAD
                                                         <a href="{{ Storage::url($laporanTahunan_row->file_path) }}"
                                                             download class="unduh ml-auto">
+=======
+                                                        <a href="{{ asset($laporanTahunan_row->file_path) }}" download
+                                                            class="unduh ml-auto">
+>>>>>>> origin/main
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
                                                             <span>Unduh / View</span>
@@ -207,8 +266,13 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="tab-pane fade {{ app('request')->input('laporan_hasil_survei') ? 'show active' : null }}"
                             id="pills-survey" role="tabpanel" aria-labelledby="pills-survey-tab">
+=======
+                        <div class="tab-pane fade" id="pills-survey" role="tabpanel"
+                            aria-labelledby="pills-survey-tab">
+>>>>>>> origin/main
                             <div class="row">
                                 @if ($laporanHasilSurvei)
                                     @foreach ($laporanHasilSurvei as $laporanHasilSurvei_row)
@@ -216,7 +280,11 @@
                                             <div class="card card-informasi w-100">
                                                 @if ($laporanHasilSurvei_row->thumbnail_path)
                                                     <img class="card-img-top isw-cardImage"
+<<<<<<< HEAD
                                                         src="{{ Storage::url($laporanHasilSurvei_row->thumbnail_path) }}"
+=======
+                                                        src="{{ asset($laporanHasilSurvei_row->thumbnail_path) }}"
+>>>>>>> origin/main
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -229,7 +297,11 @@
                                                     </p>
 
                                                     <div class="d-flex align-items-center">
+<<<<<<< HEAD
                                                         <a href="{{ Storage::url($laporanHasilSurvei_row->file_path) }}"
+=======
+                                                        <a href="{{ asset($laporanHasilSurvei_row->file_path) }}"
+>>>>>>> origin/main
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -305,6 +377,7 @@
                 active
                 </x-slot>
                 @push('child-scripts')
+<<<<<<< HEAD
                     <script type="text/javascript">
                         function myFunction() {
                             var input, filter, ul, li, a, i, txtValue;
@@ -327,11 +400,17 @@
                             }
                         }
                     </script>
+=======
+>>>>>>> origin/main
                     <style>
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($laporanBanner?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($laporanBanner->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;
@@ -340,7 +419,11 @@
 
                         .isw-cardImage {
                             width: 100%;
+<<<<<<< HEAD
                             height: 184px;
+=======
+                            height: 35vh;
+>>>>>>> origin/main
                             object-fit: cover;
                         }
                     </style>

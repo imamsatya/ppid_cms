@@ -72,8 +72,12 @@ class LaporanHasilSurveiController extends Controller
                     }
 
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/laporan/laporan_hasil_survei', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -148,8 +152,12 @@ class LaporanHasilSurveiController extends Controller
                         $laporanHasilSurvei->thumbnail_path = 'adminAssets/laporan/laporan_hasil_survei/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/laporan/laporan_hasil_survei', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -168,12 +176,22 @@ class LaporanHasilSurveiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $laporanHasilSurvei = new LaporanHasilSurvei();
         File::delete($laporanHasilSurvei->where('id', $request->id)->first()->file_path);
         File::delete($laporanHasilSurvei->where('id', $request->id)->first()->thumbnail_path);
         $laporanHasilSurvei = $laporanHasilSurvei->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $laporanHasilSurvei = new LaporanHasilSurvei();
+        File::delete($laporanHasilSurvei->where('id', $id)->first()->file_path);
+        File::delete($laporanHasilSurvei->where('id', $id)->first()->thumbnail_path);
+        $laporanHasilSurvei = $laporanHasilSurvei->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Laporan Hasil Survei");
     }

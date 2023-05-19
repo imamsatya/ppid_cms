@@ -3,7 +3,10 @@
         <link href="{{ asset('ppid_fe/assets/css/page/dashboard/index.css') }}" rel="stylesheet" />
         <link href="{{ asset('template/dist/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
             type="text/css" />
+<<<<<<< HEAD
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+=======
+>>>>>>> origin/main
         <style>
             .blockui {
                 position: relative
@@ -132,11 +135,17 @@
                 /* color: var(--bs-pagination-disabled-color); */
                 pointer-events: none;
                 /* background-color: var(--bs-pagination-disabled-bg);
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               border-color: var(--bs-pagination-disabled-border-color); */
             }
 
 
 
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  border-color: var(--bs-pagination-disabled-border-color); */
+            }
+
+>>>>>>> origin/main
             .page-link {
                 position: relative;
                 display: block;
@@ -251,7 +260,73 @@
                                         </tr>
                                     </thead>
                                     <tbody id="bd-table-keberatan">
+<<<<<<< HEAD
 
+=======
+                                        @if ($ppidKeberatan)
+                                            @foreach ($ppidKeberatan as $keberatan)
+                                                <tr>
+                                                    <td scope="row">
+                                                        {{ $keberatan->ticket_keberatan }}
+                                                    </td>
+                                                    <td>{!! $keberatan->perihal_keberatan !!}</td>
+                                                    <td>
+                                                        <div class="confirm d-flex align-items-start">
+                                                            {{-- <div class="circle-blue"></div> --}}
+                                                            <span class="ml-2">{{ $keberatan->nama_status }}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td id="expiredDate{{ $keberatan->id }}">
+
+                                                    </td>
+                                                    <td>
+                                                        @if ($keberatan->ket_jawaban_path)
+                                                            {{-- <a class="mb-4"
+                                                                href="{{ asset($keberatan->ket_jawaban_path) }}">File
+                                                                Jawaban</a> <br /> --}}
+                                                            <a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="mb-4 jawban-file-st"
+                                                                title="File Jawaban"
+                                                                href="{{ asset($keberatan->ket_jawaban_path) }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                                    alt="" /></a>
+                                                        @endif
+                                                        @if ($keberatan->file_jawaban)
+                                                            {{-- <a href="{{ asset($keberatan->file_jawaban) }}">File
+                                                                
+                                                                Pendukung</a> --}}
+                                                            <a rel='tooltip' data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-inverse"
+                                                                data-bs-placement="top" class="jawban-file-st"
+                                                                title="File Pendukung"
+                                                                href="{{ asset($keberatan->file_jawaban) }}"><img
+                                                                    src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                    alt="" /></a>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($keberatan->nama_status == 'Belum Dikonfirmasi')
+                                                            <button class="btn btn-sm edit-keberatan"
+                                                                data-keberatan="{{ $keberatan->id }}">
+                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
+                                                                    alt="" />
+                                                            </button>
+                                                            <button class="btn btn-sm delete-keberatan"
+                                                                data-keberatan="{{ $keberatan->id }}">
+                                                                <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
+                                                                    alt="" />
+                                                            </button>
+                                                        @else
+                                                            -
+                                                        @endif
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        @endif
+>>>>>>> origin/main
                                         {{-- <tr>
                                             <td scope="row">
                                                 <a href="#">10/Per-web/01/2022</a>
@@ -348,8 +423,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+<<<<<<< HEAD
                                         <textarea class="form-control form-control-solid tox-target" rows="3" id="area-informasi-diminta"
                                             placeholder="Informasi yang diminta"></textarea>
+=======
+                                        <textarea class="form-control tox-target" id="area-informasi-diminta" placeholder="Informasi yang diminta"></textarea>
+>>>>>>> origin/main
                                     </div>
                                     <div class="form-group">
                                         <select class="custom-select" id="select-memperoleh-informasi"
@@ -366,8 +445,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+<<<<<<< HEAD
                                         <textarea class="form-control form-control-solid" rows="3" id="area-tujuan-penggunaan"
                                             placeholder="Tujuan penggunaan informasi"></textarea>
+=======
+                                        <textarea class="form-control" id="area-tujuan-penggunaan" placeholder="Tujuan penggunaan informasi"></textarea>
+>>>>>>> origin/main
                                     </div>
                                 </div>
                             </div>
@@ -434,8 +517,12 @@
                                     </div>
 
                                     <div class="form-group">
+<<<<<<< HEAD
                                         <textarea class="form-control form-control-solid" rows="3" id="perihal-keberatan-informasi"
                                             placeholder="Perihal Keberatan Informasi"></textarea>
+=======
+                                        <textarea class="form-control" id="perihal-keberatan-informasi" placeholder="Perihal Keberatan Informasi"></textarea>
+>>>>>>> origin/main
                                     </div>
                                 </div>
 
@@ -454,6 +541,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <!-- Modal Survei -->
         <div class="modal fade" id="surveiModal" role="dialog" aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
@@ -1224,13 +1312,18 @@
                 </div>
             </div>
         </div>
+=======
+>>>>>>> origin/main
 
     </div>
     <input type="hidden" id="id-permohonan-edited">
     <input type="hidden" id="id-keberatan-edited">
+<<<<<<< HEAD
     <!-- untuk survei -->
     <input type="hidden" id="id-surat-survey">
     <input type="hidden" id="no-tiket-survey">
+=======
+>>>>>>> origin/main
     <!-- content -->
 
     <!-- Content -->
@@ -1238,11 +1331,16 @@
     @push('child-scripts')
         <script src="{{ asset('template/dist/assets/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('template/dist/assets/js/scripts.bundle.js') }}"></script>
+<<<<<<< HEAD
         {{-- <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script> --}}
+=======
+        <script src="{{ asset('template/dist/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
+>>>>>>> origin/main
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{{ asset('template/dist/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
         {{-- <script src="{{ asset('frontend/dashboard/keberatan.js') }}"></script> --}}
+<<<<<<< HEAD
         <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
         <script>
             const dataSurvei = {
@@ -1709,6 +1807,8 @@
                 })
             })
         </script>
+=======
+>>>>>>> origin/main
         <script>
             $(document).ready(function() {
 
@@ -1742,29 +1842,50 @@
                     modalPermohonan.block()
                     const user = {!! Auth::user()->toJson() !!}
 
+<<<<<<< HEAD
                     $("#name-user-modal").text(user.nama_lengkap)
                     $("#nomor-user-modal").text(user.nomor_identitas)
+=======
+                    $("#name-user-modal").html(user.nama_lengkap)
+                    $("#nomor-user-modal").html(user.nomor_identitas)
+>>>>>>> origin/main
 
                     const ppidJenisPemohon = await getPpidJenisPemohon()
                     const jenisPemohon = ppidJenisPemohon.result.find(el => el.id == user.jenis_pemohon)
                     if (jenisPemohon != undefined) {
+<<<<<<< HEAD
                         $("#jpemohon-user-modal").text(jenisPemohon.name)
                     } else {
                         $("#jpemohon-user-modal").text('-')
+=======
+                        $("#jpemohon-user-modal").html(jenisPemohon.name)
+                    } else {
+                        $("#jpemohon-user-modal").html('-')
+>>>>>>> origin/main
                     }
 
                     await ppidCaraMendapatkan()
                     await ppidCaraMemberikan()
 
                     if (type == 'add-new') {
+<<<<<<< HEAD
                         $("#area-informasi-diminta").val('')
                         $("#area-tujuan-penggunaan").val('')
+=======
+                        tinymce.get("area-informasi-diminta").setContent('')
+                        tinymce.get("area-tujuan-penggunaan").setContent('')
+>>>>>>> origin/main
                         $("#id-permohonan-edited").val('')
                     } else {
                         const dataPermohonan = await ppidPermohonanUser(data)
                         $("#id-permohonan-edited").val(data)
+<<<<<<< HEAD
                         $("#area-informasi-diminta").val(dataPermohonan.result.informasi_diminta)
                         $("#area-tujuan-penggunaan").val(dataPermohonan.result.tujuan_informasi)
+=======
+                        tinymce.get("area-informasi-diminta").setContent(dataPermohonan.result.informasi_diminta)
+                        tinymce.get("area-tujuan-penggunaan").setContent(dataPermohonan.result.tujuan_informasi)
+>>>>>>> origin/main
                         $("#select-memberikan-informasi").val(dataPermohonan.result.id_cara)
                         $("#select-memperoleh-informasi").val(dataPermohonan.result.id_mendapatkan)
                     }
@@ -1819,6 +1940,7 @@
                     tablePermohonanUI.release()
                 }
 
+<<<<<<< HEAD
                 const updateClickSurveiPermohonan = (id) => {
                     return $.ajax({
                         type: 'POST',
@@ -1852,6 +1974,10 @@
 
                 })
 
+=======
+
+
+>>>>>>> origin/main
                 var jadwal = null
                 async function ppidDataPermohonan() {
                     try {
@@ -1860,7 +1986,10 @@
                             jadwal = await jadwalKerja()
                             jadwal = jadwal.result.data
                         }
+<<<<<<< HEAD
                         let linkSurvei = {{ Js::from($linkSurvei) }}
+=======
+>>>>>>> origin/main
 
                         const result = await getDataPermohonan()
                         const data = result.result
@@ -1892,6 +2021,7 @@
                                     status = data[i].nama_status
                                     break
                             }
+<<<<<<< HEAD
 
                             if (data[i].id_status == 4) {
                                 if (data[i].isSurveiClicked == false) {
@@ -1941,6 +2071,15 @@
                                 ${fileJawaban}
                                 ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="Isi Survei untuk melihat File Pendukung" ><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         alt="" /></a>` : '' }
+=======
+                            let jawaban = '-'
+                            if (data[i].id_status == 4) {
+                                jawaban = `
+                                <a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="mb-4 jawban-file-st" title="File Jawaban" href="{{ asset('${data[i].ket_jawaban_path}') }}"><img src="{{ asset('template/src/media/svg/files/pdf.svg') }}"
+                                                        alt="" /></a>
+                                ${data[i].file_jawaban ? `<a rel='tooltip' data-bs-toggle="tooltip" data-bs-custom-class="tooltip-inverse" data-bs-placement="top" class="jawban-file-st" title="File Pendukung" href="{{ asset('${data[i].file_jawaban}') }}"><img src="{{ asset('template/src/media/svg/files/dark/folder-document.svg') }}"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                alt="" /></a>` : '' }
+>>>>>>> origin/main
                             `
                             }
 
@@ -1954,7 +2093,11 @@
                                 // yovi
                                 let diff = moment.duration(end.diff(start)).asDays()
                                 const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format("YYYY-MM-DD") &&
+<<<<<<< HEAD
                                     jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0')
+=======
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis == '1')
+>>>>>>> origin/main
                                 expiredDate = diff >= 0 ? `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                     `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;
                             } else {
@@ -2012,6 +2155,7 @@
                             confirmButton: "btn btn-primary",
                         },
                         showLoaderOnConfirm: true,
+<<<<<<< HEAD
                         // preConfirm: async () => {
                         //     try {
                         //         await deleteDataPermohonan(idPermohonan)
@@ -2046,13 +2190,30 @@
                                         html: 'Permohonan Anda sudah dikonfirmasi, silahkan refresh Dashboard'
                                     });
                                 }
+=======
+                        preConfirm: async () => {
+                            try {
+                                await deleteDataPermohonan(idPermohonan)
+>>>>>>> origin/main
                             } catch (error) {
                                 Swal.showValidationMessage(
                                     `Request failed: ${error}`
                                 )
                             }
+<<<<<<< HEAD
 
 
+=======
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((dt) => {
+                        if (dt.isConfirmed) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                html: 'Berhasil menghapus data permohonan!'
+                            })
+>>>>>>> origin/main
                             loadData()
                         }
                     })
@@ -2071,8 +2232,12 @@
                         const result = await getDataPpidCaraMendapatkan()
                         let option = '<option selected value="-">-- Cara memperoleh informasi --</option>'
                         for (let i = 0; i < result.result.length; i++) {
+<<<<<<< HEAD
                             option +=
                                 `<option value="${result.result[i].id}">${escapeHTML(result.result[i].name)}</option>`
+=======
+                            option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+>>>>>>> origin/main
                         }
                         $("#select-memperoleh-informasi").html(option)
                     } catch (err) {
@@ -2093,8 +2258,12 @@
                         const result = await getDataPpidCaraMemberikan()
                         let option = '<option selected value="-">-- Cara memberikan informasi --</option>'
                         for (let i = 0; i < result.result.length; i++) {
+<<<<<<< HEAD
                             option +=
                                 `<option value="${result.result[i].id}">${escapeHTML(result.result[i].name)}</option>`
+=======
+                            option += `<option value="${result.result[i].id}">${result.result[i].name}</option>`
+>>>>>>> origin/main
                         }
                         $("#select-memberikan-informasi").html(option)
                     } catch (err) {
@@ -2120,6 +2289,7 @@
                     selector: "#area-tujuan-penggunaan",
                     height: "300"
                 };
+<<<<<<< HEAD
                 // tinymce.init(configAreaInformasiDiminta);
                 // tinymce.init(configAreaTujuanPenggunaan);
 
@@ -2137,6 +2307,10 @@
                     });
                 }
 
+=======
+                tinymce.init(configAreaInformasiDiminta);
+                tinymce.init(configAreaTujuanPenggunaan);
+>>>>>>> origin/main
 
                 $("#save-permohonan").click(function() {
                     const user = {!! Auth::user()->toJson() !!}
@@ -2146,13 +2320,19 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_permohonan': '-',
                         'jenis_kanal': 'web',
+<<<<<<< HEAD
                         'informasi_diminta': escapeHTML($("#area-informasi-diminta").val()),
                         'tujuan_informasi': escapeHTML($("#area-tujuan-penggunaan").val()),
+=======
+                        'informasi_diminta': tinymce.get("area-informasi-diminta").getContent(),
+                        'tujuan_informasi': tinymce.get("area-tujuan-penggunaan").getContent(),
+>>>>>>> origin/main
                         'id_cara': $("#select-memberikan-informasi").val(),
                         'id_mendapatkan': $("#select-memperoleh-informasi").val(),
                         'file_identitas': user.identitas_file_path,
                     }
 
+<<<<<<< HEAD
                     // if (data.informasi_diminta.length == 0 || data.tujuan_informasi.length == 0 || data
                     //     .id_cara == '-' || data.id_mendapatkan == '-') {
                     //     Swal.fire({
@@ -2187,6 +2367,14 @@
                             icon: 'warning',
                             title: 'Warning',
                             html: `<p style="font-weight: bold">Isian tidak lengkap:</p>${errtxt}`
+=======
+                    if (data.informasi_diminta.length == 0 || data.tujuan_informasi.length == 0 || data
+                        .id_cara == '-' || data.id_mendapatkan == '-') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Warning',
+                            html: 'Isian tidak lengkap!'
+>>>>>>> origin/main
                         })
                         return
                     }
@@ -2208,6 +2396,7 @@
                                 modalPermohonan.block();
                                 const result = await submitDataPermohonan(data)
                                 modalPermohonan.release();
+<<<<<<< HEAD
                                 console.log('result Submit', result)
                                 if (result.status == 'success') {
                                     Swal.fire({
@@ -2225,6 +2414,15 @@
                                     });
                                 }
 
+=======
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sukses',
+                                    html: 'Berhasil menyimpan data permohonan!'
+                                })
+                                $("#cancel-permohonan").click()
+                                loadData()
+>>>>>>> origin/main
                             } catch (error) {
                                 Swal.fire({
                                     icon: 'error',
@@ -2283,6 +2481,7 @@
                     }
                 }
 
+<<<<<<< HEAD
                 const updateClickSurveiKeberatan = (id) => {
                     return $.ajax({
                         type: 'POST',
@@ -2305,21 +2504,34 @@
 
                 })
 
+=======
+>>>>>>> origin/main
 
                 async function loadModalKeberatan(type = 'add-new', data = null) {
                     document.getElementById('select-permohonan-sebelumnya').hidden = true
                     modalKeberatan.block()
                     const user = {!! Auth::user()->toJson() !!}
 
+<<<<<<< HEAD
                     $("#name-user-modal-keb").text(user.nama_lengkap)
                     $("#nomor-user-modal-keb").text(user.nomor_identitas)
+=======
+                    $("#name-user-modal-keb").html(user.nama_lengkap)
+                    $("#nomor-user-modal-keb").html(user.nomor_identitas)
+>>>>>>> origin/main
 
                     const ppidJenisPemohon = await getPpidJenisPemohon()
                     const jenisPemohon = ppidJenisPemohon.result.find(el => el.id == user.jenis_pemohon)
                     if (jenisPemohon != undefined) {
+<<<<<<< HEAD
                         $("#jpemohon-user-modal-keb").text(jenisPemohon.name)
                     } else {
                         $("#jpemohon-user-modal-keb").text('-')
+=======
+                        $("#jpemohon-user-modal-keb").html(jenisPemohon.name)
+                    } else {
+                        $("#jpemohon-user-modal-keb").html('-')
+>>>>>>> origin/main
                     }
 
                     // await ppidCaraMendapatkan()
@@ -2327,12 +2539,20 @@
                     await ppidKategoriKeberatan()
 
                     if (type == 'add-new') {
+<<<<<<< HEAD
                         $("#perihal-keberatan-informasi").val('')
+=======
+                        tinymce.get("perihal-keberatan-informasi").setContent('')
+>>>>>>> origin/main
                         $("#id-keberatan-edited").val('')
                     } else {
                         const dataKeberatan = await ppidKeberatanUser(data)
                         $("#id-keberatan-edited").val(data)
+<<<<<<< HEAD
                         $("#perihal-keberatan-informasi").val(dataKeberatan.result
+=======
+                        tinymce.get("perihal-keberatan-informasi").setContent(dataKeberatan.result
+>>>>>>> origin/main
                             .perihal_keberatan)
 
                         $("#select-kategori-keberatan").val(dataKeberatan.result.id_kategori_keberatan)
@@ -2343,7 +2563,11 @@
                                 let option = '<option selected value="-">-- No Tiket Permohonan --</option>'
                                 for (let i = 0; i < result.result.length; i++) {
                                     option +=
+<<<<<<< HEAD
                                         `<option value="${result.result[i].id}">${escapeHTML(result.result[i].ticket_permohonan)}</option>`
+=======
+                                        `<option value="${result.result[i].id}">${result.result[i].ticket_permohonan}</option>`
+>>>>>>> origin/main
                                 }
                                 console.log(option)
                                 $("#select-permohonan-sebelumnya").html(option)
@@ -2381,7 +2605,11 @@
                         let option = '<option selected value="-">-- Kategori Keberatan --</option>'
                         for (let i = 0; i < result.result.length; i++) {
                             option +=
+<<<<<<< HEAD
                                 `<option value="${result.result[i].id}">${escapeHTML(result.result[i].jenis_keberatan)}</option>`
+=======
+                                `<option value="${result.result[i].id}">${result.result[i].jenis_keberatan}</option>`
+>>>>>>> origin/main
                         }
                         console.log('result kategori keb', result)
                         $("#select-kategori-keberatan").html(option)
@@ -2398,6 +2626,7 @@
                     });
                 }
 
+<<<<<<< HEAD
                 var jadwal = null
                 async function ppidDataKeberatan() {
 
@@ -2482,6 +2711,23 @@
 
                             //buttonAction
                             let buttonAction = `<button class="btn btn-sm edit-keberatan" data-keberatan="${data[i].id}">
+=======
+
+                async function ppidDataKeberatan() {
+
+                    try {
+                        const result = await getDataKeberatan()
+                        const data = result.result
+                        let rowData = []
+                        for (let i = 0; i < data.length; i++) {
+                            rowData.push([
+                                data[i].ticket_keberatan,
+                                data[i].perihal_keberatan,
+                                data[i].nama_status,
+                                '-',
+                                '-',
+                                `<button class="btn btn-sm edit-keberatan" data-keberatan="${data[i].id}">
+>>>>>>> origin/main
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_edit.svg') }}"
                                     alt="" />
                             </button>
@@ -2489,6 +2735,7 @@
                                 <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_trash.svg') }}"
                                     alt="" />
                             </button>`
+<<<<<<< HEAD
                             if (data[i].id_status == 3) {
                                 if (data[i].isSurveiClicked == false) {
                                     buttonAction =
@@ -2509,6 +2756,8 @@
                                 `${jawabanPath} ${filePendukung}`,
                                 buttonAction
 
+=======
+>>>>>>> origin/main
                             ])
                         }
 
@@ -2523,8 +2772,13 @@
 
                 const tableKeberatan = $("#table-keberatan").DataTable({
                     initComplete: function() {
+<<<<<<< HEAD
                         loadDataKeberatan()
                         // convertExpDate()
+=======
+                        // loadDataKeberatan()
+                        convertExpDate()
+>>>>>>> origin/main
 
                     }
                 });
@@ -2534,6 +2788,7 @@
                     tableKeberatanUI.release()
                 }
 
+<<<<<<< HEAD
                 function escapeHTML(text) {
                     const replacements = {
                         "<": "&lt;",
@@ -2548,6 +2803,8 @@
                     });
                 }
 
+=======
+>>>>>>> origin/main
                 $("#save-keberatan").click(function() {
                     let permohonanSebelumnya = null
                     if ($("#select-permohonan-sebelumnya")[0].value == '-') {
@@ -2562,8 +2819,13 @@
                         'id_ppid_pendaftar': user.id,
                         'ticket_keberatan': '-',
                         'jenis_kanal': 'web',
+<<<<<<< HEAD
                         'perihal_keberatan': escapeHTML($("#perihal-keberatan-informasi")
                             .val()),
+=======
+                        'perihal_keberatan': tinymce.get("perihal-keberatan-informasi")
+                            .getContent(),
+>>>>>>> origin/main
                         'id_kategori_keberatan': $("#select-kategori-keberatan")[0].value,
                         'id_permohonan': permohonanSebelumnya,
 
@@ -2593,6 +2855,7 @@
                     }
 
                     if (errorValidation.length > 0) {
+<<<<<<< HEAD
                         // list = document.createElement("div")
                         let errtxt = '<ul style="text-align: left; color: red">'
                         errorValidation.forEach((item) => {
@@ -2601,12 +2864,23 @@
                             // li.style.cssText = 'text-align: left; color: red'
                             // list.appendChild(li);
                             errtxt += '<li>- ' + item + '!</li>'
+=======
+                        list = document.createElement("div")
+                        errorValidation.forEach((item) => {
+                            let li = document.createElement("li");
+                            li.innerText = item;
+                            list.appendChild(li);
+>>>>>>> origin/main
                         })
 
                         Swal.fire({
                             icon: 'warning',
                             title: 'Warning',
+<<<<<<< HEAD
                             html: `<p style="font-weight: bold">Isian tidak lengkap:</p> ${errtxt}`
+=======
+                            html: list
+>>>>>>> origin/main
                         })
                         return
                     }
@@ -2628,6 +2902,7 @@
                                 modalKeberatan.block();
                                 const result = await submitDataKeberatan(data)
                                 modalKeberatan.release();
+<<<<<<< HEAD
                                 if (result.status == 'success') {
                                     Swal.fire({
                                         icon: 'success',
@@ -2645,6 +2920,16 @@
                                 }
 
                                 // window.location.reload();
+=======
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sukses',
+                                    html: 'Berhasil menyimpan data Keberatan!'
+                                })
+                                $("#cancel-keberatan").click()
+                                // loadDataKeberatan()
+                                window.location.reload();
+>>>>>>> origin/main
 
                             } catch (error) {
                                 Swal.fire({
@@ -2674,7 +2959,11 @@
                         let option = '<option selected value="-">-- No Tiket Permohonan --</option>'
                         for (let i = 0; i < result.result.length; i++) {
                             option +=
+<<<<<<< HEAD
                                 `<option value="${result.result[i].id}">${escapeHTML(result.result[i].ticket_permohonan)}</option>`
+=======
+                                `<option value="${result.result[i].id}">${result.result[i].ticket_permohonan}</option>`
+>>>>>>> origin/main
                         }
                         console.log(option)
                         $("#select-permohonan-sebelumnya").html(option)
@@ -2731,6 +3020,7 @@
                             confirmButton: "btn btn-primary",
                         },
                         showLoaderOnConfirm: true,
+<<<<<<< HEAD
                         // preConfirm: async () => {
                         //     try {
                         //         await deleteDataKeberatan(idKeberatan)
@@ -2774,11 +3064,35 @@
                                 console.log(error)
                                 modalKeberatan.release();
                             }
+=======
+                        preConfirm: async () => {
+                            try {
+                                await deleteDataKeberatan(idKeberatan)
+                            } catch (error) {
+                                Swal.showValidationMessage(
+                                    `Request failed: ${error}`
+                                )
+                            }
+                        },
+                        allowOutsideClick: () => !Swal.isLoading()
+                    }).then((dt) => {
+                        if (dt.isConfirmed) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                html: 'Berhasil menghapus data keebratan!'
+                            })
+                            // loadData()
+                            window.location.reload();
+>>>>>>> origin/main
                         }
                     })
                 })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
                 const submitDataKeberatan = (data) => {
                     return $.ajax({
                         type: 'POST',
@@ -2791,12 +3105,18 @@
                     selector: "#perihal-keberatan-informasi",
                     height: "300"
                 }
+<<<<<<< HEAD
                 // tinymce.init(configPerihalKeberatanInformasi);
                 var jadwal = null
+=======
+                tinymce.init(configPerihalKeberatanInformasi);
+
+>>>>>>> origin/main
                 async function convertExpDate() {
 
                     tableKeberatanUI.block()
 
+<<<<<<< HEAD
                     const result = await getDataKeberatan()
 
                     let ppidKeberatan = result.result
@@ -2806,6 +3126,15 @@
                         jadwal = await jadwalKerja()
                         jadwal = jadwal.result.data
                     }
+=======
+
+
+                    let ppidKeberatan = {{ Js::from($ppidKeberatan) }}
+                    console.log('load ppidKeberatan', ppidKeberatan)
+
+                    jadwal = await jadwalKerja()
+                    jadwal = jadwal.result.data
+>>>>>>> origin/main
 
                     ppidKeberatan.forEach(keberatan => {
                         console.log(`id keberatan ${keberatan.id}`)
@@ -2819,8 +3148,14 @@
                             // yovi
                             let diff = moment.duration(end.diff(start)).asDays()
                             const hariLibur = jadwal.filter(jd => (jd.tanggal >= start.format(
+<<<<<<< HEAD
                                     "YYYY-MM-DD") &&
                                 jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis != '0')
+=======
+                                        "YYYY-MM-DD") &&
+                                    jd.tanggal <= end.format("YYYY-MM-DD")) && jd.jenis ==
+                                '1')
+>>>>>>> origin/main
                             expiredDate = diff >= 0 ?
                                 `Batas ${diff - hariLibur.length + 1} Hari Kerja` :
                                 `Perpanjangan ${Math.abs(diff) - hariLibur.length + 1} Hari Kerja`;

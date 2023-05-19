@@ -32,7 +32,11 @@ class PermohonanController extends BaseController
 
         $result = DB::table('ppid_permohonan')
             ->select('ppid_permohonan.*',
+<<<<<<< HEAD
                 'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.ket_jawaban_path as jawaban')
+=======
+                'status.name as nama_status', 'status.id as id_status', 'jawab_permohonan.file_jawaban as jawaban')
+>>>>>>> origin/main
             ->join('status_permohonan', 'status_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
             ->join('status', 'status.id', '=', 'status_permohonan.id_status')
             ->leftJoin('jawab_permohonan', 'jawab_permohonan.id_ppid_permohonan', '=', 'ppid_permohonan.id')
@@ -162,11 +166,14 @@ class PermohonanController extends BaseController
             ->where('id_ppid_permohonan', $id)
             ->first();
 
+<<<<<<< HEAD
         $jawab = DB::table('jawab_permohonan')
             ->select('*')
             ->where('id_ppid_permohonan', $id)
             ->first();
 
+=======
+>>>>>>> origin/main
         if (is_null($result) || is_null($status)) {
             return $this->sendError('DataPermohonan not found.');
         }
@@ -176,7 +183,10 @@ class PermohonanController extends BaseController
             ->where('id', $status->id_status)
             ->first();
 
+<<<<<<< HEAD
         $result->jawaban = $jawab;
+=======
+>>>>>>> origin/main
         $result->id_status = $status->id_status;
         $result->nama_status = $status_name->name;
         return $this->sendResponse(

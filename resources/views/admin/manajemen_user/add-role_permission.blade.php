@@ -140,7 +140,11 @@
 
                 <div class="modal-body  mx-lg-5 my-0">
                     <!--begin::Form-->
+<<<<<<< HEAD
                     <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}" class="form"
+=======
+                    <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}" class="form"
+>>>>>>> origin/main
                         method="POST">
                         @csrf
                         <!--begin::Scroll-->
@@ -1683,6 +1687,7 @@
                                             <!--end::Manajemen User row-->
 
 
+<<<<<<< HEAD
                                             <!--begin::Manajemen Menu row-->
                                             <tr>
                                                 <!--begin::Label-->
@@ -1736,6 +1741,8 @@
                                             <!--end::Manajemen Menu row-->
 
 
+=======
+>>>>>>> origin/main
                                             <!--begin::Table row-->
 
 
@@ -1806,7 +1813,11 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
+<<<<<<< HEAD
                         <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
+=======
+                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+>>>>>>> origin/main
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->
@@ -3309,7 +3320,11 @@
                     <div class="modal-body scroll-y mx-lg-5 my-0">
                         <!--begin::Form-->
                         <!--begin::Form-->
+<<<<<<< HEAD
                         <form id="kt_modal_add_role_form" action="{{ route('manajemen-ppid.role_permission.store') }}"
+=======
+                        <form id="kt_modal_add_role_form" action="{{ route('admin.role_permission.store') }}"
+>>>>>>> origin/main
                             class="form" method="POST">
                             @csrf
                             <!--begin::Scroll-->

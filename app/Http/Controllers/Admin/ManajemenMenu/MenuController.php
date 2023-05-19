@@ -7,7 +7,10 @@ use App\Models\ManajemenMenu\MainMenu;
 use App\Models\ManajemenMenu\SubMenu;
 use Illuminate\Http\Request;
 use Session;
+<<<<<<< HEAD
 use Svg\Tag\Rect;
+=======
+>>>>>>> origin/main
 
 class MenuController extends Controller
 {
@@ -94,10 +97,17 @@ class MenuController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function deleteMainMenu(Request $request)
     {
 
         $mainmenu = MainMenu::find($request->id);
+=======
+    public function deleteMainMenu($id)
+    {
+
+        $mainmenu = MainMenu::find($id);
+>>>>>>> origin/main
         $mainmenu->submenus()->delete();
         $mainmenu->delete();
 
@@ -168,11 +178,19 @@ class MenuController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function deleteSubMenu(Request $request)
     {
 
 
         $subMenu = SubMenu::find($request->id);
+=======
+    public function deleteSubMenu($id)
+    {
+
+
+        $subMenu = SubMenu::find($id);
+>>>>>>> origin/main
         $subMenu->delete();
 
         Session::flash('success', "Berhasil menghapus Sub Manu");

@@ -1,5 +1,6 @@
 <x-frontend.layout>
     @push('head-scripts')
+<<<<<<< HEAD
         <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
         <link href="{{ asset('ppid_fe/assets/css/page/profile/kontak/index.css') }}" rel="stylesheet" />
          <!--begin::Global Theme Styles(used by all pages) -->
@@ -14,6 +15,10 @@
             }
             
         </style>
+=======
+        <link href="{{ asset('ppid_fe/assets/css/page/profile/kontak/index.css') }}" rel="stylesheet" />
+        <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
+>>>>>>> origin/main
     @endpush
     <!-- Informasi -->
     <section class="informasi_kontak">
@@ -50,7 +55,11 @@
 
     <!-- Map -->
     <section class="mapping">
+<<<<<<< HEAD
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+        <div class="container">
+>>>>>>> origin/main
             <div class="row d-flex align-items-center">
                 <div class="col-md-6">
                     <label for="">Waktu Pelayanan Informasi Publik</label>
@@ -94,17 +103,41 @@
                     @if ($dokumentasi)
                         @foreach ($dokumentasi as $dokumentasi_row)
                             <div class="owl-carousel-item position-relative"
+<<<<<<< HEAD
                                 style="background-image: url({{ Storage::url($dokumentasi_row->image_path ?? '') }}">
+=======
+                                style="background-image: url({{ asset($dokumentasi_row->image_path ?? '') }}">
+>>>>>>> origin/main
 
 
                             </div>
                         @endforeach
                     @endif
+<<<<<<< HEAD
                 </div>                
             </div>
         </div>
     </section>
     
+=======
+                </div>
+                {{-- @if ($dokumentasi)
+                    @foreach ($dokumentasi as $dokumentasi_row)
+                        <div class="col-md-6 mb-4">
+                            <img src="{{ asset($dokumentasi_row->image_path) }}" alt="" />
+                        </div>
+                    @endforeach
+                @endif --}}
+
+                {{-- <div class="col-md-6">
+                    <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_kontak_2.png') }}"
+                        alt="" />
+                </div> --}}
+            </div>
+        </div>
+
+    </section>
+>>>>>>> origin/main
     <!-- Ruang Pelayanan -->
     <x-slot:bannerText1>
         Profil / Kontak
@@ -115,8 +148,13 @@
             <x-slot:isActiveProfil>
                 active
                 </x-slot>
+<<<<<<< HEAD
                 @push('child-scripts')                    
                     <script>                        
+=======
+                @push('child-scripts')
+                    <script>
+>>>>>>> origin/main
                         $(".header-carousel").owlCarousel({
                             loop: true,
                             autoplay: true,
@@ -147,7 +185,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($kontak?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($kontak->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

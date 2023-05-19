@@ -118,7 +118,11 @@
             <br>
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.biayalayanan.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.biayalayanan.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -133,7 +137,11 @@
                             @if ($biayaLayanan)
                                 @if ($biayaLayanan->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $biayaLayanan->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($biayaLayanan->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -243,7 +251,11 @@
                                 @if ($biayaLayanan)
                                     @if ($biayaLayanan->direktori_image)
                                         <div class="image-input-wrapper w-500px  h-350px"
+<<<<<<< HEAD
                                             style="background-image: url({{ asset('storage/' . $biayaLayanan->direktori_image) }})">
+=======
+                                            style="background-image: url({{ asset($biayaLayanan->direktori_image) }})">
+>>>>>>> origin/main
                                         </div>
                                     @else
                                         <div class="image-input-wrapper w-500px  h-350px"
@@ -277,7 +289,11 @@
                                     <span
                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+<<<<<<< HEAD
                                          data-bs-dismiss="click" title="Cancel Banner">
+=======
+                                        data-bs-dismiss="click" title="Cancel Banner">
+>>>>>>> origin/main
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
                                     <!--end::Cancel button-->
@@ -293,6 +309,7 @@
                                 @endcan
                             </div>
                             <br>
+<<<<<<< HEAD
                             <br>                             
                         </div>
                         <div class="mb-10">
@@ -320,6 +337,20 @@
                                 </span>
                             </button>
                         @endcan
+=======
+                            <br> @can('biaya pelayanan.create')
+                                <button type="submit" class="btn btn-primary" id="addButton"
+                                    onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                                        Simpan
+                                    </span>
+                                    <span class="indicator-progress">
+                                        Mohon Menunggu... <span
+                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                            @endcan
+                        </div>
+>>>>>>> origin/main
                     </div>
 
                 </div>

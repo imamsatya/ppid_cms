@@ -3,26 +3,44 @@
         <link href="{{ asset('ppid_fe/assets/css/page/regulasi/index.css') }}" rel="stylesheet" />
     @endpush
     <!-- Filter -->
+<<<<<<< HEAD
     <!-- <section class="filter-data">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <input type="text" onkeyup="myFunction()" placeholder="Pencarian..." id="myInput"
                         class="pl-3 filter-input" />
+=======
+    <section class="filter-data">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" placeholder="Pencarian..." class="pl-3 filter-input" />
+>>>>>>> origin/main
                     <button class="btn btn-filter">Filter</button>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </section> -->
     <!-- Filter -->
     <br><br><br>
     <!-- content -->
     <section class="content">
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
+=======
+    </section>
+    <!-- Filter -->
+
+    <!-- content -->
+    <section class="content">
+        <div class="container">
+>>>>>>> origin/main
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link {{ count(app('request')->all()) < 1 ? 'active' : null }} {{ app('request')->input('peraturan_kip') ? 'active' : null }}"
                                 id="pills-peraturan-tab" data-toggle="pill" href="#pills-peraturan" role="tab"
                                 aria-controls="pills-peraturan" aria-selected="true">Peraturan
@@ -32,6 +50,15 @@
                             <a class="nav-link {{ app('request')->input('rancangan_peraturan_kip') ? 'active' : null }}"
                                 id="pills-rancangan-tab" data-toggle="pill" href="#pills-rancangan" role="tab"
                                 aria-controls="pills-rancangan" aria-selected="false">Rancangan
+=======
+                            <a class="nav-link active" id="pills-peraturan-tab" data-toggle="pill"
+                                href="#pills-peraturan" role="tab" aria-controls="pills-peraturan"
+                                aria-selected="true">Peraturan Keterbukaan Informasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-rancangan-tab" data-toggle="pill" href="#pills-rancangan"
+                                role="tab" aria-controls="pills-rancangan" aria-selected="false">Rancangan
+>>>>>>> origin/main
                                 Peraturan Keterbukaan Informasi</a>
                         </li>
                     </ul>
@@ -39,16 +66,27 @@
                     <!--  -->
 
                     <div class="tab-content mt-4" id="pills-tabContent">
+<<<<<<< HEAD
                         <div class="tab-pane fade {{ app('request')->input('peraturan_kip') ? 'show active' : null }} {{ count(app('request')->all()) < 1 ? 'show active' : null }}""
                             id="pills-peraturan" role="tabpanel" aria-labelledby="pills-peraturan-tab">
+=======
+                        <div class="tab-pane fade show active" id="pills-peraturan" role="tabpanel"
+                            aria-labelledby="pills-peraturan-tab">
+>>>>>>> origin/main
                             <div class="row">
                                 @if ($peraturanKIP)
                                     @foreach ($peraturanKIP as $peraturanKIP_row)
                                         <div class="col-md-4 mt-2">
                                             <div class="card card-informasi w-100">
+<<<<<<< HEAD
                                                 @if ($regulasiBanner->thumbnail_path)
                                                     <img class="card-img-top"
                                                         src="{{ Storage::url($regulasiBanner->thumbnail_path) }}"
+=======
+                                                @if ($peraturanKIP_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+>>>>>>> origin/main
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -72,8 +110,13 @@
                                                         Lihat Judul Lengkap
                                                     </a>
                                                     <div class="d-flex align-items-center">
+<<<<<<< HEAD
                                                         <a href="{{ Storage::url($peraturanKIP_row->file_path) }}"
                                                             download class="unduh ml-auto">
+=======
+                                                        <a href="{{ asset($peraturanKIP_row->file_path) }}" download
+                                                            class="unduh ml-auto">
+>>>>>>> origin/main
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
                                                             <span>Unduh / View</span>
@@ -130,17 +173,28 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="tab-pane fade {{ app('request')->input('rancangan_peraturan_kip') ? 'show active' : null }}"
                             id="pills-rancangan" role="tabpanel" aria-labelledby="pills-rancangan-tab">
+=======
+                        <div class="tab-pane fade" id="pills-rancangan" role="tabpanel"
+                            aria-labelledby="pills-rancangan-tab">
+>>>>>>> origin/main
                             <div class="row">
                                 @if ($rancanganPeraturanKIP)
                                     @foreach ($rancanganPeraturanKIP as $rancanganPeraturanKIP_row)
                                         <div class="col-md-4 mt-2">
 
                                             <div class="card card-informasi w-100">
+<<<<<<< HEAD
                                                 @if ($regulasiBanner->thumbnail_rancangan_path)
                                                     <img class="card-img-top"
                                                         src="{{ Storage::url($regulasiBanner->thumbnail_rancangan_path) }}"
+=======
+                                                @if ($peraturanKIP_row->thumbnail_path)
+                                                    <img class="card-img-top"
+                                                        src="{{ asset('ppid_fe/assets/images/content/content-image/content_peraturan.png') }}"
+>>>>>>> origin/main
                                                         alt="Card image cap" />
                                                 @else
                                                     <img class="card-img-top"
@@ -163,7 +217,11 @@
                                                         Lihat Judul Lengkap
                                                     </a>
                                                     <div class="d-flex align-items-center">
+<<<<<<< HEAD
                                                         <a href="{{ Storage::url($rancanganPeraturanKIP_row->file_path) }}"
+=======
+                                                        <a href="{{ asset($rancanganPeraturanKIP_row->file_path) }}"
+>>>>>>> origin/main
                                                             download class="unduh ml-auto">
                                                             <img src="{{ asset('ppid_fe/assets/images/content/icon/ic_download.png') }}"
                                                                 class="img-fluid" alt="" />
@@ -239,6 +297,7 @@
                 </x-slot>
                 @push('child-scripts')
                     <script type="text/javascript">
+<<<<<<< HEAD
                         function myFunction() {
                             var input, filter, ul, li, a, i, txtValue;
                             input = document.getElementById("myInput");
@@ -260,6 +319,8 @@
                             }
                         }
 
+=======
+>>>>>>> origin/main
                         function seeMoreJudulRegulasi(index) {
                             let peraturanKIP = {{ Js::from($peraturanKIP) }}
 
@@ -317,7 +378,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($regulasiBanner?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($regulasiBanner->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

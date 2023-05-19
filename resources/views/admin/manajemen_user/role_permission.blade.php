@@ -134,6 +134,7 @@
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             activateLoadingButton('.swal2-confirm')
+<<<<<<< HEAD
                                             $.ajax({
                                                 type: "post",
                                                 url: "{{route('manajemen-ppid.role_permission.delete')}}",
@@ -145,6 +146,21 @@
                                                     window.location.reload();
                                                 }
                                             });
+=======
+                                            console.log('delete confirmed')
+                                            $.ajax({
+                                                type: "DELETE",
+                                                url: "/admin/role_permission/" + role.id,
+                                                cache: false,
+                                                success: function(html) {
+
+                                                    window.location.reload();
+
+                                                }
+                                            });
+
+                                            // window.location = '/visimisi'
+>>>>>>> origin/main
                                         } else {
                                             console.log('delete canceled')
                                         }
@@ -453,7 +469,11 @@
                                         <div class="modal-body py-lg-10 px-lg-10">
                                             {{-- Content Modal --}}
                                             <form id="kt_account_profile_details_form" class="form"
+<<<<<<< HEAD
                                                 action="{{ route('manajemen-ppid.role_permission.store') }}" method="POST">
+=======
+                                                action="{{ route('admin.role_permission.store') }}" method="POST">
+>>>>>>> origin/main
                                                 @csrf
                                                 <!--begin::Card body-->
                                                 <div class="card-body  p-9">

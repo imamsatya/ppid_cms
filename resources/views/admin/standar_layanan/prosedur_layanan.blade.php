@@ -118,7 +118,11 @@
             <br>
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.prosedurlayanan.banner.store') }}" method="POST"
+=======
+            <form action="{{ route('admin.prosedurlayanan.banner.store') }}" method="POST"
+>>>>>>> origin/main
                 enctype="multipart/form-data">
                 @csrf
                 <div class="card card-flush shadow-sm">
@@ -134,7 +138,11 @@
                             @if ($prosedurLayanan)
                                 @if ($prosedurLayanan->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $prosedurLayanan->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($prosedurLayanan->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -203,7 +211,11 @@
             </form>
 
 
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.prosedurlayanan.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.prosedurlayanan.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <br>
                 <div class="card card-flush shadow-sm">
@@ -222,7 +234,11 @@
                                     @if ($prosedurLayanan)
                                         @if ($prosedurLayanan->permohonan_direktori_image)
                                             <div class="image-input-wrapper w-500px  h-350px"
+<<<<<<< HEAD
                                                 style="background-image: url({{ asset('storage/' . $prosedurLayanan->permohonan_direktori_image) }})">
+=======
+                                                style="background-image: url({{ asset($prosedurLayanan->permohonan_direktori_image) }})">
+>>>>>>> origin/main
                                             </div>
                                         @else
                                             <div class="image-input-wrapper w-500px  h-350px"
@@ -281,7 +297,11 @@
                                     @if ($prosedurLayanan)
                                         @if ($prosedurLayanan->keberatan_direktori_image)
                                             <div class="image-input-wrapper w-500px  h-350px"
+<<<<<<< HEAD
                                                 style="background-image: url({{ asset('storage/' . $prosedurLayanan->keberatan_direktori_image) }})">
+=======
+                                                style="background-image: url({{ asset($prosedurLayanan->keberatan_direktori_image) }})">
+>>>>>>> origin/main
                                             </div>
                                         @else
                                             <div class="image-input-wrapper w-500px  h-350px"

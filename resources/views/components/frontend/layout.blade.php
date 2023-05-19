@@ -6,7 +6,11 @@
     <title>PPID KBUMN</title>
 
     <!-- Favicon -->
+<<<<<<< HEAD
     <link href="/ppid_fe/assets/images/content/logo/favicon.ico" rel="icon" />
+=======
+    <link href="assets/images/content/logo/favicon.ico" rel="icon" />
+>>>>>>> origin/main
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,9 +24,13 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
     <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" />
+<<<<<<< HEAD
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> --}}
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+>>>>>>> origin/main
 
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -62,6 +70,7 @@
         }
 
         .custom-logo {
+<<<<<<< HEAD
             margin-right: 200px;
         }
 
@@ -79,6 +88,9 @@
             justify-content: center;
             align-items: center;
 
+=======
+            margin-right: 350px;
+>>>>>>> origin/main
         }
 
         @media only screen and (max-width: 600px) {
@@ -113,6 +125,7 @@
             {{-- <a href="{{ route('index') }}" class="logo">
                 <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid.png') }}" alt="" />
             </a> --}}
+<<<<<<< HEAD
             <div class="logo">
                 <a href="{{ route('index') }}">
                     <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" height="54"
@@ -123,6 +136,16 @@
                         width="151" alt="" />
                 </a>
             </div>
+=======
+            <a href="{{ route('index') }}" class="logo">
+                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_ppid2.png') }}" width="110"
+                    alt="" />
+            </a>
+            <a href="https://bumn.go.id/" class="logo custom-logo">
+                <img src="{{ asset('ppid_fe/assets/images/content//logo/logo_bumn.png') }}" width="110"
+                    alt="" />
+            </a>
+>>>>>>> origin/main
 
             <input type="checkbox" id="menu-bar" />
             <label for="menu-bar">Menu</label>
@@ -165,6 +188,7 @@
                             </li>
                         @endforeach
                     @endif
+<<<<<<< HEAD
 
 
 
@@ -200,13 +224,95 @@
                             </ul>
 
                            
+=======
+                    {{-- <li>
+                        <a href="#" id="titleNavProfile" class="{{ $isActiveProfil ?? '' }}">Profil </a>
+                        <ul>
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('tentangppid.index') }}">Tentang PPID</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('tugasdanfungsi.index') }}">Tugas dan
+                                    Fungsi</a>
+                            </li>
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('strukturppid.index') }}">Struktur PPID</a>
+                            </li>
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('visimisi.index') }}">Visi dan Misi</a>
+                            </li>
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('kontak.index') }}">Kontak</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('regulasi.index') }}" class="{{ $isActiveRegulasi ?? '' }}"
+                            id="titleNavRegulasi">Regulasi </a>
+                    </li>
+                    <li>
+                        <a id="titleNavInformasiPublik" class="{{ $isActiveInformasiPublik ?? '' }}"
+                            href="{{ route('informasipublik.index') }}">Informasi
+                            Publik</a>
+                    </li>
+                    <li>
+                        <a id="titleNavStandarLayanan" class="{{ $isActiveStandarLayanan ?? '' }}"
+                            href="#">Standar Layanan </a>
+                        <ul>
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('maklumat.index') }}">Maklumat</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('prosedurlayanan.index') }}">Prosedur
+                                    Layanan</a>
+                            </li>
+                            <li>
+                                <a class="dropdown_menu" href="{{ route('standarlayananbiaya.index') }}">Biaya
+                                    Layanan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="titleNavLaporan" class="{{ $isActiveLaporan ?? '' }}"
+                            href="{{ route('laporan.index') }}">Laporan </a>
+                    </li>
+                    <li>
+                        <a id="titleNavFaq" class="{{ $isActiveFaq ?? '' }}" href="{{ route('faq.index') }}">FAQ</a>
+                    </li> --}}
+
+
+
+                    @if (Auth::guard('usersppid')->check())
+                        <li>
+                            <form action="{{ route('userppid.logout') }}" method="post" id="logout-form">
+                                @csrf
+
+                                <a href=""
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    class="btn btn-sm btn_login"> Logout
+                                </a>
+                            </form>
+
+                            {{-- <form action="{{ route('userppid.logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">
+                                    Sign Out
+                                </button>
+                            </form> --}}
+>>>>>>> origin/main
                         </li>
                     @else
                         <li>
                             <a href="{{ route('userppid.login') }}" class="btn btn-sm btn_login"> Login
                             </a>
                         </li>
+<<<<<<< HEAD
                     @endif --}}
+=======
+                    @endif
+>>>>>>> origin/main
 
 
 
@@ -233,11 +339,15 @@
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register' &&
+<<<<<<< HEAD
         Route::current()->getName() != 'signup' &&
         Route::current()->getName() != 'userppid.lupa_password' &&
         Route::current()->getName() != 'userppid.ganti_password' &&
         Route::current()->getName() != 'userppid.verifikasi' &&
         Route::current()->getName() != 'reset.password.get')
+=======
+        Route::current()->getName() != 'signup')
+>>>>>>> origin/main
         <!-- Banner -->
         <section class="banner blackw magnif">
             <div class="container">
@@ -292,11 +402,15 @@
         Route::current()->getName() != 'index' &&
         Route::current()->getName() != 'dashboard.index' &&
         Route::current()->getName() != 'register' &&
+<<<<<<< HEAD
         Route::current()->getName() != 'signup' &&
         Route::current()->getName() != 'userppid.lupa_password' &&
         Route::current()->getName() != 'userppid.ganti_password' &&
         Route::current()->getName() != 'userppid.verifikasi' &&
         Route::current()->getName() != 'reset.password.get')
+=======
+        Route::current()->getName() != 'signup')
+>>>>>>> origin/main
         <!-- Button Back -->
         <div class="container mt-4 mb-4">
             <div class="row">
@@ -339,9 +453,14 @@
                                     <li>
                                         @foreach ($sosialMedia as $sosialMedia_row)
                                             <a href="{{ $sosialMedia_row->url }}" target="_blank">
+<<<<<<< HEAD
                                                 <img class="img-fluid"
                                                     src="{{ 'storage/' . $sosialMedia_row->icon }}" alt=""
                                                     style="width: 40px;height:40px">
+=======
+                                                <img class="img-fluid" src="{{ $sosialMedia_row->icon }}"
+                                                    alt="" style="width: 40px;height:40px">
+>>>>>>> origin/main
                                             </a>
                                         @endforeach
                                         {{-- <div class="d-flex align-items-center">
@@ -374,7 +493,11 @@
                                         <li>
                                             <a href="{{ $linkApp_row->url }}"
                                                 title="Image from freepnglogos.com"><img
+<<<<<<< HEAD
                                                     src="{{ asset('storage/' . $linkApp_row->icon) }}" width="200"
+=======
+                                                    src="{{ asset($linkApp_row->icon) }}" width="200"
+>>>>>>> origin/main
                                                     alt="play store logo black background hd picture" /></a>
                                         </li>
                                     @endforeach
@@ -404,7 +527,11 @@
                     <div class="col-md-12">
                         <div class="mb-3 text-center">
                             <div class="company_name">
+<<<<<<< HEAD
                                 @2023 - PPID Kementerian Badan Usaha Milik Negara
+=======
+                                @2022 - PPID Kementerian Badan Usaha Milik Negara
+>>>>>>> origin/main
                             </div>
                         </div>
                     </div>

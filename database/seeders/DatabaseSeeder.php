@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(UsersSeeder::class);
+<<<<<<< HEAD
 
         //phase 2
         $this->call(MenuSeeder::class);
@@ -33,5 +34,10 @@ class DatabaseSeeder extends Seeder
 
         //phase 3
         $this->call(PermohonanTableSeeder::class);
+=======
+        // $this->call(MenuSeeder::class);
+        $this->call(PpidMendapatkan::class);
+        $this->call(PpidMemberikan::class);
+>>>>>>> origin/main
     }
 }

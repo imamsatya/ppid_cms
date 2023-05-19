@@ -6,7 +6,11 @@
   box-sizing: border-box;
   font-family: "Lato", sans-serif;
   text-decoration: none !important;
+<<<<<<< HEAD
   /* text-transform: capitalize; */
+=======
+  text-transform: capitalize;
+>>>>>>> origin/main
 }
 
 body {

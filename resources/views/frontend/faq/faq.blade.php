@@ -1,6 +1,7 @@
 <x-frontend.layout>
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/faq/index.css') }}" rel="stylesheet" />
+<<<<<<< HEAD
         <style>
             p::first-letter {
                 text-transform: none;
@@ -15,17 +16,28 @@
             }
         </style>
     @endpush  
+=======
+    @endpush
+>>>>>>> origin/main
     <!-- Content -->
     <section class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center pl-5 pr-5">
+<<<<<<< HEAD
                     <!-- <p class="informasi_title">
+=======
+                    <p class="informasi_title">
+>>>>>>> origin/main
                         Dibawah ini adalah beberapa pertanyaan umum dan beberapa prosedur
                         dalam pengajuan permohonan informasi publik atau pengajuan
                         keberatan atas informasi publik di lingkup Kementerian Badan Usaha
                         Milik Negara.
+<<<<<<< HEAD
                     </p> -->
+=======
+                    </p>
+>>>>>>> origin/main
                 </div>
             </div>
             <div class="row mt-4">
@@ -49,7 +61,11 @@
                                     <div id="{{ 'collapse' . $loop->index }}" class="collapse show"
                                         aria-labelledby="{{ 'heading' . $loop->index }}" data-parent="#accordion">
                                         <div class="card-body">
+<<<<<<< HEAD
                                             {!! $faq_row->jawaban !!}
+=======
+                                            {{ $faq_row->jawaban }}
+>>>>>>> origin/main
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +97,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ asset($faqBanner?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($faqBanner->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             background-size: 100% 300px;
                             height: 300px;

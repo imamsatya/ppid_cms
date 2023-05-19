@@ -66,8 +66,13 @@ class RancanganPeraturanKIPController extends Controller
                     if ($fileName == 'file') {
                         $rancanganPeraturanKIP->file_path = 'adminAssets/regulasi/rancangan_peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/regulasi/rancangan_peraturan_kip', $fileName2);
+=======
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -136,8 +141,12 @@ class RancanganPeraturanKIPController extends Controller
                         $rancanganPeraturanKIP->file_path = 'adminAssets/regulasi/rancangan_peraturan_kip/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/regulasi/rancangan_peraturan_kip', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -156,12 +165,21 @@ class RancanganPeraturanKIPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         //
         $rancanganPeraturanKIP = new RancanganPeraturanKIP();
         File::delete($rancanganPeraturanKIP->where('id', $request->id)->first()->file_path);
         $rancanganPeraturanKIP = $rancanganPeraturanKIP->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $rancanganPeraturanKIP = new RancanganPeraturanKIP();
+        File::delete($rancanganPeraturanKIP->where('id', $id)->first()->file_path);
+        $rancanganPeraturanKIP = $rancanganPeraturanKIP->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Rancangan Peraturan KIP");
     }

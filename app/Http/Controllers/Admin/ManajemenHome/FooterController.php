@@ -67,12 +67,18 @@ class FooterController extends Controller
             $file = $request->file('icon');
             $upload_path = 'adminAssets/home/footer/sosialmedia';
             $sosialMedia->icon = 'adminAssets/home/footer/sosialmedia/' . $request->file('icon')->getClientOriginalName();
+<<<<<<< HEAD
 
             $fileName2 =  $request->file('icon')->getClientOriginalName();
             $path = $file->storeAs('public/adminAssets/home/footer/sosialmedia', $fileName2);
 
             $sosialMedia->save();
 
+=======
+            $file->move($upload_path, $request->file('icon')->getClientOriginalName());
+            $sosialMedia->save();
+            $sosialMedia->save();
+>>>>>>> origin/main
 
             return redirect()->back()->with('success', 'Berhasil menyimpan Sosial Media');
         }
@@ -97,10 +103,14 @@ class FooterController extends Controller
 
             $upload_path = 'adminAssets/home/footer/linkapps';
             $linkApp->icon = 'adminAssets/home/footer/linkapps/' . $request->file('icon')->getClientOriginalName();
+<<<<<<< HEAD
 
             $fileName2 =  $request->file('icon')->getClientOriginalName();
             $path = $file->storeAs('public/adminAssets/home/footer/linkapps', $fileName2);
 
+=======
+            $file->move($upload_path, $request->file('icon')->getClientOriginalName());
+>>>>>>> origin/main
             $linkApp->save();
 
             return redirect()->back()->with('success', 'Berhasil menyimpan Link App');
@@ -165,9 +175,13 @@ class FooterController extends Controller
                 $file = $request->file('icon');
                 $upload_path = 'adminAssets/home/footer/sosialmedia';
                 $sosialMedia->icon = 'adminAssets/home/footer/sosialmedia/' . $request->file('icon')->getClientOriginalName();
+<<<<<<< HEAD
 
                 $fileName2 =  $request->file('icon')->getClientOriginalName();
                 $path = $file->storeAs('public/adminAssets/home/footer/sosialmedia', $fileName2);
+=======
+                $file->move($upload_path, $request->file('icon')->getClientOriginalName());
+>>>>>>> origin/main
             }
             $sosialMedia->save();
 
@@ -197,9 +211,13 @@ class FooterController extends Controller
                 $file = $request->file('icon');
                 $upload_path = 'adminAssets/home/footer/linkapps';
                 $linkApp->icon = 'adminAssets/home/footer/linkapps/' . $request->file('icon')->getClientOriginalName();
+<<<<<<< HEAD
 
                 $fileName2 =  $request->file('icon')->getClientOriginalName();
                 $path = $file->storeAs('public/adminAssets/home/footer/linkapps', $fileName2);
+=======
+                $file->move($upload_path, $request->file('icon')->getClientOriginalName());
+>>>>>>> origin/main
             }
             $linkApp->save();
 
@@ -218,19 +236,36 @@ class FooterController extends Controller
         //
     }
 
+<<<<<<< HEAD
     public function sosialmediaDestroy(Request $request)
     {
         $sosialMedia = new SosialMedia();
         $sosialMedia = $sosialMedia->where('id', $request->id)->delete();
+=======
+    public function sosialmediaDestroy($id)
+    {
+        //
+        $sosialMedia = new SosialMedia();
+        $sosialMedia = $sosialMedia->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Sosial Media");
     }
 
+<<<<<<< HEAD
     public function linkAppDestroy(Request $request)
     {
         $linkApp = new LinkApp();
         File::delete($linkApp->where('id', $request->id)->first()->icon);
         $linkApp = $linkApp->where('id', $request->id)->delete();
+=======
+    public function linkAppDestroy($id)
+    {
+        //
+        $linkApp = new LinkApp();
+        File::delete($linkApp->where('id', $id)->first()->icon);
+        $linkApp = $linkApp->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Link App");
     }

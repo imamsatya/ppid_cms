@@ -68,8 +68,13 @@ class InformasiSecaraBerkalaController extends Controller
                     if ($fileName == 'file_pendukung') {
                         $informasiSecaraBerkala->file_path = 'adminAssets/informasiPublik/informasi_secara_berkala/' . $request->file($fileName)->getClientOriginalName();
                     }
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_secara_berkala', $fileName2);
+=======
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -106,8 +111,13 @@ class InformasiSecaraBerkalaController extends Controller
                         if ($fileName == 'banner') {
                             $banner->banner_path = 'adminAssets/informasiPublik/banner/banner.' . $file->getClientOriginalExtension();
                         }
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/informasiPublik/banner', $fileName2);
+=======
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -123,8 +133,12 @@ class InformasiSecaraBerkalaController extends Controller
                             $banner->banner_path = 'adminAssets/informasiPublik/banner/banner.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.'  . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/informasiPublik/banner', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -193,8 +207,13 @@ class InformasiSecaraBerkalaController extends Controller
                     if ($fileName == 'file') {
                         $informasiSecaraBerkala->file_path = 'adminAssets/informasiPublik/informasi_secara_berkala/' . $request->file($fileName)->getClientOriginalName();
                     }
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/informasiPublik/informasi_secara_berkala', $fileName2);
+=======
+
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -213,6 +232,7 @@ class InformasiSecaraBerkalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $informasiSecaraBerkala = new InformasiSecaraBerkala();
@@ -221,6 +241,18 @@ class InformasiSecaraBerkalaController extends Controller
         }
 
         $informasiSecaraBerkala = $informasiSecaraBerkala->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $informasiSecaraBerkala = new InformasiSecaraBerkala();
+
+        if ($informasiSecaraBerkala->where('id', $id)->first()->file_path) {
+            File::delete($informasiSecaraBerkala->where('id', $id)->first()->file_path);
+        }
+
+        $informasiSecaraBerkala = $informasiSecaraBerkala->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus Informasi Publik Secara Berkala");
     }

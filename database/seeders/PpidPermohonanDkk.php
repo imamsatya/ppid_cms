@@ -16,7 +16,11 @@ class PpidPermohonanDkk extends Seeder
     public function run()
     {
         $this->seederStatus();
+<<<<<<< HEAD
         // $this->seederTemplateReject();
+=======
+        $this->seederTemplateReject();
+>>>>>>> origin/main
     }
 
     public function seederTemplateReject() {
@@ -39,6 +43,7 @@ class PpidPermohonanDkk extends Seeder
     public function seederStatus() {
         DB::table('status')->insert(
             [
+<<<<<<< HEAD
                 // [
                 //     'id' => 1,
                 //     'name' => 'Permohonan Masuk'
@@ -62,6 +67,31 @@ class PpidPermohonanDkk extends Seeder
                 [
                     'id' => 6,
                     'name' => 'Tidak Diterima'
+=======
+                [
+                    'id' => 1,
+                    'name' => 'Permohonan Masuk'
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Dikonfirmasi'
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Diteruskan'
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'Dijawab'
+                ],
+                [
+                    'id' => 5,
+                    'name' => 'Ditolak'
+                ],
+                [
+                    'id' => 6,
+                    'name' => 'Selesai'
+>>>>>>> origin/main
                 ],
             ]
         );        

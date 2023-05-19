@@ -88,8 +88,12 @@ class StrukturOrganisasiController extends Controller
                             $strukturOrganisasi->banner_path = 'adminAssets/profil/struktur_organisasi/banner.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/profil/struktur_organisasi', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
 
@@ -117,8 +121,12 @@ class StrukturOrganisasiController extends Controller
                             $strukturOrganisasi->banner_path = 'adminAssets/profil/struktur_organisasi/banner.' . $file->getClientOriginalExtension();
                         }
 
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/profil/struktur_organisasi', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
                 $strukturOrganisasi->save();
@@ -219,10 +227,19 @@ class StrukturOrganisasiController extends Controller
         //
     }
 
+<<<<<<< HEAD
     public function baganKananDestroy(Request $request)
     {
         $baganKanan = new StrukturOrganisasiBaganKanan();
         $baganKanan = $baganKanan->where('id', $request->id)->delete();
+=======
+    public function baganKananDestroy($id)
+    {
+        //
+        // dd($id);
+        $baganKanan = new StrukturOrganisasiBaganKanan();
+        $baganKanan = $baganKanan->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus dokumentasi");
     }

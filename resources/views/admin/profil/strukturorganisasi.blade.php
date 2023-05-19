@@ -113,7 +113,11 @@
 
             <h1>Pengelolaan Struktur Organisasi</h1>
             <br>
+<<<<<<< HEAD
             <form action="{{route('manajemen-ppid.strukturorganisasi.store')}}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -128,7 +132,11 @@
                             @if ($strukturOrganisasi)
                                 @if ($strukturOrganisasi->banner_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $strukturOrganisasi->banner_path) }})">
+=======
+                                        style="background-image: url({{ asset($strukturOrganisasi->banner_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -471,7 +479,11 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form"
+<<<<<<< HEAD
                                 action="{{ route('manajemen-ppid.strukturorganisasi.bagankanan.store') }}" method="POST"
+=======
+                                action="{{ route('admin.strukturorganisasi.bagankanan.store') }}" method="POST"
+>>>>>>> origin/main
                                 class="form">
                                 @csrf
                                 <!--begin::Card body-->
@@ -740,11 +752,16 @@
 
                                 console.log('delete confirmed')
                                 $.ajax({
+<<<<<<< HEAD
                                     type: "post",
                                     url: "{{route('manajemen-ppid.strukturorganisasi.bagankanan.delete')}}",
                                     data:{
                                             "id": baganKanan.id
                                         },
+=======
+                                    type: "DELETE",
+                                    url: "/admin/strukturorganisasi/bagan_kanan/delete/" + baganKanan.id,
+>>>>>>> origin/main
                                     cache: false,
                                     success: function(html) {
                                         Swal.fire({

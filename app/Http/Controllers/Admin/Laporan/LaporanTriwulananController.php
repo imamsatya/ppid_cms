@@ -72,8 +72,12 @@ class LaporanTriwulananController extends Controller
                     }
 
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/laporan/laporan_triwulanan', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -148,8 +152,12 @@ class LaporanTriwulananController extends Controller
                         $laporanTriwulanan->thumbnail_path = 'adminAssets/laporan/laporan_triwulanan/' . $request->file($fileName)->getClientOriginalName();
                     }
 
+<<<<<<< HEAD
                     $fileName2 = $request->file($fileName)->getClientOriginalName();
                     $path = $file->storeAs('public/adminAssets/laporan/laporan_triwulanan', $fileName2);
+=======
+                    $file->move($upload_path, $request->file($fileName)->getClientOriginalName());
+>>>>>>> origin/main
                 }
             }
 
@@ -168,12 +176,22 @@ class LaporanTriwulananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $laporanTriwulanan = new LaporanTriwulanan();
         File::delete($laporanTriwulanan->where('id', $request->id)->first()->file_path);
         File::delete($laporanTriwulanan->where('id', $request->id)->first()->thumbnail_path);
         $laporanTriwulanan = $laporanTriwulanan->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $laporanTriwulanan = new LaporanTriwulanan();
+        File::delete($laporanTriwulanan->where('id', $id)->first()->file_path);
+        File::delete($laporanTriwulanan->where('id', $id)->first()->thumbnail_path);
+        $laporanTriwulanan = $laporanTriwulanan->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus peraturan KIP");
     }

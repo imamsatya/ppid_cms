@@ -8,7 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Profil\KontakDokumentasiRuang;
 use Session;
 use Illuminate\Support\Facades\File;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Storage;
+=======
+>>>>>>> origin/main
 
 class KontakController extends Controller
 {
@@ -45,7 +48,11 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         dd('modal');
+=======
+        //
+>>>>>>> origin/main
         $validated = $request->validate([
             'alamat' => 'required',
             'telepon' => 'required',
@@ -78,8 +85,13 @@ class KontakController extends Controller
                         if ($fileName == 'banner') {
                             $kontak->banner_path = 'adminAssets/profil/kontak/banner.' . $file->getClientOriginalExtension();
                         }
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
+=======
+
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
                 $kontak->save();
@@ -100,8 +112,12 @@ class KontakController extends Controller
                         if ($fileName == 'banner') {
                             $kontak->banner_path = 'adminAssets/profil/kontak/banner.' . $file->getClientOriginalExtension();
                         }
+<<<<<<< HEAD
                         $fileName2 = $fileName . '.' . $file->getClientOriginalExtension();
                         $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
+=======
+                        $file->move($upload_path, $fileName . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
                     }
                 }
                 $kontak->save();
@@ -137,10 +153,14 @@ class KontakController extends Controller
             $file = $request->file('dokumentasi');
             $upload_path = 'adminAssets/profil/kontak';
             $dokumentasi->image_path = 'adminAssets/profil/kontak/dokumentasi' . $indexImage . '.' . $file->getClientOriginalExtension();
+<<<<<<< HEAD
 
             $fileName2 = 'dokumentasi' . $indexImage . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('public/adminAssets/profil/kontak', $fileName2);
 
+=======
+            $file->move($upload_path, 'dokumentasi' . $indexImage . '.' . $file->getClientOriginalExtension());
+>>>>>>> origin/main
             $dokumentasi->save();
 
 
@@ -151,6 +171,7 @@ class KontakController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function dokumentasiUpdate(Request $request, $id)
     {
         $validated = $request->validate([
@@ -195,6 +216,8 @@ class KontakController extends Controller
         }
     }
 
+=======
+>>>>>>> origin/main
     /**
      * Display the specified resource.
      *
@@ -235,11 +258,21 @@ class KontakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function dokumentasiDestroy(Request $request)
     {
         $dokumentasi = new KontakDokumentasiRuang();
         File::delete($dokumentasi->where('id', $request->id)->first()->image_path);
         $dokumentasi = $dokumentasi->where('id', $request->id)->delete();
+=======
+    public function dokumentasiDestroy($id)
+    {
+        //
+        // dd($id);
+        $dokumentasi = new KontakDokumentasiRuang();
+        File::delete($dokumentasi->where('id', $id)->first()->image_path);
+        $dokumentasi = $dokumentasi->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus dokumentasi");
     }

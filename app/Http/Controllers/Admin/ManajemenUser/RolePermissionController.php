@@ -83,9 +83,19 @@ class RolePermissionController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
         $role = Role::with('permissions')->where('id', $id)->first();
         $permissions =  utf8_encode(Permission::all());
 
+=======
+        //
+
+        $role = Role::with('permissions')->where('id', $id)->first();
+        $permissions =  utf8_encode(Permission::all());
+
+
+
+>>>>>>> origin/main
         return view('admin.manajemen_user.edit-role_permission', compact('role', 'permissions'));
     }
 
@@ -98,6 +108,11 @@ class RolePermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
+=======
+        //
+
+>>>>>>> origin/main
         $role = Role::find($id);
         $role->name = $request->edit_name;
         $role->syncPermissions($request->permissions);
@@ -112,9 +127,15 @@ class RolePermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $role = Role::findOrFail($request->id);
+=======
+    public function destroy($id)
+    {
+        $role = Role::findOrFail($id);
+>>>>>>> origin/main
         $role->delete();
         Session::flash('success', "Berhasil menghapus role");
     }

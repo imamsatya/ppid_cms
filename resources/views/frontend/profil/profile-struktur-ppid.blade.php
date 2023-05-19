@@ -4,11 +4,19 @@
     @endpush
     <!-- Informasi -->
     <section class="informasi_struktur">
+<<<<<<< HEAD
         <div class="container bg-transparent" style="background-image: url('./storage/bg_bumn7.png');">
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label for="" class="title_struktur">{{ $strukturOrganisasi->judul ?? '' }}</label>
                     <!-- <a href="#" download class="unduh_materi">Unduh Struktur</a> -->
+=======
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <label for="" class="title_struktur">{{ $strukturOrganisasi->judul ?? '' }}</label>
+                    <a href="#" download class="unduh_materi">Unduh Struktur</a>
+>>>>>>> origin/main
                 </div>
             </div>
             <div class="row">
@@ -103,7 +111,11 @@
                         .banner .data_banner {
                             padding-bottom: 80px;
                             margin-top: 80px;
+<<<<<<< HEAD
                             background-image: url({{ Storage::url($strukturOrganisasi?->banner_path ?? '') }});
+=======
+                            background-image: url({{ asset($strukturOrganisasi->banner_path ?? '') }});
+>>>>>>> origin/main
                             background-repeat: no-repeat;
                             /*Prevent showing multiple background images*/
                             background-size: 100% 300px;

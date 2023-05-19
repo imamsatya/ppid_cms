@@ -147,14 +147,24 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td> <img width="100" height="100"
+<<<<<<< HEAD
                                                 src="{{ asset('storage/' . $informasi_row->image_path) }}" />
+=======
+                                                src="{{ asset($informasi_row->image_path) }}" />
+>>>>>>> origin/main
                                         </td>
                                         <td>{{ $informasi_row->judul }}</td>
                                         <td>{{ $informasi_row->deskripsi }}</td>
                                         <td>{{ $informasi_row->urutan }}</td>
+<<<<<<< HEAD
                                         @canany(['informasi.edit', 'informasi.delete'])
                                             <td>
                                                 @can('informasi.edit')
+=======
+                                        @canany(['peraturan kip.edit', 'peraturan kip.delete'])
+                                            <td>
+                                                @can('peraturan kip.edit')
+>>>>>>> origin/main
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
                                                         data-bs-target="#kt_modal_editinformasi"
                                                         onclick="editDialog({{ $loop->index }})"
@@ -179,7 +189,11 @@
             </div>
 
             <br>
+<<<<<<< HEAD
             <form action="{{ route('manajemen-ppid.informasi.image.store') }}" method="POST" enctype="multipart/form-data">
+=======
+            <form action="{{ route('admin.informasi.image.store') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> origin/main
                 @csrf
                 <div class="card card-flush shadow-sm">
 
@@ -194,7 +208,11 @@
                             @if ($informasiImage)
                                 @if ($informasiImage->sideimage_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $informasiImage->sideimage_path) }})">
+=======
+                                        style="background-image: url({{ asset($informasiImage->sideimage_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -254,7 +272,11 @@
                             @if ($informasiImage)
                                 @if ($informasiImage->backgroundimage_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $informasiImage->backgroundimage_path) }})">
+=======
+                                        style="background-image: url({{ asset($informasiImage->backgroundimage_path) }})">
+>>>>>>> origin/main
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
@@ -303,25 +325,45 @@
                                 <!--end::Remove button-->
                             @endcan
                         </div>
+<<<<<<< HEAD
                         {{-- <br><br>
                         <label for="" class=" form-label">PPID Logo Image</label>
                         <br>
                         <div class="image-input image-input-outline" data-kt-image-input="true"
                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+=======
+                        <br>
+                        <label for="" class=" form-label">PPID Logo Image</label>
+                        <br>
+                        <div class="image-input image-input-outline" data-kt-image-input="true"
+                             style="background-image: url({{ asset('template/dist/assets/media/svg/avatars/blank.svg') }})">
+>>>>>>> origin/main
                             <!--begin::Image preview wrapper-->
                             @if ($informasiImage)
                                 @if ($informasiImage->ppidlogo_path)
                                     <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                         style="background-image: url({{ asset('storage/' . $informasiImage->ppidlogo_path) }})">
                                     </div>
                                 @else
                                     <div class="image-input-wrapper w-250px  h-125px"
                                         style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+=======
+                                         style="background-image: url({{ asset($informasiImage->ppidlogo_path) }})">
+                                    </div>
+                                @else
+                                    <div class="image-input-wrapper w-250px  h-125px"
+                                         style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+>>>>>>> origin/main
                                     </div>
                                 @endif
                             @else
                                 <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+=======
+                                     style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+>>>>>>> origin/main
                                 </div>
 
                             @endif
@@ -360,8 +402,13 @@
                                 </span>
                                 <!--end::Remove button-->
                             @endcan
+<<<<<<< HEAD
                         </div> --}}
 
+=======
+                        </div>
+                        {{-- <p>minimal dimensi 369x454 pixel</p> --}}
+>>>>>>> origin/main
                         <br> <br>
                         @can('informasi secara berkala.create')
                             <button type="submit" class="btn btn-primary" id="addButton"
@@ -412,7 +459,11 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
+<<<<<<< HEAD
                                 action="{{ route('manajemen-ppid.informasi.store') }}" method="POST" class="form">
+=======
+                                action="{{ route('admin.informasi.store') }}" method="POST" class="form">
+>>>>>>> origin/main
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -606,7 +657,11 @@
                                                 </div> --}}
 
                                                 <div class="image-input-wrapper w-250px  h-125px"
+<<<<<<< HEAD
                                                     id="editInformasiImage">
+=======
+                                                    style="background-image: url({{ asset('template/dist/assets/media/patterns/pattern-1.jpg') }})">
+>>>>>>> origin/main
                                                 </div>
 
 
@@ -790,6 +845,7 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
+<<<<<<< HEAD
                                                     $.ajax({
                                                         type: "post",
                                                         url: "{{route('manajemen-ppid.informasi.delete')}}",
@@ -799,6 +855,17 @@
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
+=======
+
+                                                    console.log('delete confirmed')
+                                                    $.ajax({
+                                                        type: "DELETE",
+                                                        url: "/admin/informasi/" + informasi.id,
+                                                        cache: false,
+                                                        success: function(html) {
+                                                            Swal.fire({
+
+>>>>>>> origin/main
                                                                 icon: 'success',
                                                                 title: 'Berhasil menghapus informasi',
                                                                 showConfirmButton: false,
@@ -806,8 +873,17 @@
                                                             }).then(() => {
                                                                 window.location.reload();
                                                             })
+<<<<<<< HEAD
                                                         }
                                                     });
+=======
+
+
+                                                        }
+                                                    });
+
+                                                    // window.location = '/visimisi'
+>>>>>>> origin/main
                                                 } else {
                                                     console.log('delete canceled')
                                                 }
@@ -827,10 +903,16 @@
                                             // document.getElementById('editFile').value = informasiRow.file_path
                                             document.getElementById('editDeskripsi').value = informasiRow.deskripsi
                                             document.getElementById('editUrutan').value = informasiRow.urutan
+<<<<<<< HEAD
                                             document.getElementById('editInformasiImage').style.cssText =
                                                 `background-image: url({{ asset('storage/${informasiRow.image_path}') }})`
 
                                             document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+
+
+                                            document.getElementById('editForm').setAttribute('action', 'informasi/' +
+>>>>>>> origin/main
                                                 informasiRow.id)
                                         };
                                     </script>

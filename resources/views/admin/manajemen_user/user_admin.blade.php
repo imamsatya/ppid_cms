@@ -3,6 +3,7 @@
 
     @push('child-scripts')
         <script>
+<<<<<<< HEAD
     var urlcheckuser = "{{route('manajemen-ppid.user_admin.checkuser')}}";
     $(document).ready(function(){
         $('.modal').on('shown.bs.modal', function () {
@@ -15,6 +16,8 @@
     });
 
     
+=======
+>>>>>>> origin/main
             $("#kt_datatable_dom_positioning_role").DataTable({
                 "language": {
                     "lengthMenu": "Show _MENU_",
@@ -31,10 +34,15 @@
                 let users = {{ Js::from($users) }}
                 let user = users[index]
                 console.log('user', user)
+<<<<<<< HEAD
                 document.getElementById('editUsername').value = user.username
                 document.getElementById('editEmail').value = user.email
                 document.getElementById('editName').value = user.name
                 document.getElementById('editHandphone').value = user.handphone
+=======
+                document.getElementById('editName').value = user.name
+                document.getElementById('editEmail').value = user.email
+>>>>>>> origin/main
 
                 let roles = {{ Js::from($roles) }}
                 console.log('roles', roles);
@@ -58,7 +66,11 @@
                     node.appendChild(textnode);
                     document.getElementById("editRoles").appendChild(node);
                 })
+<<<<<<< HEAD
                 document.getElementById('editForm').setAttribute('action', 'update/' + user.id)
+=======
+                document.getElementById('editForm').setAttribute('action', 'user_admin/' + user.id)
+>>>>>>> origin/main
             };
 
             function deleteDialog(index) {
@@ -78,6 +90,7 @@
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
+<<<<<<< HEAD
                         $.ajax({
                             type: "post",
                             url: "{{route('manajemen-ppid.user_admin.delete')}}",
@@ -87,6 +100,17 @@
                             cache: false,
                             success: function(html) {
                                 Swal.fire({
+=======
+
+                        console.log('delete confirmed')
+                        $.ajax({
+                            type: "DELETE",
+                            url: "/admin/user_admin/" + user.id,
+                            cache: false,
+                            success: function(html) {
+                                Swal.fire({
+
+>>>>>>> origin/main
                                     icon: 'success',
                                     title: 'Berhasil menghapus User',
                                     showConfirmButton: false,
@@ -94,8 +118,17 @@
                                 }).then(() => {
                                     window.location.reload();
                                 })
+<<<<<<< HEAD
                             }
                         });
+=======
+
+
+                            }
+                        });
+
+                        // window.location = '/visimisi'
+>>>>>>> origin/main
                     } else {
                         console.log('delete canceled')
                     }
@@ -117,6 +150,7 @@
                 //     button.removeAttribute("data-kt-indicator");
                 // }, 3000);
             }
+<<<<<<< HEAD
             
             function onlyNumberKey(e) {
                 var ASCIICode = (e.which) ? e.which : e.keyCode
@@ -190,6 +224,8 @@
             }
         });
     }
+=======
+>>>>>>> origin/main
         </script>
     @endpush
     <h1>Daftar User Admin </h1>
@@ -408,7 +444,11 @@
                 <!--begin::Modal body-->
                 <div class="modal-body py-lg-10 px-lg-10">
                     {{-- Content Modal --}}
+<<<<<<< HEAD
                     <form id="kt_account_profile_details_form" action="{{ route('manajemen-ppid.user_admin.store') }}"
+=======
+                    <form id="kt_account_profile_details_form" action="{{ route('admin.user_admin.store') }}"
+>>>>>>> origin/main
                         method="POST" class="form">
                         @csrf
                         <!--begin::Card body-->
@@ -418,6 +458,7 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
+<<<<<<< HEAD
                                 <div class="col-lg-6">
                                     <label>Username</label>
                                     <input type="text" class="form-control" name="username" id="username" value="" required/>
@@ -425,6 +466,15 @@
                                 <div class="col-lg-6">
                                     <label>Nama</label>
                                     <input type="text" class="form-control" name="name" id="name" value="" required/>
+=======
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text" name="name"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+                                        value="" />
+>>>>>>> origin/main
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -432,6 +482,7 @@
 
                             <!--begin::Input group-->
                             <div class="row mb-6">
+<<<<<<< HEAD
                                 <div class="col-lg-6">
                                     <label>Email</label>
                                     <input type="text" class="form-control" name="email" id="email" value="" required/>
@@ -439,12 +490,38 @@
                                 <div class="col-lg-6">
                                     <label>No HP</label>
                                     <input type="text" class="form-control" name="handphone" id="handphone" onkeypress="return onlyNumberKey(event)" value="" required/>
+=======
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="email" name="email"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Email"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Password</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="password" name="password"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Password"
+                                        value="" />
+>>>>>>> origin/main
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
                             <div class="row mb-6">
+<<<<<<< HEAD
                                 <div class="col-lg-6">
                                 <label>Roles</label>           
                                 <select class="form-select form-select-sm form-select-solid" id="addP" data-control="select2" data-close-on-select="false" data-placeholder="Pilih Role" name="roles[]">
@@ -455,6 +532,24 @@
                                 </select>
                             </div>
                                 
+=======
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <select class="form-select form-select-sm form-select-solid" id="addP"
+                                        data-control="select2" data-close-on-select="false"
+                                        data-placeholder="Pilih Role" name="roles[]">
+                                        <option></option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}">
+                                                {{ $role->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+>>>>>>> origin/main
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
@@ -526,6 +621,7 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
+<<<<<<< HEAD
                                 <div class="col-lg-6">
                                     <label>Username</label>
                                     <input type="text" class="form-control" name="username" id="editUsername" value="" required/>
@@ -533,6 +629,15 @@
                                 <div class="col-lg-6">
                                     <label>Nama</label>
                                     <input type="text" class="form-control" name="name" id="editName" value="" required/>
+=======
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Name</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="text"name="edit_name" id="editName"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Name"
+                                        value="" />
+>>>>>>> origin/main
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -540,6 +645,7 @@
 
                             <!--begin::Input group-->
                             <div class="row mb-6">
+<<<<<<< HEAD
                                 <div class="col-lg-6">
                                     <label>Email</label>
                                     <input type="text" class="form-control" name="email" id="editEmail" value="" required/>
@@ -547,22 +653,60 @@
                                 <div class="col-lg-6">
                                     <label>No HP</label>
                                     <input type="text" class="form-control" name="handphone" id="editHandphone" onkeypress="return onlyNumberKey(event)" value="" required/>
+=======
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="email" name="edit_email" id="editEmail"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Email"
+                                        value="" />
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Password</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="password" name="edit_password" id="editPassword"
+                                        class="form-control form-control-lg form-control-solid" placeholder="Password"
+                                        value="" />
+>>>>>>> origin/main
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
                             <div class="row mb-6">
+<<<<<<< HEAD
                                 <div class="col-lg-6">
                                 <label>Roles</label>           
                                 <select class="form-select form-select-sm form-select-solid"
+=======
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Role</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <select class="form-select form-select-sm form-select-solid"
+>>>>>>> origin/main
                                         data-control="select2" data-close-on-select="false"
                                         data-placeholder="Pilih Role" name="edit_roles[]" id="editRoles">
                                         <option></option>
 
                                     </select>
+<<<<<<< HEAD
                             </div>
                                 
+=======
+                                </div>
+>>>>>>> origin/main
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
@@ -612,6 +756,9 @@
                         Manajemen User
                         </x-slot>
 </x-admin.layout>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/main

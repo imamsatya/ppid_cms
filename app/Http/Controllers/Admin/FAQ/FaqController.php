@@ -118,10 +118,18 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $faq = new Faq();
         $faq = $faq->where('id', $request->id)->delete();
+=======
+    public function destroy($id)
+    {
+        //
+        $faq = new Faq();
+        $faq = $faq->where('id', $id)->delete();
+>>>>>>> origin/main
 
         Session::flash('success', "Berhasil menghapus FAQ");
     }

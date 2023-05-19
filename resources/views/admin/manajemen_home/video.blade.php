@@ -207,7 +207,11 @@
                         <div class="modal-body py-lg-10 px-lg-10">
                             {{-- Content Modal --}}
                             <form id="kt_account_profile_details_form" enctype="multipart/form-data"
+<<<<<<< HEAD
                                 action="{{ route('manajemen-ppid.video.store') }}" method="POST" class="form">
+=======
+                                action="{{ route('admin.video.store') }}" method="POST" class="form">
+>>>>>>> origin/main
                                 @csrf
                                 <!--begin::Card body-->
                                 <div class="card-body  p-9">
@@ -461,12 +465,20 @@
                                                 }
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
+<<<<<<< HEAD
                                                     $.ajax({
                                                         type: "post",
                                                         url: "{{route('manajemen-ppid.video.delete')}}",
                                                         data:{
                                                                 "id": video.id
                                                             },
+=======
+
+                                                    console.log('delete confirmed')
+                                                    $.ajax({
+                                                        type: "DELETE",
+                                                        url: "/admin/video/" + video.id,
+>>>>>>> origin/main
                                                         cache: false,
                                                         success: function(html) {
                                                             Swal.fire({
@@ -505,7 +517,11 @@
                                             document.getElementById('editUrutan').value = videoRow.urutan
 
 
+<<<<<<< HEAD
                                             document.getElementById('editForm').setAttribute('action', 'update/' +
+=======
+                                            document.getElementById('editForm').setAttribute('action', 'video/' +
+>>>>>>> origin/main
                                                 videoRow.id)
                                         };
 
