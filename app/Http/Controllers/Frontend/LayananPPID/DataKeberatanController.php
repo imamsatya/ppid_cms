@@ -44,7 +44,7 @@ class DataKeberatanController extends Controller
             'ticket_keberatan' => $data['ticket_keberatan'],
             'jenis_kanal' => 'web',
             'perihal_keberatan' => $data['perihal_keberatan'],
-            'id_permohonan' => $data['id_permohonan'],
+            'id_permohonan' => (!empty($data['id_permohonan'])) ? $data['id_permohonan'] : 0,
             'id_kategori_keberatan' => $data['id_kategori_keberatan'],
             "created_at" =>  $dateCreated,
             "updated_at" => $dateCreated

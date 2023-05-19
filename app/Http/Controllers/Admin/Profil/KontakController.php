@@ -45,7 +45,7 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('modal');
         $validated = $request->validate([
             'alamat' => 'required',
             'telepon' => 'required',

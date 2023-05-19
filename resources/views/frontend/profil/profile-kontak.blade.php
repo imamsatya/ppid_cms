@@ -2,6 +2,8 @@
     @push('head-scripts')
         <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
         <link href="{{ asset('ppid_fe/assets/css/page/profile/kontak/index.css') }}" rel="stylesheet" />
+         <!--begin::Global Theme Styles(used by all pages) -->
+    <!--end::Global Theme Styles -->
         <style>
             p::first-letter {
                 text-transform: none;
@@ -10,6 +12,7 @@
             span {
                 text-transform: none;
             }
+            
         </style>
     @endpush
     <!-- Informasi -->
@@ -97,23 +100,11 @@
                             </div>
                         @endforeach
                     @endif
-                </div>
-                {{-- @if ($dokumentasi)
-                    @foreach ($dokumentasi as $dokumentasi_row)
-                        <div class="col-md-6 mb-4">
-                            <img src="{{ asset($dokumentasi_row->image_path) }}" alt="" />
-                        </div>
-                    @endforeach
-                @endif --}}
-
-                {{-- <div class="col-md-6">
-                    <img src="{{ asset('ppid_fe/assets/images/content/content-image/content_kontak_2.png') }}"
-                        alt="" />
-                </div> --}}
+                </div>                
             </div>
         </div>
-
     </section>
+    
     <!-- Ruang Pelayanan -->
     <x-slot:bannerText1>
         Profil / Kontak
@@ -124,8 +115,8 @@
             <x-slot:isActiveProfil>
                 active
                 </x-slot>
-                @push('child-scripts')
-                    <script>
+                @push('child-scripts')                    
+                    <script>                        
                         $(".header-carousel").owlCarousel({
                             loop: true,
                             autoplay: true,

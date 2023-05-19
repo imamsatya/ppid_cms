@@ -23,7 +23,8 @@ class UserPPIDLoginController extends Controller
 
     public function login()
     {
-        return view('auth.login');
+        return abort(404);
+        // return view('auth.login');
     }
 
     public function register()
@@ -165,8 +166,8 @@ class UserPPIDLoginController extends Controller
         Auth::guard('usersppid')
             ->logout();
 
-        return redirect()
-            ->route('userppid.login');
+        return redirect()->route('/');
+            
     }
 
     public function verifikasi()

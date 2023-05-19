@@ -277,7 +277,7 @@
                                     <span
                                         class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
                                         data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                        data-bs-dismiss="click" title="Cancel Banner">
+                                         data-bs-dismiss="click" title="Cancel Banner">
                                         <i class="bi bi-x fs-2"></i>
                                     </span>
                                     <!--end::Cancel button-->
@@ -293,18 +293,33 @@
                                 @endcan
                             </div>
                             <br>
-                            <br> @can('biaya pelayanan.create')
-                                <button type="submit" class="btn btn-primary" id="addButton"
-                                    onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
-                                        Simpan
-                                    </span>
-                                    <span class="indicator-progress">
-                                        Mohon Menunggu... <span
-                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                    </span>
-                                </button>
-                            @endcan
+                            <br>                             
                         </div>
+                        <div class="mb-10">
+                            <label for="exampleFormControlInput1" class=" form-label">Aktif Image</label>
+                            @php
+                                $checked = '';
+                                if($biayaLayanan->is_active){
+                                    $checked = 'checked="checked"';
+                                }
+                            @endphp
+                            <!--begin::Switch-->
+                            <label class="form-check form-switch form-check-custom form-check-solid">
+                                <input class="form-check-input" name="is_active" type="checkbox" {!!$checked!!}/>
+                            </label>
+                            <!--end::Switch-->
+                        </div>
+                        @can('biaya pelayanan.create')
+                            <button type="submit" class="btn btn-primary" id="addButton"
+                                onclick="activateLoadingButton('#addButton')"><span class="indicator-label">
+                                    Simpan
+                                </span>
+                                <span class="indicator-progress">
+                                    Mohon Menunggu... <span
+                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        @endcan
                     </div>
 
                 </div>

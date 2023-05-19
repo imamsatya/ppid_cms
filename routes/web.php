@@ -263,7 +263,7 @@ Route::middleware(['cas', 'user'])->group(function () {
             Route::post('store', 'App\Http\Controllers\Admin\Profil\KontakController@store')->name('manajemen-ppid.kontak.store');
             Route::post('delete', 'App\Http\Controllers\Admin\Profil\KontakController@delete')->name('manajemen-ppid.kontak.delete');
             Route::get('show/{id?}', 'App\Http\Controllers\Admin\Profil\KontakController@show')->name('manajemen-ppid.kontak.show');
-            Route::post('/kontak/dokumentasi_ruang', 'App\Http\Controllers\Admin\Profil\KontakController@Store')->name('manajemen-ppid.kontak.dokumentasi.store');
+            Route::post('/kontak/dokumentasi_ruang', 'App\Http\Controllers\Admin\Profil\KontakController@dokumentasiStore')->name('manajemen-ppid.kontak.dokumentasi.store');
             Route::patch('/kontak/dokumentasi_ruang/update/{id}', 'App\Http\Controllers\Admin\Profil\KontakController@dokumentasiUpdate')->name('manajemen-ppid.kontak.dokumentasi.update');
             Route::post('/kontak/dokumentasi_ruang/delete', 'App\Http\Controllers\Admin\Profil\KontakController@dokumentasiDestroy')->name('manajemen-ppid.kontak.dokumentasi.delete');
         });

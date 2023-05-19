@@ -6,7 +6,7 @@
     <title>PPID KBUMN</title>
 
     <!-- Favicon -->
-    <link href="assets/images/content/logo/favicon.ico" rel="icon" />
+    <link href="/ppid_fe/assets/images/content/logo/favicon.ico" rel="icon" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -168,7 +168,7 @@
 
 
 
-                    @if (Auth::guard('usersppid')->check())
+                    {{-- @if (Auth::guard('usersppid')->check())
                         <li>
 
 
@@ -199,19 +199,14 @@
 
                             </ul>
 
-                            {{-- <form action="{{ route('userppid.logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">
-                                    Sign Out
-                                </button>
-                            </form> --}}
+                           
                         </li>
                     @else
                         <li>
                             <a href="{{ route('userppid.login') }}" class="btn btn-sm btn_login"> Login
                             </a>
                         </li>
-                    @endif
+                    @endif --}}
 
 
 

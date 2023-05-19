@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-
+            @if ($biayaLayanan->is_active)
             <div class="images">
                 <div class="row">
                     @if ($biayaLayanan)
@@ -41,7 +41,8 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            </div>                
+            @endif
         </div>
     </section>
     <!-- content -->
@@ -67,6 +68,8 @@
                             background-size: 100% 300px;
                             height: 300px;
                             padding: 100px 100px 100px 100px;
+                            border-radius: 20px;
+                            
                         }
                     </style>
                 @endpush

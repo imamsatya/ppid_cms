@@ -135,14 +135,15 @@ body {
 }
 
 .content-biaya .images img {
-  max-width: 200px;
-  max-height: 200px;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  width: 100%;
+    max-width: 459px;
+    max-height: 232px;
+    height: auto;
+    display: block;
+    margin-left: 45%;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 20px;
 }
-
 
 
 /* Extra small devices (phones, 600px and down) */
@@ -197,6 +198,7 @@ body {
   .content-biaya .images img{
     margin-left: 50px;
   }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

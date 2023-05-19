@@ -2,8 +2,8 @@
     @push('head-scripts')
         <title>PPID KBUMN</title>
         <!-- Favicon -->
-        <link href="{{ asset('ppid_fe/assets/images/content/logo/favicon.ico') }}" rel="icon" />
-        <link href="{{ asset('ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
+        <link href="{{ asset('/ppid_fe/assets/images/content/logo/favicon.ico') }}" rel="icon" />
+        <link href="{{ asset('/ppid_fe/assets/css/page/home/index.css') }}" rel="stylesheet" />
 
         {{-- <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/float.css') }}" />
         <link rel="stylesheet" href="{{ asset('ppid_fe/assets/float/fab.css') }}" /> --}}
@@ -263,11 +263,11 @@
                             Pengajuan Permohonan, Keberatan Informasi Publik dan/atau cek
                             status
                         </h2>
-                        <a href="{{ route('userppid.login') }}">
+                        {{-- <a href="{{ route('userppid.login') }}">
                             <button class="mt-4 btn btn-lg btn-outline-primary-ppid">
                                 Klik Disini
                             </button>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -488,6 +488,11 @@
                     type: "bar",
                     data: data,
                     options: {
+                        scale: {
+                                    ticks: {
+                                        precision: 0
+                                    }
+                                },
                         responsive: true,
                         plugins: {
                             htmlLegend: {

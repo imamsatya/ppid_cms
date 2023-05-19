@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\StandarLayanan\BiayaLayanan;
 
+use function PHPUnit\Framework\isNull;
+
 class BiayaLayananController extends Controller
 {
     /**
@@ -40,7 +42,6 @@ class BiayaLayananController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validated = $request->validate([
             'biaya' => 'mimes:png,jpg,jpeg|max:5120',
             'banner' => 'mimes:png,jpg,jpeg|max:5120',
@@ -52,7 +53,6 @@ class BiayaLayananController extends Controller
         if (!$validated) {
             return redirect()->back()->withErrors($validated)->withInput();
         }
-
         if ($validated) {
             $biayaLayanan = new BiayaLayanan();
             $biayaLayanan = $biayaLayanan->first();
@@ -74,8 +74,11 @@ class BiayaLayananController extends Controller
                         $path = $file->storeAs('public/adminAssets/standarlayanan/biayaLayanan', $fileName2);
                     }
                 }
+                
                 $biayaLayanan->judul = $request->judul;
                 $biayaLayanan->deskripsi = $request->deskripsi;
+                $biayaLayanan->deskripsi = $request->deskripsi;
+                $biayaLayanan->is_active = ($request->has('is_active')) ? 1 : 0;
                 $biayaLayanan->save();
             } else {
                 $biayaLayanan = new BiayaLayanan();
@@ -98,6 +101,7 @@ class BiayaLayananController extends Controller
                 }
                 $biayaLayanan->judul = $request->judul;
                 $biayaLayanan->deskripsi = $request->deskripsi;
+                $biayaLayanan->is_active = ($request->has('is_active')) ? 1 : 0;
                 $biayaLayanan->save();
             }
 

@@ -586,6 +586,7 @@ body {
 .header-carousel .owl-carousel-item {
   background-repeat: no-repeat;
   height: 538px;
+  border-radius: 20px;
 }
 .header-carousel .owl-prev-custom {
   top: 350px !important;
